@@ -32,9 +32,9 @@ export default function About() {
               </div>
               <div className="grid grid-cols-2 gap-8">
                 {[
-                  { label: "Founded", val: "2010", icon: <Target className="text-accent" /> },
-                  { label: "Expert Consultants", val: "15+", icon: <Users className="text-accent" /> },
-                  { label: "Projects Completed", val: "250+", icon: <CheckCircle2 className="text-accent" /> },
+                  { label: "Founded", val: "2026", icon: <Target className="text-accent" /> },
+                  { label: "Expert Consultants", val: "3+", icon: <Users className="text-accent" /> },
+                  { label: "Projects Completed", val: "10+", icon: <CheckCircle2 className="text-accent" /> },
                   { label: "Client ROI", val: "15x", icon: <TrendingUp className="text-accent" /> }
                 ].map((s, i) => (
                   <div key={i} className="bg-[#F8FAFC] p-8 rounded-2xl border border-border flex flex-col items-center text-center">

@@ -1,232 +1,114 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, ChevronRight, Target, Users, BarChart3, Settings2, FileText, CheckCircle2 } from "lucide-react";
-
-// Asset imports
-import heroImg from "@/assets/images/hero-corporate.jpg";
-import architectureImg from "@/assets/images/architecture.jpg";
-import leadershipImg from "@/assets/images/leadership.jpg";
-import consultingImg from "@/assets/images/consulting.jpg";
+import { ArrowRight, ChevronRight, Search, Globe } from "lucide-react";
+import heroImg from "@/assets/images/pwc-style-hero.jpg";
 
 export default function Home() {
-  const services = [
-    {
-      icon: <Target className="w-8 h-8 text-accent" />,
-      title: "Strategic Planning & Alignment",
-      description: "Clarify strategic direction and ensure organizational alignment from the top down."
-    },
-    {
-      icon: <Users className="w-8 h-8 text-accent" />,
-      title: "Leadership Development",
-      description: "Strengthen leadership capability to navigate complexity and drive team performance."
-    },
-    {
-      icon: <BarChart3 className="w-8 h-8 text-accent" />,
-      title: "Performance Management",
-      description: "Design and optimize systems that connect strategic goals with daily execution."
-    },
-    {
-      icon: <Settings2 className="w-8 h-8 text-accent" />,
-      title: "Process Improvement",
-      description: "Streamline operations and document processes for enhanced efficiency and scale."
-    },
-    {
-      icon: <CheckCircle2 className="w-8 h-8 text-accent" />,
-      title: "Organizational Assessment",
-      description: "Evaluate current structures and identify targeted areas for sustainable improvement."
-    },
-    {
-      icon: <FileText className="w-8 h-8 text-accent" />,
-      title: "Business Registration",
-      description: "Governance guidance to ensure legal compliance and operational readiness."
-    }
+  const featuredInsights = [
+    { title: "Building trust in the age of AI", category: "Trust", color: "bg-accent" },
+    { title: "The 2026 CEO Survey: Performance Redefined", category: "Strategy", color: "bg-black" },
+    { title: "Scaling impact through process optimization", category: "Execution", color: "bg-gray-200 text-black" },
   ];
 
   return (
-    <div className="min-h-screen bg-background flex flex-col font-sans">
+    <div className="min-h-screen bg-white flex flex-col font-sans overflow-x-hidden">
       <Navbar />
 
       <main className="flex-grow">
-        {/* HERO SECTION - Deloitte Style Split / Overlap */}
-        <section className="relative w-full">
-          <div className="absolute inset-0 z-0">
+        {/* Top Bar - PwC Style Mini Nav */}
+        <div className="bg-white border-b hidden md:block">
+          <div className="container mx-auto px-4 md:px-8 h-10 flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
+            <div className="flex gap-6">
+              <a href="#" className="hover:text-accent">Global</a>
+              <a href="#" className="hover:text-accent">Services</a>
+              <a href="#" className="hover:text-accent">Industries</a>
+            </div>
+            <div className="flex gap-6 items-center">
+              <span className="flex items-center gap-1"><Globe size={12} /> EN</span>
+              <Search size={14} className="cursor-pointer hover:text-accent" />
+            </div>
+          </div>
+        </div>
+
+        {/* Hero Section - PwC Split Style */}
+        <section className="relative flex flex-col md:flex-row min-h-[600px] border-b">
+          <div className="md:w-1/2 p-12 md:p-24 flex flex-col justify-center bg-white">
+            <div className="w-16 h-2 bg-accent mb-12"></div>
+            <h1 className="text-5xl md:text-7xl font-heading font-extrabold leading-[1.1] mb-8 text-black uppercase italic">
+              Strategy <br />
+              <span className="text-accent">Simplified.</span>
+            </h1>
+            <p className="text-xl text-muted-foreground mb-12 max-w-lg leading-relaxed">
+              We help organizations align strategic direction with measurable execution through a collaborative, results-focused approach.
+            </p>
+            <div className="flex gap-4">
+              <Button size="lg" className="rounded-none bg-black hover:bg-accent text-white font-bold uppercase tracking-widest text-xs px-10 h-14 transition-all">
+                Explore our impact
+              </Button>
+            </div>
+          </div>
+          <div className="md:w-1/2 relative bg-gray-100">
             <img 
               src={heroImg} 
-              alt="Corporate strategy meeting" 
-              className="w-full h-full object-cover object-center"
+              alt="Professional Strategy" 
+              className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
             />
-            <div className="absolute inset-0 bg-primary/70 md:bg-transparent"></div>
-          </div>
-          
-          <div className="container relative z-10 mx-auto px-4 md:px-6 pt-32 pb-24 md:py-48">
-            <div className="max-w-2xl bg-primary md:p-12 p-8 text-white relative before:absolute before:inset-0 before:w-full before:h-full before:-z-10 shadow-2xl">
-              <div className="w-12 h-1 bg-accent mb-8"></div>
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Aligning Strategy with <span className="text-accent">Measurable Impact</span>
-              </h1>
-              <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 leading-relaxed font-light">
-                We support leaders in clarifying direction, strengthening capability, and optimizing performance systems that connect goals with execution.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button 
-                  size="lg" 
-                  className="rounded-none bg-accent hover:bg-accent/90 text-white font-medium cursor-pointer" 
-                  data-testid="button-hero-primary"
-                  onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  Explore Our Services
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="rounded-none border-white text-white hover:bg-white/10 font-medium cursor-pointer" 
-                  data-testid="button-hero-secondary"
-                  onClick={() => document.getElementById('approach')?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  Our Approach
-                </Button>
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* INTRODUCTION */}
-        <section id="about" className="py-24 bg-white">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="flex flex-col md:flex-row gap-16 items-center">
-              <div className="md:w-1/2">
-                <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">
-                  Driving clarity, accountability, and long-term impact.
-                </h2>
-                <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                  Performance Processes is a registered business consulting firm dedicated to helping organizations bridge the gap between strategic vision and operational reality.
-                </p>
-                <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-                  Through our collaborative, results-focused approach, we ensure sustainable performance improvements that prepare your organization for growth, scale, and lasting success.
-                </p>
-                <a href="#approach" className="corporate-link group" data-testid="link-read-more-about">
-                  Learn about our collaborative approach
-                  <ChevronRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
+        {/* Featured Grid - PwC Card Style */}
+        <section className="grid grid-cols-1 md:grid-cols-3">
+          {featuredInsights.map((insight, i) => (
+            <div key={i} className={`p-12 md:p-16 flex flex-col justify-between min-h-[400px] pwc-grid-border group cursor-pointer ${insight.color === 'bg-black' ? 'bg-black text-white' : insight.color === 'bg-accent' ? 'bg-accent text-white' : 'bg-white text-black'}`}>
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-widest mb-4 block opacity-80">{insight.category}</span>
+                <h2 className="text-3xl font-heading font-bold leading-tight group-hover:underline underline-offset-8 decoration-2">{insight.title}</h2>
               </div>
-              <div className="md:w-1/2 relative">
-                <div className="absolute top-4 -left-4 w-full h-full border-2 border-primary/10 z-0"></div>
-                <img 
-                  src={leadershipImg} 
-                  alt="Business leadership" 
-                  className="w-full h-auto shadow-xl relative z-10"
-                />
+              <div className="flex items-center justify-between mt-12">
+                <span className="text-xs font-bold uppercase tracking-widest">Read more</span>
+                <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
               </div>
             </div>
-          </div>
+          ))}
         </section>
 
-        {/* SERVICES SECTION */}
-        <section id="services" className="py-24 bg-secondary">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="mb-16 max-w-3xl">
-              <div className="w-12 h-1 bg-accent mb-6"></div>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Our Services
+        {/* Content Section - PwC Typography Focus */}
+        <section className="py-24 md:py-32 bg-white">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="max-w-4xl">
+              <h2 className="text-4xl md:text-6xl font-heading font-extrabold text-black mb-12 uppercase italic leading-none">
+                Performance is <br />
+                <span className="text-accent">a process.</span>
               </h2>
-              <p className="text-lg text-muted-foreground">
-                Comprehensive consulting solutions designed to optimize your people, processes, and performance systems.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
-                <Card key={index} className="rounded-none border-none shadow-sm hover-lift bg-white h-full transition-all duration-300">
-                  <CardContent className="p-8 flex flex-col h-full">
-                    <div className="mb-6 p-4 bg-secondary/50 inline-block w-fit">
-                      {service.icon}
-                    </div>
-                    <h3 className="font-heading text-xl font-bold mb-4 text-foreground">{service.title}</h3>
-                    <p className="text-muted-foreground mb-6 flex-grow">{service.description}</p>
-                    <a href="#" className="text-primary font-medium text-sm flex items-center hover:text-accent transition-colors mt-auto w-fit" data-testid={`link-service-${index}`}>
-                      Read more <ArrowRight className="ml-1 w-3 h-3" />
-                    </a>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* APPROACH SECTION - Split design */}
-        <section id="approach" className="flex flex-col md:flex-row">
-          <div className="md:w-1/2 relative min-h-[400px]">
-            <img 
-              src={architectureImg} 
-              alt="Structured architecture" 
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          </div>
-          <div className="md:w-1/2 bg-primary text-white p-12 md:p-24 flex flex-col justify-center">
-            <div className="w-12 h-1 bg-accent mb-8"></div>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-8">
-              Our Methodology
-            </h2>
-            <div className="space-y-8">
-              <div className="flex gap-6">
-                <div className="font-heading text-4xl font-bold text-accent/50 leading-none">01</div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div>
-                  <h3 className="font-heading text-xl font-bold mb-2">Collaborative Design</h3>
-                  <p className="text-primary-foreground/80">We work alongside your leadership team, ensuring solutions are tailored to your specific organizational context and culture.</p>
+                  <p className="text-xl font-medium leading-relaxed mb-6">
+                    Our collaborative approach ensures sustainable improvements that drive clarity, accountability, and long-term impact.
+                  </p>
                 </div>
-              </div>
-              <div className="flex gap-6">
-                <div className="font-heading text-4xl font-bold text-accent/50 leading-none">02</div>
                 <div>
-                  <h3 className="font-heading text-xl font-bold mb-2">Results-Focused Execution</h3>
-                  <p className="text-primary-foreground/80">Every strategy is tied to measurable metrics. We build systems that track progress and hold teams accountable to goals.</p>
-                </div>
-              </div>
-              <div className="flex gap-6">
-                <div className="font-heading text-4xl font-bold text-accent/50 leading-none">03</div>
-                <div>
-                  <h3 className="font-heading text-xl font-bold mb-2">Sustainable Improvement</h3>
-                  <p className="text-primary-foreground/80">We don't just deliver a plan; we provide the change management support and coaching needed to make new practices stick.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA SECTION */}
-        <section className="py-24 bg-white relative overflow-hidden">
-          <div className="absolute right-0 top-0 w-1/3 h-full bg-secondary/50 -z-10 transform -skew-x-12 translate-x-16"></div>
-          <div className="container mx-auto px-4 md:px-6 relative z-10">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-12 bg-white glass-card p-12 lg:p-16">
-              <div className="max-w-2xl">
-                <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">
-                  Ready to optimize your organization's performance?
-                </h2>
-                <p className="text-lg text-muted-foreground mb-8">
-                  Whether you need strategic alignment, leadership coaching, or assistance with business registration and governance, our experts are ready to guide you.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button 
-                    size="lg" 
-                    className="rounded-none bg-primary hover:bg-primary/90 text-white font-medium px-8 cursor-pointer" 
-                    data-testid="button-cta-primary"
-                    onClick={() => window.location.href = 'mailto:contact@performanceprocesses.com'}
-                  >
-                    Schedule a Consultation
+                  <p className="text-muted-foreground leading-relaxed mb-8">
+                    We assist with strategic planning, organizational assessment, and governance guidance to ensure operational readiness as organizations grow.
+                  </p>
+                  <Button variant="outline" className="rounded-none border-black text-black hover:bg-black hover:text-white font-bold uppercase tracking-widest text-xs px-8 h-12">
+                    About Performance Processes
                   </Button>
                 </div>
               </div>
-              <div className="w-full lg:w-1/3">
-                 <img 
-                  src={consultingImg} 
-                  alt="Consulting in action" 
-                  className="w-full h-auto shadow-lg"
-                />
-              </div>
             </div>
+          </div>
+        </section>
+
+        {/* Services Showcase - PwC Minimalist List */}
+        <section className="border-y border-border">
+          <div className="grid grid-cols-1 md:grid-cols-4">
+            {['Strategy', 'Execution', 'Leadership', 'Compliance'].map((item, i) => (
+              <div key={i} className="p-12 pwc-grid-border flex flex-col justify-between group hover:bg-accent hover:text-white transition-all duration-300 min-h-[250px] cursor-pointer">
+                <h3 className="text-2xl font-heading font-bold uppercase italic tracking-tighter">{item}</h3>
+                <ChevronRight size={24} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+            ))}
           </div>
         </section>
       </main>

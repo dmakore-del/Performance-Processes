@@ -1,66 +1,48 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { BookOpen, FileText, TrendingUp } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Insights() {
-  const articles = [
-    {
-      category: "Case Study",
-      title: "Strategic Realignment for a Global Logistics Firm",
-      excerpt: "How we helped a $500M firm regain 15% operational efficiency through clear strategic siloing.",
-      icon: <FileText className="w-5 h-5" />
-    },
-    {
-      category: "Whitepaper",
-      title: "The Future of Performance Management",
-      excerpt: "Moving beyond annual reviews to real-time execution tracking and feedback loops.",
-      icon: <BookOpen className="w-5 h-5" />
-    },
-    {
-      category: "Trends",
-      title: "Leadership in the Age of AI",
-      excerpt: "Why strengthening human capability is more critical than ever in automated environments.",
-      icon: <TrendingUp className="w-5 h-5" />
-    }
+  const insights = [
+    { title: "Trust: The new performance metric", date: "FEB 2026", cat: "TRUST" },
+    { title: "The 2026 CEO Survey Results", date: "JAN 2026", cat: "STRATEGY" },
+    { title: "Scaling leadership in automated environments", date: "DEC 2025", cat: "LEADERSHIP" },
+    { title: "Governance as a growth driver", date: "NOV 2025", cat: "GOVERNANCE" },
+    { title: "The impact of process optimization on scale", date: "OCT 2025", cat: "EXECUTION" },
+    { title: "Alignment: The invisible competitive advantage", date: "SEP 2025", cat: "STRATEGY" },
   ];
 
   return (
-    <div className="min-h-screen bg-background flex flex-col font-sans">
+    <div className="min-h-screen bg-white flex flex-col font-sans">
       <Navbar />
       <main className="flex-grow">
-        <section className="bg-secondary py-24 border-b">
+        <section className="py-24 border-b">
           <div className="container mx-auto px-4 md:px-8">
-            <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6">Insights & Resources</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Thought leadership and practical guides to help you navigate organizational complexity.
-            </p>
+            <h1 className="text-5xl md:text-7xl font-heading font-black uppercase italic leading-none mb-12">
+              Latest <br />
+              <span className="text-accent">Insights.</span>
+            </h1>
           </div>
         </section>
 
-        <section className="py-24 container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article, i) => (
-              <Card key={i} className="rounded-none border shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-4">
-                    {article.icon}
-                    {article.category}
-                  </div>
-                  <h3 className="text-xl font-heading font-bold mb-4 group-hover:text-primary transition-colors">{article.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">{article.excerpt}</p>
-                  <Button 
-                    variant="link" 
-                    className="p-0 h-auto text-primary font-bold uppercase tracking-widest text-[11px] group-hover:text-accent"
-                    onClick={() => window.location.href = 'mailto:contact@performanceprocesses.com?subject=Inquiry about ' + article.title}
-                  >
-                    Read Full Article
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <section className="grid grid-cols-1 md:grid-cols-2">
+          {insights.map((insight, i) => (
+            <div key={i} className="p-12 md:p-16 pwc-grid-border group cursor-pointer hover:bg-black hover:text-white transition-all duration-500 min-h-[350px] flex flex-col justify-between">
+              <div>
+                <div className="flex justify-between items-center mb-8">
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-60 group-hover:text-accent">{insight.cat}</span>
+                  <span className="text-[10px] font-bold opacity-40">{insight.date}</span>
+                </div>
+                <h2 className="text-3xl font-heading font-extrabold uppercase italic leading-tight group-hover:translate-x-4 transition-transform duration-500">
+                  {insight.title}
+                </h2>
+              </div>
+              <div className="flex items-center gap-4 text-xs font-black uppercase tracking-widest mt-12">
+                <span>View Insight</span>
+                <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
+              </div>
+            </div>
+          ))}
         </section>
       </main>
       <Footer />

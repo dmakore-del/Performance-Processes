@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { CheckCircle2, TrendingUp, Users, Target } from "lucide-react";
+import { CheckCircle2, TrendingUp, Users, Target, Quote } from "lucide-react";
+import founderImage from "@/assets/361F67D6-F008-4A69-949F-3AACE4190827_1771613037768.PNG";
 
 export default function About() {
   return (
@@ -43,6 +44,65 @@ export default function About() {
                     <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">{s.label}</div>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Meet the Founder Section */}
+        <section className="py-24 bg-[#F8FAFC]">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="flex flex-col lg:flex-row gap-16 items-center">
+              <div className="lg:w-2/5 relative">
+                <div className="absolute -top-6 -left-6 w-full h-full border-2 border-accent/20 rounded-2xl -z-10 translate-x-4 translate-y-4"></div>
+                <img 
+                  src={founderImage} 
+                  alt="Danai Makore - Founder of Performance Processes" 
+                  className="rounded-2xl shadow-2xl w-full h-auto object-cover"
+                />
+                <div className="absolute -bottom-8 -right-8 bg-white p-8 rounded-2xl shadow-xl border border-border hidden md:block max-w-[280px]">
+                  <Quote className="text-accent mb-4" size={32} fill="currentColor" fillOpacity={0.1} />
+                  <p className="text-primary font-bold italic text-lg leading-tight mb-2">
+                    "To help people build organizations that truly change lives."
+                  </p>
+                  <p className="text-accent font-black text-[10px] uppercase tracking-widest">— Danai Makore</p>
+                </div>
+              </div>
+              <div className="lg:w-3/5">
+                <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
+                  Meet the Founder
+                </div>
+                <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-8 leading-tight">
+                  Danai <span className="text-accent italic">Makore</span>
+                </h2>
+                <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+                  <p>
+                    Danai Makore is a people-centered leader, strategist, and consultant whose work spans nonprofit leadership, financial services, and mental health advocacy.
+                  </p>
+                  <p>
+                    With academic training in Psychology and Human Resource Management and a deep commitment to equity, access, and sustainable impact, Danai founded Performance Processes to help visionaries, entrepreneurs, and organizations transform meaningful ideas into strong, lasting institutions.
+                  </p>
+                  <p>
+                    Her approach blends human insight with practical systems, guiding clients from business formation and strategic development to performance management and long-term growth.
+                  </p>
+                  <p className="font-medium text-primary italic">
+                    Grounded in purpose and driven by results, Danai’s mission is simple, “to help people build organizations that truly change lives.”
+                  </p>
+                </div>
+                <div className="mt-12 flex flex-wrap gap-4">
+                  <div className="flex items-center gap-3 px-6 py-3 bg-white rounded-xl border border-border shadow-sm">
+                    <div className="w-2 h-2 rounded-full bg-accent"></div>
+                    <span className="text-sm font-bold text-primary">Strategist</span>
+                  </div>
+                  <div className="flex items-center gap-3 px-6 py-3 bg-white rounded-xl border border-border shadow-sm">
+                    <div className="w-2 h-2 rounded-full bg-accent"></div>
+                    <span className="text-sm font-bold text-primary">Leader</span>
+                  </div>
+                  <div className="flex items-center gap-3 px-6 py-3 bg-white rounded-xl border border-border shadow-sm">
+                    <div className="w-2 h-2 rounded-full bg-accent"></div>
+                    <span className="text-sm font-bold text-primary">Consultant</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

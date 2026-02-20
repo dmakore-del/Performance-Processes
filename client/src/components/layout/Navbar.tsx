@@ -23,8 +23,7 @@ export function Navbar() {
       <div className="bg-[#1a1a1a] text-white py-2 hidden lg:block">
         <div className="container mx-auto px-4 md:px-8 flex justify-end items-center gap-6 text-[11px] font-bold uppercase tracking-wider">
           <Link href="/portal"><a className="hover:text-accent transition-colors">Client Portal</a></Link>
-          <a href="#" className="hover:text-accent transition-colors">Resources</a>
-          <a href="#" className="hover:text-accent transition-colors">Careers</a>
+          <Link href="/careers"><a className="hover:text-accent transition-colors">Careers</a></Link>
           <div className="w-[1px] h-3 bg-gray-600"></div>
           <div className="flex gap-2">
             <button 

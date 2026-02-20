@@ -2,8 +2,11 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CheckCircle2, TrendingUp, Users, Target, Quote } from "lucide-react";
 import founderImage from "@/assets/founder.png";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function About() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <Navbar />
@@ -11,10 +14,10 @@ export default function About() {
         <section className="bg-white border-b py-20 lg:py-32">
           <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl">
             <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-primary mb-8 leading-[1.1]">
-              About <span className="text-accent italic">Performance Processes</span>
+              {t("nav.about")} <span className="text-accent italic">Performance Processes</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              We are a professional business consulting firm dedicated to helping organizations bridge the gap between vision and execution.
+              {t("hero.subtitle")}
             </p>
           </div>
         </section>

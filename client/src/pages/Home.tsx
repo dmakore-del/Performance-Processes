@@ -3,8 +3,11 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck } from "lucide-react";
 import { Link } from "wouter";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function Home() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
       <Navbar />
@@ -30,21 +33,21 @@ export default function Home() {
                 <TrendingUp size={14} /> Business Consulting
               </div>
               <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-primary mb-8 leading-[1.1]">
-                Aligning Strategy <br />
-                <span className="text-accent underline decoration-accent/30 underline-offset-8">With Impact.</span>
+                {t("hero.title")} <br />
+                <span className="text-accent underline decoration-accent/30 underline-offset-8">{t("hero.titleAccent")}</span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-xl">
-                We are a professional business consulting firm dedicated to helping organizations bridge the gap between vision and execution.
+                {t("hero.subtitle")}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact">
                   <Button className="rounded-full bg-primary text-white hover:bg-accent h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all">
-                    Book a free consultation
+                    {t("hero.ctaPrimary")}
                   </Button>
                 </Link>
                 <Link href="/services">
                   <Button variant="outline" className="rounded-full border-primary text-primary hover:bg-primary/5 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all">
-                    View our services
+                    {t("hero.ctaSecondary")}
                   </Button>
                 </Link>
               </div>

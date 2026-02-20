@@ -3,16 +3,18 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/hooks/use-language";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [location] = useLocation();
+  const { language, setLanguage, t } = useLanguage();
 
   const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "Services", href: "/services" },
-    { label: "About", href: "/about" },
-    { label: "Our Approach", href: "/approach" },
+    { label: t("nav.home"), href: "/" },
+    { label: t("nav.services"), href: "/services" },
+    { label: t("nav.about"), href: "/about" },
+    { label: t("nav.approach"), href: "/approach" },
   ];
 
   return (
@@ -24,7 +26,21 @@ export function Navbar() {
           <a href="#" className="hover:text-accent transition-colors">Resources</a>
           <a href="#" className="hover:text-accent transition-colors">Careers</a>
           <div className="w-[1px] h-3 bg-gray-600"></div>
-          <a href="#" className="hover:text-accent transition-colors">EN | FR</a>
+          <div className="flex gap-2">
+            <button 
+              onClick={() => setLanguage("en")} 
+              className={cn("hover:text-accent transition-colors", language === "en" ? "text-accent underline" : "")}
+            >
+              EN
+            </button>
+            <span>|</span>
+            <button 
+              onClick={() => setLanguage("fr")} 
+              className={cn("hover:text-accent transition-colors", language === "fr" ? "text-accent underline" : "")}
+            >
+              FR
+            </button>
+          </div>
         </div>
       </div>
 
@@ -67,7 +83,7 @@ export function Navbar() {
           </button>
           <Link href="/contact">
             <Button className="rounded-full bg-accent text-white hover:bg-primary transition-all font-bold px-8 h-12 uppercase tracking-wider text-xs hidden md:flex">
-              Contact Us
+              {t("nav.contact")}
             </Button>
           </Link>
           <button

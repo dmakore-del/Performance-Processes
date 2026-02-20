@@ -1,0 +1,86 @@
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
+
+type Language = "en" | "fr";
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+}
+
+const translations = {
+  en: {
+    "nav.home": "Home",
+    "nav.services": "Services",
+    "nav.about": "About",
+    "nav.approach": "Our Approach",
+    "nav.contact": "Contact Us",
+    "hero.title": "Aligning Strategy",
+    "hero.titleAccent": "With Impact.",
+    "hero.subtitle": "We are a professional business consulting firm dedicated to helping organizations bridge the gap between vision and execution.",
+    "hero.ctaPrimary": "Book a free consultation",
+    "hero.ctaSecondary": "View our services",
+    "footer.description": "Performance Processes is a professional business consulting firm dedicated to helping organizations bridge the gap between vision and execution.",
+    "footer.expertise": "Our Expertise",
+    "footer.quickLinks": "Quick Links",
+    "footer.contact": "Contact",
+    "footer.rights": "Performance Processes Consulting",
+    "footer.privacy": "Privacy & Terms",
+    "footer.sitemap": "Sitemap",
+    "footer.accessibility": "Accessibility",
+    "common.learnMore": "Learn more"
+  },
+  fr: {
+    "nav.home": "Accueil",
+    "nav.services": "Services",
+    "nav.about": "À Propos",
+    "nav.approach": "Notre Approche",
+    "nav.contact": "Contactez-nous",
+    "hero.title": "Aligner la Stratégie",
+    "hero.titleAccent": "avec l'Impact.",
+    "hero.subtitle": "Nous sommes un cabinet de conseil professionnel dédié à aider les organisations à combler le fossé entre la vision et l'exécution.",
+    "hero.ctaPrimary": "Réserver une consultation gratuite",
+    "hero.ctaSecondary": "Voir nos services",
+    "footer.description": "Performance Processes est un cabinet de conseil professionnel dédié à aider les organisations à combler le fossé entre la vision et l'exécution.",
+    "footer.expertise": "Notre Expertise",
+    "footer.quickLinks": "Liens Rapides",
+    "footer.contact": "Contact",
+    "footer.rights": "Performance Processes Conseil",
+    "footer.privacy": "Confidentialité et Conditions",
+    "footer.sitemap": "Plan du site",
+    "footer.accessibility": "Accessibilité",
+    "common.learnMore": "En savoir plus"
+  }
+};
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [language, setLanguage] = useState<Language>(() => {
+    const saved = localStorage.getItem("language");
+    return (saved === "en" || saved === "fr") ? saved : "en";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("language", language);
+    document.documentElement.lang = language;
+  }, [language]);
+
+  const t = (key: string) => {
+    return translations[language][key as keyof typeof translations["en"]] || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error("useLanguage must be used within a LanguageProvider");
+  }
+  return context;
+}

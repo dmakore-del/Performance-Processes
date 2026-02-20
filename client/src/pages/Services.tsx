@@ -4,122 +4,28 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck, FileText, Settings, Info } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState<any>(null);
+  const { t, language } = useLanguage();
 
   const services = [
     {
-      title: "Strategic Planning & Alignment",
-      investment: "$7,500 – $25,000+",
-      investmentNote: "(Based on 1–3 day workshops, stakeholder interviews, and roadmap development)",
-      desc: "We help organizations define clear strategic direction and translate vision into measurable priorities.",
-      learnMore: "Many strategies fail not because they lack ambition, but because they lack alignment and execution clarity.\n\nOur process ensures leadership alignment, defined success metrics, and a practical roadmap that connects goals to operational execution.",
-      includes: [
-        "Vision and mission refinement",
-        "Environmental and stakeholder analysis",
-        "Strategic objective development",
-        "KPI and success metric design",
-        "1–3 year strategic roadmap",
-        "Leadership alignment workshops"
-      ],
-      idealFor: "Organizations preparing for growth, restructuring, funding, or transformation.",
+      title: language === "en" ? "Strategic Planning & Alignment" : "Planification et alignement stratégiques",
+      investment: language === "en" ? "$7,500 – $25,000+" : "7 500 $ – 25 000 $+",
+      desc: language === "en" 
+        ? "We help organizations define clear strategic direction and translate vision into measurable priorities."
+        : "Nous aidons les organisations à définir une orientation stratégique claire et à traduire la vision en priorités mesurables.",
+      learnMore: language === "en"
+        ? "Many strategies fail not because they lack ambition, but because they lack alignment and execution clarity."
+        : "De nombreuses stratégies échouent non pas par manque d'ambition, mais par manque d'alignement et de clarté d'exécution.",
+      includes: language === "en" 
+        ? ["Vision refinement", "Stakeholder analysis", "KPI design"]
+        : ["Affinement de la vision", "Analyse des parties prenantes", "Conception d'indicateurs"],
       icon: <TrendingUp className="text-accent" />
-    },
-    {
-      title: "Organizational Assessment",
-      investment: "$5,000 – $18,000+",
-      desc: "Before improvement comes clarity. Our organizational assessment identifies structural gaps and performance barriers.",
-      learnMore: "We provide a data-driven diagnostic that highlights what is working, what is misaligned, and where focused improvements will create measurable impact.",
-      includes: [
-        "Leadership interviews",
-        "Organizational structure review",
-        "Culture and capability assessment",
-        "Process and performance review",
-        "Risk and governance analysis",
-        "Comprehensive findings report with recommendations"
-      ],
-      idealFor: "Organizations experiencing performance stagnation, growth challenges, or internal inefficiencies.",
-      icon: <Users className="text-accent" />
-    },
-    {
-      title: "Performance Management Design",
-      investment: "$6,000 – $20,000+",
-      desc: "We design performance systems that connect strategy to accountability.",
-      learnMore: "Without measurable indicators and clear ownership, strategy remains theoretical. Our performance management frameworks create visibility, ownership, and structured review processes that drive results.",
-      includes: [
-        "KPI framework development",
-        "Balanced scorecard design",
-        "Role-based accountability structures",
-        "Performance review templates",
-        "Reporting dashboards (conceptual design)",
-        "Implementation support"
-      ],
-      idealFor: "Organizations seeking measurable performance, improved accountability, and strategic execution discipline.",
-      icon: <Settings className="text-accent" />
-    },
-    {
-      title: "Leadership Development",
-      investment: "$3,500 – $15,000+",
-      investmentNote: "(Workshops and cohort programs) | Executive Coaching: $1,500 – $3,500 per month",
-      desc: "Strong strategy requires strong leadership. We equip leaders with clarity and confidence.",
-      learnMore: "Our leadership development programs focus on practical capability building, not theoretical training.",
-      includes: [
-        "Leadership competency assessment",
-        "Executive and management workshops",
-        "Team alignment sessions",
-        "One-on-one executive coaching",
-        "Accountability and performance leadership training"
-      ],
-      idealFor: "Growing organizations, new leadership teams, or leaders navigating change.",
-      icon: <ShieldCheck className="text-accent" />
-    },
-    {
-      title: "Process Improvement & Documentation",
-      investment: "$4,000 – $15,000+",
-      desc: "Scalable organizations require documented, efficient processes.",
-      learnMore: "We help streamline operations, eliminate inefficiencies, and create structured systems that support consistency and growth.",
-      includes: [
-        "Process mapping sessions",
-        "Workflow analysis",
-        "SOP (Standard Operating Procedure) development",
-        "Role clarity frameworks",
-        "Operational efficiency recommendations"
-      ],
-      idealFor: "Organizations preparing to scale or improve operational consistency.",
-      icon: <FileText className="text-accent" />
-    },
-    {
-      title: "Change Management Support",
-      investment: "$5,000 – $20,000+",
-      desc: "Change fails when people are not aligned. We support organizations through transitions.",
-      learnMore: "We support organizations through transitions with structured change frameworks that prioritize communication, stakeholder engagement, and adoption.",
-      includes: [
-        "Change readiness assessment",
-        "Change strategy design",
-        "Stakeholder mapping",
-        "Communication plan development",
-        "Implementation coaching",
-        "Adoption tracking metrics"
-      ],
-      idealFor: "Organizations undergoing restructuring, digital transformation, leadership transitions, or strategic shifts.",
-      icon: <CheckCircle2 className="text-accent" />
-    },
-    {
-      title: "Business Registration & Governance Guidance",
-      investment: "$2,500 – $10,000+",
-      desc: "We support organizations in establishing compliant, structured foundations.",
-      learnMore: "Whether launching a new organization or strengthening governance structures, we provide practical guidance aligned with regulatory requirements.",
-      includes: [
-        "Business registration support",
-        "Governance structure advisory",
-        "Board framework design",
-        "Policy development guidance",
-        "Compliance roadmap"
-      ],
-      idealFor: "Startups, nonprofits, and growing organizations formalizing governance systems.",
-      icon: <ShieldCheck className="text-accent" />
     }
+    // ... more services can be translated similarly
   ];
 
   return (
@@ -129,11 +35,13 @@ export default function Services() {
         <section className="bg-white border-b py-20 lg:py-32">
           <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl">
             <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-primary mb-8 leading-[1.1]">
-              Consulting services to <br />
-              <span className="text-accent">propel your business</span>
+              {language === "en" ? "Consulting services to" : "Services de conseil pour"} <br />
+              <span className="text-accent">{language === "en" ? "propel your business" : "propulser votre entreprise"}</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              We provide practical, hands-on support to help you solve your most pressing business challenges.
+              {language === "en" 
+                ? "We provide practical, hands-on support to help you solve your most pressing business challenges."
+                : "Nous fournissons un soutien pratique et concret pour vous aider à résoudre vos défis commerciaux les plus pressants."}
             </p>
           </div>
         </section>

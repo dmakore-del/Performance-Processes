@@ -13,6 +13,8 @@ import Legal from "./pages/Legal";
 import Sitemap from "./pages/Sitemap";
 import Accessibility from "./pages/Accessibility";
 
+import { LanguageProvider } from "./hooks/use-language";
+
 function Router() {
   return (
     <Switch>
@@ -31,12 +33,14 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <LanguageProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </LanguageProvider>
   );
 }
 

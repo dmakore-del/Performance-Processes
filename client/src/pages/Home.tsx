@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronRight, Search, Globe } from "lucide-react";
+import { Link } from "wouter";
 import heroImg from "@/assets/images/pwc-style-hero.jpg";
 
 export default function Home() {
@@ -20,9 +21,11 @@ export default function Home() {
         <div className="bg-white border-b hidden md:block">
           <div className="container mx-auto px-4 md:px-8 h-10 flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
             <div className="flex gap-6">
-              <a href="#" className="hover:text-accent">Global</a>
-              <a href="#" className="hover:text-accent">Services</a>
-              <a href="#" className="hover:text-accent">Industries</a>
+              <Link href="/"><a className="hover:text-accent">Home</a></Link>
+              <Link href="/about"><a className="hover:text-accent">About</a></Link>
+              <Link href="/services"><a className="hover:text-accent">Services</a></Link>
+              <Link href="/approach"><a className="hover:text-accent">Our Approach</a></Link>
+              <Link href="/contact"><a className="hover:text-accent">Contact</a></Link>
             </div>
             <div className="flex gap-6 items-center">
               <span className="flex items-center gap-1"><Globe size={12} /> EN</span>

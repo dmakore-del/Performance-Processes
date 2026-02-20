@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CheckCircle2, TrendingUp, Users, Target, Quote } from "lucide-react";
 import founderImage from "@/assets/founder.png";
+import seanImage from "@/assets/ChatGPT_Image_Feb_20,_2026,_04_07_16_PM_1771621735605.png";
 import { useLanguage } from "@/hooks/use-language";
 
 import { PageHero } from "@/components/layout/PageHero";
@@ -100,6 +101,67 @@ export default function About() {
                   <div className="flex items-center gap-3 px-6 py-3 bg-white rounded-xl border border-border shadow-sm">
                     <div className="w-2 h-2 rounded-full bg-accent"></div>
                     <span className="text-sm font-bold text-primary">Consultant</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Meet the Team Section */}
+        <section className="py-24 bg-white border-t border-border">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="text-center mb-16">
+              <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
+                Our Team
+              </div>
+              <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">
+                Leadership
+              </h2>
+            </div>
+            
+            <div className="flex flex-col lg:flex-row gap-16 items-center lg:items-start max-w-6xl mx-auto">
+              <div className="lg:w-1/3">
+                <div className="relative">
+                  <div className="absolute top-4 -right-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
+                  <img 
+                    src={seanImage} 
+                    alt="Sean Ogbonnaya - Director of Business Development" 
+                    className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[3/4]"
+                  />
+                </div>
+              </div>
+              <div className="lg:w-2/3">
+                <h3 className="text-3xl font-heading font-extrabold text-primary mb-2">
+                  Sean <span className="text-accent italic">Ogbonnaya</span>
+                </h3>
+                <div className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-8">
+                  Director of Business Development
+                </div>
+                
+                <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+                  <p>
+                    Sean Ogbonnaya serves as the Director of Business Development at Performance Processes, where he leads strategic growth initiatives and builds lasting partnerships with organizations committed to operational excellence.
+                  </p>
+                  <p>
+                    With a strong background in relationship development and strategic advisory, Sean specializes in identifying opportunities to help businesses streamline operations, strengthen accountability, and improve performance outcomes. He works closely with executive teams to understand their challenges, align solutions with business objectives, and ensure engagements deliver measurable impact.
+                  </p>
+                  <p>
+                    Sean is known for his consultative approach — prioritizing trust, clarity, and long-term value over transactional growth. His ability to connect strategic vision with practical execution makes him a key driver of Performance Processes’ expanding client relationships and market presence.
+                  </p>
+                  <p className="font-medium text-primary italic border-l-4 border-accent pl-6 py-2 bg-[#F8FAFC]">
+                    Passionate about helping organizations unlock their full potential, Sean is committed to fostering partnerships that create sustainable improvement and long-term success.
+                  </p>
+                </div>
+                
+                <div className="mt-10 flex flex-wrap gap-4">
+                  <div className="flex items-center gap-3 px-6 py-3 bg-[#F8FAFC] rounded-xl border border-border">
+                    <div className="w-2 h-2 rounded-full bg-accent"></div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-primary">Relationship Development</span>
+                  </div>
+                  <div className="flex items-center gap-3 px-6 py-3 bg-[#F8FAFC] rounded-xl border border-border">
+                    <div className="w-2 h-2 rounded-full bg-accent"></div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-primary">Strategic Advisory</span>
                   </div>
                 </div>
               </div>

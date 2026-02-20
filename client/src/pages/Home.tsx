@@ -11,8 +11,20 @@ export default function Home() {
 
       <main className="flex-grow">
         {/* BDC Style Hero */}
-        <section className="bg-white border-b overflow-hidden relative">
-          <div className="container mx-auto px-4 md:px-8 py-20 lg:py-32 flex flex-col lg:flex-row items-center gap-16">
+        <section className="bg-white border-b overflow-hidden relative min-h-[600px] flex items-center">
+          <div className="absolute inset-0 z-0">
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="w-full h-full object-cover opacity-20"
+            >
+              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+          </div>
+          <div className="container mx-auto px-4 md:px-8 py-20 lg:py-32 flex flex-col lg:flex-row items-center gap-16 relative z-10">
             <div className="lg:w-1/2 z-10">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
                 <TrendingUp size={14} /> Business Consulting

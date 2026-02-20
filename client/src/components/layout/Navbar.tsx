@@ -22,8 +22,8 @@ export function Navbar() {
       {/* Top Utility Nav */}
       <div className="bg-[#1a1a1a] text-white py-2 hidden lg:block">
         <div className="container mx-auto px-4 md:px-8 flex justify-end items-center gap-6 text-[11px] font-bold uppercase tracking-wider">
-          <Link href="/portal"><a className="hover:text-accent transition-colors">Client Portal</a></Link>
-          <Link href="/careers"><a className="hover:text-accent transition-colors">Careers</a></Link>
+          <Link href="/portal" className="hover:text-accent transition-colors cursor-pointer">Client Portal</Link>
+          <Link href="/careers" className="hover:text-accent transition-colors cursor-pointer">Careers</Link>
           <div className="w-[1px] h-3 bg-gray-600"></div>
           <div className="flex gap-2">
             <button 
@@ -104,12 +104,12 @@ export function Navbar() {
              </div>
              <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:bg-secondary rounded-full transition-colors"><X size={32} /></button>
           </div>
-          <div className="flex flex-col p-8 gap-6">
+          <div className="flex flex-col p-8 gap-6 overflow-y-auto pb-24">
             {navLinks.map((link) => (
               <Link key={link.label} href={link.href}>
                 <a
                   className={cn(
-                    "text-2xl font-bold py-4 border-b border-border flex justify-between items-center",
+                    "text-xl font-bold py-4 border-b border-border flex justify-between items-center",
                     location === link.href ? "text-accent border-accent" : "text-primary"
                   )}
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -119,9 +119,41 @@ export function Navbar() {
                 </a>
               </Link>
             ))}
+            
+            {/* Added for Mobile */}
+            <Link href="/portal">
+              <a
+                className={cn(
+                  "text-xl font-bold py-4 border-b border-border flex justify-between items-center",
+                  location === "/portal" ? "text-accent border-accent" : "text-primary"
+                )}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Client Portal
+                <ChevronDown size={24} className="-rotate-90" />
+              </a>
+            </Link>
+            <Link href="/careers">
+              <a
+                className={cn(
+                  "text-xl font-bold py-4 border-b border-border flex justify-between items-center",
+                  location === "/careers" ? "text-accent border-accent" : "text-primary"
+                )}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Careers
+                <ChevronDown size={24} className="-rotate-90" />
+              </a>
+            </Link>
+            <div className="flex gap-4 pt-4 border-b border-border pb-4">
+              <button onClick={() => {setLanguage("en"); setIsMobileMenuOpen(false);}} className={cn("font-bold", language === "en" ? "text-accent underline" : "text-primary")}>EN</button>
+              <span className="text-primary">|</span>
+              <button onClick={() => {setLanguage("fr"); setIsMobileMenuOpen(false);}} className={cn("font-bold", language === "fr" ? "text-accent underline" : "text-primary")}>FR</button>
+            </div>
+
             <Link href="/contact">
-              <Button className="w-full rounded-full bg-accent text-white py-8 text-lg font-bold uppercase tracking-widest mt-8 shadow-lg shadow-accent/20">
-                Contact us
+              <Button className="w-full rounded-full bg-accent text-white py-8 text-lg font-bold uppercase tracking-widest mt-4 shadow-lg shadow-accent/20 cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
+                {t("nav.contact")}
               </Button>
             </Link>
           </div>

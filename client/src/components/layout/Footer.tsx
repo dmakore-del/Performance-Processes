@@ -43,9 +43,11 @@ export function Footer() {
           <div className="flex flex-col gap-8">
             <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{t("footer.quickLinks")}</h3>
             <ul className="flex flex-col gap-4 text-sm font-medium text-muted-foreground">
-              <li><Link href="/about"><a className="hover:text-accent transition-colors">{t("nav.about")}</a></Link></li>
-              <li><Link href="/approach"><a className="hover:text-accent transition-colors">{t("nav.approach")}</a></Link></li>
-              <li><Link href="/contact"><a className="hover:text-accent transition-colors">{t("nav.contact")}</a></Link></li>
+              <li><Link href="/about"><span className="hover:text-accent transition-colors cursor-pointer">{t("nav.about")}</span></Link></li>
+              <li><Link href="/approach"><span className="hover:text-accent transition-colors cursor-pointer">{t("nav.approach")}</span></Link></li>
+              <li><Link href="/contact"><span className="hover:text-accent transition-colors cursor-pointer">{t("nav.contact")}</span></Link></li>
+              <li><Link href="/careers"><span className="hover:text-accent transition-colors cursor-pointer">Careers</span></Link></li>
+              <li><Link href="/portal"><span className="hover:text-accent transition-colors cursor-pointer">Client Portal</span></Link></li>
             </ul>
           </div>
 

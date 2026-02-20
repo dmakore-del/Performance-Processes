@@ -102,14 +102,22 @@ export default function Home() {
 
         {/* Services Showcase - PwC Minimalist List */}
         <section className="border-y border-border">
-          <div className="grid grid-cols-1 md:grid-cols-4">
-            {['Strategy', 'Execution', 'Leadership', 'Compliance'].map((item, i) => (
-              <div key={i} className="p-12 pwc-grid-border flex flex-col justify-between group hover:bg-accent hover:text-white transition-all duration-300 min-h-[250px] cursor-pointer">
-                <h3 className="text-2xl font-heading font-bold uppercase italic tracking-tighter">{item}</h3>
-                <ChevronRight size={24} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-            ))}
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-4">
+              {[
+                "Strategic Planning & Alignment",
+                "Organizational Assessment",
+                "Performance Management Design",
+                "Leadership Development",
+                "Process Improvement & Documentation",
+                "Change Management Support",
+                "Business Registration & Governance Guidance"
+              ].map((item, i) => (
+                <div key={i} className="p-12 pwc-grid-border flex flex-col justify-between group hover:bg-accent hover:text-white transition-all duration-300 min-h-[250px] cursor-pointer">
+                  <h3 className="text-xl font-heading font-bold uppercase italic tracking-tighter leading-tight">{item}</h3>
+                  <ChevronRight size={24} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              ))}
+            </div>
         </section>
       </main>
 

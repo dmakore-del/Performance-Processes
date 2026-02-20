@@ -5,10 +5,10 @@ import { ArrowRight } from "lucide-react";
 
 export default function Services() {
   const categories = [
-    { title: "Strategy", items: ["Strategic Planning", "Organizational Assessment", "Alignment Optimization"] },
-    { title: "Execution", items: ["Performance Management", "Process Improvement", "Operational Readiness"] },
-    { title: "Leadership", items: ["Leadership Development", "Executive Coaching", "Change Management"] },
-    { title: "Governance", items: ["Business Registration", "Compliance Guidance", "Governance Structure"] }
+    { title: "Strategy", items: ["Strategic Planning & Alignment", "Organizational Assessment", "Performance Management Design"] },
+    { title: "Leadership", items: ["Leadership Development", "Change Management Support"] },
+    { title: "Execution", items: ["Process Improvement & Documentation", "Operational Readiness"] },
+    { title: "Governance", items: ["Business Registration & Governance Guidance", "Compliance Support"] }
   ];
 
   return (

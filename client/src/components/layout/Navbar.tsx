@@ -6,13 +6,14 @@ import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
 
   const navLinks = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
-    { label: "Industries", href: "#" },
-    { label: "Insights", href: "/insights" },
-    { label: "About Us", href: "#" },
-    { label: "Careers", href: "#" },
+    { label: "Our Approach", href: "/approach" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -37,27 +38,34 @@ export function Navbar() {
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-10">
           {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-[13px] font-extrabold uppercase tracking-widest text-black hover:text-accent transition-colors py-2 relative group"
-            >
-              {link.label}
-              <span className="absolute bottom-0 left-0 w-0 h-1 bg-accent transition-all group-hover:w-full"></span>
-            </a>
+            <Link key={link.label} href={link.href}>
+              <a
+                className={cn(
+                  "text-[13px] font-extrabold uppercase tracking-widest transition-colors py-2 relative group",
+                  location === link.href ? "text-accent" : "text-black hover:text-accent"
+                )}
+              >
+                {link.label}
+                <span className={cn(
+                  "absolute bottom-0 left-0 h-1 bg-accent transition-all group-hover:w-full",
+                  location === link.href ? "w-full" : "w-0"
+                )}></span>
+              </a>
+            </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-6">
           <div className="hidden md:flex items-center gap-4">
              <Search size={20} className="text-black cursor-pointer hover:text-accent transition-colors" />
-             <Button 
-                variant="default" 
-                className="rounded-none bg-accent text-white hover:bg-black transition-all font-bold text-[11px] uppercase tracking-[0.2em] px-8 h-12"
-                onClick={() => window.location.href = 'mailto:contact@performanceprocesses.com'}
-              >
-                Contact
-              </Button>
+             <Link href="/contact">
+               <Button 
+                  variant="default" 
+                  className="rounded-none bg-accent text-white hover:bg-black transition-all font-bold text-[11px] uppercase tracking-[0.2em] px-8 h-12"
+                >
+                  Contact
+                </Button>
+             </Link>
           </div>
 
           <button
@@ -73,24 +81,26 @@ export function Navbar() {
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 top-24 bg-white z-50 flex flex-col p-8 animate-in slide-in-from-right">
           {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-2xl font-black uppercase italic tracking-tighter text-black py-4 border-b hover:text-accent"
+            <Link key={link.label} href={link.href}>
+              <a
+                className={cn(
+                  "text-2xl font-black uppercase italic tracking-tighter py-4 border-b",
+                  location === link.href ? "text-accent" : "text-black"
+                )}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            </Link>
+          ))}
+          <Link href="/contact">
+            <Button 
+              className="rounded-none bg-accent text-white mt-12 h-16 text-sm font-bold uppercase tracking-widest w-full"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {link.label}
-            </a>
-          ))}
-          <Button 
-            className="rounded-none bg-accent text-white mt-12 h-16 text-sm font-bold uppercase tracking-widest"
-            onClick={() => {
-              window.location.href = 'mailto:contact@performanceprocesses.com';
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            Contact us
-          </Button>
+              Contact us
+            </Button>
+          </Link>
         </div>
       )}
     </header>

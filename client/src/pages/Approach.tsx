@@ -3,41 +3,55 @@ import { Footer } from "@/components/layout/Footer";
 
 export default function Approach() {
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans">
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <Navbar />
       <main className="flex-grow">
-        <section className="py-24 bg-[#2e2e2e] text-white">
-          <div className="container mx-auto px-4 md:px-8">
-            <div className="inline-block bg-accent text-primary font-bold text-xs uppercase tracking-[0.2em] px-3 py-1 mb-8">
-              Methodology
-            </div>
-            <h1 className="text-6xl md:text-8xl font-heading font-black uppercase italic leading-none mb-8">
-              Our <br />
-              <span className="text-accent">Approach.</span>
+        <section className="bg-white border-b py-20 lg:py-32">
+          <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl">
+            <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-primary mb-8 leading-[1.1]">
+              A collaborative, <span className="text-accent italic">results-focused</span> approach
             </h1>
-            <p className="text-xl max-w-2xl text-gray-300 font-medium leading-relaxed">
-              A collaborative, evidence-based methodology designed for high-stakes transformation.
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Our methodology is designed to ensure sustainable performance improvements and maximum ROI.
             </p>
           </div>
         </section>
 
-        <section className="py-24 container mx-auto px-4 md:px-8">
-           <div className="space-y-24">
-             {[
-               { num: "01", title: "Discovery & Assessment", desc: "We begin by deep-diving into your current operations, culture, and strategic goals to understand the baseline." },
-               { num: "02", title: "Collaborative Design", desc: "We work alongside your leadership team to build tailored strategies that have full organizational buy-in." },
-               { num: "03", title: "Implementation Support", desc: "We don't just hand over a report; we stay involved to ensure that new systems and processes are correctly integrated." },
-               { num: "04", title: "Measurement & Refinement", desc: "We track outcomes against KPIs and refine the approach to ensure long-term sustainability." }
-             ].map((step, i) => (
-               <div key={i} className="flex flex-col md:flex-row gap-12 items-start group">
-                 <div className="text-8xl font-black text-gray-100 group-hover:text-accent transition-colors leading-none italic">{step.num}</div>
-                 <div className="md:pt-4">
-                   <h3 className="text-4xl font-black uppercase italic mb-6 ey-yellow-underline pb-2">{step.title}</h3>
-                   <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">{step.desc}</p>
-                 </div>
-               </div>
-             ))}
-           </div>
+        <section className="py-24">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="space-y-24">
+              {[
+                { 
+                  num: "01", 
+                  title: "Discovery & Assessment", 
+                  desc: "We start by understanding your unique challenges and auditing your current performance systems to identify gaps." 
+                },
+                { 
+                  num: "02", 
+                  title: "Strategic Alignment", 
+                  desc: "We work with your leadership team to clarify strategic direction and ensure it's communicated effectively throughout the organization." 
+                },
+                { 
+                  num: "03", 
+                  title: "Implementation & Training", 
+                  desc: "Our experts provide hands-on support to implement new systems and strengthen leadership capabilities." 
+                },
+                { 
+                  num: "04", 
+                  title: "Monitoring & Optimization", 
+                  desc: "We establish continuous feedback loops and performance metrics to ensure long-term, sustainable impact." 
+                }
+              ].map((step, i) => (
+                <div key={i} className="flex flex-col md:flex-row gap-12 lg:gap-24 items-start">
+                  <div className="text-8xl font-black text-accent/20 leading-none italic">{step.num}</div>
+                  <div className="md:pt-4">
+                    <h3 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6 italic">{step.title}</h3>
+                    <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
       </main>
       <Footer />

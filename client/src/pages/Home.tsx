@@ -1,125 +1,142 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronRight, Play } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck } from "lucide-react";
 import { Link } from "wouter";
-import heroImg from "@/assets/images/ey-style-hero.jpg";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
       <Navbar />
 
       <main className="flex-grow">
-        {/* EY Style Hero Section */}
-        <section className="relative min-h-[600px] flex items-center overflow-hidden bg-[#2e2e2e]">
-          <div className="absolute inset-0 opacity-40">
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              className="w-full h-full object-cover"
-            >
-              <source src="/assets/videos/hero-background.mp4" type="video/mp4" />
-            </video>
-          </div>
-          
-          <div className="container mx-auto px-4 md:px-8 relative z-10 py-24">
-            <div className="max-w-3xl text-white">
-              <div className="inline-block bg-accent text-primary font-bold text-xs uppercase tracking-[0.2em] px-3 py-1 mb-8">
-                Consulting Services
+        {/* BDC Style Hero */}
+        <section className="bg-white border-b overflow-hidden relative">
+          <div className="container mx-auto px-4 md:px-8 py-20 lg:py-32 flex flex-col lg:flex-row items-center gap-16">
+            <div className="lg:w-1/2 z-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
+                <TrendingUp size={14} /> Business Consulting
               </div>
-              <h1 className="text-5xl md:text-7xl font-heading font-black mb-8 leading-[1.05] tracking-tight">
+              <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-primary mb-8 leading-[1.1]">
                 Aligning Strategy <br />
-                <span className="text-accent italic">With Impact.</span>
+                <span className="text-accent underline decoration-accent/30 underline-offset-8">With Impact.</span>
               </h1>
-              <p className="text-xl md:text-2xl mb-12 text-gray-200 leading-relaxed max-w-2xl font-medium">
-                We help leaders bridge the gap between vision and execution to drive long-term value.
+              <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-xl">
+                Practical advice and hands-on support to help your business grow, become more efficient, and navigate transition.
               </p>
-              <div className="flex flex-wrap gap-6 items-center">
-                <Link href="/services">
-                  <Button className="rounded-full bg-accent text-primary hover:bg-white transition-all font-bold px-10 py-7 text-lg uppercase tracking-wider">
-                    Our Services
+              <div className="flex flex-wrap gap-4">
+                <Link href="/contact">
+                  <Button className="rounded-full bg-primary text-white hover:bg-accent h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all">
+                    Book a free consultation
                   </Button>
                 </Link>
-                <button className="flex items-center gap-3 font-bold text-white hover:text-accent transition-colors">
-                  <div className="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center">
-                    <Play size={20} fill="currentColor" />
+                <Link href="/services">
+                  <Button variant="outline" className="rounded-full border-primary text-primary hover:bg-primary/5 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all">
+                    View our services
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            <div className="lg:w-1/2 relative">
+               <div className="absolute -top-12 -right-12 w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
+               <img 
+                 src="/assets/images/bdc-style-hero.jpg" 
+                 alt="Business Consulting" 
+                 className="rounded-2xl shadow-2xl relative z-10 w-full h-auto object-cover grayscale-0"
+               />
+               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl z-20 border border-border flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white">
+                    <CheckCircle2 size={24} />
                   </div>
-                  Watch our story
-                </button>
-              </div>
+                  <div>
+                    <div className="text-xl font-bold text-primary italic leading-none">95%</div>
+                    <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">Client Satisfaction</div>
+                  </div>
+               </div>
             </div>
           </div>
         </section>
 
-        {/* EY Style Featured Grid */}
-        <section className="py-24 container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { title: "Strategic Planning & Alignment", cat: "Strategy", img: "https://images.unsplash.com/photo-1454165833767-027508659d41?auto=format&fit=crop&q=80&w=800" },
-              { title: "Performance Management Design", cat: "Optimization", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" },
-              { title: "Leadership Development", cat: "People", img: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=800" }
-            ].map((card, i) => (
-              <div key={i} className="group cursor-pointer">
-                <div className="relative overflow-hidden mb-6 aspect-[4/3]">
-                  <img src={card.img} alt={card.title} className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" />
-                  <div className="absolute bottom-0 left-0 bg-accent text-primary px-4 py-2 font-bold text-[10px] uppercase tracking-widest">{card.cat}</div>
-                </div>
-                <h3 className="text-2xl font-bold mb-4 group-hover:text-accent transition-colors flex justify-between items-start">
-                  {card.title}
-                  <ArrowRight size={24} className="-rotate-45 group-hover:rotate-0 transition-transform" />
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">Helping organizations clarify direction and strengthen leadership capability.</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Impact Section */}
-        <section className="bg-secondary py-24 border-y">
-          <div className="container mx-auto px-4 md:px-8 flex flex-col lg:flex-row gap-16 items-center">
-            <div className="lg:w-1/2">
-               <h2 className="text-4xl md:text-5xl font-black mb-8 leading-tight ey-yellow-underline pb-4">
-                 How Performance Processes <br />
-                 is redefining growth.
-               </h2>
-               <p className="text-xl text-muted-foreground mb-8 leading-relaxed italic">
-                 "Our collaborative, results-focused approach ensures sustainable performance improvements that drive clarity and accountability."
-               </p>
-               <Button className="rounded-full bg-primary text-white hover:bg-accent hover:text-primary transition-all font-bold px-10 h-14">
-                 Our Approach
-               </Button>
+        {/* BDC Style Services Grid */}
+        <section className="py-24 bg-[#F8FAFC]">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="max-w-3xl mb-16">
+              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">
+                Consulting solutions for every stage of your journey
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Our experts work with you to solve your most pressing business challenges and capture new opportunities for growth.
+              </p>
             </div>
-            <div className="lg:w-1/2 grid grid-cols-2 gap-8">
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { stat: "95%", label: "Strategic Alignment" },
-                { stat: "120+", label: "Projects Completed" },
-                { stat: "24/7", label: "Governance Support" },
-                { stat: "15+", label: "Years Excellence" }
-              ].map((stat, i) => (
-                <div key={i} className="bg-white p-8 border-l-4 border-accent shadow-sm">
-                  <div className="text-4xl font-black text-primary mb-2 italic">{stat.stat}</div>
-                  <div className="text-sm font-bold uppercase tracking-widest text-muted-foreground">{stat.label}</div>
+                { title: "Strategic Planning & Alignment", desc: "Define your vision and build a roadmap to reach your goals.", icon: <TrendingUp className="text-accent" /> },
+                { title: "Organizational Assessment", desc: "Identify inefficiencies and optimize your internal structures.", icon: <Users className="text-accent" /> },
+                { title: "Leadership Development", desc: "Empower your team with the skills to lead through change.", icon: <ShieldCheck className="text-accent" /> },
+                { title: "Process Improvement", desc: "Streamline operations to boost productivity and reduce costs.", icon: <CheckCircle2 className="text-accent" /> },
+                { title: "Performance Management", desc: "Implement systems that drive accountability and results.", icon: <TrendingUp className="text-accent" /> },
+                { title: "Governance Guidance", desc: "Ensure compliance and build a foundation for sustainable growth.", icon: <ShieldCheck className="text-accent" /> }
+              ].map((s, i) => (
+                <div key={i} className="bg-white p-10 rounded-2xl border border-border hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col justify-between min-h-[320px]">
+                  <div>
+                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-8 group-hover:bg-accent group-hover:text-white transition-colors">
+                      {s.icon}
+                    </div>
+                    <h3 className="text-xl font-bold mb-4 text-primary group-hover:text-accent transition-colors">{s.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
+                  </div>
+                  <div className="mt-8 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
+                    Learn more <ArrowRight size={16} className="ml-2" />
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* EY Minimalist Footer CTA */}
-        <section className="py-24 bg-white text-center">
-          <div className="container mx-auto px-4 md:px-8 max-w-4xl">
-             <h2 className="text-4xl md:text-6xl font-black mb-12 tracking-tight uppercase italic italic">
-               Ready to start your <br /> 
-               <span className="text-accent underline decoration-8 underline-offset-8">transformation?</span>
-             </h2>
-             <Link href="/contact">
-               <Button className="rounded-full bg-primary text-white hover:bg-accent hover:text-primary transition-all font-bold px-16 h-16 text-lg">
-                 Get in touch
-               </Button>
-             </Link>
+        {/* Why Choose Us - BDC Style */}
+        <section className="py-24 bg-white border-y">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="flex flex-col lg:flex-row gap-20 items-center">
+              <div className="lg:w-1/2">
+                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-8 leading-tight">
+                  Expert advice to propel <br /> your business forward
+                </h2>
+                <div className="space-y-8">
+                  <div className="flex gap-6">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white font-bold italic">01</div>
+                    <div>
+                      <h4 className="text-xl font-bold mb-2">Practical Solutions</h4>
+                      <p className="text-muted-foreground">We focus on actionable advice that delivers immediate and measurable results for your organization.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-6">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white font-bold italic">02</div>
+                    <div>
+                      <h4 className="text-xl font-bold mb-2">Industry Expertise</h4>
+                      <p className="text-muted-foreground">Our consultants bring years of experience across various sectors to help you navigate specific challenges.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-6">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white font-bold italic">03</div>
+                    <div>
+                      <h4 className="text-xl font-bold mb-2">Sustainable Impact</h4>
+                      <p className="text-muted-foreground">We build capabilities within your team to ensure that improvements are maintained long-term.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="lg:w-1/2 bg-secondary p-12 lg:p-16 rounded-3xl text-center">
+                 <h3 className="text-2xl md:text-3xl font-bold mb-8 text-primary uppercase italic">Ready to take the next step?</h3>
+                 <p className="text-lg text-muted-foreground mb-10">Our consultants are ready to discuss your business needs and help you find the right solution.</p>
+                 <Link href="/contact">
+                   <Button className="rounded-full bg-accent text-white hover:bg-primary h-16 px-12 text-lg font-bold uppercase tracking-widest transition-all">
+                     Request a call back
+                   </Button>
+                 </Link>
+              </div>
+            </div>
           </div>
         </section>
       </main>

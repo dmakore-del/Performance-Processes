@@ -1,9 +1,13 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp, Users } from "lucide-react";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
+import { motion } from "framer-motion";
+
+import abstractBg from "@/assets/abstract-bg.png";
+import teamCollab from "@/assets/team-collab.png";
 
 export default function Home() {
   const { t } = useLanguage();
@@ -13,98 +17,119 @@ export default function Home() {
       <Navbar />
 
       <main className="flex-grow">
-        {/* BDC Style Hero */}
-        <section className="bg-white border-b overflow-hidden relative min-h-[600px] flex items-center">
+        {/* Wealthsimple-inspired Hero */}
+        <section className="bg-white border-b overflow-hidden relative min-h-[85vh] flex items-center">
           <div className="absolute inset-0 z-0">
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              className="w-full h-full object-cover opacity-20"
-            >
-              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(224,17,95,0.05),transparent_50%)]"></div>
+            <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: `url(${abstractBg})` }}></div>
           </div>
-          <div className="container mx-auto px-4 md:px-8 py-20 lg:py-32 flex flex-col lg:flex-row items-center gap-16 relative z-10">
-            <div className="lg:w-1/2 z-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
-                <TrendingUp size={14} /> Business Consulting
+          
+          <div className="container mx-auto px-4 md:px-8 py-20 flex flex-col lg:flex-row items-center gap-16 relative z-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="lg:w-1/2 z-10"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 text-accent text-[10px] font-black uppercase tracking-[0.2em] mb-8">
+                <TrendingUp size={12} /> Excellence in Strategy
               </div>
-              <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-primary mb-8 leading-[1.1]">
+              <h1 className="text-5xl md:text-7xl font-heading font-extrabold text-primary mb-8 leading-[1.05] tracking-tight">
                 {t("hero.title")} <br />
-                <span className="text-accent underline decoration-accent/30 underline-offset-8">{t("hero.titleAccent")}</span>
+                <span className="text-accent italic relative">
+                  {t("hero.titleAccent")}
+                  <motion.span 
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ delay: 0.5, duration: 1 }}
+                    className="absolute bottom-2 left-0 h-3 bg-accent/10 -z-10"
+                  ></motion.span>
+                </span>
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-xl">
+              <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed max-w-xl font-medium">
                 {t("hero.subtitle")}
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-6">
                 <Link href="/contact">
-                  <Button className="rounded-full bg-primary text-white hover:bg-accent h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all">
+                  <Button className="rounded-full bg-primary text-white hover:bg-accent h-16 px-12 font-bold text-sm uppercase tracking-widest transition-all shadow-xl shadow-primary/10 hover:shadow-accent/20">
                     {t("hero.ctaPrimary")}
                   </Button>
                 </Link>
                 <Link href="/services">
-                  <Button variant="outline" className="rounded-full border-primary text-primary hover:bg-primary/5 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all">
-                    {t("hero.ctaSecondary")}
+                  <Button variant="ghost" className="rounded-full text-primary hover:bg-secondary h-16 px-10 font-bold text-sm uppercase tracking-widest transition-all">
+                    {t("hero.ctaSecondary")} <ArrowRight size={18} className="ml-2" />
                   </Button>
                 </Link>
               </div>
-            </div>
-            <div className="lg:w-1/2 relative">
-               <div className="absolute -top-12 -right-12 w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
-               <img 
-                 src="/assets/images/bdc-style-hero.jpg" 
-                 alt="Business Consulting" 
-                 className="rounded-2xl shadow-2xl relative z-10 w-full h-auto object-cover grayscale-0"
-               />
-               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl z-20 border border-border flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white">
-                    <CheckCircle2 size={24} />
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, x: 20 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="lg:w-1/2 relative"
+            >
+               <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.2)] bg-white p-2">
+                 <img 
+                   src={teamCollab} 
+                   alt="Strategic Excellence" 
+                   className="rounded-[2rem] w-full h-auto object-cover aspect-[4/3]"
+                 />
+               </div>
+               {/* Floating card for depth */}
+               <motion.div 
+                 animate={{ y: [0, -10, 0] }}
+                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                 className="absolute -bottom-10 -left-10 bg-white p-8 rounded-3xl shadow-2xl z-20 border border-border flex items-center gap-5"
+               >
+                  <div className="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center text-white shadow-lg shadow-accent/30">
+                    <CheckCircle2 size={28} />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-primary italic leading-none">95%</div>
-                    <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">Client Satisfaction</div>
+                    <div className="text-3xl font-black text-primary italic leading-none tracking-tighter">95%</div>
+                    <div className="text-[10px] uppercase font-black text-muted-foreground tracking-[0.2em] mt-1">Satisfaction Rate</div>
                   </div>
-               </div>
-            </div>
+               </motion.div>
+            </motion.div>
           </div>
         </section>
 
-        {/* BDC Style Services Grid */}
-        <section className="py-24 bg-[#F8FAFC]">
+        {/* Wealthsimple Style Services */}
+        <section className="py-32 bg-white">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="max-w-3xl mb-16">
-              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">
-                Consulting solutions for every stage of your journey
+            <div className="text-center max-w-3xl mx-auto mb-24">
+              <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-8 tracking-tight">
+                Designed for <span className="text-accent italic">impact</span>
               </h2>
-              <p className="text-lg text-muted-foreground">
-                Our experts work with you to solve your most pressing business challenges and capture new opportunities for growth.
+              <p className="text-xl text-muted-foreground font-medium leading-relaxed">
+                We combine human insight with rigorous systems to help you scale with confidence.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {[
-                { title: "Strategic Planning & Alignment", desc: "Define your vision and build a roadmap to reach your goals.", icon: <TrendingUp className="text-accent" /> },
-                { title: "Organizational Assessment", desc: "Identify inefficiencies and optimize your internal structures.", icon: <Users className="text-accent" /> },
-                { title: "Leadership Development", desc: "Empower your team with the skills to lead through change.", icon: <ShieldCheck className="text-accent" /> },
-                { title: "Process Improvement", desc: "Streamline operations to boost productivity and reduce costs.", icon: <CheckCircle2 className="text-accent" /> },
-                { title: "Performance Management", desc: "Implement systems that drive accountability and results.", icon: <TrendingUp className="text-accent" /> },
-                { title: "Governance Guidance", desc: "Ensure compliance and build a foundation for sustainable growth.", icon: <ShieldCheck className="text-accent" /> }
+                { title: "Strategic Alignment", desc: "Coordinating your team around a single, powerful vision.", icon: <TrendingUp className="text-accent" /> },
+                { title: "Performance Design", desc: "Building the metrics and systems that drive accountability.", icon: <CheckCircle2 className="text-accent" /> },
+                { title: "Leadership Growth", desc: "Equipping your executives with the clarity to lead.", icon: <Users className="text-accent" /> },
               ].map((s, i) => (
-                <div key={i} className="bg-white p-10 rounded-2xl border border-border hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col justify-between min-h-[320px]">
-                  <div>
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-8 group-hover:bg-accent group-hover:text-white transition-colors">
-                      {s.icon}
+                <motion.div 
+                  key={i}
+                  whileHover={{ y: -10 }}
+                  className="group cursor-pointer"
+                >
+                  <div className="bg-secondary/30 aspect-[4/5] rounded-[2rem] mb-8 overflow-hidden relative flex flex-col justify-end p-10 border border-transparent hover:border-accent/10 hover:bg-white hover:shadow-2xl transition-all duration-500">
+                    <div className="mb-auto">
+                       <div className="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors">
+                         {s.icon}
+                       </div>
                     </div>
-                    <h3 className="text-xl font-bold mb-4 text-primary group-hover:text-accent transition-colors">{s.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
+                    <h3 className="text-2xl font-bold mb-4 text-primary group-hover:text-accent transition-colors">{s.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed font-medium">{s.desc}</p>
+                    <div className="mt-8 flex items-center text-xs font-black uppercase tracking-[0.2em] text-primary opacity-0 group-hover:opacity-100 transition-all">
+                      Explore service <ArrowRight size={14} className="ml-2" />
+                    </div>
                   </div>
-                  <div className="mt-8 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
-                    Learn more <ArrowRight size={16} className="ml-2" />
-                  </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

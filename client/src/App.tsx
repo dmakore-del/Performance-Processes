@@ -13,6 +13,16 @@ import Legal from "./pages/Legal";
 import Sitemap from "./pages/Sitemap";
 import Accessibility from "./pages/Accessibility";
 
+import Dashboard from "./pages/portal/Dashboard";
+import Roadmap from "./pages/portal/Roadmap";
+import Documents from "./pages/portal/Documents";
+import Meetings from "./pages/portal/Meetings";
+import Actions from "./pages/portal/Actions";
+import Performance from "./pages/portal/Performance";
+import Messages from "./pages/portal/Messages";
+import Resources from "./pages/portal/Resources";
+import Billing from "./pages/portal/Billing";
+
 import { LanguageProvider } from "./hooks/use-language";
 
 function Router() {
@@ -26,6 +36,18 @@ function Router() {
       <Route path="/legal" component={Legal} />
       <Route path="/sitemap" component={Sitemap} />
       <Route path="/accessibility" component={Accessibility} />
+      
+      {/* Portal Routes */}
+      <Route path="/portal" component={Dashboard} />
+      <Route path="/portal/roadmap" component={Roadmap} />
+      <Route path="/portal/documents" component={Documents} />
+      <Route path="/portal/meetings" component={Meetings} />
+      <Route path="/portal/actions" component={Actions} />
+      <Route path="/portal/performance" component={Performance} />
+      <Route path="/portal/messages" component={Messages} />
+      <Route path="/portal/resources" component={Resources} />
+      <Route path="/portal/billing" component={Billing} />
+      
       <Route component={NotFound} />
     </Switch>
   );

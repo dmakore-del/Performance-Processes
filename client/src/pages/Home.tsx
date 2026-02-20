@@ -31,9 +31,9 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Hero Section - PwC Split Style */}
-        <section className="relative flex flex-col md:flex-row min-h-[600px] border-b">
-          <div className="md:w-1/2 p-12 md:p-24 flex flex-col justify-center bg-white">
+        {/* Hero Section - PwC Split Style with Video */}
+        <section className="relative flex flex-col md:flex-row min-h-[700px] border-b overflow-hidden">
+          <div className="md:w-1/2 p-12 md:p-24 flex flex-col justify-center bg-white/90 backdrop-blur-md z-10">
             <div className="w-16 h-2 bg-accent mb-12"></div>
             <h1 className="text-5xl md:text-7xl font-heading font-extrabold leading-[1.1] mb-8 text-black uppercase italic">
               Strategy <br />
@@ -48,12 +48,17 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="md:w-1/2 relative bg-gray-100">
-            <img 
-              src={heroImg} 
-              alt="Professional Strategy" 
-              className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
-            />
+          <div className="md:w-1/2 relative bg-gray-900">
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-80"
+            >
+              <source src="/assets/videos/hero-background.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent pointer-events-none"></div>
           </div>
         </section>
 

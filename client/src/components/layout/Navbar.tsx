@@ -44,7 +44,12 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          <Button variant="default" className="rounded-none bg-primary text-white hover:bg-primary/90 font-medium px-6" data-testid="button-contact-desktop">
+          <Button 
+            variant="default" 
+            className="rounded-none bg-primary text-white hover:bg-primary/90 font-medium px-6 cursor-pointer" 
+            data-testid="button-contact-desktop"
+            onClick={() => window.location.href = 'mailto:contact@performanceprocesses.com'}
+          >
             Contact Us
           </Button>
         </div>
@@ -73,7 +78,14 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <Button className="w-full rounded-none bg-primary mt-4" data-testid="button-contact-mobile">
+          <Button 
+            className="w-full rounded-none bg-primary mt-4 cursor-pointer" 
+            data-testid="button-contact-mobile"
+            onClick={() => {
+              window.location.href = 'mailto:contact@performanceprocesses.com';
+              setIsMobileMenuOpen(false);
+            }}
+          >
             Contact Us
           </Button>
         </div>

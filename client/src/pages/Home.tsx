@@ -70,11 +70,22 @@ export default function Home() {
                 We support leaders in clarifying direction, strengthening capability, and optimizing performance systems that connect goals with execution.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="rounded-none bg-accent hover:bg-accent/90 text-white font-medium" data-testid="button-hero-primary">
+                <Button 
+                  size="lg" 
+                  className="rounded-none bg-accent hover:bg-accent/90 text-white font-medium cursor-pointer" 
+                  data-testid="button-hero-primary"
+                  onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                >
                   Explore Our Services
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
-                <Button size="lg" variant="outline" className="rounded-none border-white text-white hover:bg-white/10 font-medium" data-testid="button-hero-secondary">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="rounded-none border-white text-white hover:bg-white/10 font-medium cursor-pointer" 
+                  data-testid="button-hero-secondary"
+                  onClick={() => document.getElementById('approach')?.scrollIntoView({ behavior: 'smooth' })}
+                >
                   Our Approach
                 </Button>
               </div>
@@ -198,7 +209,12 @@ export default function Home() {
                   Whether you need strategic alignment, leadership coaching, or assistance with business registration and governance, our experts are ready to guide you.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Button size="lg" className="rounded-none bg-primary hover:bg-primary/90 text-white font-medium px-8" data-testid="button-cta-primary">
+                  <Button 
+                    size="lg" 
+                    className="rounded-none bg-primary hover:bg-primary/90 text-white font-medium px-8 cursor-pointer" 
+                    data-testid="button-cta-primary"
+                    onClick={() => window.location.href = 'mailto:contact@performanceprocesses.com'}
+                  >
                     Schedule a Consultation
                   </Button>
                 </div>

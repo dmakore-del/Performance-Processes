@@ -13,7 +13,7 @@ export default function About() {
               About <span className="text-accent italic">Performance Processes</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              We are a registered business consulting firm dedicated to helping organizations bridge the gap between vision and execution.
+              We are a professional business consulting firm dedicated to helping organizations bridge the gap between vision and execution.
             </p>
           </div>
         </section>

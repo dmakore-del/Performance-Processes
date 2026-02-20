@@ -23,7 +23,7 @@ export function Footer() {
               </a>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              Performance Processes helps businesses of all sizes grow and succeed with professional consulting advice.
+              Performance Processes is a professional business consulting firm dedicated to helping organizations bridge the gap between vision and execution.
             </p>
           </div>
 

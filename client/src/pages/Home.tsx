@@ -34,7 +34,7 @@ export default function Home() {
                 <span className="text-accent underline decoration-accent/30 underline-offset-8">With Impact.</span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-xl">
-                Practical advice and hands-on support to help your business grow, become more efficient, and navigate transition.
+                We are a professional business consulting firm dedicated to helping organizations bridge the gap between vision and execution.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact">

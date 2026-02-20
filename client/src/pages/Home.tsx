@@ -31,8 +31,8 @@ export default function Home() {
                 Consulting Services
               </div>
               <h1 className="text-5xl md:text-7xl font-heading font-black mb-8 leading-[1.05] tracking-tight">
-                Building a better <br />
-                <span className="text-accent italic">organization.</span>
+                Aligning Strategy <br />
+                <span className="text-accent italic">With Impact.</span>
               </h1>
               <p className="text-xl md:text-2xl mb-12 text-gray-200 leading-relaxed max-w-2xl font-medium">
                 We help leaders bridge the gap between vision and execution to drive long-term value.

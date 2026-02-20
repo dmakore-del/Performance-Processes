@@ -36,37 +36,36 @@
 :root {
   --radius: 0rem;
 
-  /* PwC-inspired Palette with Pink Accent */
+  /* EY-inspired Palette: Yellow, Black, Gray */
   --background: 0 0% 100%;
-  --foreground: 0 0% 15%;
+  --foreground: 0 0% 18%;
   
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 15%;
+  --card-foreground: 0 0% 18%;
   
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 15%;
+  --popover-foreground: 0 0% 18%;
   
   /* Primary Black */
-  --primary: 0 0% 0%;
+  --primary: 0 0% 18%;
   --primary-foreground: 0 0% 100%;
   
-  /* Light Gray */
+  /* EY Yellow Accent */
+  --accent: 54 100% 50%;
+  --accent-foreground: 0 0% 18%;
+  
   --secondary: 0 0% 96%;
-  --secondary-foreground: 0 0% 0%;
+  --secondary-foreground: 0 0% 18%;
   
-  --muted: 0 0% 96%;
+  --muted: 0 0% 92%;
   --muted-foreground: 0 0% 45%;
-  
-  /* Vibrant Pink Accent (PwC Pink) */
-  --accent: 330 80% 50%;
-  --accent-foreground: 0 0% 100%;
   
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 330 80% 50%;
+  --border: 0 0% 88%;
+  --input: 0 0% 88%;
+  --ring: 54 100% 50%;
 }
 
 @layer base {
@@ -82,15 +81,13 @@
 }
 
 @layer utilities {
-  .pwc-grid-border {
-    @apply border-r border-b border-border;
+  .ey-card {
+    @apply transition-all duration-300 hover:shadow-2xl hover:translate-y-[-4px] bg-white border border-border;
   }
-  
-  .pwc-card-hover {
-    @apply transition-colors duration-300 hover:bg-black hover:text-white;
+  .ey-button {
+    @apply rounded-full bg-primary text-white hover:bg-accent hover:text-primary transition-all font-bold px-8 py-3 text-sm uppercase tracking-wider;
   }
-
-  .pink-gradient {
-    background: linear-gradient(to right, hsl(330, 80%, 50%), hsl(340, 80%, 60%));
+  .ey-yellow-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-1 after:w-12 after:bg-accent;
   }
 }

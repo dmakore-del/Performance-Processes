@@ -64,9 +64,9 @@ export function Footer() {
         <div className="pt-8 border-t border-border flex flex-col lg:flex-row justify-between items-center gap-8 text-[11px] font-bold text-muted-foreground uppercase tracking-widest text-center lg:text-left">
           <p>© {new Date().getFullYear()} Performance Processes Consulting</p>
           <div className="flex flex-wrap gap-x-8 gap-y-4 justify-center">
-            <a href="#" className="hover:text-accent transition-colors">Privacy & Terms</a>
-            <a href="#" className="hover:text-accent transition-colors">Sitemap</a>
-            <a href="#" className="hover:text-accent transition-colors">Accessibility</a>
+            <Link href="/legal"><a className="hover:text-accent transition-colors">Privacy & Terms</a></Link>
+            <Link href="/sitemap"><a className="hover:text-accent transition-colors">Sitemap</a></Link>
+            <Link href="/accessibility"><a className="hover:text-accent transition-colors">Accessibility</a></Link>
           </div>
         </div>
       </div>

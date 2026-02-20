@@ -9,6 +9,9 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Approach from "./pages/Approach";
 import Contact from "./pages/Contact";
+import Legal from "./pages/Legal";
+import Sitemap from "./pages/Sitemap";
+import Accessibility from "./pages/Accessibility";
 
 function Router() {
   return (
@@ -18,6 +21,9 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/approach" component={Approach} />
       <Route path="/contact" component={Contact} />
+      <Route path="/legal" component={Legal} />
+      <Route path="/sitemap" component={Sitemap} />
+      <Route path="/accessibility" component={Accessibility} />
       <Route component={NotFound} />
     </Switch>
   );

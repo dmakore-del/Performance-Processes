@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CheckCircle2, TrendingUp, Users, Target, Quote } from "lucide-react";
-import founderImage from "@/assets/361F67D6-F008-4A69-949F-3AACE4190827_1771613037768.PNG";
+import founderImage from "@/assets/founder.png";
 
 export default function About() {
   return (

@@ -18,16 +18,16 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const services = [
-    { title: "Strategic Planning", href: "#services", description: "Aligning organizational goals with execution." },
-    { title: "Leadership Development", href: "#services", description: "Strengthening capability at all levels." },
-    { title: "Performance Management", href: "#services", description: "Designing systems for measurable impact." },
-    { title: "Process Improvement", href: "#services", description: "Optimizing operations for scale." },
+    { title: "Strategic Planning", href: "/services", description: "Aligning organizational goals with execution." },
+    { title: "Leadership Development", href: "/services", description: "Strengthening capability at all levels." },
+    { title: "Performance Management", href: "/services", description: "Designing systems for measurable impact." },
+    { title: "Process Improvement", href: "/services", description: "Optimizing operations for scale." },
   ];
 
   const insights = [
-    { title: "Case Studies", href: "#insights", description: "Real results from our collaborative approach." },
-    { title: "Whitepapers", href: "#insights", description: "Deep dives into performance optimization." },
-    { title: "Industry News", href: "#insights", description: "Staying ahead of strategic trends." },
+    { title: "Case Studies", href: "/insights", description: "Real results from our collaborative approach." },
+    { title: "Whitepapers", href: "/insights", description: "Deep dives into performance optimization." },
+    { title: "Industry News", href: "/insights", description: "Staying ahead of strategic trends." },
   ];
 
   return (

@@ -77,7 +77,15 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button className="p-2 hover:bg-secondary rounded-full transition-colors hidden md:block">
+          <button 
+            className="p-2 hover:bg-secondary rounded-full transition-colors hidden md:block"
+            onClick={() => {
+              const query = window.prompt(language === "en" ? "Search Performance Processes..." : "Rechercher sur Performance Processes...");
+              if (query) {
+                window.location.href = `/services?q=${encodeURIComponent(query)}`;
+              }
+            }}
+          >
             <Search size={20} className="text-primary" />
           </button>
           <Link href="/contact">

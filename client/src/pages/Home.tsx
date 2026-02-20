@@ -93,18 +93,22 @@ export default function Home() {
                 { title: "Performance Management", desc: "Implement systems that drive accountability and results.", icon: <TrendingUp className="text-accent" /> },
                 { title: "Governance Guidance", desc: "Ensure compliance and build a foundation for sustainable growth.", icon: <ShieldCheck className="text-accent" /> }
               ].map((s, i) => (
-                <div key={i} className="bg-white p-10 rounded-2xl border border-border hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col justify-between min-h-[320px]">
-                  <div>
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-8 group-hover:bg-accent group-hover:text-white transition-colors">
-                      {s.icon}
+                <Link key={i} href={`/services`}>
+                  <a className="block h-full">
+                    <div className="bg-white p-10 rounded-2xl border border-border hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col justify-between min-h-[320px] h-full">
+                      <div>
+                        <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-8 group-hover:bg-accent group-hover:text-white transition-colors">
+                          {s.icon}
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-primary group-hover:text-accent transition-colors">{s.title}</h3>
+                        <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
+                      </div>
+                      <div className="mt-8 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
+                        Learn more <ArrowRight size={16} className="ml-2" />
+                      </div>
                     </div>
-                    <h3 className="text-xl font-bold mb-4 text-primary group-hover:text-accent transition-colors">{s.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
-                  </div>
-                  <div className="mt-8 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
-                    Learn more <ArrowRight size={16} className="ml-2" />
-                  </div>
-                </div>
+                  </a>
+                </Link>
               ))}
             </div>
           </div>

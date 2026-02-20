@@ -40,11 +40,11 @@ export default function Home() {
                 {t("hero.subtitle")}
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/contact">
-                  <Button className="rounded-full bg-primary text-white hover:bg-accent h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all">
+                <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
+                  <Button className="rounded-full bg-primary text-white hover:bg-accent h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all cursor-pointer">
                     {t("hero.ctaPrimary")}
                   </Button>
-                </Link>
+                </a>
                 <Link href="/services">
                   <Button variant="outline" className="rounded-full border-primary text-primary hover:bg-primary/5 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all">
                     {t("hero.ctaSecondary")}
@@ -149,11 +149,11 @@ export default function Home() {
               <div className="lg:w-1/2 bg-secondary p-12 lg:p-16 rounded-3xl text-center">
                  <h3 className="text-2xl md:text-3xl font-bold mb-8 text-primary uppercase italic">Ready to take the next step?</h3>
                  <p className="text-lg text-muted-foreground mb-10">Our consultants are ready to discuss your business needs and help you find the right solution.</p>
-                 <Link href="/contact">
+                 <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
                    <Button className="rounded-full bg-accent text-white hover:bg-primary h-16 px-12 text-lg font-bold uppercase tracking-widest transition-all">
                      Request a call back
                    </Button>
-                 </Link>
+                 </a>
               </div>
             </div>
           </div>

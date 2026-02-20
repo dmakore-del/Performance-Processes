@@ -55,6 +55,7 @@ export function Footer() {
             <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{t("footer.contact")}</h3>
             <div className="flex flex-col gap-4 text-sm font-medium text-muted-foreground">
               <p>contact@performanceprocesses.com</p>
+              <p>+1 (647) 400-4744</p>
               <p>Toronto, Ontario</p>
             </div>
           </div>

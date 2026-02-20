@@ -6,6 +6,8 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useLanguage } from "@/hooks/use-language";
 
+import { PageHero } from "@/components/layout/PageHero";
+
 export default function Services() {
   const [selectedService, setSelectedService] = useState<any>(null);
   const { t, language } = useLanguage();
@@ -32,19 +34,12 @@ export default function Services() {
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <Navbar />
       <main className="flex-grow">
-        <section className="bg-white border-b py-20 lg:py-32">
-          <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-primary mb-8 leading-[1.1]">
-              {language === "en" ? "Consulting services to" : "Services de conseil pour"} <br />
-              <span className="text-accent">{language === "en" ? "propel your business" : "propulser votre entreprise"}</span>
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              {language === "en" 
-                ? "We provide practical, hands-on support to help you solve your most pressing business challenges."
-                : "Nous fournissons un soutien pratique et concret pour vous aider à résoudre vos défis commerciaux les plus pressants."}
-            </p>
-          </div>
-        </section>
+        <PageHero 
+          title={<>{language === "en" ? "Consulting services to" : "Services de conseil pour"} <br /> <span className="text-accent">{language === "en" ? "propel your business" : "propulser votre entreprise"}</span></>}
+          subtitle={language === "en" 
+            ? "We provide practical, hands-on support to help you solve your most pressing business challenges."
+            : "Nous fournissons un soutien pratique et concret pour vous aider à résoudre vos défis commerciaux les plus pressants."}
+        />
 
         <section className="py-24">
           <div className="container mx-auto px-4 md:px-8">

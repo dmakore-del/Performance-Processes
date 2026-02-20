@@ -4,6 +4,8 @@ import { CheckCircle2, TrendingUp, Users, Target, Quote } from "lucide-react";
 import founderImage from "@/assets/founder.png";
 import { useLanguage } from "@/hooks/use-language";
 
+import { PageHero } from "@/components/layout/PageHero";
+
 export default function About() {
   const { t } = useLanguage();
 
@@ -11,16 +13,10 @@ export default function About() {
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <Navbar />
       <main className="flex-grow">
-        <section className="bg-white border-b py-20 lg:py-32">
-          <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-primary mb-8 leading-[1.1]">
-              {t("nav.about")} <span className="text-accent italic">Performance Processes</span>
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              {t("hero.subtitle")}
-            </p>
-          </div>
-        </section>
+        <PageHero 
+          title={<>{t("nav.about")} <span className="text-accent italic">Performance Processes</span></>}
+          subtitle={t("hero.subtitle")}
+        />
 
         <section className="py-24 bg-white border-b">
           <div className="container mx-auto px-4 md:px-8">

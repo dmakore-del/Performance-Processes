@@ -2,6 +2,8 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { useLanguage } from "@/hooks/use-language";
 
+import { PageHero } from "@/components/layout/PageHero";
+
 export default function Approach() {
   const { language } = useLanguage();
 
@@ -40,18 +42,12 @@ export default function Approach() {
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <Navbar />
       <main className="flex-grow">
-        <section className="bg-white border-b py-20 lg:py-32">
-          <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-primary mb-8 leading-[1.1]">
-              {language === "en" ? "A collaborative," : "Une approche collaborative,"} <span className="text-accent italic">{language === "en" ? "results-focused" : "axée sur les résultats"}</span> {language === "en" ? "approach" : ""}
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              {language === "en" 
-                ? "Our methodology is designed to ensure sustainable performance improvements and maximum ROI."
-                : "Notre méthodologie est conçue pour garantir des améliorations de performance durables et un ROI maximal."}
-            </p>
-          </div>
-        </section>
+        <PageHero 
+          title={<>{language === "en" ? "A collaborative," : "Une approche collaborative,"} <span className="text-accent italic">{language === "en" ? "results-focused" : "axée sur les résultats"}</span> {language === "en" ? "approach" : ""}</>}
+          subtitle={language === "en" 
+            ? "Our methodology is designed to ensure sustainable performance improvements and maximum ROI."
+            : "Notre méthodologie est conçue pour garantir des améliorations de performance durables et un ROI maximal."}
+        />
 
         <section className="py-24">
           <div className="container mx-auto px-4 md:px-8">

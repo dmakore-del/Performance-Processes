@@ -1,15 +1,17 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
+import { PageHero } from "@/components/layout/PageHero";
+
 export default function Accessibility() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <Navbar />
-      <main className="flex-grow py-20 lg:py-32">
-        <div className="container mx-auto px-4 md:px-8 max-w-4xl">
-          <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-primary mb-12 italic">
-            Accessi<span className="text-accent">bility</span>
-          </h1>
+      <main className="flex-grow">
+        <PageHero 
+          title={<>Accessi<span className="text-accent">bility</span></>}
+        />
+        <div className="container mx-auto px-4 md:px-8 py-20 max-w-4xl">
           <div className="bg-white p-8 md:p-12 rounded-3xl border border-border shadow-xl space-y-8">
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-primary italic">Our Commitment</h2>

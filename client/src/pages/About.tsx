@@ -4,6 +4,7 @@ import { CheckCircle2, TrendingUp, Users, Target, Quote } from "lucide-react";
 import founderImage from "@/assets/founder.png";
 import seanImage from "@/assets/ChatGPT_Image_Feb_20,_2026,_04_07_16_PM_1771621735605.png";
 import { useLanguage } from "@/hooks/use-language";
+import { Button } from "@/components/ui/button";
 
 import { PageHero } from "@/components/layout/PageHero";
 
@@ -89,18 +90,25 @@ export default function About() {
                     Grounded in purpose and driven by results, Danai’s mission is simple, “to help people build organizations that truly change lives.”
                   </p>
                 </div>
-                <div className="mt-12 flex flex-wrap gap-4">
-                  <div className="flex items-center gap-3 px-6 py-3 bg-white rounded-xl border border-border shadow-sm">
-                    <div className="w-2 h-2 rounded-full bg-accent"></div>
-                    <span className="text-sm font-bold text-primary">Strategist</span>
-                  </div>
-                  <div className="flex items-center gap-3 px-6 py-3 bg-white rounded-xl border border-border shadow-sm">
-                    <div className="w-2 h-2 rounded-full bg-accent"></div>
-                    <span className="text-sm font-bold text-primary">Leader</span>
-                  </div>
-                  <div className="flex items-center gap-3 px-6 py-3 bg-white rounded-xl border border-border shadow-sm">
-                    <div className="w-2 h-2 rounded-full bg-accent"></div>
-                    <span className="text-sm font-bold text-primary">Consultant</span>
+                <div className="mt-12 flex flex-wrap gap-4 items-center">
+                  <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
+                    <Button className="rounded-full bg-accent text-white hover:bg-primary h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-accent/20">
+                      Schedule Consultation
+                    </Button>
+                  </a>
+                  <div className="flex flex-wrap gap-3">
+                    <div className="flex items-center gap-3 px-6 py-3 bg-white rounded-xl border border-border shadow-sm">
+                      <div className="w-2 h-2 rounded-full bg-accent"></div>
+                      <span className="text-sm font-bold text-primary">Strategist</span>
+                    </div>
+                    <div className="flex items-center gap-3 px-6 py-3 bg-white rounded-xl border border-border shadow-sm">
+                      <div className="w-2 h-2 rounded-full bg-accent"></div>
+                      <span className="text-sm font-bold text-primary">Leader</span>
+                    </div>
+                    <div className="flex items-center gap-3 px-6 py-3 bg-white rounded-xl border border-border shadow-sm">
+                      <div className="w-2 h-2 rounded-full bg-accent"></div>
+                      <span className="text-sm font-bold text-primary">Consultant</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -154,14 +162,21 @@ export default function About() {
                   </p>
                 </div>
                 
-                <div className="mt-10 flex flex-wrap gap-4">
-                  <div className="flex items-center gap-3 px-6 py-3 bg-[#F8FAFC] rounded-xl border border-border">
-                    <div className="w-2 h-2 rounded-full bg-accent"></div>
-                    <span className="text-xs font-bold uppercase tracking-widest text-primary">Relationship Development</span>
-                  </div>
-                  <div className="flex items-center gap-3 px-6 py-3 bg-[#F8FAFC] rounded-xl border border-border">
-                    <div className="w-2 h-2 rounded-full bg-accent"></div>
-                    <span className="text-xs font-bold uppercase tracking-widest text-primary">Strategic Advisory</span>
+                <div className="mt-10 flex flex-wrap gap-4 items-center">
+                  <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
+                    <Button className="rounded-full bg-accent text-white hover:bg-primary h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-accent/20">
+                      Schedule Consultation
+                    </Button>
+                  </a>
+                  <div className="flex flex-wrap gap-3">
+                    <div className="flex items-center gap-3 px-6 py-3 bg-[#F8FAFC] rounded-xl border border-border">
+                      <div className="w-2 h-2 rounded-full bg-accent"></div>
+                      <span className="text-xs font-bold uppercase tracking-widest text-primary">Relationship Development</span>
+                    </div>
+                    <div className="flex items-center gap-3 px-6 py-3 bg-[#F8FAFC] rounded-xl border border-border">
+                      <div className="w-2 h-2 rounded-full bg-accent"></div>
+                      <span className="text-xs font-bold uppercase tracking-widest text-primary">Strategic Advisory</span>
+                    </div>
                   </div>
                 </div>
               </div>

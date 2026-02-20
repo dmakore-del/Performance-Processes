@@ -36,7 +36,7 @@
 :root {
   --radius: 0rem;
 
-  /* EY-inspired Palette: Blue, Black, Gray */
+  /* EY-inspired Palette: Pink, Black, Gray */
   --background: 0 0% 100%;
   --foreground: 0 0% 18%;
   
@@ -50,8 +50,8 @@
   --primary: 0 0% 18%;
   --primary-foreground: 0 0% 100%;
   
-  /* Dark Blue Accent */
-  --accent: 221 83% 35%;
+  /* Pink Accent */
+  --accent: 330 80% 50%;
   --accent-foreground: 0 0% 100%;
   
   --secondary: 0 0% 96%;
@@ -65,7 +65,7 @@
 
   --border: 0 0% 88%;
   --input: 0 0% 88%;
-  --ring: 221 83% 35%;
+  --ring: 330 80% 50%;
 }
 
 @layer base {

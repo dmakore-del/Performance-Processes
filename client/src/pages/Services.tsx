@@ -104,6 +104,21 @@ export default function Services() {
         : ["Évaluation de l'état de préparation au changement", "Conception d'une stratégie de changement", "Cartographie des parties prenantes", "Développement d'un plan de communication", "Coaching de mise en œuvre"],
       idealFor: language === "en" ? "Organizations undergoing restructuring, digital transformation, or strategic shifts." : "Organisations subissant une restructuration, une transformation numérique ou des changements stratégiques.",
       icon: <CheckCircle2 className="text-accent" />
+    },
+    {
+      title: language === "en" ? "Website Building & Marketing" : "Création de sites Web et marketing",
+      investment: language === "en" ? "Custom Pricing" : "Prix sur mesure",
+      desc: language === "en"
+        ? "Build a strong digital presence that attracts and converts clients."
+        : "Créez une forte présence numérique qui attire et convertit les clients.",
+      learnMore: language === "en"
+        ? "Your digital presence is often the first impression. We build performance-driven websites and execute targeted marketing strategies that align with your business goals."
+        : "Votre présence numérique est souvent la première impression. Nous créons des sites Web axés sur la performance et exécutons des stratégies de marketing ciblées alignées sur vos objectifs commerciaux.",
+      includes: language === "en"
+        ? ["Custom website design & development", "SEO & performance optimization", "Digital marketing strategy", "Content creation & copywriting", "Analytics & tracking setup"]
+        : ["Conception et développement de sites Web sur mesure", "SEO et optimisation des performances", "Stratégie de marketing numérique", "Création de contenu et rédaction", "Configuration des analyses et du suivi"],
+      idealFor: language === "en" ? "Organizations seeking to establish or upgrade their digital presence and drive growth." : "Organisations cherchant à établir ou à améliorer leur présence numérique et à stimuler la croissance.",
+      icon: <TrendingUp className="text-accent" />
     }
   ];
 

@@ -91,7 +91,7 @@ export default function Home() {
                 { title: "Leadership Development", desc: "Empower your team with the skills to lead through change.", icon: <ShieldCheck className="text-accent" /> },
                 { title: "Process Improvement", desc: "Streamline operations to boost productivity and reduce costs.", icon: <CheckCircle2 className="text-accent" /> },
                 { title: "Performance Management", desc: "Implement systems that drive accountability and results.", icon: <TrendingUp className="text-accent" /> },
-                { title: "Governance Guidance", desc: "Ensure compliance and build a foundation for sustainable growth.", icon: <ShieldCheck className="text-accent" /> }
+                { title: "Website Building & Marketing", desc: "Build a strong digital presence that attracts and converts clients.", icon: <TrendingUp className="text-accent" /> }
               ].map((s, i) => (
                 <Link key={i} href={`/services`}>
                   <a className="block h-full">

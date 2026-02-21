@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
+import logoImg from "@/assets/logo.png";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -11,18 +12,8 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16 mb-20">
           <div className="flex flex-col gap-6">
             <Link href="/">
-              <a className="flex items-center gap-3" data-testid="link-logo">
-                <div className="h-10 w-10 bg-primary text-accent flex items-center justify-center font-heading font-black text-xl italic rounded-lg flex-shrink-0">
-                  PP
-                </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="font-heading font-black text-2xl tracking-tighter italic uppercase leading-none text-primary truncate">
-                    Performance
-                  </span>
-                  <span className="font-heading font-bold text-[8px] leading-none tracking-[0.3em] text-accent uppercase mt-1">
-                    Processes
-                  </span>
-                </div>
+              <a className="flex items-center" data-testid="link-logo">
+                <img src={logoImg} alt="Performance Processes" className="h-14 w-auto" />
               </a>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">

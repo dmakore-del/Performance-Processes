@@ -4,6 +4,7 @@ import { Menu, X, Search, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/hooks/use-language";
+import logoImg from "@/assets/logo.png";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -45,18 +46,8 @@ export function Navbar() {
 
       <div className="container mx-auto px-4 md:px-8 flex h-20 lg:h-24 items-center justify-between">
         <Link href="/">
-          <a className="flex items-center gap-3" data-testid="link-logo">
-            <div className="h-10 w-10 lg:h-12 lg:w-12 bg-primary flex items-center justify-center font-heading font-black text-xl lg:text-2xl text-accent italic rounded-lg">
-              PP
-            </div>
-            <div className="flex flex-col">
-              <span className="font-heading font-black text-xl lg:text-2xl leading-none tracking-tighter text-primary uppercase italic">
-                Performance
-              </span>
-              <span className="font-heading font-bold text-[10px] leading-none tracking-[0.3em] text-accent uppercase mt-1">
-                Processes
-              </span>
-            </div>
+          <a className="flex items-center" data-testid="link-logo">
+            <img src={logoImg} alt="Performance Processes" className="h-14 lg:h-16 w-auto" />
           </a>
         </Link>
 
@@ -106,9 +97,8 @@ export function Navbar() {
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 top-0 bg-white z-[100] flex flex-col animate-in fade-in slide-in-from-right duration-300">
           <div className="p-4 flex justify-between items-center border-b h-20">
-             <div className="flex items-center gap-2">
-               <div className="h-10 w-10 bg-primary flex items-center justify-center font-black text-accent italic text-xl rounded-lg">PP</div>
-               <span className="font-black italic text-primary uppercase">Performance</span>
+             <div className="flex items-center">
+               <img src={logoImg} alt="Performance Processes" className="h-12 w-auto" />
              </div>
              <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:bg-secondary rounded-full transition-colors"><X size={32} /></button>
           </div>

@@ -17,6 +17,7 @@ import {
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import logoImg from "@/assets/logo.png";
 
 export function PortalLayout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -41,14 +42,10 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
         <div className="h-24 flex items-center px-8 border-b border-border">
           <Link href="/">
             <a className="flex items-center gap-3">
-              <div className="h-10 w-10 bg-primary text-accent flex items-center justify-center font-heading font-black text-xl italic rounded-lg">
-                PP
-              </div>
-              <div className="flex flex-col">
-                <span className="font-heading font-black text-xl leading-none tracking-tighter text-primary uppercase italic">
-                  Portal
-                </span>
-              </div>
+              <img src={logoImg} alt="Performance Processes" className="h-10 w-auto" />
+              <span className="font-heading font-black text-xl leading-none tracking-tighter text-primary uppercase italic">
+                Portal
+              </span>
             </a>
           </Link>
         </div>
@@ -93,7 +90,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
       <div className="lg:hidden fixed top-0 w-full h-20 bg-white border-b border-border flex items-center justify-between px-4 z-30">
         <Link href="/">
           <a className="flex items-center gap-2">
-            <div className="h-8 w-8 bg-primary text-accent flex items-center justify-center font-heading font-black text-lg italic rounded-lg">PP</div>
+            <img src={logoImg} alt="Performance Processes" className="h-8 w-auto" />
             <span className="font-heading font-black text-lg tracking-tighter text-primary uppercase italic">Portal</span>
           </a>
         </Link>

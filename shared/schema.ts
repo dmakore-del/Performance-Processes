@@ -34,3 +34,25 @@ export const insertContactSchema = createInsertSchema(contactSubmissions).pick({
 
 export type InsertContact = z.infer<typeof insertContactSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
+
+export const jobApplications = pgTable("job_applications", {
+  id: serial("id").primaryKey(),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  linkedIn: text("linkedin"),
+  coverLetter: text("cover_letter"),
+  resumeFilename: text("resume_filename").notNull(),
+  resumePath: text("resume_path").notNull(),
+  position: text("position").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertJobApplicationSchema = createInsertSchema(jobApplications).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertJobApplication = z.infer<typeof insertJobApplicationSchema>;
+export type JobApplication = typeof jobApplications.$inferSelect;

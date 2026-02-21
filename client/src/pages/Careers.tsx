@@ -2,11 +2,75 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/layout/PageHero";
 import { useLanguage } from "@/hooks/use-language";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Upload, Loader2, CheckCircle, FileText, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useState, useRef } from "react";
+import { useMutation } from "@tanstack/react-query";
 
 export default function Careers() {
   const { language } = useLanguage();
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [linkedIn, setLinkedIn] = useState("");
+  const [coverLetter, setCoverLetter] = useState("");
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const mutation = useMutation({
+    mutationFn: async (formData: FormData) => {
+      const res = await fetch("/api/apply", {
+        method: "POST",
+        body: formData,
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || "Failed to submit");
+      }
+      return res.json();
+    },
+    onSuccess: () => {
+      setSubmitted(true);
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!resumeFile) return;
+
+    const formData = new FormData();
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("linkedIn", linkedIn);
+    formData.append("coverLetter", coverLetter);
+    formData.append("resume", resumeFile);
+    formData.append("position", "Business Development Consultant");
+
+    mutation.mutate(formData);
+  };
+
+  const resetForm = () => {
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPhone("");
+    setLinkedIn("");
+    setCoverLetter("");
+    setResumeFile(null);
+    setSubmitted(false);
+    mutation.reset();
+  };
+
+  const handleClose = () => {
+    setIsFormOpen(false);
+    setTimeout(resetForm, 300);
+  };
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
@@ -110,7 +174,8 @@ export default function Careers() {
             <div className="pt-8 border-t border-border">
               <Button 
                 className="w-full md:w-auto rounded-full bg-accent text-white hover:bg-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all shadow-lg shadow-accent/20"
-                onClick={() => window.location.href = "mailto:careers@performanceprocesses.com?subject=Application: Business Development Consultant"}
+                onClick={() => setIsFormOpen(true)}
+                data-testid="button-apply"
               >
                 Apply for this role
               </Button>
@@ -119,6 +184,193 @@ export default function Careers() {
         </div>
       </main>
       <Footer />
+
+      <Dialog open={isFormOpen} onOpenChange={(open) => { if (!open) handleClose(); }}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0">
+          {submitted ? (
+            <div className="flex flex-col items-center justify-center py-16 px-8 text-center gap-6">
+              <div className="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center">
+                <CheckCircle size={40} className="text-green-500" />
+              </div>
+              <h3 className="text-2xl font-bold text-primary" data-testid="text-application-success">
+                Application Submitted!
+              </h3>
+              <p className="text-muted-foreground max-w-sm">
+                Thank you for your interest in joining Performance Processes. We'll review your application and get back to you soon.
+              </p>
+              <Button 
+                onClick={handleClose} 
+                variant="outline" 
+                className="rounded-full px-8 mt-4"
+                data-testid="button-close-success"
+              >
+                Close
+              </Button>
+            </div>
+          ) : (
+            <>
+              <DialogHeader className="p-6 pb-0">
+                <DialogTitle className="text-2xl font-bold text-primary uppercase italic">
+                  Apply: Business Development Consultant
+                </DialogTitle>
+                <p className="text-sm text-muted-foreground mt-2">
+                  Fields marked with <span className="text-red-500">*</span> are required
+                </p>
+              </DialogHeader>
+              
+              {mutation.isError && (
+                <div className="mx-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm font-medium" data-testid="text-apply-error">
+                  {mutation.error?.message || "Something went wrong. Please try again."}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="p-6 pt-4 space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">
+                      First Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      className="w-full bg-[#F8FAFC] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
+                      placeholder="First name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
+                      data-testid="input-first-name"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">
+                      Last Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      className="w-full bg-[#F8FAFC] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
+                      placeholder="Last name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
+                      data-testid="input-last-name"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">
+                      Email <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      className="w-full bg-[#F8FAFC] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
+                      placeholder="your@email.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      data-testid="input-apply-email"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">
+                      Phone <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      className="w-full bg-[#F8FAFC] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
+                      placeholder="+1 (555) 123-4567"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      required
+                      data-testid="input-phone"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">
+                    LinkedIn Profile
+                  </label>
+                  <input
+                    className="w-full bg-[#F8FAFC] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
+                    placeholder="https://linkedin.com/in/yourprofile"
+                    value={linkedIn}
+                    onChange={(e) => setLinkedIn(e.target.value)}
+                    data-testid="input-linkedin"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">
+                    Resume / CV <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    className="hidden"
+                    onChange={(e) => {
+                      if (e.target.files && e.target.files[0]) {
+                        setResumeFile(e.target.files[0]);
+                      }
+                    }}
+                    data-testid="input-resume"
+                  />
+                  {resumeFile ? (
+                    <div className="flex items-center gap-3 bg-green-50 border border-green-200 rounded-xl px-5 py-3.5">
+                      <FileText size={20} className="text-green-600 flex-shrink-0" />
+                      <span className="text-sm font-medium text-green-800 flex-1 truncate">{resumeFile.name}</span>
+                      <button
+                        type="button"
+                        onClick={() => { setResumeFile(null); if (fileInputRef.current) fileInputRef.current.value = ""; }}
+                        className="text-green-600 hover:text-red-500 transition-colors"
+                        data-testid="button-remove-resume"
+                      >
+                        <X size={18} />
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="w-full border-2 border-dashed border-border rounded-xl px-5 py-8 flex flex-col items-center gap-3 hover:border-accent hover:bg-accent/5 transition-all cursor-pointer"
+                      data-testid="button-upload-resume"
+                    >
+                      <Upload size={28} className="text-muted-foreground" />
+                      <span className="text-sm font-bold text-muted-foreground">Click to upload your resume</span>
+                      <span className="text-xs text-muted-foreground/60">PDF, DOC, or DOCX (max 10MB)</span>
+                    </button>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">
+                    Cover Letter
+                  </label>
+                  <textarea
+                    className="w-full bg-[#F8FAFC] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm h-32 resize-none"
+                    placeholder="Tell us why you'd be a great fit..."
+                    value={coverLetter}
+                    onChange={(e) => setCoverLetter(e.target.value)}
+                    data-testid="input-cover-letter"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={mutation.isPending || !resumeFile}
+                  className="w-full rounded-full bg-accent text-white hover:bg-primary h-14 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 disabled:opacity-50"
+                  data-testid="button-submit-application"
+                >
+                  {mutation.isPending ? (
+                    <><Loader2 size={18} className="animate-spin" /> Submitting...</>
+                  ) : (
+                    "Submit Application"
+                  )}
+                </Button>
+              </form>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

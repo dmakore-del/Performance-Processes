@@ -5,6 +5,7 @@ import { createServer } from "http";
 import { runMigrations } from 'stripe-replit-sync';
 import { getStripeSync } from './stripeClient';
 import { WebhookHandlers } from './webhookHandlers';
+import { ensureStripeProducts } from './seedStripeProducts';
 
 const app = express();
 const httpServer = createServer(app);
@@ -38,6 +39,8 @@ async function initStripe() {
     } catch (webhookErr: any) {
       console.warn('Webhook setup warning (non-fatal):', webhookErr.message || webhookErr);
     }
+
+    await ensureStripeProducts();
 
     console.log('Syncing Stripe data...');
     stripeSync.syncBackfill()

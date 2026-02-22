@@ -639,9 +639,11 @@ export default function Services() {
                   : "Réservez un appel de découverte gratuit de 30 minutes avec l'un de nos consultants experts pour discuter de vos objectifs et de la façon dont nous pouvons vous aider."}
               </p>
             </div>
-            <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-12 text-lg font-bold uppercase tracking-widest transition-all">
-              {language === "en" ? "Book your free call" : "Réservez votre appel gratuit"}
-            </Button>
+            <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
+              <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-12 text-lg font-bold uppercase tracking-widest transition-all" data-testid="button-book-consultation-cta">
+                {language === "en" ? "Book a consultation" : "Réservez une consultation"}
+              </Button>
+            </a>
           </div>
         </section>
       </main>

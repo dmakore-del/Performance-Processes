@@ -151,7 +151,7 @@ export default function Home() {
                  <p className="text-lg text-muted-foreground mb-10">Our consultants are ready to discuss your business needs and help you find the right solution.</p>
                  <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
                    <Button className="rounded-full bg-accent text-white hover:bg-primary h-16 px-12 text-lg font-bold uppercase tracking-widest transition-all">
-                     Request a call back
+                     Book a consultation
                    </Button>
                  </a>
               </div>

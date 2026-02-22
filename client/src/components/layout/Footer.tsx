@@ -7,7 +7,24 @@ export function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-white pt-24 pb-12 border-t border-border">
+    <footer className="bg-white pt-0 pb-12 border-t border-border">
+      <div className="bg-primary py-6 overflow-hidden mb-24">
+        <div className="mb-4 text-center">
+          <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/60">Our Partners</span>
+        </div>
+        <div className="relative">
+          <div className="flex animate-marquee whitespace-nowrap">
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className="flex items-center gap-16 mx-8">
+                <span className="text-white/90 font-heading font-extrabold text-lg tracking-wide">NextUp Canada</span>
+                <span className="text-accent text-xl">&#x2022;</span>
+                <span className="text-white/90 font-heading font-extrabold text-lg tracking-wide">TrueNorth Property & Facilities</span>
+                <span className="text-accent text-xl">&#x2022;</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16 mb-20">
           <div className="flex flex-col gap-6">

@@ -23,8 +23,14 @@ Preferred communication style: Simple, everyday language.
 ### Backend
 - **Runtime**: Node.js with Express 5
 - **Language**: TypeScript, executed via `tsx` in development
-- **API Structure**: RESTful API with routes registered in `server/routes.ts`. Currently one endpoint:
+- **API Structure**: RESTful API with routes registered in `server/routes.ts`. Endpoints:
   - `POST /api/contact` — validates and stores contact form submissions
+  - `POST /api/apply` — handles job applications with resume upload (multer)
+  - `GET /api/stripe/key` — returns Stripe publishable key
+  - `GET /api/products` — lists active Stripe products with prices
+  - `POST /api/checkout` — creates Stripe checkout session (auto-detects one-time vs subscription)
+  - `POST /api/stripe/webhook` — Stripe webhook (registered before express.json() for raw body)
+  - `POST /api/test-receipt` — dev-only: sends a test receipt email
 - **Build**: Custom build script (`script/build.ts`) using esbuild for the server and Vite for the client. Production output goes to `dist/` with server as `dist/index.cjs` and client assets in `dist/public/`
 - **Dev Server**: Vite dev server is integrated as middleware in Express during development (`server/vite.ts`), with HMR support. Production serves static files from `dist/public/`
 
@@ -52,4 +58,7 @@ Preferred communication style: Simple, everyday language.
   - `@replit/vite-plugin-runtime-error-modal` — runtime error overlay in development
   - `@replit/vite-plugin-cartographer` and `@replit/vite-plugin-dev-banner` — development tools (conditionally loaded)
   - Custom `vite-plugin-meta-images` — updates OpenGraph meta tags with correct deployment URL
-- **No external API services**: No third-party APIs (Stripe, OpenAI, etc.) are currently active, though dependencies exist in package.json for potential future use
+- **Stripe**: Payment processing via Replit Stripe connector. Products/prices synced to local DB via `stripe-replit-sync`. Supports one-time payments and monthly subscriptions
+- **Email (SMTP)**: Nodemailer with SMTP credentials (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM_EMAIL) for sending PDF receipt emails on successful payment. Uses Microsoft 365/Outlook SMTP
+- **PDF Generation**: PDFKit for generating branded receipt PDFs with company logo (`client/src/assets/logo.png`)
+- **Receipt System**: On successful Stripe checkout (via webhook), generates a branded PDF receipt and emails it to the customer. Includes idempotency guard to prevent duplicate receipts on webhook retries. Test endpoint available in dev mode only (`POST /api/test-receipt`)

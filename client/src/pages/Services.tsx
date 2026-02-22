@@ -73,6 +73,12 @@ export default function Services() {
     if (product) {
       setPayingProduct(productName);
       checkoutMutation.mutate({ priceId: product.price_id, serviceName: productName });
+    } else {
+      toast({
+        title: language === "en" ? "Service unavailable" : "Service indisponible",
+        description: language === "en" ? "This payment option is temporarily unavailable. Please try again shortly or contact us." : "Cette option de paiement est temporairement indisponible. Veuillez réessayer ou nous contacter.",
+        variant: "destructive",
+      });
     }
   };
 

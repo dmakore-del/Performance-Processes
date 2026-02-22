@@ -136,6 +136,34 @@ async function seedProducts() {
       metadata: { category: 'website', tier: 'premium' },
       price: 1200000,
     },
+    {
+      name: 'Ongoing Website Management',
+      description: 'Monthly website management, updates, security, and ongoing development support.',
+      metadata: { category: 'website', tier: 'ongoing', billing: 'monthly' },
+      price: 78000,
+      recurring: true,
+    },
+    {
+      name: 'Business Support - Essential',
+      description: 'Ideal for small businesses needing periodic expert guidance and check-ins. 5 consulting hours per month.',
+      metadata: { category: 'consulting', service: 'business-support', tier: 'essential', billing: 'monthly' },
+      price: 65000,
+      recurring: true,
+    },
+    {
+      name: 'Business Support - Professional',
+      description: 'For growing organizations that need regular hands-on consulting and project support. 15 consulting hours per month.',
+      metadata: { category: 'consulting', service: 'business-support', tier: 'professional', billing: 'monthly' },
+      price: 288000,
+      recurring: true,
+    },
+    {
+      name: 'Business Support - Enterprise',
+      description: 'Full embedded support for organizations undergoing transformation or rapid growth. 40 consulting hours per month.',
+      metadata: { category: 'consulting', service: 'business-support', tier: 'enterprise', billing: 'monthly' },
+      price: 768000,
+      recurring: true,
+    },
   ];
 
   for (const service of services) {
@@ -151,11 +179,15 @@ async function seedProducts() {
       metadata: service.metadata,
     });
 
-    const price = await stripe.prices.create({
+    const priceParams: any = {
       product: product.id,
       unit_amount: service.price,
       currency: 'cad',
-    });
+    };
+    if ((service as any).recurring) {
+      priceParams.recurring = { interval: 'month' };
+    }
+    const price = await stripe.prices.create(priceParams);
 
     console.log(`Created: ${product.name} (${product.id}) - Price: ${price.id} ($${service.price / 100})`);
   }

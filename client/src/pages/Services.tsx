@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck, FileText, Settings, Info, Globe, CreditCard, Loader2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck, FileText, Settings, Info, Globe, CreditCard, Loader2, LifeBuoy, RefreshCw } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useLanguage } from "@/hooks/use-language";
@@ -416,6 +416,69 @@ export default function Services() {
             ? ["Fully custom design", "Multi-language support", "Advanced integrations (CRM, donations, payments, AI tools)", "API connections", "Ongoing support & maintenance"]
             : ["Design entièrement personnalisé", "Support multilingue", "Intégrations avancées (CRM, dons, paiements, outils IA)", "Connexions API", "Support et maintenance continus"],
           stripeProductName: "Premium / Enterprise Website"
+        },
+        {
+          name: language === "en" ? "Ongoing Management" : "Gestion continue",
+          price: "$780/mo",
+          subtitle: language === "en"
+            ? "Monthly website management, updates, security, and ongoing development support."
+            : "Gestion mensuelle du site Web, mises à jour, sécurité et soutien continu au développement.",
+          features: language === "en"
+            ? ["Monthly content updates", "Security monitoring & patches", "Performance optimization", "Ongoing development & enhancements", "Priority support", "Monthly analytics reports"]
+            : ["Mises à jour mensuelles du contenu", "Surveillance et correctifs de sécurité", "Optimisation des performances", "Développement et améliorations continus", "Support prioritaire", "Rapports d'analyse mensuels"],
+          stripeProductName: "Ongoing Website Management",
+          isMonthly: true
+        }
+      ]
+    },
+    {
+      title: language === "en" ? "Ongoing Business Support" : "Soutien continu aux entreprises",
+      investment: language === "en" ? "$650 – $7,680/mo" : "650 $ – 7 680 $/mois",
+      investmentNote: language === "en" ? "(Monthly retainer plans)" : "(Plans de rétention mensuels)",
+      desc: language === "en"
+        ? "Continuous expert support to keep your organization performing at its best."
+        : "Un soutien expert continu pour que votre organisation fonctionne au mieux.",
+      learnMore: language === "en"
+        ? "Growth doesn't stop after a project ends. Our ongoing support plans provide dedicated consulting hours, strategic check-ins, and hands-on assistance to help you maintain momentum, adapt to change, and continuously improve.\n\nWhether you need a few hours of expert guidance each month or a full embedded support team, we have a plan to match your needs."
+        : "La croissance ne s'arrête pas à la fin d'un projet. Nos plans de soutien continu offrent des heures de consultation dédiées, des vérifications stratégiques et une assistance pratique pour vous aider à maintenir l'élan, à vous adapter au changement et à vous améliorer continuellement.\n\nQue vous ayez besoin de quelques heures de conseils d'experts chaque mois ou d'une équipe de soutien intégrée complète, nous avons un plan adapté à vos besoins.",
+      idealFor: language === "en" ? "Organizations that want consistent access to expert guidance without the cost of full-time hires." : "Organisations qui souhaitent un accès constant à des conseils d'experts sans le coût d'embauches à temps plein.",
+      icon: <LifeBuoy className="text-accent" />,
+      pricingTiers: [
+        {
+          name: language === "en" ? "Essential Support" : "Soutien essentiel",
+          price: "$650/mo",
+          subtitle: language === "en"
+            ? "Ideal for small businesses needing periodic expert guidance and check-ins."
+            : "Idéal pour les petites entreprises ayant besoin de conseils d'experts périodiques.",
+          features: language === "en"
+            ? ["5 consulting hours per month", "Monthly strategic check-in call", "Email support (48h response)", "Quarterly progress review"]
+            : ["5 heures de consultation par mois", "Appel de vérification stratégique mensuel", "Support par e-mail (réponse en 48h)", "Examen trimestriel des progrès"],
+          stripeProductName: "Business Support - Essential",
+          isMonthly: true
+        },
+        {
+          name: language === "en" ? "Professional Support" : "Soutien professionnel",
+          price: "$2,880/mo",
+          subtitle: language === "en"
+            ? "For growing organizations that need regular hands-on consulting and project support."
+            : "Pour les organisations en croissance qui ont besoin de conseils pratiques réguliers et d'un soutien de projet.",
+          features: language === "en"
+            ? ["15 consulting hours per month", "Bi-weekly strategy sessions", "Priority email & phone support", "Process improvement guidance", "Performance tracking support", "Monthly executive briefing"]
+            : ["15 heures de consultation par mois", "Sessions stratégiques bimensuelles", "Support prioritaire par e-mail et téléphone", "Conseils en amélioration des processus", "Soutien au suivi des performances", "Briefing exécutif mensuel"],
+          stripeProductName: "Business Support - Professional",
+          isMonthly: true
+        },
+        {
+          name: language === "en" ? "Enterprise Support" : "Soutien entreprise",
+          price: "$7,680/mo",
+          subtitle: language === "en"
+            ? "Full embedded support for organizations undergoing transformation or rapid growth."
+            : "Soutien intégré complet pour les organisations en transformation ou en croissance rapide.",
+          features: language === "en"
+            ? ["40 consulting hours per month", "Weekly strategy and operations sessions", "Dedicated senior consultant", "On-site support available", "Full project management support", "Real-time performance dashboards", "Leadership coaching included", "24/7 priority support"]
+            : ["40 heures de consultation par mois", "Sessions stratégiques et opérationnelles hebdomadaires", "Consultant senior dédié", "Support sur site disponible", "Soutien complet en gestion de projet", "Tableaux de bord de performance en temps réel", "Coaching de leadership inclus", "Support prioritaire 24/7"],
+          stripeProductName: "Business Support - Enterprise",
+          isMonthly: true
         }
       ]
     }
@@ -493,14 +556,21 @@ export default function Services() {
                     <h4 className="text-xs font-black uppercase tracking-[0.3em] text-accent">
                       {language === "en" ? "Choose Your Package" : "Choisissez votre forfait"}
                     </h4>
-                    <div className={`grid grid-cols-1 ${selectedService.pricingTiers.length > 3 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-4`}>
+                    <div className={`grid grid-cols-1 ${selectedService.pricingTiers.length === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : selectedService.pricingTiers.length >= 5 ? 'md:grid-cols-2 lg:grid-cols-3' : 'md:grid-cols-3'} gap-4`}>
                       {selectedService.pricingTiers.map((tier: any, idx: number) => (
                         <div key={idx} className={`bg-white border rounded-2xl p-6 flex flex-col hover:shadow-lg transition-all ${idx === 1 ? 'border-accent shadow-md ring-2 ring-accent/20' : 'border-border hover:border-accent/40'}`} data-testid={`pricing-tier-${idx}`}>
-                          {idx === 1 && (
-                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-accent mb-2">
-                              {language === "en" ? "Most Popular" : "Le plus populaire"}
-                            </div>
-                          )}
+                          <div className="flex items-center gap-2 mb-2">
+                            {idx === 1 && (
+                              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-accent">
+                                {language === "en" ? "Most Popular" : "Le plus populaire"}
+                              </span>
+                            )}
+                            {tier.isMonthly && (
+                              <span className="text-[10px] font-black uppercase tracking-[0.15em] bg-accent/10 text-accent px-2 py-0.5 rounded-full flex items-center gap-1">
+                                <RefreshCw size={10} /> {language === "en" ? "Monthly" : "Mensuel"}
+                              </span>
+                            )}
+                          </div>
                           <h5 className="text-lg font-extrabold text-primary mb-1">{tier.name}</h5>
                           <div className="text-accent font-black text-xl mb-3">{tier.price}</div>
                           <p className="text-xs text-muted-foreground leading-relaxed mb-4">{tier.subtitle}</p>
@@ -521,7 +591,10 @@ export default function Services() {
                             {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
                               <><Loader2 size={14} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
                             ) : (
-                              <><CreditCard size={14} /> {language === "en" ? "Select & Pay" : "Sélectionner et payer"}</>
+                              <><CreditCard size={14} /> {tier.isMonthly 
+                                ? (language === "en" ? "Subscribe" : "S'abonner")
+                                : (language === "en" ? "Select & Pay" : "Sélectionner et payer")
+                              }</>
                             )}
                           </Button>
                         </div>

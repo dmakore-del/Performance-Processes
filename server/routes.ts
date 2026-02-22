@@ -129,7 +129,6 @@ export async function registerRoutes(
     }
   });
 
-  // Stripe: Create checkout session for a one-time payment
   app.post("/api/checkout", async (req, res) => {
     try {
       const { priceId, serviceName } = req.body;
@@ -140,6 +139,9 @@ export async function registerRoutes(
 
       const stripe = await getUncachableStripeClient();
 
+      const price = await stripe.prices.retrieve(priceId);
+      const isRecurring = !!price.recurring;
+
       const baseUrl = process.env.REPLIT_DOMAINS
         ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
         : `${req.protocol}://${req.get('host')}`;
@@ -147,7 +149,7 @@ export async function registerRoutes(
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items: [{ price: priceId, quantity: 1 }],
-        mode: 'payment',
+        mode: isRecurring ? 'subscription' : 'payment',
         success_url: `${baseUrl}/services?payment=success`,
         cancel_url: `${baseUrl}/services?payment=cancelled`,
         metadata: {

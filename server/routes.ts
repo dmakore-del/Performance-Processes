@@ -164,5 +164,50 @@ export async function registerRoutes(
     }
   });
 
+  app.post("/api/test-receipt", async (req, res) => {
+    try {
+      const { email, name } = req.body;
+      if (!email) {
+        return res.status(400).json({ message: "Email is required" });
+      }
+
+      const { generateReceiptPDF } = await import("./receiptGenerator");
+      const { sendReceiptEmail } = await import("./emailService");
+
+      const receiptNumber = `PP-TEST-${Date.now().toString(36).toUpperCase()}`;
+      const date = new Date().toLocaleDateString("en-CA", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+
+      const pdfBuffer = await generateReceiptPDF({
+        receiptNumber,
+        date,
+        customerName: name || "Test Customer",
+        customerEmail: email,
+        serviceName: "Strategic Planning - Standard Package",
+        amount: 450000,
+        currency: "cad",
+        isSubscription: false,
+      });
+
+      await sendReceiptEmail({
+        to: email,
+        customerName: name || "Test Customer",
+        serviceName: "Strategic Planning - Standard Package",
+        amount: "$4,500.00",
+        receiptPdfBuffer: pdfBuffer,
+        receiptNumber,
+        isSubscription: false,
+      });
+
+      return res.json({ message: "Test receipt sent", receiptNumber });
+    } catch (error: any) {
+      console.error("Test receipt error:", error);
+      return res.status(500).json({ message: "Failed to send test receipt", error: error.message });
+    }
+  });
+
   return httpServer;
 }

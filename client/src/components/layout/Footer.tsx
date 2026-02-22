@@ -37,7 +37,7 @@ export function Footer() {
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               {t("footer.description")}
             </p>
-            <a href="https://www.linkedin.com/company/performance-processes/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors" data-testid="link-linkedin">
+            <a href="https://www.linkedin.com/company/performance-processes/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors" data-testid="link-linkedin">
               <Linkedin size={18} />
               <span>LinkedIn</span>
             </a>

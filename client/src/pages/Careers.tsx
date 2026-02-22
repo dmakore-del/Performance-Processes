@@ -181,6 +181,98 @@ export default function Careers() {
               </Button>
             </div>
           </div>
+
+          <div className="bg-white p-8 md:p-12 rounded-3xl border border-border shadow-xl space-y-8 mt-12" data-testid="section-hiring-policy">
+            <div>
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">
+                {language === "en" ? "Our Commitment" : "Notre Engagement"}
+              </div>
+              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4">
+                {language === "en" ? "Hiring Policy" : "Politique d'embauche"}
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                {language === "en"
+                  ? "Performance Processes is committed to building a diverse, inclusive, and equitable workplace. Our hiring practices reflect our core values of fairness, transparency, and respect for every individual."
+                  : "Performance Processes s'engage à bâtir un milieu de travail diversifié, inclusif et équitable. Nos pratiques d'embauche reflètent nos valeurs fondamentales d'équité, de transparence et de respect de chaque individu."}
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-primary">
+                {language === "en" ? "Equal Opportunity Employer" : "Employeur offrant l'égalité des chances"}
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                {language === "en"
+                  ? "We are an equal opportunity employer. All qualified applicants will receive consideration for employment without regard to race, colour, religion, sex, sexual orientation, gender identity, national origin, age, disability, veteran status, or any other characteristic protected by applicable law."
+                  : "Nous sommes un employeur offrant l'égalité des chances. Tous les candidats qualifiés seront pris en considération sans égard à la race, la couleur, la religion, le sexe, l'orientation sexuelle, l'identité de genre, l'origine nationale, l'âge, le handicap, le statut d'ancien combattant ou toute autre caractéristique protégée par la loi applicable."}
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-primary">
+                {language === "en" ? "Merit-Based Selection" : "Sélection fondée sur le mérite"}
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                {language === "en"
+                  ? "All hiring decisions are based on qualifications, demonstrated skills, relevant experience, and alignment with our organizational values. We evaluate every candidate fairly and consistently through a structured review process."
+                  : "Toutes les décisions d'embauche sont fondées sur les qualifications, les compétences démontrées, l'expérience pertinente et l'alignement avec nos valeurs organisationnelles. Nous évaluons chaque candidat de manière équitable et cohérente à travers un processus de révision structuré."}
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-primary">
+                {language === "en" ? "Accommodation" : "Accommodement"}
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                {language === "en"
+                  ? "We are committed to providing accessible employment practices in compliance with the Accessibility for Ontarians with Disabilities Act (AODA). If you require accommodation during the application or hiring process, please contact us and we will work with you to meet your needs."
+                  : "Nous nous engageons à offrir des pratiques d'emploi accessibles conformément à la Loi sur l'accessibilité pour les personnes handicapées de l'Ontario (LAPHO). Si vous avez besoin d'un accommodement pendant le processus de candidature ou d'embauche, veuillez nous contacter et nous travaillerons avec vous pour répondre à vos besoins."}
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-primary">
+                {language === "en" ? "Our Hiring Process" : "Notre processus d'embauche"}
+              </h3>
+              <ul className="space-y-3">
+                {(language === "en" ? [
+                  "Application Review — We carefully review every submission received",
+                  "Initial Screening — Qualified candidates are contacted for a brief introductory conversation",
+                  "Interview — Selected candidates participate in a focused interview with our team",
+                  "Decision & Offer — Successful candidates receive a formal offer outlining terms and next steps"
+                ] : [
+                  "Examen des candidatures — Nous examinons attentivement chaque soumission reçue",
+                  "Présélection — Les candidats qualifiés sont contactés pour une brève conversation d'introduction",
+                  "Entrevue — Les candidats sélectionnés participent à une entrevue ciblée avec notre équipe",
+                  "Décision et offre — Les candidats retenus reçoivent une offre formelle décrivant les conditions et les prochaines étapes"
+                ]).map((item, i) => (
+                  <li key={i} className="flex items-start gap-3" data-testid={`text-hiring-step-${i}`}>
+                    <div className="w-7 h-7 rounded-full bg-accent/10 text-accent flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold">
+                      {i + 1}
+                    </div>
+                    <span className="text-muted-foreground">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-primary">
+                {language === "en" ? "Privacy & Confidentiality" : "Confidentialité et vie privée"}
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                {language === "en"
+                  ? "All personal information collected during the hiring process is kept strictly confidential and used solely for recruitment purposes. We handle your data in accordance with applicable privacy legislation."
+                  : "Toutes les informations personnelles recueillies pendant le processus d'embauche sont gardées strictement confidentielles et utilisées uniquement à des fins de recrutement. Nous traitons vos données conformément à la législation applicable en matière de protection de la vie privée."}
+              </p>
+            </div>
+
+            <p className="text-sm text-muted-foreground italic border-l-4 border-primary pl-4 py-2 bg-secondary/30">
+              {language === "en"
+                ? "Performance Processes values the unique skills and experiences each candidate brings. We encourage all qualified individuals to apply."
+                : "Performance Processes valorise les compétences et expériences uniques que chaque candidat apporte. Nous encourageons toutes les personnes qualifiées à postuler."}
+            </p>
+          </div>
         </div>
       </main>
       <Footer />

@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck, FileText, Settings, Info } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck, FileText, Settings, Info, Globe } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useLanguage } from "@/hooks/use-language";
@@ -107,7 +107,7 @@ export default function Services() {
     },
     {
       title: language === "en" ? "Website Building & Marketing" : "Création de sites Web et marketing",
-      investment: language === "en" ? "Custom Pricing" : "Prix sur mesure",
+      investment: language === "en" ? "From $1,200" : "À partir de 1 200 $",
       desc: language === "en"
         ? "Build a strong digital presence that attracts and converts clients."
         : "Créez une forte présence numérique qui attire et convertit les clients.",
@@ -118,7 +118,49 @@ export default function Services() {
         ? ["Custom website design & development", "SEO & performance optimization", "Digital marketing strategy", "Content creation & copywriting", "Analytics & tracking setup"]
         : ["Conception et développement de sites Web sur mesure", "SEO et optimisation des performances", "Stratégie de marketing numérique", "Création de contenu et rédaction", "Configuration des analyses et du suivi"],
       idealFor: language === "en" ? "Organizations seeking to establish or upgrade their digital presence and drive growth." : "Organisations cherchant à établir ou à améliorer leur présence numérique et à stimuler la croissance.",
-      icon: <TrendingUp className="text-accent" />
+      icon: <Globe className="text-accent" />,
+      pricingTiers: [
+        {
+          name: language === "en" ? "Basic Website" : "Site Web de base",
+          price: "$1,200 – $3,000",
+          subtitle: language === "en" 
+            ? "Ideal for small businesses, personal portfolios, nonprofits, and simple informational sites."
+            : "Idéal pour les petites entreprises, les portfolios personnels, les organismes à but non lucratif et les sites d'information simples.",
+          features: language === "en"
+            ? ["Up to 5 pages", "Responsive design (mobile + desktop)", "Contact form", "Basic SEO setup", "CMS (optional)"]
+            : ["Jusqu'à 5 pages", "Design responsive (mobile + bureau)", "Formulaire de contact", "Configuration SEO de base", "CMS (optionnel)"]
+        },
+        {
+          name: language === "en" ? "Standard Business Website" : "Site Web d'entreprise standard",
+          price: "$3,000 – $6,000",
+          subtitle: language === "en"
+            ? "Perfect for established organizations that need a stronger online presence."
+            : "Parfait pour les organisations établies qui ont besoin d'une présence en ligne plus forte.",
+          features: language === "en"
+            ? ["6–12 pages", "Custom page layouts", "Brand-aligned visuals", "Blog or resource section", "Basic performance optimization", "CMS with editor training"]
+            : ["6 à 12 pages", "Mises en page personnalisées", "Visuels alignés sur la marque", "Section blog ou ressources", "Optimisation de base des performances", "CMS avec formation éditeur"]
+        },
+        {
+          name: language === "en" ? "Advanced / Growth Website" : "Site Web avancé / croissance",
+          price: "$6,000 – $12,000+",
+          subtitle: language === "en"
+            ? "For organizations needing advanced functionality and strategic design."
+            : "Pour les organisations ayant besoin de fonctionnalités avancées et d'un design stratégique.",
+          features: language === "en"
+            ? ["12–20+ pages", "Custom UX/UI design", "Client portals or gated content", "Newsletter integration", "Analytics setup", "Lead capture systems"]
+            : ["12 à 20+ pages", "Design UX/UI personnalisé", "Portails clients ou contenu protégé", "Intégration newsletter", "Configuration des analyses", "Systèmes de capture de leads"]
+        },
+        {
+          name: language === "en" ? "Premium / Enterprise Website" : "Site Web premium / entreprise",
+          price: "$12,000 – $25,000+",
+          subtitle: language === "en"
+            ? "For high-impact brands, nonprofits with large programs, or businesses with complex needs."
+            : "Pour les marques à fort impact, les organismes à but non lucratif avec de grands programmes ou les entreprises aux besoins complexes.",
+          features: language === "en"
+            ? ["Fully custom design", "Multi-language support", "Advanced integrations (CRM, donations, payments, AI tools)", "API connections", "Ongoing support & maintenance"]
+            : ["Design entièrement personnalisé", "Support multilingue", "Intégrations avancées (CRM, dons, paiements, outils IA)", "Connexions API", "Support et maintenance continus"]
+        }
+      ]
     }
   ];
 
@@ -189,20 +231,45 @@ export default function Services() {
                     </h4>
                     <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{selectedService.learnMore}</p>
                   </div>
-                  
-                  <div className="space-y-4">
-                    <h4 className="text-xs font-black uppercase tracking-[0.3em] text-accent">
-                      {language === "en" ? "What's Included" : "Ce qui est inclus"}
-                    </h4>
-                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {selectedService.includes.map((item: string, idx: number) => (
-                        <li key={idx} className="flex items-center gap-3 text-sm font-bold text-primary bg-secondary/30 p-3 rounded-lg">
-                          <CheckCircle2 size={16} className="text-accent shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+
+                  {selectedService.pricingTiers ? (
+                    <div className="space-y-4">
+                      <h4 className="text-xs font-black uppercase tracking-[0.3em] text-accent">
+                        {language === "en" ? "Pricing Options" : "Options de tarification"}
+                      </h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {selectedService.pricingTiers.map((tier: any, idx: number) => (
+                          <div key={idx} className="bg-white border border-border rounded-2xl p-6 flex flex-col hover:border-accent/40 hover:shadow-lg transition-all" data-testid={`pricing-tier-${idx}`}>
+                            <h5 className="text-lg font-extrabold text-primary mb-1">{tier.name}</h5>
+                            <div className="text-accent font-black text-xl mb-3">{tier.price}</div>
+                            <p className="text-xs text-muted-foreground leading-relaxed mb-4">{tier.subtitle}</p>
+                            <ul className="space-y-2 mt-auto">
+                              {tier.features.map((f: string, fi: number) => (
+                                <li key={fi} className="flex items-start gap-2 text-sm text-primary">
+                                  <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
+                                  <span>{f}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      <h4 className="text-xs font-black uppercase tracking-[0.3em] text-accent">
+                        {language === "en" ? "What's Included" : "Ce qui est inclus"}
+                      </h4>
+                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {selectedService.includes.map((item: string, idx: number) => (
+                          <li key={idx} className="flex items-center gap-3 text-sm font-bold text-primary bg-secondary/30 p-3 rounded-lg">
+                            <CheckCircle2 size={16} className="text-accent shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
                   <div className="p-6 bg-primary rounded-2xl text-white">
                     <h4 className="text-[10px] font-black uppercase tracking-[0.3em] mb-3 opacity-70">

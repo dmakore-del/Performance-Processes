@@ -1,16 +1,80 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck, FileText, Settings, Info, Globe } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck, FileText, Settings, Info, Globe, CreditCard, Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useLanguage } from "@/hooks/use-language";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 import { PageHero } from "@/components/layout/PageHero";
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState<any>(null);
+  const [payingProduct, setPayingProduct] = useState<string | null>(null);
   const { t, language } = useLanguage();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const payment = params.get("payment");
+    if (payment === "success") {
+      toast({
+        title: language === "en" ? "Payment successful!" : "Paiement réussi !",
+        description: language === "en" ? "Thank you for your purchase. We'll be in touch shortly." : "Merci pour votre achat. Nous vous contacterons bientôt.",
+      });
+      window.history.replaceState({}, "", "/services");
+    } else if (payment === "cancelled") {
+      toast({
+        title: language === "en" ? "Payment cancelled" : "Paiement annulé",
+        description: language === "en" ? "Your payment was not completed." : "Votre paiement n'a pas été complété.",
+        variant: "destructive",
+      });
+      window.history.replaceState({}, "", "/services");
+    }
+  }, []);
+
+  const { data: productsData } = useQuery({
+    queryKey: ["/api/products"],
+  });
+
+  const checkoutMutation = useMutation({
+    mutationFn: async ({ priceId, serviceName }: { priceId: string; serviceName: string }) => {
+      const res = await apiRequest("POST", "/api/checkout", { priceId, serviceName });
+      return res.json();
+    },
+    onSuccess: (data) => {
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    },
+    onError: () => {
+      setPayingProduct(null);
+      toast({
+        title: language === "en" ? "Payment error" : "Erreur de paiement",
+        description: language === "en" ? "Unable to start checkout. Please try again." : "Impossible de démarrer le paiement. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handlePay = (productName: string) => {
+    if (!productsData?.data) {
+      toast({
+        title: language === "en" ? "Loading..." : "Chargement...",
+        description: language === "en" ? "Payment options are still loading. Please try again in a moment." : "Les options de paiement sont en cours de chargement. Veuillez réessayer dans un instant.",
+        variant: "destructive",
+      });
+      return;
+    }
+    const product = productsData.data.find((p: any) => p.product_name === productName);
+    if (product) {
+      setPayingProduct(productName);
+      checkoutMutation.mutate({ priceId: product.price_id, serviceName: productName });
+    }
+  };
 
   const services = [
     {
@@ -27,7 +91,8 @@ export default function Services() {
         ? ["Vision and mission refinement", "Environmental and stakeholder analysis", "Strategic objective development", "KPI and success metric design", "1–3 year strategic roadmap", "Leadership alignment workshops"]
         : ["Affinement de la vision et de la mission", "Analyse de l'environnement et des parties prenantes", "Développement d'objectifs stratégiques", "Conception d'indicateurs de performance et de réussite", "Feuille de route stratégique de 1 à 3 ans", "Ateliers d'alignement des dirigeants"],
       idealFor: language === "en" ? "Organizations preparing for growth, restructuring, funding, or transformation." : "Organisations se préparant à la croissance, à la restructuration, au financement ou à la transformation.",
-      icon: <TrendingUp className="text-accent" />
+      icon: <TrendingUp className="text-accent" />,
+      stripeProductName: "Strategic Planning & Alignment"
     },
     {
       title: language === "en" ? "Organizational Assessment" : "Évaluation organisationnelle",
@@ -42,7 +107,8 @@ export default function Services() {
         ? ["Leadership interviews", "Organizational structure review", "Culture and capability assessment", "Process and performance review", "Risk and governance analysis", "Comprehensive findings report"]
         : ["Entretiens avec les dirigeants", "Examen de la structure organisationnelle", "Évaluation de la culture et des capacités", "Examen des processus et des performances", "Analyse des risques et de la gouvernance", "Rapport complet de conclusions"],
       idealFor: language === "en" ? "Organizations experiencing performance stagnation, growth challenges, or internal inefficiencies." : "Organisations connaissant une stagnation des performances, des défis de croissance ou des inefficacités internes.",
-      icon: <Users className="text-accent" />
+      icon: <Users className="text-accent" />,
+      stripeProductName: "Organizational Assessment"
     },
     {
       title: language === "en" ? "Performance Management Design" : "Conception de la gestion de la performance",
@@ -57,7 +123,8 @@ export default function Services() {
         ? ["KPI framework development", "Balanced scorecard design", "Role-based accountability structures", "Performance review templates", "Reporting dashboards", "Implementation support"]
         : ["Développement d'un cadre d'indicateurs de performance", "Conception d'un tableau de bord prospectif", "Structures de responsabilité basées sur les rôles", "Modèles d'examen des performances", "Tableaux de bord de rapport", "Soutien à la mise en œuvre"],
       idealFor: language === "en" ? "Organizations seeking measurable performance, improved accountability, and strategic execution discipline." : "Organisations recherchant une performance mesurable, une responsabilité accrue et une discipline d'exécution stratégique.",
-      icon: <Settings className="text-accent" />
+      icon: <Settings className="text-accent" />,
+      stripeProductName: "Performance Management Design"
     },
     {
       title: language === "en" ? "Leadership Development" : "Développement du leadership",
@@ -73,7 +140,8 @@ export default function Services() {
         ? ["Leadership competency assessment", "Executive and management workshops", "Team alignment sessions", "One-on-one executive coaching", "Accountability training"]
         : ["Évaluation des compétences de leadership", "Ateliers pour cadres et gestionnaires", "Sessions d'alignement d'équipe", "Coaching exécutif individuel", "Formation à la responsabilité"],
       idealFor: language === "en" ? "Growing organizations, new leadership teams, or leaders navigating change." : "Organisations en croissance, nouvelles équipes de direction ou dirigeants naviguant dans le changement.",
-      icon: <ShieldCheck className="text-accent" />
+      icon: <ShieldCheck className="text-accent" />,
+      stripeProductName: "Leadership Development"
     },
     {
       title: language === "en" ? "Process Improvement" : "Amélioration des processus",
@@ -88,7 +156,8 @@ export default function Services() {
         ? ["Process mapping sessions", "Workflow analysis", "SOP development", "Role clarity frameworks", "Operational efficiency recommendations"]
         : ["Sessions de cartographie des processus", "Analyse des flux de travail", "Développement de procédures opérationnelles normalisées", "Cadres de clarté des rôles", "Recommandations d'efficacité opérationnelle"],
       idealFor: language === "en" ? "Organizations preparing to scale or improve operational consistency." : "Organisations se préparant à passer à l'échelle ou à améliorer la cohérence opérationnelle.",
-      icon: <FileText className="text-accent" />
+      icon: <FileText className="text-accent" />,
+      stripeProductName: "Process Improvement"
     },
     {
       title: language === "en" ? "Change Management Support" : "Soutien à la gestion du changement",
@@ -103,7 +172,8 @@ export default function Services() {
         ? ["Change readiness assessment", "Change strategy design", "Stakeholder mapping", "Communication plan development", "Implementation coaching"]
         : ["Évaluation de l'état de préparation au changement", "Conception d'une stratégie de changement", "Cartographie des parties prenantes", "Développement d'un plan de communication", "Coaching de mise en œuvre"],
       idealFor: language === "en" ? "Organizations undergoing restructuring, digital transformation, or strategic shifts." : "Organisations subissant une restructuration, une transformation numérique ou des changements stratégiques.",
-      icon: <CheckCircle2 className="text-accent" />
+      icon: <CheckCircle2 className="text-accent" />,
+      stripeProductName: "Change Management Support"
     },
     {
       title: language === "en" ? "Website Building & Marketing" : "Création de sites Web et marketing",
@@ -128,7 +198,8 @@ export default function Services() {
             : "Idéal pour les petites entreprises, les portfolios personnels, les organismes à but non lucratif et les sites d'information simples.",
           features: language === "en"
             ? ["Up to 5 pages", "Responsive design (mobile + desktop)", "Contact form", "Basic SEO setup", "CMS (optional)"]
-            : ["Jusqu'à 5 pages", "Design responsive (mobile + bureau)", "Formulaire de contact", "Configuration SEO de base", "CMS (optionnel)"]
+            : ["Jusqu'à 5 pages", "Design responsive (mobile + bureau)", "Formulaire de contact", "Configuration SEO de base", "CMS (optionnel)"],
+          stripeProductName: "Basic Website"
         },
         {
           name: language === "en" ? "Standard Business Website" : "Site Web d'entreprise standard",
@@ -138,7 +209,8 @@ export default function Services() {
             : "Parfait pour les organisations établies qui ont besoin d'une présence en ligne plus forte.",
           features: language === "en"
             ? ["6–12 pages", "Custom page layouts", "Brand-aligned visuals", "Blog or resource section", "Basic performance optimization", "CMS with editor training"]
-            : ["6 à 12 pages", "Mises en page personnalisées", "Visuels alignés sur la marque", "Section blog ou ressources", "Optimisation de base des performances", "CMS avec formation éditeur"]
+            : ["6 à 12 pages", "Mises en page personnalisées", "Visuels alignés sur la marque", "Section blog ou ressources", "Optimisation de base des performances", "CMS avec formation éditeur"],
+          stripeProductName: "Standard Business Website"
         },
         {
           name: language === "en" ? "Advanced / Growth Website" : "Site Web avancé / croissance",
@@ -148,7 +220,8 @@ export default function Services() {
             : "Pour les organisations ayant besoin de fonctionnalités avancées et d'un design stratégique.",
           features: language === "en"
             ? ["12–20+ pages", "Custom UX/UI design", "Client portals or gated content", "Newsletter integration", "Analytics setup", "Lead capture systems"]
-            : ["12 à 20+ pages", "Design UX/UI personnalisé", "Portails clients ou contenu protégé", "Intégration newsletter", "Configuration des analyses", "Systèmes de capture de leads"]
+            : ["12 à 20+ pages", "Design UX/UI personnalisé", "Portails clients ou contenu protégé", "Intégration newsletter", "Configuration des analyses", "Systèmes de capture de leads"],
+          stripeProductName: "Advanced / Growth Website"
         },
         {
           name: language === "en" ? "Premium / Enterprise Website" : "Site Web premium / entreprise",
@@ -158,7 +231,8 @@ export default function Services() {
             : "Pour les marques à fort impact, les organismes à but non lucratif avec de grands programmes ou les entreprises aux besoins complexes.",
           features: language === "en"
             ? ["Fully custom design", "Multi-language support", "Advanced integrations (CRM, donations, payments, AI tools)", "API connections", "Ongoing support & maintenance"]
-            : ["Design entièrement personnalisé", "Support multilingue", "Intégrations avancées (CRM, dons, paiements, outils IA)", "Connexions API", "Support et maintenance continus"]
+            : ["Design entièrement personnalisé", "Support multilingue", "Intégrations avancées (CRM, dons, paiements, outils IA)", "Connexions API", "Support et maintenance continus"],
+          stripeProductName: "Premium / Enterprise Website"
         }
       ]
     }
@@ -243,7 +317,7 @@ export default function Services() {
                             <h5 className="text-lg font-extrabold text-primary mb-1">{tier.name}</h5>
                             <div className="text-accent font-black text-xl mb-3">{tier.price}</div>
                             <p className="text-xs text-muted-foreground leading-relaxed mb-4">{tier.subtitle}</p>
-                            <ul className="space-y-2 mt-auto">
+                            <ul className="space-y-2 mb-4">
                               {tier.features.map((f: string, fi: number) => (
                                 <li key={fi} className="flex items-start gap-2 text-sm text-primary">
                                   <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
@@ -251,6 +325,18 @@ export default function Services() {
                                 </li>
                               ))}
                             </ul>
+                            <Button
+                              className="mt-auto w-full rounded-full bg-primary text-white hover:bg-accent h-10 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2"
+                              onClick={() => handlePay(tier.stripeProductName)}
+                              disabled={checkoutMutation.isPending && payingProduct === tier.stripeProductName}
+                              data-testid={`button-pay-tier-${idx}`}
+                            >
+                              {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
+                                <><Loader2 size={14} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
+                              ) : (
+                                <><CreditCard size={14} /> {language === "en" ? "Pay now" : "Payer maintenant"}</>
+                              )}
+                            </Button>
                           </div>
                         ))}
                       </div>
@@ -278,16 +364,31 @@ export default function Services() {
                     <p className="font-bold italic text-lg leading-relaxed">{selectedService.idealFor}</p>
                   </div>
 
-                  <div className="flex justify-center pt-4">
+                  <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
                     <Button 
-                      className="rounded-full bg-accent text-white hover:bg-primary h-14 px-12 font-bold uppercase tracking-widest text-sm shadow-lg shadow-accent/20"
+                      className="rounded-full bg-accent text-white hover:bg-primary h-14 px-10 font-bold uppercase tracking-widest text-sm shadow-lg shadow-accent/20"
                       onClick={() => {
                         window.location.href = `mailto:contact@performanceprocesses.com?subject=Inquiry: ${selectedService.title}`;
                         setSelectedService(null);
                       }}
+                      data-testid="button-inquire"
                     >
                       {language === "en" ? "Inquire about this service" : "Se renseigner sur ce service"}
                     </Button>
+                    {!selectedService.pricingTiers && (
+                      <Button
+                        className="rounded-full bg-primary text-white hover:bg-accent h-14 px-10 font-bold uppercase tracking-widest text-sm shadow-lg shadow-primary/20 flex items-center gap-2"
+                        onClick={() => handlePay(selectedService.stripeProductName)}
+                        disabled={checkoutMutation.isPending && payingProduct === selectedService.stripeProductName}
+                        data-testid="button-pay-service"
+                      >
+                        {checkoutMutation.isPending && payingProduct === selectedService.stripeProductName ? (
+                          <><Loader2 size={16} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
+                        ) : (
+                          <><CreditCard size={16} /> {language === "en" ? "Pay for this service" : "Payer pour ce service"}</>
+                        )}
+                      </Button>
+                    )}
                   </div>
                 </div>
               </>

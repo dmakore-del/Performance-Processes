@@ -1,10 +1,13 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema, insertJobApplicationSchema } from "@shared/schema";
+import { insertContactSchema } from "@shared/schema";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import { getUncachableStripeClient, getStripePublishableKey } from "./stripeClient";
+import { db } from "./db";
+import { sql } from "drizzle-orm";
 
 const uploadsDir = path.join(process.cwd(), "uploads", "resumes");
 if (!fs.existsSync(uploadsDir)) {
@@ -71,6 +74,7 @@ export async function registerRoutes(
         position: req.body.position,
       };
 
+      const { insertJobApplicationSchema } = await import("@shared/schema");
       const parsed = insertJobApplicationSchema.safeParse(data);
       if (!parsed.success) {
         fs.unlinkSync(req.file.path);
@@ -85,6 +89,76 @@ export async function registerRoutes(
         try { fs.unlinkSync(req.file.path); } catch {}
       }
       return res.status(500).json({ message: "Failed to submit application" });
+    }
+  });
+
+  // Stripe: Get publishable key
+  app.get("/api/stripe/key", async (_req, res) => {
+    try {
+      const key = await getStripePublishableKey();
+      res.json({ publishableKey: key });
+    } catch (error) {
+      console.error("Error getting Stripe key:", error);
+      res.status(500).json({ message: "Failed to get payment configuration" });
+    }
+  });
+
+  // Stripe: List products with prices
+  app.get("/api/products", async (_req, res) => {
+    try {
+      const result = await db.execute(
+        sql`
+          SELECT 
+            p.id as product_id,
+            p.name as product_name,
+            p.description as product_description,
+            p.metadata as product_metadata,
+            pr.id as price_id,
+            pr.unit_amount,
+            pr.currency
+          FROM stripe.products p
+          JOIN stripe.prices pr ON pr.product = p.id AND pr.active = true
+          WHERE p.active = true
+          ORDER BY pr.unit_amount ASC
+        `
+      );
+      res.json({ data: result.rows });
+    } catch (error) {
+      console.error("Error listing products:", error);
+      res.status(500).json({ message: "Failed to list products" });
+    }
+  });
+
+  // Stripe: Create checkout session for a one-time payment
+  app.post("/api/checkout", async (req, res) => {
+    try {
+      const { priceId, serviceName } = req.body;
+
+      if (!priceId) {
+        return res.status(400).json({ message: "Price ID is required" });
+      }
+
+      const stripe = await getUncachableStripeClient();
+
+      const baseUrl = process.env.REPLIT_DOMAINS
+        ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
+        : `${req.protocol}://${req.get('host')}`;
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{ price: priceId, quantity: 1 }],
+        mode: 'payment',
+        success_url: `${baseUrl}/services?payment=success`,
+        cancel_url: `${baseUrl}/services?payment=cancelled`,
+        metadata: {
+          serviceName: serviceName || '',
+        },
+      });
+
+      res.json({ url: session.url });
+    } catch (error) {
+      console.error("Checkout error:", error);
+      res.status(500).json({ message: "Failed to create checkout session" });
     }
   });
 

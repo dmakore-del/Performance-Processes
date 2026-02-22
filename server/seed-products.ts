@@ -5,64 +5,136 @@ async function seedProducts() {
 
   const services = [
     {
-      name: 'Strategic Planning & Alignment',
-      description: 'Define clear strategic direction and translate vision into measurable priorities.',
-      metadata: { category: 'consulting', tier: 'strategic-planning' },
-      price: 750000, // $7,500 starting
+      name: 'Strategic Planning - Essentials',
+      description: 'Half-day leadership workshop with vision refinement and basic strategic roadmap.',
+      metadata: { category: 'consulting', service: 'strategic-planning', tier: 'essentials' },
+      price: 750000,
     },
     {
-      name: 'Organizational Assessment',
-      description: 'Data-driven diagnostic that identifies structural gaps and performance barriers.',
-      metadata: { category: 'consulting', tier: 'org-assessment' },
-      price: 500000, // $5,000 starting
+      name: 'Strategic Planning - Standard',
+      description: 'Multi-day engagement with stakeholder analysis, KPI design, and 1-year roadmap.',
+      metadata: { category: 'consulting', service: 'strategic-planning', tier: 'standard' },
+      price: 1500000,
     },
     {
-      name: 'Performance Management Design',
-      description: 'Performance systems that connect strategy to accountability.',
-      metadata: { category: 'consulting', tier: 'performance-management' },
-      price: 600000, // $6,000 starting
+      name: 'Strategic Planning - Comprehensive',
+      description: 'Full transformation package with leadership alignment workshops, 3-year roadmap, and ongoing support.',
+      metadata: { category: 'consulting', service: 'strategic-planning', tier: 'comprehensive' },
+      price: 2500000,
     },
     {
-      name: 'Leadership Development',
-      description: 'Equip leaders with clarity and confidence through practical capability building.',
-      metadata: { category: 'consulting', tier: 'leadership' },
-      price: 350000, // $3,500 starting
+      name: 'Organizational Assessment - Focused',
+      description: 'Targeted assessment covering leadership interviews and structure review.',
+      metadata: { category: 'consulting', service: 'org-assessment', tier: 'focused' },
+      price: 500000,
     },
     {
-      name: 'Process Improvement',
-      description: 'Streamline operations, eliminate inefficiencies, and create structured systems.',
-      metadata: { category: 'consulting', tier: 'process-improvement' },
-      price: 400000, // $4,000 starting
+      name: 'Organizational Assessment - Standard',
+      description: 'Full assessment with culture, capability, and performance review.',
+      metadata: { category: 'consulting', service: 'org-assessment', tier: 'standard' },
+      price: 1000000,
     },
     {
-      name: 'Change Management Support',
-      description: 'Support organizations through transitions with structured change frameworks.',
-      metadata: { category: 'consulting', tier: 'change-management' },
-      price: 500000, // $5,000 starting
+      name: 'Organizational Assessment - Comprehensive',
+      description: 'Deep-dive with governance analysis, risk review, and comprehensive findings report.',
+      metadata: { category: 'consulting', service: 'org-assessment', tier: 'comprehensive' },
+      price: 1800000,
+    },
+    {
+      name: 'Performance Management - Foundation',
+      description: 'KPI framework development and basic accountability structures.',
+      metadata: { category: 'consulting', service: 'performance-management', tier: 'foundation' },
+      price: 600000,
+    },
+    {
+      name: 'Performance Management - Standard',
+      description: 'Full system design with balanced scorecard, review templates, and role-based structures.',
+      metadata: { category: 'consulting', service: 'performance-management', tier: 'standard' },
+      price: 1200000,
+    },
+    {
+      name: 'Performance Management - Enterprise',
+      description: 'Complete package with reporting dashboards, implementation support, and ongoing guidance.',
+      metadata: { category: 'consulting', service: 'performance-management', tier: 'enterprise' },
+      price: 2000000,
+    },
+    {
+      name: 'Leadership Development - Workshop',
+      description: 'Single-day leadership workshop with competency assessment.',
+      metadata: { category: 'consulting', service: 'leadership', tier: 'workshop' },
+      price: 350000,
+    },
+    {
+      name: 'Leadership Development - Program',
+      description: 'Multi-session program with team alignment and management workshops.',
+      metadata: { category: 'consulting', service: 'leadership', tier: 'program' },
+      price: 800000,
+    },
+    {
+      name: 'Leadership Development - Executive',
+      description: 'Full coaching program with one-on-one executive coaching and accountability training.',
+      metadata: { category: 'consulting', service: 'leadership', tier: 'executive' },
+      price: 1500000,
+    },
+    {
+      name: 'Process Improvement - Essentials',
+      description: 'Process mapping sessions and basic workflow analysis.',
+      metadata: { category: 'consulting', service: 'process-improvement', tier: 'essentials' },
+      price: 400000,
+    },
+    {
+      name: 'Process Improvement - Standard',
+      description: 'Full workflow analysis with SOP development and role clarity frameworks.',
+      metadata: { category: 'consulting', service: 'process-improvement', tier: 'standard' },
+      price: 800000,
+    },
+    {
+      name: 'Process Improvement - Comprehensive',
+      description: 'Complete systems overhaul with operational efficiency recommendations and implementation.',
+      metadata: { category: 'consulting', service: 'process-improvement', tier: 'comprehensive' },
+      price: 1500000,
+    },
+    {
+      name: 'Change Management - Foundation',
+      description: 'Change readiness assessment and stakeholder mapping.',
+      metadata: { category: 'consulting', service: 'change-management', tier: 'foundation' },
+      price: 500000,
+    },
+    {
+      name: 'Change Management - Standard',
+      description: 'Full change strategy design with communication plan and stakeholder engagement.',
+      metadata: { category: 'consulting', service: 'change-management', tier: 'standard' },
+      price: 1200000,
+    },
+    {
+      name: 'Change Management - Enterprise',
+      description: 'Complete implementation with coaching, adoption tracking, and ongoing support.',
+      metadata: { category: 'consulting', service: 'change-management', tier: 'enterprise' },
+      price: 2000000,
     },
     {
       name: 'Basic Website',
       description: 'Ideal for small businesses, personal portfolios, nonprofits, and simple informational sites.',
       metadata: { category: 'website', tier: 'basic' },
-      price: 120000, // $1,200 starting
+      price: 120000,
     },
     {
       name: 'Standard Business Website',
       description: 'Perfect for established organizations that need a stronger online presence.',
       metadata: { category: 'website', tier: 'standard' },
-      price: 300000, // $3,000 starting
+      price: 300000,
     },
     {
       name: 'Advanced / Growth Website',
       description: 'For organizations needing advanced functionality and strategic design.',
       metadata: { category: 'website', tier: 'advanced' },
-      price: 600000, // $6,000 starting
+      price: 600000,
     },
     {
       name: 'Premium / Enterprise Website',
       description: 'For high-impact brands, nonprofits with large programs, or businesses with complex needs.',
       metadata: { category: 'website', tier: 'premium' },
-      price: 1200000, // $12,000 starting
+      price: 1200000,
     },
   ];
 

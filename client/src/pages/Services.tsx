@@ -87,12 +87,43 @@ export default function Services() {
       learnMore: language === "en"
         ? "Many strategies fail not because they lack ambition, but because they lack alignment and execution clarity.\n\nOur process ensures leadership alignment, defined success metrics, and a practical roadmap that connects goals to operational execution."
         : "De nombreuses stratégies échouent non pas par manque d'ambition, mais par manque d'alignement et de clarté d'exécution.\n\nNotre processus garantit l'alignement des dirigeants, des indicateurs de réussite définis et une feuille de route pratique qui relie les objectifs à l'exécution opérationnelle.",
-      includes: language === "en" 
-        ? ["Vision and mission refinement", "Environmental and stakeholder analysis", "Strategic objective development", "KPI and success metric design", "1–3 year strategic roadmap", "Leadership alignment workshops"]
-        : ["Affinement de la vision et de la mission", "Analyse de l'environnement et des parties prenantes", "Développement d'objectifs stratégiques", "Conception d'indicateurs de performance et de réussite", "Feuille de route stratégique de 1 à 3 ans", "Ateliers d'alignement des dirigeants"],
       idealFor: language === "en" ? "Organizations preparing for growth, restructuring, funding, or transformation." : "Organisations se préparant à la croissance, à la restructuration, au financement ou à la transformation.",
       icon: <TrendingUp className="text-accent" />,
-      stripeProductName: "Strategic Planning & Alignment"
+      pricingTiers: [
+        {
+          name: language === "en" ? "Essentials" : "Essentiel",
+          price: "$7,500",
+          subtitle: language === "en"
+            ? "Half-day leadership workshop with vision refinement and basic strategic roadmap."
+            : "Atelier de leadership d'une demi-journée avec affinement de la vision et feuille de route stratégique de base.",
+          features: language === "en"
+            ? ["Vision and mission refinement", "Basic environmental analysis", "Strategic objective development", "Half-day leadership workshop"]
+            : ["Affinement de la vision et de la mission", "Analyse environnementale de base", "Développement d'objectifs stratégiques", "Atelier de leadership d'une demi-journée"],
+          stripeProductName: "Strategic Planning - Essentials"
+        },
+        {
+          name: "Standard",
+          price: "$15,000",
+          subtitle: language === "en"
+            ? "Multi-day engagement with stakeholder analysis, KPI design, and 1-year roadmap."
+            : "Engagement de plusieurs jours avec analyse des parties prenantes, conception de KPI et feuille de route d'un an.",
+          features: language === "en"
+            ? ["Everything in Essentials", "Stakeholder analysis", "KPI and success metric design", "1-year strategic roadmap", "Leadership alignment workshops"]
+            : ["Tout dans Essentiel", "Analyse des parties prenantes", "Conception de KPI et d'indicateurs de réussite", "Feuille de route stratégique d'un an", "Ateliers d'alignement des dirigeants"],
+          stripeProductName: "Strategic Planning - Standard"
+        },
+        {
+          name: language === "en" ? "Comprehensive" : "Complet",
+          price: "$25,000",
+          subtitle: language === "en"
+            ? "Full transformation package with leadership alignment workshops, 3-year roadmap, and ongoing support."
+            : "Programme de transformation complet avec ateliers d'alignement des dirigeants, feuille de route de 3 ans et soutien continu.",
+          features: language === "en"
+            ? ["Everything in Standard", "3-year strategic roadmap", "Environmental and stakeholder deep-dive", "Ongoing implementation support", "Quarterly review sessions"]
+            : ["Tout dans Standard", "Feuille de route stratégique de 3 ans", "Analyse approfondie de l'environnement et des parties prenantes", "Soutien continu à la mise en œuvre", "Sessions de révision trimestrielles"],
+          stripeProductName: "Strategic Planning - Comprehensive"
+        }
+      ]
     },
     {
       title: language === "en" ? "Organizational Assessment" : "Évaluation organisationnelle",
@@ -103,12 +134,43 @@ export default function Services() {
       learnMore: language === "en"
         ? "We provide a data-driven diagnostic that highlights what is working, what is misaligned, and where focused improvements will create measurable impact."
         : "Nous fournissons un diagnostic basé sur les données qui met en évidence ce qui fonctionne, ce qui est mal aligné et où des améliorations ciblées créeront un impact mesurable.",
-      includes: language === "en"
-        ? ["Leadership interviews", "Organizational structure review", "Culture and capability assessment", "Process and performance review", "Risk and governance analysis", "Comprehensive findings report"]
-        : ["Entretiens avec les dirigeants", "Examen de la structure organisationnelle", "Évaluation de la culture et des capacités", "Examen des processus et des performances", "Analyse des risques et de la gouvernance", "Rapport complet de conclusions"],
       idealFor: language === "en" ? "Organizations experiencing performance stagnation, growth challenges, or internal inefficiencies." : "Organisations connaissant une stagnation des performances, des défis de croissance ou des inefficacités internes.",
       icon: <Users className="text-accent" />,
-      stripeProductName: "Organizational Assessment"
+      pricingTiers: [
+        {
+          name: language === "en" ? "Focused" : "Ciblé",
+          price: "$5,000",
+          subtitle: language === "en"
+            ? "Targeted assessment covering leadership interviews and structure review."
+            : "Évaluation ciblée couvrant les entretiens avec les dirigeants et l'examen de la structure.",
+          features: language === "en"
+            ? ["Leadership interviews", "Organizational structure review", "Summary findings report"]
+            : ["Entretiens avec les dirigeants", "Examen de la structure organisationnelle", "Rapport de synthèse des conclusions"],
+          stripeProductName: "Organizational Assessment - Focused"
+        },
+        {
+          name: "Standard",
+          price: "$10,000",
+          subtitle: language === "en"
+            ? "Full assessment with culture, capability, and performance review."
+            : "Évaluation complète avec examen de la culture, des capacités et des performances.",
+          features: language === "en"
+            ? ["Everything in Focused", "Culture and capability assessment", "Process and performance review", "Comprehensive findings report"]
+            : ["Tout dans Ciblé", "Évaluation de la culture et des capacités", "Examen des processus et des performances", "Rapport complet de conclusions"],
+          stripeProductName: "Organizational Assessment - Standard"
+        },
+        {
+          name: language === "en" ? "Comprehensive" : "Complet",
+          price: "$18,000",
+          subtitle: language === "en"
+            ? "Deep-dive with governance analysis, risk review, and comprehensive findings report."
+            : "Analyse approfondie avec analyse de la gouvernance, examen des risques et rapport complet.",
+          features: language === "en"
+            ? ["Everything in Standard", "Risk and governance analysis", "Benchmarking analysis", "Strategic recommendations roadmap", "Executive presentation"]
+            : ["Tout dans Standard", "Analyse des risques et de la gouvernance", "Analyse comparative", "Feuille de route de recommandations stratégiques", "Présentation exécutive"],
+          stripeProductName: "Organizational Assessment - Comprehensive"
+        }
+      ]
     },
     {
       title: language === "en" ? "Performance Management Design" : "Conception de la gestion de la performance",
@@ -119,12 +181,43 @@ export default function Services() {
       learnMore: language === "en"
         ? "Without measurable indicators and clear ownership, strategy remains theoretical. Our performance management frameworks create visibility, ownership, and structured review processes that drive results."
         : "Sans indicateurs mesurables et une appropriation claire, la stratégie reste théorique. Nos cadres de gestion de la performance créent de la visibilité, de l'appropriation et des processus d'examen structurés qui génèrent des résultats.",
-      includes: language === "en"
-        ? ["KPI framework development", "Balanced scorecard design", "Role-based accountability structures", "Performance review templates", "Reporting dashboards", "Implementation support"]
-        : ["Développement d'un cadre d'indicateurs de performance", "Conception d'un tableau de bord prospectif", "Structures de responsabilité basées sur les rôles", "Modèles d'examen des performances", "Tableaux de bord de rapport", "Soutien à la mise en œuvre"],
       idealFor: language === "en" ? "Organizations seeking measurable performance, improved accountability, and strategic execution discipline." : "Organisations recherchant une performance mesurable, une responsabilité accrue et une discipline d'exécution stratégique.",
       icon: <Settings className="text-accent" />,
-      stripeProductName: "Performance Management Design"
+      pricingTiers: [
+        {
+          name: language === "en" ? "Foundation" : "Fondation",
+          price: "$6,000",
+          subtitle: language === "en"
+            ? "KPI framework development and basic accountability structures."
+            : "Développement d'un cadre de KPI et structures de responsabilité de base.",
+          features: language === "en"
+            ? ["KPI framework development", "Role-based accountability structures", "Basic performance review templates"]
+            : ["Développement d'un cadre de KPI", "Structures de responsabilité basées sur les rôles", "Modèles de base d'examen des performances"],
+          stripeProductName: "Performance Management - Foundation"
+        },
+        {
+          name: "Standard",
+          price: "$12,000",
+          subtitle: language === "en"
+            ? "Full system design with balanced scorecard, review templates, and role-based structures."
+            : "Conception complète du système avec tableau de bord prospectif, modèles d'examen et structures basées sur les rôles.",
+          features: language === "en"
+            ? ["Everything in Foundation", "Balanced scorecard design", "Detailed performance review templates", "Team and departmental KPIs"]
+            : ["Tout dans Fondation", "Conception d'un tableau de bord prospectif", "Modèles détaillés d'examen des performances", "KPI d'équipe et de département"],
+          stripeProductName: "Performance Management - Standard"
+        },
+        {
+          name: "Enterprise",
+          price: "$20,000",
+          subtitle: language === "en"
+            ? "Complete package with reporting dashboards, implementation support, and ongoing guidance."
+            : "Pack complet avec tableaux de bord de rapport, soutien à la mise en œuvre et accompagnement continu.",
+          features: language === "en"
+            ? ["Everything in Standard", "Reporting dashboards", "Full implementation support", "Ongoing guidance and review sessions", "Executive coaching integration"]
+            : ["Tout dans Standard", "Tableaux de bord de rapport", "Soutien complet à la mise en œuvre", "Accompagnement et sessions de révision continues", "Intégration du coaching exécutif"],
+          stripeProductName: "Performance Management - Enterprise"
+        }
+      ]
     },
     {
       title: language === "en" ? "Leadership Development" : "Développement du leadership",
@@ -136,12 +229,43 @@ export default function Services() {
       learnMore: language === "en"
         ? "Our leadership development programs focus on practical capability building, not theoretical training."
         : "Nos programmes de développement du leadership se concentrent sur le renforcement des capacités pratiques, et non sur une formation théorique.",
-      includes: language === "en"
-        ? ["Leadership competency assessment", "Executive and management workshops", "Team alignment sessions", "One-on-one executive coaching", "Accountability training"]
-        : ["Évaluation des compétences de leadership", "Ateliers pour cadres et gestionnaires", "Sessions d'alignement d'équipe", "Coaching exécutif individuel", "Formation à la responsabilité"],
       idealFor: language === "en" ? "Growing organizations, new leadership teams, or leaders navigating change." : "Organisations en croissance, nouvelles équipes de direction ou dirigeants naviguant dans le changement.",
       icon: <ShieldCheck className="text-accent" />,
-      stripeProductName: "Leadership Development"
+      pricingTiers: [
+        {
+          name: language === "en" ? "Workshop" : "Atelier",
+          price: "$3,500",
+          subtitle: language === "en"
+            ? "Single-day leadership workshop with competency assessment."
+            : "Atelier de leadership d'une journée avec évaluation des compétences.",
+          features: language === "en"
+            ? ["Leadership competency assessment", "Full-day workshop", "Action plan development"]
+            : ["Évaluation des compétences de leadership", "Atelier d'une journée complète", "Développement d'un plan d'action"],
+          stripeProductName: "Leadership Development - Workshop"
+        },
+        {
+          name: language === "en" ? "Program" : "Programme",
+          price: "$8,000",
+          subtitle: language === "en"
+            ? "Multi-session program with team alignment and management workshops."
+            : "Programme multi-sessions avec alignement d'équipe et ateliers de gestion.",
+          features: language === "en"
+            ? ["Everything in Workshop", "Executive and management workshops", "Team alignment sessions", "Accountability training"]
+            : ["Tout dans Atelier", "Ateliers pour cadres et gestionnaires", "Sessions d'alignement d'équipe", "Formation à la responsabilité"],
+          stripeProductName: "Leadership Development - Program"
+        },
+        {
+          name: language === "en" ? "Executive" : "Exécutif",
+          price: "$15,000",
+          subtitle: language === "en"
+            ? "Full coaching program with one-on-one executive coaching and accountability training."
+            : "Programme complet de coaching avec coaching exécutif individuel et formation à la responsabilité.",
+          features: language === "en"
+            ? ["Everything in Program", "One-on-one executive coaching", "Personalized development plan", "Monthly progress reviews", "Extended support period"]
+            : ["Tout dans Programme", "Coaching exécutif individuel", "Plan de développement personnalisé", "Révisions mensuelles de progrès", "Période de soutien prolongée"],
+          stripeProductName: "Leadership Development - Executive"
+        }
+      ]
     },
     {
       title: language === "en" ? "Process Improvement" : "Amélioration des processus",
@@ -152,12 +276,43 @@ export default function Services() {
       learnMore: language === "en"
         ? "We help streamline operations, eliminate inefficiencies, and create structured systems that support consistency and growth."
         : "Nous aidons à simplifier les opérations, à éliminer les inefficacités et à créer des systèmes structurés qui favorisent la cohérence et la croissance.",
-      includes: language === "en"
-        ? ["Process mapping sessions", "Workflow analysis", "SOP development", "Role clarity frameworks", "Operational efficiency recommendations"]
-        : ["Sessions de cartographie des processus", "Analyse des flux de travail", "Développement de procédures opérationnelles normalisées", "Cadres de clarté des rôles", "Recommandations d'efficacité opérationnelle"],
       idealFor: language === "en" ? "Organizations preparing to scale or improve operational consistency." : "Organisations se préparant à passer à l'échelle ou à améliorer la cohérence opérationnelle.",
       icon: <FileText className="text-accent" />,
-      stripeProductName: "Process Improvement"
+      pricingTiers: [
+        {
+          name: language === "en" ? "Essentials" : "Essentiel",
+          price: "$4,000",
+          subtitle: language === "en"
+            ? "Process mapping sessions and basic workflow analysis."
+            : "Sessions de cartographie des processus et analyse de base des flux de travail.",
+          features: language === "en"
+            ? ["Process mapping sessions", "Basic workflow analysis", "Key findings report"]
+            : ["Sessions de cartographie des processus", "Analyse de base des flux de travail", "Rapport des principales conclusions"],
+          stripeProductName: "Process Improvement - Essentials"
+        },
+        {
+          name: "Standard",
+          price: "$8,000",
+          subtitle: language === "en"
+            ? "Full workflow analysis with SOP development and role clarity frameworks."
+            : "Analyse complète des flux de travail avec développement de procédures et cadres de clarté des rôles.",
+          features: language === "en"
+            ? ["Everything in Essentials", "SOP development", "Role clarity frameworks", "Detailed workflow documentation"]
+            : ["Tout dans Essentiel", "Développement de procédures opérationnelles normalisées", "Cadres de clarté des rôles", "Documentation détaillée des flux de travail"],
+          stripeProductName: "Process Improvement - Standard"
+        },
+        {
+          name: language === "en" ? "Comprehensive" : "Complet",
+          price: "$15,000",
+          subtitle: language === "en"
+            ? "Complete systems overhaul with operational efficiency recommendations and implementation."
+            : "Refonte complète des systèmes avec recommandations d'efficacité opérationnelle et mise en œuvre.",
+          features: language === "en"
+            ? ["Everything in Standard", "Operational efficiency recommendations", "Implementation support", "Change management integration", "Follow-up reviews"]
+            : ["Tout dans Standard", "Recommandations d'efficacité opérationnelle", "Soutien à la mise en œuvre", "Intégration de la gestion du changement", "Révisions de suivi"],
+          stripeProductName: "Process Improvement - Comprehensive"
+        }
+      ]
     },
     {
       title: language === "en" ? "Change Management Support" : "Soutien à la gestion du changement",
@@ -168,12 +323,43 @@ export default function Services() {
       learnMore: language === "en"
         ? "We support organizations through transitions with structured change frameworks that prioritize communication, stakeholder engagement, and adoption."
         : "Nous soutenons les organisations dans leurs transitions grâce à des cadres de changement structurés qui privilégient la communication, l'engagement des parties prenantes et l'adoption.",
-      includes: language === "en"
-        ? ["Change readiness assessment", "Change strategy design", "Stakeholder mapping", "Communication plan development", "Implementation coaching"]
-        : ["Évaluation de l'état de préparation au changement", "Conception d'une stratégie de changement", "Cartographie des parties prenantes", "Développement d'un plan de communication", "Coaching de mise en œuvre"],
       idealFor: language === "en" ? "Organizations undergoing restructuring, digital transformation, or strategic shifts." : "Organisations subissant une restructuration, une transformation numérique ou des changements stratégiques.",
       icon: <CheckCircle2 className="text-accent" />,
-      stripeProductName: "Change Management Support"
+      pricingTiers: [
+        {
+          name: language === "en" ? "Foundation" : "Fondation",
+          price: "$5,000",
+          subtitle: language === "en"
+            ? "Change readiness assessment and stakeholder mapping."
+            : "Évaluation de l'état de préparation au changement et cartographie des parties prenantes.",
+          features: language === "en"
+            ? ["Change readiness assessment", "Stakeholder mapping", "Initial change strategy outline"]
+            : ["Évaluation de l'état de préparation au changement", "Cartographie des parties prenantes", "Esquisse initiale de la stratégie de changement"],
+          stripeProductName: "Change Management - Foundation"
+        },
+        {
+          name: "Standard",
+          price: "$12,000",
+          subtitle: language === "en"
+            ? "Full change strategy design with communication plan and stakeholder engagement."
+            : "Conception complète de la stratégie de changement avec plan de communication et engagement des parties prenantes.",
+          features: language === "en"
+            ? ["Everything in Foundation", "Change strategy design", "Communication plan development", "Stakeholder engagement sessions"]
+            : ["Tout dans Fondation", "Conception de la stratégie de changement", "Développement du plan de communication", "Sessions d'engagement des parties prenantes"],
+          stripeProductName: "Change Management - Standard"
+        },
+        {
+          name: "Enterprise",
+          price: "$20,000",
+          subtitle: language === "en"
+            ? "Complete implementation with coaching, adoption tracking, and ongoing support."
+            : "Mise en œuvre complète avec coaching, suivi de l'adoption et soutien continu.",
+          features: language === "en"
+            ? ["Everything in Standard", "Implementation coaching", "Adoption tracking and metrics", "Ongoing support and reviews", "Leadership change coaching"]
+            : ["Tout dans Standard", "Coaching de mise en œuvre", "Suivi et métriques d'adoption", "Soutien et révisions continues", "Coaching de changement pour les dirigeants"],
+          stripeProductName: "Change Management - Enterprise"
+        }
+      ]
     },
     {
       title: language === "en" ? "Website Building & Marketing" : "Création de sites Web et marketing",
@@ -184,15 +370,12 @@ export default function Services() {
       learnMore: language === "en"
         ? "Your digital presence is often the first impression. We build performance-driven websites and execute targeted marketing strategies that align with your business goals."
         : "Votre présence numérique est souvent la première impression. Nous créons des sites Web axés sur la performance et exécutons des stratégies de marketing ciblées alignées sur vos objectifs commerciaux.",
-      includes: language === "en"
-        ? ["Custom website design & development", "SEO & performance optimization", "Digital marketing strategy", "Content creation & copywriting", "Analytics & tracking setup"]
-        : ["Conception et développement de sites Web sur mesure", "SEO et optimisation des performances", "Stratégie de marketing numérique", "Création de contenu et rédaction", "Configuration des analyses et du suivi"],
       idealFor: language === "en" ? "Organizations seeking to establish or upgrade their digital presence and drive growth." : "Organisations cherchant à établir ou à améliorer leur présence numérique et à stimuler la croissance.",
       icon: <Globe className="text-accent" />,
       pricingTiers: [
         {
           name: language === "en" ? "Basic Website" : "Site Web de base",
-          price: "$1,200 – $3,000",
+          price: "$1,200",
           subtitle: language === "en" 
             ? "Ideal for small businesses, personal portfolios, nonprofits, and simple informational sites."
             : "Idéal pour les petites entreprises, les portfolios personnels, les organismes à but non lucratif et les sites d'information simples.",
@@ -203,7 +386,7 @@ export default function Services() {
         },
         {
           name: language === "en" ? "Standard Business Website" : "Site Web d'entreprise standard",
-          price: "$3,000 – $6,000",
+          price: "$3,000",
           subtitle: language === "en"
             ? "Perfect for established organizations that need a stronger online presence."
             : "Parfait pour les organisations établies qui ont besoin d'une présence en ligne plus forte.",
@@ -214,7 +397,7 @@ export default function Services() {
         },
         {
           name: language === "en" ? "Advanced / Growth Website" : "Site Web avancé / croissance",
-          price: "$6,000 – $12,000+",
+          price: "$6,000",
           subtitle: language === "en"
             ? "For organizations needing advanced functionality and strategic design."
             : "Pour les organisations ayant besoin de fonctionnalités avancées et d'un design stratégique.",
@@ -225,7 +408,7 @@ export default function Services() {
         },
         {
           name: language === "en" ? "Premium / Enterprise Website" : "Site Web premium / entreprise",
-          price: "$12,000 – $25,000+",
+          price: "$12,000",
           subtitle: language === "en"
             ? "For high-impact brands, nonprofits with large programs, or businesses with complex needs."
             : "Pour les marques à fort impact, les organismes à but non lucratif avec de grands programmes ou les entreprises aux besoins complexes.",
@@ -279,7 +462,7 @@ export default function Services() {
         </section>
 
         <Dialog open={!!selectedService} onOpenChange={() => setSelectedService(null)}>
-          <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl">
+          <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl">
             {selectedService && (
               <>
                 <DialogHeader>
@@ -306,56 +489,45 @@ export default function Services() {
                     <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{selectedService.learnMore}</p>
                   </div>
 
-                  {selectedService.pricingTiers ? (
-                    <div className="space-y-4">
-                      <h4 className="text-xs font-black uppercase tracking-[0.3em] text-accent">
-                        {language === "en" ? "Pricing Options" : "Options de tarification"}
-                      </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {selectedService.pricingTiers.map((tier: any, idx: number) => (
-                          <div key={idx} className="bg-white border border-border rounded-2xl p-6 flex flex-col hover:border-accent/40 hover:shadow-lg transition-all" data-testid={`pricing-tier-${idx}`}>
-                            <h5 className="text-lg font-extrabold text-primary mb-1">{tier.name}</h5>
-                            <div className="text-accent font-black text-xl mb-3">{tier.price}</div>
-                            <p className="text-xs text-muted-foreground leading-relaxed mb-4">{tier.subtitle}</p>
-                            <ul className="space-y-2 mb-4">
-                              {tier.features.map((f: string, fi: number) => (
-                                <li key={fi} className="flex items-start gap-2 text-sm text-primary">
-                                  <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
-                                  <span>{f}</span>
-                                </li>
-                              ))}
-                            </ul>
-                            <Button
-                              className="mt-auto w-full rounded-full bg-primary text-white hover:bg-accent h-10 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2"
-                              onClick={() => handlePay(tier.stripeProductName)}
-                              disabled={checkoutMutation.isPending && payingProduct === tier.stripeProductName}
-                              data-testid={`button-pay-tier-${idx}`}
-                            >
-                              {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
-                                <><Loader2 size={14} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
-                              ) : (
-                                <><CreditCard size={14} /> {language === "en" ? "Pay now" : "Payer maintenant"}</>
-                              )}
-                            </Button>
-                          </div>
-                        ))}
-                      </div>
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-black uppercase tracking-[0.3em] text-accent">
+                      {language === "en" ? "Choose Your Package" : "Choisissez votre forfait"}
+                    </h4>
+                    <div className={`grid grid-cols-1 ${selectedService.pricingTiers.length > 3 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-4`}>
+                      {selectedService.pricingTiers.map((tier: any, idx: number) => (
+                        <div key={idx} className={`bg-white border rounded-2xl p-6 flex flex-col hover:shadow-lg transition-all ${idx === 1 ? 'border-accent shadow-md ring-2 ring-accent/20' : 'border-border hover:border-accent/40'}`} data-testid={`pricing-tier-${idx}`}>
+                          {idx === 1 && (
+                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-accent mb-2">
+                              {language === "en" ? "Most Popular" : "Le plus populaire"}
+                            </div>
+                          )}
+                          <h5 className="text-lg font-extrabold text-primary mb-1">{tier.name}</h5>
+                          <div className="text-accent font-black text-xl mb-3">{tier.price}</div>
+                          <p className="text-xs text-muted-foreground leading-relaxed mb-4">{tier.subtitle}</p>
+                          <ul className="space-y-2 mb-6">
+                            {tier.features.map((f: string, fi: number) => (
+                              <li key={fi} className="flex items-start gap-2 text-sm text-primary">
+                                <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
+                                <span>{f}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          <Button
+                            className={`mt-auto w-full rounded-full h-10 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 ${idx === 1 ? 'bg-accent text-white hover:bg-primary' : 'bg-primary text-white hover:bg-accent'}`}
+                            onClick={() => handlePay(tier.stripeProductName)}
+                            disabled={checkoutMutation.isPending && payingProduct === tier.stripeProductName}
+                            data-testid={`button-pay-tier-${idx}`}
+                          >
+                            {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
+                              <><Loader2 size={14} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
+                            ) : (
+                              <><CreditCard size={14} /> {language === "en" ? "Select & Pay" : "Sélectionner et payer"}</>
+                            )}
+                          </Button>
+                        </div>
+                      ))}
                     </div>
-                  ) : (
-                    <div className="space-y-4">
-                      <h4 className="text-xs font-black uppercase tracking-[0.3em] text-accent">
-                        {language === "en" ? "What's Included" : "Ce qui est inclus"}
-                      </h4>
-                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {selectedService.includes.map((item: string, idx: number) => (
-                          <li key={idx} className="flex items-center gap-3 text-sm font-bold text-primary bg-secondary/30 p-3 rounded-lg">
-                            <CheckCircle2 size={16} className="text-accent shrink-0" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                  </div>
 
                   <div className="p-6 bg-primary rounded-2xl text-white">
                     <h4 className="text-[10px] font-black uppercase tracking-[0.3em] mb-3 opacity-70">
@@ -364,7 +536,7 @@ export default function Services() {
                     <p className="font-bold italic text-lg leading-relaxed">{selectedService.idealFor}</p>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+                  <div className="flex justify-center pt-4">
                     <Button 
                       className="rounded-full bg-accent text-white hover:bg-primary h-14 px-10 font-bold uppercase tracking-widest text-sm shadow-lg shadow-accent/20"
                       onClick={() => {
@@ -373,22 +545,8 @@ export default function Services() {
                       }}
                       data-testid="button-inquire"
                     >
-                      {language === "en" ? "Inquire about this service" : "Se renseigner sur ce service"}
+                      {language === "en" ? "Need help choosing? Contact us" : "Besoin d'aide pour choisir ? Contactez-nous"}
                     </Button>
-                    {!selectedService.pricingTiers && (
-                      <Button
-                        className="rounded-full bg-primary text-white hover:bg-accent h-14 px-10 font-bold uppercase tracking-widest text-sm shadow-lg shadow-primary/20 flex items-center gap-2"
-                        onClick={() => handlePay(selectedService.stripeProductName)}
-                        disabled={checkoutMutation.isPending && payingProduct === selectedService.stripeProductName}
-                        data-testid="button-pay-service"
-                      >
-                        {checkoutMutation.isPending && payingProduct === selectedService.stripeProductName ? (
-                          <><Loader2 size={16} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
-                        ) : (
-                          <><CreditCard size={16} /> {language === "en" ? "Pay for this service" : "Payer pour ce service"}</>
-                        )}
-                      </Button>
-                    )}
                   </div>
                 </div>
               </>

@@ -165,6 +165,10 @@ export async function registerRoutes(
   });
 
   app.post("/api/test-receipt", async (req, res) => {
+    if (process.env.REPLIT_DEPLOYMENT === '1') {
+      return res.status(404).json({ message: "Not found" });
+    }
+
     try {
       const { email, name } = req.body;
       if (!email) {

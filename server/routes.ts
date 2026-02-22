@@ -103,7 +103,7 @@ export async function registerRoutes(
     }
   });
 
-  // Stripe: List products with prices
+  // Stripe: List products with prices (DB first, Stripe API fallback)
   app.get("/api/products", async (_req, res) => {
     try {
       const result = await db.execute(
@@ -122,7 +122,31 @@ export async function registerRoutes(
           ORDER BY pr.unit_amount ASC
         `
       );
-      res.json({ data: result.rows });
+
+      if (result.rows.length > 0) {
+        return res.json({ data: result.rows });
+      }
+
+      console.log("No products in synced DB, falling back to Stripe API...");
+      const stripe = await getUncachableStripeClient();
+      const products = await stripe.products.list({ active: true, limit: 100 });
+      const prices = await stripe.prices.list({ active: true, limit: 100 });
+
+      const data = products.data.flatMap((product) => {
+        const productPrices = prices.data.filter((p) => p.product === product.id);
+        return productPrices.map((price) => ({
+          product_id: product.id,
+          product_name: product.name,
+          product_description: product.description,
+          product_metadata: product.metadata,
+          price_id: price.id,
+          unit_amount: price.unit_amount,
+          currency: price.currency,
+        }));
+      });
+
+      data.sort((a, b) => (a.unit_amount || 0) - (b.unit_amount || 0));
+      res.json({ data });
     } catch (error) {
       console.error("Error listing products:", error);
       res.status(500).json({ message: "Failed to list products" });

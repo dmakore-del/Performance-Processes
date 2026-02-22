@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import logoImg from "@/assets/logo.png";
 
@@ -36,6 +37,10 @@ export function Footer() {
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               {t("footer.description")}
             </p>
+            <a href="https://www.linkedin.com/company/performance-processes/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors" data-testid="link-linkedin">
+              <Linkedin size={18} />
+              <span>LinkedIn</span>
+            </a>
           </div>
 
           <div className="flex flex-col gap-8">

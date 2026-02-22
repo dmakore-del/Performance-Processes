@@ -92,8 +92,13 @@ export default function About() {
                 </div>
                 <div className="mt-12 flex flex-wrap gap-4 items-center">
                   <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
-                    <Button className="rounded-full bg-accent text-white hover:bg-primary h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-accent/20">
+                    <Button className="rounded-full bg-accent text-white hover:bg-primary h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-accent/20" data-testid="button-schedule-consultation">
                       Schedule Consultation
+                    </Button>
+                  </a>
+                  <a href="https://danaimakore.com" target="_blank" rel="noopener noreferrer">
+                    <Button className="rounded-full bg-primary text-white hover:bg-accent h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-primary/20" data-testid="button-learn-founder">
+                      Learn More About Our Founder
                     </Button>
                   </a>
                   <div className="flex flex-wrap gap-3">

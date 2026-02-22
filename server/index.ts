@@ -41,7 +41,7 @@ async function initStripe() {
       .catch((err: any) => console.error('Error syncing Stripe data:', err));
   } catch (error) {
     console.error('Failed to initialize Stripe:', error);
-    throw error;
+    console.warn('Server will continue without Stripe sync. Payment features may be limited.');
   }
 }
 

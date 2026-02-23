@@ -25,6 +25,7 @@ import Resources from "./pages/portal/Resources";
 import Billing from "./pages/portal/Billing";
 
 import { LanguageProvider } from "./hooks/use-language";
+import { Chatbot } from "./components/Chatbot";
 
 function Router() {
   return (
@@ -62,6 +63,7 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Router />
+          <Chatbot />
         </TooltipProvider>
       </QueryClientProvider>
     </LanguageProvider>

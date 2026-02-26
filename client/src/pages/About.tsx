@@ -1,8 +1,11 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { CheckCircle2, TrendingUp, Users, Target, Quote } from "lucide-react";
+import { CheckCircle2, TrendingUp, Users, Target, Quote, Shield, Lightbulb, Handshake, Star, Award, Heart, BookOpen, GraduationCap, Globe, Clock, Milestone, Rocket, Building } from "lucide-react";
 import founderImage from "@/assets/founder.png";
 import seanImage from "@/assets/ChatGPT_Image_Feb_20,_2026,_04_07_16_PM_1771621735605.png";
+import collaborationImg from "@assets/stock_images/collaboration.jpg";
+import trainingImg from "@assets/stock_images/training.jpg";
+import partnershipImg from "@assets/stock_images/partnership.jpg";
 import { useLanguage } from "@/hooks/use-language";
 import { Button } from "@/components/ui/button";
 
@@ -10,6 +13,33 @@ import { PageHero } from "@/components/layout/PageHero";
 
 export default function About() {
   const { t } = useLanguage();
+
+  const timelineItems = [
+    { year: "2026", title: "Performance Processes Founded", description: "Danai Makore launches Performance Processes with a vision to help organizations align strategy with measurable performance.", icon: <Rocket className="text-accent" size={20} /> },
+    { year: "2026", title: "First Client Engagement", description: "Completed our inaugural strategic planning and performance management engagement, delivering measurable results from day one.", icon: <Target className="text-accent" size={20} /> },
+    { year: "2026", title: "Team Expansion", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory.", icon: <Users className="text-accent" size={20} /> },
+    { year: "2026", title: "Service Portfolio Growth", description: "Expanded service offerings to include comprehensive governance advisory, leadership development, and digital transformation consulting.", icon: <Building className="text-accent" size={20} /> },
+    { year: "2026", title: "Multi-Industry Reach", description: "Serving clients across government, nonprofit, healthcare, financial services, and technology sectors with tailored solutions.", icon: <Globe className="text-accent" size={20} /> },
+    { year: "Future", title: "Scaling Impact", description: "Continuing to grow our reach, deepen our expertise, and help more organizations achieve sustainable excellence.", icon: <Milestone className="text-accent" size={20} /> },
+  ];
+
+  const values = [
+    { icon: <Shield className="text-accent" size={28} />, title: "Integrity", description: "We operate with unwavering honesty and transparency. Every recommendation we make is grounded in what's truly best for our clients, not what's easiest or most profitable. Our reputation is built on trust, and we protect it fiercely." },
+    { icon: <Star className="text-accent" size={28} />, title: "Excellence", description: "We pursue the highest standards in everything we do — from the quality of our research and analysis to the clarity of our deliverables. Mediocrity is never an option when organizations depend on our guidance for critical decisions." },
+    { icon: <Handshake className="text-accent" size={28} />, title: "Collaboration", description: "We believe the best solutions emerge from partnership. We work alongside our clients, not above them, combining our expertise with their deep organizational knowledge to create strategies that truly fit." },
+    { icon: <Lightbulb className="text-accent" size={28} />, title: "Innovation", description: "We continuously evolve our methodologies and embrace new frameworks, technologies, and approaches. The business landscape changes rapidly, and our clients deserve advisors who stay ahead of the curve." },
+    { icon: <TrendingUp className="text-accent" size={28} />, title: "Impact", description: "Every engagement must produce measurable, meaningful results. We don't measure success by hours billed — we measure it by the tangible improvements our clients experience in their operations, culture, and bottom line." },
+    { icon: <Award className="text-accent" size={28} />, title: "Accountability", description: "We hold ourselves to the same high standards we help our clients achieve. We set clear expectations, track our commitments, and take responsibility for the outcomes of our work." },
+  ];
+
+  const competitiveAdvantages = [
+    { title: "People-Centered Approach", description: "We prioritize the human element in every engagement, understanding that sustainable change requires buy-in, trust, and genuine connection." },
+    { title: "Measurable Outcomes", description: "Every project includes clear KPIs and success metrics. We don't leave results to chance — we track, measure, and report on impact." },
+    { title: "Cross-Industry Expertise", description: "Our team brings diverse experience across sectors, allowing us to apply proven best practices and innovative solutions from multiple industries." },
+    { title: "End-to-End Partnership", description: "From initial discovery through implementation and beyond, we stay engaged to ensure strategies translate into real-world performance improvements." },
+    { title: "Tailored Solutions", description: "No cookie-cutter frameworks. Every engagement is custom-designed to address your organization's specific challenges, culture, and goals." },
+    { title: "Knowledge Transfer", description: "We build internal capacity so your team can sustain improvements long after our engagement ends. We teach, coach, and empower." },
+  ];
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
@@ -36,10 +66,10 @@ export default function About() {
                 {[
                   { label: "Founded", val: "2026", icon: <Target className="text-accent" /> },
                   { label: "Expert Consultants", val: "3+", icon: <Users className="text-accent" /> },
-                  { label: "Projects Completed", val: "10+", icon: <CheckCircle2 className="text-accent" /> },
-                  { label: "Client ROI", val: "15x", icon: <TrendingUp className="text-accent" /> }
+                  { label: "Service Categories", val: "6+", icon: <CheckCircle2 className="text-accent" /> },
+                  { label: "Industries Served", val: "8+", icon: <TrendingUp className="text-accent" /> }
                 ].map((s, i) => (
-                  <div key={i} className="bg-[#F8FAFC] p-8 rounded-2xl border border-border flex flex-col items-center text-center">
+                  <div key={i} className="bg-[#F8FAFC] p-8 rounded-2xl border border-border flex flex-col items-center text-center" data-testid={`stat-card-${i}`}>
                     <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mb-4">{s.icon}</div>
                     <div className="text-3xl font-black text-primary mb-1">{s.val}</div>
                     <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">{s.label}</div>
@@ -50,7 +80,107 @@ export default function About() {
           </div>
         </section>
 
-        {/* Meet the Founder Section */}
+        <section className="py-24 bg-[#F8FAFC] border-b" data-testid="section-timeline">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="text-center mb-16">
+              <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
+                Our Journey
+              </div>
+              <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">
+                Our Story & <span className="text-accent italic">Milestones</span>
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                From a bold vision to a growing consultancy, here's how Performance Processes has evolved to serve organizations across industries.
+              </p>
+            </div>
+            <div className="relative max-w-4xl mx-auto">
+              <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-accent/20 -translate-x-1/2"></div>
+              {timelineItems.map((item, i) => (
+                <div key={i} className={`relative flex items-start mb-12 last:mb-0 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`} data-testid={`timeline-item-${i}`}>
+                  <div className="hidden md:block md:w-1/2"></div>
+                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white border-2 border-accent flex items-center justify-center z-10 shadow-md">
+                    {item.icon}
+                  </div>
+                  <div className={`ml-16 md:ml-0 md:w-1/2 ${i % 2 === 0 ? 'md:pl-12' : 'md:pr-12'}`}>
+                    <div className="bg-white p-6 rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow">
+                      <div className="text-xs font-bold uppercase tracking-widest text-accent mb-2">{item.year}</div>
+                      <h3 className="text-xl font-heading font-extrabold text-primary mb-2">{item.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-white border-b" data-testid="section-values">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="text-center mb-16">
+              <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
+                What Drives Us
+              </div>
+              <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">
+                Our Core <span className="text-accent italic">Values</span>
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                These principles guide every decision we make, every engagement we lead, and every relationship we build.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {values.map((value, i) => (
+                <div key={i} className="bg-[#F8FAFC] p-8 rounded-2xl border border-border hover:border-accent/30 hover:shadow-lg transition-all group" data-testid={`value-card-${i}`}>
+                  <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
+                    {value.icon}
+                  </div>
+                  <h3 className="text-xl font-heading font-extrabold text-primary mb-3">{value.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{value.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-[#F8FAFC] border-b" data-testid="section-what-sets-us-apart">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="relative">
+                <div className="absolute -top-4 -left-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
+                <img
+                  src={collaborationImg}
+                  alt="Team collaboration at Performance Processes"
+                  className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[4/3]"
+                  data-testid="img-collaboration"
+                />
+              </div>
+              <div>
+                <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
+                  Our Difference
+                </div>
+                <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">
+                  What Sets Us <span className="text-accent italic">Apart</span>
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                  In a crowded consulting landscape, Performance Processes stands out through our unwavering commitment to partnership, measurable impact, and genuine care for our clients' long-term success.
+                </p>
+                <div className="space-y-5">
+                  {competitiveAdvantages.map((adv, i) => (
+                    <div key={i} className="flex gap-4" data-testid={`advantage-${i}`}>
+                      <div className="flex-shrink-0 mt-1">
+                        <CheckCircle2 className="text-accent" size={20} />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-primary mb-1">{adv.title}</h4>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{adv.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="py-24 bg-[#F8FAFC]">
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex flex-col lg:flex-row gap-16 items-center">
@@ -87,7 +217,7 @@ export default function About() {
                     Her approach blends human insight with practical systems, guiding clients from business formation and strategic development to performance management and long-term growth.
                   </p>
                   <p className="font-medium text-primary italic">
-                    Grounded in purpose and driven by results, Danai’s mission is simple, “to help people build organizations that truly change lives.”
+                    Grounded in purpose and driven by results, Danai's mission is simple, "to help people build organizations that truly change lives."
                   </p>
                 </div>
                 <div className="mt-12 flex flex-wrap gap-4 items-center">
@@ -121,7 +251,6 @@ export default function About() {
           </div>
         </section>
 
-        {/* Meet the Team Section */}
         <section className="py-24 bg-white border-t border-border">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-16">
@@ -160,7 +289,7 @@ export default function About() {
                     With a strong background in relationship development and strategic advisory, Sean specializes in identifying opportunities to help businesses streamline operations, strengthen accountability, and improve performance outcomes. He works closely with executive teams to understand their challenges, align solutions with business objectives, and ensure engagements deliver measurable impact.
                   </p>
                   <p>
-                    Sean is known for his consultative approach — prioritizing trust, clarity, and long-term value over transactional growth. His ability to connect strategic vision with practical execution makes him a key driver of Performance Processes’ expanding client relationships and market presence.
+                    Sean is known for his consultative approach — prioritizing trust, clarity, and long-term value over transactional growth. His ability to connect strategic vision with practical execution makes him a key driver of Performance Processes' expanding client relationships and market presence.
                   </p>
                   <p className="font-medium text-primary italic border-l-4 border-accent pl-6 py-2 bg-[#F8FAFC]">
                     Passionate about helping organizations unlock their full potential, Sean is committed to fostering partnerships that create sustainable improvement and long-term success.
@@ -188,6 +317,108 @@ export default function About() {
             </div>
           </div>
         </section>
+
+        <section className="py-24 bg-white border-t border-border" data-testid="section-community">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
+                  Giving Back
+                </div>
+                <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">
+                  Community <span className="text-accent italic">Involvement</span>
+                </h2>
+                <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+                  <p>
+                    At Performance Processes, we believe that business excellence and community responsibility go hand in hand. We're committed to using our expertise to create positive change beyond the boardroom.
+                  </p>
+                  <p>
+                    Through pro-bono consulting engagements, we support emerging nonprofits and social enterprises that lack the resources to access professional strategic guidance. We've helped grassroots organizations develop governance frameworks, build operational capacity, and create sustainable growth plans.
+                  </p>
+                  <p>
+                    Our mentorship programs connect aspiring consultants and young professionals with experienced leaders, providing career guidance, skill development, and real-world project exposure. We believe in investing in the next generation of strategic thinkers and change-makers.
+                  </p>
+                </div>
+                <div className="mt-8 grid grid-cols-3 gap-4">
+                  <div className="bg-[#F8FAFC] p-4 rounded-xl border border-border text-center" data-testid="community-stat-probono">
+                    <Heart className="text-accent mx-auto mb-2" size={24} />
+                    <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Pro-Bono Work</div>
+                  </div>
+                  <div className="bg-[#F8FAFC] p-4 rounded-xl border border-border text-center" data-testid="community-stat-mentorship">
+                    <GraduationCap className="text-accent mx-auto mb-2" size={24} />
+                    <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Mentorship</div>
+                  </div>
+                  <div className="bg-[#F8FAFC] p-4 rounded-xl border border-border text-center" data-testid="community-stat-education">
+                    <BookOpen className="text-accent mx-auto mb-2" size={24} />
+                    <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Education</div>
+                  </div>
+                </div>
+              </div>
+              <div className="relative">
+                <div className="absolute -top-4 -right-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
+                <img
+                  src={trainingImg}
+                  alt="Performance Processes community engagement and training"
+                  className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[4/3]"
+                  data-testid="img-community"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-[#F8FAFC] border-t border-border" data-testid="section-partnerships">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="relative order-2 lg:order-1">
+                <div className="absolute -top-4 -left-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
+                <img
+                  src={partnershipImg}
+                  alt="Performance Processes client partnership"
+                  className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[4/3]"
+                  data-testid="img-partnership"
+                />
+              </div>
+              <div className="order-1 lg:order-2">
+                <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
+                  How We Work Together
+                </div>
+                <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">
+                  Our Approach to <span className="text-accent italic">Partnerships</span>
+                </h2>
+                <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+                  <p>
+                    We don't believe in one-size-fits-all consulting. Every client relationship begins with deep listening and understanding — because meaningful change starts with trust and mutual respect.
+                  </p>
+                  <p>
+                    Our partnership model is built on three pillars: transparency, co-creation, and accountability. We share our thinking openly, develop strategies collaboratively with your team, and hold ourselves responsible for delivering results that matter to your organization.
+                  </p>
+                  <p>
+                    From the first discovery conversation to final implementation, we embed ourselves within your team as a trusted extension of your leadership. We celebrate your wins, navigate challenges alongside you, and ensure that the strategies we develop together become part of your organization's DNA.
+                  </p>
+                  <p className="font-medium text-primary italic">
+                    Our goal isn't just to deliver a project — it's to build a lasting relationship that drives continuous improvement and enduring success.
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <div className="flex items-center gap-2 px-5 py-3 bg-white rounded-xl border border-border shadow-sm">
+                    <Clock className="text-accent" size={16} />
+                    <span className="text-sm font-bold text-primary">Long-Term Focus</span>
+                  </div>
+                  <div className="flex items-center gap-2 px-5 py-3 bg-white rounded-xl border border-border shadow-sm">
+                    <Handshake className="text-accent" size={16} />
+                    <span className="text-sm font-bold text-primary">Co-Creation</span>
+                  </div>
+                  <div className="flex items-center gap-2 px-5 py-3 bg-white rounded-xl border border-border shadow-sm">
+                    <Shield className="text-accent" size={16} />
+                    <span className="text-sm font-bold text-primary">Trust-Based</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
       <Footer />
     </div>

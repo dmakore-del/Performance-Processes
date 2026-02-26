@@ -2,11 +2,13 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/layout/PageHero";
 import { useLanguage } from "@/hooks/use-language";
-import { CheckCircle2, Upload, Loader2, CheckCircle, FileText, X } from "lucide-react";
+import { CheckCircle2, Upload, Loader2, CheckCircle, FileText, X, Users, Clock, Home, BookOpen, DollarSign, Compass, TrendingUp, Quote, Briefcase, Send, ArrowRight, Heart, Star, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useState, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
+import collaborationImg from "@assets/stock_images/collaboration.jpg";
+import leadershipImg from "@assets/stock_images/leadership.jpg";
 
 export default function Careers() {
   const { language } = useLanguage();
@@ -83,6 +85,109 @@ export default function Careers() {
             : "Construisez une carrière en alignant la stratégie sur un impact mesurable."}
         />
         
+        <section className="py-20 bg-white" data-testid="section-why-work-with-us">
+          <div className="container mx-auto px-4 md:px-8 max-w-6xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-4">
+                  Why Work With Us
+                </div>
+                <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">
+                  Build Your Career With <span className="text-accent italic">Purpose</span>
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  At Performance Processes, we believe that exceptional consulting starts with exceptional people. We're not just building a team — we're cultivating a community of driven professionals who share a passion for helping organizations unlock their full potential.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Our culture is built on trust, autonomy, and a relentless focus on results. We empower our team members to take ownership, think strategically, and deliver transformative outcomes for our clients. Every engagement is an opportunity to make a real difference.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Whether you're an experienced consultant or a rising professional looking to break into the advisory space, Performance Processes offers a platform where your skills, ambition, and network can translate into meaningful impact — and meaningful income.
+                </p>
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <img src={collaborationImg} alt="Team collaboration at Performance Processes" className="w-full h-[400px] object-cover" data-testid="img-culture" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-[#F8FAFC]" data-testid="section-benefits">
+          <div className="container mx-auto px-4 md:px-8 max-w-6xl">
+            <div className="text-center mb-14">
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">
+                Benefits & Perks
+              </div>
+              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4">
+                What You'll <span className="text-accent italic">Gain</span>
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                We offer a comprehensive set of benefits designed to support your professional growth, personal well-being, and financial success.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { icon: Clock, title: "Flexible Schedule", desc: "Work on your own terms. Set your own hours and manage your pipeline with full autonomy over your time." },
+                { icon: Home, title: "Remote Work", desc: "Operate from anywhere. Our team is fully distributed, allowing you to work from the location that suits you best." },
+                { icon: BookOpen, title: "Professional Development", desc: "Access training resources, mentorship from senior consultants, and opportunities to expand your expertise." },
+                { icon: DollarSign, title: "Uncapped Earnings", desc: "No salary caps. Your compensation is directly tied to your performance, with competitive commission structures." },
+                { icon: Users, title: "Mentorship", desc: "Learn from experienced industry professionals who are invested in your growth and long-term success." },
+                { icon: Compass, title: "Industry Exposure", desc: "Gain experience across diverse sectors including government, healthcare, finance, nonprofit, and technology." },
+              ].map((benefit, i) => (
+                <div key={i} className="bg-white p-8 rounded-2xl border border-border shadow-sm hover:shadow-lg transition-shadow" data-testid={`card-benefit-${i}`}>
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+                    <benefit.icon size={24} className="text-accent" />
+                  </div>
+                  <h3 className="text-lg font-bold text-primary mb-2">{benefit.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{benefit.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-white" data-testid="section-life-at-pp">
+          <div className="container mx-auto px-4 md:px-8 max-w-6xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1 rounded-2xl overflow-hidden shadow-xl">
+                <img src={leadershipImg} alt="Life at Performance Processes" className="w-full h-[400px] object-cover" data-testid="img-life-at-pp" />
+              </div>
+              <div className="order-1 lg:order-2">
+                <div className="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-4">
+                  Life at Performance Processes
+                </div>
+                <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">
+                  A Team Built on <span className="text-accent italic">Excellence</span>
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Our team is made up of professionals who bring diverse backgrounds, deep expertise, and a shared commitment to driving meaningful change. We foster an environment where ideas are valued, collaboration is natural, and every contribution matters.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  From day one, you'll have the tools and support you need to succeed. Our onboarding process ensures you understand our service offerings, methodology, and client engagement approach so you can hit the ground running with confidence.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Growth is not just encouraged — it's built into everything we do. As Performance Processes expands, so do the opportunities for our team members to take on greater responsibilities, develop new capabilities, and shape the direction of the firm.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 bg-primary" data-testid="section-our-promise">
+          <div className="container mx-auto px-4 md:px-8 max-w-4xl text-center">
+            <Heart size={48} className="text-accent mx-auto mb-6 opacity-60" />
+            <h3 className="text-2xl md:text-3xl text-white font-heading font-extrabold mb-6 italic" data-testid="text-promise-title">
+              Our Promise to Our Team
+            </h3>
+            <p className="text-xl text-white/80 leading-relaxed mb-4">
+              We believe that when our people succeed, our clients succeed. That's why we're committed to providing every team member with the support, autonomy, and resources they need to thrive.
+            </p>
+            <p className="text-lg text-white/60 leading-relaxed">
+              At Performance Processes, you're not just joining a firm — you're joining a mission to help organizations reach their full potential.
+            </p>
+          </div>
+        </section>
+
         <div className="container mx-auto px-4 md:px-8 py-20 max-w-4xl">
           <div className="bg-white p-8 md:p-12 rounded-3xl border border-border shadow-xl space-y-8">
             <div className="border-b border-border pb-8">
@@ -272,6 +377,39 @@ export default function Careers() {
                 ? "Performance Processes values the unique skills and experiences each candidate brings. We encourage all qualified individuals to apply."
                 : "Performance Processes valorise les compétences et expériences uniques que chaque candidat apporte. Nous encourageons toutes les personnes qualifiées à postuler."}
             </p>
+          </div>
+
+          <div className="bg-white p-8 md:p-12 rounded-3xl border border-border shadow-xl space-y-6 mt-12" data-testid="section-future-roles">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <Briefcase size={24} className="text-primary" />
+              </div>
+              <div>
+                <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-3">
+                  Coming Soon
+                </div>
+                <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-4">
+                  Additional Roles on the Horizon
+                </h2>
+              </div>
+            </div>
+            <p className="text-muted-foreground leading-relaxed">
+              As Performance Processes continues to grow, we anticipate expanding our team across several areas including project management, research analysis, and client success. We're always looking for talented individuals who align with our mission and values.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Don't see a role that fits? We welcome general applications from professionals who believe they can contribute to our mission. Submit your resume and a brief introduction, and we'll keep your information on file for future opportunities.
+            </p>
+            <div className="pt-4 border-t border-border flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <Button
+                className="rounded-full bg-primary text-white hover:bg-primary/90 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all flex items-center gap-2"
+                onClick={() => setIsFormOpen(true)}
+                data-testid="button-general-application"
+              >
+                <Send size={16} />
+                Submit General Application
+              </Button>
+              <span className="text-sm text-muted-foreground">or email us at <a href="mailto:careers@performanceprocesses.com" className="text-accent hover:underline font-medium">careers@performanceprocesses.com</a></span>
+            </div>
           </div>
         </div>
       </main>

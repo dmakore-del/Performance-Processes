@@ -91,8 +91,6 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 
-await setupAuth(app);
-
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
     hour: "numeric",
@@ -131,6 +129,8 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  await setupAuth(app);
+
   await initStripe();
 
   await registerRoutes(httpServer, app);

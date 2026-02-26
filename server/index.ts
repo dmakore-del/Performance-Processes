@@ -6,6 +6,8 @@ import { runMigrations } from 'stripe-replit-sync';
 import { getStripeSync } from './stripeClient';
 import { WebhookHandlers } from './webhookHandlers';
 import { ensureStripeProducts } from './seedStripeProducts';
+import { setupAuth } from "./auth";
+import { seedAdminAccount } from "./seedAdmin";
 
 const app = express();
 const httpServer = createServer(app);
@@ -88,6 +90,8 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 
+setupAuth(app);
+
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
     hour: "numeric",
@@ -129,6 +133,12 @@ app.use((req, res, next) => {
   await initStripe();
 
   await registerRoutes(httpServer, app);
+
+  try {
+    await seedAdminAccount();
+  } catch (err) {
+    console.error("Admin seed error (non-fatal):", err);
+  }
 
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
     const status = err.status || err.statusCode || 500;

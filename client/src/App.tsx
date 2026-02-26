@@ -4,6 +4,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import NotFound from "./pages/not-found";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -16,6 +17,10 @@ import Accessibility from "./pages/Accessibility";
 import Careers from "./pages/Careers";
 import News from "./pages/News";
 import Insights from "./pages/Insights";
+
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import ForgotPassword from "./pages/auth/ForgotPassword";
 
 import Dashboard from "./pages/portal/Dashboard";
 import Roadmap from "./pages/portal/Roadmap";
@@ -54,18 +59,41 @@ function Router() {
       <Route path="/careers" component={Careers} />
       <Route path="/news" component={News} />
       <Route path="/insights" component={Insights} />
-      
-      {/* Portal Routes */}
-      <Route path="/portal" component={Dashboard} />
-      <Route path="/portal/roadmap" component={Roadmap} />
-      <Route path="/portal/documents" component={Documents} />
-      <Route path="/portal/meetings" component={Meetings} />
-      <Route path="/portal/actions" component={Actions} />
-      <Route path="/portal/performance" component={Performance} />
-      <Route path="/portal/messages" component={Messages} />
-      <Route path="/portal/resources" component={Resources} />
-      <Route path="/portal/billing" component={Billing} />
-      
+
+      {/* Auth Routes */}
+      <Route path="/portal/login" component={Login} />
+      <Route path="/portal/register" component={Register} />
+      <Route path="/portal/forgot-password" component={ForgotPassword} />
+
+      {/* Protected Portal Routes */}
+      <Route path="/portal">
+        {() => <ProtectedRoute><Dashboard /></ProtectedRoute>}
+      </Route>
+      <Route path="/portal/roadmap">
+        {() => <ProtectedRoute><Roadmap /></ProtectedRoute>}
+      </Route>
+      <Route path="/portal/documents">
+        {() => <ProtectedRoute><Documents /></ProtectedRoute>}
+      </Route>
+      <Route path="/portal/meetings">
+        {() => <ProtectedRoute><Meetings /></ProtectedRoute>}
+      </Route>
+      <Route path="/portal/actions">
+        {() => <ProtectedRoute><Actions /></ProtectedRoute>}
+      </Route>
+      <Route path="/portal/performance">
+        {() => <ProtectedRoute><Performance /></ProtectedRoute>}
+      </Route>
+      <Route path="/portal/messages">
+        {() => <ProtectedRoute><Messages /></ProtectedRoute>}
+      </Route>
+      <Route path="/portal/resources">
+        {() => <ProtectedRoute><Resources /></ProtectedRoute>}
+      </Route>
+      <Route path="/portal/billing">
+        {() => <ProtectedRoute><Billing /></ProtectedRoute>}
+      </Route>
+
       <Route component={NotFound} />
     </Switch>
     </>

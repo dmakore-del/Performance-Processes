@@ -187,7 +187,7 @@ export default function About() {
                 <div className="absolute -top-6 -left-6 w-full h-full border-2 border-accent/20 rounded-2xl -z-10 translate-x-4 translate-y-4"></div>
                 <img 
                   src={founderImage} 
-                  alt="Danai Makore - Founder of Performance Processes" 
+                  alt="Danai Makore - Principal Consultant at Performance Processes" 
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 />
                 <div className="absolute -bottom-8 -right-8 bg-white p-8 rounded-2xl shadow-xl border border-border hidden md:block max-w-[280px]">
@@ -200,7 +200,7 @@ export default function About() {
               </div>
               <div className="lg:w-3/5">
                 <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
-                  Meet the Founder
+                  Principal Consultant
                 </div>
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-8 leading-tight">
                   Danai <span className="text-accent italic">Makore</span>
@@ -227,7 +227,7 @@ export default function About() {
                   </a>
                   <a href="https://danaimakore.com" target="_blank" rel="noopener noreferrer">
                     <Button className="rounded-full bg-primary text-white hover:bg-accent h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-primary/20" data-testid="button-learn-founder">
-                      Learn More About Our Founder
+                      Learn More About Danai
                     </Button>
                   </a>
                   <div className="flex flex-wrap gap-3">

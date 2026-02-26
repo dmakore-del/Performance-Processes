@@ -86,11 +86,11 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { title: "Strategic Planning & Alignment", desc: "Define your vision and build a roadmap to reach your goals.", icon: <TrendingUp className="text-accent" /> },
-                { title: "Organizational Assessment", desc: "Identify inefficiencies and optimize your internal structures.", icon: <Users className="text-accent" /> },
-                { title: "Leadership Development", desc: "Empower your team with the skills to lead through change.", icon: <ShieldCheck className="text-accent" /> },
-                { title: "Process Improvement", desc: "Streamline operations to boost productivity and reduce costs.", icon: <CheckCircle2 className="text-accent" /> },
-                { title: "Performance Management", desc: "Implement systems that drive accountability and results.", icon: <TrendingUp className="text-accent" /> },
+                { title: "Discovery Phase", desc: "We start by understanding your organization — intake, assessment, scope, and roadmap.", icon: <Users className="text-accent" /> },
+                { title: "Strategic Engagement", desc: "Outcome-focused engagements for strategic planning, alignment, and performance design.", icon: <TrendingUp className="text-accent" /> },
+                { title: "Systems & Implementation", desc: "Full performance systems, governance frameworks, and process redesign.", icon: <ShieldCheck className="text-accent" /> },
+                { title: "Executive Advisory", desc: "Ongoing monthly advisory with strategy sessions, coaching, and performance oversight.", icon: <CheckCircle2 className="text-accent" /> },
+                { title: "Business Registration", desc: "Complete business setup from incorporation to governance and compliance.", icon: <TrendingUp className="text-accent" /> },
                 { title: "Website Building & Marketing", desc: "Build a strong digital presence that attracts and converts clients.", icon: <TrendingUp className="text-accent" /> }
               ].map((s, i) => (
                 <Link key={i} href={`/services`}>

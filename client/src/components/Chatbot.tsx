@@ -13,7 +13,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["services", "what do you offer", "offer", "provide", "help with"],
-    answer: "We provide strategic planning, organizational assessment, performance management design, leadership development, process improvement, change management support, governance guidance, business registration, and digital alignment support."
+    answer: "We offer outcome-focused consulting through four core models: Discovery Phase, Strategic Engagement, Systems & Implementation, and Executive Advisory Retainer. We also provide Business Registration and Website Building services."
   },
   {
     keywords: ["different", "unique", "why choose", "stand out", "differentiator"],
@@ -29,7 +29,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["how long", "duration", "timeline", "engagement last", "time"],
-    answer: "Engagements vary depending on scope. Projects may range from short-term strategy workshops to multi-month performance system implementation."
+    answer: "Our Strategic Engagements run 6–12 weeks. Systems & Implementation projects vary by scope. Executive Advisory Retainers have a 3-month minimum. Every engagement starts with a Discovery Phase."
   },
   {
     keywords: ["customized", "custom", "tailored", "personalized"],
@@ -64,8 +64,8 @@ const FAQ_DATA = [
     answer: "Yes, we work collaboratively with leadership teams to implement practical, actionable solutions."
   },
   {
-    keywords: ["get started", "start", "begin", "first step", "consultation"],
-    answer: "Start with a consultation where we assess your needs and outline a tailored engagement plan. You can book one through our website or contact us by email."
+    keywords: ["get started", "start", "begin", "first step", "consultation", "discovery"],
+    answer: "Every engagement begins with our Discovery Phase ($750–$1,500), where we conduct an organizational intake, needs assessment, and scope definition to build a clear proposal roadmap. Discovery fees can be credited toward your full engagement."
   },
   {
     keywords: ["workshop", "one-time", "retreat", "session"],
@@ -89,7 +89,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["price", "cost", "pricing", "how much", "fee", "rate", "payment", "pay"],
-    answer: "Our pricing varies by service and scope. You can view our service packages on the Services page, or reach out to us for a custom quote."
+    answer: "We sell outcomes, not hours. Discovery Phase starts at $750, Strategic Engagements from $5,000, Systems & Implementation from $8,000, and Executive Advisory Retainers from $2,500/month. Visit our Services page for full details."
   },
   {
     keywords: ["contact", "email", "phone", "reach"],

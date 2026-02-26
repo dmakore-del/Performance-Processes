@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck, FileText, Settings, Info, Globe, CreditCard, Loader2, LifeBuoy, RefreshCw, ClipboardList } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck, FileText, Settings, Info, Globe, CreditCard, Loader2, LifeBuoy, RefreshCw, ClipboardList, Search, Briefcase, Wrench } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useLanguage } from "@/hooks/use-language";
@@ -84,286 +84,232 @@ export default function Services() {
 
   const services = [
     {
-      title: language === "en" ? "Strategic Planning & Alignment" : "Planification et alignement stratégiques",
-      investment: language === "en" ? "$7,500 – $25,000+" : "7 500 $ – 25 000 $+",
-      investmentNote: language === "en" ? "(Based on 1–3 day workshops, stakeholder interviews, and roadmap development)" : "(Basé sur des ateliers de 1 à 3 jours, des entretiens avec les parties prenantes et l'élaboration d'une feuille de route)",
-      desc: language === "en" 
-        ? "We help organizations define clear strategic direction and translate vision into measurable priorities."
-        : "Nous aidons les organisations à définir une orientation stratégique claire et à traduire la vision en priorités mesurables.",
+      title: language === "en" ? "Discovery Phase" : "Phase de découverte",
+      investment: "$750 – $1,500",
+      investmentNote: language === "en" ? "(Mandatory first step — fee can be credited toward full engagement)" : "(Première étape obligatoire — les frais peuvent être crédités vers un engagement complet)",
+      desc: language === "en"
+        ? "Every successful engagement begins with clarity. Our Discovery Phase ensures we understand your organization before proposing solutions."
+        : "Chaque engagement réussi commence par la clarté. Notre phase de découverte garantit que nous comprenons votre organisation avant de proposer des solutions.",
       learnMore: language === "en"
-        ? "Many strategies fail not because they lack ambition, but because they lack alignment and execution clarity.\n\nOur process ensures leadership alignment, defined success metrics, and a practical roadmap that connects goals to operational execution."
-        : "De nombreuses stratégies échouent non pas par manque d'ambition, mais par manque d'alignement et de clarté d'exécution.\n\nNotre processus garantit l'alignement des dirigeants, des indicateurs de réussite définis et une feuille de route pratique qui relie les objectifs à l'exécution opérationnelle.",
-      idealFor: language === "en" ? "Organizations preparing for growth, restructuring, funding, or transformation." : "Organisations se préparant à la croissance, à la restructuration, au financement ou à la transformation.",
-      icon: <TrendingUp className="text-accent" />,
+        ? "Before recommending any strategy or system, we invest time in understanding your organization's current state, challenges, and goals. The Discovery Phase is a structured intake process designed to align expectations, define scope, and build a clear roadmap.\n\nDiscovery fees can be credited toward your full engagement, so you never pay twice for this essential first step."
+        : "Avant de recommander toute stratégie ou système, nous investissons du temps pour comprendre l'état actuel, les défis et les objectifs de votre organisation. La phase de découverte est un processus d'accueil structuré conçu pour aligner les attentes, définir la portée et construire une feuille de route claire.\n\nLes frais de découverte peuvent être crédités vers votre engagement complet, vous ne payez donc jamais deux fois pour cette première étape essentielle.",
+      idealFor: language === "en" ? "Any organization beginning a new consulting engagement or exploring how we can help." : "Toute organisation commençant un nouvel engagement de conseil ou explorant comment nous pouvons aider.",
+      icon: <Search className="text-accent" />,
       pricingTiers: [
         {
           name: language === "en" ? "Essentials" : "Essentiel",
-          price: "$7,500",
+          price: "$750",
           subtitle: language === "en"
-            ? "Half-day leadership workshop with vision refinement and basic strategic roadmap."
-            : "Atelier de leadership d'une demi-journée avec affinement de la vision et feuille de route stratégique de base.",
+            ? "Focused intake session with needs assessment and initial scope definition."
+            : "Session d'accueil ciblée avec évaluation des besoins et définition initiale de la portée.",
           features: language === "en"
-            ? ["Vision and mission refinement", "Basic environmental analysis", "Strategic objective development", "Half-day leadership workshop"]
-            : ["Affinement de la vision et de la mission", "Analyse environnementale de base", "Développement d'objectifs stratégiques", "Atelier de leadership d'une demi-journée"],
-          stripeProductName: "Strategic Planning - Essentials"
+            ? ["Organizational intake session", "Needs assessment", "Scope definition", "Summary findings document"]
+            : ["Session d'accueil organisationnel", "Évaluation des besoins", "Définition de la portée", "Document de synthèse des conclusions"],
+          stripeProductName: "Discovery Phase - Essentials"
         },
         {
           name: "Standard",
-          price: "$15,000",
+          price: "$1,500",
           subtitle: language === "en"
-            ? "Multi-day engagement with stakeholder analysis, KPI design, and 1-year roadmap."
-            : "Engagement de plusieurs jours avec analyse des parties prenantes, conception de KPI et feuille de route d'un an.",
+            ? "Comprehensive discovery with stakeholder interviews, detailed assessment, and full proposal roadmap."
+            : "Découverte complète avec entretiens des parties prenantes, évaluation détaillée et feuille de route de proposition complète.",
           features: language === "en"
-            ? ["Everything in Essentials", "Stakeholder analysis", "KPI and success metric design", "1-year strategic roadmap", "Leadership alignment workshops"]
-            : ["Tout dans Essentiel", "Analyse des parties prenantes", "Conception de KPI et d'indicateurs de réussite", "Feuille de route stratégique d'un an", "Ateliers d'alignement des dirigeants"],
-          stripeProductName: "Strategic Planning - Standard"
-        },
-        {
-          name: language === "en" ? "Comprehensive" : "Complet",
-          price: "$25,000",
-          subtitle: language === "en"
-            ? "Full transformation package with leadership alignment workshops, 3-year roadmap, and ongoing support."
-            : "Programme de transformation complet avec ateliers d'alignement des dirigeants, feuille de route de 3 ans et soutien continu.",
-          features: language === "en"
-            ? ["Everything in Standard", "3-year strategic roadmap", "Environmental and stakeholder deep-dive", "Ongoing implementation support", "Quarterly review sessions"]
-            : ["Tout dans Standard", "Feuille de route stratégique de 3 ans", "Analyse approfondie de l'environnement et des parties prenantes", "Soutien continu à la mise en œuvre", "Sessions de révision trimestrielles"],
-          stripeProductName: "Strategic Planning - Comprehensive"
+            ? ["Everything in Essentials", "Stakeholder interviews", "Detailed organizational assessment", "Full proposal roadmap", "Engagement plan with milestones"]
+            : ["Tout dans Essentiel", "Entretiens avec les parties prenantes", "Évaluation organisationnelle détaillée", "Feuille de route de proposition complète", "Plan d'engagement avec jalons"],
+          stripeProductName: "Discovery Phase - Standard"
         }
       ]
     },
     {
-      title: language === "en" ? "Organizational Assessment" : "Évaluation organisationnelle",
-      investment: language === "en" ? "$5,000 – $18,000+" : "5 000 $ – 18 000 $+",
-      desc: language === "en" 
-        ? "Before improvement comes clarity. Our organizational assessment identifies structural gaps and performance barriers."
-        : "Avant l'amélioration vient la clarté. Notre évaluation organisationnelle identifie les lacunes structurelles et les obstacles à la performance.",
+      title: language === "en" ? "Strategic Engagement" : "Engagement stratégique",
+      investment: "$5,000 – $15,000",
+      investmentNote: language === "en" ? "(6–12 week engagement)" : "(Engagement de 6 à 12 semaines)",
+      desc: language === "en"
+        ? "Outcome-focused engagements that align your strategy, leadership, and performance systems for measurable results."
+        : "Des engagements axés sur les résultats qui alignent votre stratégie, votre leadership et vos systèmes de performance pour des résultats mesurables.",
       learnMore: language === "en"
-        ? "We provide a data-driven diagnostic that highlights what is working, what is misaligned, and where focused improvements will create measurable impact."
-        : "Nous fournissons un diagnostic basé sur les données qui met en évidence ce qui fonctionne, ce qui est mal aligné et où des améliorations ciblées créeront un impact mesurable.",
-      idealFor: language === "en" ? "Organizations experiencing performance stagnation, growth challenges, or internal inefficiencies." : "Organisations connaissant une stagnation des performances, des défis de croissance ou des inefficacités internes.",
-      icon: <Users className="text-accent" />,
+        ? "Rather than selling hours, we sell outcomes. Our Strategic Engagement model is designed for organizations that need focused, time-bound support to address critical strategic challenges.\n\nThis model covers strategic planning, performance framework design, organizational alignment, and leadership development — all delivered within a structured 6–12 week timeline with clear milestones and deliverables."
+        : "Plutôt que de vendre des heures, nous vendons des résultats. Notre modèle d'engagement stratégique est conçu pour les organisations qui ont besoin d'un soutien ciblé et limité dans le temps pour relever des défis stratégiques critiques.\n\nCe modèle couvre la planification stratégique, la conception de cadres de performance, l'alignement organisationnel et le développement du leadership — le tout livré dans un délai structuré de 6 à 12 semaines avec des jalons et des livrables clairs.",
+      idealFor: language === "en" ? "Organizations preparing for growth, restructuring, or transformation that need strategic clarity and alignment." : "Organisations se préparant à la croissance, à la restructuration ou à la transformation qui ont besoin de clarté et d'alignement stratégiques.",
+      icon: <TrendingUp className="text-accent" />,
       pricingTiers: [
         {
-          name: language === "en" ? "Focused" : "Ciblé",
+          name: language === "en" ? "Foundation" : "Fondation",
           price: "$5,000",
           subtitle: language === "en"
-            ? "Targeted assessment covering leadership interviews and structure review."
-            : "Évaluation ciblée couvrant les entretiens avec les dirigeants et l'examen de la structure.",
+            ? "Focused strategic engagement covering planning fundamentals and initial alignment."
+            : "Engagement stratégique ciblé couvrant les fondamentaux de la planification et l'alignement initial.",
           features: language === "en"
-            ? ["Leadership interviews", "Organizational structure review", "Summary findings report"]
-            : ["Entretiens avec les dirigeants", "Examen de la structure organisationnelle", "Rapport de synthèse des conclusions"],
-          stripeProductName: "Organizational Assessment - Focused"
+            ? ["Strategic planning sessions", "Vision and mission refinement", "Basic environmental analysis", "Strategic objective development", "Summary roadmap"]
+            : ["Sessions de planification stratégique", "Affinement de la vision et de la mission", "Analyse environnementale de base", "Développement d'objectifs stratégiques", "Feuille de route de synthèse"],
+          stripeProductName: "Strategic Engagement - Foundation"
         },
         {
           name: "Standard",
           price: "$10,000",
           subtitle: language === "en"
-            ? "Full assessment with culture, capability, and performance review."
-            : "Évaluation complète avec examen de la culture, des capacités et des performances.",
+            ? "Full strategic engagement with KPI design, stakeholder alignment, and performance framework."
+            : "Engagement stratégique complet avec conception de KPI, alignement des parties prenantes et cadre de performance.",
           features: language === "en"
-            ? ["Everything in Focused", "Culture and capability assessment", "Process and performance review", "Comprehensive findings report"]
-            : ["Tout dans Ciblé", "Évaluation de la culture et des capacités", "Examen des processus et des performances", "Rapport complet de conclusions"],
-          stripeProductName: "Organizational Assessment - Standard"
+            ? ["Everything in Foundation", "Stakeholder analysis and alignment", "KPI and success metric design", "Performance framework development", "Leadership alignment workshops", "1-year strategic roadmap"]
+            : ["Tout dans Fondation", "Analyse et alignement des parties prenantes", "Conception de KPI et d'indicateurs de réussite", "Développement du cadre de performance", "Ateliers d'alignement des dirigeants", "Feuille de route stratégique d'un an"],
+          stripeProductName: "Strategic Engagement - Standard"
         },
         {
           name: language === "en" ? "Comprehensive" : "Complet",
-          price: "$18,000",
+          price: "$15,000",
           subtitle: language === "en"
-            ? "Deep-dive with governance analysis, risk review, and comprehensive findings report."
-            : "Analyse approfondie avec analyse de la gouvernance, examen des risques et rapport complet.",
+            ? "Complete strategic transformation with deep-dive analysis, leadership coaching, and ongoing support."
+            : "Transformation stratégique complète avec analyse approfondie, coaching de leadership et soutien continu.",
           features: language === "en"
-            ? ["Everything in Standard", "Risk and governance analysis", "Benchmarking analysis", "Strategic recommendations roadmap", "Executive presentation"]
-            : ["Tout dans Standard", "Analyse des risques et de la gouvernance", "Analyse comparative", "Feuille de route de recommandations stratégiques", "Présentation exécutive"],
-          stripeProductName: "Organizational Assessment - Comprehensive"
+            ? ["Everything in Standard", "Environmental and stakeholder deep-dive", "Leadership development sessions", "Organizational alignment framework", "3-year strategic roadmap", "Quarterly review sessions", "Implementation support"]
+            : ["Tout dans Standard", "Analyse approfondie de l'environnement et des parties prenantes", "Sessions de développement du leadership", "Cadre d'alignement organisationnel", "Feuille de route stratégique de 3 ans", "Sessions de révision trimestrielles", "Soutien à la mise en œuvre"],
+          stripeProductName: "Strategic Engagement - Comprehensive"
         }
       ]
     },
     {
-      title: language === "en" ? "Performance Management Design" : "Conception de la gestion de la performance",
-      investment: language === "en" ? "$6,000 – $20,000+" : "6 000 $ – 20 000 $+",
-      desc: language === "en" 
-        ? "We design performance systems that connect strategy to accountability."
-        : "Nous concevons des systèmes de performance qui relient la stratégie à la responsabilité.",
+      title: language === "en" ? "Systems & Implementation" : "Systèmes et mise en œuvre",
+      investment: "$8,000 – $25,000",
+      desc: language === "en"
+        ? "End-to-end design and implementation of performance management systems, governance frameworks, and process redesign."
+        : "Conception et mise en œuvre de bout en bout des systèmes de gestion de la performance, des cadres de gouvernance et de la refonte des processus.",
       learnMore: language === "en"
-        ? "Without measurable indicators and clear ownership, strategy remains theoretical. Our performance management frameworks create visibility, ownership, and structured review processes that drive results."
-        : "Sans indicateurs mesurables et une appropriation claire, la stratégie reste théorique. Nos cadres de gestion de la performance créent de la visibilité, de l'appropriation et des processus d'examen structurés qui génèrent des résultats.",
-      idealFor: language === "en" ? "Organizations seeking measurable performance, improved accountability, and strategic execution discipline." : "Organisations recherchant une performance mesurable, une responsabilité accrue et une discipline d'exécution stratégique.",
-      icon: <Settings className="text-accent" />,
+        ? "Strategy without systems is just aspiration. Our Systems & Implementation engagements build the operational infrastructure your organization needs to execute consistently and scale effectively.\n\nWe design and implement full performance management systems, governance frameworks, and process architectures — turning strategic vision into measurable, repeatable operational excellence."
+        : "La stratégie sans systèmes n'est qu'une aspiration. Nos engagements de systèmes et de mise en œuvre construisent l'infrastructure opérationnelle dont votre organisation a besoin pour exécuter de manière cohérente et évoluer efficacement.\n\nNous concevons et mettons en œuvre des systèmes complets de gestion de la performance, des cadres de gouvernance et des architectures de processus — transformant la vision stratégique en excellence opérationnelle mesurable et reproductible.",
+      idealFor: language === "en" ? "Organizations ready to build or overhaul their operational systems, governance structures, or performance infrastructure." : "Organisations prêtes à construire ou à refondre leurs systèmes opérationnels, structures de gouvernance ou infrastructure de performance.",
+      icon: <Wrench className="text-accent" />,
       pricingTiers: [
         {
           name: language === "en" ? "Foundation" : "Fondation",
-          price: "$6,000",
+          price: "$8,000",
           subtitle: language === "en"
-            ? "KPI framework development and basic accountability structures."
-            : "Développement d'un cadre de KPI et structures de responsabilité de base.",
+            ? "Core systems design with KPI frameworks, process mapping, and accountability structures."
+            : "Conception de systèmes de base avec cadres de KPI, cartographie des processus et structures de responsabilité.",
           features: language === "en"
-            ? ["KPI framework development", "Role-based accountability structures", "Basic performance review templates"]
-            : ["Développement d'un cadre de KPI", "Structures de responsabilité basées sur les rôles", "Modèles de base d'examen des performances"],
-          stripeProductName: "Performance Management - Foundation"
+            ? ["KPI framework development", "Process mapping and documentation", "Role-based accountability structures", "Performance review templates", "Key findings report"]
+            : ["Développement d'un cadre de KPI", "Cartographie et documentation des processus", "Structures de responsabilité basées sur les rôles", "Modèles d'examen des performances", "Rapport des principales conclusions"],
+          stripeProductName: "Systems & Implementation - Foundation"
         },
         {
           name: "Standard",
-          price: "$12,000",
+          price: "$15,000",
           subtitle: language === "en"
-            ? "Full system design with balanced scorecard, review templates, and role-based structures."
-            : "Conception complète du système avec tableau de bord prospectif, modèles d'examen et structures basées sur les rôles.",
+            ? "Full system design with governance frameworks, SOP development, and balanced scorecard."
+            : "Conception complète du système avec cadres de gouvernance, développement de procédures et tableau de bord prospectif.",
           features: language === "en"
-            ? ["Everything in Foundation", "Balanced scorecard design", "Detailed performance review templates", "Team and departmental KPIs"]
-            : ["Tout dans Fondation", "Conception d'un tableau de bord prospectif", "Modèles détaillés d'examen des performances", "KPI d'équipe et de département"],
-          stripeProductName: "Performance Management - Standard"
+            ? ["Everything in Foundation", "Governance framework design", "SOP development", "Balanced scorecard design", "Role clarity frameworks", "Change management integration", "Implementation roadmap"]
+            : ["Tout dans Fondation", "Conception du cadre de gouvernance", "Développement des procédures opérationnelles normalisées", "Conception du tableau de bord prospectif", "Cadres de clarté des rôles", "Intégration de la gestion du changement", "Feuille de route de mise en œuvre"],
+          stripeProductName: "Systems & Implementation - Standard"
         },
         {
           name: "Enterprise",
-          price: "$20,000",
+          price: "$25,000",
           subtitle: language === "en"
-            ? "Complete package with reporting dashboards, implementation support, and ongoing guidance."
-            : "Pack complet avec tableaux de bord de rapport, soutien à la mise en œuvre et accompagnement continu.",
+            ? "Complete systems overhaul with full implementation, dashboards, and ongoing support."
+            : "Refonte complète des systèmes avec mise en œuvre complète, tableaux de bord et soutien continu.",
           features: language === "en"
-            ? ["Everything in Standard", "Reporting dashboards", "Full implementation support", "Ongoing guidance and review sessions", "Executive coaching integration"]
-            : ["Tout dans Standard", "Tableaux de bord de rapport", "Soutien complet à la mise en œuvre", "Accompagnement et sessions de révision continues", "Intégration du coaching exécutif"],
-          stripeProductName: "Performance Management - Enterprise"
+            ? ["Everything in Standard", "Full performance management system", "Reporting dashboards", "Process redesign and optimization", "Full implementation support", "Stakeholder engagement sessions", "Ongoing guidance and review sessions", "Executive coaching integration"]
+            : ["Tout dans Standard", "Système complet de gestion de la performance", "Tableaux de bord de rapport", "Refonte et optimisation des processus", "Soutien complet à la mise en œuvre", "Sessions d'engagement des parties prenantes", "Accompagnement et sessions de révision continues", "Intégration du coaching exécutif"],
+          stripeProductName: "Systems & Implementation - Enterprise"
         }
       ]
     },
     {
-      title: language === "en" ? "Leadership Development" : "Développement du leadership",
-      investment: language === "en" ? "$3,500 – $15,000+" : "3 500 $ – 15 000 $+",
-      investmentNote: language === "en" ? "(Workshops and cohort programs) | Executive Coaching available" : "(Ateliers et programmes de cohorte) | Coaching exécutif disponible",
-      desc: language === "en" 
-        ? "Strong strategy requires strong leadership. We equip leaders with clarity and confidence."
-        : "Une stratégie solide nécessite un leadership fort. Nous dotons les dirigeants de clarté et de confiance.",
+      title: language === "en" ? "Executive Advisory Retainer" : "Mandat de conseil exécutif",
+      investment: "$2,500 – $7,500/mo",
+      investmentNote: language === "en" ? "(Monthly retainer — 3-month minimum)" : "(Mandat mensuel — minimum 3 mois)",
+      desc: language === "en"
+        ? "Ongoing executive-level advisory for organizations that need consistent strategic guidance and leadership coaching."
+        : "Conseil exécutif continu pour les organisations qui ont besoin d'un accompagnement stratégique constant et d'un coaching de leadership.",
       learnMore: language === "en"
-        ? "Our leadership development programs focus on practical capability building, not theoretical training."
-        : "Nos programmes de développement du leadership se concentrent sur le renforcement des capacités pratiques, et non sur une formation théorique.",
-      idealFor: language === "en" ? "Growing organizations, new leadership teams, or leaders navigating change." : "Organisations en croissance, nouvelles équipes de direction ou dirigeants naviguant dans le changement.",
-      icon: <ShieldCheck className="text-accent" />,
+        ? "Growth doesn't stop after a project ends. Our Executive Advisory Retainer provides dedicated, senior-level guidance on a monthly basis — including strategy sessions, performance oversight, ongoing advisory, and leadership coaching.\n\nThis model is designed for organizations that want a trusted strategic partner without the cost of a full-time executive hire."
+        : "La croissance ne s'arrête pas à la fin d'un projet. Notre mandat de conseil exécutif fournit un accompagnement dédié de niveau supérieur sur une base mensuelle — incluant des sessions stratégiques, un suivi de la performance, des conseils continus et du coaching de leadership.\n\nCe modèle est conçu pour les organisations qui veulent un partenaire stratégique de confiance sans le coût d'une embauche exécutive à temps plein.",
+      idealFor: language === "en" ? "Organizations seeking consistent access to senior strategic guidance, performance oversight, and leadership coaching." : "Organisations cherchant un accès constant à des conseils stratégiques de haut niveau, un suivi de la performance et du coaching de leadership.",
+      icon: <Briefcase className="text-accent" />,
       pricingTiers: [
         {
-          name: language === "en" ? "Workshop" : "Atelier",
-          price: "$3,500",
+          name: "Standard",
+          price: "$2,500/mo",
           subtitle: language === "en"
-            ? "Single-day leadership workshop with competency assessment."
-            : "Atelier de leadership d'une journée avec évaluation des compétences.",
+            ? "Monthly strategy sessions with performance oversight and ongoing advisory."
+            : "Sessions stratégiques mensuelles avec suivi de la performance et conseils continus.",
           features: language === "en"
-            ? ["Leadership competency assessment", "Full-day workshop", "Action plan development"]
-            : ["Évaluation des compétences de leadership", "Atelier d'une journée complète", "Développement d'un plan d'action"],
-          stripeProductName: "Leadership Development - Workshop"
+            ? ["Monthly strategy session", "Performance oversight and reporting", "Ongoing advisory support", "Email and phone access", "Quarterly progress review"]
+            : ["Session stratégique mensuelle", "Suivi et rapport de performance", "Soutien consultatif continu", "Accès par e-mail et téléphone", "Examen trimestriel des progrès"],
+          stripeProductName: "Executive Advisory - Standard",
+          isMonthly: true
         },
         {
-          name: language === "en" ? "Program" : "Programme",
-          price: "$8,000",
+          name: "Premium",
+          price: "$5,000/mo",
           subtitle: language === "en"
-            ? "Multi-session program with team alignment and management workshops."
-            : "Programme multi-sessions avec alignement d'équipe et ateliers de gestion.",
+            ? "Bi-weekly sessions with leadership coaching, team alignment, and hands-on project support."
+            : "Sessions bimensuelles avec coaching de leadership, alignement d'équipe et soutien pratique aux projets.",
           features: language === "en"
-            ? ["Everything in Workshop", "Executive and management workshops", "Team alignment sessions", "Accountability training"]
-            : ["Tout dans Atelier", "Ateliers pour cadres et gestionnaires", "Sessions d'alignement d'équipe", "Formation à la responsabilité"],
-          stripeProductName: "Leadership Development - Program"
+            ? ["Everything in Standard", "Bi-weekly strategy sessions", "Leadership coaching", "Team alignment support", "Process improvement guidance", "Priority support"]
+            : ["Tout dans Standard", "Sessions stratégiques bimensuelles", "Coaching de leadership", "Soutien à l'alignement d'équipe", "Conseils en amélioration des processus", "Support prioritaire"],
+          stripeProductName: "Executive Advisory - Premium",
+          isMonthly: true
         },
         {
           name: language === "en" ? "Executive" : "Exécutif",
-          price: "$15,000",
+          price: "$7,500/mo",
           subtitle: language === "en"
-            ? "Full coaching program with one-on-one executive coaching and accountability training."
-            : "Programme complet de coaching avec coaching exécutif individuel et formation à la responsabilité.",
+            ? "Weekly strategic sessions with dedicated senior consultant, full advisory, and leadership development."
+            : "Sessions stratégiques hebdomadaires avec consultant senior dédié, conseil complet et développement du leadership.",
           features: language === "en"
-            ? ["Everything in Program", "One-on-one executive coaching", "Personalized development plan", "Monthly progress reviews", "Extended support period"]
-            : ["Tout dans Programme", "Coaching exécutif individuel", "Plan de développement personnalisé", "Révisions mensuelles de progrès", "Période de soutien prolongée"],
-          stripeProductName: "Leadership Development - Executive"
+            ? ["Everything in Premium", "Weekly strategy and operations sessions", "Dedicated senior consultant", "Full project management support", "Executive coaching and development", "Performance dashboards", "On-site support available", "24/7 priority access"]
+            : ["Tout dans Premium", "Sessions stratégiques et opérationnelles hebdomadaires", "Consultant senior dédié", "Soutien complet en gestion de projet", "Coaching et développement exécutif", "Tableaux de bord de performance", "Support sur site disponible", "Accès prioritaire 24/7"],
+          stripeProductName: "Executive Advisory - Executive",
+          isMonthly: true
         }
       ]
     },
     {
-      title: language === "en" ? "Process Improvement" : "Amélioration des processus",
-      investment: language === "en" ? "$4,000 – $15,000+" : "4 000 $ – 15 000 $+",
-      desc: language === "en" 
-        ? "Scalable organizations require documented, efficient processes."
-        : "Les organisations évolutives nécessitent des processus documentés et efficaces.",
+      title: language === "en" ? "Business Registration" : "Enregistrement d'entreprise",
+      investment: "$3,500 – $8,500",
+      desc: language === "en"
+        ? "We handle the complexities of business registration so you can focus on building your vision."
+        : "Nous gérons les complexités de l'enregistrement d'entreprise pour que vous puissiez vous concentrer sur la réalisation de votre vision.",
       learnMore: language === "en"
-        ? "We help streamline operations, eliminate inefficiencies, and create structured systems that support consistency and growth."
-        : "Nous aidons à simplifier les opérations, à éliminer les inefficacités et à créer des systèmes structurés qui favorisent la cohérence et la croissance.",
-      idealFor: language === "en" ? "Organizations preparing to scale or improve operational consistency." : "Organisations se préparant à passer à l'échelle ou à améliorer la cohérence opérationnelle.",
-      icon: <FileText className="text-accent" />,
+        ? "Starting a business involves more than just an idea — it requires proper legal structure, registration, and compliance. We guide you through the entire process, from choosing the right business structure to completing all government filings and obtaining your business number.\n\nOur team ensures your business is set up correctly from day one, with all corporate records, tax registrations, and governance documents in place."
+        : "Démarrer une entreprise implique plus qu'une simple idée — cela nécessite une structure juridique appropriée, un enregistrement et une conformité. Nous vous guidons tout au long du processus, du choix de la bonne structure d'entreprise à la réalisation de toutes les déclarations gouvernementales et à l'obtention de votre numéro d'entreprise.\n\nNotre équipe s'assure que votre entreprise est correctement configurée dès le premier jour, avec tous les registres corporatifs, les inscriptions fiscales et les documents de gouvernance en place.",
+      idealFor: language === "en" ? "Entrepreneurs, startups, and organizations establishing a new legal entity or restructuring an existing one." : "Entrepreneurs, startups et organisations établissant une nouvelle entité juridique ou restructurant une entité existante.",
+      icon: <ClipboardList className="text-accent" />,
       pricingTiers: [
         {
-          name: language === "en" ? "Essentials" : "Essentiel",
-          price: "$4,000",
+          name: language === "en" ? "Starter" : "Démarrage",
+          price: "$3,500",
           subtitle: language === "en"
-            ? "Process mapping sessions and basic workflow analysis."
-            : "Sessions de cartographie des processus et analyse de base des flux de travail.",
+            ? "Sole proprietorship or basic incorporation with name search and registration filing."
+            : "Entreprise individuelle ou incorporation de base avec recherche de nom et dépôt d'enregistrement.",
           features: language === "en"
-            ? ["Process mapping sessions", "Basic workflow analysis", "Key findings report"]
-            : ["Sessions de cartographie des processus", "Analyse de base des flux de travail", "Rapport des principales conclusions"],
-          stripeProductName: "Process Improvement - Essentials"
+            ? ["Business structure consultation", "Name search and reservation", "Articles of incorporation filing", "Certificate of incorporation", "Initial registered agent setup"]
+            : ["Consultation sur la structure d'entreprise", "Recherche et réservation de nom", "Dépôt des statuts constitutifs", "Certificat de constitution", "Configuration initiale de l'agent enregistré"],
+          stripeProductName: "Business Registration - Starter"
         },
         {
           name: "Standard",
-          price: "$8,000",
+          price: "$5,500",
           subtitle: language === "en"
-            ? "Full workflow analysis with SOP development and role clarity frameworks."
-            : "Analyse complète des flux de travail avec développement de procédures et cadres de clarté des rôles.",
+            ? "Full incorporation with corporate records, tax registration, and business number applications."
+            : "Incorporation complète avec registres corporatifs, inscription fiscale et demandes de numéro d'entreprise.",
           features: language === "en"
-            ? ["Everything in Essentials", "SOP development", "Role clarity frameworks", "Detailed workflow documentation"]
-            : ["Tout dans Essentiel", "Développement de procédures opérationnelles normalisées", "Cadres de clarté des rôles", "Documentation détaillée des flux de travail"],
-          stripeProductName: "Process Improvement - Standard"
+            ? ["Everything in Starter", "Corporate records book setup", "CRA business number application", "HST/GST registration", "Initial corporate by-laws", "Organizational resolutions"]
+            : ["Tout dans Démarrage", "Configuration du livre des registres corporatifs", "Demande de numéro d'entreprise à l'ARC", "Inscription à la TPS/TVH", "Règlements administratifs initiaux", "Résolutions organisationnelles"],
+          stripeProductName: "Business Registration - Standard"
         },
         {
           name: language === "en" ? "Comprehensive" : "Complet",
-          price: "$15,000",
+          price: "$8,500",
           subtitle: language === "en"
-            ? "Complete systems overhaul with operational efficiency recommendations and implementation."
-            : "Refonte complète des systèmes avec recommandations d'efficacité opérationnelle et mise en œuvre.",
+            ? "Complete setup with governance documents, shareholder agreements, and compliance framework."
+            : "Configuration complète avec documents de gouvernance, conventions d'actionnaires et cadre de conformité.",
           features: language === "en"
-            ? ["Everything in Standard", "Operational efficiency recommendations", "Implementation support", "Change management integration", "Follow-up reviews"]
-            : ["Tout dans Standard", "Recommandations d'efficacité opérationnelle", "Soutien à la mise en œuvre", "Intégration de la gestion du changement", "Révisions de suivi"],
-          stripeProductName: "Process Improvement - Comprehensive"
-        }
-      ]
-    },
-    {
-      title: language === "en" ? "Change Management Support" : "Soutien à la gestion du changement",
-      investment: language === "en" ? "$5,000 – $20,000+" : "5 000 $ – 20 000 $+",
-      desc: language === "en" 
-        ? "Change fails when people are not aligned. We support organizations through transitions."
-        : "Le changement échoue lorsque les personnes ne sont pas alignées. Nous soutenons les organisations à travers les transitions.",
-      learnMore: language === "en"
-        ? "We support organizations through transitions with structured change frameworks that prioritize communication, stakeholder engagement, and adoption."
-        : "Nous soutenons les organisations dans leurs transitions grâce à des cadres de changement structurés qui privilégient la communication, l'engagement des parties prenantes et l'adoption.",
-      idealFor: language === "en" ? "Organizations undergoing restructuring, digital transformation, or strategic shifts." : "Organisations subissant une restructuration, une transformation numérique ou des changements stratégiques.",
-      icon: <CheckCircle2 className="text-accent" />,
-      pricingTiers: [
-        {
-          name: language === "en" ? "Foundation" : "Fondation",
-          price: "$5,000",
-          subtitle: language === "en"
-            ? "Change readiness assessment and stakeholder mapping."
-            : "Évaluation de l'état de préparation au changement et cartographie des parties prenantes.",
-          features: language === "en"
-            ? ["Change readiness assessment", "Stakeholder mapping", "Initial change strategy outline"]
-            : ["Évaluation de l'état de préparation au changement", "Cartographie des parties prenantes", "Esquisse initiale de la stratégie de changement"],
-          stripeProductName: "Change Management - Foundation"
-        },
-        {
-          name: "Standard",
-          price: "$12,000",
-          subtitle: language === "en"
-            ? "Full change strategy design with communication plan and stakeholder engagement."
-            : "Conception complète de la stratégie de changement avec plan de communication et engagement des parties prenantes.",
-          features: language === "en"
-            ? ["Everything in Foundation", "Change strategy design", "Communication plan development", "Stakeholder engagement sessions"]
-            : ["Tout dans Fondation", "Conception de la stratégie de changement", "Développement du plan de communication", "Sessions d'engagement des parties prenantes"],
-          stripeProductName: "Change Management - Standard"
-        },
-        {
-          name: "Enterprise",
-          price: "$20,000",
-          subtitle: language === "en"
-            ? "Complete implementation with coaching, adoption tracking, and ongoing support."
-            : "Mise en œuvre complète avec coaching, suivi de l'adoption et soutien continu.",
-          features: language === "en"
-            ? ["Everything in Standard", "Implementation coaching", "Adoption tracking and metrics", "Ongoing support and reviews", "Leadership change coaching"]
-            : ["Tout dans Standard", "Coaching de mise en œuvre", "Suivi et métriques d'adoption", "Soutien et révisions continues", "Coaching de changement pour les dirigeants"],
-          stripeProductName: "Change Management - Enterprise"
+            ? ["Everything in Standard", "Shareholder agreement drafting", "Governance framework setup", "Compliance checklist and calendar", "Provincial and federal registrations", "Post-incorporation advisory session", "90-day support period"]
+            : ["Tout dans Standard", "Rédaction de la convention d'actionnaires", "Mise en place du cadre de gouvernance", "Liste de contrôle et calendrier de conformité", "Enregistrements provinciaux et fédéraux", "Session de conseil post-incorporation", "Période de soutien de 90 jours"],
+          stripeProductName: "Business Registration - Comprehensive"
         }
       ]
     },
@@ -382,7 +328,7 @@ export default function Services() {
         {
           name: language === "en" ? "Basic Website" : "Site Web de base",
           price: "$1,200",
-          subtitle: language === "en" 
+          subtitle: language === "en"
             ? "Ideal for small businesses, personal portfolios, nonprofits, and simple informational sites."
             : "Idéal pour les petites entreprises, les portfolios personnels, les organismes à but non lucratif et les sites d'information simples.",
           features: language === "en"
@@ -433,104 +379,6 @@ export default function Services() {
             ? ["Monthly content updates", "Security monitoring & patches", "Performance optimization", "Ongoing development & enhancements", "Priority support", "Monthly analytics reports"]
             : ["Mises à jour mensuelles du contenu", "Surveillance et correctifs de sécurité", "Optimisation des performances", "Développement et améliorations continus", "Support prioritaire", "Rapports d'analyse mensuels"],
           stripeProductName: "Ongoing Website Management",
-          isMonthly: true
-        }
-      ]
-    },
-    {
-      title: language === "en" ? "Business Registration" : "Enregistrement d'entreprise",
-      investment: language === "en" ? "$3,500 – $8,500" : "3 500 $ – 8 500 $",
-      desc: language === "en"
-        ? "We handle the complexities of business registration so you can focus on building your vision."
-        : "Nous gérons les complexités de l'enregistrement d'entreprise pour que vous puissiez vous concentrer sur la réalisation de votre vision.",
-      learnMore: language === "en"
-        ? "Starting a business involves more than just an idea — it requires proper legal structure, registration, and compliance. We guide you through the entire process, from choosing the right business structure to completing all government filings and obtaining your business number.\n\nOur team ensures your business is set up correctly from day one, with all corporate records, tax registrations, and governance documents in place."
-        : "Démarrer une entreprise implique plus qu'une simple idée — cela nécessite une structure juridique appropriée, un enregistrement et une conformité. Nous vous guidons tout au long du processus, du choix de la bonne structure d'entreprise à la réalisation de toutes les déclarations gouvernementales et à l'obtention de votre numéro d'entreprise.\n\nNotre équipe s'assure que votre entreprise est correctement configurée dès le premier jour, avec tous les registres corporatifs, les inscriptions fiscales et les documents de gouvernance en place.",
-      idealFor: language === "en" ? "Entrepreneurs, startups, and organizations establishing a new legal entity or restructuring an existing one." : "Entrepreneurs, startups et organisations établissant une nouvelle entité juridique ou restructurant une entité existante.",
-      icon: <ClipboardList className="text-accent" />,
-      pricingTiers: [
-        {
-          name: language === "en" ? "Starter" : "Démarrage",
-          price: "$3,500",
-          subtitle: language === "en"
-            ? "Sole proprietorship or basic incorporation with name search and registration filing."
-            : "Entreprise individuelle ou incorporation de base avec recherche de nom et dépôt d'enregistrement.",
-          features: language === "en"
-            ? ["Business structure consultation", "Name search and reservation", "Articles of incorporation filing", "Certificate of incorporation", "Initial registered agent setup"]
-            : ["Consultation sur la structure d'entreprise", "Recherche et réservation de nom", "Dépôt des statuts constitutifs", "Certificat de constitution", "Configuration initiale de l'agent enregistré"],
-          stripeProductName: "Business Registration - Starter"
-        },
-        {
-          name: "Standard",
-          price: "$5,500",
-          subtitle: language === "en"
-            ? "Full incorporation with corporate records, tax registration, and business number applications."
-            : "Incorporation complète avec registres corporatifs, inscription fiscale et demandes de numéro d'entreprise.",
-          features: language === "en"
-            ? ["Everything in Starter", "Corporate records book setup", "CRA business number application", "HST/GST registration", "Initial corporate by-laws", "Organizational resolutions"]
-            : ["Tout dans Démarrage", "Configuration du livre des registres corporatifs", "Demande de numéro d'entreprise à l'ARC", "Inscription à la TPS/TVH", "Règlements administratifs initiaux", "Résolutions organisationnelles"],
-          stripeProductName: "Business Registration - Standard"
-        },
-        {
-          name: language === "en" ? "Comprehensive" : "Complet",
-          price: "$8,500",
-          subtitle: language === "en"
-            ? "Complete setup with governance documents, shareholder agreements, and compliance framework."
-            : "Configuration complète avec documents de gouvernance, conventions d'actionnaires et cadre de conformité.",
-          features: language === "en"
-            ? ["Everything in Standard", "Shareholder agreement drafting", "Governance framework setup", "Compliance checklist and calendar", "Provincial and federal registrations", "Post-incorporation advisory session", "90-day support period"]
-            : ["Tout dans Standard", "Rédaction de la convention d'actionnaires", "Mise en place du cadre de gouvernance", "Liste de contrôle et calendrier de conformité", "Enregistrements provinciaux et fédéraux", "Session de conseil post-incorporation", "Période de soutien de 90 jours"],
-          stripeProductName: "Business Registration - Comprehensive"
-        }
-      ]
-    },
-    {
-      title: language === "en" ? "Ongoing Business Support" : "Soutien continu aux entreprises",
-      investment: language === "en" ? "$650 – $7,680/mo" : "650 $ – 7 680 $/mois",
-      investmentNote: language === "en" ? "(Monthly retainer plans)" : "(Plans de rétention mensuels)",
-      desc: language === "en"
-        ? "Continuous expert support to keep your organization performing at its best."
-        : "Un soutien expert continu pour que votre organisation fonctionne au mieux.",
-      learnMore: language === "en"
-        ? "Growth doesn't stop after a project ends. Our ongoing support plans provide dedicated consulting hours, strategic check-ins, and hands-on assistance to help you maintain momentum, adapt to change, and continuously improve.\n\nWhether you need a few hours of expert guidance each month or a full embedded support team, we have a plan to match your needs."
-        : "La croissance ne s'arrête pas à la fin d'un projet. Nos plans de soutien continu offrent des heures de consultation dédiées, des vérifications stratégiques et une assistance pratique pour vous aider à maintenir l'élan, à vous adapter au changement et à vous améliorer continuellement.\n\nQue vous ayez besoin de quelques heures de conseils d'experts chaque mois ou d'une équipe de soutien intégrée complète, nous avons un plan adapté à vos besoins.",
-      idealFor: language === "en" ? "Organizations that want consistent access to expert guidance without the cost of full-time hires." : "Organisations qui souhaitent un accès constant à des conseils d'experts sans le coût d'embauches à temps plein.",
-      icon: <LifeBuoy className="text-accent" />,
-      pricingTiers: [
-        {
-          name: language === "en" ? "Essential Support" : "Soutien essentiel",
-          price: "$650/mo",
-          subtitle: language === "en"
-            ? "Ideal for small businesses needing periodic expert guidance and check-ins."
-            : "Idéal pour les petites entreprises ayant besoin de conseils d'experts périodiques.",
-          features: language === "en"
-            ? ["5 consulting hours per month", "Monthly strategic check-in call", "Email support (48h response)", "Quarterly progress review"]
-            : ["5 heures de consultation par mois", "Appel de vérification stratégique mensuel", "Support par e-mail (réponse en 48h)", "Examen trimestriel des progrès"],
-          stripeProductName: "Business Support - Essential",
-          isMonthly: true
-        },
-        {
-          name: language === "en" ? "Professional Support" : "Soutien professionnel",
-          price: "$2,880/mo",
-          subtitle: language === "en"
-            ? "For growing organizations that need regular hands-on consulting and project support."
-            : "Pour les organisations en croissance qui ont besoin de conseils pratiques réguliers et d'un soutien de projet.",
-          features: language === "en"
-            ? ["15 consulting hours per month", "Bi-weekly strategy sessions", "Priority email & phone support", "Process improvement guidance", "Performance tracking support", "Monthly executive briefing"]
-            : ["15 heures de consultation par mois", "Sessions stratégiques bimensuelles", "Support prioritaire par e-mail et téléphone", "Conseils en amélioration des processus", "Soutien au suivi des performances", "Briefing exécutif mensuel"],
-          stripeProductName: "Business Support - Professional",
-          isMonthly: true
-        },
-        {
-          name: language === "en" ? "Enterprise Support" : "Soutien entreprise",
-          price: "$7,680/mo",
-          subtitle: language === "en"
-            ? "Full embedded support for organizations undergoing transformation or rapid growth."
-            : "Soutien intégré complet pour les organisations en transformation ou en croissance rapide.",
-          features: language === "en"
-            ? ["40 consulting hours per month", "Weekly strategy and operations sessions", "Dedicated senior consultant", "On-site support available", "Full project management support", "Real-time performance dashboards", "Leadership coaching included", "24/7 priority support"]
-            : ["40 heures de consultation par mois", "Sessions stratégiques et opérationnelles hebdomadaires", "Consultant senior dédié", "Support sur site disponible", "Soutien complet en gestion de projet", "Tableaux de bord de performance en temps réel", "Coaching de leadership inclus", "Support prioritaire 24/7"],
-          stripeProductName: "Business Support - Enterprise",
           isMonthly: true
         }
       ]
@@ -688,8 +536,8 @@ export default function Services() {
               </h2>
               <p className="text-lg text-primary-foreground/70 mb-8 leading-relaxed">
                 {language === "en" 
-                  ? "Book a free 30-minute discovery call with one of our expert consultants to discuss your goals and how we can help."
-                  : "Réservez un appel de découverte gratuit de 30 minutes avec l'un de nos consultants experts pour discuter de vos objectifs et de la façon dont nous pouvons vous aider."}
+                  ? "Every engagement begins with our Discovery Phase. Book a consultation to explore how we can help your organization achieve measurable results."
+                  : "Chaque engagement commence par notre phase de découverte. Réservez une consultation pour explorer comment nous pouvons aider votre organisation à obtenir des résultats mesurables."}
               </p>
             </div>
             <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">

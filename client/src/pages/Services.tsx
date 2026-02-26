@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck, FileText, Settings, Info, Globe, CreditCard, Loader2, LifeBuoy, RefreshCw } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp, Users, ShieldCheck, FileText, Settings, Info, Globe, CreditCard, Loader2, LifeBuoy, RefreshCw, ClipboardList } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useLanguage } from "@/hooks/use-language";
@@ -434,6 +434,53 @@ export default function Services() {
             : ["Mises à jour mensuelles du contenu", "Surveillance et correctifs de sécurité", "Optimisation des performances", "Développement et améliorations continus", "Support prioritaire", "Rapports d'analyse mensuels"],
           stripeProductName: "Ongoing Website Management",
           isMonthly: true
+        }
+      ]
+    },
+    {
+      title: language === "en" ? "Business Registration" : "Enregistrement d'entreprise",
+      investment: language === "en" ? "$3,500 – $8,500" : "3 500 $ – 8 500 $",
+      desc: language === "en"
+        ? "We handle the complexities of business registration so you can focus on building your vision."
+        : "Nous gérons les complexités de l'enregistrement d'entreprise pour que vous puissiez vous concentrer sur la réalisation de votre vision.",
+      learnMore: language === "en"
+        ? "Starting a business involves more than just an idea — it requires proper legal structure, registration, and compliance. We guide you through the entire process, from choosing the right business structure to completing all government filings and obtaining your business number.\n\nOur team ensures your business is set up correctly from day one, with all corporate records, tax registrations, and governance documents in place."
+        : "Démarrer une entreprise implique plus qu'une simple idée — cela nécessite une structure juridique appropriée, un enregistrement et une conformité. Nous vous guidons tout au long du processus, du choix de la bonne structure d'entreprise à la réalisation de toutes les déclarations gouvernementales et à l'obtention de votre numéro d'entreprise.\n\nNotre équipe s'assure que votre entreprise est correctement configurée dès le premier jour, avec tous les registres corporatifs, les inscriptions fiscales et les documents de gouvernance en place.",
+      idealFor: language === "en" ? "Entrepreneurs, startups, and organizations establishing a new legal entity or restructuring an existing one." : "Entrepreneurs, startups et organisations établissant une nouvelle entité juridique ou restructurant une entité existante.",
+      icon: <ClipboardList className="text-accent" />,
+      pricingTiers: [
+        {
+          name: language === "en" ? "Starter" : "Démarrage",
+          price: "$3,500",
+          subtitle: language === "en"
+            ? "Sole proprietorship or basic incorporation with name search and registration filing."
+            : "Entreprise individuelle ou incorporation de base avec recherche de nom et dépôt d'enregistrement.",
+          features: language === "en"
+            ? ["Business structure consultation", "Name search and reservation", "Articles of incorporation filing", "Certificate of incorporation", "Initial registered agent setup"]
+            : ["Consultation sur la structure d'entreprise", "Recherche et réservation de nom", "Dépôt des statuts constitutifs", "Certificat de constitution", "Configuration initiale de l'agent enregistré"],
+          stripeProductName: "Business Registration - Starter"
+        },
+        {
+          name: "Standard",
+          price: "$5,500",
+          subtitle: language === "en"
+            ? "Full incorporation with corporate records, tax registration, and business number applications."
+            : "Incorporation complète avec registres corporatifs, inscription fiscale et demandes de numéro d'entreprise.",
+          features: language === "en"
+            ? ["Everything in Starter", "Corporate records book setup", "CRA business number application", "HST/GST registration", "Initial corporate by-laws", "Organizational resolutions"]
+            : ["Tout dans Démarrage", "Configuration du livre des registres corporatifs", "Demande de numéro d'entreprise à l'ARC", "Inscription à la TPS/TVH", "Règlements administratifs initiaux", "Résolutions organisationnelles"],
+          stripeProductName: "Business Registration - Standard"
+        },
+        {
+          name: language === "en" ? "Comprehensive" : "Complet",
+          price: "$8,500",
+          subtitle: language === "en"
+            ? "Complete setup with governance documents, shareholder agreements, and compliance framework."
+            : "Configuration complète avec documents de gouvernance, conventions d'actionnaires et cadre de conformité.",
+          features: language === "en"
+            ? ["Everything in Standard", "Shareholder agreement drafting", "Governance framework setup", "Compliance checklist and calendar", "Provincial and federal registrations", "Post-incorporation advisory session", "90-day support period"]
+            : ["Tout dans Standard", "Rédaction de la convention d'actionnaires", "Mise en place du cadre de gouvernance", "Liste de contrôle et calendrier de conformité", "Enregistrements provinciaux et fédéraux", "Session de conseil post-incorporation", "Période de soutien de 90 jours"],
+          stripeProductName: "Business Registration - Comprehensive"
         }
       ]
     },

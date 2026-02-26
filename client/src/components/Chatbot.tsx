@@ -13,7 +13,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["services", "what do you offer", "offer", "provide", "help with"],
-    answer: "We provide strategic planning, organizational assessment, performance management design, leadership development, process improvement, change management support, governance guidance, and digital alignment support."
+    answer: "We provide strategic planning, organizational assessment, performance management design, leadership development, process improvement, change management support, governance guidance, business registration, and digital alignment support."
   },
   {
     keywords: ["different", "unique", "why choose", "stand out", "differentiator"],
@@ -82,6 +82,10 @@ const FAQ_DATA = [
   {
     keywords: ["measure success", "success", "measure", "track"],
     answer: "We measure success through defined KPIs, goal progression, leadership alignment, and sustainable operational improvements."
+  },
+  {
+    keywords: ["business registration", "register", "incorporate", "incorporation", "start a business", "new business", "register a company"],
+    answer: "Yes! We offer Business Registration services starting at $3,500. Our packages cover everything from basic incorporation and name search to full setup with governance documents, shareholder agreements, and compliance frameworks. Visit our Services page for details."
   },
   {
     keywords: ["price", "cost", "pricing", "how much", "fee", "rate", "payment", "pay"],

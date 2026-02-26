@@ -362,10 +362,19 @@ export async function registerRoutes(
   // ==================== PORTAL API ROUTES ====================
   app.use("/api/portal", requireAuth);
 
-  // Engagements
-  app.get("/api/portal/engagements", async (_req, res) => {
+  const requireStaffOrAdmin = (req: any, res: any, next: any) => {
+    const user = req.user as any;
+    if (!user || (user.role !== "staff" && user.role !== "admin")) {
+      return res.status(403).json({ message: "Staff or admin access required" });
+    }
+    next();
+  };
+
+  // Engagements - filtered by user role
+  app.get("/api/portal/engagements", async (req, res) => {
     try {
-      const data = await storage.getEngagements();
+      const user = req.user as any;
+      const data = await storage.getEngagementsForUser(user.id, user.role);
       res.json(data);
     } catch (error) {
       console.error("Engagements error:", error);
@@ -383,7 +392,31 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/engagements", async (req, res) => {
+  app.get("/api/portal/engagements/:id/participants", async (req, res) => {
+    try {
+      const engagement = await storage.getEngagement(Number(req.params.id));
+      if (!engagement) return res.status(404).json({ message: "Engagement not found" });
+      const participants: { id: string; fullName: string; role: string }[] = [];
+      if (engagement.clientUserId) {
+        const client = await storage.getUser(engagement.clientUserId);
+        if (client) participants.push({ id: client.id, fullName: client.fullName, role: client.role });
+      }
+      if (engagement.assignedStaffId) {
+        const staff = await storage.getUser(engagement.assignedStaffId);
+        if (staff) participants.push({ id: staff.id, fullName: staff.fullName, role: staff.role });
+      }
+      const allUsers = await storage.getAllUsers();
+      const admins = allUsers.filter(u => u.role === "admin" && !participants.find(p => p.id === u.id));
+      for (const admin of admins) {
+        participants.push({ id: admin.id, fullName: admin.fullName, role: admin.role });
+      }
+      res.json(participants);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch participants" });
+    }
+  });
+
+  app.post("/api/portal/engagements", requireAdmin, async (req, res) => {
     try {
       const parsed = insertEngagementSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
@@ -394,7 +427,7 @@ export async function registerRoutes(
     }
   });
 
-  app.patch("/api/portal/engagements/:id", async (req, res) => {
+  app.patch("/api/portal/engagements/:id", requireStaffOrAdmin, async (req, res) => {
     try {
       const engagement = await storage.updateEngagement(Number(req.params.id), req.body);
       res.json(engagement);
@@ -434,6 +467,24 @@ export async function registerRoutes(
   });
 
   // Documents
+  const documentsDir = path.join(process.cwd(), "uploads", "documents");
+  if (!fs.existsSync(documentsDir)) {
+    fs.mkdirSync(documentsDir, { recursive: true });
+  }
+
+  const documentStorage = multer.diskStorage({
+    destination: (_req, _file, cb) => cb(null, documentsDir),
+    filename: (_req, file, cb) => {
+      const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+      cb(null, uniqueSuffix + path.extname(file.originalname));
+    },
+  });
+
+  const documentUpload = multer({
+    storage: documentStorage,
+    limits: { fileSize: 25 * 1024 * 1024 },
+  });
+
   app.get("/api/portal/engagements/:engagementId/documents", async (req, res) => {
     try {
       const data = await storage.getDocuments(Number(req.params.engagementId));
@@ -443,19 +494,52 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/documents", async (req, res) => {
+  app.post("/api/portal/documents/upload", documentUpload.single("file"), async (req, res) => {
     try {
-      const parsed = insertDocumentSchema.safeParse(req.body);
-      if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
-      const document = await storage.createDocument(parsed.data);
-      res.status(201).json(document);
+      if (!req.file) return res.status(400).json({ message: "File is required" });
+      const user = req.user as any;
+      const ext = path.extname(req.file.originalname).replace(".", "").toLowerCase();
+      const sizeBytes = req.file.size;
+      const sizeStr = sizeBytes > 1024 * 1024
+        ? `${(sizeBytes / (1024 * 1024)).toFixed(1)} MB`
+        : `${(sizeBytes / 1024).toFixed(0)} KB`;
+
+      const doc = await storage.createDocument({
+        engagementId: Number(req.body.engagementId),
+        name: req.file.originalname,
+        folder: req.body.folder || "General",
+        fileType: ext,
+        size: sizeStr,
+        version: "v1.0",
+        filePath: req.file.path,
+        uploadedBy: user.id,
+      });
+      res.status(201).json(doc);
     } catch (error) {
-      res.status(500).json({ message: "Failed to create document" });
+      if (req.file) try { fs.unlinkSync(req.file.path); } catch {}
+      res.status(500).json({ message: "Failed to upload document" });
+    }
+  });
+
+  app.get("/api/portal/documents/:id/download", async (req, res) => {
+    try {
+      const doc = await storage.getDocument(Number(req.params.id));
+      if (!doc) return res.status(404).json({ message: "Document not found" });
+      if (!doc.filePath || !fs.existsSync(doc.filePath)) {
+        return res.status(404).json({ message: "File not found on disk" });
+      }
+      res.download(doc.filePath, doc.name);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to download document" });
     }
   });
 
   app.delete("/api/portal/documents/:id", async (req, res) => {
     try {
+      const doc = await storage.getDocument(Number(req.params.id));
+      if (doc?.filePath && fs.existsSync(doc.filePath)) {
+        fs.unlinkSync(doc.filePath);
+      }
       await storage.deleteDocument(Number(req.params.id));
       res.json({ message: "Document deleted" });
     } catch (error) {
@@ -473,7 +557,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/actions", async (req, res) => {
+  app.post("/api/portal/actions", requireStaffOrAdmin, async (req, res) => {
     try {
       const parsed = insertActionItemSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
@@ -484,7 +568,7 @@ export async function registerRoutes(
     }
   });
 
-  app.patch("/api/portal/actions/:id", async (req, res) => {
+  app.patch("/api/portal/actions/:id", requireStaffOrAdmin, async (req, res) => {
     try {
       const item = await storage.updateActionItem(Number(req.params.id), req.body);
       res.json(item);
@@ -493,7 +577,7 @@ export async function registerRoutes(
     }
   });
 
-  app.delete("/api/portal/actions/:id", async (req, res) => {
+  app.delete("/api/portal/actions/:id", requireStaffOrAdmin, async (req, res) => {
     try {
       await storage.deleteActionItem(Number(req.params.id));
       res.json({ message: "Action item deleted" });
@@ -512,7 +596,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/meetings", async (req, res) => {
+  app.post("/api/portal/meetings", requireStaffOrAdmin, async (req, res) => {
     try {
       const parsed = insertMeetingSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
@@ -523,7 +607,7 @@ export async function registerRoutes(
     }
   });
 
-  app.patch("/api/portal/meetings/:id", async (req, res) => {
+  app.patch("/api/portal/meetings/:id", requireStaffOrAdmin, async (req, res) => {
     try {
       const meeting = await storage.updateMeeting(Number(req.params.id), req.body);
       res.json(meeting);
@@ -532,11 +616,11 @@ export async function registerRoutes(
     }
   });
 
-  // Messages
+  // Messages - private between sender and recipient
   app.get("/api/portal/engagements/:engagementId/messages", async (req, res) => {
     try {
-      const channel = req.query.channel as string | undefined;
-      const data = await storage.getMessages(Number(req.params.engagementId), channel);
+      const user = req.user as any;
+      const data = await storage.getMessages(Number(req.params.engagementId), user.id);
       res.json(data);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch messages" });
@@ -545,7 +629,14 @@ export async function registerRoutes(
 
   app.post("/api/portal/messages", async (req, res) => {
     try {
-      const parsed = insertMessageSchema.safeParse(req.body);
+      const user = req.user as any;
+      const messageData = {
+        ...req.body,
+        senderId: user.id,
+        senderName: user.fullName,
+        senderRole: user.role,
+      };
+      const parsed = insertMessageSchema.safeParse(messageData);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
       const message = await storage.createMessage(parsed.data);
       res.status(201).json(message);
@@ -564,7 +655,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/resources", async (req, res) => {
+  app.post("/api/portal/resources", requireStaffOrAdmin, async (req, res) => {
     try {
       const parsed = insertResourceSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
@@ -585,7 +676,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/invoices", async (req, res) => {
+  app.post("/api/portal/invoices", requireAdmin, async (req, res) => {
     try {
       const parsed = insertInvoiceSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
@@ -596,12 +687,48 @@ export async function registerRoutes(
     }
   });
 
-  app.patch("/api/portal/invoices/:id", async (req, res) => {
+  app.patch("/api/portal/invoices/:id", requireAdmin, async (req, res) => {
     try {
       const invoice = await storage.updateInvoice(Number(req.params.id), req.body);
       res.json(invoice);
     } catch (error) {
       res.status(500).json({ message: "Failed to update invoice" });
+    }
+  });
+
+  app.post("/api/portal/invoices/:id/pay", async (req, res) => {
+    try {
+      const invoice = await storage.getInvoice(Number(req.params.id));
+      if (!invoice) return res.status(404).json({ message: "Invoice not found" });
+      if (invoice.status === "paid") return res.status(400).json({ message: "Invoice already paid" });
+
+      const stripe = await getUncachableStripeClient();
+      const amountCents = invoice.amountCents || Math.round(parseFloat(invoice.amount.replace(/[^0-9.]/g, "")) * 100);
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items: [{
+          price_data: {
+            currency: "cad",
+            product_data: {
+              name: `Invoice ${invoice.invoiceNumber}`,
+              description: invoice.description || "Performance Processes Consulting",
+            },
+            unit_amount: amountCents,
+          },
+          quantity: 1,
+        }],
+        mode: "payment",
+        success_url: `${req.headers.origin || req.protocol + "://" + req.get("host")}/portal/billing?payment=success&invoice=${invoice.id}`,
+        cancel_url: `${req.headers.origin || req.protocol + "://" + req.get("host")}/portal/billing?payment=cancelled`,
+        metadata: { invoiceId: String(invoice.id) },
+      });
+
+      await storage.updateInvoice(invoice.id, { stripeSessionId: session.id } as any);
+      res.json({ url: session.url });
+    } catch (error) {
+      console.error("Payment error:", error);
+      res.status(500).json({ message: "Failed to create payment session" });
     }
   });
 
@@ -615,7 +742,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/contracts", async (req, res) => {
+  app.post("/api/portal/contracts", requireStaffOrAdmin, async (req, res) => {
     try {
       const parsed = insertContractSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
@@ -626,12 +753,27 @@ export async function registerRoutes(
     }
   });
 
-  app.patch("/api/portal/contracts/:id", async (req, res) => {
+  app.post("/api/portal/contracts/:id/sign", async (req, res) => {
     try {
-      const contract = await storage.updateContract(Number(req.params.id), req.body);
-      res.json(contract);
+      const user = req.user as any;
+      const contract = await storage.getContract(Number(req.params.id));
+      if (!contract) return res.status(404).json({ message: "Contract not found" });
+      if (contract.status === "signed") return res.status(400).json({ message: "Contract already signed" });
+
+      const { signatureData } = req.body;
+      if (!signatureData) return res.status(400).json({ message: "Signature is required" });
+
+      const updated = await storage.updateContract(contract.id, {
+        status: "signed",
+        signedByUserId: user.id,
+        signedByName: user.fullName,
+        signedAt: new Date(),
+        signatureData,
+      } as any);
+
+      res.json(updated);
     } catch (error) {
-      res.status(500).json({ message: "Failed to update contract" });
+      res.status(500).json({ message: "Failed to sign contract" });
     }
   });
 
@@ -645,7 +787,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/kpis", async (req, res) => {
+  app.post("/api/portal/kpis", requireStaffOrAdmin, async (req, res) => {
     try {
       const parsed = insertPerformanceKpiSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
@@ -656,7 +798,7 @@ export async function registerRoutes(
     }
   });
 
-  app.patch("/api/portal/kpis/:id", async (req, res) => {
+  app.patch("/api/portal/kpis/:id", requireStaffOrAdmin, async (req, res) => {
     try {
       const kpi = await storage.updatePerformanceKpi(Number(req.params.id), req.body);
       res.json(kpi);
@@ -665,119 +807,30 @@ export async function registerRoutes(
     }
   });
 
-  // Seed endpoint - creates demo data for a new engagement
-  app.post("/api/portal/seed", async (_req, res) => {
+  app.delete("/api/portal/kpis/:id", requireStaffOrAdmin, async (req, res) => {
     try {
-      const existing = await storage.getEngagements();
-      if (existing.length > 0) {
-        return res.json({ message: "Data already seeded", engagementId: existing[0].id });
-      }
-
-      const engagement = await storage.createEngagement({
-        clientName: "Acme Corp",
-        engagementType: "Strategic",
-        startDate: "Sep 1, 2026",
-        currentPhase: "Strategic Design",
-        status: "active",
-        completionPercent: 32,
-        nextSession: "Strategy Review Session",
-        nextSessionDate: "Oct 12, 2026",
-      });
-
-      const eid = engagement.id;
-
-      await Promise.all([
-        storage.createMilestone({ engagementId: eid, title: "Kickoff Meeting", phase: "Discovery & Assessment", status: "completed", owner: "Danai Makore", dueDate: "Sep 5, 2026", sortOrder: 1 }),
-        storage.createMilestone({ engagementId: eid, title: "Stakeholder Interviews", phase: "Discovery & Assessment", status: "completed", owner: "Consulting Team", dueDate: "Sep 15, 2026", sortOrder: 2 }),
-        storage.createMilestone({ engagementId: eid, title: "Current State Analysis", phase: "Discovery & Assessment", status: "completed", owner: "Consulting Team", dueDate: "Sep 22, 2026", sortOrder: 3 }),
-        storage.createMilestone({ engagementId: eid, title: "Assessment Report Presentation", phase: "Discovery & Assessment", status: "completed", owner: "Joint Team", dueDate: "Sep 30, 2026", sortOrder: 4 }),
-        storage.createMilestone({ engagementId: eid, title: "Vision & Mission Workshop", phase: "Strategic Design", status: "completed", owner: "Danai Makore", dueDate: "Oct 3, 2026", sortOrder: 5 }),
-        storage.createMilestone({ engagementId: eid, title: "Strategic Objectives Draft", phase: "Strategic Design", status: "in-progress", owner: "Consulting Team", dueDate: "Oct 14, 2026", sortOrder: 6 }),
-        storage.createMilestone({ engagementId: eid, title: "KPI Framework Design", phase: "Strategic Design", status: "pending", owner: "Consulting Team", dueDate: "Oct 25, 2026", sortOrder: 7 }),
-        storage.createMilestone({ engagementId: eid, title: "Phase 2 Sign-off", phase: "Strategic Design", status: "pending", owner: "Client Sponsor", dueDate: "Oct 31, 2026", sortOrder: 8 }),
-        storage.createMilestone({ engagementId: eid, title: "Action Plan Development", phase: "Implementation Planning", status: "pending", owner: "Consulting Team", dueDate: "Nov 10, 2026", sortOrder: 9 }),
-        storage.createMilestone({ engagementId: eid, title: "Resource Allocation", phase: "Implementation Planning", status: "pending", owner: "Joint Team", dueDate: "Nov 20, 2026", sortOrder: 10 }),
-        storage.createMilestone({ engagementId: eid, title: "Change Management Strategy", phase: "Implementation Planning", status: "pending", owner: "Danai Makore", dueDate: "Nov 30, 2026", sortOrder: 11 }),
-      ]);
-
-      await Promise.all([
-        storage.createDocument({ engagementId: eid, name: "Client_Intake_Form.pdf", folder: "Discovery Phase", fileType: "pdf", size: "245 KB", version: "v1.0" }),
-        storage.createDocument({ engagementId: eid, name: "Needs_Assessment_Summary.pdf", folder: "Discovery Phase", fileType: "pdf", size: "1.8 MB", version: "v1.0" }),
-        storage.createDocument({ engagementId: eid, name: "Scope_Document.pdf", folder: "Discovery Phase", fileType: "pdf", size: "890 KB", version: "v1.2" }),
-        storage.createDocument({ engagementId: eid, name: "Proposal_Roadmap.pdf", folder: "Discovery Phase", fileType: "pdf", size: "2.1 MB", version: "v1.0" }),
-        storage.createDocument({ engagementId: eid, name: "Strategic_Plan_Draft.docx", folder: "Strategic Engagement", fileType: "doc", size: "1.1 MB", version: "v0.9" }),
-        storage.createDocument({ engagementId: eid, name: "KPI_Framework_Template.xlsx", folder: "Strategic Engagement", fileType: "xls", size: "850 KB", version: "v1.0" }),
-        storage.createDocument({ engagementId: eid, name: "Alignment_Maps.pdf", folder: "Strategic Engagement", fileType: "pdf", size: "3.2 MB", version: "v1.0" }),
-        storage.createDocument({ engagementId: eid, name: "Session_Notes_Oct3.pdf", folder: "Strategic Engagement", fileType: "pdf", size: "420 KB", version: "v1.0" }),
-        storage.createDocument({ engagementId: eid, name: "Governance_Framework_Template.docx", folder: "Systems & Implementation", fileType: "doc", size: "1.5 MB", version: "v1.0" }),
-        storage.createDocument({ engagementId: eid, name: "Performance_System_Doc.pdf", folder: "Systems & Implementation", fileType: "pdf", size: "2.8 MB", version: "v1.0" }),
-        storage.createDocument({ engagementId: eid, name: "Process_Maps.pdf", folder: "Systems & Implementation", fileType: "pdf", size: "4.1 MB", version: "v1.0" }),
-        storage.createDocument({ engagementId: eid, name: "Implementation_Roadmap.xlsx", folder: "Systems & Implementation", fileType: "xls", size: "1.2 MB", version: "v1.0" }),
-      ]);
-
-      await Promise.all([
-        storage.createActionItem({ engagementId: eid, task: "Provide Q2 Financial Reports", owner: "Client Team", dueDate: "Oct 10, 2026", status: "overdue", priority: "high" }),
-        storage.createActionItem({ engagementId: eid, task: "Review Strategic Objectives Draft", owner: "John Doe", dueDate: "Oct 14, 2026", status: "pending", priority: "high" }),
-        storage.createActionItem({ engagementId: eid, task: "Schedule Team Alignment Session", owner: "Danai Makore", dueDate: "Oct 15, 2026", status: "in-progress", priority: "medium" }),
-        storage.createActionItem({ engagementId: eid, task: "Finalize Governance Template", owner: "Consulting Team", dueDate: "Oct 20, 2026", status: "pending", priority: "low" }),
-        storage.createActionItem({ engagementId: eid, task: "Complete Stakeholder Interviews", owner: "Consulting Team", dueDate: "Oct 5, 2026", status: "completed", priority: "high" }),
-        storage.createActionItem({ engagementId: eid, task: "Submit Budget Approval Form", owner: "John Doe", dueDate: "Oct 18, 2026", status: "pending", priority: "medium" }),
-        storage.createActionItem({ engagementId: eid, task: "Prepare Department Metrics Summary", owner: "Client Team", dueDate: "Oct 12, 2026", status: "in-progress", priority: "high" }),
-      ]);
-
-      await Promise.all([
-        storage.createMeeting({ engagementId: eid, title: "Strategy Review Session", meetingDate: "Oct 12, 2026", meetingTime: "10:00 AM - 11:30 AM EST", meetingType: "Zoom", meetingLink: "https://zoom.us/j/123456789", status: "upcoming", agendaItems: "Review strategic objectives draft\nDiscuss KPI framework approach\nAlign on Phase 2 timeline" }),
-        storage.createMeeting({ engagementId: eid, title: "Executive Coaching: CEO", meetingDate: "Oct 14, 2026", meetingTime: "2:00 PM - 3:00 PM EST", meetingType: "Zoom", meetingLink: "https://zoom.us/j/987654321", status: "upcoming", agendaItems: "Leadership alignment discussion\nChange management preparation" }),
-        storage.createMeeting({ engagementId: eid, title: "Vision & Mission Workshop", meetingDate: "Oct 5, 2026", meetingTime: "9:00 AM - 12:00 PM EST", duration: "3 hours", meetingType: "In-Person", status: "completed", notes: "Established core vision and mission statements. Identified key strategic pillars. All stakeholders aligned on direction." }),
-        storage.createMeeting({ engagementId: eid, title: "Assessment Findings Presentation", meetingDate: "Oct 2, 2026", meetingTime: "10:00 AM - 11:30 AM EST", duration: "1.5 hours", meetingType: "Zoom", status: "completed", notes: "Presented organizational assessment findings. Key gaps identified in governance and performance management. Client approved moving to strategic design phase." }),
-        storage.createMeeting({ engagementId: eid, title: "Project Kickoff", meetingDate: "Sep 15, 2026", meetingTime: "1:00 PM - 2:00 PM EST", duration: "1 hour", meetingType: "Zoom", status: "completed", notes: "Introduced project scope and timeline. Established communication protocols and key contacts. Signed off on engagement terms." }),
-      ]);
-
-      await Promise.all([
-        storage.createMessage({ engagementId: eid, channel: "project", senderName: "Danai Makore", senderRole: "consultant", content: "Hi team, I've just uploaded the initial draft of the Strategic Objectives document to the Deliverables folder. Please review before our session tomorrow." }),
-        storage.createMessage({ engagementId: eid, channel: "project", senderName: "John Doe", senderRole: "client", content: "Thanks Danai. I will take a look this afternoon and add my comments directly to the document." }),
-        storage.createMessage({ engagementId: eid, channel: "project", senderName: "Danai Makore", senderRole: "consultant", content: "Perfect. I've also added the updated KPI framework template to the Strategic Engagement folder. Let me know if you have questions." }),
-        storage.createMessage({ engagementId: eid, channel: "direct", senderName: "Danai Makore", senderRole: "consultant", content: "Looking forward to our meeting on Thursday. Please have the Q2 financials ready if possible." }),
-      ]);
-
-      await Promise.all([
-        storage.createResource({ title: "Leadership Communication Guide", description: "A comprehensive guide for effective leadership communication strategies and frameworks for organizational alignment.", resourceType: "PDF Guide", category: "Leadership" }),
-        storage.createResource({ title: "Effective 1-on-1s Framework", description: "Template and structured approach for productive one-on-one meetings between managers and direct reports.", resourceType: "Template", category: "Leadership" }),
-        storage.createResource({ title: "KPI Development Worksheet", description: "Step-by-step worksheet for developing meaningful and measurable key performance indicators.", resourceType: "Template", category: "Performance" }),
-        storage.createResource({ title: "Governance Framework Template", description: "Comprehensive governance structure template for organizational decision-making and accountability.", resourceType: "Template", category: "Governance" }),
-        storage.createResource({ title: "Annual Planning Checklist", description: "Complete checklist for strategic annual planning including stakeholder engagement, goal setting, and resource allocation.", resourceType: "Checklist", category: "Strategy" }),
-        storage.createResource({ title: "Strategy Execution Toolkit", description: "Tools and frameworks for translating strategic plans into executable operational initiatives.", resourceType: "Toolkit", category: "Strategy" }),
-        storage.createResource({ title: "Change Management Playbook", description: "Best practices and step-by-step processes for managing organizational change effectively.", resourceType: "PDF Guide", category: "Change Management" }),
-        storage.createResource({ title: "Strategic Planning Worksheet", description: "Structured worksheet for facilitating strategic planning sessions with leadership teams.", resourceType: "Template", category: "Strategy" }),
-        storage.createResource({ title: "Implementation Checklist", description: "Comprehensive checklist for ensuring successful implementation of strategic initiatives.", resourceType: "Checklist", category: "Execution" }),
-        storage.createResource({ title: "Performance Dashboard Guide", description: "Guide for building and maintaining effective performance dashboards and reporting systems.", resourceType: "PDF Guide", category: "Performance" }),
-      ]);
-
-      await Promise.all([
-        storage.createInvoice({ engagementId: eid, invoiceNumber: "INV-2026-042", issueDate: "Oct 1, 2026", dueDate: "Oct 15, 2026", amount: "$5,000.00", status: "unpaid", description: "Strategic Design Phase - October" }),
-        storage.createInvoice({ engagementId: eid, invoiceNumber: "INV-2026-028", issueDate: "Sep 1, 2026", dueDate: "Sep 15, 2026", amount: "$7,500.00", status: "paid", description: "Discovery & Assessment Phase" }),
-        storage.createInvoice({ engagementId: eid, invoiceNumber: "INV-2026-015", issueDate: "Aug 15, 2026", dueDate: "Aug 30, 2026", amount: "$2,500.00", status: "paid", description: "Engagement Setup & Onboarding" }),
-      ]);
-
-      await Promise.all([
-        storage.createContract({ engagementId: eid, title: "Master Services Agreement", documentDate: "Aug 15, 2026", status: "signed" }),
-        storage.createContract({ engagementId: eid, title: "Statement of Work - Phase 2", documentDate: "Sep 28, 2026", status: "pending" }),
-        storage.createContract({ engagementId: eid, title: "Non-Disclosure Agreement", documentDate: "Aug 10, 2026", status: "signed" }),
-      ]);
-
-      await Promise.all([
-        storage.createPerformanceKpi({ engagementId: eid, name: "Employee Engagement Score", currentValue: "78%", targetValue: "85%", status: "needs-attention", period: "Q3 2026", category: "People" }),
-        storage.createPerformanceKpi({ engagementId: eid, name: "Operational Efficiency", currentValue: "92%", targetValue: "90%", status: "on-track", period: "Q3 2026", category: "Operations" }),
-        storage.createPerformanceKpi({ engagementId: eid, name: "Leadership Bench Strength", currentValue: "65%", targetValue: "80%", status: "at-risk", period: "Q3 2026", category: "People" }),
-        storage.createPerformanceKpi({ engagementId: eid, name: "Strategy Execution Rate", currentValue: "88%", targetValue: "95%", status: "on-track", period: "Q3 2026", category: "Strategy" }),
-        storage.createPerformanceKpi({ engagementId: eid, name: "Customer Satisfaction Index", currentValue: "91%", targetValue: "90%", status: "on-track", period: "Q3 2026", category: "Customer" }),
-        storage.createPerformanceKpi({ engagementId: eid, name: "Revenue Growth Rate", currentValue: "12%", targetValue: "15%", status: "needs-attention", period: "Q3 2026", category: "Financial" }),
-      ]);
-
-      res.status(201).json({ message: "Demo data seeded successfully", engagementId: eid });
+      await storage.deletePerformanceKpi(Number(req.params.id));
+      res.json({ message: "KPI deleted" });
     } catch (error) {
-      console.error("Seed error:", error);
-      res.status(500).json({ message: "Failed to seed data" });
+      res.status(500).json({ message: "Failed to delete KPI" });
+    }
+  });
+
+  // Stripe webhook for payment confirmation
+  app.post("/api/stripe/webhook/invoice-paid", async (req, res) => {
+    try {
+      const { type, data } = req.body;
+      if (type === "checkout.session.completed" && data?.object?.metadata?.invoiceId) {
+        const invoiceId = Number(data.object.metadata.invoiceId);
+        await storage.updateInvoice(invoiceId, {
+          status: "paid",
+          paidAt: new Date(),
+        } as any);
+      }
+      res.json({ received: true });
+    } catch (error) {
+      console.error("Webhook error:", error);
+      res.status(500).json({ message: "Webhook processing failed" });
     }
   });
 

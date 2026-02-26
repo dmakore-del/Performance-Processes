@@ -11,11 +11,27 @@ export default function Dashboard() {
   const { data: milestones } = usePortalData<Milestone[]>("milestones", engagementId);
   const { data: documents } = usePortalData<Document[]>("documents", engagementId);
 
-  if (isLoading || !engagement) {
+  if (isLoading) {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
           <Loader2 className="animate-spin text-accent" size={40} />
+        </div>
+      </PortalLayout>
+    );
+  }
+
+  if (!engagement) {
+    return (
+      <PortalLayout>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div data-testid="text-no-engagement" className="bg-white p-10 rounded-3xl border border-border shadow-sm text-center max-w-md">
+            <div className="w-16 h-16 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mx-auto mb-6">
+              <AlertCircle size={32} />
+            </div>
+            <h2 className="text-xl font-bold text-primary mb-3">No Active Engagement</h2>
+            <p className="text-muted-foreground">Your consultant will set up your engagement shortly.</p>
+          </div>
         </div>
       </PortalLayout>
     );

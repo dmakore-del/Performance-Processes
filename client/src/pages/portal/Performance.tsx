@@ -1,7 +1,16 @@
+import { useState } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { TrendingUp, Target, Loader2 } from "lucide-react";
+import { TrendingUp, Target, Loader2, Plus, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
+import { useAuth } from "@/hooks/use-auth";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { PerformanceKpi } from "@shared/schema";
 
 function calculateOverallHealth(kpis: PerformanceKpi[]): { label: string; color: string } {
@@ -14,6 +23,7 @@ function calculateOverallHealth(kpis: PerformanceKpi[]): { label: string; color:
 }
 
 export default function Performance() {
+  const { user } = useAuth();
   const { engagementId, isLoading: engLoading } = usePortalEngagement();
   const { data: kpis, isLoading: kpisLoading } = usePortalData<PerformanceKpi[]>("kpis", engagementId);
 
@@ -21,6 +31,7 @@ export default function Performance() {
   const kpiList = kpis ?? [];
   const health = calculateOverallHealth(kpiList);
   const period = kpiList.length > 0 ? kpiList[0].period : "—";
+  const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
 
   const categories = Array.from(new Set(kpiList.map(k => k.category).filter(Boolean)));
 
@@ -30,11 +41,61 @@ export default function Performance() {
     return { name: k.name, current, target };
   });
 
+  const [createOpen, setCreateOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    currentValue: "",
+    targetValue: "",
+    status: "on-track",
+    period: "",
+    category: "",
+  });
+
+  const createMutation = useMutation({
+    mutationFn: async (data: typeof formData & { engagementId: number }) => {
+      const res = await apiRequest("POST", "/api/portal/kpis", data);
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/kpis`] });
+      setCreateOpen(false);
+      setFormData({ name: "", currentValue: "", targetValue: "", status: "on-track", period: "", category: "" });
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: async (id: number) => {
+      await apiRequest("DELETE", `/api/portal/kpis/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/kpis`] });
+    },
+  });
+
+  const handleCreate = () => {
+    if (!engagementId) return;
+    createMutation.mutate({ ...formData, engagementId });
+  };
+
   if (isLoading) {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="performance-loading">
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </PortalLayout>
+    );
+  }
+
+  if (!engagementId && !isLoading) {
+    return (
+      <PortalLayout>
+        <div className="flex items-center justify-center min-h-[400px]" data-testid="performance-empty">
+          <div className="text-center space-y-4">
+            <Target className="h-12 w-12 text-muted-foreground mx-auto" />
+            <h2 className="text-xl font-bold text-primary">No Active Engagement</h2>
+            <p className="text-muted-foreground">Your consultant will set up your engagement shortly.</p>
+          </div>
         </div>
       </PortalLayout>
     );
@@ -48,8 +109,66 @@ export default function Performance() {
             <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-performance-title">Performance Dashboard</h1>
             <p className="text-lg text-muted-foreground" data-testid="text-performance-subtitle">Track key performance indicators and organizational metrics.</p>
           </div>
-          <div className="bg-white px-4 py-2 rounded-xl border border-border shadow-sm text-sm font-bold text-primary" data-testid="text-performance-period">
-            {period}
+          <div className="flex items-center gap-3">
+            {isStaffOrAdmin && (
+              <Dialog open={createOpen} onOpenChange={setCreateOpen}>
+                <DialogTrigger asChild>
+                  <Button data-testid="button-add-kpi">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add KPI
+                  </Button>
+                </DialogTrigger>
+                <DialogContent data-testid="dialog-create-kpi">
+                  <DialogHeader>
+                    <DialogTitle>Add New KPI</DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4 pt-4">
+                    <div>
+                      <Label htmlFor="kpi-name">Name</Label>
+                      <Input id="kpi-name" data-testid="input-kpi-name" value={formData.name} onChange={e => setFormData(f => ({ ...f, name: e.target.value }))} placeholder="e.g. Revenue Growth" />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="kpi-current">Current Value</Label>
+                        <Input id="kpi-current" data-testid="input-kpi-current" value={formData.currentValue} onChange={e => setFormData(f => ({ ...f, currentValue: e.target.value }))} placeholder="e.g. 75" />
+                      </div>
+                      <div>
+                        <Label htmlFor="kpi-target">Target Value</Label>
+                        <Input id="kpi-target" data-testid="input-kpi-target" value={formData.targetValue} onChange={e => setFormData(f => ({ ...f, targetValue: e.target.value }))} placeholder="e.g. 90" />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="kpi-status">Status</Label>
+                      <Select value={formData.status} onValueChange={v => setFormData(f => ({ ...f, status: v }))}>
+                        <SelectTrigger data-testid="select-kpi-status">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="on-track">On Track</SelectItem>
+                          <SelectItem value="needs-attention">Needs Attention</SelectItem>
+                          <SelectItem value="at-risk">At Risk</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label htmlFor="kpi-period">Period</Label>
+                      <Input id="kpi-period" data-testid="input-kpi-period" value={formData.period} onChange={e => setFormData(f => ({ ...f, period: e.target.value }))} placeholder="e.g. Q1 2026" />
+                    </div>
+                    <div>
+                      <Label htmlFor="kpi-category">Category</Label>
+                      <Input id="kpi-category" data-testid="input-kpi-category" value={formData.category} onChange={e => setFormData(f => ({ ...f, category: e.target.value }))} placeholder="e.g. Financial" />
+                    </div>
+                    <Button className="w-full" data-testid="button-submit-kpi" onClick={handleCreate} disabled={createMutation.isPending || !formData.name}>
+                      {createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                      Create KPI
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            )}
+            <div className="bg-white px-4 py-2 rounded-xl border border-border shadow-sm text-sm font-bold text-primary" data-testid="text-performance-period">
+              {period}
+            </div>
           </div>
         </div>
 
@@ -112,6 +231,7 @@ export default function Performance() {
                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Target</th>
                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Variance</th>
                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Status</th>
+                  {isStaffOrAdmin && <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground"></th>}
                 </tr>
               </thead>
               <tbody>
@@ -121,7 +241,7 @@ export default function Performance() {
                   const variance = currentVal - targetVal;
                   
                   return (
-                    <tr key={kpi.id} className="border-b border-border hover:bg-secondary/20 transition-colors" data-testid={`row-kpi-${kpi.id}`}>
+                    <tr key={kpi.id} className="border-b border-border hover:bg-secondary/20 transition-colors group" data-testid={`row-kpi-${kpi.id}`}>
                       <td className="py-5 px-6 font-bold text-primary text-sm" data-testid={`text-kpi-name-${kpi.id}`}>{kpi.name}</td>
                       <td className="py-5 px-6 font-black text-lg" data-testid={`text-kpi-current-${kpi.id}`}>{kpi.currentValue}%</td>
                       <td className="py-5 px-6 text-muted-foreground" data-testid={`text-kpi-target-${kpi.id}`}>{kpi.targetValue}%</td>
@@ -144,12 +264,19 @@ export default function Performance() {
                           {kpi.status.replace('-', ' ')}
                         </span>
                       </td>
+                      {isStaffOrAdmin && (
+                        <td className="py-5 px-6">
+                          <Button variant="ghost" size="icon" className="opacity-0 group-hover:opacity-100 transition-opacity text-red-500 hover:text-red-700 hover:bg-red-50" data-testid={`button-delete-kpi-${kpi.id}`} onClick={() => deleteMutation.mutate(kpi.id)} disabled={deleteMutation.isPending}>
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </td>
+                      )}
                     </tr>
                   )
                 })}
                 {kpiList.length === 0 && (
                   <tr>
-                    <td colSpan={5} className="py-12 text-center text-muted-foreground" data-testid="text-no-kpis">No KPI data available.</td>
+                    <td colSpan={isStaffOrAdmin ? 6 : 5} className="py-12 text-center text-muted-foreground" data-testid="text-no-kpis">No KPI data available.</td>
                   </tr>
                 )}
               </tbody>

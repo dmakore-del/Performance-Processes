@@ -6,15 +6,32 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
+import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import type { Meeting } from "@shared/schema";
 
+const platformOptions = [
+  { value: "teams", label: "MS Teams" },
+  { value: "zoom", label: "Zoom" },
+  { value: "meet", label: "Google Meet" },
+  { value: "in-person", label: "In-Person" },
+];
+
+const platformLabelMap: Record<string, string> = {
+  teams: "MS Teams",
+  zoom: "Zoom",
+  meet: "Google Meet",
+  "in-person": "In-Person",
+};
+
 export default function Meetings() {
   const { engagementId, isLoading: engLoading } = usePortalEngagement();
   const { data: meetings, isLoading: meetingsLoading } = usePortalData<Meeting[]>("meetings", engagementId);
+  const { user } = useAuth();
   const { toast } = useToast();
   const [scheduleOpen, setScheduleOpen] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
@@ -24,10 +41,13 @@ export default function Meetings() {
     meetingDate: "",
     meetingTime: "",
     duration: "",
-    meetingType: "Zoom",
+    meetingType: "MS Teams",
+    platform: "teams",
     meetingLink: "",
     agendaItems: "",
   });
+
+  const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
 
   const scheduleMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
@@ -41,7 +61,7 @@ export default function Meetings() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/meetings`] });
       setScheduleOpen(false);
-      setFormData({ title: "", meetingDate: "", meetingTime: "", duration: "", meetingType: "Zoom", meetingLink: "", agendaItems: "" });
+      setFormData({ title: "", meetingDate: "", meetingTime: "", duration: "", meetingType: "MS Teams", platform: "teams", meetingLink: "", agendaItems: "" });
       toast({ title: "Meeting Scheduled", description: "Your new meeting has been added." });
     },
     onError: (err: Error) => {
@@ -56,6 +76,18 @@ export default function Meetings() {
       <PortalLayout>
         <div className="flex items-center justify-center py-20" data-testid="meetings-loading">
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </PortalLayout>
+    );
+  }
+
+  if (!engagementId && !engLoading) {
+    return (
+      <PortalLayout>
+        <div className="flex flex-col items-center justify-center py-20 text-center" data-testid="meetings-empty-state">
+          <CalendarIcon className="h-12 w-12 text-muted-foreground mb-4" />
+          <h2 className="text-xl font-bold text-primary mb-2">No Active Engagement</h2>
+          <p className="text-muted-foreground">Your consultant will set up your engagement shortly.</p>
         </div>
       </PortalLayout>
     );
@@ -86,6 +118,7 @@ export default function Meetings() {
             <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-meetings-title">Meeting Hub</h1>
             <p className="text-lg text-muted-foreground" data-testid="text-meetings-subtitle">Manage your schedule, access meeting links, and review past notes.</p>
           </div>
+          {isStaffOrAdmin && (
           <Dialog open={scheduleOpen} onOpenChange={setScheduleOpen}>
             <DialogTrigger asChild>
               <Button className="rounded-full bg-accent text-white hover:bg-primary font-bold uppercase tracking-wider text-xs px-6" data-testid="button-schedule-meeting">
@@ -117,8 +150,22 @@ export default function Meetings() {
                     <Input id="duration" data-testid="input-meeting-duration" value={formData.duration} onChange={(e) => setFormData({ ...formData, duration: e.target.value })} placeholder="1 hour" />
                   </div>
                   <div>
-                    <Label htmlFor="type">Type</Label>
-                    <Input id="type" data-testid="input-meeting-type" value={formData.meetingType} onChange={(e) => setFormData({ ...formData, meetingType: e.target.value })} placeholder="Zoom" />
+                    <Label htmlFor="platform">Platform</Label>
+                    <Select
+                      value={formData.platform}
+                      onValueChange={(value) => setFormData({ ...formData, platform: value, meetingType: platformLabelMap[value] || value })}
+                    >
+                      <SelectTrigger data-testid="select-meeting-platform">
+                        <SelectValue placeholder="Select platform" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {platformOptions.map((opt) => (
+                          <SelectItem key={opt.value} value={opt.value} data-testid={`option-platform-${opt.value}`}>
+                            {opt.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
                 <div>
@@ -136,6 +183,7 @@ export default function Meetings() {
               </div>
             </DialogContent>
           </Dialog>
+          )}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -163,6 +211,11 @@ export default function Meetings() {
                           <h4 className="text-lg font-bold text-primary" data-testid={`text-meeting-title-${meeting.id}`}>{meeting.title}</h4>
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                             <CalendarIcon size={14} /> {meeting.meetingDate} • {meeting.meetingTime}
+                            {meeting.platform && (
+                              <span className="ml-1 px-2 py-0.5 rounded-full bg-secondary text-xs font-semibold text-primary" data-testid={`badge-platform-${meeting.id}`}>
+                                {platformLabelMap[meeting.platform] || meeting.meetingType}
+                              </span>
+                            )}
                           </div>
                           {meeting.duration && (
                             <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">

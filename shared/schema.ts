@@ -93,6 +93,8 @@ export const engagements = pgTable("engagements", {
   completionPercent: integer("completion_percent").notNull().default(0),
   nextSession: text("next_session"),
   nextSessionDate: text("next_session_date"),
+  assignedStaffId: text("assigned_staff_id"),
+  clientUserId: text("client_user_id"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -130,6 +132,8 @@ export const documents = pgTable("documents", {
   fileType: text("file_type").notNull(),
   size: text("size").notNull(),
   version: text("version").notNull().default("v1.0"),
+  filePath: text("file_path"),
+  uploadedBy: text("uploaded_by"),
   uploadedAt: timestamp("uploaded_at").defaultNow(),
 });
 
@@ -167,7 +171,8 @@ export const meetings = pgTable("meetings", {
   meetingDate: text("meeting_date").notNull(),
   meetingTime: text("meeting_time").notNull(),
   duration: text("duration"),
-  meetingType: text("meeting_type").notNull().default("Zoom"),
+  meetingType: text("meeting_type").notNull().default("MS Teams"),
+  platform: text("platform").notNull().default("teams"),
   meetingLink: text("meeting_link"),
   notes: text("notes"),
   status: text("status").notNull().default("upcoming"),
@@ -186,7 +191,8 @@ export type Meeting = typeof meetings.$inferSelect;
 export const messages = pgTable("messages", {
   id: serial("id").primaryKey(),
   engagementId: integer("engagement_id").notNull(),
-  channel: text("channel").notNull().default("general"),
+  senderId: text("sender_id").notNull(),
+  recipientId: text("recipient_id").notNull(),
   senderName: text("sender_name").notNull(),
   senderRole: text("sender_role").notNull().default("client"),
   content: text("content").notNull(),
@@ -207,6 +213,8 @@ export const resources = pgTable("resources", {
   description: text("description"),
   resourceType: text("resource_type").notNull(),
   category: text("category").notNull(),
+  content: text("content"),
+  fileUrl: text("file_url"),
   accessUrl: text("access_url"),
   createdAt: timestamp("created_at").defaultNow(),
 });
@@ -226,8 +234,11 @@ export const invoices = pgTable("invoices", {
   issueDate: text("issue_date").notNull(),
   dueDate: text("due_date").notNull(),
   amount: text("amount").notNull(),
+  amountCents: integer("amount_cents").notNull().default(0),
   status: text("status").notNull().default("unpaid"),
   description: text("description"),
+  stripeSessionId: text("stripe_session_id"),
+  paidAt: timestamp("paid_at"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -245,6 +256,12 @@ export const contracts = pgTable("contracts", {
   title: text("title").notNull(),
   documentDate: text("document_date").notNull(),
   status: text("status").notNull().default("pending"),
+  terms: text("terms"),
+  documentUrl: text("document_url"),
+  signedByUserId: text("signed_by_user_id"),
+  signedByName: text("signed_by_name"),
+  signedAt: timestamp("signed_at"),
+  signatureData: text("signature_data"),
 });
 
 export const insertContractSchema = createInsertSchema(contracts).omit({

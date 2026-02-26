@@ -1,11 +1,15 @@
 import { PortalLayout } from "@/components/layout/PortalLayout";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import { Loader2, CheckCircle2, Clock, ShieldAlert, Users, Shield, UserCheck, UserX, ChevronDown } from "lucide-react";
+import { Loader2, CheckCircle2, Clock, ShieldAlert, Users, Shield, UserCheck, UserX, ChevronDown, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface AdminUser {
   id: string;
@@ -21,10 +25,39 @@ interface AdminUser {
 export default function AdminUsers() {
   const [filter, setFilter] = useState<"all" | "pending_approval" | "active" | "suspended">("all");
   const [roleDropdownId, setRoleDropdownId] = useState<string | null>(null);
+  const [createEngagementOpen, setCreateEngagementOpen] = useState(false);
+  const [engagementForm, setEngagementForm] = useState({
+    clientName: "",
+    engagementType: "",
+    startDate: "",
+    currentPhase: "",
+    clientUserId: "",
+    assignedStaffId: "",
+  });
   const { toast } = useToast();
 
   const { data: users, isLoading } = useQuery<AdminUser[]>({
     queryKey: ["/api/admin/users"],
+  });
+
+  const clientUsers = users?.filter(u => u.role === "client" && u.status === "active") || [];
+  const staffUsers = users?.filter(u => u.role === "staff" && u.status === "active") || [];
+
+  const engagementMutation = useMutation({
+    mutationFn: async (data: typeof engagementForm) => {
+      const res = await apiRequest("POST", "/api/portal/engagements", data);
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/portal/engagements"] });
+      toast({ title: "Engagement created successfully" });
+      setCreateEngagementOpen(false);
+      setEngagementForm({ clientName: "", engagementType: "", startDate: "", currentPhase: "", clientUserId: "", assignedStaffId: "" });
+    },
+    onError: (error: Error) => {
+      toast({ title: "Failed to create engagement", description: error.message, variant: "destructive" });
+    },
   });
 
   const statusMutation = useMutation({
@@ -68,9 +101,121 @@ export default function AdminUsers() {
   return (
     <PortalLayout>
       <div className="space-y-8">
-        <div>
-          <h1 data-testid="text-admin-users-title" className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2">User Management</h1>
-          <p className="text-lg text-muted-foreground">Manage user accounts, approve staff, and control access.</p>
+        <div className="flex items-start justify-between">
+          <div>
+            <h1 data-testid="text-admin-users-title" className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2">User Management</h1>
+            <p className="text-lg text-muted-foreground">Manage user accounts, approve staff, and control access.</p>
+          </div>
+          <Dialog open={createEngagementOpen} onOpenChange={setCreateEngagementOpen}>
+            <DialogTrigger asChild>
+              <Button data-testid="button-create-engagement" className="bg-accent hover:bg-accent/90 text-white rounded-xl">
+                <Plus size={16} className="mr-2" /> Create Engagement
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[500px]">
+              <DialogHeader>
+                <DialogTitle>Create New Engagement</DialogTitle>
+              </DialogHeader>
+              <form
+                data-testid="form-create-engagement"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  engagementMutation.mutate(engagementForm);
+                }}
+                className="space-y-4 mt-4"
+              >
+                <div className="space-y-2">
+                  <Label htmlFor="clientName">Client Name</Label>
+                  <Input
+                    id="clientName"
+                    data-testid="input-client-name"
+                    value={engagementForm.clientName}
+                    onChange={(e) => setEngagementForm(f => ({ ...f, clientName: e.target.value }))}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="engagementType">Engagement Type</Label>
+                  <Select
+                    value={engagementForm.engagementType}
+                    onValueChange={(val) => setEngagementForm(f => ({ ...f, engagementType: val }))}
+                  >
+                    <SelectTrigger data-testid="select-engagement-type">
+                      <SelectValue placeholder="Select type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Strategic">Strategic</SelectItem>
+                      <SelectItem value="Operational">Operational</SelectItem>
+                      <SelectItem value="Leadership">Leadership</SelectItem>
+                      <SelectItem value="Performance">Performance</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="startDate">Start Date</Label>
+                  <Input
+                    id="startDate"
+                    type="date"
+                    data-testid="input-start-date"
+                    value={engagementForm.startDate}
+                    onChange={(e) => setEngagementForm(f => ({ ...f, startDate: e.target.value }))}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="currentPhase">Current Phase</Label>
+                  <Input
+                    id="currentPhase"
+                    data-testid="input-current-phase"
+                    value={engagementForm.currentPhase}
+                    onChange={(e) => setEngagementForm(f => ({ ...f, currentPhase: e.target.value }))}
+                    placeholder="e.g. Discovery, Planning, Execution"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="clientUserId">Assign Client User</Label>
+                  <Select
+                    value={engagementForm.clientUserId}
+                    onValueChange={(val) => setEngagementForm(f => ({ ...f, clientUserId: val }))}
+                  >
+                    <SelectTrigger data-testid="select-client-user">
+                      <SelectValue placeholder="Select client user" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {clientUsers.map(u => (
+                        <SelectItem key={u.id} value={u.id}>{u.fullName} ({u.companyName})</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="assignedStaffId">Assign Staff</Label>
+                  <Select
+                    value={engagementForm.assignedStaffId}
+                    onValueChange={(val) => setEngagementForm(f => ({ ...f, assignedStaffId: val }))}
+                  >
+                    <SelectTrigger data-testid="select-staff-user">
+                      <SelectValue placeholder="Select staff member" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {staffUsers.map(u => (
+                        <SelectItem key={u.id} value={u.id}>{u.fullName}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <Button
+                  type="submit"
+                  data-testid="button-submit-engagement"
+                  disabled={engagementMutation.isPending}
+                  className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl"
+                >
+                  {engagementMutation.isPending ? <Loader2 className="animate-spin mr-2" size={16} /> : null}
+                  Create Engagement
+                </Button>
+              </form>
+            </DialogContent>
+          </Dialog>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

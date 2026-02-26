@@ -1,10 +1,11 @@
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { CheckCircle2, Circle, Clock, AlertCircle, Plus, Trash2, Loader2 } from "lucide-react";
+import { CheckCircle2, Circle, Clock, AlertCircle, Plus, Trash2, Loader2, ClipboardList } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/use-auth";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,8 @@ export default function Actions() {
   const { engagement, engagementId, isLoading: engLoading } = usePortalEngagement();
   const { data: actions, isLoading: actionsLoading } = usePortalData<ActionItem[]>("actions", engagementId);
   const { toast } = useToast();
+  const { user } = useAuth();
+  const canEdit = user?.role === 'staff' || user?.role === 'admin';
   const [dialogOpen, setDialogOpen] = useState(false);
   const [newTask, setNewTask] = useState("");
   const [newOwner, setNewOwner] = useState("");
@@ -108,6 +111,18 @@ export default function Actions() {
     );
   }
 
+  if (!engagement) {
+    return (
+      <PortalLayout>
+        <div className="flex flex-col items-center justify-center min-h-[400px] text-center" data-testid="empty-state-no-engagement">
+          <ClipboardList className="h-16 w-16 text-muted-foreground mb-4" />
+          <h2 className="text-xl font-bold text-primary mb-2">No Active Engagement</h2>
+          <p className="text-muted-foreground">Your consultant will set up your engagement shortly.</p>
+        </div>
+      </PortalLayout>
+    );
+  }
+
   return (
     <PortalLayout>
       <div className="space-y-8">
@@ -116,6 +131,7 @@ export default function Actions() {
             <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-page-title">Action Tracker</h1>
             <p className="text-lg text-muted-foreground" data-testid="text-page-description">Keep track of agreed action items, ownership, and deadlines.</p>
           </div>
+          {canEdit && (
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
               <Button data-testid="button-new-action" className="gap-2">
@@ -160,6 +176,7 @@ export default function Actions() {
               </div>
             </DialogContent>
           </Dialog>
+          )}
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -191,7 +208,7 @@ export default function Actions() {
                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Owner</th>
                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Due Date</th>
                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Priority</th>
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Actions</th>
+                  {canEdit && <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Actions</th>}
                 </tr>
               </thead>
               <tbody>
@@ -201,6 +218,7 @@ export default function Actions() {
                     return (
                       <tr key={action.id} className="border-b border-border hover:bg-secondary/20 transition-colors group" data-testid={`row-action-${action.id}`}>
                         <td className="py-4 px-6">
+                          {canEdit ? (
                           <button
                             onClick={() => handleStatusCycle(action)}
                             className="cursor-pointer hover:scale-110 transition-transform"
@@ -212,6 +230,14 @@ export default function Actions() {
                             {displayStatus === 'pending' && <Circle size={20} className="text-muted-foreground" />}
                             {displayStatus === 'overdue' && <AlertCircle size={20} className="text-red-500" />}
                           </button>
+                          ) : (
+                          <span data-testid={`status-icon-${action.id}`}>
+                            {displayStatus === 'completed' && <CheckCircle2 size={20} className="text-green-500" />}
+                            {displayStatus === 'in-progress' && <Clock size={20} className="text-accent" />}
+                            {displayStatus === 'pending' && <Circle size={20} className="text-muted-foreground" />}
+                            {displayStatus === 'overdue' && <AlertCircle size={20} className="text-red-500" />}
+                          </span>
+                          )}
                         </td>
                         <td className="py-4 px-6">
                           <span className={cn("font-bold text-sm", displayStatus === 'completed' ? "text-muted-foreground line-through" : "text-primary")} data-testid={`text-task-${action.id}`}>
@@ -241,6 +267,7 @@ export default function Actions() {
                             {action.priority}
                           </span>
                         </td>
+                        {canEdit && (
                         <td className="py-4 px-6">
                           <button
                             onClick={() => deleteMutation.mutate(action.id)}
@@ -251,13 +278,14 @@ export default function Actions() {
                             <Trash2 size={16} />
                           </button>
                         </td>
+                        )}
                       </tr>
                     );
                   })
                 ) : (
                   <tr>
-                    <td colSpan={6} className="py-12 text-center text-muted-foreground" data-testid="text-empty-actions">
-                      No action items yet. Click "New Action" to create one.
+                    <td colSpan={canEdit ? 6 : 5} className="py-12 text-center text-muted-foreground" data-testid="text-empty-actions">
+                      {canEdit ? 'No action items yet. Click "New Action" to create one.' : 'No action items yet.'}
                     </td>
                   </tr>
                 )}

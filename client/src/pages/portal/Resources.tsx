@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { BookOpen, PlayCircle, Download, ExternalLink, CheckSquare, Loader2, MessageSquare } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
+import { BookOpen, PlayCircle, Download, ExternalLink, CheckSquare, Loader2, MessageSquare, Plus } from "lucide-react";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/use-auth";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import type { Resource } from "@shared/schema";
 
 function getResourceIcon(resourceType: string) {
@@ -18,10 +24,41 @@ function getResourceIcon(resourceType: string) {
 
 export default function Resources() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
+  const [detailOpen, setDetailOpen] = useState(false);
+  const [createOpen, setCreateOpen] = useState(false);
   const { toast } = useToast();
+  const { user } = useAuth();
+
+  const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
 
   const { data: resources = [], isLoading } = useQuery<Resource[]>({
     queryKey: ["/api/portal/resources"],
+  });
+
+  const [createForm, setCreateForm] = useState({
+    title: "",
+    description: "",
+    content: "",
+    category: "",
+    resourceType: "",
+    fileUrl: "",
+  });
+
+  const createMutation = useMutation({
+    mutationFn: async (data: typeof createForm) => {
+      const res = await apiRequest("POST", "/api/portal/resources", data);
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/portal/resources"] });
+      toast({ title: "Resource created", description: "The resource has been added successfully." });
+      setCreateOpen(false);
+      setCreateForm({ title: "", description: "", content: "", category: "", resourceType: "", fileUrl: "" });
+    },
+    onError: (error: Error) => {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
+    },
   });
 
   const categories = ["All", ...Array.from(new Set(resources.map((r) => r.category)))];
@@ -40,9 +77,95 @@ export default function Resources() {
   return (
     <PortalLayout>
       <div className="space-y-8">
-        <div>
-          <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-resources-title">Resource Library</h1>
-          <p className="text-lg text-muted-foreground" data-testid="text-resources-description">Exclusive educational materials, templates, and guides to support your growth.</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-resources-title">Resource Library</h1>
+            <p className="text-lg text-muted-foreground" data-testid="text-resources-description">Exclusive educational materials, templates, and guides to support your growth.</p>
+          </div>
+          {isStaffOrAdmin && (
+            <Dialog open={createOpen} onOpenChange={setCreateOpen}>
+              <DialogTrigger asChild>
+                <Button data-testid="button-add-resource" className="gap-2">
+                  <Plus size={16} />
+                  Add Resource
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-lg">
+                <DialogHeader>
+                  <DialogTitle>Add Resource</DialogTitle>
+                </DialogHeader>
+                <form
+                  className="space-y-4 pt-4"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    createMutation.mutate(createForm);
+                  }}
+                >
+                  <div>
+                    <Label htmlFor="create-title">Title</Label>
+                    <Input
+                      id="create-title"
+                      data-testid="input-resource-title"
+                      value={createForm.title}
+                      onChange={(e) => setCreateForm((f) => ({ ...f, title: e.target.value }))}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="create-description">Description</Label>
+                    <Input
+                      id="create-description"
+                      data-testid="input-resource-description"
+                      value={createForm.description}
+                      onChange={(e) => setCreateForm((f) => ({ ...f, description: e.target.value }))}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="create-content">Content</Label>
+                    <Textarea
+                      id="create-content"
+                      data-testid="input-resource-content"
+                      value={createForm.content}
+                      onChange={(e) => setCreateForm((f) => ({ ...f, content: e.target.value }))}
+                      rows={5}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="create-category">Category</Label>
+                    <Input
+                      id="create-category"
+                      data-testid="input-resource-category"
+                      value={createForm.category}
+                      onChange={(e) => setCreateForm((f) => ({ ...f, category: e.target.value }))}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="create-type">Resource Type</Label>
+                    <Input
+                      id="create-type"
+                      data-testid="input-resource-type"
+                      value={createForm.resourceType}
+                      onChange={(e) => setCreateForm((f) => ({ ...f, resourceType: e.target.value }))}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="create-fileUrl">File URL (optional)</Label>
+                    <Input
+                      id="create-fileUrl"
+                      data-testid="input-resource-fileurl"
+                      value={createForm.fileUrl}
+                      onChange={(e) => setCreateForm((f) => ({ ...f, fileUrl: e.target.value }))}
+                    />
+                  </div>
+                  <Button type="submit" data-testid="button-submit-resource" disabled={createMutation.isPending} className="w-full">
+                    {createMutation.isPending ? "Creating..." : "Create Resource"}
+                  </Button>
+                </form>
+              </DialogContent>
+            </Dialog>
+          )}
         </div>
 
         <div className="flex flex-wrap gap-2" data-testid="filter-categories">
@@ -68,6 +191,10 @@ export default function Resources() {
               key={res.id}
               className="bg-white p-6 rounded-3xl border border-border shadow-sm hover:shadow-md transition-all group flex flex-col justify-between min-h-[200px] cursor-pointer"
               data-testid={`card-resource-${res.id}`}
+              onClick={() => {
+                setSelectedResource(res);
+                setDetailOpen(true);
+              }}
             >
               <div>
                 <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-4 border border-border">
@@ -97,6 +224,56 @@ export default function Resources() {
             </div>
           )}
         </div>
+
+        <Dialog open={detailOpen} onOpenChange={setDetailOpen}>
+          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+            {selectedResource && (
+              <>
+                <DialogHeader>
+                  <DialogTitle data-testid="text-detail-title">{selectedResource.title}</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 pt-4">
+                  {selectedResource.description && (
+                    <p className="text-muted-foreground" data-testid="text-detail-description">{selectedResource.description}</p>
+                  )}
+                  {selectedResource.content && (
+                    <div className="prose prose-sm max-w-none" data-testid="text-detail-content">
+                      {selectedResource.content.split("\n").map((paragraph, i) => (
+                        <p key={i}>{paragraph}</p>
+                      ))}
+                    </div>
+                  )}
+                  <div className="flex flex-wrap gap-2">
+                    <span className="inline-block bg-secondary text-muted-foreground text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-border">
+                      {selectedResource.resourceType}
+                    </span>
+                    <span className="inline-block bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-blue-200">
+                      {selectedResource.category}
+                    </span>
+                  </div>
+                  <div className="flex gap-3 pt-2">
+                    {selectedResource.fileUrl && (
+                      <Button asChild data-testid="button-download-resource">
+                        <a href={selectedResource.fileUrl} target="_blank" rel="noopener noreferrer" className="gap-2">
+                          <Download size={16} />
+                          Download
+                        </a>
+                      </Button>
+                    )}
+                    {selectedResource.accessUrl && (
+                      <Button variant="outline" asChild data-testid="button-access-resource">
+                        <a href={selectedResource.accessUrl} target="_blank" rel="noopener noreferrer" className="gap-2">
+                          <ExternalLink size={16} />
+                          Access
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
 
         <div className="bg-primary text-white p-10 rounded-3xl shadow-xl mt-12 text-center relative overflow-hidden">
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>

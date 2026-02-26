@@ -1,18 +1,70 @@
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { FileText, Download, FileSpreadsheet, FileIcon, FolderOpen, MoreVertical, Upload, Loader2 } from "lucide-react";
+import { FileText, Download, FileSpreadsheet, FileIcon, FolderOpen, Upload, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
 import { useToast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { queryClient } from "@/lib/queryClient";
 import type { Document } from "@shared/schema";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function Documents() {
   const { engagementId, isLoading: engLoading } = usePortalEngagement();
   const { data: documents, isLoading: docsLoading } = usePortalData<Document[]>("documents", engagementId);
   const { toast } = useToast();
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
+  const [uploadOpen, setUploadOpen] = useState(false);
+  const [folderName, setFolderName] = useState("General");
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isLoading = engLoading || docsLoading;
+
+  const uploadMutation = useMutation({
+    mutationFn: async (formData: FormData) => {
+      const res = await fetch("/api/portal/documents/upload", {
+        method: "POST",
+        body: formData,
+        credentials: "include",
+      });
+      if (!res.ok) {
+        const text = (await res.text()) || res.statusText;
+        throw new Error(`${res.status}: ${text}`);
+      }
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/documents`] });
+      toast({ title: "Document uploaded", description: "Your file has been uploaded successfully." });
+      setUploadOpen(false);
+      setFolderName("General");
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    },
+    onError: (error: Error) => {
+      toast({ title: "Upload failed", description: error.message, variant: "destructive" });
+    },
+  });
+
+  const handleUploadSubmit = () => {
+    const file = fileInputRef.current?.files?.[0];
+    if (!file) {
+      toast({ title: "No file selected", description: "Please select a file to upload.", variant: "destructive" });
+      return;
+    }
+    if (!engagementId) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("engagementId", String(engagementId));
+    formData.append("folder", folderName);
+    uploadMutation.mutate(formData);
+  };
+
+  const handleDownload = (doc: Document) => {
+    window.open(`/api/portal/documents/${doc.id}/download`, '_blank');
+  };
 
   const getIcon = (type: string) => {
     switch (type.toLowerCase()) {
@@ -25,20 +77,6 @@ export default function Documents() {
       case 'ppt': return <FileIcon className="text-orange-500" size={24} />;
       default: return <FileText className="text-gray-500" size={24} />;
     }
-  };
-
-  const handleDownload = () => {
-    toast({
-      title: "Demo document",
-      description: "Demo document - download not available",
-    });
-  };
-
-  const handleUpload = () => {
-    toast({
-      title: "Demo upload",
-      description: "Demo document - download not available",
-    });
   };
 
   const folders = documents
@@ -64,6 +102,22 @@ export default function Documents() {
     );
   }
 
+  if (!engagementId && !engLoading) {
+    return (
+      <PortalLayout>
+        <div className="flex items-center justify-center min-h-[400px]" data-testid="documents-empty-state">
+          <div className="text-center space-y-4">
+            <FileText className="h-12 w-12 text-muted-foreground mx-auto" />
+            <h2 className="text-xl font-bold text-primary" data-testid="text-no-engagement">No active engagement</h2>
+            <p className="text-muted-foreground" data-testid="text-no-engagement-desc">Your consultant will set up your engagement shortly.</p>
+          </div>
+        </div>
+      </PortalLayout>
+    );
+  }
+
+  const folderSuggestions = ["General", "Discovery Phase", "Strategic Engagement"];
+
   return (
     <PortalLayout>
       <div className="space-y-8">
@@ -74,13 +128,70 @@ export default function Documents() {
           </div>
           <Button
             className="rounded-full bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-xs px-6"
-            onClick={handleUpload}
+            onClick={() => setUploadOpen(true)}
             data-testid="button-upload-document"
           >
             <Upload className="mr-2 h-4 w-4" />
             Upload Document
           </Button>
         </div>
+
+        <Dialog open={uploadOpen} onOpenChange={setUploadOpen}>
+          <DialogContent data-testid="dialog-upload">
+            <DialogHeader>
+              <DialogTitle>Upload Document</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="file-input">File</Label>
+                <Input
+                  id="file-input"
+                  type="file"
+                  ref={fileInputRef}
+                  data-testid="input-file"
+                />
+              </div>
+              <div>
+                <Label htmlFor="folder-input">Folder</Label>
+                <Input
+                  id="folder-input"
+                  value={folderName}
+                  onChange={(e) => setFolderName(e.target.value)}
+                  placeholder="Enter folder name"
+                  data-testid="input-folder"
+                />
+                <div className="flex gap-2 mt-2 flex-wrap">
+                  {folderSuggestions.map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      className={`text-xs px-3 py-1 rounded-full border transition-colors ${folderName === s ? "bg-primary text-white border-primary" : "bg-secondary text-primary border-border hover:border-accent"}`}
+                      onClick={() => setFolderName(s)}
+                      data-testid={`button-folder-suggestion-${s.toLowerCase().replace(/\s+/g, '-')}`}
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <Button
+                onClick={handleUploadSubmit}
+                disabled={uploadMutation.isPending}
+                className="w-full"
+                data-testid="button-submit-upload"
+              >
+                {uploadMutation.isPending ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Uploading...
+                  </>
+                ) : (
+                  "Upload"
+                )}
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
 
         <div>
           <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">Folders</h3>
@@ -156,17 +267,10 @@ export default function Documents() {
                         <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                           <button
                             className="p-2 hover:bg-secondary rounded-lg text-primary hover:text-accent transition-colors"
-                            onClick={handleDownload}
+                            onClick={() => handleDownload(file)}
                             data-testid={`button-download-${file.id}`}
                           >
                             <Download size={18} />
-                          </button>
-                          <button
-                            className="p-2 hover:bg-secondary rounded-lg text-muted-foreground transition-colors"
-                            onClick={handleDownload}
-                            data-testid={`button-more-${file.id}`}
-                          >
-                            <MoreVertical size={18} />
                           </button>
                         </div>
                       </td>

@@ -17,7 +17,7 @@ import {
   meetings, messages, resources, invoices, contracts, performanceKpis
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc, asc, and } from "drizzle-orm";
+import { eq, desc, asc, and, or } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
@@ -33,6 +33,7 @@ export interface IStorage {
   createJobApplication(data: InsertJobApplication): Promise<JobApplication>;
 
   getEngagements(): Promise<Engagement[]>;
+  getEngagementsForUser(userId: string, role: string): Promise<Engagement[]>;
   getEngagement(id: number): Promise<Engagement | undefined>;
   createEngagement(data: InsertEngagement): Promise<Engagement>;
   updateEngagement(id: number, data: Partial<InsertEngagement>): Promise<Engagement>;
@@ -42,6 +43,7 @@ export interface IStorage {
   updateMilestone(id: number, data: Partial<InsertMilestone>): Promise<Milestone>;
 
   getDocuments(engagementId: number): Promise<Document[]>;
+  getDocument(id: number): Promise<Document | undefined>;
   createDocument(data: InsertDocument): Promise<Document>;
   deleteDocument(id: number): Promise<void>;
 
@@ -54,23 +56,27 @@ export interface IStorage {
   createMeeting(data: InsertMeeting): Promise<Meeting>;
   updateMeeting(id: number, data: Partial<InsertMeeting>): Promise<Meeting>;
 
-  getMessages(engagementId: number, channel?: string): Promise<Message[]>;
+  getMessages(engagementId: number, userId: string): Promise<Message[]>;
   createMessage(data: InsertMessage): Promise<Message>;
 
   getResources(): Promise<Resource[]>;
+  getResource(id: number): Promise<Resource | undefined>;
   createResource(data: InsertResource): Promise<Resource>;
 
   getInvoices(engagementId: number): Promise<Invoice[]>;
+  getInvoice(id: number): Promise<Invoice | undefined>;
   createInvoice(data: InsertInvoice): Promise<Invoice>;
   updateInvoice(id: number, data: Partial<InsertInvoice>): Promise<Invoice>;
 
   getContracts(engagementId: number): Promise<Contract[]>;
+  getContract(id: number): Promise<Contract | undefined>;
   createContract(data: InsertContract): Promise<Contract>;
   updateContract(id: number, data: Partial<InsertContract>): Promise<Contract>;
 
   getPerformanceKpis(engagementId: number): Promise<PerformanceKpi[]>;
   createPerformanceKpi(data: InsertPerformanceKpi): Promise<PerformanceKpi>;
   updatePerformanceKpi(id: number, data: Partial<InsertPerformanceKpi>): Promise<PerformanceKpi>;
+  deletePerformanceKpi(id: number): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -131,6 +137,16 @@ export class DatabaseStorage implements IStorage {
     return db.select().from(engagements).orderBy(desc(engagements.createdAt));
   }
 
+  async getEngagementsForUser(userId: string, role: string): Promise<Engagement[]> {
+    if (role === "admin") {
+      return db.select().from(engagements).orderBy(desc(engagements.createdAt));
+    }
+    if (role === "staff") {
+      return db.select().from(engagements).where(eq(engagements.assignedStaffId, userId)).orderBy(desc(engagements.createdAt));
+    }
+    return db.select().from(engagements).where(eq(engagements.clientUserId, userId)).orderBy(desc(engagements.createdAt));
+  }
+
   async getEngagement(id: number): Promise<Engagement | undefined> {
     const [engagement] = await db.select().from(engagements).where(eq(engagements.id, id));
     return engagement;
@@ -162,6 +178,11 @@ export class DatabaseStorage implements IStorage {
 
   async getDocuments(engagementId: number): Promise<Document[]> {
     return db.select().from(documents).where(eq(documents.engagementId, engagementId)).orderBy(desc(documents.uploadedAt));
+  }
+
+  async getDocument(id: number): Promise<Document | undefined> {
+    const [document] = await db.select().from(documents).where(eq(documents.id, id));
+    return document;
   }
 
   async createDocument(data: InsertDocument): Promise<Document> {
@@ -205,11 +226,13 @@ export class DatabaseStorage implements IStorage {
     return meeting;
   }
 
-  async getMessages(engagementId: number, channel?: string): Promise<Message[]> {
-    if (channel) {
-      return db.select().from(messages).where(and(eq(messages.engagementId, engagementId), eq(messages.channel, channel))).orderBy(asc(messages.sentAt));
-    }
-    return db.select().from(messages).where(eq(messages.engagementId, engagementId)).orderBy(asc(messages.sentAt));
+  async getMessages(engagementId: number, userId: string): Promise<Message[]> {
+    return db.select().from(messages).where(
+      and(
+        eq(messages.engagementId, engagementId),
+        or(eq(messages.senderId, userId), eq(messages.recipientId, userId))
+      )
+    ).orderBy(asc(messages.sentAt));
   }
 
   async createMessage(data: InsertMessage): Promise<Message> {
@@ -221,6 +244,11 @@ export class DatabaseStorage implements IStorage {
     return db.select().from(resources).orderBy(desc(resources.createdAt));
   }
 
+  async getResource(id: number): Promise<Resource | undefined> {
+    const [resource] = await db.select().from(resources).where(eq(resources.id, id));
+    return resource;
+  }
+
   async createResource(data: InsertResource): Promise<Resource> {
     const [resource] = await db.insert(resources).values(data).returning();
     return resource;
@@ -228,6 +256,11 @@ export class DatabaseStorage implements IStorage {
 
   async getInvoices(engagementId: number): Promise<Invoice[]> {
     return db.select().from(invoices).where(eq(invoices.engagementId, engagementId)).orderBy(desc(invoices.createdAt));
+  }
+
+  async getInvoice(id: number): Promise<Invoice | undefined> {
+    const [invoice] = await db.select().from(invoices).where(eq(invoices.id, id));
+    return invoice;
   }
 
   async createInvoice(data: InsertInvoice): Promise<Invoice> {
@@ -242,6 +275,11 @@ export class DatabaseStorage implements IStorage {
 
   async getContracts(engagementId: number): Promise<Contract[]> {
     return db.select().from(contracts).where(eq(contracts.engagementId, engagementId));
+  }
+
+  async getContract(id: number): Promise<Contract | undefined> {
+    const [contract] = await db.select().from(contracts).where(eq(contracts.id, id));
+    return contract;
   }
 
   async createContract(data: InsertContract): Promise<Contract> {
@@ -266,6 +304,10 @@ export class DatabaseStorage implements IStorage {
   async updatePerformanceKpi(id: number, data: Partial<InsertPerformanceKpi>): Promise<PerformanceKpi> {
     const [kpi] = await db.update(performanceKpis).set(data).where(eq(performanceKpis.id, id)).returning();
     return kpi;
+  }
+
+  async deletePerformanceKpi(id: number): Promise<void> {
+    await db.delete(performanceKpis).where(eq(performanceKpis.id, id));
   }
 }
 

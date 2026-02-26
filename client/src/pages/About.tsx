@@ -5,7 +5,6 @@ import founderImage from "@/assets/founder.png";
 import seanImage from "@/assets/ChatGPT_Image_Feb_20,_2026,_04_07_16_PM_1771621735605.png";
 import collaborationImg from "@assets/stock_images/collaboration.jpg";
 import trainingImg from "@assets/stock_images/training.jpg";
-import partnershipImg from "@assets/stock_images/partnership.jpg";
 import { useLanguage } from "@/hooks/use-language";
 import { Button } from "@/components/ui/button";
 
@@ -369,17 +368,8 @@ export default function About() {
 
         <section className="py-24 bg-[#F8FAFC] border-t border-border" data-testid="section-partnerships">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="relative order-2 lg:order-1">
-                <div className="absolute -top-4 -left-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
-                <img
-                  src={partnershipImg}
-                  alt="Performance Processes client partnership"
-                  className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[4/3]"
-                  data-testid="img-partnership"
-                />
-              </div>
-              <div className="order-1 lg:order-2">
+            <div className="max-w-4xl mx-auto">
+              <div>
                 <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
                   How We Work Together
                 </div>

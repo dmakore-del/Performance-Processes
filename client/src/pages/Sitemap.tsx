@@ -13,7 +13,6 @@ export default function Sitemap() {
     { label: "Our Approach", href: "/approach" },
     { label: "Contact", href: "/contact" },
     { label: "Careers", href: "/careers" },
-    { label: "Industry News", href: "/news" },
     { label: "Insights", href: "/insights" },
     { label: "Client Portal", href: "/portal" },
     { label: "Privacy & Terms", href: "/legal" },

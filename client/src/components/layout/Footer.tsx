@@ -64,7 +64,7 @@ export function Footer() {
               <li><Link href="/approach" className="hover:text-accent transition-colors cursor-pointer">{t("nav.approach")}</Link></li>
               <li><Link href="/contact" className="hover:text-accent transition-colors cursor-pointer">{t("nav.contact")}</Link></li>
               <li><Link href="/careers" className="hover:text-accent transition-colors cursor-pointer">Careers</Link></li>
-              <li><Link href="/news" className="hover:text-accent transition-colors cursor-pointer">Industry News</Link></li>
+              <li><Link href="/insights" className="hover:text-accent transition-colors cursor-pointer">Insights</Link></li>
               <li><Link href="/portal" className="hover:text-accent transition-colors cursor-pointer">Client Portal</Link></li>
             </ul>
           </div>

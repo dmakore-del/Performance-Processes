@@ -8,9 +8,10 @@ export const users = pgTable("users", {
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
   email: text("email").notNull().unique(),
-  companyName: text("company_name").notNull().unique(),
+  companyName: text("company_name").notNull(),
   fullName: text("full_name").notNull(),
   role: text("role").notNull().default("client"),
+  status: text("status").notNull().default("active"),
   twoFactorSecret: text("two_factor_secret"),
   twoFactorEnabled: boolean("two_factor_enabled").default(false),
   resetToken: text("reset_token"),
@@ -36,6 +37,7 @@ export const registerSchema = z.object({
   password: z.string().min(8),
   companyName: z.string().min(2),
   fullName: z.string().min(2),
+  accountType: z.enum(["client", "staff"]).default("client"),
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;

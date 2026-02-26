@@ -77,6 +77,10 @@ export async function setupAuth(app: Express) {
       const otp = await getOtpLib();
       const twoFactorSecret = otp.generateSecret();
 
+      const accountType = parsed.data.accountType || "client";
+      const role = accountType === "staff" ? "staff" : "client";
+      const status = accountType === "staff" ? "pending_approval" : "active";
+
       const user = await storage.createUser({
         username: email,
         email,
@@ -85,7 +89,14 @@ export async function setupAuth(app: Express) {
         fullName,
       });
 
-      await storage.updateUser(user.id, { twoFactorSecret });
+      await storage.updateUser(user.id, { twoFactorSecret, role, status });
+
+      if (status === "pending_approval") {
+        return res.status(201).json({
+          message: "Staff account created. Your account is pending admin approval.",
+          pendingApproval: true,
+        });
+      }
 
       req.session.userId = user.id;
 
@@ -126,6 +137,14 @@ export async function setupAuth(app: Express) {
       const isValidPassword = await bcrypt.compare(password, user.password);
       if (!isValidPassword) {
         return res.status(401).json({ message: "Invalid email or password" });
+      }
+
+      if (user.status === "pending_approval") {
+        return res.status(403).json({ message: "Your account is pending admin approval. You will be notified once approved." });
+      }
+
+      if (user.status === "suspended") {
+        return res.status(403).json({ message: "Your account has been suspended. Please contact support." });
       }
 
       if (user.twoFactorEnabled) {
@@ -293,6 +312,17 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
+export async function requireAdmin(req: Request, res: Response, next: NextFunction) {
+  if (!req.session.userId) {
+    return res.status(401).json({ message: "Authentication required" });
+  }
+  const user = await storage.getUser(req.session.userId);
+  if (!user || user.role !== "admin") {
+    return res.status(403).json({ message: "Admin access required" });
+  }
+  next();
+}
+
 function sanitizeUser(user: any) {
   return {
     id: user.id,
@@ -300,6 +330,7 @@ function sanitizeUser(user: any) {
     fullName: user.fullName,
     companyName: user.companyName,
     role: user.role,
+    status: user.status,
     twoFactorEnabled: user.twoFactorEnabled,
     createdAt: user.createdAt,
   };

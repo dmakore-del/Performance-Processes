@@ -31,6 +31,7 @@ import Performance from "./pages/portal/Performance";
 import Messages from "./pages/portal/Messages";
 import Resources from "./pages/portal/Resources";
 import Billing from "./pages/portal/Billing";
+import AdminUsers from "./pages/portal/AdminUsers";
 
 import { LanguageProvider } from "./hooks/use-language";
 import { Chatbot } from "./components/Chatbot";
@@ -92,6 +93,9 @@ function Router() {
       </Route>
       <Route path="/portal/billing">
         {() => <ProtectedRoute><Billing /></ProtectedRoute>}
+      </Route>
+      <Route path="/portal/admin/users">
+        {() => <ProtectedRoute><AdminUsers /></ProtectedRoute>}
       </Route>
 
       <Route component={NotFound} />

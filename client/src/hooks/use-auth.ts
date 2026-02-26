@@ -8,6 +8,7 @@ interface AuthUser {
   fullName: string;
   companyName: string;
   role: string;
+  status: string;
   twoFactorEnabled: boolean;
 }
 
@@ -41,12 +42,14 @@ export function useLogin() {
 
 export function useRegister() {
   return useMutation({
-    mutationFn: async (data: { email: string; password: string; companyName: string; fullName: string }) => {
+    mutationFn: async (data: { email: string; password: string; companyName: string; fullName: string; accountType?: string }) => {
       const res = await apiRequest("POST", "/api/auth/register", data);
       return res.json();
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/auth/me"] });
+    onSuccess: (data) => {
+      if (!data.pendingApproval) {
+        queryClient.invalidateQueries({ queryKey: ["/api/auth/me"] });
+      }
     },
   });
 }

@@ -1,50 +1,133 @@
+import { useState } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { BookOpen, PlayCircle, Download, ExternalLink } from "lucide-react";
+import { BookOpen, PlayCircle, Download, ExternalLink, CheckSquare, Loader2, MessageSquare } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import type { Resource } from "@shared/schema";
+
+function getResourceIcon(resourceType: string) {
+  const t = resourceType.toLowerCase();
+  if (t.includes("pdf") || t.includes("guide")) return <BookOpen size={24} className="text-blue-500" />;
+  if (t.includes("template")) return <Download size={24} className="text-green-500" />;
+  if (t.includes("toolkit")) return <ExternalLink size={24} className="text-purple-500" />;
+  if (t.includes("checklist")) return <CheckSquare size={24} className="text-orange-500" />;
+  if (t.includes("video")) return <PlayCircle size={24} className="text-red-500" />;
+  return <BookOpen size={24} className="text-blue-500" />;
+}
 
 export default function Resources() {
-  const resources = [
-    { title: "Leadership Communication Guide", type: "PDF Guide", icon: <BookOpen size={24} className="text-blue-500" /> },
-    { title: "Effective 1-on-1s Framework", type: "Template", icon: <Download size={24} className="text-green-500" /> },
-    { title: "Managing Change Resistance", type: "Video Masterclass", icon: <PlayCircle size={24} className="text-red-500" /> },
-    { title: "Annual Planning Checklist", type: "Checklist", icon: <BookOpen size={24} className="text-orange-500" /> },
-    { title: "Strategy Execution Toolkit", type: "Toolkit", icon: <ExternalLink size={24} className="text-purple-500" /> },
-    { title: "Navigating Difficult Conversations", type: "PDF Guide", icon: <BookOpen size={24} className="text-blue-500" /> },
-  ];
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const { toast } = useToast();
+
+  const { data: resources = [], isLoading } = useQuery<Resource[]>({
+    queryKey: ["/api/portal/resources"],
+  });
+
+  const categories = ["All", ...Array.from(new Set(resources.map((r) => r.category)))];
+  const filtered = selectedCategory === "All" ? resources : resources.filter((r) => r.category === selectedCategory);
+
+  if (isLoading) {
+    return (
+      <PortalLayout>
+        <div className="flex items-center justify-center min-h-[400px]" data-testid="loading-resources">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </PortalLayout>
+    );
+  }
 
   return (
     <PortalLayout>
       <div className="space-y-8">
         <div>
-          <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2">Resource Library</h1>
-          <p className="text-lg text-muted-foreground">Exclusive educational materials, templates, and guides to support your growth.</p>
+          <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-resources-title">Resource Library</h1>
+          <p className="text-lg text-muted-foreground" data-testid="text-resources-description">Exclusive educational materials, templates, and guides to support your growth.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {resources.map((res, i) => (
-            <div key={i} className="bg-white p-6 rounded-3xl border border-border shadow-sm hover:shadow-md transition-all group flex flex-col justify-between min-h-[200px] cursor-pointer">
+        <div className="flex flex-wrap gap-2" data-testid="filter-categories">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              data-testid={`filter-category-${cat.toLowerCase().replace(/\s+/g, "-")}`}
+              className={`px-4 py-2 rounded-full text-sm font-bold uppercase tracking-widest border transition-all ${
+                selectedCategory === cat
+                  ? "bg-primary text-white border-primary"
+                  : "bg-white text-muted-foreground border-border hover:border-primary hover:text-primary"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="resources-grid">
+          {filtered.map((res) => (
+            <div
+              key={res.id}
+              className="bg-white p-6 rounded-3xl border border-border shadow-sm hover:shadow-md transition-all group flex flex-col justify-between min-h-[200px] cursor-pointer"
+              data-testid={`card-resource-${res.id}`}
+            >
               <div>
                 <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-4 border border-border">
-                  {res.icon}
+                  {getResourceIcon(res.resourceType)}
                 </div>
-                <h3 className="font-bold text-primary text-lg leading-tight mb-2 group-hover:text-accent transition-colors">{res.title}</h3>
-                <span className="inline-block bg-secondary text-muted-foreground text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-border">
-                  {res.type}
-                </span>
+                <h3 className="font-bold text-primary text-lg leading-tight mb-2 group-hover:text-accent transition-colors" data-testid={`text-resource-title-${res.id}`}>{res.title}</h3>
+                {res.description && (
+                  <p className="text-sm text-muted-foreground mb-3" data-testid={`text-resource-description-${res.id}`}>{res.description}</p>
+                )}
+                <div className="flex flex-wrap gap-2">
+                  <span className="inline-block bg-secondary text-muted-foreground text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-border" data-testid={`badge-resource-type-${res.id}`}>
+                    {res.resourceType}
+                  </span>
+                  <span className="inline-block bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-blue-200" data-testid={`badge-resource-category-${res.id}`}>
+                    {res.category}
+                  </span>
+                </div>
               </div>
               <div className="mt-6 flex items-center text-xs font-bold uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
                 Access Resource
               </div>
             </div>
           ))}
+          {filtered.length === 0 && (
+            <div className="col-span-full text-center py-12 text-muted-foreground" data-testid="text-no-resources">
+              No resources found in this category.
+            </div>
+          )}
         </div>
 
         <div className="bg-primary text-white p-10 rounded-3xl shadow-xl mt-12 text-center relative overflow-hidden">
-           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
-           <h3 className="text-2xl font-bold mb-4 relative z-10">Looking for something specific?</h3>
-           <p className="text-primary-foreground/80 mb-6 relative z-10 max-w-xl mx-auto">Our consultants can curate specific resources or templates based on your current organizational challenges.</p>
-           <button className="relative z-10 bg-accent hover:bg-white hover:text-primary text-white font-bold uppercase tracking-widest text-sm px-8 py-4 rounded-full transition-all">
-             Request a Resource
-           </button>
+          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+          <h3 className="text-2xl font-bold mb-4 relative z-10">Looking for something specific?</h3>
+          <p className="text-primary-foreground/80 mb-6 relative z-10 max-w-xl mx-auto">Our consultants can curate specific resources or templates based on your current organizational challenges.</p>
+          <Dialog>
+            <DialogTrigger asChild>
+              <button
+                className="relative z-10 bg-accent hover:bg-white hover:text-primary text-white font-bold uppercase tracking-widest text-sm px-8 py-4 rounded-full transition-all"
+                data-testid="button-request-resource"
+              >
+                Request a Resource
+              </button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Request a Resource</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4 pt-4">
+                <p className="text-muted-foreground">To request a specific resource, please send a message to your consultant through the Messages page describing what you're looking for.</p>
+                <a
+                  href="/portal/messages"
+                  className="inline-flex items-center gap-2 bg-primary text-white font-bold uppercase tracking-widest text-sm px-6 py-3 rounded-full hover:bg-primary/90 transition-all"
+                  data-testid="link-go-to-messages"
+                >
+                  <MessageSquare size={16} />
+                  Go to Messages
+                </a>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </PortalLayout>

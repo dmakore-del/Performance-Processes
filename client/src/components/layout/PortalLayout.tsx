@@ -12,7 +12,8 @@ import {
   LogOut, 
   Menu, 
   X,
-  Bell
+  Bell,
+  Users
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -36,6 +37,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
     { label: "Messages", href: "/portal/messages", icon: <MessageSquare size={20} /> },
     { label: "Resource Library", href: "/portal/resources", icon: <BookOpen size={20} /> },
     { label: "Billing", href: "/portal/billing", icon: <CreditCard size={20} /> },
+    ...(user?.role === "admin" ? [{ label: "User Management", href: "/portal/admin/users", icon: <Users size={20} /> }] : []),
   ];
 
   const initials = user?.fullName
@@ -147,7 +149,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           <div>
             <h2 data-testid="text-portal-company" className="text-2xl font-heading font-extrabold text-primary">{user?.companyName || "Client"} Portal</h2>
             <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">
-              {user?.role === "admin" ? "Administrator" : "Client Engagement"}
+              {user?.role === "admin" ? "Administrator" : user?.role === "staff" ? "Staff Portal" : "Client Engagement"}
             </p>
           </div>
           <div className="flex items-center gap-4">

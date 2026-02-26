@@ -6,7 +6,16 @@ export async function seedAdminAccount() {
   
   const existing = await storage.getUserByEmail(adminEmail);
   if (existing) {
-    console.log("Admin account already exists");
+    if (existing.fullName !== "Danai Makore" || existing.role !== "admin" || existing.status !== "active") {
+      await storage.updateUser(existing.id, {
+        fullName: "Danai Makore",
+        role: "admin",
+        status: "active",
+      });
+      console.log("Admin account updated to Danai Makore");
+    } else {
+      console.log("Admin account already exists");
+    }
     return;
   }
 
@@ -20,17 +29,19 @@ export async function seedAdminAccount() {
     email: adminEmail,
     password: hashedPassword,
     companyName: "Performance Processes",
-    fullName: "Performance Processes Admin",
+    fullName: "Danai Makore",
   });
 
   await storage.updateUser(admin.id, {
     role: "admin",
+    status: "active",
     twoFactorSecret,
     twoFactorEnabled: false,
   });
 
   console.log("Admin account created successfully:");
   console.log(`  Email: ${adminEmail}`);
+  console.log(`  Name: Danai Makore`);
   console.log(`  2FA Secret: ${twoFactorSecret}`);
   console.log("  Please set up 2FA on first login.");
 }

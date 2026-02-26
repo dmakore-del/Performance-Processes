@@ -2,7 +2,7 @@
 
 ## Overview
 
-Performance Processes is a professional business consulting firm website built as a full-stack TypeScript application. The site helps organizations bridge the gap between vision and execution by offering strategic consulting services. It includes a public-facing marketing site (Home, About, Services, Approach, Contact, Careers, News, Insights, Legal, Accessibility, Sitemap) and a client portal with dashboard, roadmap, documents, meetings, action tracking, performance metrics, messaging, resources, and billing pages. The site supports English/French bilingual content. The firm was founded in 2026, so all content is authentic with no fabricated testimonials, fake case studies, or inflated statistics.
+Performance Processes is a professional business consulting firm website built as a full-stack TypeScript application. Founded in 2026 by Danai Makore (contact@performanceprocesses.com). The site helps organizations bridge the gap between vision and execution by offering strategic consulting services. It includes a public-facing marketing site (Home, About, Services, Approach, Contact, Careers, News, Insights, Legal, Accessibility, Sitemap) and a fully functional client portal with dashboard, roadmap, documents, meetings, action tracking, performance metrics, messaging, resources, billing, and admin user management. The site supports English/French bilingual content. All content is authentic with no fabricated testimonials, fake case studies, or inflated statistics.
 
 ## User Preferences
 
@@ -31,38 +31,66 @@ Preferred communication style: Simple, everyday language.
   - `POST /api/checkout` — creates Stripe checkout session (auto-detects one-time vs subscription)
   - `POST /api/stripe/webhook` — Stripe webhook (registered before express.json() for raw body)
   - `GET /api/news` — fetches live business news from Google News RSS feed (rss-parser)
-  - `POST /api/sponsor-checkout` — creates Stripe checkout for pro-bono sponsorship tiers (supporter $150, champion $500, catalyst $1,500)
+  - `POST /api/sponsor-checkout` — creates Stripe checkout for pro-bono sponsorship tiers
   - `POST /api/test-receipt` — dev-only: sends a test receipt email
+  - Auth routes: `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/auth/me`, `POST /api/auth/2fa/*`
+  - Portal routes (behind `requireAuth`): GET/POST/PATCH/DELETE for engagements, milestones, documents, actions, meetings, messages, kpis, invoices, contracts, resources
+  - Admin routes (behind `requireAdmin`): GET/PATCH for user management
 - **Build**: Custom build script (`script/build.ts`) using esbuild for the server and Vite for the client. Production output goes to `dist/` with server as `dist/index.cjs` and client assets in `dist/public/`
 - **Dev Server**: Vite dev server is integrated as middleware in Express during development (`server/vite.ts`), with HMR support. Production serves static files from `dist/public/`
+
+### Authentication & Authorization
+- **Auth System**: Passport.js with local strategy, bcryptjs for password hashing
+- **Sessions**: express-session with connect-pg-simple for PostgreSQL session storage. `user_sessions` table created programmatically in `setupAuth`
+- **2FA**: TOTP-based two-factor authentication using `otplib` (dynamic import). QR code generation via `qrcode` library
+- **Account Types**: Three roles — `client` (default, active on registration), `staff` (pending_approval on registration, requires admin approval), `admin` (seeded)
+- **Account Status**: `active`, `pending_approval`, `suspended`. Login blocked for non-active accounts
+- **Admin Seed**: Danai Makore (contact@performanceprocesses.com, PPAdmin2026!) seeded on startup via `server/seedAdmin.ts`
+- **Middleware**: `requireAuth` for all portal routes, `requireAdmin` for admin-only routes
 
 ### Data Storage
 - **Database**: PostgreSQL via `DATABASE_URL` environment variable
 - **ORM**: Drizzle ORM with `drizzle-zod` for schema-to-validation integration
 - **Schema**: Defined in `shared/schema.ts` (shared between client and server):
-  - `users` table: `id` (UUID, auto-generated), `username`, `password`
-  - `contact_submissions` table: `id` (serial), `name`, `email`, `message`, `read` (boolean), `created_at` (timestamp)
+  - `users` table: id (UUID), email, fullName, companyName, password, role, status, twoFactorSecret, twoFactorEnabled, createdAt
+  - `user_sessions` table: created programmatically for connect-pg-simple
+  - `contact_submissions` table: id (serial), name, email, message, read, created_at
+  - Portal tables: engagements, milestones, documents, action_items, meetings, messages, performance_kpis, invoices, contracts, resources
+  - Stripe tables: stripe_products, stripe_prices, stripe_customers, stripe_subscriptions, stripe_payment_intents
 - **Migrations**: Managed via `drizzle-kit push` (schema push approach, not migration files)
-- **Storage Layer**: `server/storage.ts` implements `IStorage` interface with `DatabaseStorage` class. This pattern allows swapping implementations if needed
+- **Storage Layer**: `server/storage.ts` implements `IStorage` interface with `DatabaseStorage` class
+
+### Portal Pages
+All portal pages use live API data via custom hooks:
+- **Dashboard** (`/portal`): Engagement overview with stats
+- **Roadmap** (`/portal/roadmap`): Milestones grouped by phase with progress tracking
+- **Documents** (`/portal/documents`): Files grouped by folder with type icons
+- **Actions** (`/portal/actions`): CRUD action tracker with status cycling, priority badges
+- **Meetings** (`/portal/meetings`): Upcoming/completed meetings with scheduling dialog
+- **Messages** (`/portal/messages`): Channel-based messaging with send functionality
+- **Performance** (`/portal/performance`): KPI dashboard with visual charts
+- **Resources** (`/portal/resources`): Resource library with category filtering
+- **Billing** (`/portal/billing`): Invoices and contracts with status tracking
+- **Admin Users** (`/portal/admin/users`): User management (admin-only) with approve/suspend/role changes
 
 ### Key Design Decisions
-1. **Shared schema directory** (`shared/`): The Drizzle schema and Zod validation schemas are shared between frontend and backend, ensuring type safety across the stack
-2. **No authentication yet**: The `users` table exists in the schema but no auth routes or middleware are implemented. The portal pages exist as routes but lack access control
-3. **Single-page app with server-side fallback**: All unmatched routes fall through to `index.html` for client-side routing
-4. **Video backgrounds**: Hero sections use a background video (`/assets/videos/hero-bg.mp4`) with gradient overlays
+1. **Shared schema directory** (`shared/`): Drizzle schema and Zod validation schemas are shared between frontend and backend
+2. **Role-based access control**: Three tiers (client, staff, admin) with middleware enforcement
+3. **Staff approval workflow**: Staff accounts require admin approval before access
+4. **Single-page app with server-side fallback**: All unmatched routes fall through to `index.html`
+5. **Video backgrounds**: Hero sections use a background video with gradient overlays
+6. **Portal data hooks**: `usePortalEngagement()` and `usePortalData()` in `client/src/hooks/use-portal.ts` for consistent data fetching
 
 ## External Dependencies
 
-- **PostgreSQL**: Required database, connected via `DATABASE_URL` environment variable. Uses `pg` (node-postgres) driver with `connect-pg-simple` for potential session storage
-- **Microsoft Outlook Bookings**: External link for consultation scheduling (hardcoded URL to Outlook booking page)
-- **Google Fonts**: Inter and Montserrat/Plus Jakarta Sans loaded via CDN
-- **Replit-specific plugins**: 
-  - `@replit/vite-plugin-runtime-error-modal` — runtime error overlay in development
-  - `@replit/vite-plugin-cartographer` and `@replit/vite-plugin-dev-banner` — development tools (conditionally loaded)
-  - Custom `vite-plugin-meta-images` — updates OpenGraph meta tags with correct deployment URL
-- **Stripe**: Payment processing via Replit Stripe connector. Products/prices synced to local DB via `stripe-replit-sync`. Supports one-time payments and monthly subscriptions
-- **Email (SMTP)**: Nodemailer with SMTP credentials (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM_EMAIL) for sending PDF receipt emails on successful payment. Uses Microsoft 365/Outlook SMTP
-- **PDF Generation**: PDFKit for generating branded receipt PDFs with company logo (`client/src/assets/logo.png`)
-- **Receipt System**: On successful Stripe checkout (via webhook), generates a branded PDF receipt and emails it to the customer. Includes idempotency guard to prevent duplicate receipts on webhook retries. Test endpoint available in dev mode only (`POST /api/test-receipt`)
-- **Services**: Outcome-based pricing framework with 6 service categories: Discovery Phase ($750–$1,500, mandatory first step), Strategic Engagement ($5,000–$15,000, 6–12 weeks), Systems & Implementation ($8,000–$25,000), Executive Advisory Retainer ($2,500–$7,500/month, 3-month minimum), Business Registration ($3,500–$8,500), and Website Building (from $1,200). Each has 2–5 pricing tiers with Stripe checkout integration
-- **FAQ Chatbot**: Client-side keyword-matching chatbot (`client/src/components/Chatbot.tsx`) rendered globally via App.tsx. 20+ FAQ entries covering services, pricing, business registration, and contact info. Falls back to email link for unmatched queries
+- **PostgreSQL**: Required database, connected via `DATABASE_URL`. Uses `pg` driver with `connect-pg-simple` for session storage
+- **Passport.js**: Authentication with local strategy
+- **bcryptjs**: Password hashing
+- **otplib**: TOTP 2FA (dynamic import required)
+- **qrcode**: QR code generation for 2FA setup
+- **Microsoft Outlook Bookings**: External link for consultation scheduling
+- **Google Fonts**: Inter and Plus Jakarta Sans loaded via CDN
+- **Stripe**: Payment processing via Replit Stripe connector with receipt emails
+- **Email (SMTP)**: Nodemailer with Microsoft 365/Outlook SMTP for receipt emails
+- **PDFKit**: Branded receipt PDF generation
+- **FAQ Chatbot**: Client-side keyword-matching chatbot rendered globally

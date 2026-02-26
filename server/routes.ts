@@ -8,7 +8,7 @@ import fs from "fs";
 import { getUncachableStripeClient, getStripePublishableKey } from "./stripeClient";
 import { db } from "./db";
 import { sql } from "drizzle-orm";
-import { requireAuth } from "./auth";
+import { requireAuth, requireAdmin } from "./auth";
 
 const uploadsDir = path.join(process.cwd(), "uploads", "resumes");
 if (!fs.existsSync(uploadsDir)) {
@@ -309,6 +309,53 @@ export async function registerRoutes(
     } catch (error: any) {
       console.error("Test receipt error:", error);
       return res.status(500).json({ message: "Failed to send test receipt", error: error.message });
+    }
+  });
+
+  // ==================== ADMIN API ROUTES ====================
+  app.get("/api/admin/users", requireAdmin, async (_req, res) => {
+    try {
+      const allUsers = await storage.getAllUsers();
+      const sanitized = allUsers.map(u => ({
+        id: u.id,
+        email: u.email,
+        fullName: u.fullName,
+        companyName: u.companyName,
+        role: u.role,
+        status: u.status,
+        twoFactorEnabled: u.twoFactorEnabled,
+        createdAt: u.createdAt,
+      }));
+      res.json(sanitized);
+    } catch (error) {
+      console.error("Admin users error:", error);
+      res.status(500).json({ message: "Failed to fetch users" });
+    }
+  });
+
+  app.patch("/api/admin/users/:id/status", requireAdmin, async (req, res) => {
+    try {
+      const { status } = req.body;
+      if (!["active", "pending_approval", "suspended"].includes(status)) {
+        return res.status(400).json({ message: "Invalid status" });
+      }
+      const user = await storage.updateUser(req.params.id, { status });
+      res.json({ id: user.id, status: user.status, fullName: user.fullName });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to update user status" });
+    }
+  });
+
+  app.patch("/api/admin/users/:id/role", requireAdmin, async (req, res) => {
+    try {
+      const { role } = req.body;
+      if (!["client", "staff", "admin"].includes(role)) {
+        return res.status(400).json({ message: "Invalid role" });
+      }
+      const user = await storage.updateUser(req.params.id, { role });
+      res.json({ id: user.id, role: user.role, fullName: user.fullName });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to update user role" });
     }
   });
 

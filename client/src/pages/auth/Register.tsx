@@ -4,7 +4,7 @@ import { useRegister, useVerify2FA } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff, ShieldCheck, Loader2, ArrowLeft, Building2, CheckCircle2 } from "lucide-react";
+import { Eye, EyeOff, ShieldCheck, Loader2, ArrowLeft, Building2, CheckCircle2, Users, Briefcase } from "lucide-react";
 import logoImg from "@/assets/logo.png";
 
 export default function Register() {
@@ -14,8 +14,10 @@ export default function Register() {
   const [companyName, setCompanyName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [accountType, setAccountType] = useState<"client" | "staff">("client");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [pendingApproval, setPendingApproval] = useState(false);
   const [twoFactorSetup, setTwoFactorSetup] = useState<{ secret: string; otpauthUrl: string } | null>(null);
   const [twoFactorCode, setTwoFactorCode] = useState("");
 
@@ -37,7 +39,11 @@ export default function Register() {
     }
 
     try {
-      const result = await registerMutation.mutateAsync({ email, password, companyName, fullName });
+      const result = await registerMutation.mutateAsync({ email, password, companyName, fullName, accountType } as any);
+      if (result.pendingApproval) {
+        setPendingApproval(true);
+        return;
+      }
       if (result.twoFactorSetup) {
         setTwoFactorSetup(result.twoFactorSetup);
       }
@@ -68,6 +74,39 @@ export default function Register() {
       }
     }
   };
+
+  if (pendingApproval) {
+    return (
+      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-4">
+        <div className="w-full max-w-md text-center">
+          <Link href="/">
+            <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-6 cursor-pointer" />
+          </Link>
+          <div className="bg-white rounded-3xl border border-border shadow-sm p-8">
+            <div className="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-orange-200">
+              <Users size={32} className="text-orange-500" />
+            </div>
+            <h1 data-testid="text-pending-title" className="text-2xl font-heading font-extrabold text-primary mb-3">Account Created</h1>
+            <p className="text-muted-foreground mb-4">
+              Your staff account has been created and is pending administrator approval. 
+              You will receive access once approved.
+            </p>
+            <div className="bg-blue-50 p-4 rounded-xl border border-blue-200 text-left">
+              <p className="text-xs text-blue-700">
+                <span className="font-bold block mb-1">What happens next?</span>
+                An administrator will review and approve your account. This typically happens within 1 business day.
+              </p>
+            </div>
+          </div>
+          <div className="mt-6">
+            <Link href="/portal/login">
+              <span className="text-sm font-bold text-accent hover:text-primary cursor-pointer">Go to Login</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (twoFactorSetup) {
     return (
@@ -153,11 +192,45 @@ export default function Register() {
             <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-4 cursor-pointer" />
           </Link>
           <h1 className="text-3xl font-heading font-extrabold text-primary">Create Account</h1>
-          <p className="text-muted-foreground mt-2">Register your organization for the client portal</p>
+          <p className="text-muted-foreground mt-2">Register for the Performance Processes portal</p>
         </div>
 
         <div className="bg-white rounded-3xl border border-border shadow-sm p-8">
           <form onSubmit={handleRegister} className="space-y-4">
+            <div>
+              <Label className="text-sm font-bold text-primary mb-3 block">Account Type</Label>
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  data-testid="button-type-client"
+                  onClick={() => setAccountType("client")}
+                  className={`p-4 rounded-xl border-2 text-left transition-all ${
+                    accountType === "client"
+                      ? "border-accent bg-accent/5"
+                      : "border-border hover:border-muted-foreground/30"
+                  }`}
+                >
+                  <Briefcase size={20} className={accountType === "client" ? "text-accent mb-2" : "text-muted-foreground mb-2"} />
+                  <p className="font-bold text-sm text-primary">Client</p>
+                  <p className="text-[10px] text-muted-foreground mt-1">Organization seeking consulting services</p>
+                </button>
+                <button
+                  type="button"
+                  data-testid="button-type-staff"
+                  onClick={() => setAccountType("staff")}
+                  className={`p-4 rounded-xl border-2 text-left transition-all ${
+                    accountType === "staff"
+                      ? "border-accent bg-accent/5"
+                      : "border-border hover:border-muted-foreground/30"
+                  }`}
+                >
+                  <Users size={20} className={accountType === "staff" ? "text-accent mb-2" : "text-muted-foreground mb-2"} />
+                  <p className="font-bold text-sm text-primary">Staff</p>
+                  <p className="text-[10px] text-muted-foreground mt-1">Team member (requires admin approval)</p>
+                </button>
+              </div>
+            </div>
+
             <div>
               <Label htmlFor="fullName" className="text-sm font-bold text-primary mb-2 block">Full Name</Label>
               <Input
@@ -189,7 +262,7 @@ export default function Register() {
             <div>
               <Label htmlFor="companyName" className="text-sm font-bold text-primary mb-2 block">
                 <span className="flex items-center gap-2">
-                  <Building2 size={14} /> Organization Name
+                  <Building2 size={14} /> {accountType === "staff" ? "Department / Team" : "Organization Name"}
                 </span>
               </Label>
               <Input
@@ -198,11 +271,10 @@ export default function Register() {
                 data-testid="input-register-company"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
-                placeholder="Acme Corp"
+                placeholder={accountType === "staff" ? "e.g. Consulting Team" : "Acme Corp"}
                 required
                 className="rounded-xl h-12"
               />
-              <p className="text-xs text-muted-foreground mt-1">One account per organization</p>
             </div>
 
             <div>
@@ -249,10 +321,17 @@ export default function Register() {
               </div>
             )}
 
-            <div className="bg-blue-50 p-3 rounded-xl border border-blue-200 flex items-start gap-3">
-              <ShieldCheck size={18} className="text-blue-600 mt-0.5 flex-shrink-0" />
-              <p className="text-xs text-blue-700">Two-factor authentication will be set up after registration for enhanced security.</p>
-            </div>
+            {accountType === "staff" ? (
+              <div className="bg-orange-50 p-3 rounded-xl border border-orange-200 flex items-start gap-3">
+                <Users size={18} className="text-orange-600 mt-0.5 flex-shrink-0" />
+                <p className="text-xs text-orange-700">Staff accounts require administrator approval before access is granted.</p>
+              </div>
+            ) : (
+              <div className="bg-blue-50 p-3 rounded-xl border border-blue-200 flex items-start gap-3">
+                <ShieldCheck size={18} className="text-blue-600 mt-0.5 flex-shrink-0" />
+                <p className="text-xs text-blue-700">Two-factor authentication will be set up after registration for enhanced security.</p>
+              </div>
+            )}
 
             <Button
               type="submit"
@@ -261,7 +340,7 @@ export default function Register() {
               className="w-full h-12 rounded-xl bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-sm"
             >
               {registerMutation.isPending ? <Loader2 className="animate-spin mr-2" size={18} /> : null}
-              Create Account
+              {accountType === "staff" ? "Request Staff Access" : "Create Account"}
             </Button>
           </form>
         </div>

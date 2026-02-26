@@ -103,7 +103,7 @@ export async function registerRoutes(
     }
   });
 
-  // Stripe: List products with prices (DB first, Stripe API fallback)
+  // Stripe: List products with prices (DB + Stripe API merge)
   app.get("/api/products", async (_req, res) => {
     try {
       const result = await db.execute(
@@ -123,16 +123,15 @@ export async function registerRoutes(
         `
       );
 
-      if (result.rows.length > 0) {
-        return res.json({ data: result.rows });
-      }
+      const dbData: any[] = result.rows || [];
+      const dbProductNames = new Set(dbData.map((r: any) => r.product_name));
 
-      console.log("No products in synced DB, falling back to Stripe API...");
       const stripe = await getUncachableStripeClient();
       const products = await stripe.products.list({ active: true, limit: 100 });
       const prices = await stripe.prices.list({ active: true, limit: 100 });
 
-      const data = products.data.flatMap((product) => {
+      const apiData = products.data.flatMap((product) => {
+        if (dbProductNames.has(product.name)) return [];
         const productPrices = prices.data.filter((p) => p.product === product.id);
         return productPrices.map((price) => ({
           product_id: product.id,
@@ -145,7 +144,11 @@ export async function registerRoutes(
         }));
       });
 
-      data.sort((a, b) => (a.unit_amount || 0) - (b.unit_amount || 0));
+      if (apiData.length > 0) {
+        console.log(`Supplemented ${apiData.length} product(s) from Stripe API not yet in synced DB`);
+      }
+
+      const data = [...dbData, ...apiData].sort((a: any, b: any) => (a.unit_amount || 0) - (b.unit_amount || 0));
       res.json({ data });
     } catch (error) {
       console.error("Error listing products:", error);

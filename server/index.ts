@@ -10,6 +10,7 @@ import { setupAuth } from "./auth";
 import { seedAdminAccount } from "./seedAdmin";
 
 const app = express();
+app.set("trust proxy", 1);
 const httpServer = createServer(app);
 
 declare module "http" {
@@ -90,7 +91,7 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 
-setupAuth(app);
+await setupAuth(app);
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {

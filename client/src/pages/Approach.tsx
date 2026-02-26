@@ -54,10 +54,10 @@ export default function Approach() {
         : "Nous commençons par comprendre vos défis uniques et par auditer vos systèmes de performance actuels pour identifier les lacunes.",
       duration: "2–4 weeks",
       details: [
-        "Every successful engagement begins with a deep understanding of where your organization stands today. Our Discovery & Assessment phase goes far beyond surface-level analysis — we immerse ourselves in your organizational culture, strategic objectives, operational processes, and leadership dynamics to build a comprehensive picture of your current state.",
+        "Every successful engagement begins with a deep understanding of where your organization stands today. Our Discovery & Assessment phase goes far beyond surface-level analysis, we immerse ourselves in your organizational culture, strategic objectives, operational processes, and leadership dynamics to build a comprehensive picture of your current state.",
         "During this phase, we conduct extensive stakeholder interviews across all levels of the organization, from senior leadership to front-line teams. These conversations reveal not only the formal structures and processes in place but also the informal dynamics, unspoken challenges, and latent opportunities that data alone cannot capture.",
         "We also perform a thorough audit of your existing performance management systems, governance frameworks, and strategic planning processes. This includes reviewing documentation, analyzing performance data, benchmarking against industry standards, and identifying both systemic gaps and quick-win opportunities.",
-        "The output of this phase is a detailed Assessment Report that provides a clear, honest picture of your organization's strengths, weaknesses, and priority areas for improvement — serving as the foundation for everything that follows.",
+        "The output of this phase is a detailed Assessment Report that provides a clear, honest picture of your organization's strengths, weaknesses, and priority areas for improvement, serving as the foundation for everything that follows.",
       ],
       activities: [
         "Stakeholder interviews and focus groups",
@@ -83,9 +83,9 @@ export default function Approach() {
         : "Nous travaillons avec votre équipe de direction pour clarifier l'orientation stratégique et veiller à ce qu'elle soit communiquée efficacement dans toute l'organisation.",
       duration: "3–6 weeks",
       details: [
-        "With a clear picture of your current state, we move into Strategic Alignment — the most critical phase for setting the trajectory of your transformation. This is where vision meets actionable planning, and where leadership teams come together around a unified strategic direction.",
+        "With a clear picture of your current state, we move into Strategic Alignment, the most critical phase for setting the trajectory of your transformation. This is where vision meets actionable planning, and where leadership teams come together around a unified strategic direction.",
         "We facilitate structured strategic planning workshops with your leadership team, using proven frameworks to clarify your mission, refine your vision, and define measurable strategic objectives. These sessions are designed to surface diverse perspectives, build consensus, and create genuine buy-in from the people who will drive change.",
-        "A key part of this phase is developing your Strategic Communication Plan — ensuring that your refined strategic direction doesn't stay confined to the boardroom. We help you cascade strategy throughout the organization so that every team and individual understands how their work connects to broader organizational goals.",
+        "A key part of this phase is developing your Strategic Communication Plan, ensuring that your refined strategic direction doesn't stay confined to the boardroom. We help you cascade strategy throughout the organization so that every team and individual understands how their work connects to broader organizational goals.",
         "We also work with you to design your performance measurement framework during this phase, identifying the Key Performance Indicators (KPIs) that will track progress and ensure accountability at every level of the organization.",
       ],
       activities: [
@@ -144,7 +144,7 @@ export default function Approach() {
         "Sustainable performance improvement requires ongoing attention and refinement. Our Monitoring & Optimization phase ensures that the changes implemented in previous phases take root, deliver measurable results, and continue to evolve as your organization grows.",
         "We establish robust performance monitoring systems that give you real-time visibility into how your organization is performing against its strategic objectives. This includes setting up dashboards, reporting cadences, and feedback mechanisms that keep leadership informed and enable data-driven decision-making.",
         "Regular review sessions are a cornerstone of this phase. We work with your team to analyze performance data, celebrate successes, diagnose underperformance, and identify emerging opportunities. These sessions foster a culture of continuous improvement and ensure that strategic plans remain dynamic and responsive to changing conditions.",
-        "As your organization matures in its performance practices, we help you move from reactive problem-solving to proactive optimization. This includes advanced techniques like predictive analytics, scenario planning, and capability forecasting — ensuring your organization is always prepared for what's next.",
+        "As your organization matures in its performance practices, we help you move from reactive problem-solving to proactive optimization. This includes advanced techniques like predictive analytics, scenario planning, and capability forecasting, ensuring your organization is always prepared for what's next.",
       ],
       activities: [
         "Performance dashboard setup and configuration",
@@ -213,7 +213,7 @@ export default function Approach() {
     },
     {
       question: "What size of organization do you work with?",
-      answer: "We work with organizations of all sizes, from growing startups with 20+ employees to large enterprises and government agencies with thousands of staff. Our methodology is scalable and adaptable — the core principles remain the same, but we customize our approach, tools, and level of engagement to match your organization's size, complexity, and maturity.",
+      answer: "We work with organizations of all sizes, from growing startups with 20+ employees to large enterprises and government agencies with thousands of staff. Our methodology is scalable and adaptable, the core principles remain the same, but we customize our approach, tools, and level of engagement to match your organization's size, complexity, and maturity.",
     },
     {
       question: "How do you measure the ROI of your consulting services?",
@@ -221,11 +221,11 @@ export default function Approach() {
     },
     {
       question: "What makes your approach different from other consulting firms?",
-      answer: "Three things set us apart: First, we don't just deliver recommendations — we stay to implement them alongside your team. Second, our focus on building internal capability means your organization becomes self-sufficient, not dependent on consultants. Third, our methodology is grounded in real-world experience across multiple sectors, not academic theory alone. We measure our success by your results, not by the volume of our deliverables.",
+      answer: "Three things set us apart: First, we don't just deliver recommendations, we stay to implement them alongside your team. Second, our focus on building internal capability means your organization becomes self-sufficient, not dependent on consultants. Third, our methodology is grounded in real-world experience across multiple sectors, not academic theory alone. We measure our success by your results, not by the volume of our deliverables.",
     },
     {
       question: "Do you offer virtual or remote engagements?",
-      answer: "Yes. While we believe in the value of in-person collaboration for key workshops and planning sessions, much of our work can be conducted effectively through virtual channels. We offer fully remote, hybrid, and on-site engagement models. Many clients find that a hybrid approach — with in-person sessions for strategic milestones and virtual check-ins for ongoing support — delivers the best results.",
+      answer: "Yes. While we believe in the value of in-person collaboration for key workshops and planning sessions, much of our work can be conducted effectively through virtual channels. We offer fully remote, hybrid, and on-site engagement models. Many clients find that a hybrid approach, with in-person sessions for strategic milestones and virtual check-ins for ongoing support, delivers the best results.",
     },
     {
       question: "What happens after the engagement ends?",
@@ -262,10 +262,10 @@ export default function Approach() {
                   Built on Experience, Driven by Results
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Our approach to performance consulting isn't based on textbook theory — it's forged from years of hands-on experience working with organizations across the public, private, and nonprofit sectors. We've seen what works, what doesn't, and what makes the difference between a strategy that sits on a shelf and one that transforms an organization.
+                  Our approach to performance consulting isn't based on textbook theory, it's forged from years of hands-on experience working with organizations across the public, private, and nonprofit sectors. We've seen what works, what doesn't, and what makes the difference between a strategy that sits on a shelf and one that transforms an organization.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  At the heart of our methodology is a simple belief: <strong className="text-primary">sustainable improvement comes from building internal capability, not creating dependency on external consultants.</strong> Every tool we introduce, every process we design, and every skill we teach is intended to strengthen your organization's ability to perform at its best — long after our engagement ends.
+                  At the heart of our methodology is a simple belief: <strong className="text-primary">sustainable improvement comes from building internal capability, not creating dependency on external consultants.</strong> Every tool we introduce, every process we design, and every skill we teach is intended to strengthen your organization's ability to perform at its best, long after our engagement ends.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Our four-phase approach provides a clear, structured path from assessment to optimization, while remaining flexible enough to adapt to the unique needs, pace, and culture of your organization.
@@ -471,7 +471,7 @@ export default function Approach() {
                   Ready to Begin Your Transformation?
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Every high-performing organization started with a single decision — the decision to invest in their people, processes, and performance. Whether you're looking to refine your strategic direction, strengthen your leadership team, or build a culture of accountability and results, we're here to help.
+                  Every high-performing organization started with a single decision, the decision to invest in their people, processes, and performance. Whether you're looking to refine your strategic direction, strengthen your leadership team, or build a culture of accountability and results, we're here to help.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                   Book a complimentary discovery call to discuss your organization's challenges and explore how our methodology can deliver measurable, sustainable results.

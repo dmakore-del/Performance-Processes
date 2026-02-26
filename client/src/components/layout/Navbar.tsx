@@ -16,6 +16,7 @@ export function Navbar() {
     { label: t("nav.services"), href: "/services" },
     { label: t("nav.about"), href: "/about" },
     { label: t("nav.approach"), href: "/approach" },
+    { label: "News", href: "/news" },
   ];
 
   return (
@@ -45,24 +46,20 @@ export function Navbar() {
       </div>
 
       <div className="container mx-auto px-4 md:px-8 flex h-20 lg:h-24 items-center justify-between">
-        <Link href="/">
-          <a className="flex items-center" data-testid="link-logo">
+        <Link href="/" className="flex items-center" data-testid="link-logo">
             <img src={logoImg} alt="Performance Processes" className="h-14 lg:h-16 w-auto" />
-          </a>
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-2">
           {navLinks.map((link) => (
-            <Link key={link.label} href={link.href}>
-              <a
+            <Link key={link.label} href={link.href}
                 className={cn(
                   "text-[14px] font-bold text-primary hover:text-accent transition-all px-4 py-2 rounded-full",
                   location === link.href ? "bg-secondary text-accent" : "hover:bg-secondary"
                 )}
               >
                 {link.label}
-              </a>
             </Link>
           ))}
         </nav>
@@ -104,8 +101,7 @@ export function Navbar() {
           </div>
           <div className="flex flex-col p-8 gap-6 overflow-y-auto pb-24">
             {navLinks.map((link) => (
-              <Link key={link.label} href={link.href}>
-                <a
+              <Link key={link.label} href={link.href}
                   className={cn(
                     "text-xl font-bold py-4 border-b border-border flex justify-between items-center",
                     location === link.href ? "text-accent border-accent" : "text-primary"
@@ -114,13 +110,10 @@ export function Navbar() {
                 >
                   {link.label}
                   <ChevronDown size={24} className="-rotate-90" />
-                </a>
               </Link>
             ))}
             
-            {/* Added for Mobile */}
-            <Link href="/portal">
-              <a
+            <Link href="/portal"
                 className={cn(
                   "text-xl font-bold py-4 border-b border-border flex justify-between items-center",
                   location === "/portal" ? "text-accent border-accent" : "text-primary"
@@ -129,10 +122,8 @@ export function Navbar() {
               >
                 Client Portal
                 <ChevronDown size={24} className="-rotate-90" />
-              </a>
             </Link>
-            <Link href="/careers">
-              <a
+            <Link href="/careers"
                 className={cn(
                   "text-xl font-bold py-4 border-b border-border flex justify-between items-center",
                   location === "/careers" ? "text-accent border-accent" : "text-primary"
@@ -141,7 +132,6 @@ export function Navbar() {
               >
                 Careers
                 <ChevronDown size={24} className="-rotate-90" />
-              </a>
             </Link>
             <div className="flex gap-4 pt-4 border-b border-border pb-4">
               <button onClick={() => {setLanguage("en"); setIsMobileMenuOpen(false);}} className={cn("font-bold", language === "en" ? "text-accent underline" : "text-primary")}>EN</button>

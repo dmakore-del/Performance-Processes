@@ -96,13 +96,13 @@ export default function Careers() {
                   Build Your Career With <span className="text-accent italic">Purpose</span>
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  At Performance Processes, we believe that exceptional consulting starts with exceptional people. We're not just building a team — we're cultivating a community of driven professionals who share a passion for helping organizations unlock their full potential.
+                  At Performance Processes, we believe that exceptional consulting starts with exceptional people. We're not just building a team, we're cultivating a community of driven professionals who share a passion for helping organizations unlock their full potential.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Our culture is built on trust, autonomy, and a relentless focus on results. We empower our team members to take ownership, think strategically, and deliver transformative outcomes for our clients. Every engagement is an opportunity to make a real difference.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Whether you're an experienced consultant or a rising professional looking to break into the advisory space, Performance Processes offers a platform where your skills, ambition, and network can translate into meaningful impact — and meaningful income.
+                  Whether you're an experienced consultant or a rising professional looking to break into the advisory space, Performance Processes offers a platform where your skills, ambition, and network can translate into meaningful impact, and meaningful income.
                 </p>
               </div>
               <div className="rounded-2xl overflow-hidden shadow-xl">
@@ -166,7 +166,7 @@ export default function Careers() {
                   From day one, you'll have the tools and support you need to succeed. Our onboarding process ensures you understand our service offerings, methodology, and client engagement approach so you can hit the ground running with confidence.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Growth is not just encouraged — it's built into everything we do. As Performance Processes expands, so do the opportunities for our team members to take on greater responsibilities, develop new capabilities, and shape the direction of the firm.
+                  Growth is not just encouraged, it's built into everything we do. As Performance Processes expands, so do the opportunities for our team members to take on greater responsibilities, develop new capabilities, and shape the direction of the firm.
                 </p>
               </div>
             </div>
@@ -183,7 +183,7 @@ export default function Careers() {
               We believe that when our people succeed, our clients succeed. That's why we're committed to providing every team member with the support, autonomy, and resources they need to thrive.
             </p>
             <p className="text-lg text-white/60 leading-relaxed">
-              At Performance Processes, you're not just joining a firm — you're joining a mission to help organizations reach their full potential.
+              At Performance Processes, you're not just joining a firm, you're joining a mission to help organizations reach their full potential.
             </p>
           </div>
         </section>
@@ -341,15 +341,15 @@ export default function Careers() {
               </h3>
               <ul className="space-y-3">
                 {(language === "en" ? [
-                  "Application Review — We carefully review every submission received",
-                  "Initial Screening — Qualified candidates are contacted for a brief introductory conversation",
-                  "Interview — Selected candidates participate in a focused interview with our team",
-                  "Decision & Offer — Successful candidates receive a formal offer outlining terms and next steps"
+                  "Application Review, We carefully review every submission received",
+                  "Initial Screening, Qualified candidates are contacted for a brief introductory conversation",
+                  "Interview, Selected candidates participate in a focused interview with our team",
+                  "Decision & Offer, Successful candidates receive a formal offer outlining terms and next steps"
                 ] : [
-                  "Examen des candidatures — Nous examinons attentivement chaque soumission reçue",
-                  "Présélection — Les candidats qualifiés sont contactés pour une brève conversation d'introduction",
-                  "Entrevue — Les candidats sélectionnés participent à une entrevue ciblée avec notre équipe",
-                  "Décision et offre — Les candidats retenus reçoivent une offre formelle décrivant les conditions et les prochaines étapes"
+                  "Examen des candidatures, Nous examinons attentivement chaque soumission reçue",
+                  "Présélection, Les candidats qualifiés sont contactés pour une brève conversation d'introduction",
+                  "Entrevue, Les candidats sélectionnés participent à une entrevue ciblée avec notre équipe",
+                  "Décision et offre, Les candidats retenus reçoivent une offre formelle décrivant les conditions et les prochaines étapes"
                 ]).map((item, i) => (
                   <li key={i} className="flex items-start gap-3" data-testid={`text-hiring-step-${i}`}>
                     <div className="w-7 h-7 rounded-full bg-accent/10 text-accent flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold">

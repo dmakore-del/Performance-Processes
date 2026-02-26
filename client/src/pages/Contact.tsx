@@ -47,7 +47,7 @@ const faqItems = [
   },
   {
     question: "What information should I prepare before reaching out?",
-    answer: "It's helpful to have a general idea of your organizational challenges, goals, and timeline. However, you don't need to have everything figured out — that's what we're here for. A brief description of your situation is a great starting point.",
+    answer: "It's helpful to have a general idea of your organizational challenges, goals, and timeline. However, you don't need to have everything figured out, that's what we're here for. A brief description of your situation is a great starting point.",
   },
   {
     question: "Do you work with organizations outside of Toronto?",
@@ -226,7 +226,7 @@ export default function Contact() {
                   <div className="p-6 bg-white">
                     <h4 className="font-bold text-primary text-lg mb-2">Based in Toronto, Serving Globally</h4>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      Our headquarters is located in the heart of Toronto, Ontario — Canada's business capital. We serve clients across Canada and internationally through both in-person and virtual engagements.
+                      Our headquarters is located in the heart of Toronto, Ontario, Canada's business capital. We serve clients across Canada and internationally through both in-person and virtual engagements.
                     </p>
                   </div>
                 </div>

@@ -13,6 +13,8 @@ import Legal from "./pages/Legal";
 import Sitemap from "./pages/Sitemap";
 import Accessibility from "./pages/Accessibility";
 import Careers from "./pages/Careers";
+import News from "./pages/News";
+import Insights from "./pages/Insights";
 
 import Dashboard from "./pages/portal/Dashboard";
 import Roadmap from "./pages/portal/Roadmap";
@@ -39,6 +41,8 @@ function Router() {
       <Route path="/sitemap" component={Sitemap} />
       <Route path="/accessibility" component={Accessibility} />
       <Route path="/careers" component={Careers} />
+      <Route path="/news" component={News} />
+      <Route path="/insights" component={Insights} />
       
       {/* Portal Routes */}
       <Route path="/portal" component={Dashboard} />

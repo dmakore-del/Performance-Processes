@@ -15,25 +15,25 @@ export default function About() {
 
   const timelineItems = [
     { year: "2026", title: "Performance Processes Founded", description: "Danai Makore launches Performance Processes with a vision to help organizations align strategy with measurable performance.", icon: <Rocket className="text-accent" size={20} /> },
-    { year: "2026", title: "First Client Engagement", description: "Completed our inaugural strategic planning and performance management engagement, delivering measurable results from day one.", icon: <Target className="text-accent" size={20} /> },
-    { year: "2026", title: "Team Expansion", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory.", icon: <Users className="text-accent" size={20} /> },
-    { year: "2026", title: "Service Portfolio Growth", description: "Expanded service offerings to include comprehensive governance advisory, leadership development, and digital transformation consulting.", icon: <Building className="text-accent" size={20} /> },
-    { year: "2026", title: "Multi-Industry Reach", description: "Serving clients across government, nonprofit, healthcare, financial services, and technology sectors with tailored solutions.", icon: <Globe className="text-accent" size={20} /> },
-    { year: "Future", title: "Scaling Impact", description: "Continuing to grow our reach, deepen our expertise, and help more organizations achieve sustainable excellence.", icon: <Milestone className="text-accent" size={20} /> },
+    { year: "2026", title: "Core Team Assembled", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory to strengthen the leadership team.", icon: <Users className="text-accent" size={20} /> },
+    { year: "2026", title: "Service Portfolio Launch", description: "Launching a comprehensive suite of consulting services spanning strategic planning, performance management, governance advisory, and digital transformation.", icon: <Building className="text-accent" size={20} /> },
+    { year: "2026–2027", title: "Building Multi-Industry Expertise", description: "Targeting engagements across government, nonprofit, healthcare, financial services, and technology sectors with tailored, sector-specific solutions.", icon: <Globe className="text-accent" size={20} /> },
+    { year: "2027", title: "National Expansion", description: "Growing our footprint beyond Toronto to serve organizations across Canada, expanding our network of consultants and deepening our regional expertise.", icon: <Target className="text-accent" size={20} /> },
+    { year: "2028+", title: "Scaling Impact", description: "Establishing Performance Processes as a leading Canadian consultancy, expanding into international markets, and building a platform for knowledge-sharing and thought leadership.", icon: <Milestone className="text-accent" size={20} /> },
   ];
 
   const values = [
     { icon: <Shield className="text-accent" size={28} />, title: "Integrity", description: "We operate with unwavering honesty and transparency. Every recommendation we make is grounded in what's truly best for our clients, not what's easiest or most profitable. Our reputation is built on trust, and we protect it fiercely." },
-    { icon: <Star className="text-accent" size={28} />, title: "Excellence", description: "We pursue the highest standards in everything we do — from the quality of our research and analysis to the clarity of our deliverables. Mediocrity is never an option when organizations depend on our guidance for critical decisions." },
+    { icon: <Star className="text-accent" size={28} />, title: "Excellence", description: "We pursue the highest standards in everything we do, from the quality of our research and analysis to the clarity of our deliverables. Mediocrity is never an option when organizations depend on our guidance for critical decisions." },
     { icon: <Handshake className="text-accent" size={28} />, title: "Collaboration", description: "We believe the best solutions emerge from partnership. We work alongside our clients, not above them, combining our expertise with their deep organizational knowledge to create strategies that truly fit." },
     { icon: <Lightbulb className="text-accent" size={28} />, title: "Innovation", description: "We continuously evolve our methodologies and embrace new frameworks, technologies, and approaches. The business landscape changes rapidly, and our clients deserve advisors who stay ahead of the curve." },
-    { icon: <TrendingUp className="text-accent" size={28} />, title: "Impact", description: "Every engagement must produce measurable, meaningful results. We don't measure success by hours billed — we measure it by the tangible improvements our clients experience in their operations, culture, and bottom line." },
+    { icon: <TrendingUp className="text-accent" size={28} />, title: "Impact", description: "Every engagement must produce measurable, meaningful results. We don't measure success by hours billed, we measure it by the tangible improvements our clients experience in their operations, culture, and bottom line." },
     { icon: <Award className="text-accent" size={28} />, title: "Accountability", description: "We hold ourselves to the same high standards we help our clients achieve. We set clear expectations, track our commitments, and take responsibility for the outcomes of our work." },
   ];
 
   const competitiveAdvantages = [
     { title: "People-Centered Approach", description: "We prioritize the human element in every engagement, understanding that sustainable change requires buy-in, trust, and genuine connection." },
-    { title: "Measurable Outcomes", description: "Every project includes clear KPIs and success metrics. We don't leave results to chance — we track, measure, and report on impact." },
+    { title: "Measurable Outcomes", description: "Every project includes clear KPIs and success metrics. We don't leave results to chance, we track, measure, and report on impact." },
     { title: "Cross-Industry Expertise", description: "Our team brings diverse experience across sectors, allowing us to apply proven best practices and innovative solutions from multiple industries." },
     { title: "End-to-End Partnership", description: "From initial discovery through implementation and beyond, we stay engaged to ensure strategies translate into real-world performance improvements." },
     { title: "Tailored Solutions", description: "No cookie-cutter frameworks. Every engagement is custom-designed to address your organization's specific challenges, culture, and goals." },
@@ -288,7 +288,7 @@ export default function About() {
                     With a strong background in relationship development and strategic advisory, Sean specializes in identifying opportunities to help businesses streamline operations, strengthen accountability, and improve performance outcomes. He works closely with executive teams to understand their challenges, align solutions with business objectives, and ensure engagements deliver measurable impact.
                   </p>
                   <p>
-                    Sean is known for his consultative approach — prioritizing trust, clarity, and long-term value over transactional growth. His ability to connect strategic vision with practical execution makes him a key driver of Performance Processes' expanding client relationships and market presence.
+                    Sean is known for his consultative approach, prioritizing trust, clarity, and long-term value over transactional growth. His ability to connect strategic vision with practical execution makes him a key driver of Performance Processes' expanding client relationships and market presence.
                   </p>
                   <p className="font-medium text-primary italic border-l-4 border-accent pl-6 py-2 bg-[#F8FAFC]">
                     Passionate about helping organizations unlock their full potential, Sean is committed to fostering partnerships that create sustainable improvement and long-term success.
@@ -338,18 +338,45 @@ export default function About() {
                     Our mentorship programs connect aspiring consultants and young professionals with experienced leaders, providing career guidance, skill development, and real-world project exposure. We believe in investing in the next generation of strategic thinkers and change-makers.
                   </p>
                 </div>
-                <div className="mt-8 grid grid-cols-3 gap-4">
-                  <div className="bg-[#F8FAFC] p-4 rounded-xl border border-border text-center" data-testid="community-stat-probono">
-                    <Heart className="text-accent mx-auto mb-2" size={24} />
-                    <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Pro-Bono Work</div>
-                  </div>
-                  <div className="bg-[#F8FAFC] p-4 rounded-xl border border-border text-center" data-testid="community-stat-mentorship">
-                    <GraduationCap className="text-accent mx-auto mb-2" size={24} />
-                    <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Mentorship</div>
-                  </div>
-                  <div className="bg-[#F8FAFC] p-4 rounded-xl border border-border text-center" data-testid="community-stat-education">
-                    <BookOpen className="text-accent mx-auto mb-2" size={24} />
-                    <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Education</div>
+                <div className="mt-8">
+                  <h3 className="text-lg font-bold text-primary mb-4">Sponsor Pro-Bono Consulting</h3>
+                  <p className="text-sm text-muted-foreground mb-6">
+                    Your sponsorship directly funds consulting engagements for nonprofits and social enterprises that lack the resources for professional strategic guidance.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {[
+                      { tier: "supporter", name: "Supporter", price: "$150", desc: "1 hour of pro-bono consulting" },
+                      { tier: "champion", name: "Champion", price: "$500", desc: "Half-day engagement" },
+                      { tier: "catalyst", name: "Catalyst", price: "$1,500", desc: "Full consulting project" },
+                    ].map((t) => (
+                      <button
+                        key={t.tier}
+                        onClick={async () => {
+                          try {
+                            const res = await fetch("/api/sponsor-checkout", {
+                              method: "POST",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify({ tier: t.tier }),
+                            });
+                            const data = await res.json();
+                            if (data.url) {
+                              window.location.href = data.url;
+                            } else {
+                              alert("Unable to start checkout. Please try again later.");
+                            }
+                          } catch (err) {
+                            console.error("Sponsor checkout error:", err);
+                            alert("Something went wrong. Please try again later.");
+                          }
+                        }}
+                        className="bg-white p-5 rounded-xl border-2 border-border hover:border-accent hover:shadow-lg transition-all text-center group cursor-pointer"
+                        data-testid={`button-sponsor-${t.tier}`}
+                      >
+                        <div className="text-2xl font-black text-primary group-hover:text-accent transition-colors mb-1">{t.price}</div>
+                        <div className="text-sm font-bold text-primary mb-1">{t.name}</div>
+                        <div className="text-xs text-muted-foreground">{t.desc}</div>
+                      </button>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -378,7 +405,7 @@ export default function About() {
                 </h2>
                 <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                   <p>
-                    We don't believe in one-size-fits-all consulting. Every client relationship begins with deep listening and understanding — because meaningful change starts with trust and mutual respect.
+                    We don't believe in one-size-fits-all consulting. Every client relationship begins with deep listening and understanding, because meaningful change starts with trust and mutual respect.
                   </p>
                   <p>
                     Our partnership model is built on three pillars: transparency, co-creation, and accountability. We share our thinking openly, develop strategies collaboratively with your team, and hold ourselves responsible for delivering results that matter to your organization.
@@ -387,7 +414,7 @@ export default function About() {
                     From the first discovery conversation to final implementation, we embed ourselves within your team as a trusted extension of your leadership. We celebrate your wins, navigate challenges alongside you, and ensure that the strategies we develop together become part of your organization's DNA.
                   </p>
                   <p className="font-medium text-primary italic">
-                    Our goal isn't just to deliver a project — it's to build a lasting relationship that drives continuous improvement and enduring success.
+                    Our goal isn't just to deliver a project, it's to build a lasting relationship that drives continuous improvement and enduring success.
                   </p>
                 </div>
                 <div className="mt-8 flex flex-wrap gap-4">

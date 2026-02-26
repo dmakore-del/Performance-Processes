@@ -29,10 +29,8 @@ export function Footer() {
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16 mb-20">
           <div className="flex flex-col gap-6">
-            <Link href="/">
-              <a className="flex items-center" data-testid="link-logo">
+            <Link href="/" className="flex items-center" data-testid="link-logo">
                 <img src={logoImg} alt="Performance Processes" className="h-14 w-auto" />
-              </a>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               {t("footer.description")}
@@ -46,21 +44,22 @@ export function Footer() {
           <div className="flex flex-col gap-8">
             <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{t("footer.expertise")}</h3>
             <ul className="flex flex-col gap-4 text-sm font-medium text-muted-foreground">
-              <li><Link href="/services"><a className="hover:text-accent transition-colors">Strategic Planning</a></Link></li>
-              <li><Link href="/services"><a className="hover:text-accent transition-colors">Business Assessment</a></Link></li>
-              <li><Link href="/services"><a className="hover:text-accent transition-colors">Leadership Training</a></Link></li>
-              <li><Link href="/services"><a className="hover:text-accent transition-colors">Operational Efficiency</a></Link></li>
+              <li><Link href="/services" className="hover:text-accent transition-colors">Strategic Planning</Link></li>
+              <li><Link href="/services" className="hover:text-accent transition-colors">Business Assessment</Link></li>
+              <li><Link href="/services" className="hover:text-accent transition-colors">Leadership Training</Link></li>
+              <li><Link href="/services" className="hover:text-accent transition-colors">Operational Efficiency</Link></li>
             </ul>
           </div>
 
           <div className="flex flex-col gap-8">
             <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{t("footer.quickLinks")}</h3>
             <ul className="flex flex-col gap-4 text-sm font-medium text-muted-foreground">
-              <li><Link href="/about"><span className="hover:text-accent transition-colors cursor-pointer">{t("nav.about")}</span></Link></li>
-              <li><Link href="/approach"><span className="hover:text-accent transition-colors cursor-pointer">{t("nav.approach")}</span></Link></li>
-              <li><Link href="/contact"><span className="hover:text-accent transition-colors cursor-pointer">{t("nav.contact")}</span></Link></li>
-              <li><Link href="/careers"><span className="hover:text-accent transition-colors cursor-pointer">Careers</span></Link></li>
-              <li><Link href="/portal"><span className="hover:text-accent transition-colors cursor-pointer">Client Portal</span></Link></li>
+              <li><Link href="/about" className="hover:text-accent transition-colors cursor-pointer">{t("nav.about")}</Link></li>
+              <li><Link href="/approach" className="hover:text-accent transition-colors cursor-pointer">{t("nav.approach")}</Link></li>
+              <li><Link href="/contact" className="hover:text-accent transition-colors cursor-pointer">{t("nav.contact")}</Link></li>
+              <li><Link href="/careers" className="hover:text-accent transition-colors cursor-pointer">Careers</Link></li>
+              <li><Link href="/news" className="hover:text-accent transition-colors cursor-pointer">Industry News</Link></li>
+              <li><Link href="/portal" className="hover:text-accent transition-colors cursor-pointer">Client Portal</Link></li>
             </ul>
           </div>
 
@@ -77,9 +76,9 @@ export function Footer() {
         <div className="pt-8 border-t border-border flex flex-col lg:flex-row justify-between items-center gap-8 text-[11px] font-bold text-muted-foreground uppercase tracking-widest text-center lg:text-left">
           <p>© {new Date().getFullYear()} {t("footer.rights")}</p>
           <div className="flex flex-wrap gap-x-8 gap-y-4 justify-center">
-            <Link href="/legal"><a className="hover:text-accent transition-colors">{t("footer.privacy")}</a></Link>
-            <Link href="/sitemap"><a className="hover:text-accent transition-colors">{t("footer.sitemap")}</a></Link>
-            <Link href="/accessibility"><a className="hover:text-accent transition-colors">{t("footer.accessibility")}</a></Link>
+            <Link href="/legal" className="hover:text-accent transition-colors">{t("footer.privacy")}</Link>
+            <Link href="/sitemap" className="hover:text-accent transition-colors">{t("footer.sitemap")}</Link>
+            <Link href="/accessibility" className="hover:text-accent transition-colors">{t("footer.accessibility")}</Link>
           </div>
         </div>
       </div>

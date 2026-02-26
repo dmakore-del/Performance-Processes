@@ -2,7 +2,7 @@
 
 ## Overview
 
-Performance Processes is a professional business consulting firm website built as a full-stack TypeScript application. The site helps organizations bridge the gap between vision and execution by offering strategic consulting services. It includes a public-facing marketing site (Home, About, Services, Approach, Contact, Careers, Legal, Accessibility, Sitemap) and a client portal with dashboard, roadmap, documents, meetings, action tracking, performance metrics, messaging, resources, and billing pages. The site supports English/French bilingual content.
+Performance Processes is a professional business consulting firm website built as a full-stack TypeScript application. The site helps organizations bridge the gap between vision and execution by offering strategic consulting services. It includes a public-facing marketing site (Home, About, Services, Approach, Contact, Careers, News, Insights, Legal, Accessibility, Sitemap) and a client portal with dashboard, roadmap, documents, meetings, action tracking, performance metrics, messaging, resources, and billing pages. The site supports English/French bilingual content. The firm was founded in 2026, so all content is authentic with no fabricated testimonials, fake case studies, or inflated statistics.
 
 ## User Preferences
 
@@ -30,6 +30,8 @@ Preferred communication style: Simple, everyday language.
   - `GET /api/products` — lists active Stripe products with prices
   - `POST /api/checkout` — creates Stripe checkout session (auto-detects one-time vs subscription)
   - `POST /api/stripe/webhook` — Stripe webhook (registered before express.json() for raw body)
+  - `GET /api/news` — fetches live business news from Google News RSS feed (rss-parser)
+  - `POST /api/sponsor-checkout` — creates Stripe checkout for pro-bono sponsorship tiers (supporter $150, champion $500, catalyst $1,500)
   - `POST /api/test-receipt` — dev-only: sends a test receipt email
 - **Build**: Custom build script (`script/build.ts`) using esbuild for the server and Vite for the client. Production output goes to `dist/` with server as `dist/index.cjs` and client assets in `dist/public/`
 - **Dev Server**: Vite dev server is integrated as middleware in Express during development (`server/vite.ts`), with HMR support. Production serves static files from `dist/public/`

@@ -68,13 +68,13 @@ export default function Home() {
     {
       image: entrepreneurImg,
       industry: "Business Registration & Setup",
-      description: "We guide entrepreneurs and new ventures through the full business registration process — from incorporation and licensing to compliance setup — so you can launch with confidence and a solid legal foundation.",
+      description: "We guide entrepreneurs and new ventures through the full business registration process, from incorporation and licensing to compliance setup, so you can launch with confidence and a solid legal foundation.",
       outcomes: "Complete business registration, incorporation filings, licensing guidance, compliance checklists, and a ready-to-operate organizational structure from day one.",
     },
     {
       image: analyticsImg,
       industry: "Website Design & Development",
-      description: "We build professional, high-performing websites that reflect your brand and drive results — from sleek landing pages to full-featured business sites with integrated booking, payments, and analytics.",
+      description: "We build professional, high-performing websites that reflect your brand and drive results, from sleek landing pages to full-featured business sites with integrated booking, payments, and analytics.",
       outcomes: "Custom-designed website, mobile-responsive layout, SEO optimization, integrated booking and payment systems, and ongoing support to keep your digital presence sharp.",
     },
   ];
@@ -82,7 +82,7 @@ export default function Home() {
   const processSteps = [
     { icon: <Search size={28} />, title: "Discovery", description: "We listen, assess, and understand your unique challenges through comprehensive intake and analysis." },
     { icon: <Target size={28} />, title: "Strategy", description: "We co-create a tailored roadmap aligned to your goals, capacity, and desired outcomes." },
-    { icon: <Settings size={28} />, title: "Implementation", description: "We execute with precision — building systems, frameworks, and capabilities within your organization." },
+    { icon: <Settings size={28} />, title: "Implementation", description: "We execute with precision, building systems, frameworks, and capabilities within your organization." },
     { icon: <BarChart3 size={28} />, title: "Optimization", description: "We monitor, refine, and sustain performance through ongoing advisory and continuous improvement." },
   ];
 
@@ -198,7 +198,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { title: "Discovery Phase", desc: "We start by understanding your organization — intake, assessment, scope, and roadmap.", icon: <Users className="text-accent" /> },
+                { title: "Discovery Phase", desc: "We start by understanding your organization, intake, assessment, scope, and roadmap.", icon: <Users className="text-accent" /> },
                 { title: "Strategic Engagement", desc: "Outcome-focused engagements for strategic planning, alignment, and performance design.", icon: <TrendingUp className="text-accent" /> },
                 { title: "Systems & Implementation", desc: "Full performance systems, governance frameworks, and process redesign.", icon: <ShieldCheck className="text-accent" /> },
                 { title: "Executive Advisory", desc: "Ongoing monthly advisory with strategy sessions, coaching, and performance oversight.", icon: <CheckCircle2 className="text-accent" /> },
@@ -339,7 +339,7 @@ export default function Home() {
               We are proud to partner with forward-thinking organizations committed to performance, accountability, and sustainable growth.
             </p>
             <div className="flex flex-wrap justify-center gap-8 items-center">
-              {["Certified Management Consultant", "ISO 9001 Aligned", "Diversity & Inclusion Committed", "Data Privacy Compliant"].map((badge, i) => (
+              {["ISO 9001 Aligned", "Diversity & Inclusion Committed", "Data Privacy Compliant"].map((badge, i) => (
                 <div key={i} className="flex items-center gap-3 bg-white px-6 py-4 rounded-full border border-border shadow-sm" data-testid={`trust-badge-${i}`}>
                   <ShieldCheck size={20} className="text-accent" />
                   <span className="text-sm font-bold text-primary">{badge}</span>

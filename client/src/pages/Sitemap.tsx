@@ -12,6 +12,10 @@ export default function Sitemap() {
     { label: "Our Services", href: "/services" },
     { label: "Our Approach", href: "/approach" },
     { label: "Contact", href: "/contact" },
+    { label: "Careers", href: "/careers" },
+    { label: "Industry News", href: "/news" },
+    { label: "Insights", href: "/insights" },
+    { label: "Client Portal", href: "/portal" },
     { label: "Privacy & Terms", href: "/legal" },
     { label: "Accessibility", href: "/accessibility" },
   ];
@@ -28,11 +32,9 @@ export default function Sitemap() {
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {links.map((link, i) => (
                 <li key={i}>
-                  <Link href={link.href}>
-                    <a className="flex items-center justify-between p-4 rounded-xl hover:bg-secondary transition-colors border border-transparent hover:border-border group">
+                  <Link href={link.href} className="flex items-center justify-between p-4 rounded-xl hover:bg-secondary transition-colors border border-transparent hover:border-border group">
                       <span className="text-lg font-bold text-primary group-hover:text-accent transition-colors">{link.label}</span>
                       <ChevronRight size={20} className="text-muted-foreground group-hover:text-accent transition-colors" />
-                    </a>
                   </Link>
                 </li>
               ))}

@@ -191,6 +191,79 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/news", async (_req, res) => {
+    try {
+      const Parser = (await import("rss-parser")).default;
+      const parser = new Parser({
+        customFields: {
+          item: [['media:content', 'media']],
+        },
+      });
+      const feed = await parser.parseURL(
+        "https://news.google.com/rss/search?q=business+consulting+management+strategy&hl=en-CA&gl=CA&ceid=CA:en"
+      );
+      const articles = (feed.items || []).slice(0, 20).map((item: any) => ({
+        title: item.title || "",
+        link: item.link || "",
+        pubDate: item.pubDate || "",
+        source: item.creator || item.source?.name || "",
+        snippet: item.contentSnippet || item.content || "",
+      }));
+      res.json({ articles });
+    } catch (error) {
+      console.error("News fetch error:", error);
+      res.status(500).json({ message: "Failed to fetch news", articles: [] });
+    }
+  });
+
+  app.post("/api/sponsor-checkout", async (req, res) => {
+    try {
+      const { tier } = req.body;
+      const tiers: Record<string, { name: string; amount: number; description: string }> = {
+        supporter: { name: "Supporter", amount: 15000, description: "Sponsor 1 hour of pro-bono consulting" },
+        champion: { name: "Champion", amount: 50000, description: "Sponsor a half-day pro-bono engagement" },
+        catalyst: { name: "Catalyst", amount: 150000, description: "Sponsor a full pro-bono consulting project" },
+      };
+
+      const selected = tiers[tier];
+      if (!selected) {
+        return res.status(400).json({ message: "Invalid sponsorship tier" });
+      }
+
+      const stripe = await getUncachableStripeClient();
+      const baseUrl = process.env.REPLIT_DOMAINS
+        ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
+        : `${req.protocol}://${req.get('host')}`;
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{
+          price_data: {
+            currency: 'cad',
+            product_data: {
+              name: `Pro-Bono Sponsorship: ${selected.name}`,
+              description: selected.description,
+            },
+            unit_amount: selected.amount,
+          },
+          quantity: 1,
+        }],
+        mode: 'payment',
+        success_url: `${baseUrl}/about?sponsor=success`,
+        cancel_url: `${baseUrl}/about?sponsor=cancelled`,
+        metadata: {
+          type: 'pro-bono-sponsorship',
+          tier: tier,
+        },
+      });
+
+      res.json({ url: session.url });
+    } catch (error) {
+      console.error("Sponsor checkout error:", error);
+      res.status(500).json({ message: "Failed to create sponsorship checkout" });
+    }
+  });
+
   app.post("/api/test-receipt", async (req, res) => {
     if (process.env.REPLIT_DEPLOYMENT === '1') {
       return res.status(404).json({ message: "Not found" });

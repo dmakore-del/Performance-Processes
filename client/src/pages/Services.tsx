@@ -86,7 +86,7 @@ export default function Services() {
     {
       title: language === "en" ? "Discovery Phase" : "Phase de découverte",
       investment: "$750 – $1,500",
-      investmentNote: language === "en" ? "(Mandatory first step — fee can be credited toward full engagement)" : "(Première étape obligatoire — les frais peuvent être crédités vers un engagement complet)",
+      investmentNote: language === "en" ? "(Mandatory first step, fee can be credited toward full engagement)" : "(Première étape obligatoire, les frais peuvent être crédités vers un engagement complet)",
       desc: language === "en"
         ? "Every successful engagement begins with clarity. Our Discovery Phase ensures we understand your organization before proposing solutions."
         : "Chaque engagement réussi commence par la clarté. Notre phase de découverte garantit que nous comprenons votre organisation avant de proposer des solutions.",
@@ -128,8 +128,8 @@ export default function Services() {
         ? "Outcome-focused engagements that align your strategy, leadership, and performance systems for measurable results."
         : "Des engagements axés sur les résultats qui alignent votre stratégie, votre leadership et vos systèmes de performance pour des résultats mesurables.",
       learnMore: language === "en"
-        ? "Rather than selling hours, we sell outcomes. Our Strategic Engagement model is designed for organizations that need focused, time-bound support to address critical strategic challenges.\n\nThis model covers strategic planning, performance framework design, organizational alignment, and leadership development — all delivered within a structured 6–12 week timeline with clear milestones and deliverables."
-        : "Plutôt que de vendre des heures, nous vendons des résultats. Notre modèle d'engagement stratégique est conçu pour les organisations qui ont besoin d'un soutien ciblé et limité dans le temps pour relever des défis stratégiques critiques.\n\nCe modèle couvre la planification stratégique, la conception de cadres de performance, l'alignement organisationnel et le développement du leadership — le tout livré dans un délai structuré de 6 à 12 semaines avec des jalons et des livrables clairs.",
+        ? "Rather than selling hours, we sell outcomes. Our Strategic Engagement model is designed for organizations that need focused, time-bound support to address critical strategic challenges.\n\nThis model covers strategic planning, performance framework design, organizational alignment, and leadership development, all delivered within a structured 6–12 week timeline with clear milestones and deliverables."
+        : "Plutôt que de vendre des heures, nous vendons des résultats. Notre modèle d'engagement stratégique est conçu pour les organisations qui ont besoin d'un soutien ciblé et limité dans le temps pour relever des défis stratégiques critiques.\n\nCe modèle couvre la planification stratégique, la conception de cadres de performance, l'alignement organisationnel et le développement du leadership, le tout livré dans un délai structuré de 6 à 12 semaines avec des jalons et des livrables clairs.",
       idealFor: language === "en" ? "Organizations preparing for growth, restructuring, or transformation that need strategic clarity and alignment." : "Organisations se préparant à la croissance, à la restructuration ou à la transformation qui ont besoin de clarté et d'alignement stratégiques.",
       icon: <TrendingUp className="text-accent" />,
       pricingTiers: [
@@ -175,8 +175,8 @@ export default function Services() {
         ? "End-to-end design and implementation of performance management systems, governance frameworks, and process redesign."
         : "Conception et mise en œuvre de bout en bout des systèmes de gestion de la performance, des cadres de gouvernance et de la refonte des processus.",
       learnMore: language === "en"
-        ? "Strategy without systems is just aspiration. Our Systems & Implementation engagements build the operational infrastructure your organization needs to execute consistently and scale effectively.\n\nWe design and implement full performance management systems, governance frameworks, and process architectures — turning strategic vision into measurable, repeatable operational excellence."
-        : "La stratégie sans systèmes n'est qu'une aspiration. Nos engagements de systèmes et de mise en œuvre construisent l'infrastructure opérationnelle dont votre organisation a besoin pour exécuter de manière cohérente et évoluer efficacement.\n\nNous concevons et mettons en œuvre des systèmes complets de gestion de la performance, des cadres de gouvernance et des architectures de processus — transformant la vision stratégique en excellence opérationnelle mesurable et reproductible.",
+        ? "Strategy without systems is just aspiration. Our Systems & Implementation engagements build the operational infrastructure your organization needs to execute consistently and scale effectively.\n\nWe design and implement full performance management systems, governance frameworks, and process architectures, turning strategic vision into measurable, repeatable operational excellence."
+        : "La stratégie sans systèmes n'est qu'une aspiration. Nos engagements de systèmes et de mise en œuvre construisent l'infrastructure opérationnelle dont votre organisation a besoin pour exécuter de manière cohérente et évoluer efficacement.\n\nNous concevons et mettons en œuvre des systèmes complets de gestion de la performance, des cadres de gouvernance et des architectures de processus, transformant la vision stratégique en excellence opérationnelle mesurable et reproductible.",
       idealFor: language === "en" ? "Organizations ready to build or overhaul their operational systems, governance structures, or performance infrastructure." : "Organisations prêtes à construire ou à refondre leurs systèmes opérationnels, structures de gouvernance ou infrastructure de performance.",
       icon: <Wrench className="text-accent" />,
       pricingTiers: [
@@ -218,13 +218,13 @@ export default function Services() {
     {
       title: language === "en" ? "Executive Advisory Retainer" : "Mandat de conseil exécutif",
       investment: "$2,500 – $7,500/mo",
-      investmentNote: language === "en" ? "(Monthly retainer — 3-month minimum)" : "(Mandat mensuel — minimum 3 mois)",
+      investmentNote: language === "en" ? "(Monthly retainer, 3-month minimum)" : "(Mandat mensuel, minimum 3 mois)",
       desc: language === "en"
         ? "Ongoing executive-level advisory for organizations that need consistent strategic guidance and leadership coaching."
         : "Conseil exécutif continu pour les organisations qui ont besoin d'un accompagnement stratégique constant et d'un coaching de leadership.",
       learnMore: language === "en"
-        ? "Growth doesn't stop after a project ends. Our Executive Advisory Retainer provides dedicated, senior-level guidance on a monthly basis — including strategy sessions, performance oversight, ongoing advisory, and leadership coaching.\n\nThis model is designed for organizations that want a trusted strategic partner without the cost of a full-time executive hire."
-        : "La croissance ne s'arrête pas à la fin d'un projet. Notre mandat de conseil exécutif fournit un accompagnement dédié de niveau supérieur sur une base mensuelle — incluant des sessions stratégiques, un suivi de la performance, des conseils continus et du coaching de leadership.\n\nCe modèle est conçu pour les organisations qui veulent un partenaire stratégique de confiance sans le coût d'une embauche exécutive à temps plein.",
+        ? "Growth doesn't stop after a project ends. Our Executive Advisory Retainer provides dedicated, senior-level guidance on a monthly basis, including strategy sessions, performance oversight, ongoing advisory, and leadership coaching.\n\nThis model is designed for organizations that want a trusted strategic partner without the cost of a full-time executive hire."
+        : "La croissance ne s'arrête pas à la fin d'un projet. Notre mandat de conseil exécutif fournit un accompagnement dédié de niveau supérieur sur une base mensuelle, incluant des sessions stratégiques, un suivi de la performance, des conseils continus et du coaching de leadership.\n\nCe modèle est conçu pour les organisations qui veulent un partenaire stratégique de confiance sans le coût d'une embauche exécutive à temps plein.",
       idealFor: language === "en" ? "Organizations seeking consistent access to senior strategic guidance, performance oversight, and leadership coaching." : "Organisations cherchant un accès constant à des conseils stratégiques de haut niveau, un suivi de la performance et du coaching de leadership.",
       icon: <Briefcase className="text-accent" />,
       pricingTiers: [
@@ -273,8 +273,8 @@ export default function Services() {
         ? "We handle the complexities of business registration so you can focus on building your vision."
         : "Nous gérons les complexités de l'enregistrement d'entreprise pour que vous puissiez vous concentrer sur la réalisation de votre vision.",
       learnMore: language === "en"
-        ? "Starting a business involves more than just an idea — it requires proper legal structure, registration, and compliance. We guide you through the entire process, from choosing the right business structure to completing all government filings and obtaining your business number.\n\nOur team ensures your business is set up correctly from day one, with all corporate records, tax registrations, and governance documents in place."
-        : "Démarrer une entreprise implique plus qu'une simple idée — cela nécessite une structure juridique appropriée, un enregistrement et une conformité. Nous vous guidons tout au long du processus, du choix de la bonne structure d'entreprise à la réalisation de toutes les déclarations gouvernementales et à l'obtention de votre numéro d'entreprise.\n\nNotre équipe s'assure que votre entreprise est correctement configurée dès le premier jour, avec tous les registres corporatifs, les inscriptions fiscales et les documents de gouvernance en place.",
+        ? "Starting a business involves more than just an idea, it requires proper legal structure, registration, and compliance. We guide you through the entire process, from choosing the right business structure to completing all government filings and obtaining your business number.\n\nOur team ensures your business is set up correctly from day one, with all corporate records, tax registrations, and governance documents in place."
+        : "Démarrer une entreprise implique plus qu'une simple idée, cela nécessite une structure juridique appropriée, un enregistrement et une conformité. Nous vous guidons tout au long du processus, du choix de la bonne structure d'entreprise à la réalisation de toutes les déclarations gouvernementales et à l'obtention de votre numéro d'entreprise.\n\nNotre équipe s'assure que votre entreprise est correctement configurée dès le premier jour, avec tous les registres corporatifs, les inscriptions fiscales et les documents de gouvernance en place.",
       idealFor: language === "en" ? "Entrepreneurs, startups, and organizations establishing a new legal entity or restructuring an existing one." : "Entrepreneurs, startups et organisations établissant une nouvelle entité juridique ou restructurant une entité existante.",
       icon: <ClipboardList className="text-accent" />,
       pricingTiers: [

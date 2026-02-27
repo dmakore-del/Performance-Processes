@@ -190,7 +190,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">Call Us</h4>
-                      <p className="text-xl font-bold text-primary">+1 (647) 400-4744</p>
+                      <p className="text-xl font-bold text-primary">+1 (905) 823-1324</p>
                     </div>
                   </div>
                   <div className="flex gap-6 items-start">

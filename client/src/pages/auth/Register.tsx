@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { useRegister, useVerify2FA } from "@/hooks/use-auth";
+import { useRegister } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff, ShieldCheck, Loader2, ArrowLeft, Building2, CheckCircle2, Users, Briefcase } from "lucide-react";
+import { Eye, EyeOff, Loader2, ArrowLeft, Building2, Users, Briefcase } from "lucide-react";
 import logoImg from "@/assets/logo.png";
 
 export default function Register() {
@@ -18,11 +18,8 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [pendingApproval, setPendingApproval] = useState(false);
-  const [twoFactorSetup, setTwoFactorSetup] = useState<{ secret: string; otpauthUrl: string } | null>(null);
-  const [twoFactorCode, setTwoFactorCode] = useState("");
 
   const registerMutation = useRegister();
-  const verify2FA = useVerify2FA();
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,9 +41,7 @@ export default function Register() {
         setPendingApproval(true);
         return;
       }
-      if (result.twoFactorSetup) {
-        setTwoFactorSetup(result.twoFactorSetup);
-      }
+      setLocation("/portal");
     } catch (err: any) {
       const msg = err.message || "";
       try {
@@ -54,23 +49,6 @@ export default function Register() {
         setError(parsed.message || "Registration failed");
       } catch {
         setError("Registration failed. Please try again.");
-      }
-    }
-  };
-
-  const handleVerify2FA = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await verify2FA.mutateAsync(twoFactorCode);
-      setLocation("/portal");
-    } catch (err: any) {
-      const msg = err.message || "";
-      try {
-        const parsed = JSON.parse(msg.replace(/^\d+:\s*/, ""));
-        setError(parsed.message || "Invalid code");
-      } catch {
-        setError("Invalid 2FA code. Please try again.");
       }
     }
   };
@@ -119,83 +97,6 @@ export default function Register() {
             <Link href="/portal/login">
               <span className="text-sm font-bold text-accent hover:text-white cursor-pointer">Go to Login</span>
             </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (twoFactorSetup) {
-    return (
-      <div className="min-h-screen relative flex items-center justify-center p-4 overflow-hidden">
-        {bgVideo}
-        <div className="w-full max-w-md relative z-10">
-          <div className="text-center mb-8">
-            <Link href="/">
-              <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-4 cursor-pointer" />
-            </Link>
-            <h1 className="text-2xl font-heading font-extrabold text-white">Set Up Two-Factor Authentication</h1>
-            <p className="text-white/70 mt-2">2FA is required for all accounts</p>
-          </div>
-
-          <div className="bg-white/95 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl p-8">
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <ShieldCheck size={32} className="text-accent" />
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Scan this QR code with your authenticator app (Google Authenticator, Authy, etc.)
-              </p>
-            </div>
-
-            <div className="bg-secondary/50 rounded-2xl p-6 mb-6">
-              <div className="bg-white rounded-xl p-4 flex items-center justify-center mb-4">
-                <img
-                  src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(twoFactorSetup.otpauthUrl)}`}
-                  alt="2FA QR Code"
-                  className="w-48 h-48"
-                  data-testid="img-2fa-qr"
-                />
-              </div>
-              <div className="text-center">
-                <p className="text-xs text-muted-foreground mb-2">Or enter this key manually:</p>
-                <code data-testid="text-2fa-secret" className="bg-white px-4 py-2 rounded-lg text-sm font-mono font-bold text-primary border border-border block break-all">
-                  {twoFactorSetup.secret}
-                </code>
-              </div>
-            </div>
-
-            <form onSubmit={handleVerify2FA} className="space-y-4">
-              <div>
-                <Label className="text-sm font-bold text-primary mb-2 block">Verification Code</Label>
-                <Input
-                  type="text"
-                  data-testid="input-setup-2fa-code"
-                  value={twoFactorCode}
-                  onChange={(e) => setTwoFactorCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
-                  placeholder="Enter 6-digit code"
-                  className="rounded-xl h-14 text-center text-2xl tracking-[0.5em] font-mono"
-                  maxLength={6}
-                  required
-                />
-              </div>
-
-              {error && (
-                <div className="bg-red-50 text-red-600 text-sm p-3 rounded-xl border border-red-200">
-                  {error}
-                </div>
-              )}
-
-              <Button
-                type="submit"
-                data-testid="button-activate-2fa"
-                disabled={verify2FA.isPending || twoFactorCode.length !== 6}
-                className="w-full h-12 rounded-xl bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-sm"
-              >
-                {verify2FA.isPending ? <Loader2 className="animate-spin mr-2" size={18} /> : <CheckCircle2 size={18} className="mr-2" />}
-                Activate 2FA & Continue
-              </Button>
-            </form>
           </div>
         </div>
       </div>
@@ -341,15 +242,10 @@ export default function Register() {
               </div>
             )}
 
-            {accountType === "staff" ? (
+            {accountType === "staff" && (
               <div className="bg-orange-50 p-3 rounded-xl border border-orange-200 flex items-start gap-3">
                 <Users size={18} className="text-orange-600 mt-0.5 flex-shrink-0" />
                 <p className="text-xs text-orange-700">Staff accounts require administrator approval before access is granted.</p>
-              </div>
-            ) : (
-              <div className="bg-blue-50 p-3 rounded-xl border border-blue-200 flex items-start gap-3">
-                <ShieldCheck size={18} className="text-blue-600 mt-0.5 flex-shrink-0" />
-                <p className="text-xs text-blue-700">Two-factor authentication will be set up after registration for enhanced security.</p>
               </div>
             )}
 

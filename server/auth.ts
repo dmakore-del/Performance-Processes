@@ -74,8 +74,6 @@ export async function setupAuth(app: Express) {
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
-      const otp = await getOtpLib();
-      const twoFactorSecret = otp.generateSecret();
 
       const accountType = parsed.data.accountType || "client";
       const role = accountType === "staff" ? "staff" : "client";
@@ -89,7 +87,7 @@ export async function setupAuth(app: Express) {
         fullName,
       });
 
-      await storage.updateUser(user.id, { twoFactorSecret, role, status });
+      await storage.updateUser(user.id, { role, status });
 
       if (status === "pending_approval") {
         return res.status(201).json({
@@ -100,19 +98,9 @@ export async function setupAuth(app: Express) {
 
       req.session.userId = user.id;
 
-      const otpauthUrl = otp.generateURI({
-        secret: twoFactorSecret,
-        issuer: "Performance Processes",
-        account: email,
-      });
-
       return res.status(201).json({
-        message: "Account created. Please set up two-factor authentication.",
+        message: "Account created successfully.",
         user: sanitizeUser(user),
-        twoFactorSetup: {
-          secret: twoFactorSecret,
-          otpauthUrl,
-        },
       });
     } catch (error: any) {
       console.error("Registration error:", error);
@@ -145,11 +133,6 @@ export async function setupAuth(app: Express) {
 
       if (user.status === "suspended") {
         return res.status(403).json({ message: "Your account has been suspended. Please contact support." });
-      }
-
-      if (user.twoFactorEnabled) {
-        req.session.pendingTwoFactor = user.id;
-        return res.json({ requiresTwoFactor: true, message: "Please enter your 2FA code" });
       }
 
       req.session.userId = user.id;

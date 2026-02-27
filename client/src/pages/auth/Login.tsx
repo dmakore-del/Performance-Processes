@@ -58,17 +58,29 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen relative flex items-center justify-center p-4 overflow-hidden">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        data-testid="bg-video"
+      >
+        <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-[#0A1628]/80 backdrop-blur-sm"></div>
+
+      <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
           <Link href="/">
             <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-4 cursor-pointer" />
           </Link>
-          <h1 className="text-3xl font-heading font-extrabold text-primary">Client Portal</h1>
-          <p className="text-muted-foreground mt-2">Sign in to access your engagement dashboard</p>
+          <h1 className="text-3xl font-heading font-extrabold text-white">Client Portal</h1>
+          <p className="text-white/70 mt-2">Sign in to access your engagement dashboard</p>
         </div>
 
-        <div className="bg-white rounded-3xl border border-border shadow-sm p-8">
+        <div className="bg-white/95 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl p-8">
           {!showTwoFactor ? (
             <form onSubmit={handleLogin} className="space-y-5">
               <div>
@@ -182,10 +194,10 @@ export default function Login() {
         </div>
 
         <div className="text-center mt-6">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-white/70">
             Don't have an account?{" "}
             <Link href="/portal/register">
-              <span data-testid="link-register" className="text-accent hover:text-primary cursor-pointer font-bold">
+              <span data-testid="link-register" className="text-accent hover:text-white cursor-pointer font-bold">
                 Sign Up
               </span>
             </Link>
@@ -194,7 +206,7 @@ export default function Login() {
 
         <div className="text-center mt-4">
           <Link href="/">
-            <span className="text-xs text-muted-foreground hover:text-primary cursor-pointer flex items-center justify-center gap-1">
+            <span className="text-xs text-white/50 hover:text-white cursor-pointer flex items-center justify-center gap-1">
               <ArrowLeft size={12} /> Back to website
             </span>
           </Link>

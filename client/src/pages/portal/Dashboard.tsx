@@ -1,19 +1,51 @@
+import { useState } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { CheckCircle2, Clock, AlertCircle, FileText, Calendar, ArrowRight, Loader2, Briefcase } from "lucide-react";
+import { CheckCircle2, Clock, AlertCircle, FileText, ArrowRight, Loader2, Briefcase, Pencil } from "lucide-react";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
 import { useAuth } from "@/hooks/use-auth";
 import { Link } from "wouter";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { ActionItem, Meeting, Milestone, Document } from "@shared/schema";
 
 export default function Dashboard() {
   const { engagement, engagementId, isLoading } = usePortalEngagement();
   const { user } = useAuth();
+  const { toast } = useToast();
   const { data: actions } = usePortalData<ActionItem[]>("actions", engagementId);
   const { data: meetings } = usePortalData<Meeting[]>("meetings", engagementId);
   const { data: milestones } = usePortalData<Milestone[]>("milestones", engagementId);
   const { data: documents } = usePortalData<Document[]>("documents", engagementId);
 
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
+
+  const [statusDialogOpen, setStatusDialogOpen] = useState(false);
+  const [statusForm, setStatusForm] = useState({
+    status: "",
+    currentPhase: "",
+    completionPercent: 0,
+  });
+
+  const updateEngagementMutation = useMutation({
+    mutationFn: async (data: typeof statusForm) => {
+      const res = await apiRequest("PATCH", `/api/portal/engagements/${engagementId}`, data);
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/portal/engagements"] });
+      toast({ title: "Project Updated", description: "Project status has been updated." });
+      setStatusDialogOpen(false);
+    },
+    onError: (error: Error) => {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
+    },
+  });
 
   if (isLoading) {
     return (
@@ -50,11 +82,11 @@ export default function Dashboard() {
   const openActions = actions?.filter(a => a.status !== "completed") || [];
   const overdueActions = actions?.filter(a => a.status === "overdue") || [];
   const upcomingMeetings = meetings?.filter(m => m.status === "upcoming") || [];
-  const completedMeetings = meetings?.filter(m => m.status === "completed") || [];
   const pendingMilestones = milestones?.filter(m => m.status === "pending") || [];
   const recentDocs = documents?.slice(0, 3) || [];
 
   const statusColor = engagement.status === "active" ? "bg-green-500" : "bg-orange-500";
+  const statusLabel = engagement.status === "active" ? "Active" : engagement.status === "on-hold" ? "On Hold" : engagement.status;
 
   return (
     <PortalLayout>
@@ -70,9 +102,31 @@ export default function Dashboard() {
                 : "Here is the latest overview of your consulting engagement."}
             </p>
           </div>
-          <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-full border border-border shadow-sm">
-            <div className={`w-3 h-3 rounded-full ${statusColor} animate-pulse`}></div>
-            <span data-testid="text-project-status" className="font-bold text-sm uppercase tracking-wider text-primary">Project Status: On Track</span>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-full border border-border shadow-sm">
+              <div className={`w-3 h-3 rounded-full ${statusColor} animate-pulse`}></div>
+              <span data-testid="text-project-status" className="font-bold text-sm uppercase tracking-wider text-primary">
+                Status: {statusLabel}
+              </span>
+            </div>
+            {isStaffOrAdmin && (
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full h-10 w-10"
+                onClick={() => {
+                  setStatusForm({
+                    status: engagement.status,
+                    currentPhase: engagement.currentPhase,
+                    completionPercent: engagement.completionPercent,
+                  });
+                  setStatusDialogOpen(true);
+                }}
+                data-testid="button-edit-status"
+              >
+                <Pencil size={16} />
+              </Button>
+            )}
           </div>
         </div>
 
@@ -212,6 +266,45 @@ export default function Dashboard() {
           </Link>
         </div>
       </div>
+
+      <Dialog open={statusDialogOpen} onOpenChange={setStatusDialogOpen}>
+        <DialogContent className="max-w-md" data-testid="edit-status-dialog">
+          <DialogHeader>
+            <DialogTitle>Edit Project Status</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 pt-2">
+            <div>
+              <Label>Project Status</Label>
+              <Select value={statusForm.status} onValueChange={(v) => setStatusForm({ ...statusForm, status: v })}>
+                <SelectTrigger data-testid="select-project-status"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="active">Active</SelectItem>
+                  <SelectItem value="on-hold">On Hold</SelectItem>
+                  <SelectItem value="completed">Completed</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label>Current Phase</Label>
+              <Input data-testid="input-current-phase" value={statusForm.currentPhase} onChange={(e) => setStatusForm({ ...statusForm, currentPhase: e.target.value })} />
+            </div>
+            <div>
+              <Label>Completion %</Label>
+              <Input data-testid="input-completion-percent" type="number" min={0} max={100} value={statusForm.completionPercent} onChange={(e) => setStatusForm({ ...statusForm, completionPercent: parseInt(e.target.value) || 0 })} />
+            </div>
+            <div className="flex justify-end">
+              <Button
+                className="bg-accent text-white hover:bg-primary"
+                onClick={() => updateEngagementMutation.mutate(statusForm)}
+                disabled={updateEngagementMutation.isPending}
+                data-testid="button-save-status"
+              >
+                {updateEngagementMutation.isPending ? "Saving..." : "Save Changes"}
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </PortalLayout>
   );
 }

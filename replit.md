@@ -62,15 +62,15 @@ Preferred communication style: Simple, everyday language.
 
 ### Portal Pages
 All portal pages use live API data via custom hooks (`usePortalEngagement`, `usePortalData` in `client/src/hooks/use-portal.ts`):
-- **Dashboard** (`/portal`): Engagement overview with stats; staff/admin see client name prominently; role-aware empty states
-- **Roadmap** (`/portal/roadmap`): Milestones grouped by phase with progress tracking
+- **Dashboard** (`/portal`): Engagement overview with stats; staff/admin see client name prominently; role-aware empty states; staff/admin can edit project status, phase, and completion percentage
+- **Roadmap** (`/portal/roadmap`): Milestones grouped by phase with progress tracking; staff/admin can add, edit, and cycle milestone statuses
 - **Documents** (`/portal/documents`): Files grouped by folder with type icons, real upload/download
 - **Actions** (`/portal/actions`): CRUD action tracker with status cycling, priority badges; staff/admin can create/edit/delete
 - **Meetings** (`/portal/meetings`): Synced with MS Bookings calendar via Outlook integration; "Schedule a Meeting" links to MS Bookings page
 - **Messages** (`/portal/messages`): Private messaging between engagement participants
 - **Performance** (`/portal/performance`): KPI dashboard with visual charts; staff/admin can add/delete KPIs
-- **Resources** (`/portal/resources`): Resource library with category filtering, PDF upload, content display, external links
-- **Billing** (`/portal/billing`): Invoices (Stripe payment) and contracts (canvas signature)
+- **Resources** (`/portal/resources`): Resource library with category filtering, PDF upload, content display, external links; "Request a Resource" opens a contact form; improved content display in detail dialog
+- **Billing** (`/portal/billing`): Invoices (Stripe payment) and contracts (canvas signature); staff/admin can create & send invoices; staff/admin can upload agreement documents (PDF/DOC) with contract creation
 - **Admin Users** (`/portal/admin/users`): User management (admin-only) with approve/suspend/role changes and engagement creation
 
 ### Role-Based Portal Experience
@@ -86,7 +86,7 @@ All portal pages use live API data via custom hooks (`usePortalEngagement`, `use
 3. **Staff approval workflow**: Staff accounts require admin approval before access
 4. **Engagement-centric architecture**: Admin assigns clients to staff via engagements; staff manage their assigned clients' milestones, actions, KPIs, etc.
 5. **Single-page app with server-side fallback**: All unmatched routes fall through to `index.html`
-6. **Video backgrounds**: Hero sections use a background video with gradient overlays
+6. **Video backgrounds**: Hero sections and auth pages (Login/Register) use background videos with gradient overlays
 6. **Portal data hooks**: `usePortalEngagement()` and `usePortalData()` in `client/src/hooks/use-portal.ts` for consistent data fetching
 
 ## External Dependencies

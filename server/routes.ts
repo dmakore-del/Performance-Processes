@@ -446,7 +446,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/milestones", async (req, res) => {
+  app.post("/api/portal/milestones", requireStaffOrAdmin, async (req, res) => {
     try {
       const parsed = insertMilestoneSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
@@ -457,7 +457,7 @@ export async function registerRoutes(
     }
   });
 
-  app.patch("/api/portal/milestones/:id", async (req, res) => {
+  app.patch("/api/portal/milestones/:id", requireStaffOrAdmin, async (req, res) => {
     try {
       const milestone = await storage.updateMilestone(Number(req.params.id), req.body);
       res.json(milestone);
@@ -731,7 +731,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/invoices", requireAdmin, async (req, res) => {
+  app.post("/api/portal/invoices", requireStaffOrAdmin, async (req, res) => {
     try {
       const parsed = insertInvoiceSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
@@ -797,15 +797,39 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/contracts", requireStaffOrAdmin, async (req, res) => {
+  const contractsDir = path.join(process.cwd(), "uploads", "contracts");
+  if (!fs.existsSync(contractsDir)) {
+    fs.mkdirSync(contractsDir, { recursive: true });
+  }
+  const contractStorage = multer.diskStorage({
+    destination: (_req, _file, cb) => cb(null, contractsDir),
+    filename: (_req, file, cb) => {
+      const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+      cb(null, uniqueSuffix + path.extname(file.originalname));
+    },
+  });
+  const contractUpload = multer({ storage: contractStorage, limits: { fileSize: 25 * 1024 * 1024 } });
+
+  app.post("/api/portal/contracts", requireStaffOrAdmin, contractUpload.single("file"), async (req, res) => {
     try {
-      const parsed = insertContractSchema.safeParse(req.body);
+      const body = { ...req.body };
+      if (req.file) {
+        body.documentUrl = `/api/portal/contracts/file/${req.file.filename}`;
+      }
+      const parsed = insertContractSchema.safeParse(body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
       const contract = await storage.createContract(parsed.data);
       res.status(201).json(contract);
     } catch (error) {
       res.status(500).json({ message: "Failed to create contract" });
     }
+  });
+
+  app.get("/api/portal/contracts/file/:filename", requireAuth, (req, res) => {
+    const filename = path.basename(req.params.filename);
+    const filePath = path.join(contractsDir, filename);
+    if (!fs.existsSync(filePath)) return res.status(404).json({ message: "File not found" });
+    res.sendFile(filePath);
   });
 
   app.post("/api/portal/contracts/:id/sign", async (req, res) => {

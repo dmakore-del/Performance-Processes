@@ -75,14 +75,31 @@ export default function Register() {
     }
   };
 
+  const bgVideo = (
+    <>
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        data-testid="bg-video"
+      >
+        <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-[#0A1628]/80 backdrop-blur-sm"></div>
+    </>
+  );
+
   if (pendingApproval) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-4">
-        <div className="w-full max-w-md text-center">
+      <div className="min-h-screen relative flex items-center justify-center p-4 overflow-hidden">
+        {bgVideo}
+        <div className="w-full max-w-md text-center relative z-10">
           <Link href="/">
             <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-6 cursor-pointer" />
           </Link>
-          <div className="bg-white rounded-3xl border border-border shadow-sm p-8">
+          <div className="bg-white/95 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl p-8">
             <div className="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-orange-200">
               <Users size={32} className="text-orange-500" />
             </div>
@@ -100,7 +117,7 @@ export default function Register() {
           </div>
           <div className="mt-6">
             <Link href="/portal/login">
-              <span className="text-sm font-bold text-accent hover:text-primary cursor-pointer">Go to Login</span>
+              <span className="text-sm font-bold text-accent hover:text-white cursor-pointer">Go to Login</span>
             </Link>
           </div>
         </div>
@@ -110,17 +127,18 @@ export default function Register() {
 
   if (twoFactorSetup) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-4">
-        <div className="w-full max-w-md">
+      <div className="min-h-screen relative flex items-center justify-center p-4 overflow-hidden">
+        {bgVideo}
+        <div className="w-full max-w-md relative z-10">
           <div className="text-center mb-8">
             <Link href="/">
               <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-4 cursor-pointer" />
             </Link>
-            <h1 className="text-2xl font-heading font-extrabold text-primary">Set Up Two-Factor Authentication</h1>
-            <p className="text-muted-foreground mt-2">2FA is required for all accounts</p>
+            <h1 className="text-2xl font-heading font-extrabold text-white">Set Up Two-Factor Authentication</h1>
+            <p className="text-white/70 mt-2">2FA is required for all accounts</p>
           </div>
 
-          <div className="bg-white rounded-3xl border border-border shadow-sm p-8">
+          <div className="bg-white/95 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl p-8">
             <div className="text-center mb-6">
               <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <ShieldCheck size={32} className="text-accent" />
@@ -185,17 +203,19 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen relative flex items-center justify-center p-4 overflow-hidden">
+      {bgVideo}
+
+      <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
           <Link href="/">
             <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-4 cursor-pointer" />
           </Link>
-          <h1 className="text-3xl font-heading font-extrabold text-primary">Create Account</h1>
-          <p className="text-muted-foreground mt-2">Register for the Performance Processes portal</p>
+          <h1 className="text-3xl font-heading font-extrabold text-white">Create Account</h1>
+          <p className="text-white/70 mt-2">Register for the Performance Processes portal</p>
         </div>
 
-        <div className="bg-white rounded-3xl border border-border shadow-sm p-8">
+        <div className="bg-white/95 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl p-8">
           <form onSubmit={handleRegister} className="space-y-4">
             <div>
               <Label className="text-sm font-bold text-primary mb-3 block">Account Type</Label>
@@ -346,10 +366,10 @@ export default function Register() {
         </div>
 
         <div className="text-center mt-6">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-white/70">
             Already have an account?{" "}
             <Link href="/portal/login">
-              <span data-testid="link-login" className="text-accent hover:text-primary cursor-pointer font-bold">
+              <span data-testid="link-login" className="text-accent hover:text-white cursor-pointer font-bold">
                 Sign In
               </span>
             </Link>
@@ -358,7 +378,7 @@ export default function Register() {
 
         <div className="text-center mt-4">
           <Link href="/">
-            <span className="text-xs text-muted-foreground hover:text-primary cursor-pointer flex items-center justify-center gap-1">
+            <span className="text-xs text-white/50 hover:text-white cursor-pointer flex items-center justify-center gap-1">
               <ArrowLeft size={12} /> Back to website
             </span>
           </Link>

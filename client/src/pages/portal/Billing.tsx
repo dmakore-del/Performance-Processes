@@ -1,5 +1,5 @@
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { Receipt, FileText, CheckCircle2, Loader2, DollarSign, Plus, Pen } from "lucide-react";
+import { Receipt, FileText, CheckCircle2, Loader2, DollarSign, Plus, Pen, Upload, Download, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
@@ -21,13 +21,13 @@ export default function Billing() {
   const { toast } = useToast();
   const { user } = useAuth();
 
-  const isAdmin = user?.role === "admin";
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
 
   const [signDialogOpen, setSignDialogOpen] = useState(false);
   const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const contractFileRef = useRef<HTMLInputElement>(null);
 
   const [createInvoiceOpen, setCreateInvoiceOpen] = useState(false);
   const [invoiceForm, setInvoiceForm] = useState({
@@ -45,6 +45,7 @@ export default function Billing() {
     terms: "",
     documentDate: "",
   });
+  const [contractFile, setContractFile] = useState<File | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -93,7 +94,7 @@ export default function Billing() {
       return res.json();
     },
     onSuccess: () => {
-      toast({ title: "Invoice Created", description: "The invoice has been created." });
+      toast({ title: "Invoice Created", description: "The invoice has been created and is ready for client payment." });
       queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/invoices`] });
       setCreateInvoiceOpen(false);
       setInvoiceForm({ invoiceNumber: "", description: "", amount: "", amountCents: 0, issueDate: "", dueDate: "" });
@@ -105,14 +106,32 @@ export default function Billing() {
 
   const createContractMutation = useMutation({
     mutationFn: async (data: typeof contractForm & { engagementId: number }) => {
-      const res = await apiRequest("POST", "/api/portal/contracts", data);
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("terms", data.terms);
+      formData.append("documentDate", data.documentDate);
+      formData.append("engagementId", String(data.engagementId));
+      if (contractFile) {
+        formData.append("file", contractFile);
+      }
+      const res = await fetch("/api/portal/contracts", {
+        method: "POST",
+        body: formData,
+        credentials: "include",
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({ message: "Failed to create contract" }));
+        throw new Error(err.message);
+      }
       return res.json();
     },
     onSuccess: () => {
-      toast({ title: "Contract Created", description: "The contract has been created." });
+      toast({ title: "Agreement Created", description: "The agreement has been uploaded and created." });
       queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/contracts`] });
       setCreateContractOpen(false);
       setContractForm({ title: "", terms: "", documentDate: "" });
+      setContractFile(null);
+      if (contractFileRef.current) contractFileRef.current.value = "";
     },
     onError: (error: Error) => {
       toast({ title: "Error", description: error.message, variant: "destructive" });
@@ -211,7 +230,7 @@ export default function Billing() {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-bold text-primary" data-testid="invoices-heading">Recent Invoices</h3>
-              {isAdmin && (
+              {isStaffOrAdmin && (
                 <Button
                   size="sm"
                   className="bg-accent text-white hover:bg-primary"
@@ -249,7 +268,7 @@ export default function Billing() {
                         )} data-testid={`invoice-status-${inv.id}`}>
                           {inv.status}
                         </span>
-                        {inv.status !== 'paid' && (
+                        {inv.status !== 'paid' && !isStaffOrAdmin && (
                           <Button
                             size="sm"
                             className="bg-accent text-white hover:bg-primary text-xs h-7 px-3 rounded-lg"
@@ -260,6 +279,11 @@ export default function Billing() {
                             <DollarSign size={12} className="mr-1" />
                             {payMutation.isPending ? "Processing..." : "Pay Now"}
                           </Button>
+                        )}
+                        {inv.status !== 'paid' && isStaffOrAdmin && (
+                          <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md border bg-blue-50 text-blue-600 border-blue-200">
+                            <Send size={10} className="inline mr-1" />Sent
+                          </span>
                         )}
                       </div>
                     </div>
@@ -276,7 +300,7 @@ export default function Billing() {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-bold text-primary" data-testid="contracts-heading">Contracts & Agreements</h3>
-              {isAdmin && (
+              {isStaffOrAdmin && (
                 <Button
                   size="sm"
                   className="bg-accent text-white hover:bg-primary"
@@ -284,7 +308,7 @@ export default function Billing() {
                   data-testid="button-create-contract"
                 >
                   <Plus size={16} className="mr-1" />
-                  Create Contract
+                  Upload Agreement
                 </Button>
               )}
             </div>
@@ -307,6 +331,20 @@ export default function Billing() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
+                      {(contract as any).documentUrl && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-xs h-8 px-3 rounded-lg"
+                          asChild
+                          data-testid={`button-download-contract-${contract.id}`}
+                        >
+                          <a href={(contract as any).documentUrl} target="_blank" rel="noopener noreferrer">
+                            <Download size={12} className="mr-1" />
+                            View
+                          </a>
+                        </Button>
+                      )}
                       {contract.status === 'signed' ? (
                         <CheckCircle2 size={20} className="text-green-500" data-testid={`contract-signed-${contract.id}`} />
                       ) : (
@@ -385,7 +423,7 @@ export default function Billing() {
       <Dialog open={createInvoiceOpen} onOpenChange={setCreateInvoiceOpen}>
         <DialogContent className="max-w-md" data-testid="create-invoice-dialog">
           <DialogHeader>
-            <DialogTitle>Create Invoice</DialogTitle>
+            <DialogTitle>Create & Send Invoice</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div>
@@ -411,7 +449,10 @@ export default function Billing() {
                 <Label>Amount</Label>
                 <Input
                   value={invoiceForm.amount}
-                  onChange={(e) => setInvoiceForm({ ...invoiceForm, amount: e.target.value })}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setInvoiceForm({ ...invoiceForm, amount: val, amountCents: Math.round(parseFloat(val.replace(/[^0-9.]/g, "")) * 100) || 0 });
+                  }}
                   placeholder="$5,000.00"
                   data-testid="input-invoice-amount"
                 />
@@ -447,9 +488,13 @@ export default function Billing() {
                 />
               </div>
             </div>
+            <div className="bg-blue-50 p-3 rounded-xl border border-blue-200 flex items-start gap-3">
+              <Send size={16} className="text-blue-600 mt-0.5 flex-shrink-0" />
+              <p className="text-xs text-blue-700">This invoice will be visible to the client immediately in their portal. They can pay using the Pay Now button.</p>
+            </div>
             <div className="flex justify-end">
               <Button
-                className="bg-accent text-white hover:bg-primary"
+                className="bg-accent text-white hover:bg-primary gap-2"
                 onClick={() => {
                   if (!engagementId) return;
                   createInvoiceMutation.mutate({ ...invoiceForm, engagementId });
@@ -457,7 +502,8 @@ export default function Billing() {
                 disabled={createInvoiceMutation.isPending}
                 data-testid="button-submit-invoice"
               >
-                {createInvoiceMutation.isPending ? "Creating..." : "Create Invoice"}
+                <Send size={14} />
+                {createInvoiceMutation.isPending ? "Sending..." : "Create & Send Invoice"}
               </Button>
             </div>
           </div>
@@ -467,7 +513,7 @@ export default function Billing() {
       <Dialog open={createContractOpen} onOpenChange={setCreateContractOpen}>
         <DialogContent className="max-w-md" data-testid="create-contract-dialog">
           <DialogHeader>
-            <DialogTitle>Create Contract</DialogTitle>
+            <DialogTitle>Upload Agreement / Document</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div>
@@ -480,7 +526,7 @@ export default function Billing() {
               />
             </div>
             <div>
-              <Label>Terms</Label>
+              <Label>Terms & Conditions</Label>
               <Textarea
                 value={contractForm.terms}
                 onChange={(e) => setContractForm({ ...contractForm, terms: e.target.value })}
@@ -488,6 +534,35 @@ export default function Billing() {
                 rows={6}
                 data-testid="input-contract-terms"
               />
+            </div>
+            <div>
+              <Label>Attach Document (PDF, DOC, etc.)</Label>
+              <div className="flex items-center gap-3 mt-1">
+                <input
+                  ref={contractFileRef}
+                  type="file"
+                  accept=".pdf,.doc,.docx,.xlsx,.pptx"
+                  className="hidden"
+                  data-testid="input-contract-file"
+                  onChange={(e) => setContractFile(e.target.files?.[0] || null)}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="gap-2"
+                  onClick={() => contractFileRef.current?.click()}
+                  data-testid="button-choose-contract-file"
+                >
+                  <Upload size={16} />
+                  {contractFile ? "Change File" : "Choose File"}
+                </Button>
+                {contractFile && (
+                  <span className="text-sm text-muted-foreground flex items-center gap-1">
+                    <FileText size={14} />
+                    {contractFile.name}
+                  </span>
+                )}
+              </div>
             </div>
             <div>
               <Label>Document Date</Label>
@@ -500,7 +575,7 @@ export default function Billing() {
             </div>
             <div className="flex justify-end">
               <Button
-                className="bg-accent text-white hover:bg-primary"
+                className="bg-accent text-white hover:bg-primary gap-2"
                 onClick={() => {
                   if (!engagementId) return;
                   createContractMutation.mutate({ ...contractForm, engagementId });
@@ -508,7 +583,8 @@ export default function Billing() {
                 disabled={createContractMutation.isPending}
                 data-testid="button-submit-contract"
               >
-                {createContractMutation.isPending ? "Creating..." : "Create Contract"}
+                <Upload size={14} />
+                {createContractMutation.isPending ? "Uploading..." : "Upload Agreement"}
               </Button>
             </div>
           </div>

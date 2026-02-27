@@ -1,14 +1,72 @@
+import { useState } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { CheckCircle2, Circle, Clock, Loader2 } from "lucide-react";
+import { CheckCircle2, Circle, Clock, Loader2, Plus, Trash2, Pencil } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
+import { useAuth } from "@/hooks/use-auth";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { Milestone } from "@shared/schema";
 
 export default function Roadmap() {
   const { engagement, engagementId, isLoading: engagementLoading } = usePortalEngagement();
   const { data: milestones, isLoading: milestonesLoading } = usePortalData<Milestone[]>("milestones", engagementId);
+  const { user } = useAuth();
+  const { toast } = useToast();
 
+  const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
   const isLoading = engagementLoading || milestonesLoading;
+
+  const [createOpen, setCreateOpen] = useState(false);
+  const [editingMilestone, setEditingMilestone] = useState<Milestone | null>(null);
+  const [form, setForm] = useState({
+    title: "",
+    phase: "",
+    status: "pending",
+    dueDate: "",
+    owner: "",
+    sortOrder: 0,
+  });
+
+  const resetForm = () => setForm({ title: "", phase: "", status: "pending", dueDate: "", owner: "", sortOrder: 0 });
+
+  const createMutation = useMutation({
+    mutationFn: async (data: typeof form & { engagementId: number }) => {
+      const res = await apiRequest("POST", "/api/portal/milestones", data);
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/milestones`] });
+      toast({ title: "Milestone Created", description: "The milestone has been added." });
+      setCreateOpen(false);
+      resetForm();
+    },
+    onError: (error: Error) => {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
+    },
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: async ({ id, data }: { id: number; data: Partial<Milestone> }) => {
+      const res = await apiRequest("PATCH", `/api/portal/milestones/${id}`, data);
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/milestones`] });
+      toast({ title: "Milestone Updated" });
+      setEditingMilestone(null);
+      resetForm();
+    },
+    onError: (error: Error) => {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
+    },
+  });
 
   const groupedPhases = (() => {
     if (!milestones) return [];
@@ -38,12 +96,30 @@ export default function Roadmap() {
     );
   }
 
+  const statusCycle = (current: string) => {
+    if (current === "pending") return "in-progress";
+    if (current === "in-progress") return "completed";
+    return "pending";
+  };
+
   return (
     <PortalLayout>
       <div className="space-y-8">
-        <div>
-          <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4" data-testid="text-roadmap-title">Project Roadmap</h1>
-          <p className="text-lg text-muted-foreground max-w-3xl" data-testid="text-roadmap-description">Track the progress of our engagement across key phases and milestones.</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4" data-testid="text-roadmap-title">Project Roadmap</h1>
+            <p className="text-lg text-muted-foreground max-w-3xl" data-testid="text-roadmap-description">Track the progress of our engagement across key phases and milestones.</p>
+          </div>
+          {isStaffOrAdmin && (
+            <Button
+              onClick={() => { resetForm(); setCreateOpen(true); }}
+              className="bg-accent text-white hover:bg-primary gap-2"
+              data-testid="button-add-milestone"
+            >
+              <Plus size={16} />
+              Add Milestone
+            </Button>
+          )}
         </div>
 
         <div className="bg-white rounded-3xl border border-border shadow-sm overflow-hidden" data-testid="roadmap-container">
@@ -95,19 +171,53 @@ export default function Roadmap() {
                     
                     <div className="space-y-3 bg-secondary/20 p-6 rounded-2xl border border-border/50">
                       {phase.items.map((item) => (
-                        <div key={item.id} className="flex items-center justify-between p-4 bg-white rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow" data-testid={`milestone-item-${item.id}`}>
+                        <div key={item.id} className="flex items-center justify-between p-4 bg-white rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow group" data-testid={`milestone-item-${item.id}`}>
                           <div className="flex items-center gap-4">
-                            {item.status === 'completed' ? <CheckCircle2 size={20} className="text-green-500" /> :
-                             item.status === 'in-progress' ? <Clock size={20} className="text-accent animate-pulse" /> :
-                             <Circle size={20} className="text-muted-foreground/50" />}
+                            {isStaffOrAdmin ? (
+                              <button
+                                onClick={() => updateMutation.mutate({ id: item.id, data: { status: statusCycle(item.status) } })}
+                                className="cursor-pointer"
+                                data-testid={`button-toggle-status-${item.id}`}
+                                title="Click to change status"
+                              >
+                                {item.status === 'completed' ? <CheckCircle2 size={20} className="text-green-500" /> :
+                                 item.status === 'in-progress' ? <Clock size={20} className="text-accent animate-pulse" /> :
+                                 <Circle size={20} className="text-muted-foreground/50" />}
+                              </button>
+                            ) : (
+                              <>
+                                {item.status === 'completed' ? <CheckCircle2 size={20} className="text-green-500" /> :
+                                 item.status === 'in-progress' ? <Clock size={20} className="text-accent animate-pulse" /> :
+                                 <Circle size={20} className="text-muted-foreground/50" />}
+                              </>
+                            )}
                             <span className={cn("font-medium", item.status === 'completed' ? "text-primary line-through opacity-70" : "text-primary")} data-testid={`text-milestone-title-${item.id}`}>{item.title}</span>
                           </div>
-                          <div className="hidden sm:flex items-center gap-3">
+                          <div className="flex items-center gap-3">
                             {item.dueDate && (
-                              <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground bg-secondary px-3 py-1 rounded-lg" data-testid={`text-milestone-date-${item.id}`}>{item.dueDate}</span>
+                              <span className="hidden sm:inline text-xs font-bold uppercase tracking-wider text-muted-foreground bg-secondary px-3 py-1 rounded-lg" data-testid={`text-milestone-date-${item.id}`}>{item.dueDate}</span>
                             )}
                             {item.owner && (
-                              <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground bg-secondary px-3 py-1 rounded-lg" data-testid={`text-milestone-owner-${item.id}`}>Owner: {item.owner}</span>
+                              <span className="hidden sm:inline text-xs font-bold uppercase tracking-wider text-muted-foreground bg-secondary px-3 py-1 rounded-lg" data-testid={`text-milestone-owner-${item.id}`}>Owner: {item.owner}</span>
+                            )}
+                            {isStaffOrAdmin && (
+                              <button
+                                onClick={() => {
+                                  setEditingMilestone(item);
+                                  setForm({
+                                    title: item.title,
+                                    phase: item.phase,
+                                    status: item.status,
+                                    dueDate: item.dueDate || "",
+                                    owner: item.owner || "",
+                                    sortOrder: item.sortOrder,
+                                  });
+                                }}
+                                className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-primary"
+                                data-testid={`button-edit-milestone-${item.id}`}
+                              >
+                                <Pencil size={14} />
+                              </button>
                             )}
                           </div>
                         </div>
@@ -126,6 +236,122 @@ export default function Roadmap() {
           </div>
         </div>
       </div>
+
+      <Dialog open={createOpen} onOpenChange={setCreateOpen}>
+        <DialogContent className="max-w-md" data-testid="create-milestone-dialog">
+          <DialogHeader>
+            <DialogTitle>Add Milestone</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 pt-2">
+            <div>
+              <Label>Title</Label>
+              <Input data-testid="input-milestone-title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="Milestone title" required />
+            </div>
+            <div>
+              <Label>Phase</Label>
+              <Input data-testid="input-milestone-phase" value={form.phase} onChange={(e) => setForm({ ...form, phase: e.target.value })} placeholder="e.g. Discovery, Strategy, Implementation" required />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label>Status</Label>
+                <Select value={form.status} onValueChange={(v) => setForm({ ...form, status: v })}>
+                  <SelectTrigger data-testid="select-milestone-status"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="pending">Pending</SelectItem>
+                    <SelectItem value="in-progress">In Progress</SelectItem>
+                    <SelectItem value="completed">Completed</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label>Sort Order</Label>
+                <Input data-testid="input-milestone-sort" type="number" value={form.sortOrder || ""} onChange={(e) => setForm({ ...form, sortOrder: parseInt(e.target.value) || 0 })} placeholder="0" />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label>Due Date</Label>
+                <Input data-testid="input-milestone-due" value={form.dueDate} onChange={(e) => setForm({ ...form, dueDate: e.target.value })} placeholder="e.g. Mar 15, 2026" />
+              </div>
+              <div>
+                <Label>Owner</Label>
+                <Input data-testid="input-milestone-owner" value={form.owner} onChange={(e) => setForm({ ...form, owner: e.target.value })} placeholder="e.g. Danai" />
+              </div>
+            </div>
+            <div className="flex justify-end">
+              <Button
+                className="bg-accent text-white hover:bg-primary"
+                onClick={() => {
+                  if (!engagementId) return;
+                  createMutation.mutate({ ...form, engagementId });
+                }}
+                disabled={createMutation.isPending}
+                data-testid="button-submit-milestone"
+              >
+                {createMutation.isPending ? "Creating..." : "Add Milestone"}
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={!!editingMilestone} onOpenChange={(open) => { if (!open) { setEditingMilestone(null); resetForm(); } }}>
+        <DialogContent className="max-w-md" data-testid="edit-milestone-dialog">
+          <DialogHeader>
+            <DialogTitle>Edit Milestone</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 pt-2">
+            <div>
+              <Label>Title</Label>
+              <Input data-testid="input-edit-milestone-title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
+            </div>
+            <div>
+              <Label>Phase</Label>
+              <Input data-testid="input-edit-milestone-phase" value={form.phase} onChange={(e) => setForm({ ...form, phase: e.target.value })} />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label>Status</Label>
+                <Select value={form.status} onValueChange={(v) => setForm({ ...form, status: v })}>
+                  <SelectTrigger data-testid="select-edit-milestone-status"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="pending">Pending</SelectItem>
+                    <SelectItem value="in-progress">In Progress</SelectItem>
+                    <SelectItem value="completed">Completed</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label>Sort Order</Label>
+                <Input data-testid="input-edit-milestone-sort" type="number" value={form.sortOrder || ""} onChange={(e) => setForm({ ...form, sortOrder: parseInt(e.target.value) || 0 })} />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label>Due Date</Label>
+                <Input data-testid="input-edit-milestone-due" value={form.dueDate} onChange={(e) => setForm({ ...form, dueDate: e.target.value })} />
+              </div>
+              <div>
+                <Label>Owner</Label>
+                <Input data-testid="input-edit-milestone-owner" value={form.owner} onChange={(e) => setForm({ ...form, owner: e.target.value })} />
+              </div>
+            </div>
+            <div className="flex justify-end">
+              <Button
+                className="bg-accent text-white hover:bg-primary"
+                onClick={() => {
+                  if (!editingMilestone) return;
+                  updateMutation.mutate({ id: editingMilestone.id, data: form });
+                }}
+                disabled={updateMutation.isPending}
+                data-testid="button-save-milestone"
+              >
+                {updateMutation.isPending ? "Saving..." : "Save Changes"}
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </PortalLayout>
   );
 }

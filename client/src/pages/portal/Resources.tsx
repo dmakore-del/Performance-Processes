@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { BookOpen, PlayCircle, Download, ExternalLink, CheckSquare, Loader2, MessageSquare, Plus, FileText, Upload } from "lucide-react";
+import { BookOpen, PlayCircle, Download, ExternalLink, CheckSquare, Loader2, Plus, FileText, Upload, Send } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { queryClient } from "@/lib/queryClient";
+import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/use-auth";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -27,6 +27,7 @@ export default function Resources() {
   const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
   const [detailOpen, setDetailOpen] = useState(false);
   const [createOpen, setCreateOpen] = useState(false);
+  const [requestOpen, setRequestOpen] = useState(false);
   const { toast } = useToast();
   const { user } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -46,6 +47,13 @@ export default function Resources() {
     accessUrl: "",
   });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const [requestForm, setRequestForm] = useState({
+    name: user?.fullName || "",
+    email: user?.email || "",
+    subject: "",
+    message: "",
+  });
 
   const createMutation = useMutation({
     mutationFn: async (data: typeof createForm) => {
@@ -76,6 +84,26 @@ export default function Resources() {
       setCreateForm({ title: "", description: "", content: "", category: "", resourceType: "", accessUrl: "" });
       setSelectedFile(null);
       if (fileInputRef.current) fileInputRef.current.value = "";
+    },
+    onError: (error: Error) => {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
+    },
+  });
+
+  const requestMutation = useMutation({
+    mutationFn: async (data: typeof requestForm) => {
+      const res = await apiRequest("POST", "/api/contact", {
+        name: data.name,
+        email: data.email,
+        subject: `Resource Request: ${data.subject}`,
+        message: data.message,
+      });
+      return res.json();
+    },
+    onSuccess: () => {
+      toast({ title: "Request Sent", description: "Your resource request has been sent to the team. We'll get back to you soon." });
+      setRequestOpen(false);
+      setRequestForm({ name: user?.fullName || "", email: user?.email || "", subject: "", message: "" });
     },
     onError: (error: Error) => {
       toast({ title: "Error", description: error.message, variant: "destructive" });
@@ -299,15 +327,24 @@ export default function Resources() {
                   {selectedResource.description && (
                     <p className="text-muted-foreground" data-testid="text-detail-description">{selectedResource.description}</p>
                   )}
-                  {selectedResource.content && (
-                    <div className="prose prose-sm max-w-none" data-testid="text-detail-content">
-                      {selectedResource.content.split("\n").map((paragraph, i) => (
-                        <p key={i}>{paragraph}</p>
-                      ))}
+                  {selectedResource.content ? (
+                    <div className="bg-secondary/30 rounded-2xl p-6 border border-border" data-testid="text-detail-content">
+                      <div className="prose prose-sm max-w-none text-primary">
+                        {selectedResource.content.split("\n").map((paragraph, i) => (
+                          paragraph.trim() ? <p key={i} className="mb-3 last:mb-0">{paragraph}</p> : <br key={i} />
+                        ))}
+                      </div>
                     </div>
-                  )}
-                  {!selectedResource.content && !selectedResource.fileUrl && !selectedResource.accessUrl && (
-                    <p className="text-sm text-muted-foreground italic">No content available for this resource yet. Check back soon.</p>
+                  ) : (
+                    <div className="bg-secondary/30 rounded-2xl p-6 border border-border text-center">
+                      {selectedResource.fileUrl ? (
+                        <p className="text-sm text-muted-foreground">Download the attached file to view the full content.</p>
+                      ) : selectedResource.accessUrl ? (
+                        <p className="text-sm text-muted-foreground">Click the link below to access this resource.</p>
+                      ) : (
+                        <p className="text-sm text-muted-foreground">Content is being prepared for this resource. Please check back soon or contact your consultant.</p>
+                      )}
+                    </div>
                   )}
                   <div className="flex flex-wrap gap-2">
                     <span className="inline-block bg-secondary text-muted-foreground text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-border">
@@ -345,34 +382,87 @@ export default function Resources() {
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
           <h3 className="text-2xl font-bold mb-4 relative z-10">Looking for something specific?</h3>
           <p className="text-primary-foreground/80 mb-6 relative z-10 max-w-xl mx-auto">Our consultants can curate specific resources or templates based on your current organizational challenges.</p>
-          <Dialog>
-            <DialogTrigger asChild>
-              <button
-                className="relative z-10 bg-accent hover:bg-white hover:text-primary text-white font-bold uppercase tracking-widest text-sm px-8 py-4 rounded-full transition-all"
-                data-testid="button-request-resource"
-              >
-                Request a Resource
-              </button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Request a Resource</DialogTitle>
-              </DialogHeader>
-              <div className="space-y-4 pt-4">
-                <p className="text-muted-foreground">To request a specific resource, please send a message to your consultant through the Messages page describing what you're looking for.</p>
-                <a
-                  href="/portal/messages"
-                  className="inline-flex items-center gap-2 bg-primary text-white font-bold uppercase tracking-widest text-sm px-6 py-3 rounded-full hover:bg-primary/90 transition-all"
-                  data-testid="link-go-to-messages"
-                >
-                  <MessageSquare size={16} />
-                  Go to Messages
-                </a>
-              </div>
-            </DialogContent>
-          </Dialog>
+          <button
+            onClick={() => {
+              setRequestForm({ name: user?.fullName || "", email: user?.email || "", subject: "", message: "" });
+              setRequestOpen(true);
+            }}
+            className="relative z-10 bg-accent hover:bg-white hover:text-primary text-white font-bold uppercase tracking-widest text-sm px-8 py-4 rounded-full transition-all"
+            data-testid="button-request-resource"
+          >
+            Request a Resource
+          </button>
         </div>
       </div>
+
+      <Dialog open={requestOpen} onOpenChange={setRequestOpen}>
+        <DialogContent className="max-w-md" data-testid="request-resource-dialog">
+          <DialogHeader>
+            <DialogTitle>Request a Resource</DialogTitle>
+          </DialogHeader>
+          <form
+            className="space-y-4 pt-2"
+            onSubmit={(e) => {
+              e.preventDefault();
+              requestMutation.mutate(requestForm);
+            }}
+          >
+            <div>
+              <Label htmlFor="req-name">Your Name</Label>
+              <Input
+                id="req-name"
+                data-testid="input-request-name"
+                value={requestForm.name}
+                onChange={(e) => setRequestForm({ ...requestForm, name: e.target.value })}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="req-email">Your Email</Label>
+              <Input
+                id="req-email"
+                type="email"
+                data-testid="input-request-email"
+                value={requestForm.email}
+                onChange={(e) => setRequestForm({ ...requestForm, email: e.target.value })}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="req-subject">Resource Topic</Label>
+              <Input
+                id="req-subject"
+                data-testid="input-request-subject"
+                value={requestForm.subject}
+                onChange={(e) => setRequestForm({ ...requestForm, subject: e.target.value })}
+                placeholder="e.g. Change Management Framework, KPI Dashboard Template"
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="req-message">Details</Label>
+              <Textarea
+                id="req-message"
+                data-testid="input-request-message"
+                value={requestForm.message}
+                onChange={(e) => setRequestForm({ ...requestForm, message: e.target.value })}
+                placeholder="Describe what type of resource you're looking for and how you plan to use it..."
+                rows={4}
+                required
+              />
+            </div>
+            <Button
+              type="submit"
+              data-testid="button-submit-request"
+              disabled={requestMutation.isPending}
+              className="w-full bg-accent text-white hover:bg-primary gap-2"
+            >
+              <Send size={16} />
+              {requestMutation.isPending ? "Sending..." : "Send Request"}
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </PortalLayout>
   );
 }

@@ -586,6 +586,30 @@ export async function registerRoutes(
     }
   });
 
+  // MS Bookings calendar sync - filters events by user role and email
+  app.get("/api/portal/bookings", async (req, res) => {
+    try {
+      const user = (req as any).user;
+      if (!user) return res.status(401).json({ message: "Not authenticated" });
+
+      const { getBookingsCalendarEvents } = await import("./outlook");
+      const events = await getBookingsCalendarEvents();
+
+      if (user.role === "admin" || user.role === "staff") {
+        res.json(events);
+      } else {
+        const userEmail = user.email?.toLowerCase();
+        const filtered = events.filter((event: any) =>
+          event.attendees?.some((a: any) => a.email?.toLowerCase() === userEmail)
+        );
+        res.json(filtered);
+      }
+    } catch (error: any) {
+      console.error("Failed to fetch bookings:", error.message);
+      res.status(500).json({ message: "Calendar sync unavailable", error: error.message });
+    }
+  });
+
   // Meetings
   app.get("/api/portal/engagements/:engagementId/meetings", async (req, res) => {
     try {

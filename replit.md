@@ -66,7 +66,7 @@ All portal pages use live API data via custom hooks:
 - **Roadmap** (`/portal/roadmap`): Milestones grouped by phase with progress tracking
 - **Documents** (`/portal/documents`): Files grouped by folder with type icons
 - **Actions** (`/portal/actions`): CRUD action tracker with status cycling, priority badges
-- **Meetings** (`/portal/meetings`): Upcoming/completed meetings with scheduling dialog
+- **Meetings** (`/portal/meetings`): Synced with MS Bookings calendar via Outlook integration; "Schedule a Meeting" links to MS Bookings page; displays upcoming/past bookings from calendar
 - **Messages** (`/portal/messages`): Channel-based messaging with send functionality
 - **Performance** (`/portal/performance`): KPI dashboard with visual charts
 - **Resources** (`/portal/resources`): Resource library with category filtering
@@ -88,7 +88,7 @@ All portal pages use live API data via custom hooks:
 - **bcryptjs**: Password hashing
 - **otplib**: TOTP 2FA (dynamic import required)
 - **qrcode**: QR code generation for 2FA setup
-- **Microsoft Outlook Bookings**: External link for consultation scheduling
+- **Microsoft Outlook/Graph**: Outlook Replit integration (`server/outlook.ts`) for MS Bookings calendar sync via Microsoft Graph API; also external link for consultation scheduling
 - **Google Fonts**: Inter and Plus Jakarta Sans loaded via CDN
 - **Stripe**: Payment processing via Replit Stripe connector with receipt emails
 - **Email (SMTP)**: Nodemailer with Microsoft 365/Outlook SMTP for receipt emails

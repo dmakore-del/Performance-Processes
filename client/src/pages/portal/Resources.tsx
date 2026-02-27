@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { BookOpen, PlayCircle, Download, ExternalLink, CheckSquare, Loader2, MessageSquare, Plus } from "lucide-react";
+import { BookOpen, PlayCircle, Download, ExternalLink, CheckSquare, Loader2, MessageSquare, Plus, FileText, Upload } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { apiRequest, queryClient } from "@/lib/queryClient";
+import { queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/use-auth";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -29,6 +29,7 @@ export default function Resources() {
   const [createOpen, setCreateOpen] = useState(false);
   const { toast } = useToast();
   const { user } = useAuth();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
 
@@ -42,19 +43,39 @@ export default function Resources() {
     content: "",
     category: "",
     resourceType: "",
-    fileUrl: "",
+    accessUrl: "",
   });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const createMutation = useMutation({
     mutationFn: async (data: typeof createForm) => {
-      const res = await apiRequest("POST", "/api/portal/resources", data);
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      formData.append("content", data.content);
+      formData.append("category", data.category);
+      formData.append("resourceType", data.resourceType);
+      if (data.accessUrl) formData.append("accessUrl", data.accessUrl);
+      if (selectedFile) formData.append("file", selectedFile);
+
+      const res = await fetch("/api/portal/resources", {
+        method: "POST",
+        body: formData,
+        credentials: "include",
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({ message: "Failed to create resource" }));
+        throw new Error(err.message);
+      }
       return res.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/portal/resources"] });
       toast({ title: "Resource created", description: "The resource has been added successfully." });
       setCreateOpen(false);
-      setCreateForm({ title: "", description: "", content: "", category: "", resourceType: "", fileUrl: "" });
+      setCreateForm({ title: "", description: "", content: "", category: "", resourceType: "", accessUrl: "" });
+      setSelectedFile(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
     },
     onError: (error: Error) => {
       toast({ title: "Error", description: error.message, variant: "destructive" });
@@ -90,7 +111,7 @@ export default function Resources() {
                   Add Resource
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-lg">
+              <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                   <DialogTitle>Add Resource</DialogTitle>
                 </DialogHeader>
@@ -128,38 +149,75 @@ export default function Resources() {
                       value={createForm.content}
                       onChange={(e) => setCreateForm((f) => ({ ...f, content: e.target.value }))}
                       rows={5}
+                      placeholder="Full resource content that users will see when they click the resource..."
                     />
                   </div>
-                  <div>
-                    <Label htmlFor="create-category">Category</Label>
-                    <Input
-                      id="create-category"
-                      data-testid="input-resource-category"
-                      value={createForm.category}
-                      onChange={(e) => setCreateForm((f) => ({ ...f, category: e.target.value }))}
-                      required
-                    />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="create-category">Category</Label>
+                      <Input
+                        id="create-category"
+                        data-testid="input-resource-category"
+                        value={createForm.category}
+                        onChange={(e) => setCreateForm((f) => ({ ...f, category: e.target.value }))}
+                        placeholder="e.g. Strategy, Leadership"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="create-type">Resource Type</Label>
+                      <Input
+                        id="create-type"
+                        data-testid="input-resource-type"
+                        value={createForm.resourceType}
+                        onChange={(e) => setCreateForm((f) => ({ ...f, resourceType: e.target.value }))}
+                        placeholder="e.g. PDF Guide, Template"
+                        required
+                      />
+                    </div>
                   </div>
                   <div>
-                    <Label htmlFor="create-type">Resource Type</Label>
-                    <Input
-                      id="create-type"
-                      data-testid="input-resource-type"
-                      value={createForm.resourceType}
-                      onChange={(e) => setCreateForm((f) => ({ ...f, resourceType: e.target.value }))}
-                      required
-                    />
+                    <Label htmlFor="create-file">Attach PDF or File</Label>
+                    <div className="flex items-center gap-3 mt-1">
+                      <input
+                        ref={fileInputRef}
+                        id="create-file"
+                        type="file"
+                        accept=".pdf,.doc,.docx,.xlsx,.pptx"
+                        className="hidden"
+                        data-testid="input-resource-file"
+                        onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="gap-2"
+                        onClick={() => fileInputRef.current?.click()}
+                        data-testid="button-choose-file"
+                      >
+                        <Upload size={16} />
+                        {selectedFile ? "Change File" : "Choose File"}
+                      </Button>
+                      {selectedFile && (
+                        <span className="text-sm text-muted-foreground flex items-center gap-1">
+                          <FileText size={14} />
+                          {selectedFile.name}
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <div>
-                    <Label htmlFor="create-fileUrl">File URL (optional)</Label>
+                    <Label htmlFor="create-accessUrl">External Link (optional)</Label>
                     <Input
-                      id="create-fileUrl"
-                      data-testid="input-resource-fileurl"
-                      value={createForm.fileUrl}
-                      onChange={(e) => setCreateForm((f) => ({ ...f, fileUrl: e.target.value }))}
+                      id="create-accessUrl"
+                      data-testid="input-resource-accessurl"
+                      value={createForm.accessUrl}
+                      onChange={(e) => setCreateForm((f) => ({ ...f, accessUrl: e.target.value }))}
+                      placeholder="https://..."
                     />
                   </div>
                   <Button type="submit" data-testid="button-submit-resource" disabled={createMutation.isPending} className="w-full">
+                    {createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
                     {createMutation.isPending ? "Creating..." : "Create Resource"}
                   </Button>
                 </form>
@@ -211,6 +269,11 @@ export default function Resources() {
                   <span className="inline-block bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-blue-200" data-testid={`badge-resource-category-${res.id}`}>
                     {res.category}
                   </span>
+                  {res.fileUrl && (
+                    <span className="inline-block bg-green-50 text-green-600 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-green-200">
+                      <FileText size={10} className="inline mr-1" />PDF
+                    </span>
+                  )}
                 </div>
               </div>
               <div className="mt-6 flex items-center text-xs font-bold uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
@@ -243,6 +306,9 @@ export default function Resources() {
                       ))}
                     </div>
                   )}
+                  {!selectedResource.content && !selectedResource.fileUrl && !selectedResource.accessUrl && (
+                    <p className="text-sm text-muted-foreground italic">No content available for this resource yet. Check back soon.</p>
+                  )}
                   <div className="flex flex-wrap gap-2">
                     <span className="inline-block bg-secondary text-muted-foreground text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-border">
                       {selectedResource.resourceType}
@@ -256,7 +322,7 @@ export default function Resources() {
                       <Button asChild data-testid="button-download-resource">
                         <a href={selectedResource.fileUrl} target="_blank" rel="noopener noreferrer" className="gap-2">
                           <Download size={16} />
-                          Download
+                          Download PDF
                         </a>
                       </Button>
                     )}
@@ -264,7 +330,7 @@ export default function Resources() {
                       <Button variant="outline" asChild data-testid="button-access-resource">
                         <a href={selectedResource.accessUrl} target="_blank" rel="noopener noreferrer" className="gap-2">
                           <ExternalLink size={16} />
-                          Access
+                          Open Link
                         </a>
                       </Button>
                     )}

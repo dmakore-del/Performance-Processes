@@ -670,6 +670,24 @@ export async function registerRoutes(
   });
 
   // Resources
+  const resourcesDir = path.join(process.cwd(), "uploads", "resources");
+  if (!fs.existsSync(resourcesDir)) {
+    fs.mkdirSync(resourcesDir, { recursive: true });
+  }
+
+  const resourceStorage = multer.diskStorage({
+    destination: (_req, _file, cb) => cb(null, resourcesDir),
+    filename: (_req, file, cb) => {
+      const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+      cb(null, uniqueSuffix + path.extname(file.originalname));
+    },
+  });
+
+  const resourceUpload = multer({
+    storage: resourceStorage,
+    limits: { fileSize: 25 * 1024 * 1024 },
+  });
+
   app.get("/api/portal/resources", async (_req, res) => {
     try {
       const data = await storage.getResources();
@@ -679,15 +697,28 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/resources", requireStaffOrAdmin, async (req, res) => {
+  app.post("/api/portal/resources", requireStaffOrAdmin, resourceUpload.single("file"), async (req, res) => {
     try {
-      const parsed = insertResourceSchema.safeParse(req.body);
+      const body = { ...req.body };
+      if (req.file) {
+        body.fileUrl = `/api/portal/resources/file/${req.file.filename}`;
+      }
+      const parsed = insertResourceSchema.safeParse(body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
       const resource = await storage.createResource(parsed.data);
       res.status(201).json(resource);
     } catch (error) {
       res.status(500).json({ message: "Failed to create resource" });
     }
+  });
+
+  app.get("/api/portal/resources/file/:filename", (req, res) => {
+    const filename = path.basename(req.params.filename);
+    const filePath = path.join(resourcesDir, filename);
+    if (!filePath.startsWith(resourcesDir) || !fs.existsSync(filePath)) {
+      return res.status(404).json({ message: "File not found" });
+    }
+    res.download(filePath);
   });
 
   // Invoices

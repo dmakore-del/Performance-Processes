@@ -61,24 +61,32 @@ Preferred communication style: Simple, everyday language.
 - **Storage Layer**: `server/storage.ts` implements `IStorage` interface with `DatabaseStorage` class
 
 ### Portal Pages
-All portal pages use live API data via custom hooks:
-- **Dashboard** (`/portal`): Engagement overview with stats
+All portal pages use live API data via custom hooks (`usePortalEngagement`, `usePortalData` in `client/src/hooks/use-portal.ts`):
+- **Dashboard** (`/portal`): Engagement overview with stats; staff/admin see client name prominently; role-aware empty states
 - **Roadmap** (`/portal/roadmap`): Milestones grouped by phase with progress tracking
-- **Documents** (`/portal/documents`): Files grouped by folder with type icons
-- **Actions** (`/portal/actions`): CRUD action tracker with status cycling, priority badges
-- **Meetings** (`/portal/meetings`): Synced with MS Bookings calendar via Outlook integration; "Schedule a Meeting" links to MS Bookings page; displays upcoming/past bookings from calendar
-- **Messages** (`/portal/messages`): Channel-based messaging with send functionality
-- **Performance** (`/portal/performance`): KPI dashboard with visual charts
-- **Resources** (`/portal/resources`): Resource library with category filtering
-- **Billing** (`/portal/billing`): Invoices and contracts with status tracking
-- **Admin Users** (`/portal/admin/users`): User management (admin-only) with approve/suspend/role changes
+- **Documents** (`/portal/documents`): Files grouped by folder with type icons, real upload/download
+- **Actions** (`/portal/actions`): CRUD action tracker with status cycling, priority badges; staff/admin can create/edit/delete
+- **Meetings** (`/portal/meetings`): Synced with MS Bookings calendar via Outlook integration; "Schedule a Meeting" links to MS Bookings page
+- **Messages** (`/portal/messages`): Private messaging between engagement participants
+- **Performance** (`/portal/performance`): KPI dashboard with visual charts; staff/admin can add/delete KPIs
+- **Resources** (`/portal/resources`): Resource library with category filtering, PDF upload, content display, external links
+- **Billing** (`/portal/billing`): Invoices (Stripe payment) and contracts (canvas signature)
+- **Admin Users** (`/portal/admin/users`): User management (admin-only) with approve/suspend/role changes and engagement creation
+
+### Role-Based Portal Experience
+- **Client sidebar**: Dashboard, Roadmap & Milestones, Deliverables & Docs, Meeting Hub, Action Tracker, Performance, Messages, Resource Library, Billing & Contracts
+- **Staff sidebar**: Dashboard, Milestones, Documents, Meeting Hub, Action Items, KPIs & Metrics, Client Messages, Resources, Billing & Contracts — with engagement/client switcher dropdown
+- **Admin sidebar**: Same as staff + User Management tab
+- **Engagement switcher**: Staff and admin see a client selector in the sidebar to switch between assigned engagements; state managed via `EngagementProvider` (React Context in `use-portal.ts`)
+- The `usePortalEngagement` hook supports selecting a specific engagement; defaults to first engagement if none selected
 
 ### Key Design Decisions
 1. **Shared schema directory** (`shared/`): Drizzle schema and Zod validation schemas are shared between frontend and backend
 2. **Role-based access control**: Three tiers (client, staff, admin) with middleware enforcement
 3. **Staff approval workflow**: Staff accounts require admin approval before access
-4. **Single-page app with server-side fallback**: All unmatched routes fall through to `index.html`
-5. **Video backgrounds**: Hero sections use a background video with gradient overlays
+4. **Engagement-centric architecture**: Admin assigns clients to staff via engagements; staff manage their assigned clients' milestones, actions, KPIs, etc.
+5. **Single-page app with server-side fallback**: All unmatched routes fall through to `index.html`
+6. **Video backgrounds**: Hero sections use a background video with gradient overlays
 6. **Portal data hooks**: `usePortalEngagement()` and `usePortalData()` in `client/src/hooks/use-portal.ts` for consistent data fetching
 
 ## External Dependencies

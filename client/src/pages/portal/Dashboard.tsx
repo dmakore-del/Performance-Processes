@@ -1,15 +1,19 @@
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { CheckCircle2, Clock, AlertCircle, FileText, Calendar, ArrowRight, Loader2 } from "lucide-react";
+import { CheckCircle2, Clock, AlertCircle, FileText, Calendar, ArrowRight, Loader2, Briefcase } from "lucide-react";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
+import { useAuth } from "@/hooks/use-auth";
 import { Link } from "wouter";
 import type { ActionItem, Meeting, Milestone, Document } from "@shared/schema";
 
 export default function Dashboard() {
   const { engagement, engagementId, isLoading } = usePortalEngagement();
+  const { user } = useAuth();
   const { data: actions } = usePortalData<ActionItem[]>("actions", engagementId);
   const { data: meetings } = usePortalData<Meeting[]>("meetings", engagementId);
   const { data: milestones } = usePortalData<Milestone[]>("milestones", engagementId);
   const { data: documents } = usePortalData<Document[]>("documents", engagementId);
+
+  const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
 
   if (isLoading) {
     return (
@@ -27,10 +31,16 @@ export default function Dashboard() {
         <div className="flex items-center justify-center min-h-[60vh]">
           <div data-testid="text-no-engagement" className="bg-white p-10 rounded-3xl border border-border shadow-sm text-center max-w-md">
             <div className="w-16 h-16 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mx-auto mb-6">
-              <AlertCircle size={32} />
+              {isStaffOrAdmin ? <Briefcase size={32} /> : <AlertCircle size={32} />}
             </div>
-            <h2 className="text-xl font-bold text-primary mb-3">No Active Engagement</h2>
-            <p className="text-muted-foreground">Your consultant will set up your engagement shortly.</p>
+            <h2 className="text-xl font-bold text-primary mb-3">
+              {isStaffOrAdmin ? "No Assigned Clients" : "No Active Engagement"}
+            </h2>
+            <p className="text-muted-foreground">
+              {isStaffOrAdmin
+                ? "You don't have any client engagements assigned yet. The admin will assign clients to you."
+                : "Your consultant will set up your engagement shortly."}
+            </p>
           </div>
         </div>
       </PortalLayout>
@@ -51,8 +61,14 @@ export default function Dashboard() {
       <div className="space-y-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
           <div>
-            <h1 data-testid="text-dashboard-title" className="text-3xl md:text-4xl font-heading font-extrabold text-primary">Welcome back</h1>
-            <p className="text-lg text-muted-foreground mt-2">Here is the latest overview of your consulting engagement.</p>
+            <h1 data-testid="text-dashboard-title" className="text-3xl md:text-4xl font-heading font-extrabold text-primary">
+              {isStaffOrAdmin ? engagement.clientName : "Welcome back"}
+            </h1>
+            <p className="text-lg text-muted-foreground mt-2">
+              {isStaffOrAdmin
+                ? "Manage this client's engagement, milestones, and deliverables."
+                : "Here is the latest overview of your consulting engagement."}
+            </p>
           </div>
           <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-full border border-border shadow-sm">
             <div className={`w-3 h-3 rounded-full ${statusColor} animate-pulse`}></div>
@@ -63,6 +79,12 @@ export default function Dashboard() {
         <div className="bg-white p-6 rounded-3xl border border-border shadow-sm">
           <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">Engagement Summary</h3>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            {isStaffOrAdmin && (
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">Client</p>
+                <p data-testid="text-client-name" className="font-bold text-primary">{engagement.clientName}</p>
+              </div>
+            )}
             <div>
               <p className="text-xs text-muted-foreground mb-1">Type</p>
               <p data-testid="text-engagement-type" className="font-bold text-primary">{engagement.engagementType}</p>

@@ -34,6 +34,7 @@ import Billing from "./pages/portal/Billing";
 import AdminUsers from "./pages/portal/AdminUsers";
 
 import { LanguageProvider } from "./hooks/use-language";
+import { EngagementProvider } from "./hooks/use-portal";
 import { Chatbot } from "./components/Chatbot";
 
 function ScrollToTop() {
@@ -108,11 +109,13 @@ function App() {
   return (
     <LanguageProvider>
       <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-          <Chatbot />
-        </TooltipProvider>
+        <EngagementProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+            <Chatbot />
+          </TooltipProvider>
+        </EngagementProvider>
       </QueryClientProvider>
     </LanguageProvider>
   );

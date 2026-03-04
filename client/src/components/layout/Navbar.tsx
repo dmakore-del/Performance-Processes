@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Search, ChevronDown } from "lucide-react";
+import { Menu, X, Search, ChevronDown, UserCircle } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/hooks/use-language";
@@ -46,7 +46,7 @@ export function Navbar() {
       </div>
 
       <div className="container mx-auto px-4 md:px-8 flex h-20 lg:h-24 items-center justify-between">
-        <Link href="/" className="flex items-center" data-testid="link-logo">
+        <Link href="/" className="flex items-center -ml-2 lg:-ml-4" data-testid="link-logo">
             <img src={logoImg} alt="Performance Processes" className="h-14 lg:h-16 w-auto" />
         </Link>
 
@@ -73,9 +73,13 @@ export function Navbar() {
                 window.location.href = `/services?q=${encodeURIComponent(query)}`;
               }
             }}
+            data-testid="button-search"
           >
             <Search size={20} className="text-primary" />
           </button>
+          <Link href="/portal" className="p-2 hover:bg-secondary rounded-full transition-colors hidden md:block" data-testid="link-portal-signin">
+            <UserCircle size={20} className="text-primary" />
+          </Link>
           <Link href="/contact">
             <Button className="rounded-full bg-accent text-white hover:bg-primary transition-all font-bold px-8 h-12 uppercase tracking-wider text-xs hidden md:flex">
               {t("nav.contact")}

@@ -24,12 +24,12 @@ Preferred communication style: Simple, everyday language.
 - **Runtime**: Node.js with Express 5
 - **Language**: TypeScript, executed via `tsx` in development
 - **API Structure**: RESTful API with routes registered in `server/routes.ts`. Endpoints:
-  - `POST /api/contact` — validates and stores contact form submissions
-  - `POST /api/apply` — handles job applications with resume upload (multer)
+  - `POST /api/contact` — validates and stores contact form submissions; sends Outlook notification to admin
+  - `POST /api/apply` — handles job applications with resume upload (multer); sends Outlook notification to admin
   - `GET /api/stripe/key` — returns Stripe publishable key
   - `GET /api/products` — lists active Stripe products with prices
   - `POST /api/checkout` — creates Stripe checkout session (auto-detects one-time vs subscription)
-  - `POST /api/stripe/webhook` — Stripe webhook (registered before express.json() for raw body)
+  - `POST /api/stripe/webhook` — Stripe webhook (registered before express.json() for raw body); sends payment notification to admin via Outlook
   - `GET /api/news` — fetches live business news from Google News RSS feed (rss-parser)
   - `POST /api/sponsor-checkout` — creates Stripe checkout for pro-bono sponsorship tiers
   - `POST /api/test-receipt` — dev-only: sends a test receipt email

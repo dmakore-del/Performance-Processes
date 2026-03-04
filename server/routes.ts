@@ -50,6 +50,10 @@ export async function registerRoutes(
         return res.status(400).json({ message: "Invalid form data", errors: parsed.error.flatten() });
       }
       const submission = await storage.createContactSubmission(parsed.data);
+
+      const { notifyContactForm } = await import('./emailNotifications');
+      notifyContactForm({ name: parsed.data.name, email: parsed.data.email, message: parsed.data.message }).catch(err => console.error("Contact notification failed:", err));
+
       return res.status(201).json({ message: "Message sent successfully", id: submission.id });
     } catch (error) {
       console.error("Contact form error:", error);
@@ -83,6 +87,19 @@ export async function registerRoutes(
       }
 
       const application = await storage.createJobApplication(parsed.data);
+
+      const { notifyJobApplication } = await import('./emailNotifications');
+      notifyJobApplication({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        position: data.position,
+        linkedIn: data.linkedIn,
+        coverLetter: data.coverLetter,
+        resumeFilename: data.resumeFilename,
+      }).catch(err => console.error("Job application notification failed:", err));
+
       return res.status(201).json({ message: "Application submitted successfully", id: application.id });
     } catch (error) {
       console.error("Job application error:", error);

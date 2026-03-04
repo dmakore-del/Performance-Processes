@@ -77,6 +77,16 @@ async function handleCheckoutCompleted(session: any) {
       isSubscription,
     });
 
+    const { notifyPaymentReceived } = await import('./emailNotifications');
+    notifyPaymentReceived({
+      customerName,
+      customerEmail,
+      serviceName: itemDescription,
+      amount: formattedAmount,
+      receiptNumber,
+      isSubscription,
+    }).catch(err => console.error("Payment notification to admin failed:", err));
+
     console.log(`Receipt ${receiptNumber} sent to ${customerEmail} for ${itemDescription}`);
   } catch (error) {
     console.error('Error processing receipt for checkout session:', error);

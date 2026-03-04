@@ -789,11 +789,32 @@ export default function Services() {
                       </li>
                     ))}
                   </ul>
-                  <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
-                    <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-12 px-8 font-bold uppercase tracking-wider text-xs" data-testid="button-join-collective">
-                      {language === "en" ? "Join the Collective" : "Rejoindre le collectif"}
+                  <div className="flex flex-wrap gap-3">
+                    <Button
+                      className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-12 px-8 font-bold uppercase tracking-wider text-xs"
+                      data-testid="button-join-collective-essential"
+                      onClick={() => handlePay("Collective - Essential")}
+                      disabled={checkoutMutation.isPending && payingProduct === "Collective - Essential"}
+                    >
+                      {checkoutMutation.isPending && payingProduct === "Collective - Essential" ? (
+                        <><Loader2 size={16} className="animate-spin mr-2" /> {language === "en" ? "Processing..." : "Traitement..."}</>
+                      ) : (
+                        <>{language === "en" ? "Join — $49/mo" : "Rejoindre — 49$/mo"}</>
+                      )}
                     </Button>
-                  </a>
+                    <Button
+                      className="rounded-full bg-white text-primary hover:bg-accent hover:text-white h-12 px-8 font-bold uppercase tracking-wider text-xs"
+                      data-testid="button-join-collective-premium"
+                      onClick={() => handlePay("Collective - Premium")}
+                      disabled={checkoutMutation.isPending && payingProduct === "Collective - Premium"}
+                    >
+                      {checkoutMutation.isPending && payingProduct === "Collective - Premium" ? (
+                        <><Loader2 size={16} className="animate-spin mr-2" /> {language === "en" ? "Processing..." : "Traitement..."}</>
+                      ) : (
+                        <>{language === "en" ? "Join — $99/mo" : "Rejoindre — 99$/mo"}</>
+                      )}
+                    </Button>
+                  </div>
                 </div>
                 <div className="flex flex-col gap-3 text-sm">
                   <div className="bg-white/10 rounded-xl p-4">

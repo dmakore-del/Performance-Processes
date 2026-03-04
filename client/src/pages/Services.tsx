@@ -14,6 +14,7 @@ import { PageHero } from "@/components/layout/PageHero";
 export default function Services() {
   const [selectedService, setSelectedService] = useState<any>(null);
   const [payingProduct, setPayingProduct] = useState<string | null>(null);
+  const [collectiveOpen, setCollectiveOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"enterprise" | "business" | "professional" | "self-serve">("enterprise");
   const { t, language } = useLanguage();
   const { toast } = useToast();
@@ -789,32 +790,13 @@ export default function Services() {
                       </li>
                     ))}
                   </ul>
-                  <div className="flex flex-wrap gap-3">
-                    <Button
-                      className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-12 px-8 font-bold uppercase tracking-wider text-xs"
-                      data-testid="button-join-collective-essential"
-                      onClick={() => handlePay("Collective - Essential")}
-                      disabled={checkoutMutation.isPending && payingProduct === "Collective - Essential"}
-                    >
-                      {checkoutMutation.isPending && payingProduct === "Collective - Essential" ? (
-                        <><Loader2 size={16} className="animate-spin mr-2" /> {language === "en" ? "Processing..." : "Traitement..."}</>
-                      ) : (
-                        <>{language === "en" ? "Join — $49/mo" : "Rejoindre — 49$/mo"}</>
-                      )}
-                    </Button>
-                    <Button
-                      className="rounded-full bg-white text-primary hover:bg-accent hover:text-white h-12 px-8 font-bold uppercase tracking-wider text-xs"
-                      data-testid="button-join-collective-premium"
-                      onClick={() => handlePay("Collective - Premium")}
-                      disabled={checkoutMutation.isPending && payingProduct === "Collective - Premium"}
-                    >
-                      {checkoutMutation.isPending && payingProduct === "Collective - Premium" ? (
-                        <><Loader2 size={16} className="animate-spin mr-2" /> {language === "en" ? "Processing..." : "Traitement..."}</>
-                      ) : (
-                        <>{language === "en" ? "Join — $99/mo" : "Rejoindre — 99$/mo"}</>
-                      )}
-                    </Button>
-                  </div>
+                  <Button
+                    className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-12 px-8 font-bold uppercase tracking-wider text-xs"
+                    data-testid="button-join-collective"
+                    onClick={() => setCollectiveOpen(true)}
+                  >
+                    {language === "en" ? "Join the Collective" : "Rejoindre le collectif"}
+                  </Button>
                 </div>
                 <div className="flex flex-col gap-3 text-sm">
                   <div className="bg-white/10 rounded-xl p-4">
@@ -922,6 +904,57 @@ export default function Services() {
             </div>
           </div>
         </section>
+
+        <Dialog open={collectiveOpen} onOpenChange={setCollectiveOpen}>
+          <DialogContent className="max-w-md rounded-2xl">
+            <DialogHeader>
+              <DialogTitle className="text-xl font-heading font-extrabold text-primary flex items-center gap-2">
+                <Users className="text-accent" size={22} />
+                {language === "en" ? "Choose Your Plan" : "Choisissez votre forfait"}
+              </DialogTitle>
+              <DialogDescription>
+                {language === "en" ? "Select the membership tier that fits your needs." : "Sélectionnez le niveau d'adhésion qui correspond à vos besoins."}
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 mt-4">
+              <button
+                className="w-full text-left border-2 border-border hover:border-accent rounded-xl p-5 transition-colors group"
+                data-testid="button-collective-essential"
+                onClick={() => { setCollectiveOpen(false); handlePay("Collective - Essential"); }}
+                disabled={checkoutMutation.isPending}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-bold text-primary group-hover:text-accent transition-colors">{language === "en" ? "Essential" : "Essentiel"}</span>
+                  <span className="text-lg font-black text-accent">$49<span className="text-xs font-normal text-muted-foreground">/mo</span></span>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  {language === "en"
+                    ? "Monthly group strategy call, accountability partner matching, templates and tools library."
+                    : "Appel stratégique mensuel, jumelage de responsabilité, bibliothèque de modèles et outils."}
+                </p>
+              </button>
+              <button
+                className="w-full text-left border-2 border-accent/30 hover:border-accent rounded-xl p-5 transition-colors group bg-accent/5"
+                data-testid="button-collective-premium"
+                onClick={() => { setCollectiveOpen(false); handlePay("Collective - Premium"); }}
+                disabled={checkoutMutation.isPending}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-primary group-hover:text-accent transition-colors">{language === "en" ? "Premium" : "Premium"}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest bg-accent text-white px-2 py-0.5 rounded-full">{language === "en" ? "Popular" : "Populaire"}</span>
+                  </div>
+                  <span className="text-lg font-black text-accent">$99<span className="text-xs font-normal text-muted-foreground">/mo</span></span>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  {language === "en"
+                    ? "Everything in Essential plus training sessions, workshops, private community access, and member-only resources."
+                    : "Tout dans Essentiel plus sessions de formation, ateliers, accès communauté privée et ressources exclusives."}
+                </p>
+              </button>
+            </div>
+          </DialogContent>
+        </Dialog>
 
         <Dialog open={!!selectedService} onOpenChange={() => setSelectedService(null)}>
           <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl">

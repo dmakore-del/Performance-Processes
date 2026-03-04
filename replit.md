@@ -2,7 +2,7 @@
 
 ## Overview
 
-Performance Processes is a professional business consulting firm website built as a full-stack TypeScript application. Founded in 2026 by Danai Makore (contact@performanceprocesses.com). The site helps organizations bridge the gap between vision and execution by offering strategic consulting services. It includes a public-facing marketing site (Home, About, Services, Approach, Contact, Careers, News, Insights, Legal, Accessibility, Sitemap) and a fully functional client portal with dashboard, roadmap, documents, meetings, action tracking, performance metrics, messaging, resources, billing, and admin user management. The site supports English/French bilingual content. All content is authentic with no fabricated testimonials, fake case studies, or inflated statistics.
+Performance Processes is a professional business consulting firm website built as a full-stack TypeScript application. Founded in 2026 by Danai Makore (contact@performanceprocesses.com). The site helps organizations bridge the gap between vision and execution by offering strategic consulting services. It includes a public-facing marketing site (Home, About, Services, Approach, Contact, Careers, News, Insights, Legal, Accessibility, Sitemap, Women's Performance Grant) and a fully functional client portal with dashboard, roadmap, documents, meetings, action tracking, performance metrics, messaging, resources, billing, and admin user management. The site supports English/French bilingual content. All content is authentic with no fabricated testimonials, fake case studies, or inflated statistics.
 
 ## User Preferences
 

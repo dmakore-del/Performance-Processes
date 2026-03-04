@@ -1,7 +1,8 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, TrendingUp, Users, Target, Settings, BarChart3, Globe, CreditCard, Loader2, RefreshCw, ClipboardList, Search, Briefcase, Wrench, Rocket, BookOpen, UserCheck, Lightbulb, Calendar, Shield, Star, Zap, Package, GraduationCap } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp, Users, Target, Settings, BarChart3, Globe, CreditCard, Loader2, RefreshCw, ClipboardList, Search, Briefcase, Wrench, Rocket, BookOpen, UserCheck, Lightbulb, Calendar, Shield, Star, Zap, Package, GraduationCap, Heart, Sparkles, Award } from "lucide-react";
+import { Link } from "wouter";
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useLanguage } from "@/hooks/use-language";
@@ -798,6 +799,102 @@ export default function Services() {
                   <div className="bg-white/10 rounded-xl p-4">
                     <div className="font-bold text-accent mb-1">{language === "en" ? "Perfect for" : "Parfait pour"}</div>
                     <p className="text-white/80">{language === "en" ? "Entrepreneurs, consultants, freelancers, managers, small business owners, ambitious professionals" : "Entrepreneurs, consultants, freelancers, gestionnaires, propriétaires de petites entreprises, professionnels ambitieux"}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20" data-testid="section-womens-grant">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gradient-to-br from-accent/5 via-white to-accent/10 rounded-3xl border-2 border-accent/20 overflow-hidden shadow-lg">
+                <div className="p-10 md:p-12">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center">
+                      <Heart className="text-accent" size={24} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-[0.3em] text-accent">
+                        {language === "en" ? "International Women's Month" : "Mois international de la femme"}
+                      </p>
+                      <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-primary">
+                        {language === "en" ? "Women's Performance Grant" : "Bourse de performance pour les femmes"}
+                      </h2>
+                    </div>
+                  </div>
+
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                    {language === "en"
+                      ? "Performance Processes is launching a Women's Performance Grant to support women who are building businesses, advancing their careers, or leading teams. The grant provides professional coaching and performance systems support to help recipients turn their goals into measurable results."
+                      : "Performance Processes lance une bourse de performance pour les femmes afin de soutenir celles qui bâtissent des entreprises, font avancer leur carrière ou dirigent des équipes."}
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                      <h4 className="text-sm font-bold text-primary mb-3 flex items-center gap-2">
+                        <Star className="text-accent" size={16} />
+                        {language === "en" ? "Grant Includes" : "La bourse comprend"}
+                      </h4>
+                      <ul className="space-y-2">
+                        {[
+                          language === "en" ? "3 months of Performance Coaching" : "3 mois de coaching de performance",
+                          language === "en" ? "Performance Systems Setup" : "Configuration des systèmes de performance",
+                          language === "en" ? "Monthly strategy sessions" : "Sessions stratégiques mensuelles",
+                          language === "en" ? "Performance planning framework" : "Cadre de planification de performance",
+                        ].map((item, i) => (
+                          <li key={i} className="flex items-center gap-2 text-sm text-primary">
+                            <CheckCircle2 size={14} className="text-accent shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-primary mb-3 flex items-center gap-2">
+                        <Target className="text-accent" size={16} />
+                        {language === "en" ? "Focus Areas" : "Domaines d'intervention"}
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {(language === "en"
+                          ? ["Leadership Development", "Business Growth", "Career Advancement", "Productivity & Focus", "Strategic Goal Execution"]
+                          : ["Développement du leadership", "Croissance des affaires", "Avancement professionnel", "Productivité et concentration", "Exécution stratégique"]
+                        ).map((area, i) => (
+                          <span key={i} className="text-xs font-bold px-3 py-1.5 rounded-full bg-white border border-accent/20 text-primary">
+                            {area}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                    {[
+                      { label: language === "en" ? "Recipients" : "Récipiendaires", value: "3-5" },
+                      { label: language === "en" ? "Duration" : "Durée", value: language === "en" ? "3 months" : "3 mois" },
+                      { label: language === "en" ? "Deadline" : "Date limite", value: language === "en" ? "March 31" : "31 mars" },
+                      { label: language === "en" ? "Announced" : "Annoncé", value: language === "en" ? "Early April" : "Début avril" },
+                    ].map((item, i) => (
+                      <div key={i} className="bg-white rounded-xl p-3 text-center border border-border">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">{item.label}</p>
+                        <p className="text-sm font-black text-accent">{item.value}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4 items-center">
+                    <Link href="/womens-performance-grant">
+                      <Button className="rounded-full bg-accent text-white hover:bg-primary h-12 px-8 font-bold uppercase tracking-wider text-xs shadow-lg shadow-accent/20 gap-2" data-testid="button-apply-grant">
+                        <Sparkles size={16} />
+                        {language === "en" ? "Apply for the Grant" : "Postuler pour la bourse"}
+                      </Button>
+                    </Link>
+                    <p className="text-xs text-muted-foreground">
+                      {language === "en"
+                        ? "Open to women entrepreneurs, professionals, and leaders."
+                        : "Ouvert aux femmes entrepreneures, professionnelles et leaders."}
+                    </p>
                   </div>
                 </div>
               </div>

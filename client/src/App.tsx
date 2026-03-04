@@ -17,6 +17,7 @@ import Accessibility from "./pages/Accessibility";
 import Careers from "./pages/Careers";
 import News from "./pages/News";
 import Insights from "./pages/Insights";
+import WomensPerformanceGrant from "./pages/WomensPerformanceGrant";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -62,6 +63,7 @@ function Router() {
       <Route path="/careers" component={Careers} />
       <Route path="/news" component={News} />
       <Route path="/insights" component={Insights} />
+      <Route path="/womens-performance-grant" component={WomensPerformanceGrant} />
 
       {/* Auth Routes */}
       <Route path="/portal/login" component={Login} />

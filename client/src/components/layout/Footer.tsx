@@ -50,10 +50,10 @@ export function Footer() {
           <div className="flex flex-col gap-8">
             <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{t("footer.expertise")}</h3>
             <ul className="flex flex-col gap-4 text-sm font-medium text-muted-foreground">
-              <li><Link href="/services" className="hover:text-accent transition-colors">Strategic Planning</Link></li>
-              <li><Link href="/services" className="hover:text-accent transition-colors">Business Assessment</Link></li>
-              <li><Link href="/services" className="hover:text-accent transition-colors">Leadership Training</Link></li>
-              <li><Link href="/services" className="hover:text-accent transition-colors">Operational Efficiency</Link></li>
+              <li><Link href="/services" className="hover:text-accent transition-colors">Executive Advisory</Link></li>
+              <li><Link href="/services" className="hover:text-accent transition-colors">Small Business Growth</Link></li>
+              <li><Link href="/services" className="hover:text-accent transition-colors">Performance Coaching</Link></li>
+              <li><Link href="/services" className="hover:text-accent transition-colors">Programs & Tools</Link></li>
             </ul>
           </div>
 

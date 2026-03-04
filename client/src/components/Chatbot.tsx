@@ -9,7 +9,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["who do you work with", "clients", "work with", "target", "audience"],
-    answer: "We work with startups, SMEs, nonprofits, and established organizations seeking to strengthen strategy, leadership, and performance systems."
+    answer: "We work with leaders and organizations, small businesses and startups, professionals and freelancers, and entrepreneurs — anyone looking to build systems that improve performance."
   },
   {
     keywords: ["services", "what do you offer", "offer", "provide", "help with"],

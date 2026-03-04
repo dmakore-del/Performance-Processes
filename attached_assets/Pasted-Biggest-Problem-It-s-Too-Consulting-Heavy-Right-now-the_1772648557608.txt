@@ -1,0 +1,403 @@
+Biggest Problem: It’s Too Consulting-Heavy
+
+Right now the site communicates:
+
+“We are consultants who help organizations.”
+
+But your new positioning is:
+
+“We help people and businesses build systems that improve performance.”
+
+That difference matters.
+
+Performance management today is an ongoing system of goals, feedback, and development, not just a one-time advisory engagement.
+
+Your website should therefore feel like:
+
+a system → a framework → a transformation
+
+not just services.
+
+2. Homepage Should Be Radically Simpler
+Current consulting pattern
+
+Most consulting sites do:
+
+Hero
+About
+Services
+Contact
+
+This is boring and ineffective.
+
+Instead use this structure:
+
+NEW HOMEPAGE STRUCTURE
+1. Hero (Very clear)
+
+Headline:
+
+Build systems that turn goals into results.
+
+Subheadline:
+
+For leaders, small businesses, entrepreneurs, and professionals.
+
+CTA buttons:
+
+Explore Services
+See the Performance Framework
+
+2. Who This Is For
+
+Three columns.
+
+Leaders
+Improve strategy, execution, and team performance.
+
+Small Businesses
+Build structure, accountability, and growth systems.
+
+Professionals
+Improve focus, productivity, and career performance.
+
+Icons here would help a lot.
+
+3. The Performance Processes Method
+
+This is where your brand becomes memorable.
+
+Visual diagram:
+
+Define Goals
+Build Systems
+Track Performance
+Improve Results
+
+Modern performance management works best as a continuous cycle of planning, monitoring, and development.
+
+Make this your signature framework.
+
+4. Services (Simplified)
+
+Instead of long descriptions.
+
+Use cards.
+
+Executive Advisory
+Strategic performance systems for leadership teams.
+
+Small Business Performance Program
+Structure and accountability for growing companies.
+
+Personal Performance Coaching
+Build systems that improve daily performance.
+
+Each card → Learn More
+
+5. Results Section
+
+Right now there is not enough outcome language.
+
+Add things like:
+
+Improve execution
+Align teams around priorities
+Track measurable progress
+Strengthen leadership performance
+
+People buy outcomes, not consulting.
+
+6. Thought Leadership
+
+Add a section:
+
+Insights on performance, leadership, and systems.
+
+Articles like:
+
+Why Most Strategy Fails
+Systems vs Motivation
+The Performance Process Framework
+
+Consultants win through authority.
+
+7. Call to Action
+
+Instead of just contact.
+
+Use:
+
+Start Building Better Performance
+
+Buttons:
+
+Explore Services
+Book an Intro Call
+
+3. Visual Design Improvements
+
+Your current design is decent but feels slightly 2015 consulting firm.
+
+Upgrade it.
+
+Make the design feel like:
+
+McKinsey × Notion × Stripe
+
+Improve Typography
+
+Use a modern pairing:
+
+Headline font
+Space Grotesk / Inter / Manrope
+
+Body font
+Inter / Source Sans
+
+Reduce Text Density
+
+Right now many sections feel like:
+
+Paragraphs.
+
+Instead:
+
+Short statements.
+
+Example:
+
+Bad
+
+We help organizations strengthen performance through structured processes and strategic alignment.
+
+Better
+
+Build systems that improve performance.
+
+Clarity > complexity.
+
+4. Improve the Color Strategy
+
+Your brand color is strong.
+
+But the site needs:
+
+White
+Soft grey backgrounds
+Pink accents
+
+Instead of pink everywhere.
+
+Use pink as a highlight, not the base.
+
+5. Add More Diagrams
+
+Your brand is literally processes.
+
+But there are very few process visuals.
+
+Add:
+
+Framework diagrams
+Flow diagrams
+Performance cycle graphics
+
+Example:
+
+Goal → System → Execution → Feedback → Improvement
+
+This reinforces expertise.
+
+6. Add Productized Services Section
+
+You are expanding beyond enterprise consulting.
+
+Add:
+
+Programs & Tools
+
+Examples:
+
+Performance Planner
+90 Day Performance System
+Performance Coaching
+
+This makes the business more scalable.
+
+7. The Services Page Needs Simplification
+
+Right now consulting sites often overwhelm visitors.
+
+Instead structure like:
+
+Executive Advisory
+
+For organizations and leadership teams.
+
+Includes:
+
+Monthly strategy sessions
+Performance oversight
+Leadership coaching
+
+Investment range.
+
+CTA.
+
+Small Business Performance System
+
+For founders and small teams.
+
+Includes:
+
+Performance tracking
+Strategy alignment
+Accountability systems
+
+CTA.
+
+Personal Performance Coaching
+
+For professionals.
+
+Focus:
+
+Goal setting
+Productivity systems
+Career growth
+
+CTA.
+
+8. Add a Signature Graphic
+
+Right now there is no visual concept that sticks in memory.
+
+Create:
+
+The Performance Processes Loop
+
+Visual:
+
+Goal Setting
+Execution
+Measurement
+Improvement
+
+Circular diagram.
+
+This becomes your intellectual property.
+
+9. Improve Trust Signals
+
+Currently missing.
+
+Add:
+
+Client logos
+Testimonials
+Case studies
+Metrics
+
+Example:
+
+"Helped leadership teams align strategy and execution across departments."
+
+10. Improve Conversion
+
+Add more calls to action.
+
+Every page should have:
+
+Explore Services
+Book a Call
+Download Framework
+
+11. Add a Lead Magnet
+
+Example:
+
+The Performance Systems Playbook
+
+Free PDF.
+
+Goal:
+
+Capture emails.
+
+12. SEO Opportunities
+
+You are sitting on a powerful keyword niche.
+
+Pages you should add:
+
+Performance Systems
+Performance Management Framework
+Leadership Performance Systems
+Business Execution Systems
+
+13. Speed and UX Improvements
+
+Ensure:
+
+Fast load times
+Minimal animations
+Clear spacing
+Mobile optimization
+
+14. The Brand Story Page
+
+Add:
+
+Why Performance Processes Exists
+
+Story matters.
+
+Example:
+
+Most organizations don't fail because of strategy.
+They fail because of execution.
+
+15. The Website Should Feel Like a System
+
+Right now it feels like:
+
+Consulting pages.
+
+It should feel like:
+
+A performance platform.
+
+Everything should reinforce:
+
+Performance is built through systems.
+
+If I Were Redesigning It Completely
+
+Homepage would be:
+
+Hero
+Who We Help
+Performance Framework
+Services
+Results
+Insights
+Call to Action
+
+Simple.
+
+Modern.
+
+Authority-driven.
+
+The Biggest Opportunity
+
+Right now the brand is positioned as:
+
+Consulting.
+
+But it could become:
+
+The authority on performance systems.
+
+That is a much bigger brand.

@@ -29,7 +29,9 @@ export default function Messages() {
   const otherParticipants = (participants ?? []).filter((p) => p.id !== user?.id);
 
   const filteredMessages = (messages ?? []).filter(
-    (m) => m.senderId === selectedRecipientId || m.recipientId === selectedRecipientId
+    (m) =>
+      (m.senderId === selectedRecipientId && m.recipientId === user?.id) ||
+      (m.senderId === user?.id && m.recipientId === selectedRecipientId)
   );
 
   const sendMutation = useMutation({
@@ -99,7 +101,9 @@ export default function Messages() {
 
   const getLastMessageForParticipant = (participantId: string) => {
     const msgs = (messages ?? []).filter(
-      (m) => m.senderId === participantId || m.recipientId === participantId
+      (m) =>
+        (m.senderId === participantId && m.recipientId === user?.id) ||
+        (m.senderId === user?.id && m.recipientId === participantId)
     );
     return msgs.length > 0 ? msgs[msgs.length - 1] : null;
   };

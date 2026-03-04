@@ -3,18 +3,24 @@ import { getUncachableOutlookClient } from './outlook';
 const ADMIN_EMAIL = 'contact@performanceprocesses.com';
 
 async function sendOutlookEmail(subject: string, htmlBody: string, toEmail?: string) {
+  const recipient = toEmail || ADMIN_EMAIL;
   try {
     const client = await getUncachableOutlookClient();
+
+    const me = await client.api('/me').select('mail,userPrincipalName').get();
+    console.log(`Outlook sending as: ${me.mail || me.userPrincipalName}`);
+
     const message: any = {
       subject,
       body: { contentType: 'HTML', content: htmlBody },
-      toRecipients: [{ emailAddress: { address: toEmail || ADMIN_EMAIL } }],
+      toRecipients: [{ emailAddress: { address: recipient } }],
     };
 
     await client.api('/me/sendMail').post({ message, saveToSentItems: true });
-    console.log(`Notification email sent: ${subject}`);
-  } catch (error) {
-    console.error(`Failed to send notification email (${subject}):`, error);
+    console.log(`Notification email sent to ${recipient}: ${subject}`);
+  } catch (error: any) {
+    console.error(`Failed to send notification email to ${recipient} (${subject}):`, error?.message || error);
+    if (error?.statusCode) console.error(`Graph API status: ${error.statusCode}`, error?.body || '');
   }
 }
 

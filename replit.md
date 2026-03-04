@@ -80,6 +80,16 @@ All portal pages use live API data via custom hooks (`usePortalEngagement`, `use
 - **Engagement switcher**: Staff and admin see a client selector in the sidebar to switch between assigned engagements; state managed via `EngagementProvider` (React Context in `use-portal.ts`)
 - The `usePortalEngagement` hook supports selecting a specific engagement; defaults to first engagement if none selected
 
+### Service Tiers (Services Page)
+Services are organized into 4 tabs with tabbed navigation:
+1. **Enterprise**: Discovery & Assessment, Strategy & Alignment, Systems & Implementation, Executive Advisory, Business Registration, Website & Digital Presence (all with Stripe payment)
+2. **Small Business**: Small Business Growth System ($500–$1,500/mo), Business Foundations Package ($2,500–$5,000) — contact/booking-based
+3. **Professional**: Personal Performance Coaching ($100–$500/mo) — contact/booking-based
+4. **Self-Serve**: Performance Planner ($49–$99), 90-Day Performance Program ($297–$997), Performance Systems Toolkit ($49–$199) — contact/booking-based
+- Includes "The Performance Process Method" framework section (Define → Build → Track → Improve)
+- Includes "Performance Processes Collective" community section ($49–$99/mo)
+- Enterprise tiers use Stripe checkout; all other tiers use "Book a Call" linking to MS Bookings
+
 ### Key Design Decisions
 1. **Shared schema directory** (`shared/`): Drizzle schema and Zod validation schemas are shared between frontend and backend
 2. **Role-based access control**: Three tiers (client, staff, admin) with middleware enforcement
@@ -87,7 +97,7 @@ All portal pages use live API data via custom hooks (`usePortalEngagement`, `use
 4. **Engagement-centric architecture**: Admin assigns clients to staff via engagements; staff manage their assigned clients' milestones, actions, KPIs, etc.
 5. **Single-page app with server-side fallback**: All unmatched routes fall through to `index.html`
 6. **Video backgrounds**: Hero sections and auth pages (Login/Register) use background videos with gradient overlays
-6. **Portal data hooks**: `usePortalEngagement()` and `usePortalData()` in `client/src/hooks/use-portal.ts` for consistent data fetching
+7. **Portal data hooks**: `usePortalEngagement()` and `usePortalData()` in `client/src/hooks/use-portal.ts` for consistent data fetching
 
 ## External Dependencies
 

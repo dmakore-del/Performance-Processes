@@ -189,21 +189,21 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mb-16">
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">
-                Consulting solutions for every stage of your journey
+                Performance systems for people and businesses
               </h2>
               <p className="text-lg text-muted-foreground">
-                Our experts work with you to solve your most pressing business challenges and capture new opportunities for growth.
+                From individuals building better habits to enterprises transforming operations — we help you hit your goals, stay accountable, and grow consistently.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { title: "Discovery & Assessment", desc: "Every engagement begins with clarity. We conduct a structured intake, needs assessment, and scope definition to build a roadmap tailored to your organization.", icon: <Search className="text-accent" /> },
-                { title: "Strategy & Alignment", desc: "We co-create strategic direction with leadership teams, aligning vision, goals, and performance measures into a unified plan that drives execution.", icon: <Target className="text-accent" /> },
-                { title: "Systems & Implementation", desc: "From performance management to governance frameworks, we design and deploy the operational systems that turn strategy into repeatable results.", icon: <Settings className="text-accent" /> },
-                { title: "Executive Advisory", desc: "Dedicated senior-level guidance on a monthly basis, including strategy sessions, performance oversight, and leadership coaching.", icon: <Briefcase className="text-accent" /> },
+                { title: "Enterprise Consulting", desc: "Strategic engagements, systems implementation, and executive advisory for companies and leadership teams ready for transformation.", icon: <Briefcase className="text-accent" /> },
+                { title: "Small Business Growth", desc: "Monthly programs with strategy sessions, KPI dashboards, accountability check-ins, and process improvement for teams of 1–20.", icon: <Rocket className="text-accent" /> },
+                { title: "Personal Performance Coaching", desc: "Monthly coaching, productivity systems, goal planning, and habit building for professionals, freelancers, and entrepreneurs.", icon: <GraduationCap className="text-accent" /> },
+                { title: "Tools & Programs", desc: "Self-serve performance planners, 90-day programs, and template toolkits you can use at your own pace — starting at $49.", icon: <BookOpen className="text-accent" /> },
                 { title: "Business Registration", desc: "We handle the full incorporation process, from entity structuring and government filings to compliance setup and governance documents.", icon: <Building2 className="text-accent" /> },
-                { title: "Website & Digital Presence", desc: "Professional, performance-driven websites with integrated booking, payments, and analytics to amplify your brand and attract clients.", icon: <Rocket className="text-accent" /> }
+                { title: "Website & Digital Presence", desc: "Professional, performance-driven websites with integrated booking, payments, and analytics to amplify your brand and attract clients.", icon: <Search className="text-accent" /> }
               ].map((s, i) => (
                 <Link key={i} href={`/services`}>
                   <div className="block h-full">

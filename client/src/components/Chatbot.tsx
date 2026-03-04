@@ -13,7 +13,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["services", "what do you offer", "offer", "provide", "help with"],
-    answer: "We offer outcome-focused consulting across six service areas: Discovery & Assessment, Strategy & Alignment, Systems & Implementation, Executive Advisory, Business Registration, and Website & Digital Presence. Visit our Services page for detailed pricing and packages."
+    answer: "We offer performance systems for everyone: Enterprise consulting (strategy, systems, executive advisory), Small Business Growth programs ($500–$1,500/mo), Personal Performance Coaching ($100–$500/mo), and Self-Serve tools and programs (from $49). We also handle Business Registration and Website & Digital Presence. Visit our Services page for details."
   },
   {
     keywords: ["different", "unique", "why choose", "stand out", "differentiator"],
@@ -21,7 +21,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["large organizations", "small", "size", "startup", "sme"],
-    answer: "No, we support organizations of all sizes — from emerging ventures to established enterprises."
+    answer: "We support everyone — from individuals and freelancers to small businesses and large enterprises. Our services start at just $49 for self-serve tools, $100/mo for personal coaching, $500/mo for small business programs, and scale up to full enterprise consulting."
   },
   {
     keywords: ["strategic alignment", "alignment", "what is strategic"],
@@ -40,8 +40,8 @@ const FAQ_DATA = [
     answer: "We serve organizations across Government, Nonprofit, Healthcare, Financial Services, Technology, Education, Manufacturing, and Professional Services sectors."
   },
   {
-    keywords: ["leadership coaching", "coaching", "executive coaching", "leadership development"],
-    answer: "Yes, we offer leadership development programs and executive coaching to strengthen capability and accountability."
+    keywords: ["leadership coaching", "coaching", "executive coaching", "leadership development", "personal coaching", "career coaching"],
+    answer: "Yes! We offer Personal Performance Coaching starting at $100/mo for professionals, freelancers, and entrepreneurs — covering goal planning, productivity systems, and habit building. For leadership teams, our Executive Advisory retainer starts at $2,500/mo with strategy sessions and executive coaching."
   },
   {
     keywords: ["governance", "board", "policies", "governance structures"],
@@ -89,7 +89,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["price", "cost", "pricing", "how much", "fee", "rate", "payment", "pay"],
-    answer: "We sell outcomes, not hours. Discovery & Assessment starts at $750, Strategy & Alignment from $5,000, Systems & Implementation from $8,000, Executive Advisory from $2,500/month, Business Registration from $3,500, and Website & Digital Presence from $1,200. Visit our Services page for full package details."
+    answer: "We have options for every budget: Personal Coaching from $100/mo, Small Business Growth from $500/mo, Self-Serve tools from $49, and Enterprise consulting from $750. Business Registration starts at $3,500, and Website & Digital Presence from $1,200. Visit our Services page for full package details."
   },
   {
     keywords: ["contact", "email", "phone", "reach"],

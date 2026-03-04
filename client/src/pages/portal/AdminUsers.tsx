@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/use-auth";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Redirect } from "wouter";
 
 interface AdminUser {
   id: string;
@@ -23,6 +25,11 @@ interface AdminUser {
 }
 
 export default function AdminUsers() {
+  const { user } = useAuth();
+
+  if (user && user.role !== "admin") {
+    return <Redirect to="/portal" />;
+  }
   const [filter, setFilter] = useState<"all" | "pending_approval" | "active" | "suspended">("all");
   const [roleDropdownId, setRoleDropdownId] = useState<string | null>(null);
   const [createEngagementOpen, setCreateEngagementOpen] = useState(false);

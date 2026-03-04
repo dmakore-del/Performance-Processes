@@ -5,7 +5,7 @@ import { useLanguage } from "@/hooks/use-language";
 const FAQ_DATA = [
   {
     keywords: ["what is", "performance processes", "about", "who are you", "company"],
-    answer: "Performance Processes is a business consulting firm that helps organizations align strategy with execution to achieve measurable, sustainable results."
+    answer: "Performance Processes helps professionals, businesses, and organizations turn ambition into consistent execution — building systems that deliver measurable, repeatable results."
   },
   {
     keywords: ["who do you work with", "clients", "work with", "target", "audience"],

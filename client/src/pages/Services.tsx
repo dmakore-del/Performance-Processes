@@ -643,7 +643,7 @@ export default function Services() {
       <Navbar />
       <main className="flex-grow">
         <PageHero 
-          title={<>{language === "en" ? "Build systems that help" : "Construisez des systèmes qui aident"} <br /> <span className="text-accent">{language === "en" ? "people perform better" : "les gens à mieux performer"}</span></>}
+          title={<>{language === "en" ? "Turn ambition into" : "Transformer l'ambition en"} <br /> <span className="text-accent">{language === "en" ? "consistent execution" : "exécution cohérente"}</span></>}
           subtitle={language === "en" 
             ? "Helping founders scale, professionals grow, teams execute, and organizations improve performance."
             : "Aider les fondateurs à grandir, les professionnels à évoluer, les équipes à exécuter et les organisations à améliorer leur performance."}

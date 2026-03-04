@@ -198,12 +198,12 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { title: "Discovery Phase", desc: "We start by understanding your organization, intake, assessment, scope, and roadmap.", icon: <Users className="text-accent" /> },
-                { title: "Strategic Engagement", desc: "Outcome-focused engagements for strategic planning, alignment, and performance design.", icon: <TrendingUp className="text-accent" /> },
-                { title: "Systems & Implementation", desc: "Full performance systems, governance frameworks, and process redesign.", icon: <ShieldCheck className="text-accent" /> },
-                { title: "Executive Advisory", desc: "Ongoing monthly advisory with strategy sessions, coaching, and performance oversight.", icon: <CheckCircle2 className="text-accent" /> },
-                { title: "Business Registration", desc: "Complete business setup from incorporation to governance and compliance.", icon: <TrendingUp className="text-accent" /> },
-                { title: "Website Building & Marketing", desc: "Build a strong digital presence that attracts and converts clients.", icon: <TrendingUp className="text-accent" /> }
+                { title: "Discovery & Assessment", desc: "Every engagement begins with clarity. We conduct a structured intake, needs assessment, and scope definition to build a roadmap tailored to your organization.", icon: <Search className="text-accent" /> },
+                { title: "Strategy & Alignment", desc: "We co-create strategic direction with leadership teams, aligning vision, goals, and performance measures into a unified plan that drives execution.", icon: <Target className="text-accent" /> },
+                { title: "Systems & Implementation", desc: "From performance management to governance frameworks, we design and deploy the operational systems that turn strategy into repeatable results.", icon: <Settings className="text-accent" /> },
+                { title: "Executive Advisory", desc: "Dedicated senior-level guidance on a monthly basis, including strategy sessions, performance oversight, and leadership coaching.", icon: <Briefcase className="text-accent" /> },
+                { title: "Business Registration", desc: "We handle the full incorporation process, from entity structuring and government filings to compliance setup and governance documents.", icon: <Building2 className="text-accent" /> },
+                { title: "Website & Digital Presence", desc: "Professional, performance-driven websites with integrated booking, payments, and analytics to amplify your brand and attract clients.", icon: <Rocket className="text-accent" /> }
               ].map((s, i) => (
                 <Link key={i} href={`/services`}>
                   <div className="block h-full">

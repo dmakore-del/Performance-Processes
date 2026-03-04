@@ -84,7 +84,7 @@ export default function Services() {
 
   const services = [
     {
-      title: language === "en" ? "Discovery Phase" : "Phase de découverte",
+      title: language === "en" ? "Discovery & Assessment" : "Découverte et évaluation",
       investment: "$750 – $1,500",
       investmentNote: language === "en" ? "(Mandatory first step, fee can be credited toward full engagement)" : "(Première étape obligatoire, les frais peuvent être crédités vers un engagement complet)",
       desc: language === "en"
@@ -121,7 +121,7 @@ export default function Services() {
       ]
     },
     {
-      title: language === "en" ? "Strategic Engagement" : "Engagement stratégique",
+      title: language === "en" ? "Strategy & Alignment" : "Stratégie et alignement",
       investment: "$5,000 – $15,000",
       investmentNote: language === "en" ? "(6–12 week engagement)" : "(Engagement de 6 à 12 semaines)",
       desc: language === "en"
@@ -314,7 +314,7 @@ export default function Services() {
       ]
     },
     {
-      title: language === "en" ? "Website Building & Marketing" : "Création de sites Web et marketing",
+      title: language === "en" ? "Website & Digital Presence" : "Site Web et présence numérique",
       investment: language === "en" ? "From $1,200" : "À partir de 1 200 $",
       desc: language === "en"
         ? "Build a strong digital presence that attracts and converts clients."

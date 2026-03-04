@@ -42,7 +42,7 @@ Preferred communication style: Simple, everyday language.
 ### Authentication & Authorization
 - **Auth System**: Passport.js with local strategy, bcryptjs for password hashing
 - **Sessions**: express-session with connect-pg-simple for PostgreSQL session storage. `user_sessions` table created programmatically in `setupAuth`
-- **2FA**: TOTP-based two-factor authentication using `otplib` (dynamic import). QR code generation via `qrcode` library
+- **2FA**: Removed — no 2FA setup or verification in login/register flows
 - **Account Types**: Three roles — `client` (default, active on registration), `staff` (pending_approval on registration, requires admin approval), `admin` (seeded)
 - **Account Status**: `active`, `pending_approval`, `suspended`. Login blocked for non-active accounts
 - **Admin Seed**: Danai Makore (contact@performanceprocesses.com, PPAdmin2026!) seeded on startup via `server/seedAdmin.ts`

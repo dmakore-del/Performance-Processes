@@ -13,7 +13,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["services", "what do you offer", "offer", "provide", "help with"],
-    answer: "We offer outcome-focused consulting through four core models: Discovery Phase, Strategic Engagement, Systems & Implementation, and Executive Advisory Retainer. We also provide Business Registration and Website Building services."
+    answer: "We offer outcome-focused consulting across six service areas: Discovery & Assessment, Strategy & Alignment, Systems & Implementation, Executive Advisory, Business Registration, and Website & Digital Presence. Visit our Services page for detailed pricing and packages."
   },
   {
     keywords: ["different", "unique", "why choose", "stand out", "differentiator"],
@@ -29,7 +29,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["how long", "duration", "timeline", "engagement last", "time"],
-    answer: "Our Strategic Engagements run 6–12 weeks. Systems & Implementation projects vary by scope. Executive Advisory Retainers have a 3-month minimum. Every engagement starts with a Discovery Phase."
+    answer: "Our Strategy & Alignment engagements run 6–12 weeks. Systems & Implementation projects vary by scope. Executive Advisory retainers have a 3-month minimum. Every engagement starts with our Discovery & Assessment phase."
   },
   {
     keywords: ["customized", "custom", "tailored", "personalized"],
@@ -37,7 +37,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["industries", "sectors", "industry", "which industries"],
-    answer: "We support organizations across nonprofit, financial services, professional services, and growth-focused sectors."
+    answer: "We serve organizations across Government, Nonprofit, Healthcare, Financial Services, Technology, Education, Manufacturing, and Professional Services sectors."
   },
   {
     keywords: ["leadership coaching", "coaching", "executive coaching", "leadership development"],
@@ -57,7 +57,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["website", "marketing", "digital", "online presence"],
-    answer: "Yes, we help ensure your digital presence and marketing efforts align with your broader strategic objectives."
+    answer: "Yes! Our Website & Digital Presence service builds professional, performance-driven websites starting from $1,200. We offer packages from basic sites (5 pages) up to premium enterprise solutions ($12,000+) with full integrations, plus ongoing management at $780/month."
   },
   {
     keywords: ["hands-on", "approach", "collaborative", "how do you work"],
@@ -65,7 +65,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["get started", "start", "begin", "first step", "consultation", "discovery"],
-    answer: "Every engagement begins with our Discovery Phase ($750–$1,500), where we conduct an organizational intake, needs assessment, and scope definition to build a clear proposal roadmap. Discovery fees can be credited toward your full engagement."
+    answer: "Every engagement begins with our Discovery & Assessment phase ($750–$1,500), where we conduct an organizational intake, needs assessment, and scope definition to build a clear proposal roadmap. Discovery fees can be credited toward your full engagement. You can also book a free consultation through our website."
   },
   {
     keywords: ["workshop", "one-time", "retreat", "session"],
@@ -89,7 +89,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["price", "cost", "pricing", "how much", "fee", "rate", "payment", "pay"],
-    answer: "We sell outcomes, not hours. Discovery Phase starts at $750, Strategic Engagements from $5,000, Systems & Implementation from $8,000, and Executive Advisory Retainers from $2,500/month. Visit our Services page for full details."
+    answer: "We sell outcomes, not hours. Discovery & Assessment starts at $750, Strategy & Alignment from $5,000, Systems & Implementation from $8,000, Executive Advisory from $2,500/month, Business Registration from $3,500, and Website & Digital Presence from $1,200. Visit our Services page for full package details."
   },
   {
     keywords: ["contact", "email", "phone", "reach"],

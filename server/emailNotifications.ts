@@ -1,26 +1,45 @@
-import { getUncachableOutlookClient } from './outlook';
+import nodemailer from 'nodemailer';
 
 const ADMIN_EMAIL = 'contact@performanceprocesses.com';
 
-async function sendOutlookEmail(subject: string, htmlBody: string, toEmail?: string) {
-  const recipient = toEmail || ADMIN_EMAIL;
+let transporter: nodemailer.Transporter | null = null;
+
+function getTransporter(): nodemailer.Transporter {
+  if (!transporter) {
+    const host = process.env.SMTP_HOST;
+    const port = parseInt(process.env.SMTP_PORT || '587', 10);
+    const user = process.env.SMTP_USER;
+    const pass = process.env.SMTP_PASS;
+
+    if (!host || !user || !pass) {
+      throw new Error('SMTP credentials not configured.');
+    }
+
+    transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465,
+      auth: { user, pass },
+    });
+  }
+  return transporter;
+}
+
+async function sendNotificationEmail(subject: string, htmlBody: string) {
   try {
-    const client = await getUncachableOutlookClient();
+    const fromEmail = process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER;
+    const transport = getTransporter();
 
-    const me = await client.api('/me').select('mail,userPrincipalName').get();
-    console.log(`Outlook sending as: ${me.mail || me.userPrincipalName}`);
-
-    const message: any = {
+    await transport.sendMail({
+      from: `"Performance Processes" <${fromEmail}>`,
+      to: ADMIN_EMAIL,
       subject,
-      body: { contentType: 'HTML', content: htmlBody },
-      toRecipients: [{ emailAddress: { address: recipient } }],
-    };
+      html: htmlBody,
+    });
 
-    await client.api('/me/sendMail').post({ message, saveToSentItems: true });
-    console.log(`Notification email sent to ${recipient}: ${subject}`);
+    console.log(`Notification email sent to ${ADMIN_EMAIL}: ${subject}`);
   } catch (error: any) {
-    console.error(`Failed to send notification email to ${recipient} (${subject}):`, error?.message || error);
-    if (error?.statusCode) console.error(`Graph API status: ${error.statusCode}`, error?.body || '');
+    console.error(`Failed to send notification email (${subject}):`, error?.message || error);
   }
 }
 
@@ -63,7 +82,7 @@ export async function notifyContactForm(data: { name: string; email: string; mes
     </div>
   `;
 
-  await sendOutlookEmail(subject, wrapHtml(title, content));
+  await sendNotificationEmail(subject, wrapHtml(title, content));
 }
 
 export async function notifyJobApplication(data: {
@@ -97,7 +116,7 @@ export async function notifyJobApplication(data: {
     ` : ''}
   `;
 
-  await sendOutlookEmail(subject, wrapHtml('Job Application Received', content));
+  await sendNotificationEmail(subject, wrapHtml('Job Application Received', content));
 }
 
 export async function notifyPaymentReceived(data: {
@@ -124,5 +143,5 @@ export async function notifyPaymentReceived(data: {
     </div>
   `;
 
-  await sendOutlookEmail(subject, wrapHtml('Payment Notification', content));
+  await sendNotificationEmail(subject, wrapHtml('Payment Notification', content));
 }

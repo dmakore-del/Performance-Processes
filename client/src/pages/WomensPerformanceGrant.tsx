@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { PageHero } from "@/components/layout/PageHero";
 import {
   Heart, Target, Users, Calendar, CheckCircle2, ArrowRight,
-  Sparkles, TrendingUp, Award, Send, Loader2, Star
+  Sparkles, TrendingUp, Award, Send, Loader2, Star, Briefcase, MapPin
 } from "lucide-react";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
@@ -21,30 +22,75 @@ export default function WomensPerformanceGrant() {
     fullName: "",
     email: "",
     phone: "",
+    city: "",
+    province: "",
     occupation: "",
+    companyOrOrg: "",
+    industry: "",
+    yearsExperience: "",
+    focusArea: "",
+    currentRole: "",
+    teamSize: "",
     goals: "",
     challenges: "",
     hopeToAchieve: "",
+    currentSystems: "",
+    previousCoaching: "",
+    commitment: "",
+    howHeard: "",
+    additionalInfo: "",
   });
+
+  const updateField = (field: string, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
 
   const submitMutation = useMutation({
     mutationFn: async (data: typeof form) => {
       const message = [
         `[WOMEN'S PERFORMANCE GRANT APPLICATION]`,
         ``,
+        `=== PERSONAL INFORMATION ===`,
         `Full Name: ${data.fullName}`,
         `Email: ${data.email}`,
         `Phone: ${data.phone}`,
-        `Occupation/Role: ${data.occupation}`,
+        `City: ${data.city}`,
+        `Province/State: ${data.province}`,
         ``,
-        `--- Goals ---`,
+        `=== PROFESSIONAL BACKGROUND ===`,
+        `Occupation/Role: ${data.occupation}`,
+        `Current Role Description: ${data.currentRole}`,
+        `Company/Organization: ${data.companyOrOrg}`,
+        `Industry: ${data.industry}`,
+        `Years of Experience: ${data.yearsExperience}`,
+        `Team Size (if applicable): ${data.teamSize}`,
+        ``,
+        `=== GRANT FOCUS ===`,
+        `Primary Focus Area: ${data.focusArea}`,
+        ``,
+        `=== GOALS ===`,
         data.goals,
         ``,
-        `--- Current Challenges ---`,
+        `=== CURRENT CHALLENGES ===`,
         data.challenges,
         ``,
-        `--- What They Hope to Achieve ---`,
+        `=== WHAT THEY HOPE TO ACHIEVE ===`,
         data.hopeToAchieve,
+        ``,
+        `=== CURRENT PERFORMANCE SYSTEMS ===`,
+        data.currentSystems,
+        ``,
+        `=== PREVIOUS COACHING/MENTORSHIP EXPERIENCE ===`,
+        data.previousCoaching,
+        ``,
+        `=== COMMITMENT & AVAILABILITY ===`,
+        data.commitment,
+        ``,
+        `=== HOW THEY HEARD ABOUT THE GRANT ===`,
+        data.howHeard,
+        ``,
+        `=== ADDITIONAL INFORMATION ===`,
+        data.additionalInfo || "(none provided)",
       ].join("\n");
 
       const res = await apiRequest("POST", "/api/contact", {
@@ -91,7 +137,7 @@ export default function WomensPerformanceGrant() {
   ];
 
   const timeline = [
-    { label: "Recipients", value: "3-5 women" },
+    { label: "Recipients", value: "3 women" },
     { label: "Program Duration", value: "3 months" },
     { label: "Application Deadline", value: "March 31" },
     { label: "Recipients Announced", value: "Early April" },
@@ -215,12 +261,12 @@ export default function WomensPerformanceGrant() {
 
         <section className="py-20 bg-white" data-testid="section-application-form" id="apply">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="max-w-2xl mx-auto">
+            <div className="max-w-3xl mx-auto">
               <div className="text-center mb-10">
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Apply Now</p>
                 <h2 className="text-3xl font-heading font-extrabold text-primary mb-4">Grant Application</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Complete the form below to apply for the Women's Performance Grant. Selected recipients will be contacted in early April.
+                  Complete the form below to apply for the Women's Performance Grant. Only 3 recipients will be selected. Take your time to provide thoughtful responses — your answers help us understand your goals and how this program can best support you.
                 </p>
               </div>
 
@@ -233,94 +279,331 @@ export default function WomensPerformanceGrant() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6" data-testid="form-grant-application">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form onSubmit={handleSubmit} className="space-y-10" data-testid="form-grant-application">
+
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-3 pb-3 border-b border-border">
+                      <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
+                        <Users className="text-accent" size={16} />
+                      </div>
+                      <h3 className="text-lg font-bold text-primary">Personal Information</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <Label htmlFor="grant-name">Full Name *</Label>
+                        <Input
+                          id="grant-name"
+                          data-testid="input-grant-name"
+                          value={form.fullName}
+                          onChange={(e) => updateField("fullName", e.target.value)}
+                          placeholder="Your full name"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="grant-email">Email Address *</Label>
+                        <Input
+                          id="grant-email"
+                          type="email"
+                          data-testid="input-grant-email"
+                          value={form.email}
+                          onChange={(e) => updateField("email", e.target.value)}
+                          placeholder="you@example.com"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div>
+                        <Label htmlFor="grant-phone">Phone Number *</Label>
+                        <Input
+                          id="grant-phone"
+                          data-testid="input-grant-phone"
+                          value={form.phone}
+                          onChange={(e) => updateField("phone", e.target.value)}
+                          placeholder="+1 (555) 000-0000"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="grant-city">City *</Label>
+                        <Input
+                          id="grant-city"
+                          data-testid="input-grant-city"
+                          value={form.city}
+                          onChange={(e) => updateField("city", e.target.value)}
+                          placeholder="e.g. Toronto"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="grant-province">Province / State *</Label>
+                        <Input
+                          id="grant-province"
+                          data-testid="input-grant-province"
+                          value={form.province}
+                          onChange={(e) => updateField("province", e.target.value)}
+                          placeholder="e.g. Ontario"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-3 pb-3 border-b border-border">
+                      <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
+                        <Briefcase className="text-accent" size={16} />
+                      </div>
+                      <h3 className="text-lg font-bold text-primary">Professional Background</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <Label htmlFor="grant-occupation">Occupation / Title *</Label>
+                        <Input
+                          id="grant-occupation"
+                          data-testid="input-grant-occupation"
+                          value={form.occupation}
+                          onChange={(e) => updateField("occupation", e.target.value)}
+                          placeholder="e.g. Entrepreneur, Marketing Manager"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="grant-company">Company / Organization</Label>
+                        <Input
+                          id="grant-company"
+                          data-testid="input-grant-company"
+                          value={form.companyOrOrg}
+                          onChange={(e) => updateField("companyOrOrg", e.target.value)}
+                          placeholder="Your company or organization name"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div>
+                        <Label htmlFor="grant-industry">Industry *</Label>
+                        <Input
+                          id="grant-industry"
+                          data-testid="input-grant-industry"
+                          value={form.industry}
+                          onChange={(e) => updateField("industry", e.target.value)}
+                          placeholder="e.g. Technology, Healthcare"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="grant-experience">Years of Experience *</Label>
+                        <Select value={form.yearsExperience} onValueChange={(v) => updateField("yearsExperience", v)}>
+                          <SelectTrigger data-testid="select-grant-experience">
+                            <SelectValue placeholder="Select range" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="0-2">0 - 2 years</SelectItem>
+                            <SelectItem value="3-5">3 - 5 years</SelectItem>
+                            <SelectItem value="6-10">6 - 10 years</SelectItem>
+                            <SelectItem value="11-15">11 - 15 years</SelectItem>
+                            <SelectItem value="15+">15+ years</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="grant-team">Team Size (if applicable)</Label>
+                        <Select value={form.teamSize} onValueChange={(v) => updateField("teamSize", v)}>
+                          <SelectTrigger data-testid="select-grant-team">
+                            <SelectValue placeholder="Select size" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="solo">Just me</SelectItem>
+                            <SelectItem value="2-5">2 - 5 people</SelectItem>
+                            <SelectItem value="6-15">6 - 15 people</SelectItem>
+                            <SelectItem value="16-50">16 - 50 people</SelectItem>
+                            <SelectItem value="50+">50+ people</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+
                     <div>
-                      <Label htmlFor="grant-name">Full Name</Label>
-                      <Input
-                        id="grant-name"
-                        data-testid="input-grant-name"
-                        value={form.fullName}
-                        onChange={(e) => setForm({ ...form, fullName: e.target.value })}
-                        placeholder="Your full name"
+                      <Label htmlFor="grant-current-role">Describe your current role and responsibilities *</Label>
+                      <Textarea
+                        id="grant-current-role"
+                        data-testid="input-grant-current-role"
+                        value={form.currentRole}
+                        onChange={(e) => updateField("currentRole", e.target.value)}
+                        placeholder="Tell us about what you do day-to-day, your key responsibilities, and the scope of your work..."
+                        rows={3}
                         required
                       />
                     </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-3 pb-3 border-b border-border">
+                      <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
+                        <Target className="text-accent" size={16} />
+                      </div>
+                      <h3 className="text-lg font-bold text-primary">Goals & Challenges</h3>
+                    </div>
+
                     <div>
-                      <Label htmlFor="grant-email">Email Address</Label>
-                      <Input
-                        id="grant-email"
-                        type="email"
-                        data-testid="input-grant-email"
-                        value={form.email}
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        placeholder="you@example.com"
+                      <Label htmlFor="grant-focus">Primary focus area for this grant *</Label>
+                      <Select value={form.focusArea} onValueChange={(v) => updateField("focusArea", v)}>
+                        <SelectTrigger data-testid="select-grant-focus">
+                          <SelectValue placeholder="Select your primary focus" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="leadership">Leadership Development</SelectItem>
+                          <SelectItem value="business-growth">Business Growth</SelectItem>
+                          <SelectItem value="career-advancement">Career Advancement</SelectItem>
+                          <SelectItem value="productivity">Productivity & Focus</SelectItem>
+                          <SelectItem value="strategic-execution">Strategic Goal Execution</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="grant-goals">What are your professional or business goals? *</Label>
+                      <p className="text-xs text-muted-foreground mb-2">Be specific about what you want to accomplish in the next 3-12 months.</p>
+                      <Textarea
+                        id="grant-goals"
+                        data-testid="input-grant-goals"
+                        value={form.goals}
+                        onChange={(e) => updateField("goals", e.target.value)}
+                        placeholder="Describe your short-term and long-term goals, including any specific milestones or targets you're working toward..."
+                        rows={5}
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="grant-challenges">What are the biggest challenges holding you back right now? *</Label>
+                      <p className="text-xs text-muted-foreground mb-2">Help us understand what obstacles you face in achieving your goals.</p>
+                      <Textarea
+                        id="grant-challenges"
+                        data-testid="input-grant-challenges"
+                        value={form.challenges}
+                        onChange={(e) => updateField("challenges", e.target.value)}
+                        placeholder="Describe the specific challenges or barriers you're currently facing. This could include lack of structure, time management, accountability, strategic direction, resources, etc."
+                        rows={5}
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="grant-achieve">What do you hope to achieve through this program? *</Label>
+                      <p className="text-xs text-muted-foreground mb-2">Tell us what success would look like for you at the end of 3 months.</p>
+                      <Textarea
+                        id="grant-achieve"
+                        data-testid="input-grant-achieve"
+                        value={form.hopeToAchieve}
+                        onChange={(e) => updateField("hopeToAchieve", e.target.value)}
+                        placeholder="Describe the specific outcomes or changes you'd like to see in your career, business, or leadership after completing this program..."
+                        rows={5}
                         required
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-3 pb-3 border-b border-border">
+                      <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
+                        <Star className="text-accent" size={16} />
+                      </div>
+                      <h3 className="text-lg font-bold text-primary">Readiness & Commitment</h3>
+                    </div>
+
                     <div>
-                      <Label htmlFor="grant-phone">Phone Number</Label>
-                      <Input
-                        id="grant-phone"
-                        data-testid="input-grant-phone"
-                        value={form.phone}
-                        onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                        placeholder="+1 (555) 000-0000"
+                      <Label htmlFor="grant-systems">Do you currently use any performance tracking, goal-setting, or accountability systems? *</Label>
+                      <p className="text-xs text-muted-foreground mb-2">If yes, describe them. If no, tell us how you currently manage your goals and priorities.</p>
+                      <Textarea
+                        id="grant-systems"
+                        data-testid="input-grant-systems"
+                        value={form.currentSystems}
+                        onChange={(e) => updateField("currentSystems", e.target.value)}
+                        placeholder="Describe any tools, systems, or methods you currently use (or don't use) to track your progress and manage your performance..."
+                        rows={4}
+                        required
                       />
                     </div>
+
                     <div>
-                      <Label htmlFor="grant-occupation">Occupation / Role</Label>
-                      <Input
-                        id="grant-occupation"
-                        data-testid="input-grant-occupation"
-                        value={form.occupation}
-                        onChange={(e) => setForm({ ...form, occupation: e.target.value })}
-                        placeholder="e.g. Entrepreneur, Manager, Freelancer"
+                      <Label htmlFor="grant-coaching">Have you previously worked with a coach, mentor, or consultant? *</Label>
+                      <p className="text-xs text-muted-foreground mb-2">If yes, briefly describe the experience and what you gained from it.</p>
+                      <Textarea
+                        id="grant-coaching"
+                        data-testid="input-grant-coaching"
+                        value={form.previousCoaching}
+                        onChange={(e) => updateField("previousCoaching", e.target.value)}
+                        placeholder="Tell us about any past coaching, mentorship, or consulting experience and how it impacted you..."
+                        rows={4}
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="grant-commitment">How would you describe your availability and commitment to this 3-month program? *</Label>
+                      <p className="text-xs text-muted-foreground mb-2">The program includes monthly strategy sessions, regular check-ins, and implementation work between sessions.</p>
+                      <Textarea
+                        id="grant-commitment"
+                        data-testid="input-grant-commitment"
+                        value={form.commitment}
+                        onChange={(e) => updateField("commitment", e.target.value)}
+                        placeholder="Describe your availability, the time you're prepared to invest each week, and your level of commitment to following through on the program..."
+                        rows={4}
                         required
                       />
                     </div>
                   </div>
 
-                  <div>
-                    <Label htmlFor="grant-goals">What are your goals?</Label>
-                    <Textarea
-                      id="grant-goals"
-                      data-testid="input-grant-goals"
-                      value={form.goals}
-                      onChange={(e) => setForm({ ...form, goals: e.target.value })}
-                      placeholder="Describe your professional or business goals..."
-                      rows={4}
-                      required
-                    />
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-3 pb-3 border-b border-border">
+                      <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
+                        <MapPin className="text-accent" size={16} />
+                      </div>
+                      <h3 className="text-lg font-bold text-primary">Final Details</h3>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="grant-heard">How did you hear about the Women's Performance Grant? *</Label>
+                      <Select value={form.howHeard} onValueChange={(v) => updateField("howHeard", v)}>
+                        <SelectTrigger data-testid="select-grant-heard">
+                          <SelectValue placeholder="Select an option" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="linkedin">LinkedIn</SelectItem>
+                          <SelectItem value="instagram">Instagram</SelectItem>
+                          <SelectItem value="website">Performance Processes Website</SelectItem>
+                          <SelectItem value="referral">Referral / Word of Mouth</SelectItem>
+                          <SelectItem value="email">Email Newsletter</SelectItem>
+                          <SelectItem value="event">Event or Workshop</SelectItem>
+                          <SelectItem value="search">Google / Search Engine</SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="grant-additional">Is there anything else you'd like us to know?</Label>
+                      <Textarea
+                        id="grant-additional"
+                        data-testid="input-grant-additional"
+                        value={form.additionalInfo}
+                        onChange={(e) => updateField("additionalInfo", e.target.value)}
+                        placeholder="Share anything else that might be relevant to your application — your story, motivation, or any additional context you think is important..."
+                        rows={4}
+                      />
+                    </div>
                   </div>
 
-                  <div>
-                    <Label htmlFor="grant-challenges">What are your current challenges?</Label>
-                    <Textarea
-                      id="grant-challenges"
-                      data-testid="input-grant-challenges"
-                      value={form.challenges}
-                      onChange={(e) => setForm({ ...form, challenges: e.target.value })}
-                      placeholder="What obstacles are you facing right now?"
-                      rows={4}
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="grant-achieve">What do you hope to achieve through this program?</Label>
-                    <Textarea
-                      id="grant-achieve"
-                      data-testid="input-grant-achieve"
-                      value={form.hopeToAchieve}
-                      onChange={(e) => setForm({ ...form, hopeToAchieve: e.target.value })}
-                      placeholder="What outcomes are you looking for?"
-                      rows={4}
-                      required
-                    />
+                  <div className="bg-accent/5 border border-accent/20 rounded-2xl p-6">
+                    <p className="text-sm text-primary leading-relaxed">
+                      By submitting this application, you confirm that the information provided is accurate and that you are available to commit to the full 3-month program if selected. Only 3 recipients will be chosen, and all applicants will be notified of the outcome by early April.
+                    </p>
                   </div>
 
                   <Button

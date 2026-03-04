@@ -871,7 +871,7 @@ export default function Services() {
 
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
                     {[
-                      { label: language === "en" ? "Recipients" : "Récipiendaires", value: "3-5" },
+                      { label: language === "en" ? "Recipients" : "Récipiendaires", value: "3" },
                       { label: language === "en" ? "Duration" : "Durée", value: language === "en" ? "3 months" : "3 mois" },
                       { label: language === "en" ? "Deadline" : "Date limite", value: language === "en" ? "March 31" : "31 mars" },
                       { label: language === "en" ? "Announced" : "Annoncé", value: language === "en" ? "Early April" : "Début avril" },

@@ -1,8 +1,8 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { useLanguage } from "@/hooks/use-language";
-import { PageHero } from "@/components/layout/PageHero";
 import { Link } from "wouter";
+import { useState } from "react";
 import {
   Search,
   Target,
@@ -13,23 +13,18 @@ import {
   CheckCircle2,
   Clock,
   BarChart3,
-  GitBranch,
   Users,
-  Layers,
   Scale,
   Compass,
   Network,
   RefreshCw,
   ChevronRight,
-  FileSearch,
-  Lightbulb,
-  Settings,
-  BookOpen,
+  ChevronDown,
   ClipboardList,
   PieChart,
   Workflow,
   UserCheck,
-  Repeat,
+  Calendar,
 } from "lucide-react";
 import {
   Accordion,
@@ -41,8 +36,11 @@ import {
 import consultingImg from "@assets/stock_images/consulting.jpg";
 import strategyImg from "@assets/stock_images/strategy.jpg";
 
+const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+
 export default function Approach() {
   const { language } = useLanguage();
+  const [expandedStep, setExpandedStep] = useState<string | null>(null);
 
   const steps = [
     {
@@ -56,6 +54,7 @@ export default function Approach() {
       color: "from-blue-500/15 to-blue-600/5",
       accentColor: "text-blue-600",
       bgAccent: "bg-blue-600",
+      borderAccent: "border-blue-500/20",
       details: [
         "Every successful engagement begins with a deep understanding of where your organization stands today. Our Discovery & Assessment phase goes far beyond surface-level analysis, we immerse ourselves in your organizational culture, strategic objectives, operational processes, and leadership dynamics to build a comprehensive picture of your current state.",
         "During this phase, we conduct extensive stakeholder interviews across all levels of the organization, from senior leadership to front-line teams. These conversations reveal not only the formal structures and processes in place but also the informal dynamics, unspoken challenges, and latent opportunities that data alone cannot capture.",
@@ -88,6 +87,7 @@ export default function Approach() {
       color: "from-emerald-500/15 to-emerald-600/5",
       accentColor: "text-emerald-600",
       bgAccent: "bg-emerald-600",
+      borderAccent: "border-emerald-500/20",
       details: [
         "With a clear picture of your current state, we move into Strategic Alignment, the most critical phase for setting the trajectory of your transformation. This is where vision meets actionable planning, and where leadership teams come together around a unified strategic direction.",
         "We facilitate structured strategic planning workshops with your leadership team, using proven frameworks to clarify your mission, refine your vision, and define measurable strategic objectives. These sessions are designed to surface diverse perspectives, build consensus, and create genuine buy-in from the people who will drive change.",
@@ -120,6 +120,7 @@ export default function Approach() {
       color: "from-amber-500/15 to-amber-600/5",
       accentColor: "text-amber-600",
       bgAccent: "bg-amber-600",
+      borderAccent: "border-amber-500/20",
       details: [
         "Implementation is where strategy becomes reality. During this phase, we work shoulder-to-shoulder with your teams to put new systems, processes, and practices into action. Unlike firms that hand over a report and walk away, we stay deeply involved to ensure successful execution.",
         "We begin by developing a detailed Implementation Roadmap with clear milestones, responsibilities, and timelines. This roadmap is designed to be realistic and achievable, balancing the urgency for improvement with the practical realities of organizational capacity and change management.",
@@ -152,6 +153,7 @@ export default function Approach() {
       color: "from-violet-500/15 to-violet-600/5",
       accentColor: "text-violet-600",
       bgAccent: "bg-violet-600",
+      borderAccent: "border-violet-500/20",
       details: [
         "Sustainable performance improvement requires ongoing attention and refinement. Our Monitoring & Optimization phase ensures that the changes implemented in previous phases take root, deliver measurable results, and continue to evolve as your organization grows.",
         "We establish robust performance monitoring systems that give you real-time visibility into how your organization is performing against its strategic objectives. This includes setting up dashboards, reporting cadences, and feedback mechanisms that keep leadership informed and enable data-driven decision-making.",
@@ -257,18 +259,50 @@ export default function Approach() {
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <Navbar />
       <main className="flex-grow">
-        <PageHero
-          title={<>{language === "en" ? "A collaborative," : "Une approche collaborative,"} <span className="text-accent italic">{language === "en" ? "results-focused" : "axée sur les résultats"}</span> {language === "en" ? "approach" : ""}</>}
-          subtitle={language === "en"
-            ? "Our methodology is designed to ensure sustainable performance improvements and maximum ROI."
-            : "Notre méthodologie est conçue pour garantir des améliorations de performance durables et un ROI maximal."}
-        />
 
-        <section className="py-28 bg-white" data-testid="section-methodology-intro">
+        <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-primary">
+          <div className="absolute inset-0 z-0">
+            <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-15">
+              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/80" />
+          </div>
+          <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
+            <div className="max-w-4xl">
+              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="text-hero-label">
+                {language === "en" ? "Our Approach" : "Notre approche"}
+              </p>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-hero-title">
+                {language === "en" ? (
+                  <>A collaborative, <span className="text-accent italic">results-focused</span> approach</>
+                ) : (
+                  <>Une approche collaborative, <span className="text-accent italic">axée sur les résultats</span></>
+                )}
+              </h1>
+              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-hero-subtitle">
+                {language === "en"
+                  ? "Our methodology is designed to ensure sustainable performance improvements and maximum ROI."
+                  : "Notre méthodologie est conçue pour garantir des améliorations de performance durables et un ROI maximal."}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="link-hero-book">
+                    <Calendar size={18} />
+                    {language === "en" ? "Book a Consultation" : "Réservez une consultation"}
+                </a>
+                <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="link-hero-services">
+                    {language === "en" ? "Explore Services" : "Explorer les services"}
+                    <ArrowRight size={18} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-32 bg-white" data-testid="section-methodology-intro">
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
               <div>
-                <p className="text-accent font-semibold uppercase tracking-wider mb-4" data-testid="text-methodology-label">Our Methodology</p>
+                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5" data-testid="text-methodology-label">Our Methodology</p>
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-8 italic" data-testid="text-methodology-title">
                   Built on Experience, Driven by Results
                 </h2>
@@ -286,10 +320,10 @@ export default function Approach() {
                 <img
                   src={consultingImg}
                   alt="Performance consulting methodology"
-                  className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]"
+                  className="rounded-3xl shadow-2xl w-full object-cover aspect-[4/3]"
                   data-testid="img-methodology"
                 />
-                <div className="absolute -bottom-6 -left-6 bg-primary text-white p-6 rounded-xl shadow-lg hidden md:block">
+                <div className="absolute -bottom-6 -left-6 bg-primary text-white p-6 rounded-2xl shadow-lg hidden md:block">
                   <p className="text-3xl font-extrabold italic">4 Phases</p>
                   <p className="text-sm opacity-80">Proven methodology</p>
                 </div>
@@ -298,78 +332,92 @@ export default function Approach() {
           </div>
         </section>
 
-        <section className="py-28" data-testid="section-approach-steps">
+        <section className="py-32 bg-gradient-to-b from-[#F8FAFC] to-white" data-testid="section-approach-steps">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-20">
-              <p className="text-accent font-semibold uppercase tracking-wider mb-4">Our Process</p>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">Our Process</p>
               <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic" data-testid="text-process-title">
                 Four Phases to Lasting Impact
               </h2>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-5">
               {steps.map((step, i) => {
                 const Icon = step.icon;
+                const isExpanded = expandedStep === step.num;
                 return (
                   <div key={i} data-testid={`step-${step.num}`}>
-                    <div className="bg-white rounded-3xl shadow-lg border border-gray-100/80 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div className="bg-white rounded-3xl shadow-md border border-gray-100/80 overflow-hidden hover:shadow-xl transition-all duration-300">
                       <div className="flex flex-col lg:flex-row">
-                        <div className={`bg-gradient-to-b from-primary to-primary/90 text-white p-8 lg:p-12 flex flex-col items-center justify-center lg:min-w-[220px] relative overflow-hidden`}>
+                        <div className="bg-gradient-to-b from-primary to-primary/90 text-white p-8 lg:p-10 flex flex-col items-center justify-center lg:min-w-[200px] relative overflow-hidden">
                           <div className="absolute inset-0 opacity-10">
                             <div className={`absolute top-4 right-4 w-32 h-32 rounded-full bg-gradient-to-br ${step.color}`} />
                           </div>
-                          <span className="text-7xl lg:text-8xl font-black opacity-20 italic leading-none relative z-10">{step.num}</span>
-                          <Icon className="w-10 h-10 mt-4 text-accent relative z-10" />
-                          <div className="mt-4 bg-white/10 backdrop-blur-sm rounded-full px-5 py-1.5 text-sm relative z-10 flex items-center gap-1.5">
+                          <span className="text-6xl lg:text-7xl font-black opacity-20 italic leading-none relative z-10">{step.num}</span>
+                          <Icon className="w-9 h-9 mt-3 text-accent relative z-10" />
+                          <div className="mt-3 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1 text-sm relative z-10 flex items-center gap-1.5">
                             <Clock className="w-3 h-3" />
                             {step.duration}
                           </div>
                         </div>
 
-                        <div className="p-8 lg:p-14 flex-1">
-                          <h3 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4 italic" data-testid={`text-step-title-${step.num}`}>
+                        <div className="p-8 lg:p-12 flex-1">
+                          <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-3 italic" data-testid={`text-step-title-${step.num}`}>
                             {step.title}
                           </h3>
-                          <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-3xl">
+                          <p className="text-lg text-muted-foreground leading-relaxed mb-6 max-w-3xl">
                             {step.desc}
                           </p>
 
-                          <div className="space-y-4 mb-10">
-                            {step.details.map((para, j) => (
-                              <p key={j} className="text-muted-foreground leading-relaxed">
-                                {para}
-                              </p>
-                            ))}
-                          </div>
+                          <button
+                            onClick={() => setExpandedStep(isExpanded ? null : step.num)}
+                            className="inline-flex items-center gap-2 text-accent font-semibold hover:text-accent/80 transition-colors duration-200 mb-2"
+                            data-testid={`button-expand-step-${step.num}`}
+                          >
+                            {isExpanded ? "Show less" : "Learn more about this phase"}
+                            <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} />
+                          </button>
 
-                          <div className="grid md:grid-cols-2 gap-10 mt-10 pt-10 border-t border-gray-100">
-                            <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl p-7 border border-border/40">
-                              <h4 className="text-lg font-bold text-primary mb-5 flex items-center gap-2">
-                                <ClipboardList className="w-5 h-5 text-accent" />
-                                Key Activities
-                              </h4>
-                              <ul className="space-y-3">
-                                {step.activities.map((activity, j) => (
-                                  <li key={j} className="flex items-start gap-3 text-muted-foreground">
-                                    <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                                    <span>{activity}</span>
-                                  </li>
+                          <div className={`grid transition-all duration-500 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-6" : "grid-rows-[0fr] opacity-0"}`}>
+                            <div className="overflow-hidden">
+                              <div className="space-y-4 mb-10">
+                                {step.details.map((para, j) => (
+                                  <p key={j} className="text-muted-foreground leading-relaxed">
+                                    {para}
+                                  </p>
                                 ))}
-                              </ul>
-                            </div>
-                            <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl p-7 border border-border/40">
-                              <h4 className="text-lg font-bold text-primary mb-5 flex items-center gap-2">
-                                <Target className="w-5 h-5 text-accent" />
-                                Expected Outcomes
-                              </h4>
-                              <ul className="space-y-3">
-                                {step.outcomes.map((outcome, j) => (
-                                  <li key={j} className="flex items-start gap-3 text-muted-foreground">
-                                    <ArrowRight className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                                    <span>{outcome}</span>
-                                  </li>
-                                ))}
-                              </ul>
+                              </div>
+
+                              <div className="grid md:grid-cols-2 gap-8 pt-8 border-t border-gray-100">
+                                <div className="bg-gradient-to-br from-[#f0f4f8] to-white rounded-3xl p-7 border border-border/30">
+                                  <h4 className="text-lg font-bold text-primary mb-5 flex items-center gap-2">
+                                    <ClipboardList className="w-5 h-5 text-accent" />
+                                    Key Activities
+                                  </h4>
+                                  <ul className="space-y-3">
+                                    {step.activities.map((activity, j) => (
+                                      <li key={j} className="flex items-start gap-3 text-muted-foreground">
+                                        <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                                        <span>{activity}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                                <div className="bg-gradient-to-br from-[#f0f4f8] to-white rounded-3xl p-7 border border-border/30">
+                                  <h4 className="text-lg font-bold text-primary mb-5 flex items-center gap-2">
+                                    <Target className="w-5 h-5 text-accent" />
+                                    Expected Outcomes
+                                  </h4>
+                                  <ul className="space-y-3">
+                                    {step.outcomes.map((outcome, j) => (
+                                      <li key={j} className="flex items-start gap-3 text-muted-foreground">
+                                        <ArrowRight className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                                        <span>{outcome}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -377,13 +425,13 @@ export default function Approach() {
                     </div>
 
                     {i < steps.length - 1 && (
-                      <div className="flex justify-center py-3">
+                      <div className="flex justify-center py-2">
                         <div className="flex flex-col items-center text-accent">
-                          <div className="w-0.5 h-6 bg-gradient-to-b from-accent/40 to-accent/20" />
-                          <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
-                            <ArrowDown className="w-4 h-4 text-accent" />
+                          <div className="w-px h-4 bg-gradient-to-b from-accent/30 to-accent/15" />
+                          <div className="w-7 h-7 rounded-full bg-accent/10 flex items-center justify-center">
+                            <ArrowDown className="w-3.5 h-3.5 text-accent" />
                           </div>
-                          <div className="w-0.5 h-6 bg-gradient-to-b from-accent/20 to-accent/5" />
+                          <div className="w-px h-4 bg-gradient-to-b from-accent/15 to-accent/5" />
                         </div>
                       </div>
                     )}
@@ -394,10 +442,10 @@ export default function Approach() {
           </div>
         </section>
 
-        <section className="py-28 bg-white" data-testid="section-tools-frameworks">
+        <section className="py-32 bg-white" data-testid="section-tools-frameworks">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-20">
-              <p className="text-accent font-semibold uppercase tracking-wider mb-4">Our Toolkit</p>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">Our Toolkit</p>
               <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-6" data-testid="text-tools-title">
                 Tools & Frameworks We Use
               </h2>
@@ -412,10 +460,10 @@ export default function Approach() {
                 return (
                   <div
                     key={i}
-                    className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl p-8 border border-gray-100/80 hover:shadow-xl hover:border-accent/20 transition-all duration-300 group"
+                    className="bg-gradient-to-br from-[#f0f4f8] to-white rounded-3xl p-8 border border-gray-100/60 hover:shadow-xl hover:border-accent/20 transition-all duration-300 group hover:-translate-y-1"
                     data-testid={`card-tool-${i}`}
                   >
-                    <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl flex items-center justify-center mb-6 group-hover:from-accent/15 group-hover:to-accent/5 transition-all duration-300">
+                    <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-accent/5 rounded-2xl flex items-center justify-center mb-6 group-hover:from-accent/15 group-hover:to-accent/10 transition-all duration-300">
                       <Icon className="w-7 h-7 text-primary group-hover:text-accent transition-colors duration-300" />
                     </div>
                     <h3 className="text-xl font-bold text-primary mb-3">{tool.title}</h3>
@@ -427,11 +475,11 @@ export default function Approach() {
           </div>
         </section>
 
-        <section className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white" data-testid="section-faq">
+        <section className="py-32 bg-gradient-to-b from-[#F8FAFC] to-white" data-testid="section-faq">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-20">
-                <p className="text-accent font-semibold uppercase tracking-wider mb-4">FAQ</p>
+                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">FAQ</p>
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-6" data-testid="text-faq-title">
                   What to Expect
                 </h2>
@@ -445,7 +493,7 @@ export default function Approach() {
                   <AccordionItem
                     key={i}
                     value={`faq-${i}`}
-                    className="bg-white rounded-2xl border border-gray-100/80 px-7 shadow-sm hover:shadow-md transition-shadow duration-300"
+                    className="bg-white rounded-3xl border border-gray-100/80 px-8 shadow-sm hover:shadow-md transition-all duration-300 data-[state=open]:shadow-lg data-[state=open]:border-accent/20"
                     data-testid={`faq-item-${i}`}
                   >
                     <AccordionTrigger className="text-lg font-semibold text-primary hover:text-accent py-7 text-left">
@@ -461,45 +509,42 @@ export default function Approach() {
           </div>
         </section>
 
-        <section className="py-28 bg-white" data-testid="section-cta">
-          <div className="container mx-auto px-4 md:px-8">
+        <section className="relative py-32 overflow-hidden" data-testid="section-cta">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/90" />
+          <div className="absolute inset-0 opacity-5">
+            <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
               <div className="order-2 md:order-1">
                 <img
                   src={strategyImg}
                   alt="Strategic planning consultation"
-                  className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]"
+                  className="rounded-3xl shadow-2xl w-full object-cover aspect-[4/3] ring-1 ring-white/10"
                   data-testid="img-cta-strategy"
                 />
               </div>
               <div className="order-1 md:order-2">
-                <p className="text-accent font-semibold uppercase tracking-wider mb-4">Get Started</p>
-                <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-8" data-testid="text-cta-title">
+                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">Get Started</p>
+                <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-white italic mb-8" data-testid="text-cta-title">
                   Ready to Begin Your Transformation?
                 </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                <p className="text-lg text-white/70 leading-relaxed mb-6">
                   Every high-performing organization started with a single decision, the decision to invest in their people, processes, and performance. Whether you're looking to refine your strategic direction, strengthen your leadership team, or build a culture of accountability and results, we're here to help.
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-10">
+                <p className="text-lg text-white/70 leading-relaxed mb-10">
                   Book a complimentary discovery call to discuss your organization's challenges and explore how our methodology can deliver measurable, sustainable results.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/contact">
-                    <div
-                      className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 cursor-pointer shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30"
-                      data-testid="button-cta-consultation"
-                    >
+                  <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="link-cta-consultation">
+                      <Calendar size={18} />
                       Book a Consultation
-                      <ChevronRight className="w-5 h-5" />
-                    </div>
-                  </Link>
-                  <Link href="/services">
-                    <div
-                      className="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 cursor-pointer"
-                      data-testid="button-cta-services"
-                    >
+                  </a>
+                  <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="link-cta-services">
                       View Our Services
-                    </div>
+                      <ArrowRight size={18} />
                   </Link>
                 </div>
               </div>

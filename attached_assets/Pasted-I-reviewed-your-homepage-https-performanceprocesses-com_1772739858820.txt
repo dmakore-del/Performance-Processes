@@ -1,0 +1,306 @@
+I reviewed your **homepage**:
+[https://performanceprocesses.com/](https://performanceprocesses.com/)
+
+Below is a **design, messaging, and credibility evaluation** of the entire page.
+
+---
+
+# Overall Homepage Rating
+
+**7.5 / 10**
+
+The homepage is **clean, professional, and credible**, which is important for a consulting firm. However, it still feels **a bit minimal and document-like** rather than a strong **consulting brand homepage designed to convert visitors into clients**.
+
+Your positioning is solid — it just needs **more visual hierarchy, stronger messaging, and clearer calls to action**.
+
+---
+
+# What the Homepage Does Well 👍
+
+## 1. Clear Consulting Focus
+
+The homepage communicates that the firm focuses on **organizational performance, leadership alignment, and process improvement**, which aligns with the purpose of performance consulting: helping organizations improve performance and achieve business goals through analysis and structured interventions. ([Devlin Peck][1])
+
+This gives the site a **clear niche**, which is good.
+
+---
+
+## 2. Professional Tone
+
+The tone feels appropriate for:
+
+* corporate clients
+* nonprofit organizations
+* leadership teams
+
+It avoids exaggerated marketing language, which actually **helps credibility in consulting**.
+
+---
+
+## 3. Simple Navigation
+
+The site structure is clear:
+
+* Home
+* Services
+* Approach
+* Insights
+* About
+
+This structure mirrors the typical consulting site architecture.
+
+---
+
+# Biggest Homepage Issues
+
+## 1. Weak Hero Section
+
+The **hero (top section)** is the most important part of the homepage.
+
+Right now it likely:
+
+* explains the company
+* but doesn’t strongly **communicate value or outcomes**
+
+A strong consulting hero usually has:
+
+**1 headline**
+**1 value proposition**
+**1 clear CTA**
+
+Example improvement:
+
+> **Improve Organizational Performance and Strategic Alignment**
+> We help leadership teams strengthen strategy execution, accountability, and measurable results.
+
+Button:
+
+**Book a Strategy Session**
+
+---
+
+## 2. Not Outcome-Focused Enough
+
+Consulting buyers care about **results**.
+
+Your messaging leans more toward **concepts** rather than outcomes.
+
+Example improvement:
+
+Instead of:
+
+> Organizational performance consulting
+
+Use:
+
+> Helping organizations improve leadership alignment, strategy execution, and measurable performance outcomes.
+
+---
+
+## 3. Lack of Visual Frameworks
+
+Your site is **very text-oriented**.
+
+High-end consulting sites show:
+
+* frameworks
+* process diagrams
+* methodology graphics
+
+Example:
+
+**Performance Improvement Model**
+
+```
+Assess
+→ Align
+→ Implement
+→ Measure
+```
+
+Frameworks dramatically increase **perceived expertise**.
+
+---
+
+## 4. Missing Trust Signals
+
+The homepage should quickly show credibility.
+
+Examples:
+
+* industries served
+* experience
+* results
+* testimonials
+* clients
+
+Even simple statements help.
+
+Example:
+
+> Supporting corporate, nonprofit, and mission-driven organizations.
+
+---
+
+## 5. Weak Call-To-Action Placement
+
+The homepage should have **multiple CTAs**.
+
+Example:
+
+Top section
+→ **Book a Strategy Session**
+
+Mid page
+→ **Discuss Your Organizational Challenges**
+
+Bottom
+→ **Schedule a Consultation**
+
+---
+
+# What Would Improve the Homepage the Most
+
+## 1. Add a “What We Help Organizations Achieve” Section
+
+Example:
+
+**What We Help Organizations Achieve**
+
+✔ Clear leadership alignment
+✔ Stronger strategy execution
+✔ Improved organizational performance
+✔ Sustainable accountability systems
+
+---
+
+## 2. Add a Simple Consulting Framework
+
+Example:
+
+**Our Approach**
+
+1. Diagnose organizational challenges
+2. Align leadership priorities
+3. Implement structured processes
+4. Measure performance outcomes
+
+---
+
+## 3. Add a Featured Insight Section
+
+Use your **Insights page content** on the homepage.
+
+Example:
+
+**Latest Insights**
+
+* Why Organizational Performance Breaks Down
+* The Leadership Alignment Problem
+* Strategy Execution Challenges
+
+---
+
+## 4. Add a Strong Closing Section
+
+Example:
+
+> **Ready to strengthen your organization’s performance?**
+
+Button:
+
+**Book a Strategy Session**
+
+---
+
+# Ideal Homepage Structure
+
+**Hero**
+
+Headline
+Value proposition
+CTA
+
+---
+
+**What We Do**
+
+Short description of services.
+
+---
+
+**Our Approach**
+
+Framework / methodology.
+
+---
+
+**Who We Work With**
+
+Industries / organizations.
+
+---
+
+**Insights**
+
+Featured articles.
+
+---
+
+**CTA**
+
+Schedule consultation.
+
+---
+
+# UX Scorecard
+
+| Category             | Score |
+| -------------------- | ----- |
+| Design               | 7     |
+| Messaging clarity    | 8     |
+| Conversion potential | 6     |
+| Authority            | 7     |
+
+---
+
+# Overall Website Score
+
+After reviewing all pages:
+
+| Page     | Rating |
+| -------- | ------ |
+| Home     | 7.5    |
+| Services | 6.5    |
+| About    | 7      |
+| Approach | 7.5    |
+| Insights | 6      |
+
+**Average:** **6.9 / 10**
+
+---
+
+# Key Insight About Your Site
+
+Your website has **strong intellectual credibility**.
+
+But visually it feels like **a professional white paper instead of a consulting brand site**.
+
+With improvements to:
+
+* visual frameworks
+* CTAs
+* thought leadership
+* trust signals
+
+it could easily reach **9 / 10**.
+
+---
+
+✅ If you'd like, I can also show you:
+
+* **The exact homepage structure used by top consulting firms (McKinsey/Bain style)**
+* **A redesigned homepage wireframe for Performance Processes**
+* **5 changes that would double inquiry conversions on this site.**
+
+[1]: https://www.devlinpeck.com/content/what-is-performance-consulting?utm_source=chatgpt.com "What is Performance Consulting? - Devlin Peck"

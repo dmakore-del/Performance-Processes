@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { ArrowRight, Filter, Mail, BookOpen, TrendingUp, Users, Shield, Lightbulb, BarChart3, Target, X } from "lucide-react";
+import { ArrowRight, Filter, Mail, BookOpen, TrendingUp, Users, Shield, Lightbulb, BarChart3, Target, X, Sparkles } from "lucide-react";
 import analyticsImg from "@assets/stock_images/analytics.jpg";
 import leadershipImg from "@assets/stock_images/leadership.jpg";
 import strategyImg from "@assets/stock_images/strategy.jpg";
@@ -168,41 +168,53 @@ export default function Insights() {
     <div className="min-h-screen bg-white flex flex-col font-sans">
       <Navbar />
       <main className="flex-grow">
-        <section className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white border-b">
-          <div className="container mx-auto px-4 md:px-8">
-            <h1 className="text-5xl md:text-7xl font-heading font-black uppercase italic leading-none mb-8" data-testid="text-insights-title">
-              Latest <br />
-              <span className="text-accent">Insights.</span>
-            </h1>
-            <p className="text-lg text-gray-600 max-w-2xl leading-relaxed" data-testid="text-insights-subtitle">
-              Perspectives, research, and practical frameworks from our consulting practice to help your organization perform at its best.
-            </p>
+        <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-primary">
+          <div className="absolute inset-0 z-0">
+            <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-15">
+              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/80" />
+          </div>
+          <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
+            <div className="max-w-4xl">
+              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="text-insights-label">
+                Research & Perspectives
+              </p>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-insights-title">
+                Latest <span className="text-accent">Insights</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-insights-subtitle">
+                Perspectives, research, and practical frameworks from our consulting practice to help your organization perform at its best.
+              </p>
+            </div>
           </div>
         </section>
 
-        <section className="py-20 border-b bg-white" data-testid="section-featured-insight">
+        <section className="py-32 bg-gradient-to-b from-slate-50 to-white" data-testid="section-featured-insight">
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div className="relative overflow-hidden rounded-2xl aspect-[16/10] shadow-xl group">
+              <div className="relative overflow-hidden rounded-3xl aspect-[16/10] shadow-2xl group">
                 <img
                   src={featuredInsight.image}
                   alt={featuredInsight.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   data-testid="img-featured-insight"
                 />
-                <div className="absolute top-5 left-5 bg-accent text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full shadow-lg">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                <div className="absolute top-5 left-5 bg-accent text-white text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2 rounded-full shadow-lg shadow-accent/30 flex items-center gap-2">
+                  <Sparkles size={12} />
                   Featured
                 </div>
               </div>
               <div>
-                <div className="flex items-center gap-4 mb-5">
-                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-[10px] font-black uppercase tracking-[0.3em] text-accent" data-testid="text-featured-cat">
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-accent/10 to-accent/5 text-[10px] font-black uppercase tracking-[0.3em] text-accent border border-accent/10" data-testid="text-featured-cat">
                     {categoryIcons[featuredInsight.cat]}
                     {featuredInsight.cat}
                   </span>
-                  <span className="text-[10px] font-bold text-gray-400">{featuredInsight.date}</span>
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{featuredInsight.date}</span>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-heading font-extrabold uppercase italic leading-tight mb-6" data-testid="text-featured-title">
+                <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary leading-tight mb-6" data-testid="text-featured-title">
                   {featuredInsight.title}
                 </h2>
                 <p className="text-gray-600 text-lg leading-relaxed mb-10" data-testid="text-featured-excerpt">
@@ -211,30 +223,32 @@ export default function Insights() {
                 <button
                   type="button"
                   onClick={() => setSelectedInsight(featuredInsight.id)}
-                  className="flex items-center gap-4 text-xs font-black uppercase tracking-widest cursor-pointer hover:text-accent transition-colors group"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white rounded-full text-sm font-bold uppercase tracking-wider hover:bg-accent transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 cursor-pointer"
                   data-testid="button-read-featured"
                 >
                   <BookOpen size={16} />
                   <span>Read Full Insight</span>
-                  <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight size={16} />
                 </button>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-5 border-b sticky top-20 bg-white/95 backdrop-blur-sm z-10 shadow-sm" data-testid="section-category-filters">
+        <section className="py-6 border-y border-border/40 sticky top-20 bg-white/95 backdrop-blur-md z-10 shadow-sm" data-testid="section-category-filters">
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex items-center gap-3 flex-wrap">
-              <Filter size={16} className="text-gray-400 mr-1" />
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center mr-1">
+                <Filter size={14} className="text-accent" />
+              </div>
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                  className={`px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
                     activeCategory === cat
-                      ? "bg-primary text-white shadow-md"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      ? "bg-primary text-white shadow-lg shadow-primary/20"
+                      : "bg-gradient-to-br from-gray-50 to-gray-100 text-gray-600 hover:from-accent/10 hover:to-accent/5 hover:text-accent border border-transparent hover:border-accent/20"
                   }`}
                   data-testid={`button-filter-${cat.toLowerCase()}`}
                 >
@@ -245,45 +259,55 @@ export default function Insights() {
           </div>
         </section>
 
-        <section className="py-16 bg-[#F8FAFC]" data-testid="section-insights-grid">
+        <section className="py-32 bg-gradient-to-b from-slate-50/50 to-white" data-testid="section-insights-grid">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {filteredInsights.map((insight, i) => {
                 return (
                   <button
                     type="button"
                     key={insight.id}
                     onClick={() => setSelectedInsight(insight.id)}
-                    className="bg-white rounded-2xl border border-border/60 group cursor-pointer hover:shadow-xl hover:border-accent/20 transition-all duration-300 flex flex-col text-left overflow-hidden"
+                    className="bg-white rounded-3xl border border-border/40 group cursor-pointer hover:shadow-2xl hover:border-accent/20 transition-all duration-500 flex flex-col text-left overflow-hidden hover:-translate-y-1"
                     data-testid={`card-insight-${i}`}
                   >
-                    {insight.image && (
+                    {insight.image ? (
                       <div className="overflow-hidden aspect-[16/9]">
                         <img
                           src={insight.image}
                           alt={insight.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                           data-testid={`img-insight-${i}`}
                         />
                       </div>
+                    ) : (
+                      <div className="aspect-[16/9] bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10 flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/10 to-accent/20 flex items-center justify-center">
+                          {categoryIcons[insight.cat] ? (
+                            <span className="text-accent scale-[2]">{categoryIcons[insight.cat]}</span>
+                          ) : (
+                            <BookOpen size={28} className="text-accent" />
+                          )}
+                        </div>
+                      </div>
                     )}
-                    <div className="p-7 flex flex-col flex-grow">
-                      <div className="flex justify-between items-center mb-4">
-                        <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-[10px] font-black uppercase tracking-[0.2em] text-accent">
+                    <div className="p-8 flex flex-col flex-grow">
+                      <div className="flex justify-between items-center mb-5">
+                        <span className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-accent/10 to-accent/5 text-[10px] font-black uppercase tracking-[0.2em] text-accent border border-accent/10">
                           {categoryIcons[insight.cat]}
                           {insight.cat}
                         </span>
-                        <span className="text-[10px] font-bold text-muted-foreground">{insight.date}</span>
+                        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">{insight.date}</span>
                       </div>
-                      <h2 className="text-lg md:text-xl font-heading font-extrabold text-primary leading-tight group-hover:text-accent transition-colors mb-3">
+                      <h2 className="text-lg md:text-xl font-heading font-extrabold text-primary leading-tight group-hover:text-accent transition-colors duration-300 mb-4">
                         {insight.title}
                       </h2>
                       <p className="text-sm text-muted-foreground leading-relaxed flex-grow line-clamp-3" data-testid={`text-excerpt-${i}`}>
                         {insight.excerpt}
                       </p>
-                      <div className="flex items-center gap-3 text-xs font-black uppercase tracking-widest mt-5 pt-5 border-t border-border/40 text-primary group-hover:text-accent transition-colors">
+                      <div className="flex items-center gap-3 text-xs font-black uppercase tracking-widest mt-6 pt-6 border-t border-border/30 text-primary group-hover:text-accent transition-colors duration-300">
                         <span>Read More</span>
-                        <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
+                        <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform duration-300" />
                       </div>
                     </div>
                   </button>
@@ -294,11 +318,14 @@ export default function Insights() {
         </section>
 
         {filteredInsights.length === 0 && (
-          <section className="py-24 text-center bg-[#F8FAFC]" data-testid="section-no-results">
-            <p className="text-gray-400 text-lg">No insights found in the <span className="font-bold">{activeCategory}</span> category.</p>
+          <section className="py-32 text-center bg-gradient-to-b from-slate-50/50 to-white" data-testid="section-no-results">
+            <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center mx-auto mb-6">
+              <BookOpen size={32} className="text-gray-300" />
+            </div>
+            <p className="text-gray-400 text-lg">No insights found in the <span className="font-bold text-primary">{activeCategory}</span> category.</p>
             <button
               onClick={() => setActiveCategory("All")}
-              className="mt-4 text-accent font-bold text-sm uppercase tracking-wider hover:underline"
+              className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-bold text-sm uppercase tracking-wider rounded-full hover:bg-accent/90 transition-all duration-300 shadow-lg shadow-accent/20"
               data-testid="button-clear-filter"
             >
               View All Insights
@@ -306,15 +333,20 @@ export default function Insights() {
           </section>
         )}
 
-        <section className="py-28 bg-gradient-to-br from-primary via-primary to-primary/90 text-white" data-testid="section-subscribe">
-          <div className="container mx-auto px-4 md:px-8 max-w-3xl text-center">
-            <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-8">
-              <Mail size={28} className="text-accent" />
+        <section className="relative py-32 overflow-hidden" data-testid="section-subscribe">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#0f2a4a] to-primary/90" />
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl" />
+          </div>
+          <div className="container mx-auto px-4 md:px-8 max-w-3xl text-center relative z-10">
+            <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center mx-auto mb-10">
+              <Mail size={32} className="text-accent" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-heading font-extrabold uppercase italic mb-5" data-testid="text-subscribe-title">
-              Subscribe to Our Insights
+            <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6" data-testid="text-subscribe-title">
+              Subscribe to Our <span className="text-accent">Insights</span>
             </h2>
-            <p className="text-white/60 text-lg mb-12 max-w-xl mx-auto leading-relaxed">
+            <p className="text-white/60 text-lg mb-14 max-w-xl mx-auto leading-relaxed">
               Get our latest research, frameworks, and strategic perspectives delivered directly to your inbox. No spam, just actionable insights for organizational leaders.
             </p>
             <form
@@ -329,55 +361,65 @@ export default function Insights() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
-                className="flex-1 px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder:text-white/40 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all duration-200"
+                className="flex-1 px-6 py-4 bg-white/10 border border-white/20 rounded-full text-white placeholder:text-white/40 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all duration-200 backdrop-blur-sm"
                 required
                 data-testid="input-subscribe-email"
               />
               <button
                 type="submit"
-                className="px-8 py-4 bg-accent text-white font-bold uppercase tracking-wider text-sm rounded-xl hover:bg-accent/90 transition-all duration-300 whitespace-nowrap shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30"
+                className="px-10 py-4 bg-accent text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-white hover:text-primary transition-all duration-300 whitespace-nowrap shadow-xl shadow-accent/30 hover:scale-105"
                 data-testid="button-subscribe"
               >
                 Subscribe
               </button>
             </form>
-            <p className="text-white/30 text-xs mt-6">Monthly digest. Unsubscribe anytime.</p>
+            <p className="text-white/30 text-xs mt-8 uppercase tracking-wider">Monthly digest · Unsubscribe anytime</p>
           </div>
         </section>
       </main>
       <Footer />
 
       {openInsight && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/60 backdrop-blur-sm p-4 md:p-8" onClick={() => setSelectedInsight(null)}>
-          <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full my-8 md:my-16 relative" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/70 backdrop-blur-sm p-4 md:p-8" onClick={() => setSelectedInsight(null)}>
+          <div className="bg-white rounded-3xl shadow-2xl max-w-3xl w-full my-8 md:my-16 relative overflow-hidden" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setSelectedInsight(null)}
-              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/90 border border-border flex items-center justify-center hover:bg-accent hover:text-white transition-colors"
+              className="absolute top-5 right-5 z-10 w-11 h-11 rounded-full bg-white/90 border border-border/50 flex items-center justify-center hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 shadow-lg"
               data-testid="button-close-insight"
             >
               <X size={20} />
             </button>
 
-            {openInsight.image && (
-              <div className="w-full aspect-[16/8] overflow-hidden rounded-t-2xl">
+            {openInsight.image ? (
+              <div className="w-full aspect-[16/8] overflow-hidden">
                 <img src={openInsight.image} alt={openInsight.title} className="w-full h-full object-cover" />
+              </div>
+            ) : (
+              <div className="w-full aspect-[16/6] bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10 flex items-center justify-center">
+                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/10 to-accent/20 flex items-center justify-center">
+                  {categoryIcons[openInsight.cat] ? (
+                    <span className="text-accent scale-[3]">{categoryIcons[openInsight.cat]}</span>
+                  ) : (
+                    <BookOpen size={36} className="text-accent" />
+                  )}
+                </div>
               </div>
             )}
 
-            <div className="p-8 md:p-12">
-              <div className="flex items-center gap-4 mb-5">
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-[10px] font-black uppercase tracking-[0.2em]">
+            <div className="p-8 md:p-14">
+              <div className="flex items-center gap-4 mb-6">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-accent/10 to-accent/5 text-accent text-[10px] font-black uppercase tracking-[0.2em] border border-accent/10">
                   {categoryIcons[openInsight.cat]}
                   {openInsight.cat}
                 </span>
-                <span className="text-[10px] font-bold text-muted-foreground">{openInsight.date}</span>
+                <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">{openInsight.date}</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-primary leading-tight mb-8">
+              <h2 className="text-2xl md:text-4xl font-heading font-extrabold text-primary leading-tight mb-10">
                 {openInsight.title}
               </h2>
-              <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed">
+              <div className="prose prose-lg max-w-none text-muted-foreground leading-[1.85]">
                 {openInsight.body.split('\n\n').map((paragraph, idx) => (
-                  <p key={idx} className="mb-5">{paragraph}</p>
+                  <p key={idx} className="mb-6 text-base md:text-lg">{paragraph}</p>
                 ))}
               </div>
             </div>

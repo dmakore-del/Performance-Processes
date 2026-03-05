@@ -15,12 +15,12 @@ export default function About() {
   const { t } = useLanguage();
 
   const timelineItems = [
-    { year: "2026", title: "Performance Processes Founded", description: "Danai Makore launches Performance Processes with a vision to help organizations align strategy with measurable performance.", icon: <Rocket className="text-accent" size={20} /> },
-    { year: "2026", title: "Core Team Assembled", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory.", icon: <Users className="text-accent" size={20} /> },
-    { year: "2026", title: "Service Portfolio Launch", description: "Launching a comprehensive suite of consulting services spanning strategic planning, performance management, and governance advisory.", icon: <Building className="text-accent" size={20} /> },
-    { year: "2026–2027", title: "Building Multi-Industry Expertise", description: "Targeting engagements across government, nonprofit, healthcare, financial services, and technology sectors.", icon: <Globe className="text-accent" size={20} /> },
-    { year: "2027", title: "National Expansion", description: "Growing our footprint beyond Toronto to serve organizations across Canada with deepening regional expertise.", icon: <Target className="text-accent" size={20} /> },
-    { year: "2028+", title: "Scaling Impact", description: "Establishing Performance Processes as a leading Canadian consultancy with international reach.", icon: <Milestone className="text-accent" size={20} /> },
+    { year: "2023", title: "Performance Processes Founded", description: "Danai Makore launches Performance Processes with a vision to help organizations align strategy with measurable performance.", icon: <Rocket className="text-accent" size={20} /> },
+    { year: "2023", title: "Core Team Assembled", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory.", icon: <Users className="text-accent" size={20} /> },
+    { year: "2024", title: "Service Portfolio Launch", description: "Launching a comprehensive suite of consulting services spanning strategic planning, performance management, and governance advisory.", icon: <Building className="text-accent" size={20} /> },
+    { year: "2024–2025", title: "Building Multi-Industry Expertise", description: "Targeting engagements across government, nonprofit, healthcare, financial services, and technology sectors.", icon: <Globe className="text-accent" size={20} /> },
+    { year: "2025", title: "National Expansion", description: "Growing our footprint beyond Toronto to serve organizations across Canada with deepening regional expertise.", icon: <Target className="text-accent" size={20} /> },
+    { year: "2026+", title: "Scaling Impact", description: "Establishing Performance Processes as a leading Canadian consultancy with international reach.", icon: <Milestone className="text-accent" size={20} /> },
   ];
 
   const values = [
@@ -237,7 +237,7 @@ export default function About() {
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 {[
-                  { label: "Founded", val: "2026", icon: <Target className="text-accent" /> },
+                  { label: "Founded", val: "2023", icon: <Target className="text-accent" /> },
                   { label: "Expert Consultants", val: "3+", icon: <Users className="text-accent" /> },
                   { label: "Service Categories", val: "6+", icon: <CheckCircle2 className="text-accent" /> },
                   { label: "Industries Served", val: "8+", icon: <TrendingUp className="text-accent" /> }

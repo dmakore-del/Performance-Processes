@@ -537,16 +537,10 @@ export default function Approach() {
                 <p className="text-lg text-white/70 leading-relaxed mb-10">
                   Book a complimentary discovery call to discuss your organization's challenges and explore how our methodology can deliver measurable, sustainable results.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="link-cta-consultation">
-                      <Calendar size={18} />
-                      Book a Consultation
-                  </a>
-                  <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="link-cta-services">
-                      View Our Services
-                      <ArrowRight size={18} />
-                  </Link>
-                </div>
+                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="link-cta-consultation">
+                    <Calendar size={18} />
+                    Book a Consultation
+                </a>
               </div>
             </div>
           </div>

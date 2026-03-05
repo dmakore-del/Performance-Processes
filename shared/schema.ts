@@ -288,3 +288,31 @@ export const insertPerformanceKpiSchema = createInsertSchema(performanceKpis).om
 
 export type InsertPerformanceKpi = z.infer<typeof insertPerformanceKpiSchema>;
 export type PerformanceKpi = typeof performanceKpis.$inferSelect;
+
+export const leads = pgTable("leads", {
+  id: serial("id").primaryKey(),
+  companyName: text("company_name").notNull(),
+  contactName: text("contact_name").notNull(),
+  contactEmail: text("contact_email").notNull(),
+  contactPhone: text("contact_phone"),
+  source: text("source").notNull().default("website"),
+  status: text("status").notNull().default("new"),
+  priority: text("priority").notNull().default("medium"),
+  serviceInterest: text("service_interest"),
+  estimatedValue: text("estimated_value"),
+  notes: text("notes"),
+  assignedToId: text("assigned_to_id"),
+  assignedToName: text("assigned_to_name"),
+  lastContactDate: text("last_contact_date"),
+  nextFollowUpDate: text("next_follow_up_date"),
+  createdById: text("created_by_id"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertLeadSchema = createInsertSchema(leads).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertLead = z.infer<typeof insertLeadSchema>;
+export type Lead = typeof leads.$inferSelect;

@@ -932,6 +932,58 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/portal/leads", requireStaffOrAdmin, async (req: any, res) => {
+    try {
+      const user = req.user;
+      if (user.role === "admin") {
+        const allLeads = await storage.getLeads();
+        res.json(allLeads);
+      } else {
+        const staffLeads = await storage.getLeadsForStaff(user.id);
+        res.json(staffLeads);
+      }
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch leads" });
+    }
+  });
+
+  app.post("/api/portal/leads", requireAdmin, async (req: any, res) => {
+    try {
+      const lead = await storage.createLead({ ...req.body, createdById: req.user.id });
+      res.json(lead);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to create lead" });
+    }
+  });
+
+  app.patch("/api/portal/leads/:id", requireStaffOrAdmin, async (req, res) => {
+    try {
+      const lead = await storage.updateLead(Number(req.params.id), req.body);
+      res.json(lead);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to update lead" });
+    }
+  });
+
+  app.delete("/api/portal/leads/:id", requireAdmin, async (req, res) => {
+    try {
+      await storage.deleteLead(Number(req.params.id));
+      res.json({ message: "Lead deleted" });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to delete lead" });
+    }
+  });
+
+  app.get("/api/portal/staff-users", requireStaffOrAdmin, async (_req, res) => {
+    try {
+      const allUsers = await storage.getAllUsers();
+      const staffUsers = allUsers.filter(u => u.role === "staff" || u.role === "admin");
+      res.json(staffUsers.map(u => ({ id: u.id, fullName: u.fullName, email: u.email, role: u.role })));
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch staff users" });
+    }
+  });
+
   // Stripe webhook for payment confirmation
   app.post("/api/stripe/webhook/invoice-paid", async (req, res) => {
     try {

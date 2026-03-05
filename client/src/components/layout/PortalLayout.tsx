@@ -16,7 +16,8 @@ import {
   Users,
   ChevronDown,
   Briefcase,
-  Inbox
+  Inbox,
+  Target
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -58,6 +59,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
     { label: "Client Messages", href: "/portal/messages", icon: <MessageSquare size={20} /> },
     { label: "Resources", href: "/portal/resources", icon: <BookOpen size={20} /> },
     { label: "Billing & Contracts", href: "/portal/billing", icon: <CreditCard size={20} /> },
+    { label: "Leads Tracker", href: "/portal/leads", icon: <Target size={20} /> },
   ];
 
   const adminNavItems = [

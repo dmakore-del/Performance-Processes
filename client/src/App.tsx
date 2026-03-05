@@ -34,6 +34,7 @@ import Resources from "./pages/portal/Resources";
 import Billing from "./pages/portal/Billing";
 import AdminUsers from "./pages/portal/AdminUsers";
 import AdminSubmissions from "./pages/portal/AdminSubmissions";
+import Leads from "./pages/portal/Leads";
 
 import { LanguageProvider } from "./hooks/use-language";
 import { EngagementProvider } from "./hooks/use-portal";
@@ -104,6 +105,9 @@ function Router() {
       </Route>
       <Route path="/portal/admin/submissions">
         {() => <ProtectedRoute><AdminSubmissions /></ProtectedRoute>}
+      </Route>
+      <Route path="/portal/leads">
+        {() => <ProtectedRoute><Leads /></ProtectedRoute>}
       </Route>
 
       <Route component={NotFound} />

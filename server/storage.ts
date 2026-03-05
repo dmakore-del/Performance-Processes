@@ -12,9 +12,10 @@ import {
   type Invoice, type InsertInvoice,
   type Contract, type InsertContract,
   type PerformanceKpi, type InsertPerformanceKpi,
+  type Lead, type InsertLead,
   users, contactSubmissions, jobApplications,
   engagements, milestones, documents, actionItems,
-  meetings, messages, resources, invoices, contracts, performanceKpis
+  meetings, messages, resources, invoices, contracts, performanceKpis, leads
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, asc, and, or } from "drizzle-orm";
@@ -78,6 +79,13 @@ export interface IStorage {
   createPerformanceKpi(data: InsertPerformanceKpi): Promise<PerformanceKpi>;
   updatePerformanceKpi(id: number, data: Partial<InsertPerformanceKpi>): Promise<PerformanceKpi>;
   deletePerformanceKpi(id: number): Promise<void>;
+
+  getLeads(): Promise<Lead[]>;
+  getLeadsForStaff(staffId: string): Promise<Lead[]>;
+  getLead(id: number): Promise<Lead | undefined>;
+  createLead(data: InsertLead): Promise<Lead>;
+  updateLead(id: number, data: Partial<InsertLead>): Promise<Lead>;
+  deleteLead(id: number): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -313,6 +321,33 @@ export class DatabaseStorage implements IStorage {
 
   async deletePerformanceKpi(id: number): Promise<void> {
     await db.delete(performanceKpis).where(eq(performanceKpis.id, id));
+  }
+
+  async getLeads(): Promise<Lead[]> {
+    return db.select().from(leads).orderBy(desc(leads.createdAt));
+  }
+
+  async getLeadsForStaff(staffId: string): Promise<Lead[]> {
+    return db.select().from(leads).where(eq(leads.assignedToId, staffId)).orderBy(desc(leads.createdAt));
+  }
+
+  async getLead(id: number): Promise<Lead | undefined> {
+    const [lead] = await db.select().from(leads).where(eq(leads.id, id));
+    return lead;
+  }
+
+  async createLead(data: InsertLead): Promise<Lead> {
+    const [lead] = await db.insert(leads).values(data).returning();
+    return lead;
+  }
+
+  async updateLead(id: number, data: Partial<InsertLead>): Promise<Lead> {
+    const [lead] = await db.update(leads).set(data).where(eq(leads.id, id)).returning();
+    return lead;
+  }
+
+  async deleteLead(id: number): Promise<void> {
+    await db.delete(leads).where(eq(leads.id, id));
   }
 }
 

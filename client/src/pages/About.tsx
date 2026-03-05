@@ -16,10 +16,10 @@ export default function About() {
 
   const timelineItems = [
     { year: "2023", title: "Performance Processes Founded", description: "Danai Makore launches Performance Processes with a vision to help organizations align strategy with measurable performance.", icon: <Rocket className="text-accent" size={20} /> },
-    { year: "2023", title: "Core Team Assembled", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory.", icon: <Users className="text-accent" size={20} /> },
     { year: "2024", title: "Service Portfolio Launch", description: "Launching a comprehensive suite of consulting services spanning strategic planning, performance management, and governance advisory.", icon: <Building className="text-accent" size={20} /> },
     { year: "2024–2025", title: "Building Multi-Industry Expertise", description: "Targeting engagements across government, nonprofit, healthcare, financial services, and technology sectors.", icon: <Globe className="text-accent" size={20} /> },
     { year: "2025", title: "National Expansion", description: "Growing our footprint beyond Toronto to serve organizations across Canada with deepening regional expertise.", icon: <Target className="text-accent" size={20} /> },
+    { year: "2026", title: "Core Team Assembled", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory.", icon: <Users className="text-accent" size={20} /> },
     { year: "2026+", title: "Scaling Impact", description: "Establishing Performance Processes as a leading Canadian consultancy with international reach.", icon: <Milestone className="text-accent" size={20} /> },
   ];
 

@@ -1,5 +1,4 @@
 import { Link, useLocation } from "wouter";
-import { Button } from "@/components/ui/button";
 import { Menu, X, Search, ChevronDown, UserCircle, CalendarCheck } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -47,9 +46,9 @@ export function Navbar() {
         </div>
       </div>
 
-      <div className="container mx-auto px-2 md:px-4 lg:px-8 flex h-20 lg:h-24 items-center justify-between">
+      <div className="container mx-auto px-4 md:px-6 lg:px-10 flex h-20 lg:h-[88px] items-center justify-between">
         <Link href="/" className="flex items-center shrink-0 mr-auto" data-testid="link-logo">
-            <img src={logoImg} alt="Performance Processes" className="h-14 lg:h-16 w-auto" />
+            <img src={logoImg} alt="Performance Processes" className="h-[52px] lg:h-[60px] w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
@@ -82,16 +81,12 @@ export function Navbar() {
           <Link href="/portal" className="p-2 hover:bg-secondary rounded-full transition-colors hidden md:block" data-testid="link-portal-signin">
             <UserCircle size={20} className="text-primary" />
           </Link>
-          <Link href="/contact">
-            <Button variant="outline" className="rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-white transition-all font-bold px-6 h-12 uppercase tracking-wider text-xs hidden md:flex" data-testid="button-contact-nav">
+          <Link href="/contact" className="hidden md:inline-flex items-center justify-center rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-white transition-all font-bold px-6 h-12 uppercase tracking-wider text-xs" data-testid="link-contact-nav">
               {t("nav.contact")}
-            </Button>
           </Link>
-          <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
-            <Button className="rounded-full bg-accent text-white hover:bg-primary transition-all font-bold px-6 h-12 uppercase tracking-wider text-xs hidden md:flex items-center gap-2" data-testid="button-book-consultation">
+          <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-primary transition-all font-bold px-6 h-12 uppercase tracking-wider text-xs" data-testid="link-book-consultation">
               <CalendarCheck size={16} />
               Book Consultation
-            </Button>
           </a>
           <button
             className="lg:hidden p-2 text-primary hover:bg-secondary rounded-full"
@@ -151,16 +146,12 @@ export function Navbar() {
               <button onClick={() => {setLanguage("fr"); setIsMobileMenuOpen(false);}} className={cn("font-bold", language === "fr" ? "text-accent underline" : "text-primary")}>FR</button>
             </div>
 
-            <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
-              <Button className="w-full rounded-full bg-accent text-white py-8 text-lg font-bold uppercase tracking-widest mt-4 shadow-lg shadow-accent/20 cursor-pointer flex items-center justify-center gap-3" data-testid="button-book-consultation-mobile">
+            <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-3 rounded-full bg-accent text-white py-5 text-lg font-bold uppercase tracking-widest mt-4 shadow-lg shadow-accent/20" onClick={() => setIsMobileMenuOpen(false)} data-testid="link-book-consultation-mobile">
                 <CalendarCheck size={20} />
                 Book Consultation
-              </Button>
             </a>
-            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-              <Button variant="outline" className="w-full rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-white py-8 text-lg font-bold uppercase tracking-widest cursor-pointer" data-testid="button-contact-mobile">
+            <Link href="/contact" className="w-full flex items-center justify-center rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-white py-5 text-lg font-bold uppercase tracking-widest" onClick={() => setIsMobileMenuOpen(false)} data-testid="link-contact-mobile">
                 {t("nav.contact")}
-              </Button>
             </Link>
           </div>
         </div>

@@ -1,0 +1,179 @@
+I reviewed the **logo placement in the navigation bar** on your site (performanceprocesses.com). Here is focused feedback specifically on **logo position, size, spacing, and usability**.
+
+---
+
+# Overall Logo Placement Rating
+
+**8 / 10**
+
+The logo placement is **generally correct and professional**, but a few refinements could improve **brand presence, balance, and usability**.
+
+---
+
+# What’s Good 👍
+
+### 1. Correct Industry Standard Placement
+
+Your logo appears on the **top left of the navigation bar**, which is the **most standard and expected position**.
+
+Users instinctively expect:
+
+* logo = **home link**
+* top-left placement
+
+This helps usability and navigation.
+
+---
+
+### 2. Clean Navigation Layout
+
+The navbar feels **minimal and uncluttered**, which works well for consulting brands.
+
+Consulting sites typically use:
+
+* logo left
+* navigation right
+* CTA button
+
+Your layout aligns with this pattern.
+
+---
+
+### 3. Logo Links Back to Homepage
+
+Assuming the logo links to the homepage (which it should), this is correct UX behavior.
+
+---
+
+# Areas for Improvement
+
+## 1. Logo Size Could Be Slightly Larger
+
+The logo currently appears **a bit small relative to the header height**.
+
+This reduces brand visibility.
+
+### Ideal guideline
+
+The logo height should occupy about:
+
+**60–70% of the navbar height**
+
+Example:
+
+If navbar height = 80px
+Logo height ≈ **45–55px**
+
+This makes the brand **more recognizable and balanced**.
+
+---
+
+## 2. Vertical Alignment
+
+The logo appears **slightly high in the header area**.
+
+It should be perfectly **center-aligned vertically**.
+
+Small adjustments improve polish.
+
+---
+
+## 3. Left Padding
+
+The logo could use **slightly more spacing from the browser edge**.
+
+Current spacing feels a little tight.
+
+Recommended:
+
+**24–40px padding from the left edge**
+
+This gives a more premium feel.
+
+---
+
+## 4. No CTA Button in Navbar
+
+The navbar currently appears to only contain links.
+
+Consulting websites often include a **primary CTA in the navbar**, such as:
+
+**Book a Strategy Session**
+
+Example layout:
+
+```
+Logo | Services | Approach | Insights | About | [Book a Strategy Session]
+```
+
+This increases **lead conversion**.
+
+---
+
+# Ideal Navbar Structure
+
+Recommended structure:
+
+```
+[Logo]
+
+Services
+Approach
+Insights
+About
+
+[Book a Strategy Session]
+```
+
+Where the CTA button is styled differently.
+
+---
+
+# Optional Improvement (High-End Consulting Look)
+
+Some consulting firms slightly **increase logo weight** by:
+
+* increasing logo size
+* adding more whitespace
+* making the navbar slightly taller
+
+Example proportions:
+
+```
+Navbar height: 80–90px
+Logo height: 50–60px
+```
+
+This creates a **premium consulting aesthetic**.
+
+---
+
+# Visual Balance Score
+
+| Element        | Score |
+| -------------- | ----- |
+| Logo placement | 9     |
+| Logo size      | 7     |
+| Spacing        | 7     |
+| Brand emphasis | 7     |
+
+Overall: **8 / 10**
+
+---
+
+# Quick Fixes (5-Minute Improvements)
+
+1️⃣ Increase logo size by **10–20%**
+2️⃣ Ensure **vertical centering**
+3️⃣ Add **more left padding**
+4️⃣ Add **CTA button in navbar**
+
+These small adjustments would push the navbar to **9.5 / 10**.
+
+---
+
+If you'd like, I can also show you:
+
+* **3 high-end consulting navbar designs you could copy**
+* **how to make the header look like McKinsey / Deloitte style**
+* **the best CTA placement to increase inquiries**.

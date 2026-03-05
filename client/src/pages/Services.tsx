@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, TrendingUp, Users, Target, Settings, BarChart3, Globe, CreditCard, Loader2, RefreshCw, ClipboardList, Search, Briefcase, Wrench, Rocket, BookOpen, UserCheck, Lightbulb, Calendar, Shield, Star, Zap, Package, GraduationCap, Heart, Sparkles, Award } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp, Users, Target, Settings, BarChart3, Globe, CreditCard, Loader2, RefreshCw, ClipboardList, Search, Briefcase, Wrench, Rocket, BookOpen, UserCheck, Lightbulb, Calendar, Shield, Star, Zap, Package, GraduationCap, Heart, Sparkles, Award, ArrowDown, Phone } from "lucide-react";
 import { Link } from "wouter";
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -9,7 +9,8 @@ import { useLanguage } from "@/hooks/use-language";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import { PageHero } from "@/components/layout/PageHero";
+
+const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState<any>(null);
@@ -87,27 +88,35 @@ export default function Services() {
   const methodSteps = [
     {
       step: "01",
-      title: language === "en" ? "Define the Goal" : "Définir l'objectif",
-      desc: language === "en" ? "Get crystal clear on what success looks like for you, your team, or your business." : "Soyez parfaitement clair sur ce à quoi ressemble le succès pour vous, votre équipe ou votre entreprise.",
-      icon: <Target className="text-accent" size={28} />,
+      title: language === "en" ? "Diagnose" : "Diagnostiquer",
+      desc: language === "en" ? "Understand your current state, challenges, and what's holding performance back." : "Comprendre votre état actuel, vos défis et ce qui freine la performance.",
+      outcomes: language === "en" ? ["Organizational assessment", "Gap analysis", "Stakeholder alignment"] : ["Évaluation organisationnelle", "Analyse des écarts", "Alignement des parties prenantes"],
+      icon: <Search className="text-accent" size={28} />,
+      color: "from-blue-500/10 to-blue-600/5",
     },
     {
       step: "02",
-      title: language === "en" ? "Build the System" : "Construire le système",
-      desc: language === "en" ? "Create practical structures, processes, and habits that support consistent execution." : "Créer des structures, processus et habitudes pratiques qui soutiennent une exécution cohérente.",
-      icon: <Settings className="text-accent" size={28} />,
+      title: language === "en" ? "Align" : "Aligner",
+      desc: language === "en" ? "Clarify strategy, leadership priorities, and what success looks like." : "Clarifier la stratégie, les priorités du leadership et la définition du succès.",
+      outcomes: language === "en" ? ["Strategic clarity", "Leadership buy-in", "Clear success metrics"] : ["Clarté stratégique", "Adhésion du leadership", "Métriques claires"],
+      icon: <Target className="text-accent" size={28} />,
+      color: "from-accent/10 to-accent/5",
     },
     {
       step: "03",
-      title: language === "en" ? "Track Performance" : "Suivre la performance",
-      desc: language === "en" ? "Monitor progress with clear KPIs, dashboards, and regular check-ins." : "Suivre les progrès avec des KPI clairs, des tableaux de bord et des points de contrôle réguliers.",
-      icon: <BarChart3 className="text-accent" size={28} />,
+      title: language === "en" ? "Implement" : "Implémenter",
+      desc: language === "en" ? "Build practical systems, processes, and habits that support consistent execution." : "Construire des systèmes, processus et habitudes pratiques qui soutiennent l'exécution.",
+      outcomes: language === "en" ? ["Performance systems", "Process documentation", "Accountability structures"] : ["Systèmes de performance", "Documentation des processus", "Structures de responsabilité"],
+      icon: <Settings className="text-accent" size={28} />,
+      color: "from-emerald-500/10 to-emerald-600/5",
     },
     {
       step: "04",
-      title: language === "en" ? "Improve Continuously" : "Améliorer en continu",
-      desc: language === "en" ? "Adapt, refine, and grow — because performance is a journey, not a destination." : "S'adapter, affiner et grandir — car la performance est un voyage, pas une destination.",
-      icon: <TrendingUp className="text-accent" size={28} />,
+      title: language === "en" ? "Measure & Improve" : "Mesurer et améliorer",
+      desc: language === "en" ? "Track progress with clear KPIs and continuously refine for better results." : "Suivre les progrès avec des KPI clairs et affiner continuellement.",
+      outcomes: language === "en" ? ["KPI dashboards", "Regular reviews", "Continuous improvement"] : ["Tableaux de bord KPI", "Revues régulières", "Amélioration continue"],
+      icon: <BarChart3 className="text-accent" size={28} />,
+      color: "from-purple-500/10 to-purple-600/5",
     },
   ];
 
@@ -124,9 +133,12 @@ export default function Services() {
           desc: language === "en"
             ? "Every successful engagement begins with clarity. Our Discovery Phase ensures we understand your organization before proposing solutions."
             : "Chaque engagement réussi commence par la clarté. Notre phase de découverte garantit que nous comprenons votre organisation avant de proposer des solutions.",
+          benefits: language === "en"
+            ? ["Organizational intake & needs assessment", "Stakeholder alignment", "Scope definition & roadmap", "Fee credited toward full engagement"]
+            : ["Évaluation des besoins organisationnels", "Alignement des parties prenantes", "Définition de la portée", "Frais crédités vers l'engagement complet"],
           learnMore: language === "en"
             ? "Before recommending any strategy or system, we invest time in understanding your organization's current state, challenges, and goals. The Discovery Phase is a structured intake process designed to align expectations, define scope, and build a clear roadmap.\n\nDiscovery fees can be credited toward your full engagement, so you never pay twice for this essential first step."
-            : "Avant de recommander toute stratégie ou système, nous investissons du temps pour comprendre l'état actuel, les défis et les objectifs de votre organisation. La phase de découverte est un processus d'accueil structuré conçu pour aligner les attentes, définir la portée et construire une feuille de route claire.",
+            : "Avant de recommander toute stratégie ou système, nous investissons du temps pour comprendre l'état actuel, les défis et les objectifs de votre organisation.",
           idealFor: language === "en" ? "Any organization beginning a new consulting engagement or exploring how we can help." : "Toute organisation commençant un nouvel engagement de conseil ou explorant comment nous pouvons aider.",
           icon: <Search className="text-accent" />,
           pricingTiers: [
@@ -157,9 +169,12 @@ export default function Services() {
           desc: language === "en"
             ? "Outcome-focused engagements that align your strategy, leadership, and performance systems for measurable results."
             : "Des engagements axés sur les résultats qui alignent votre stratégie, votre leadership et vos systèmes de performance.",
+          benefits: language === "en"
+            ? ["Strategic planning & vision refinement", "KPI & success metric design", "Leadership alignment workshops", "1–3 year strategic roadmap"]
+            : ["Planification stratégique", "Conception de KPI", "Ateliers d'alignement", "Feuille de route stratégique"],
           learnMore: language === "en"
             ? "Rather than selling hours, we sell outcomes. Our Strategic Engagement model is designed for organizations that need focused, time-bound support to address critical strategic challenges.\n\nThis model covers strategic planning, performance framework design, organizational alignment, and leadership development, all delivered within a structured 6–12 week timeline with clear milestones and deliverables."
-            : "Plutôt que de vendre des heures, nous vendons des résultats. Notre modèle d'engagement stratégique est conçu pour les organisations qui ont besoin d'un soutien ciblé et limité dans le temps.",
+            : "Plutôt que de vendre des heures, nous vendons des résultats.",
           idealFor: language === "en" ? "Organizations preparing for growth, restructuring, or transformation that need strategic clarity and alignment." : "Organisations se préparant à la croissance, à la restructuration ou à la transformation.",
           icon: <TrendingUp className="text-accent" />,
           pricingTiers: [
@@ -197,10 +212,13 @@ export default function Services() {
           investment: "$8,000 – $25,000",
           desc: language === "en"
             ? "End-to-end design and implementation of performance management systems, governance frameworks, and process redesign."
-            : "Conception et mise en œuvre de bout en bout des systèmes de gestion de la performance et de la refonte des processus.",
+            : "Conception et mise en œuvre de bout en bout des systèmes de gestion de la performance.",
+          benefits: language === "en"
+            ? ["Performance management systems", "Governance & SOP frameworks", "Process optimization", "Implementation support & training"]
+            : ["Systèmes de gestion de la performance", "Cadres de gouvernance", "Optimisation des processus", "Soutien à la mise en œuvre"],
           learnMore: language === "en"
             ? "Strategy without systems is just aspiration. Our Systems & Implementation engagements build the operational infrastructure your organization needs to execute consistently and scale effectively.\n\nWe design and implement full performance management systems, governance frameworks, and process architectures, turning strategic vision into measurable, repeatable operational excellence."
-            : "La stratégie sans systèmes n'est qu'une aspiration. Nous construisons l'infrastructure opérationnelle dont votre organisation a besoin pour exécuter de manière cohérente et évoluer efficacement.",
+            : "La stratégie sans systèmes n'est qu'une aspiration.",
           idealFor: language === "en" ? "Organizations ready to build or overhaul their operational systems, governance structures, or performance infrastructure." : "Organisations prêtes à construire ou à refondre leurs systèmes opérationnels.",
           icon: <Wrench className="text-accent" />,
           pricingTiers: [
@@ -240,9 +258,12 @@ export default function Services() {
           desc: language === "en"
             ? "Ongoing executive-level advisory for organizations that need consistent strategic guidance and leadership coaching."
             : "Conseil exécutif continu pour les organisations qui ont besoin d'un accompagnement stratégique constant.",
+          benefits: language === "en"
+            ? ["Dedicated senior consultant", "Strategy & operations sessions", "Performance oversight & reporting", "Leadership coaching & development"]
+            : ["Consultant senior dédié", "Sessions stratégiques", "Suivi de la performance", "Coaching de leadership"],
           learnMore: language === "en"
             ? "Growth doesn't stop after a project ends. Our Executive Advisory Retainer provides dedicated, senior-level guidance on a monthly basis, including strategy sessions, performance oversight, ongoing advisory, and leadership coaching.\n\nThis model is designed for organizations that want a trusted strategic partner without the cost of a full-time executive hire."
-            : "La croissance ne s'arrête pas à la fin d'un projet. Notre mandat de conseil exécutif fournit un accompagnement dédié de niveau supérieur sur une base mensuelle.",
+            : "La croissance ne s'arrête pas à la fin d'un projet.",
           idealFor: language === "en" ? "Organizations seeking consistent access to senior strategic guidance, performance oversight, and leadership coaching." : "Organisations cherchant un accès constant à des conseils stratégiques de haut niveau.",
           icon: <Briefcase className="text-accent" />,
           pricingTiers: [
@@ -284,9 +305,12 @@ export default function Services() {
           desc: language === "en"
             ? "We handle the complexities of business registration so you can focus on building your vision."
             : "Nous gérons les complexités de l'enregistrement d'entreprise pour que vous puissiez vous concentrer sur votre vision.",
+          benefits: language === "en"
+            ? ["Structure consultation & name search", "Articles of incorporation filing", "Tax & compliance registration", "Governance document setup"]
+            : ["Consultation structurelle", "Dépôt des statuts", "Inscription fiscale", "Documents de gouvernance"],
           learnMore: language === "en"
             ? "Starting a business involves more than just an idea, it requires proper legal structure, registration, and compliance. We guide you through the entire process, from choosing the right business structure to completing all government filings.\n\nOur team ensures your business is set up correctly from day one."
-            : "Démarrer une entreprise implique plus qu'une simple idée. Nous vous guidons tout au long du processus.",
+            : "Démarrer une entreprise implique plus qu'une simple idée.",
           idealFor: language === "en" ? "Entrepreneurs, startups, and organizations establishing a new legal entity or restructuring an existing one." : "Entrepreneurs, startups et organisations établissant une nouvelle entité juridique.",
           icon: <ClipboardList className="text-accent" />,
           pricingTiers: [
@@ -321,61 +345,45 @@ export default function Services() {
         },
         {
           title: language === "en" ? "Website & Digital Presence" : "Site Web et présence numérique",
-          investment: language === "en" ? "From $1,200" : "À partir de 1 200 $",
+          investment: "$3,000 – $12,000",
           desc: language === "en"
-            ? "Build a strong digital presence that attracts and converts clients."
-            : "Créez une forte présence numérique qui attire et convertit les clients.",
+            ? "Professionally designed websites and digital presence setup to help your business look credible and convert visitors into clients."
+            : "Sites Web professionnels et configuration de la présence numérique.",
+          benefits: language === "en"
+            ? ["Professional website design", "SEO & content strategy", "Brand identity setup", "Analytics & conversion tracking"]
+            : ["Conception de site Web professionnel", "SEO et stratégie de contenu", "Identité de marque", "Analytique et suivi"],
           learnMore: language === "en"
-            ? "Your digital presence is often the first impression. We build performance-driven websites and execute targeted marketing strategies that align with your business goals."
-            : "Votre présence numérique est souvent la première impression. Nous créons des sites Web axés sur la performance.",
-          idealFor: language === "en" ? "Organizations seeking to establish or upgrade their digital presence and drive growth." : "Organisations cherchant à établir ou à améliorer leur présence numérique.",
+            ? "Your website is often the first impression potential clients have of your business. We design and build professional, conversion-focused websites that communicate your value proposition clearly.\n\nOur digital presence packages include website design, SEO setup, content strategy, and analytics integration to help you attract and convert the right clients."
+            : "Votre site Web est souvent la première impression. Nous concevons des sites professionnels axés sur la conversion.",
+          idealFor: language === "en" ? "Businesses and professionals who need a professional web presence that converts visitors into clients." : "Entreprises et professionnels qui ont besoin d'une présence Web professionnelle.",
           icon: <Globe className="text-accent" />,
           pricingTiers: [
             {
-              name: language === "en" ? "Basic Website" : "Site Web de base",
-              price: "$1,200",
-              subtitle: language === "en" ? "Ideal for small businesses, personal portfolios, nonprofits, and simple informational sites." : "Idéal pour les petites entreprises et portfolios personnels.",
-              features: language === "en"
-                ? ["Up to 5 pages", "Responsive design (mobile + desktop)", "Contact form", "Basic SEO setup", "CMS (optional)"]
-                : ["Jusqu'à 5 pages", "Design responsive", "Formulaire de contact", "SEO de base", "CMS (optionnel)"],
-              stripeProductName: "Basic Website"
-            },
-            {
-              name: language === "en" ? "Standard Business Website" : "Site Web standard",
+              name: language === "en" ? "Essential" : "Essentiel",
               price: "$3,000",
-              subtitle: language === "en" ? "Perfect for established organizations that need a stronger online presence." : "Parfait pour les organisations établies.",
+              subtitle: language === "en" ? "Professional single-page or multi-section website with responsive design." : "Site Web professionnel à page unique avec design responsive.",
               features: language === "en"
-                ? ["6–12 pages", "Custom page layouts", "Brand-aligned visuals", "Blog or resource section", "Basic performance optimization", "CMS with editor training"]
-                : ["6 à 12 pages", "Mises en page personnalisées", "Visuels de marque", "Section blog", "Optimisation de base", "CMS avec formation"],
-              stripeProductName: "Standard Business Website"
+                ? ["Professional website design", "Mobile responsive", "Contact form integration", "Basic SEO setup", "Google Analytics setup", "1 round of revisions"]
+                : ["Conception de site Web professionnel", "Responsive mobile", "Formulaire de contact", "SEO de base", "Google Analytics", "1 série de révisions"],
+              stripeProductName: "Website & Digital - Essential"
             },
             {
-              name: language === "en" ? "Advanced / Growth Website" : "Site Web avancé",
+              name: "Standard",
               price: "$6,000",
-              subtitle: language === "en" ? "For organizations needing advanced functionality and strategic design." : "Pour les organisations ayant besoin de fonctionnalités avancées.",
+              subtitle: language === "en" ? "Multi-page website with content strategy, advanced SEO, and brand alignment." : "Site Web multi-pages avec stratégie de contenu et SEO avancé.",
               features: language === "en"
-                ? ["12–20+ pages", "Custom UX/UI design", "Client portals or gated content", "Newsletter integration", "Analytics setup", "Lead capture systems"]
-                : ["12 à 20+ pages", "Design UX/UI personnalisé", "Portails clients", "Intégration newsletter", "Analyses", "Capture de leads"],
-              stripeProductName: "Advanced / Growth Website"
+                ? ["Everything in Essential", "Up to 8 custom pages", "Content strategy and copywriting", "Advanced SEO optimization", "Social media integration", "Email newsletter setup", "2 rounds of revisions"]
+                : ["Tout dans Essentiel", "Jusqu'à 8 pages personnalisées", "Stratégie de contenu", "SEO avancé", "Intégration réseaux sociaux", "Newsletter par e-mail", "2 séries de révisions"],
+              stripeProductName: "Website & Digital - Standard"
             },
             {
-              name: language === "en" ? "Premium / Enterprise Website" : "Site Web premium",
+              name: "Premium",
               price: "$12,000",
-              subtitle: language === "en" ? "For high-impact brands, nonprofits with large programs, or businesses with complex needs." : "Pour les marques à fort impact et les entreprises complexes.",
+              subtitle: language === "en" ? "Full digital presence with custom website, brand identity, content marketing, and analytics." : "Présence numérique complète avec site personnalisé et marketing de contenu.",
               features: language === "en"
-                ? ["Fully custom design", "Multi-language support", "Advanced integrations (CRM, donations, payments, AI tools)", "API connections", "Ongoing support & maintenance"]
-                : ["Design entièrement personnalisé", "Support multilingue", "Intégrations avancées", "Connexions API", "Support continu"],
-              stripeProductName: "Premium / Enterprise Website"
-            },
-            {
-              name: language === "en" ? "Ongoing Management" : "Gestion continue",
-              price: "$780/mo",
-              subtitle: language === "en" ? "Monthly website management, updates, security, and ongoing development support." : "Gestion mensuelle du site Web et soutien continu.",
-              features: language === "en"
-                ? ["Monthly content updates", "Security monitoring & patches", "Performance optimization", "Ongoing development & enhancements", "Priority support", "Monthly analytics reports"]
-                : ["Mises à jour mensuelles", "Sécurité", "Optimisation", "Développement continu", "Support prioritaire", "Rapports d'analyse mensuels"],
-              stripeProductName: "Ongoing Website Management",
-              isMonthly: true
+                ? ["Everything in Standard", "Custom web application features", "Full brand identity package", "Content marketing strategy", "Conversion optimization", "Performance dashboard", "3 months post-launch support", "Priority support"]
+                : ["Tout dans Standard", "Fonctionnalités web personnalisées", "Identité de marque complète", "Stratégie de marketing de contenu", "Optimisation de la conversion", "Tableau de bord", "3 mois de support", "Support prioritaire"],
+              stripeProductName: "Website & Digital - Premium"
             }
           ]
         }
@@ -383,49 +391,52 @@ export default function Services() {
     },
     business: {
       label: language === "en" ? "Small Business" : "Petite entreprise",
-      tagline: language === "en" ? "For small businesses, startups, founders & small teams (1–20 people)" : "Pour les petites entreprises, startups, fondateurs et petites équipes (1–20 personnes)",
+      tagline: language === "en" ? "For founders, entrepreneurs & growing businesses" : "Pour les fondateurs, entrepreneurs et entreprises en croissance",
       icon: <Rocket className="text-accent" size={24} />,
       services: [
         {
           title: language === "en" ? "Small Business Growth System" : "Système de croissance pour petites entreprises",
           investment: "$500 – $1,500/mo",
-          investmentNote: language === "en" ? "(Monthly program, 3-month minimum)" : "(Programme mensuel, minimum 3 mois)",
+          investmentNote: language === "en" ? "(3-month minimum)" : "(Minimum 3 mois)",
           desc: language === "en"
-            ? "A structured monthly program that gives your small business clearer priorities, consistent execution, and measurable progress."
-            : "Un programme mensuel structuré qui donne à votre petite entreprise des priorités plus claires, une exécution cohérente et des progrès mesurables.",
+            ? "A complete consulting package for small businesses that combines strategic advising, operational support, and accountability."
+            : "Un forfait complet de conseil pour les petites entreprises.",
+          benefits: language === "en"
+            ? ["Strategic advising & planning", "Operational process support", "Accountability systems", "Monthly progress reviews"]
+            : ["Conseil stratégique", "Soutien opérationnel", "Systèmes de responsabilité", "Revues mensuelles"],
           learnMore: language === "en"
-            ? "Running a small business means wearing a hundred hats. Our Small Business Growth System takes the guesswork out of growth by giving you a monthly strategy session, a weekly KPI dashboard, regular accountability check-ins, and practical process improvement guidance.\n\nYou'll walk away each month with clearer priorities, a consistent execution rhythm, and measurable progress toward your goals."
-            : "Diriger une petite entreprise signifie porter cent casquettes. Notre système de croissance élimine les incertitudes en vous offrant des sessions stratégiques mensuelles, un tableau de bord KPI hebdomadaire et des suivis de responsabilité réguliers.",
-          idealFor: language === "en" ? "Small businesses, startups, and founders who want structure, accountability, and consistent growth." : "Petites entreprises, startups et fondateurs qui veulent de la structure, de la responsabilité et une croissance cohérente.",
+            ? "Running a small business means wearing many hats. Our Small Business Growth System gives you a dedicated strategy partner who helps you prioritize, plan, and execute — so you stop spinning your wheels and start seeing real progress.\n\nThis monthly engagement includes strategic advising, operational process support, accountability systems, and regular check-ins to keep your business on track."
+            : "Diriger une petite entreprise signifie porter plusieurs chapeaux. Notre système vous donne un partenaire stratégique dédié.",
+          idealFor: language === "en" ? "Small business owners, founders, and entrepreneurs who want structured support to scale sustainably." : "Propriétaires de petites entreprises et fondateurs.",
           icon: <Rocket className="text-accent" />,
           pricingTiers: [
             {
               name: language === "en" ? "Essentials" : "Essentiel",
               price: "$500/mo",
-              subtitle: language === "en" ? "Core growth support with monthly strategy and basic accountability." : "Soutien de base à la croissance avec stratégie mensuelle et responsabilité.",
+              subtitle: language === "en" ? "Monthly advisory with strategy sessions and basic accountability." : "Conseil mensuel avec sessions stratégiques et responsabilité de base.",
               features: language === "en"
-                ? ["Monthly strategy session (60 min)", "Goal setting framework", "Basic KPI dashboard", "Email support between sessions", "Monthly progress review"]
-                : ["Session stratégique mensuelle (60 min)", "Cadre de définition d'objectifs", "Tableau de bord KPI de base", "Support par e-mail", "Revue mensuelle des progrès"],
+                ? ["Monthly strategy session", "Priority setting and planning", "Basic accountability check-ins", "Email support", "Progress tracking template"]
+                : ["Session stratégique mensuelle", "Définition des priorités", "Points de contrôle de base", "Support par e-mail", "Modèle de suivi"],
               isMonthly: true,
               contactOnly: true
             },
             {
               name: "Standard",
               price: "$1,000/mo",
-              subtitle: language === "en" ? "Full growth system with weekly tracking, process guidance, and priority support." : "Système de croissance complet avec suivi hebdomadaire et conseils en processus.",
+              subtitle: language === "en" ? "Bi-weekly sessions with operational support and process development." : "Sessions bimensuelles avec soutien opérationnel.",
               features: language === "en"
-                ? ["Everything in Essentials", "Weekly KPI dashboard review", "Bi-weekly accountability check-ins", "Process improvement guidance", "Team alignment support", "Priority email & phone support"]
-                : ["Tout dans Essentiel", "Revue hebdomadaire du tableau de bord KPI", "Suivis bimensuels de responsabilité", "Conseils en amélioration des processus", "Soutien à l'alignement d'équipe", "Support prioritaire"],
+                ? ["Everything in Essentials", "Bi-weekly strategy sessions", "Operational process development", "KPI tracking setup", "Team management guidance", "Priority phone support"]
+                : ["Tout dans Essentiel", "Sessions bimensuelles", "Développement de processus", "Configuration des KPI", "Gestion d'équipe", "Support téléphonique prioritaire"],
               isMonthly: true,
               contactOnly: true
             },
             {
               name: "Premium",
               price: "$1,500/mo",
-              subtitle: language === "en" ? "Comprehensive support with hands-on implementation and dedicated consulting." : "Soutien complet avec mise en œuvre pratique et conseil dédié.",
+              subtitle: language === "en" ? "Weekly sessions with full business systems support and growth strategy." : "Sessions hebdomadaires avec soutien complet.",
               features: language === "en"
-                ? ["Everything in Standard", "Weekly strategy calls", "Hands-on process implementation", "Custom reporting dashboards", "Team training sessions", "On-demand consulting access", "Quarterly strategic review"]
-                : ["Tout dans Standard", "Appels stratégiques hebdomadaires", "Mise en œuvre pratique", "Tableaux de bord personnalisés", "Formation d'équipe", "Accès conseil à la demande", "Revue stratégique trimestrielle"],
+                ? ["Everything in Standard", "Weekly strategy sessions", "Full business systems review", "Growth strategy development", "Financial planning support", "Vendor and partner evaluation", "On-demand messaging support"]
+                : ["Tout dans Standard", "Sessions hebdomadaires", "Revue complète des systèmes", "Stratégie de croissance", "Planification financière", "Évaluation des partenaires", "Support messagerie"],
               isMonthly: true,
               contactOnly: true
             }
@@ -435,30 +446,42 @@ export default function Services() {
           title: language === "en" ? "Business Foundations Package" : "Forfait fondations d'entreprise",
           investment: "$2,500 – $5,000",
           desc: language === "en"
-            ? "A one-time engagement to set up your business systems, processes, and accountability structures from scratch."
-            : "Un engagement unique pour mettre en place vos systèmes d'affaires, processus et structures de responsabilité.",
+            ? "A one-time setup engagement to build core business systems — operations, structure, and accountability from the ground up."
+            : "Un engagement unique pour construire les systèmes fondamentaux de votre entreprise.",
+          benefits: language === "en"
+            ? ["Operational process design", "Role & accountability structures", "Business planning foundations", "Performance tracking setup"]
+            : ["Conception des processus opérationnels", "Structures de responsabilité", "Fondations de planification", "Configuration du suivi"],
           learnMore: language === "en"
-            ? "Not ready for a monthly retainer? Our Business Foundations Package is a one-time engagement designed to give your small business the systems and structures it needs to operate more efficiently.\n\nWe'll work with you to define your goals, map your key processes, set up KPI tracking, and create accountability structures that your team can maintain independently."
-            : "Pas prêt pour un mandat mensuel ? Notre forfait fondations est un engagement unique conçu pour donner à votre entreprise les systèmes et structures nécessaires.",
-          idealFor: language === "en" ? "Small businesses that need a solid foundation but aren't ready for ongoing consulting." : "Petites entreprises qui ont besoin d'une base solide sans conseil continu.",
-          icon: <Settings className="text-accent" />,
+            ? "Before you can scale, you need structure. Our Business Foundations Package helps you build the operational and organizational systems that most small businesses skip — until they become urgent.\n\nThis one-time engagement gives you a solid operational foundation: documented processes, clear roles, financial tracking, and accountability systems."
+            : "Avant de pouvoir évoluer, vous avez besoin de structure.",
+          idealFor: language === "en" ? "Early-stage businesses, startups, and entrepreneurs who need foundational business systems built properly from day one." : "Entreprises en démarrage et startups.",
+          icon: <Shield className="text-accent" />,
           pricingTiers: [
             {
-              name: language === "en" ? "Starter" : "Démarrage",
+              name: language === "en" ? "Core" : "Essentiel",
               price: "$2,500",
-              subtitle: language === "en" ? "Essential business setup with goal framework and basic process mapping." : "Configuration essentielle avec cadre d'objectifs et cartographie de base.",
+              subtitle: language === "en" ? "Essential business foundations with core processes and structure." : "Fondations essentielles avec processus de base.",
               features: language === "en"
-                ? ["Business goal framework", "Key process mapping (up to 3)", "Basic KPI dashboard setup", "Role clarity document", "90-day action plan"]
-                : ["Cadre d'objectifs d'entreprise", "Cartographie des processus clés (jusqu'à 3)", "Tableau de bord KPI de base", "Document de clarté des rôles", "Plan d'action de 90 jours"],
+                ? ["Business model review", "Core process documentation", "Role and responsibility mapping", "Basic financial tracking setup", "Operational checklist"]
+                : ["Revue du modèle d'affaires", "Documentation des processus", "Cartographie des rôles", "Suivi financier de base", "Liste de contrôle opérationnelle"],
               contactOnly: true
             },
             {
-              name: language === "en" ? "Complete" : "Complet",
-              price: "$5,000",
-              subtitle: language === "en" ? "Full business systems setup with SOPs, team alignment, and implementation support." : "Configuration complète des systèmes avec procédures et soutien à la mise en œuvre.",
+              name: "Standard",
+              price: "$3,500",
+              subtitle: language === "en" ? "Complete business setup with systems, planning, and team frameworks." : "Configuration complète avec systèmes et planification.",
               features: language === "en"
-                ? ["Everything in Starter", "Full process documentation (SOPs)", "Team alignment workshop", "Performance review framework", "Accountability system setup", "Implementation support (2 weeks)", "Follow-up review session"]
-                : ["Tout dans Démarrage", "Documentation complète des processus", "Atelier d'alignement d'équipe", "Cadre d'examen de performance", "Système de responsabilité", "Soutien à la mise en œuvre (2 semaines)", "Session de suivi"],
+                ? ["Everything in Core", "Strategic business plan", "Full operational process design", "Team accountability framework", "KPI dashboard setup", "90-day execution roadmap"]
+                : ["Tout dans Essentiel", "Plan d'affaires stratégique", "Conception opérationnelle complète", "Cadre de responsabilité", "Tableau de bord KPI", "Feuille de route de 90 jours"],
+              contactOnly: true
+            },
+            {
+              name: "Premium",
+              price: "$5,000",
+              subtitle: language === "en" ? "Full business foundation with governance, compliance, and growth strategy." : "Fondation complète avec gouvernance et stratégie de croissance.",
+              features: language === "en"
+                ? ["Everything in Standard", "Governance framework", "Compliance setup", "Growth strategy outline", "Vendor management framework", "Quarterly review template", "60-day post-engagement support"]
+                : ["Tout dans Standard", "Cadre de gouvernance", "Configuration de la conformité", "Stratégie de croissance", "Gestion des fournisseurs", "Modèle de revue trimestrielle", "Support de 60 jours"],
               contactOnly: true
             }
           ]
@@ -467,36 +490,38 @@ export default function Services() {
     },
     professional: {
       label: language === "en" ? "Professional" : "Professionnel",
-      tagline: language === "en" ? "For professionals, freelancers, entrepreneurs & career growth" : "Pour les professionnels, freelancers, entrepreneurs et croissance de carrière",
+      tagline: language === "en" ? "For individuals looking to build personal performance systems" : "Pour les individus cherchant à construire des systèmes de performance personnelle",
       icon: <UserCheck className="text-accent" size={24} />,
       services: [
         {
           title: language === "en" ? "Personal Performance Coaching" : "Coaching de performance personnelle",
           investment: "$100 – $500/mo",
-          investmentNote: language === "en" ? "(Monthly coaching program)" : "(Programme de coaching mensuel)",
           desc: language === "en"
-            ? "Build systems that help you perform better every day — whether you're growing a career, scaling a business, or leveling up your leadership."
-            : "Construisez des systèmes qui vous aident à mieux performer chaque jour — que vous développiez votre carrière ou votre leadership.",
+            ? "One-on-one coaching to help you build a personal performance system — with goal setting, accountability, and consistent execution."
+            : "Coaching individuel pour vous aider à construire un système de performance personnelle.",
+          benefits: language === "en"
+            ? ["Personal goal-setting framework", "Accountability & habit systems", "Productivity & time management", "Career strategy & growth planning"]
+            : ["Cadre d'objectifs personnels", "Systèmes de responsabilité", "Productivité et gestion du temps", "Planification de carrière"],
           learnMore: language === "en"
-            ? "Performance isn't just for organizations — it's personal. Our Personal Performance Coaching program gives you a monthly coaching session, weekly accountability, productivity systems, goal planning, and habit building support.\n\nWhether you're focused on career advancement, business growth, time management, or leadership development, we'll help you build the systems that make your week easier and your progress measurable."
-            : "La performance n'est pas que pour les organisations — c'est personnel. Notre programme de coaching vous donne des sessions mensuelles, de la responsabilité hebdomadaire et des systèmes de productivité.",
-          idealFor: language === "en" ? "Professionals, freelancers, and entrepreneurs who want structured coaching to accelerate their growth." : "Professionnels, freelancers et entrepreneurs qui veulent un coaching structuré.",
+            ? "Performance isn't just for organizations — it starts with you. Our Personal Performance Coaching helps ambitious professionals build the habits, systems, and accountability structures they need to consistently perform at their best.\n\nWhether you're a manager, entrepreneur, executive, or career professional — this coaching is designed to help you take control of your growth."
+            : "La performance ne concerne pas que les organisations — elle commence par vous.",
+          idealFor: language === "en" ? "Ambitious professionals, managers, entrepreneurs, and career-focused individuals who want structured personal performance coaching." : "Professionnels ambitieux et gestionnaires.",
           icon: <UserCheck className="text-accent" />,
           pricingTiers: [
             {
               name: language === "en" ? "Essentials" : "Essentiel",
               price: "$100/mo",
-              subtitle: language === "en" ? "Monthly coaching with goal setting and basic accountability." : "Coaching mensuel avec définition d'objectifs et responsabilité de base.",
+              subtitle: language === "en" ? "Monthly coaching sessions with goal setting and basic accountability." : "Sessions de coaching mensuelles avec définition d'objectifs.",
               features: language === "en"
-                ? ["Monthly coaching session (45 min)", "Goal planning framework", "Weekly accountability check-in (async)", "Progress tracking template", "Email support"]
-                : ["Session de coaching mensuelle (45 min)", "Cadre de planification d'objectifs", "Suivi de responsabilité hebdomadaire", "Modèle de suivi des progrès", "Support par e-mail"],
+                ? ["Monthly coaching session", "Personal goal-setting framework", "Basic accountability system", "Email check-ins", "Monthly progress review"]
+                : ["Session de coaching mensuelle", "Cadre d'objectifs personnels", "Système de responsabilité de base", "Points de contrôle par e-mail", "Revue mensuelle"],
               isMonthly: true,
               contactOnly: true
             },
             {
               name: "Standard",
               price: "$250/mo",
-              subtitle: language === "en" ? "Bi-weekly coaching with productivity systems and habit building." : "Coaching bimensuel avec systèmes de productivité et construction d'habitudes.",
+              subtitle: language === "en" ? "Bi-weekly sessions with productivity systems and habit building." : "Sessions bimensuelles avec systèmes de productivité.",
               features: language === "en"
                 ? ["Everything in Essentials", "Bi-weekly coaching sessions", "Productivity system design", "Habit building framework", "Time management strategies", "Priority support"]
                 : ["Tout dans Essentiel", "Sessions bimensuelles", "Conception de systèmes de productivité", "Construction d'habitudes", "Stratégies de gestion du temps", "Support prioritaire"],
@@ -527,11 +552,14 @@ export default function Services() {
           investment: "$49 – $99",
           desc: language === "en"
             ? "A guided goal system with yearly planning, weekly review templates, and a KPI tracker to keep you on track."
-            : "Un système d'objectifs guidé avec planification annuelle, modèles de revue hebdomadaire et suivi de KPI.",
+            : "Un système d'objectifs guidé avec planification annuelle et suivi de KPI.",
+          benefits: language === "en"
+            ? ["Yearly planning framework", "Weekly review templates", "Built-in KPI tracker", "Goal setting worksheet"]
+            : ["Cadre de planification annuelle", "Modèles de revue", "Suivi de KPI intégré", "Feuille d'objectifs"],
           learnMore: language === "en"
             ? "The Performance Planner is your personal roadmap to consistent results. It includes a yearly planning framework, weekly review templates, and a built-in KPI tracker that helps you stay focused on what matters most.\n\nDesigned for individuals and small teams who want structure without the cost of a consultant."
-            : "Le planificateur de performance est votre feuille de route personnelle vers des résultats cohérents. Il comprend un cadre de planification annuelle et des modèles de revue hebdomadaire.",
-          idealFor: language === "en" ? "Individuals and small teams who want a structured planning system they can use independently." : "Individus et petites équipes qui veulent un système de planification structuré.",
+            : "Le planificateur de performance est votre feuille de route personnelle vers des résultats cohérents.",
+          idealFor: language === "en" ? "Individuals and small teams who want a structured planning system they can use independently." : "Individus et petites équipes.",
           icon: <BookOpen className="text-accent" />,
           pricingTiers: [
             {
@@ -559,17 +587,20 @@ export default function Services() {
           investment: "$297 – $997",
           desc: language === "en"
             ? "A structured growth program with a strategy framework, execution plan, and accountability system to transform your performance in 90 days."
-            : "Un programme de croissance structuré avec un cadre stratégique, un plan d'exécution et un système de responsabilité.",
+            : "Un programme de croissance structuré avec un cadre stratégique et un plan d'exécution.",
+          benefits: language === "en"
+            ? ["Proven strategy framework", "12-week execution plan", "Built-in accountability system", "Progress tracking tools"]
+            : ["Cadre stratégique éprouvé", "Plan d'exécution de 12 semaines", "Système de responsabilité", "Outils de suivi"],
           learnMore: language === "en"
-            ? "The 90-Day Performance Program is a self-guided transformation system designed to help you go from scattered to structured in just three months.\n\nYou'll get a proven strategy framework, a week-by-week execution plan, and a built-in accountability system that keeps you moving forward. It's the same methodology we use with enterprise clients, packaged for self-guided implementation."
-            : "Le programme de performance de 90 jours est un système de transformation auto-guidé conçu pour vous aider à passer du désordre à la structure en trois mois.",
-          idealFor: language === "en" ? "Professionals and entrepreneurs who want a structured transformation program they can follow at their own pace." : "Professionnels et entrepreneurs qui veulent un programme de transformation structuré.",
+            ? "The 90-Day Performance Program is a self-guided transformation system designed to help you go from scattered to structured in just three months.\n\nYou'll get a proven strategy framework, a week-by-week execution plan, and a built-in accountability system that keeps you moving forward."
+            : "Le programme de performance de 90 jours est un système de transformation auto-guidé.",
+          idealFor: language === "en" ? "Professionals and entrepreneurs who want a structured transformation program they can follow at their own pace." : "Professionnels et entrepreneurs.",
           icon: <Zap className="text-accent" />,
           pricingTiers: [
             {
               name: language === "en" ? "Self-Guided" : "Auto-guidé",
               price: "$297",
-              subtitle: language === "en" ? "Complete program with templates, guides, and weekly action plans." : "Programme complet avec modèles, guides et plans d'action hebdomadaires.",
+              subtitle: language === "en" ? "Complete program with templates, guides, and weekly action plans." : "Programme complet avec modèles et guides.",
               features: language === "en"
                 ? ["Strategy framework workbook", "12-week execution plan", "Weekly action templates", "Progress tracking system", "Accountability checklist", "Completion certificate"]
                 : ["Cahier de stratégie", "Plan d'exécution de 12 semaines", "Modèles d'action hebdomadaires", "Système de suivi des progrès", "Liste de responsabilité", "Certificat de complétion"],
@@ -578,7 +609,7 @@ export default function Services() {
             {
               name: language === "en" ? "Guided" : "Guidé",
               price: "$997",
-              subtitle: language === "en" ? "Full program with live group calls, coaching support, and peer accountability." : "Programme complet avec appels de groupe en direct et soutien coaching.",
+              subtitle: language === "en" ? "Full program with live group calls, coaching support, and peer accountability." : "Programme complet avec appels de groupe en direct.",
               features: language === "en"
                 ? ["Everything in Self-Guided", "3 live group coaching calls", "Private community access", "Peer accountability partner matching", "Direct coach Q&A support", "Bonus: personal KPI setup session"]
                 : ["Tout dans Auto-guidé", "3 appels de coaching de groupe", "Accès communauté privée", "Jumelage de partenaires de responsabilité", "Support Q&R du coach", "Bonus: session de configuration KPI"],
@@ -591,26 +622,29 @@ export default function Services() {
           investment: "$49 – $199",
           desc: language === "en"
             ? "Ready-to-use templates for KPIs, weekly planning, team accountability, and strategy execution."
-            : "Modèles prêts à l'emploi pour KPI, planification hebdomadaire, responsabilité d'équipe et exécution stratégique.",
+            : "Modèles prêts à l'emploi pour KPI, planification et exécution stratégique.",
+          benefits: language === "en"
+            ? ["KPI tracking templates", "Weekly planning sheets", "Team accountability frameworks", "Strategy execution tools"]
+            : ["Modèles de suivi KPI", "Feuilles de planification", "Cadres de responsabilité", "Outils d'exécution"],
           learnMore: language === "en"
-            ? "Don't start from scratch. Our Performance Systems Toolkit gives you everything you need to build high-performing habits, manage your team, and execute your strategy.\n\nIncludes templates for KPI tracking, weekly planning, team accountability, strategy execution, meeting agendas, and more — all designed to be simple, practical, and immediately useful."
-            : "Ne partez pas de zéro. Notre boîte à outils vous donne tout ce dont vous avez besoin pour construire des habitudes performantes et gérer votre équipe.",
-          idealFor: language === "en" ? "Managers, team leads, and business owners who want practical tools without consulting engagement." : "Gestionnaires, chefs d'équipe et propriétaires d'entreprise qui veulent des outils pratiques.",
+            ? "Don't start from scratch. Our Performance Systems Toolkit gives you everything you need to build high-performing habits, manage your team, and execute your strategy.\n\nIncludes templates for KPI tracking, weekly planning, team accountability, strategy execution, meeting agendas, and more."
+            : "Ne partez pas de zéro. Notre boîte à outils vous donne tout ce dont vous avez besoin.",
+          idealFor: language === "en" ? "Managers, team leads, and business owners who want practical tools without consulting engagement." : "Gestionnaires et chefs d'équipe.",
           icon: <Package className="text-accent" />,
           pricingTiers: [
             {
               name: language === "en" ? "Starter Kit" : "Kit de démarrage",
               price: "$49",
-              subtitle: language === "en" ? "Essential templates for individual performance management." : "Modèles essentiels pour la gestion de performance individuelle.",
+              subtitle: language === "en" ? "Essential templates for individual performance management." : "Modèles essentiels pour la gestion individuelle.",
               features: language === "en"
                 ? ["KPI tracking template", "Weekly planning sheet", "Goal setting framework", "Meeting agenda template", "Progress review guide"]
-                : ["Modèle de suivi KPI", "Feuille de planification hebdomadaire", "Cadre de définition d'objectifs", "Modèle d'ordre du jour", "Guide de revue des progrès"],
+                : ["Modèle de suivi KPI", "Feuille de planification", "Cadre d'objectifs", "Modèle d'ordre du jour", "Guide de revue"],
               contactOnly: true
             },
             {
               name: language === "en" ? "Team Edition" : "Édition équipe",
               price: "$129",
-              subtitle: language === "en" ? "Full team toolkit with accountability systems and performance frameworks." : "Boîte à outils d'équipe complète avec systèmes de responsabilité.",
+              subtitle: language === "en" ? "Full team toolkit with accountability systems and performance frameworks." : "Boîte à outils d'équipe complète.",
               features: language === "en"
                 ? ["Everything in Starter Kit", "Team accountability framework", "Performance review templates", "Strategy execution tracker", "Role clarity worksheet", "Team alignment guide"]
                 : ["Tout dans Kit de démarrage", "Cadre de responsabilité d'équipe", "Modèles de revue de performance", "Suivi d'exécution stratégique", "Feuille de clarté des rôles", "Guide d'alignement d'équipe"],
@@ -619,7 +653,7 @@ export default function Services() {
             {
               name: language === "en" ? "Business Edition" : "Édition entreprise",
               price: "$199",
-              subtitle: language === "en" ? "Complete business toolkit with governance, SOPs, and organizational frameworks." : "Boîte à outils complète avec gouvernance, procédures et cadres organisationnels.",
+              subtitle: language === "en" ? "Complete business toolkit with governance, SOPs, and organizational frameworks." : "Boîte à outils complète avec gouvernance et procédures.",
               features: language === "en"
                 ? ["Everything in Team Edition", "SOP templates", "Governance framework guide", "Balanced scorecard template", "Change management checklist", "Board reporting template", "Onboarding framework"]
                 : ["Tout dans Édition équipe", "Modèles de procédures", "Guide de gouvernance", "Modèle de tableau de bord prospectif", "Liste de gestion du changement", "Modèle de rapport au conseil", "Cadre d'intégration"],
@@ -640,54 +674,140 @@ export default function Services() {
 
   const currentTier = serviceTiers[activeTab];
 
+  const resultStats = [
+    { value: language === "en" ? "Improved" : "Améliorée", label: language === "en" ? "Leadership Alignment" : "Alignement du leadership", icon: <Users size={20} className="text-accent" /> },
+    { value: language === "en" ? "Faster" : "Plus rapide", label: language === "en" ? "Strategy Execution" : "Exécution stratégique", icon: <Zap size={20} className="text-accent" /> },
+    { value: language === "en" ? "Measurable" : "Mesurable", label: language === "en" ? "Performance Improvement" : "Amélioration de la performance", icon: <TrendingUp size={20} className="text-accent" /> },
+    { value: language === "en" ? "Structured" : "Structuré", label: language === "en" ? "Accountability Systems" : "Systèmes de responsabilité", icon: <Target size={20} className="text-accent" /> },
+  ];
+
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <Navbar />
       <main className="flex-grow">
-        <PageHero 
-          title={<>{language === "en" ? "Turn ambition into" : "Transformer l'ambition en"} <br /> <span className="text-accent">{language === "en" ? "consistent execution" : "exécution cohérente"}</span></>}
-          subtitle={language === "en" 
-            ? "Helping founders scale, professionals grow, teams execute, and organizations improve performance."
-            : "Aider les fondateurs à grandir, les professionnels à évoluer, les équipes à exécuter et les organisations à améliorer leur performance."}
-        />
 
-        <section className="py-28 bg-white">
-          <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">
-                {language === "en" ? "The Performance Process Method" : "La méthode Performance Process"}
+        <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-primary">
+          <div className="absolute inset-0 z-0">
+            <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-15">
+              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/80" />
+          </div>
+          <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
+            <div className="max-w-4xl">
+              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="text-hero-label">
+                {language === "en" ? "Performance Consulting Services" : "Services de conseil en performance"}
               </p>
-              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
-                {language === "en" ? "A simple system that works for everyone" : "Un système simple qui fonctionne pour tous"}
-              </h2>
-              <div className="w-16 h-1 bg-accent rounded-full mx-auto mb-6" />
-              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-hero-title">
+                {language === "en" ? (
+                  <>Helping organizations achieve <span className="text-accent">measurable performance</span> improvement</>
+                ) : (
+                  <>Aider les organisations à atteindre une <span className="text-accent">amélioration mesurable</span> de la performance</>
+                )}
+              </h1>
+              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-hero-subtitle">
                 {language === "en"
-                  ? "Whether you're an individual, entrepreneur, team, or company — performance management works best when it includes planning, monitoring, development, and evaluation."
-                  : "Que vous soyez un individu, un entrepreneur, une équipe ou une entreprise — la gestion de la performance fonctionne mieux avec la planification, le suivi, le développement et l'évaluation."}
+                  ? "From strategy to systems to execution — we help founders scale, teams align, and organizations build the infrastructure for sustainable growth."
+                  : "De la stratégie aux systèmes à l'exécution — nous aidons les fondateurs, les équipes et les organisations à construire l'infrastructure pour une croissance durable."}
               </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
+                  <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="button-hero-book">
+                    <Calendar size={18} className="mr-2" />
+                    {language === "en" ? "Book a Consultation" : "Réservez une consultation"}
+                  </Button>
+                </a>
+                <Button
+                  variant="outline"
+                  className="rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto"
+                  onClick={() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  data-testid="button-hero-explore"
+                >
+                  {language === "en" ? "Explore Services" : "Explorer les services"}
+                  <ArrowDown size={18} className="ml-2" />
+                </Button>
+              </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-              {methodSteps.map((step, i) => (
-                <div key={i} className="relative text-center group" data-testid={`method-step-${i}`}>
-                  <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center mx-auto mb-8 group-hover:bg-accent group-hover:from-accent group-hover:to-accent group-hover:scale-110 transition-all duration-300 shadow-sm">
-                    <span className="text-accent group-hover:text-white transition-colors">{step.icon}</span>
+          </div>
+        </section>
+
+        <section className="py-16 bg-white border-b" data-testid="section-results">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+              {resultStats.map((stat, i) => (
+                <div key={i} className="text-center" data-testid={`stat-result-${i}`}>
+                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                    {stat.icon}
                   </div>
-                  <div className="text-[11px] font-black uppercase tracking-[0.3em] text-accent mb-3">{language === "en" ? "Step" : "Étape"} {step.step}</div>
-                  <h3 className="text-xl font-bold text-primary mb-4">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed max-w-[280px] mx-auto">{step.desc}</p>
-                  {i < methodSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-10 -right-5 w-10">
-                      <ArrowRight className="text-accent/40" size={28} />
-                    </div>
-                  )}
+                  <div className="text-2xl font-extrabold text-primary mb-1">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white">
+        <section className="py-28 bg-white" data-testid="section-methodology">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="text-center mb-6">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">
+                {language === "en" ? "Our Approach" : "Notre approche"}
+              </p>
+              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
+                {language === "en" ? "The Performance Process Method" : "La méthode Performance Process"}
+              </h2>
+              <div className="w-16 h-1 bg-accent rounded-full mx-auto mb-6" />
+              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg mb-4">
+                {language === "en"
+                  ? "A proven four-step framework that turns ambition into consistent, measurable execution."
+                  : "Un cadre éprouvé en quatre étapes qui transforme l'ambition en exécution mesurable et cohérente."}
+              </p>
+            </div>
+
+            <div className="max-w-6xl mx-auto mt-16">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {methodSteps.map((step, i) => (
+                  <div key={i} className="relative" data-testid={`method-step-${i}`}>
+                    <div className={`bg-gradient-to-br ${step.color} rounded-3xl p-8 h-full border border-border/40 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group`}>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
+                          {step.icon}
+                        </div>
+                        <span className="text-3xl font-extrabold text-accent/30">{step.step}</span>
+                      </div>
+                      <h3 className="text-xl font-extrabold text-primary mb-3">{step.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-5">{step.desc}</p>
+                      <ul className="space-y-2">
+                        {step.outcomes.map((outcome, oi) => (
+                          <li key={oi} className="flex items-center gap-2 text-sm text-primary/80">
+                            <CheckCircle2 size={14} className="text-accent shrink-0" />
+                            <span>{outcome}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    {i < methodSteps.length - 1 && (
+                      <div className="hidden lg:flex absolute top-1/2 -right-4 -translate-y-1/2 z-10">
+                        <ArrowRight className="text-accent/40" size={24} />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="text-center mt-16">
+              <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
+                <Button className="rounded-full bg-primary text-white hover:bg-accent h-14 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105" data-testid="button-methodology-cta">
+                  <Phone size={16} className="mr-2" />
+                  {language === "en" ? "See How This Applies to You" : "Voyez comment cela s'applique à vous"}
+                </Button>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="services-section" className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white" data-testid="section-services">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-16">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">
@@ -724,7 +844,7 @@ export default function Services() {
             </div>
 
             <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-3xl border border-border/50 p-8 md:p-10 mb-10">
-              <div className="flex items-center gap-4 mb-2">
+              <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center">
                   {currentTier.icon}
                 </div>
@@ -737,24 +857,38 @@ export default function Services() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {currentTier.services.map((s: any, i: number) => (
-                <div 
-                  key={i} 
-                  className="bg-white p-10 rounded-3xl border border-border/60 hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-500 group cursor-pointer flex flex-col justify-between min-h-[380px]"
+                <div
+                  key={i}
+                  className="bg-white rounded-3xl border border-border/60 hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-500 group cursor-pointer flex flex-col overflow-hidden"
                   onClick={() => setSelectedService(s)}
                   data-testid={`card-service-${activeTab}-${i}`}
                 >
-                  <div>
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center mb-8 group-hover:from-accent group-hover:to-accent group-hover:text-white transition-all duration-300 shadow-sm">
-                      {s.icon}
+                  <div className="p-8 pb-0 flex-1">
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center group-hover:from-accent group-hover:to-accent group-hover:text-white transition-all duration-300 shadow-sm shrink-0">
+                        {s.icon}
+                      </div>
+                      <div className="inline-flex items-center bg-accent/5 border border-accent/10 rounded-full px-4 py-1.5 text-accent font-bold text-sm">
+                        {s.investment}
+                      </div>
                     </div>
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-bold text-primary group-hover:text-accent transition-colors leading-tight">{s.title}</h3>
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed text-sm mb-6 line-clamp-3">{s.desc}</p>
-                    <div className="inline-flex items-center bg-accent/5 border border-accent/10 rounded-full px-4 py-2 text-accent font-bold text-lg">{s.investment}</div>
+                    <h3 className="text-xl font-extrabold text-primary group-hover:text-accent transition-colors leading-tight mb-3">{s.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm mb-6 line-clamp-2">{s.desc}</p>
+                    {s.benefits && (
+                      <ul className="space-y-2.5 mb-6">
+                        {s.benefits.slice(0, 4).map((b: string, bi: number) => (
+                          <li key={bi} className="flex items-start gap-2.5 text-sm text-primary/80">
+                            <CheckCircle2 size={15} className="text-accent shrink-0 mt-0.5" />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
-                  <div className="mt-8 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:text-accent group-hover:translate-x-2 transition-all duration-300">
-                    {language === "en" ? "Learn more" : "En savoir plus"} <ArrowRight size={16} className="ml-2" />
+                  <div className="p-8 pt-4 mt-auto">
+                    <div className="flex items-center text-sm font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-all duration-300">
+                      {language === "en" ? "View pricing & details" : "Voir les prix et détails"} <ArrowRight size={16} className="ml-2" />
+                    </div>
                   </div>
                 </div>
               ))}
@@ -762,7 +896,29 @@ export default function Services() {
           </div>
         </section>
 
-        <section className="py-28 bg-white">
+        <section className="py-20 bg-gradient-to-r from-primary to-primary/90 relative overflow-hidden" data-testid="section-mid-cta">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(236,72,153,0.08)_0%,transparent_60%)]" />
+          <div className="container mx-auto px-4 md:px-8 relative z-10">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-6 leading-tight">
+                {language === "en" ? "Ready to improve your organization's performance?" : "Prêt à améliorer la performance de votre organisation ?"}
+              </h2>
+              <p className="text-lg text-white/70 mb-8 leading-relaxed">
+                {language === "en"
+                  ? "Book a free discovery call to discuss your challenges and explore how we can help."
+                  : "Réservez un appel découverte gratuit pour discuter de vos défis et explorer comment nous pouvons vous aider."}
+              </p>
+              <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
+                <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-12 text-base font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="button-mid-cta">
+                  <Calendar size={18} className="mr-2" />
+                  {language === "en" ? "Book a Consultation" : "Réservez une consultation"}
+                </Button>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-28 bg-white" data-testid="section-collective">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-16">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">
@@ -778,37 +934,62 @@ export default function Services() {
                   : "Bénéficiez de coaching de groupe, de partenaires de responsabilité, de modèles et de formation — pour une fraction du coût du conseil privé."}
               </p>
             </div>
-            <div className="max-w-3xl mx-auto bg-gradient-to-br from-primary via-primary/95 to-primary/85 rounded-3xl p-12 text-white shadow-xl shadow-primary/10">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Users className="text-accent" size={24} />
-                    <h3 className="text-2xl font-bold">{language === "en" ? "Performance Processes Collective" : "Collectif Performance Processes"}</h3>
-                  </div>
-                  <div className="text-accent font-black text-3xl mb-4">$49 – $99<span className="text-lg font-normal text-white/70">/mo</span></div>
-                  <ul className="space-y-3 mb-6">
-                    {(language === "en"
-                      ? ["Monthly group strategy call", "Accountability group & partner matching", "Templates and tools library", "Training sessions and workshops", "Private community access", "Member-only resources"]
-                      : ["Appel stratégique de groupe mensuel", "Groupe de responsabilité et jumelage", "Bibliothèque de modèles et outils", "Sessions de formation et ateliers", "Accès communauté privée", "Ressources réservées aux membres"]
-                    ).map((item, i) => (
-                      <li key={i} className="flex items-center gap-3 text-sm">
-                        <CheckCircle2 size={16} className="text-accent shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-12 px-8 font-bold uppercase tracking-wider text-xs"
-                    data-testid="button-join-collective"
-                    onClick={() => setCollectiveOpen(true)}
-                  >
-                    {language === "en" ? "Join the Collective" : "Rejoindre le collectif"}
-                  </Button>
-                </div>
-                <div className="flex flex-col gap-3 text-sm">
-                  <div className="bg-white/10 rounded-xl p-4">
-                    <div className="font-bold text-accent mb-1">{language === "en" ? "Perfect for" : "Parfait pour"}</div>
-                    <p className="text-white/80">{language === "en" ? "Entrepreneurs, consultants, freelancers, managers, small business owners, ambitious professionals" : "Entrepreneurs, consultants, freelancers, gestionnaires, propriétaires de petites entreprises, professionnels ambitieux"}</p>
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gradient-to-br from-primary via-primary/95 to-primary/85 rounded-3xl overflow-hidden shadow-xl shadow-primary/10">
+                <div className="p-10 md:p-14">
+                  <div className="flex flex-col md:flex-row gap-10">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-5">
+                        <div className="w-12 h-12 rounded-2xl bg-accent/20 flex items-center justify-center">
+                          <Users className="text-accent" size={24} />
+                        </div>
+                        <h3 className="text-2xl font-bold text-white">{language === "en" ? "Performance Processes Collective" : "Collectif Performance Processes"}</h3>
+                      </div>
+                      <div className="text-accent font-black text-4xl mb-2">$49 – $99<span className="text-lg font-normal text-white/60">/mo</span></div>
+                      <p className="text-white/60 text-sm mb-8">{language === "en" ? "Cancel anytime. No long-term commitment required." : "Annulez à tout moment."}</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                        {(language === "en"
+                          ? ["Monthly group strategy call", "Accountability partner matching", "Templates and tools library", "Training sessions & workshops", "Private community access", "Member-only resources"]
+                          : ["Appel stratégique de groupe mensuel", "Jumelage de partenaires", "Bibliothèque de modèles et outils", "Sessions de formation et ateliers", "Accès communauté privée", "Ressources réservées aux membres"]
+                        ).map((item, i) => (
+                          <div key={i} className="flex items-center gap-2.5 text-sm text-white/90">
+                            <CheckCircle2 size={15} className="text-accent shrink-0" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <Button
+                        className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-12 px-8 font-bold uppercase tracking-wider text-xs transition-all duration-300 hover:scale-105"
+                        data-testid="button-join-collective"
+                        onClick={() => setCollectiveOpen(true)}
+                      >
+                        {language === "en" ? "Join the Collective" : "Rejoindre le collectif"}
+                      </Button>
+                    </div>
+                    <div className="md:w-64 flex flex-col gap-4">
+                      <div className="bg-white/10 rounded-2xl p-5 backdrop-blur-sm">
+                        <div className="font-bold text-accent mb-2 text-sm">{language === "en" ? "Perfect for" : "Parfait pour"}</div>
+                        <ul className="space-y-1.5 text-white/80 text-xs">
+                          {(language === "en"
+                            ? ["Entrepreneurs", "Consultants", "Freelancers", "Managers", "Small business owners"]
+                            : ["Entrepreneurs", "Consultants", "Freelancers", "Gestionnaires", "Propriétaires de PME"]
+                          ).map((item, i) => (
+                            <li key={i} className="flex items-center gap-2">
+                              <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="bg-white/10 rounded-2xl p-5 backdrop-blur-sm">
+                        <div className="font-bold text-accent mb-2 text-sm">{language === "en" ? "What you get" : "Ce que vous obtenez"}</div>
+                        <p className="text-white/70 text-xs leading-relaxed">
+                          {language === "en"
+                            ? "Structure, accountability, and community — everything you need to stay consistent and grow."
+                            : "Structure, responsabilité et communauté — tout ce dont vous avez besoin pour rester cohérent et grandir."}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -816,14 +997,14 @@ export default function Services() {
           </div>
         </section>
 
-        <section className="py-28" data-testid="section-womens-grant">
+        <section className="py-28 bg-[#F8FAFC]" data-testid="section-womens-grant">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="bg-gradient-to-br from-accent/5 via-white to-accent/10 rounded-3xl border-2 border-accent/20 overflow-hidden shadow-lg">
-                <div className="p-10 md:p-12">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center">
-                      <Heart className="text-accent" size={24} />
+                <div className="p-10 md:p-14">
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center">
+                      <Heart className="text-accent" size={26} />
                     </div>
                     <div>
                       <p className="text-xs font-black uppercase tracking-[0.3em] text-accent">
@@ -834,78 +1015,27 @@ export default function Services() {
                       </h2>
                     </div>
                   </div>
-
-                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-3xl">
                     {language === "en"
-                      ? "Performance Processes is launching a Women's Performance Grant to support women who are building businesses, advancing their careers, or leading teams. The grant provides professional coaching and performance systems support to help recipients turn their goals into measurable results."
-                      : "Performance Processes lance une bourse de performance pour les femmes afin de soutenir celles qui bâtissent des entreprises, font avancer leur carrière ou dirigent des équipes."}
+                      ? "We're offering 3 women-owned businesses a fully funded 3-month consulting engagement. If you're a woman founder building something meaningful, we want to support your growth."
+                      : "Nous offrons à 3 entreprises dirigées par des femmes un engagement de conseil de 3 mois entièrement financé."}
                   </p>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div>
-                      <h4 className="text-sm font-bold text-primary mb-3 flex items-center gap-2">
-                        <Star className="text-accent" size={16} />
-                        {language === "en" ? "Grant Includes" : "La bourse comprend"}
-                      </h4>
-                      <ul className="space-y-2">
-                        {[
-                          language === "en" ? "3 months of Performance Coaching" : "3 mois de coaching de performance",
-                          language === "en" ? "Performance Systems Setup" : "Configuration des systèmes de performance",
-                          language === "en" ? "Monthly strategy sessions" : "Sessions stratégiques mensuelles",
-                          language === "en" ? "Performance planning framework" : "Cadre de planification de performance",
-                        ].map((item, i) => (
-                          <li key={i} className="flex items-center gap-2 text-sm text-primary">
-                            <CheckCircle2 size={14} className="text-accent shrink-0" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-primary mb-3 flex items-center gap-2">
-                        <Target className="text-accent" size={16} />
-                        {language === "en" ? "Focus Areas" : "Domaines d'intervention"}
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {(language === "en"
-                          ? ["Leadership Development", "Business Growth", "Career Advancement", "Productivity & Focus", "Strategic Goal Execution"]
-                          : ["Développement du leadership", "Croissance des affaires", "Avancement professionnel", "Productivité et concentration", "Exécution stratégique"]
-                        ).map((area, i) => (
-                          <span key={i} className="text-xs font-bold px-3 py-1.5 rounded-full bg-white border border-accent/20 text-primary">
-                            {area}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-                    {[
-                      { label: language === "en" ? "Recipients" : "Récipiendaires", value: "3" },
-                      { label: language === "en" ? "Duration" : "Durée", value: language === "en" ? "3 months" : "3 mois" },
-                      { label: language === "en" ? "Deadline" : "Date limite", value: language === "en" ? "March 31" : "31 mars" },
-                      { label: language === "en" ? "Announced" : "Annoncé", value: language === "en" ? "Early April" : "Début avril" },
-                    ].map((item, i) => (
-                      <div key={i} className="bg-white rounded-xl p-3 text-center border border-border">
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">{item.label}</p>
-                        <p className="text-sm font-black text-accent">{item.value}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                    {(language === "en"
+                      ? [{ label: "Recipients", value: "3 businesses" }, { label: "Program length", value: "3 months" }, { label: "Deadline", value: "March 31" }]
+                      : [{ label: "Récipiendaires", value: "3 entreprises" }, { label: "Durée du programme", value: "3 mois" }, { label: "Date limite", value: "31 mars" }]
+                    ).map((item, i) => (
+                      <div key={i} className="bg-white rounded-2xl p-4 text-center border border-accent/10">
+                        <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">{item.label}</div>
+                        <div className="text-lg font-extrabold text-primary">{item.value}</div>
                       </div>
                     ))}
                   </div>
-
-                  <div className="flex flex-col sm:flex-row gap-4 items-center">
-                    <Link href="/womens-performance-grant">
-                      <Button className="rounded-full bg-accent text-white hover:bg-primary h-12 px-8 font-bold uppercase tracking-wider text-xs shadow-lg shadow-accent/20 gap-2" data-testid="button-apply-grant">
-                        <Sparkles size={16} />
-                        {language === "en" ? "Apply for the Grant" : "Postuler pour la bourse"}
-                      </Button>
-                    </Link>
-                    <p className="text-xs text-muted-foreground">
-                      {language === "en"
-                        ? "Open to women entrepreneurs, professionals, and leaders."
-                        : "Ouvert aux femmes entrepreneures, professionnelles et leaders."}
-                    </p>
-                  </div>
+                  <Link href="/womens-performance-grant">
+                    <Button className="rounded-full bg-accent text-white hover:bg-primary h-12 px-8 font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:scale-105" data-testid="button-grant-apply">
+                      {language === "en" ? "Learn More & Apply" : "En savoir plus et postuler"} <ArrowRight size={16} className="ml-2" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -913,91 +1043,91 @@ export default function Services() {
         </section>
 
         <Dialog open={collectiveOpen} onOpenChange={setCollectiveOpen}>
-          <DialogContent className="max-w-md rounded-2xl">
+          <DialogContent className="max-w-2xl">
             <DialogHeader>
-              <DialogTitle className="text-xl font-heading font-extrabold text-primary flex items-center gap-2">
-                <Users className="text-accent" size={22} />
-                {language === "en" ? "Choose Your Plan" : "Choisissez votre forfait"}
-              </DialogTitle>
-              <DialogDescription>
-                {language === "en" ? "Select the membership tier that fits your needs." : "Sélectionnez le niveau d'adhésion qui correspond à vos besoins."}
-              </DialogDescription>
+              <DialogTitle className="text-2xl font-heading">{language === "en" ? "Join the Collective" : "Rejoindre le collectif"}</DialogTitle>
+              <DialogDescription>{language === "en" ? "Choose your membership level" : "Choisissez votre niveau d'adhésion"}</DialogDescription>
             </DialogHeader>
-            <div className="space-y-4 mt-4">
-              <button
-                className="w-full text-left border-2 border-border hover:border-accent rounded-xl p-5 transition-colors group"
-                data-testid="button-collective-essential"
-                onClick={() => { setCollectiveOpen(false); handlePay("Collective - Essential"); }}
-                disabled={checkoutMutation.isPending}
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-bold text-primary group-hover:text-accent transition-colors">{language === "en" ? "Essential" : "Essentiel"}</span>
-                  <span className="text-lg font-black text-accent">$49<span className="text-xs font-normal text-muted-foreground">/mo</span></span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-2">
+              {[
+                {
+                  name: language === "en" ? "Essential" : "Essentiel",
+                  price: "$49/mo",
+                  features: language === "en"
+                    ? ["Monthly group call", "Community access", "Template library", "Accountability partner"]
+                    : ["Appel de groupe mensuel", "Accès communauté", "Bibliothèque de modèles", "Partenaire de responsabilité"],
+                  stripeProductName: "Collective - Essential"
+                },
+                {
+                  name: "Premium",
+                  price: "$99/mo",
+                  features: language === "en"
+                    ? ["Everything in Essential", "Bi-weekly group calls", "Workshop access", "Priority support", "1-on-1 monthly check-in"]
+                    : ["Tout dans Essentiel", "Appels bimensuels", "Accès aux ateliers", "Support prioritaire", "Check-in mensuel individuel"],
+                  stripeProductName: "Collective - Premium"
+                }
+              ].map((tier, idx) => (
+                <div key={idx} className={`p-6 rounded-2xl border-2 ${idx === 1 ? "border-accent bg-accent/5" : "border-border"}`}>
+                  <h4 className="text-lg font-bold text-primary mb-2">{tier.name}</h4>
+                  <div className="text-3xl font-extrabold text-accent mb-4">{tier.price}</div>
+                  <ul className="space-y-2 mb-6">
+                    {tier.features.map((f, fi) => (
+                      <li key={fi} className="flex items-center gap-2 text-sm">
+                        <CheckCircle2 size={14} className="text-accent shrink-0" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    className={`w-full rounded-full h-10 font-bold text-xs uppercase tracking-widest ${idx === 1 ? 'bg-accent text-white hover:bg-primary' : 'bg-primary text-white hover:bg-accent'}`}
+                    onClick={() => handlePay(tier.stripeProductName)}
+                    disabled={checkoutMutation.isPending && payingProduct === tier.stripeProductName}
+                    data-testid={`button-collective-${idx}`}
+                  >
+                    {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
+                      <><Loader2 size={14} className="animate-spin mr-2" /> {language === "en" ? "Processing..." : "Traitement..."}</>
+                    ) : (
+                      <><CreditCard size={14} className="mr-2" /> {language === "en" ? "Subscribe" : "S'abonner"}</>
+                    )}
+                  </Button>
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  {language === "en"
-                    ? "Monthly group strategy call, accountability partner matching, templates and tools library."
-                    : "Appel stratégique mensuel, jumelage de responsabilité, bibliothèque de modèles et outils."}
-                </p>
-              </button>
-              <button
-                className="w-full text-left border-2 border-accent/30 hover:border-accent rounded-xl p-5 transition-colors group bg-accent/5"
-                data-testid="button-collective-premium"
-                onClick={() => { setCollectiveOpen(false); handlePay("Collective - Premium"); }}
-                disabled={checkoutMutation.isPending}
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <span className="font-bold text-primary group-hover:text-accent transition-colors">{language === "en" ? "Premium" : "Premium"}</span>
-                    <span className="text-[10px] font-bold uppercase tracking-widest bg-accent text-white px-2 py-0.5 rounded-full">{language === "en" ? "Popular" : "Populaire"}</span>
-                  </div>
-                  <span className="text-lg font-black text-accent">$99<span className="text-xs font-normal text-muted-foreground">/mo</span></span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {language === "en"
-                    ? "Everything in Essential plus training sessions, workshops, private community access, and member-only resources."
-                    : "Tout dans Essentiel plus sessions de formation, ateliers, accès communauté privée et ressources exclusives."}
-                </p>
-              </button>
+              ))}
             </div>
           </DialogContent>
         </Dialog>
 
         <Dialog open={!!selectedService} onOpenChange={() => setSelectedService(null)}>
-          <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl">
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
             {selectedService && (
               <>
                 <DialogHeader>
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center">
                       {selectedService.icon}
                     </div>
-                    <DialogTitle className="text-3xl font-heading font-extrabold text-primary">{selectedService.title}</DialogTitle>
-                  </div>
-                  <div className="bg-accent/5 p-4 rounded-xl border border-accent/10 mb-6">
-                    <div className="text-accent font-black text-2xl mb-1">
-                      {language === "en" ? "Investment:" : "Investissement :"} {selectedService.investment}
+                    <div>
+                      <DialogTitle className="text-2xl font-heading font-extrabold text-primary">{selectedService.title}</DialogTitle>
+                      <div className="flex items-center gap-3 mt-1">
+                        <span className="text-accent font-bold text-lg">{selectedService.investment}</span>
+                        {selectedService.investmentNote && (
+                          <span className="text-xs text-muted-foreground">{selectedService.investmentNote}</span>
+                        )}
+                      </div>
                     </div>
-                    {selectedService.investmentNote && (
-                      <div className="text-xs text-muted-foreground font-bold uppercase tracking-wider">{selectedService.investmentNote}</div>
-                    )}
                   </div>
+                  <DialogDescription className="text-base leading-relaxed whitespace-pre-line mt-4">
+                    {selectedService.learnMore}
+                  </DialogDescription>
                 </DialogHeader>
-                <div className="space-y-8 py-4">
-                  <div className="space-y-4">
-                    <h4 className="text-xs font-black uppercase tracking-[0.3em] text-accent">
-                      {language === "en" ? "Overview" : "Aperçu"}
-                    </h4>
-                    <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{selectedService.learnMore}</p>
-                  </div>
 
-                  <div className="space-y-4">
-                    <h4 className="text-xs font-black uppercase tracking-[0.3em] text-accent">
-                      {language === "en" ? "Choose Your Package" : "Choisissez votre forfait"}
+                <div className="mt-8 space-y-8">
+                  <div>
+                    <h4 className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
+                      {language === "en" ? "Pricing Options" : "Options de prix"}
                     </h4>
-                    <div className={`grid grid-cols-1 ${selectedService.pricingTiers.length === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : selectedService.pricingTiers.length >= 5 ? 'md:grid-cols-2 lg:grid-cols-3' : selectedService.pricingTiers.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-4`}>
+                    <div className={`grid gap-6 ${selectedService.pricingTiers.length === 2 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1 md:grid-cols-3"}`}>
                       {selectedService.pricingTiers.map((tier: any, idx: number) => (
-                        <div key={idx} className={`border rounded-3xl p-7 flex flex-col hover:shadow-xl transition-all duration-300 ${idx === 1 ? 'border-accent shadow-lg ring-2 ring-accent/20 bg-gradient-to-b from-accent/5 to-white' : 'border-border/60 hover:border-accent/30 bg-gradient-to-b from-gray-50/50 to-white'}`} data-testid={`pricing-tier-${idx}`}>
+                        <div key={idx} className={`relative p-7 rounded-2xl border-2 flex flex-col ${idx === 1 ? "border-accent bg-accent/5 shadow-lg" : "border-border bg-white"}`}>
                           <div className="flex items-center gap-2 mb-3">
                             {idx === 1 && (
                               <span className="text-[10px] font-black uppercase tracking-[0.2em] bg-accent text-white px-3 py-1 rounded-full">
@@ -1022,7 +1152,7 @@ export default function Services() {
                             ))}
                           </ul>
                           {tier.contactOnly ? (
-                            <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer" className="mt-auto">
+                            <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="mt-auto">
                               <Button
                                 className={`w-full rounded-full h-10 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 ${idx === 1 ? 'bg-accent text-white hover:bg-primary' : 'bg-primary text-white hover:bg-accent'}`}
                                 data-testid={`button-book-tier-${idx}`}
@@ -1040,7 +1170,7 @@ export default function Services() {
                               {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
                                 <><Loader2 size={14} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
                               ) : (
-                                <><CreditCard size={14} /> {tier.isMonthly 
+                                <><CreditCard size={14} /> {tier.isMonthly
                                   ? (language === "en" ? "Subscribe" : "S'abonner")
                                   : (language === "en" ? "Select & Pay" : "Sélectionner et payer")
                                 }</>
@@ -1060,7 +1190,7 @@ export default function Services() {
                   </div>
 
                   <div className="flex justify-center pt-6">
-                    <Button 
+                    <Button
                       className="rounded-full bg-accent text-white hover:bg-primary h-14 px-12 font-bold uppercase tracking-widest text-sm shadow-xl shadow-accent/20 transition-all duration-300 hover:scale-105"
                       onClick={() => {
                         window.location.href = `mailto:contact@performanceprocesses.com?subject=Inquiry: ${selectedService.title}`;
@@ -1077,7 +1207,7 @@ export default function Services() {
           </DialogContent>
         </Dialog>
 
-        <section className="bg-gradient-to-br from-primary via-primary to-primary/90 py-32 text-white relative overflow-hidden">
+        <section className="bg-gradient-to-br from-primary via-primary to-primary/90 py-32 text-white relative overflow-hidden" data-testid="section-final-cta">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.05)_0%,transparent_60%)]" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
@@ -1088,15 +1218,23 @@ export default function Services() {
                 {language === "en" ? "Not sure where to start?" : "Vous ne savez pas par où commencer ?"}
               </h2>
               <p className="text-xl text-white/70 mb-12 leading-relaxed max-w-2xl mx-auto">
-                {language === "en" 
+                {language === "en"
                   ? "Whether you're a professional looking to level up, a founder building systems, or a company ready for transformation — we'll help you find the right fit."
                   : "Que vous soyez un professionnel cherchant à évoluer, un fondateur construisant des systèmes ou une entreprise prête pour la transformation — nous vous aiderons à trouver la bonne solution."}
               </p>
-              <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
-                <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-14 text-lg font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:shadow-2xl hover:scale-105" data-testid="button-book-consultation-cta">
-                  {language === "en" ? "Book a free consultation" : "Réservez une consultation gratuite"}
-                </Button>
-              </a>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
+                  <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-14 text-lg font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:shadow-2xl hover:scale-105 w-full sm:w-auto" data-testid="button-book-consultation-cta">
+                    <Calendar size={20} className="mr-2" />
+                    {language === "en" ? "Book a Free Consultation" : "Réservez une consultation gratuite"}
+                  </Button>
+                </a>
+                <Link href="/contact">
+                  <Button variant="outline" className="rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-16 px-12 text-lg font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-contact-cta">
+                    {language === "en" ? "Contact Us" : "Contactez-nous"}
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </section>

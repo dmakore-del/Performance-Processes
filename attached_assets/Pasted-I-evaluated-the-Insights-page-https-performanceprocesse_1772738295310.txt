@@ -1,0 +1,292 @@
+I evaluated the **Insights page**:
+[https://performanceprocesses.com/insights](https://performanceprocesses.com/insights)
+
+Below is a **design + content + credibility review**, similar to the other pages.
+
+---
+
+# Overall Rating
+
+**6 / 10**
+
+The page has the **right idea (thought leadership)** but currently feels **underdeveloped and under-leveraged**.
+
+An Insights page is usually one of the **most powerful pages for consulting firms**, because it demonstrates expertise and builds trust through knowledge.
+
+Large consulting firms like EY and KPMG use insights hubs to publish research, articles, and analysis that help clients understand trends and make strategic decisions. ([KPMG][1])
+
+Right now, the page doesn’t yet function as a **true thought-leadership hub**.
+
+---
+
+# What the Page Does Well 👍
+
+## 1. Correct Strategic Idea
+
+Having an **Insights section** is excellent.
+
+This is where consulting firms show:
+
+* expertise
+* frameworks
+* research
+* industry perspectives
+
+Top consulting firms rely heavily on this approach because clients often **read insights before hiring consultants**.
+
+---
+
+## 2. Aligns With Consulting Brand
+
+The page fits your positioning around:
+
+* performance improvement
+* leadership alignment
+* organizational effectiveness
+
+Thought leadership content reinforces credibility in these areas.
+
+---
+
+# Biggest Problems
+
+## 1. Not Enough Content
+
+The biggest issue is **volume**.
+
+An insights section should ideally contain:
+
+* articles
+* frameworks
+* research
+* guides
+* case studies
+
+Right now it likely feels **too sparse**.
+
+High-performing consulting firms often publish **dozens or hundreds of insight articles** to demonstrate expertise and authority.
+
+---
+
+## 2. No Content Categories
+
+Visitors should be able to browse topics easily.
+
+Example categories:
+
+* Leadership
+* Organizational Performance
+* Strategy Execution
+* Performance Management
+* Nonprofit Leadership
+
+Without categories, the page becomes **harder to explore**.
+
+---
+
+## 3. Missing Visual Article Cards
+
+Good insights pages use **blog-style cards** with:
+
+* title
+* short description
+* image or icon
+* date
+
+Example layout:
+
+```
+Article Title
+2–3 sentence summary
+Read More →
+```
+
+Right now it likely appears **too minimal or text-only**.
+
+---
+
+## 4. No Clear Value Proposition
+
+The page should clearly state **why the insights matter**.
+
+Example:
+
+> Insights on leadership, performance, and organizational effectiveness to help leaders improve execution and results.
+
+Without that framing, visitors may not know what to expect.
+
+---
+
+## 5. No Lead Generation Strategy
+
+Insights pages should be **lead generation tools**.
+
+Common consulting tactics:
+
+* downloadable whitepapers
+* reports
+* guides
+* newsletter signup
+
+Example:
+
+```
+Download our guide:
+Improving Organizational Performance
+
+[Download PDF]
+```
+
+---
+
+# What Would Improve This Page the Most
+
+## 1. Turn It Into a Thought Leadership Hub
+
+Structure:
+
+**Insights & Perspectives**
+
+Ideas and practical insights on improving organizational performance.
+
+---
+
+### Articles
+
+Card layout:
+
+Leadership Alignment
+How leadership clarity drives organizational performance.
+
+Strategy Execution
+Why most strategies fail during implementation.
+
+Performance Culture
+Building accountability systems that actually work.
+
+---
+
+## 2. Add Downloadable Content
+
+Consulting firms often use:
+
+* guides
+* playbooks
+* research reports
+
+Example:
+
+```
+Free Guide
+
+The Leadership Alignment Framework
+
+[Download]
+```
+
+---
+
+## 3. Add Categories
+
+Example:
+
+* Leadership
+* Strategy
+* Organizational Performance
+* Governance
+* Nonprofit Leadership
+
+---
+
+## 4. Add Featured Insight
+
+Highlight one article at the top.
+
+Example:
+
+```
+Featured Insight
+
+Why Organizational Performance Breaks Down
+
+Many organizations struggle with execution despite having strong strategies.
+```
+
+---
+
+# Ideal Page Structure
+
+**Hero**
+
+Insights & Perspectives
+Ideas on leadership, strategy, and performance improvement.
+
+---
+
+**Featured Article**
+
+Large highlight article.
+
+---
+
+**Latest Insights**
+
+Article grid (3–6 cards).
+
+---
+
+**Categories**
+
+Topic filters.
+
+---
+
+**Resource Download**
+
+Guide or whitepaper.
+
+---
+
+# Quick UX Scorecard
+
+| Category        | Score |
+| --------------- | ----- |
+| Design          | 6     |
+| Content depth   | 5     |
+| Authority       | 6     |
+| Lead generation | 4     |
+
+---
+
+# Potential After Improvements
+
+If expanded with articles, guides, and categories, this page could reach:
+
+**9 / 10**
+
+because **consulting thought leadership is extremely powerful** for building credibility and attracting clients.
+
+---
+
+✅ **Overall site insight (after reviewing all 4 pages):**
+
+| Page     | Rating |
+| -------- | ------ |
+| Services | 6.5    |
+| About    | 7      |
+| Approach | 7.5    |
+| Insights | 6      |
+
+**Site Average:** **6.75 / 10**
+
+The biggest opportunity is **visual design + thought leadership expansion**.
+
+---
+
+If you'd like, I can also show you:
+
+* **The exact consulting website structure used by McKinsey/Bain level firms**
+* **How to turn your site into a client-generating consulting funnel**
+* **10 high-authority insight articles you should publish first** (this will dramatically increase credibility).
+
+[1]: https://kpmg.com/us/en/insights-and-resources.html?utm_source=chatgpt.com "Insights & Resources - KPMG"

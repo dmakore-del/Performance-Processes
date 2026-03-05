@@ -1,14 +1,15 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { CheckCircle2, TrendingUp, Users, Target, Quote, Shield, Lightbulb, Handshake, Star, Award, Heart, BookOpen, GraduationCap, Globe, Clock, Milestone, Rocket, Building, ArrowRight } from "lucide-react";
+import { CheckCircle2, TrendingUp, Users, Target, Quote, Shield, Lightbulb, Handshake, Star, Award, Heart, BookOpen, GraduationCap, Globe, Clock, Milestone, Rocket, Building, ArrowRight, Calendar, Briefcase, BarChart3, Building2 } from "lucide-react";
 import founderImage from "@/assets/founder.png";
 import seanImage from "@/assets/ChatGPT_Image_Feb_20,_2026,_04_07_16_PM_1771621735605.png";
 import collaborationImg from "@assets/stock_images/collaboration.jpg";
 import trainingImg from "@assets/stock_images/training.jpg";
 import { useLanguage } from "@/hooks/use-language";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
-import { PageHero } from "@/components/layout/PageHero";
+const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
 export default function About() {
   const { t } = useLanguage();
@@ -23,21 +24,51 @@ export default function About() {
   ];
 
   const values = [
-    { icon: <Shield className="text-accent" size={28} />, title: "Integrity", description: "We operate with unwavering honesty and transparency. Every recommendation is grounded in what's truly best for our clients." },
-    { icon: <Star className="text-accent" size={28} />, title: "Excellence", description: "We pursue the highest standards in everything we do — from research and analysis to the clarity of our deliverables." },
-    { icon: <Handshake className="text-accent" size={28} />, title: "Collaboration", description: "We work alongside our clients, combining our expertise with their organizational knowledge to create strategies that truly fit." },
-    { icon: <Lightbulb className="text-accent" size={28} />, title: "Innovation", description: "We continuously evolve our methodologies and embrace new frameworks, technologies, and approaches." },
-    { icon: <TrendingUp className="text-accent" size={28} />, title: "Impact", description: "Every engagement must produce measurable, meaningful results. We measure success by tangible improvements." },
-    { icon: <Award className="text-accent" size={28} />, title: "Accountability", description: "We hold ourselves to the same high standards we help our clients achieve, tracking commitments and taking responsibility." },
+    {
+      icon: <Shield className="text-accent" size={28} />,
+      title: "Integrity",
+      description: "We operate with unwavering honesty and transparency.",
+      practice: "Every recommendation is grounded in what's truly best for our clients — not what generates the most revenue.",
+    },
+    {
+      icon: <Star className="text-accent" size={28} />,
+      title: "Excellence",
+      description: "We pursue the highest standards in everything we do.",
+      practice: "From research and analysis to the clarity of our deliverables, we hold ourselves to the same bar we set for clients.",
+    },
+    {
+      icon: <Handshake className="text-accent" size={28} />,
+      title: "Collaboration",
+      description: "We work alongside our clients, not above them.",
+      practice: "We combine our expertise with your organizational knowledge to create strategies that genuinely fit your context.",
+    },
+    {
+      icon: <Lightbulb className="text-accent" size={28} />,
+      title: "Innovation",
+      description: "We continuously evolve our methodologies.",
+      practice: "Embracing new frameworks, technologies, and approaches to keep our clients ahead of the curve.",
+    },
+    {
+      icon: <TrendingUp className="text-accent" size={28} />,
+      title: "Impact",
+      description: "Every engagement must produce measurable results.",
+      practice: "We track outcomes with clear KPIs and success metrics — because sustainable change requires proof.",
+    },
+    {
+      icon: <Award className="text-accent" size={28} />,
+      title: "Accountability",
+      description: "We hold ourselves to the same standards we set.",
+      practice: "We track our commitments, take ownership of results, and course-correct when needed.",
+    },
   ];
 
-  const competitiveAdvantages = [
-    { icon: <Heart className="text-accent" size={22} />, title: "People-Centered Approach", description: "We prioritize the human element, understanding that sustainable change requires buy-in, trust, and genuine connection." },
-    { icon: <Target className="text-accent" size={22} />, title: "Measurable Outcomes", description: "Every project includes clear KPIs and success metrics. We track, measure, and report on impact." },
-    { icon: <Globe className="text-accent" size={22} />, title: "Cross-Industry Expertise", description: "Diverse experience across sectors allows us to apply proven best practices from multiple industries." },
-    { icon: <Handshake className="text-accent" size={22} />, title: "End-to-End Partnership", description: "From discovery through implementation and beyond, we stay engaged to ensure real-world results." },
-    { icon: <Lightbulb className="text-accent" size={22} />, title: "Tailored Solutions", description: "No cookie-cutter frameworks. Every engagement is custom-designed for your specific challenges and goals." },
-    { icon: <GraduationCap className="text-accent" size={22} />, title: "Knowledge Transfer", description: "We build internal capacity so your team sustains improvements long after our engagement ends." },
+  const industries = [
+    { icon: <Building2 size={22} />, name: "Corporate Organizations" },
+    { icon: <Heart size={22} />, name: "Nonprofit Institutions" },
+    { icon: <Rocket size={22} />, name: "Growth-Stage Companies" },
+    { icon: <Globe size={22} />, name: "Government & Public Sector" },
+    { icon: <BarChart3 size={22} />, name: "Financial Services" },
+    { icon: <GraduationCap size={22} />, name: "Healthcare & Education" },
   ];
 
   const credentials = [
@@ -52,19 +83,68 @@ export default function About() {
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <Navbar />
       <main className="flex-grow">
-        <PageHero 
-          title={<>{t("nav.about")} <span className="text-accent italic">Performance Processes</span></>}
-          subtitle={t("hero.subtitle")}
-        />
+
+        <section className="relative min-h-[550px] lg:min-h-[650px] flex items-center overflow-hidden bg-primary">
+          <div className="absolute inset-0 z-0">
+            <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-15">
+              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/80" />
+          </div>
+          <div className="container mx-auto px-4 md:px-8 py-24 lg:py-32 relative z-10">
+            <div className="max-w-4xl">
+              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="text-hero-label">
+                About Performance Processes
+              </p>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-hero-title">
+                Helping organizations align <span className="text-accent">strategy, leadership,</span> and performance
+              </h1>
+              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-hero-subtitle">
+                We partner with leaders to build the systems, structures, and accountability that turn vision into measurable results.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
+                  <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="button-hero-book">
+                    <Calendar size={18} className="mr-2" />
+                    Book a Discovery Call
+                  </Button>
+                </a>
+                <Link href="/services">
+                  <Button variant="outline" className="rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-hero-services">
+                    Explore Our Services <ArrowRight size={18} className="ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 bg-white border-b" data-testid="section-trust-strip">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="text-center mb-10">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground">Trusted by leaders across</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {industries.map((ind, i) => (
+                <div key={i} className="flex flex-col items-center gap-3 p-5 rounded-2xl bg-[#F8FAFC] border border-border/50 hover:border-accent/30 hover:shadow-sm transition-all" data-testid={`industry-${i}`}>
+                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
+                    {ind.icon}
+                  </div>
+                  <span className="text-xs font-bold text-primary text-center leading-tight">{ind.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <section className="py-28 bg-white border-b" data-testid="section-founder">
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex flex-col lg:flex-row gap-20 items-center">
               <div className="lg:w-2/5 relative">
                 <div className="absolute -top-6 -left-6 w-full h-full border-2 border-accent/20 rounded-2xl -z-10 translate-x-4 translate-y-4"></div>
-                <img 
-                  src={founderImage} 
-                  alt="Danai Makore - Principal Consultant at Performance Processes" 
+                <img
+                  src={founderImage}
+                  alt="Danai Makore - Principal Consultant at Performance Processes"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   data-testid="img-founder"
                 />
@@ -120,7 +200,7 @@ export default function About() {
                 </div>
 
                 <div className="mt-10 flex flex-wrap gap-4 items-center">
-                  <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
+                  <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                     <Button className="rounded-full bg-accent text-white hover:bg-primary h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-accent/20" data-testid="button-schedule-consultation">
                       Schedule Consultation
                     </Button>
@@ -170,39 +250,26 @@ export default function About() {
           </div>
         </section>
 
-        <section className="py-28 bg-white border-b">
-          <div className="container mx-auto px-4 md:px-8">
-            <div className="max-w-5xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-8">Our Mission</h2>
-                  <p className="text-xl text-muted-foreground leading-relaxed mb-10 italic border-l-4 border-accent pl-8">
-                    "To empower organizations to reach their
-                    full potential by aligning strategic direction
-                    with measurable performance systems."
-                  </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed max-w-[560px]">
-                    We support leaders in clarifying strategic
-                    direction, strengthening leadership capability,
-                    and optimizing performance systems that connect
-                    goals with execution.
-                  </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed max-w-[560px] mt-5">
-                    Our collaborative, results-focused approach
-                    ensures sustainable performance improvements
-                    that drive clarity, accountability, and
-                    long-term impact.
-                  </p>
-                </div>
-                <div className="relative">
-                  <div className="absolute -top-4 -left-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
-                  <img
-                    src={collaborationImg}
-                    alt="Team collaboration at Performance Processes"
-                    className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[4/3]"
-                    data-testid="img-collaboration"
-                  />
-                </div>
+        <section className="py-20 bg-gradient-to-r from-primary to-primary/90 relative overflow-hidden" data-testid="section-mission-cta">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(236,72,153,0.08)_0%,transparent_60%)]" />
+          <div className="container mx-auto px-4 md:px-8 relative z-10">
+            <div className="max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-12">
+              <div className="flex-1">
+                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Our Mission</p>
+                <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-6 leading-tight">
+                  "To empower organizations to reach their full potential by aligning strategic direction with measurable performance systems."
+                </h2>
+                <p className="text-lg text-white/70 leading-relaxed">
+                  We support leaders in clarifying strategic direction, strengthening leadership capability, and optimizing performance systems that connect goals with execution.
+                </p>
+              </div>
+              <div className="shrink-0">
+                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
+                  <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="button-mission-cta">
+                    <Calendar size={16} className="mr-2" />
+                    Book a Discovery Call
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
@@ -218,14 +285,14 @@ export default function About() {
                 Leadership
               </h2>
             </div>
-            
+
             <div className="flex flex-col lg:flex-row gap-16 items-center lg:items-start max-w-6xl mx-auto">
               <div className="lg:w-1/3">
                 <div className="relative">
                   <div className="absolute top-4 -right-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
-                  <img 
-                    src={seanImage} 
-                    alt="Sean Ogbonnaya - Director of Business Development" 
+                  <img
+                    src={seanImage}
+                    alt="Sean Ogbonnaya - Director of Business Development"
                     className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[3/4]"
                     data-testid="img-sean"
                   />
@@ -238,7 +305,7 @@ export default function About() {
                 <div className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-8">
                   Director of Business Development
                 </div>
-                
+
                 <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-[600px]">
                   <p>
                     Sean Ogbonnaya leads strategic growth initiatives
@@ -251,21 +318,15 @@ export default function About() {
                     opportunities to help businesses streamline operations
                     and improve performance outcomes.
                   </p>
-                  <p>
-                    He works closely with executive teams to understand
-                    their challenges, align solutions with objectives,
-                    and ensure engagements deliver measurable impact.
-                  </p>
                   <p className="font-medium text-primary italic border-l-4 border-accent pl-6 py-2 bg-gradient-to-r from-[#F8FAFC] to-transparent rounded-r-lg">
                     Passionate about helping organizations unlock
-                    their full potential, Sean is committed to
-                    fostering partnerships that create sustainable
-                    improvement and long-term success.
+                    their full potential through partnerships that
+                    create sustainable improvement.
                   </p>
                 </div>
-                
+
                 <div className="mt-10 flex flex-wrap gap-4 items-center">
-                  <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
+                  <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                     <Button className="rounded-full bg-accent text-white hover:bg-primary h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-accent/20" data-testid="button-schedule-sean">
                       Schedule Consultation
                     </Button>
@@ -306,8 +367,11 @@ export default function About() {
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center mb-6 group-hover:from-accent/20 group-hover:to-accent/10 transition-colors">
                     {value.icon}
                   </div>
-                  <h3 className="text-xl font-heading font-extrabold text-primary mb-3">{value.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{value.description}</p>
+                  <h3 className="text-xl font-heading font-extrabold text-primary mb-2">{value.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{value.description}</p>
+                  <div className="pt-4 border-t border-border/60">
+                    <p className="text-sm text-primary/70 leading-relaxed italic">{value.practice}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -317,29 +381,61 @@ export default function About() {
         <section className="py-28 bg-white border-b" data-testid="section-what-sets-us-apart">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
-                  Our Difference
-                </div>
-                <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                  What Sets Us <span className="text-accent italic">Apart</span>
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                  In a crowded consulting landscape, we stand out through
-                  our unwavering commitment to partnership, measurable
-                  impact, and genuine care for long-term success.
-                </p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {competitiveAdvantages.map((adv, i) => (
-                  <div key={i} className="bg-gradient-to-br from-[#F8FAFC] to-white p-8 rounded-2xl border border-border hover:border-accent/30 hover:shadow-md transition-all group" data-testid={`advantage-${i}`}>
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors">
-                      {adv.icon}
-                    </div>
-                    <h4 className="text-lg font-bold text-primary mb-2">{adv.title}</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{adv.description}</p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                  <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
+                    Our Difference
                   </div>
-                ))}
+                  <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">
+                    What Sets Us <span className="text-accent italic">Apart</span>
+                  </h2>
+                  <p className="text-lg text-muted-foreground mb-10 max-w-lg leading-relaxed">
+                    We don't believe in one-size-fits-all consulting. Every relationship begins with deep listening — because meaningful change starts with trust.
+                  </p>
+                  <div className="space-y-5">
+                    {[
+                      { icon: <Heart className="text-accent" size={20} />, title: "People-Centered Approach", desc: "We prioritize the human element — sustainable change requires buy-in, trust, and genuine connection." },
+                      { icon: <Target className="text-accent" size={20} />, title: "Measurable Outcomes", desc: "Every project includes clear KPIs and success metrics. We track, measure, and report on impact." },
+                      { icon: <Globe className="text-accent" size={20} />, title: "Cross-Industry Expertise", desc: "Diverse experience across sectors allows us to apply proven best practices from multiple industries." },
+                      { icon: <Handshake className="text-accent" size={20} />, title: "End-to-End Partnership", desc: "From discovery through implementation and beyond, we stay engaged to ensure real-world results." },
+                      { icon: <Lightbulb className="text-accent" size={20} />, title: "Tailored Solutions", desc: "No cookie-cutter frameworks. Every engagement is custom-designed for your specific challenges." },
+                      { icon: <GraduationCap className="text-accent" size={20} />, title: "Knowledge Transfer", desc: "We build internal capacity so your team sustains improvements long after our engagement ends." },
+                    ].map((adv, i) => (
+                      <div key={i} className="flex items-start gap-4 group" data-testid={`advantage-${i}`}>
+                        <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-accent/20 transition-colors">
+                          {adv.icon}
+                        </div>
+                        <div>
+                          <h4 className="text-base font-bold text-primary mb-1">{adv.title}</h4>
+                          <p className="text-sm text-muted-foreground leading-relaxed">{adv.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="relative">
+                  <div className="absolute -top-4 -left-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
+                  <img
+                    src={collaborationImg}
+                    alt="Team collaboration at Performance Processes"
+                    className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[4/3]"
+                    data-testid="img-collaboration"
+                  />
+                  <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-border">
+                    <div className="flex items-center gap-4">
+                      <div className="flex gap-2">
+                        <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full">
+                          <Clock className="text-accent" size={14} />
+                          <span className="text-xs font-bold text-primary">Long-Term Focus</span>
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full">
+                          <Shield className="text-accent" size={14} />
+                          <span className="text-xs font-bold text-primary">Trust-Based</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -397,18 +493,18 @@ export default function About() {
                     We use our expertise to create positive
                     change beyond the boardroom.
                   </p>
-                  <p>
-                    Through pro-bono consulting, we support
-                    emerging nonprofits and social enterprises
-                    that lack resources for professional
-                    strategic guidance.
-                  </p>
-                  <p>
-                    Our mentorship programs connect aspiring
-                    consultants with experienced leaders,
-                    providing career guidance and real-world
-                    project exposure.
-                  </p>
+                </div>
+                <div className="mt-8 space-y-4">
+                  {[
+                    { icon: <Heart size={18} />, text: "Pro-bono consulting for emerging nonprofits and social enterprises" },
+                    { icon: <GraduationCap size={18} />, text: "Mentorship programs connecting aspiring consultants with experienced leaders" },
+                    { icon: <Users size={18} />, text: "Community workshops on leadership and organizational development" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 text-accent mt-0.5">{item.icon}</div>
+                      <p className="text-muted-foreground leading-relaxed">{item.text}</p>
+                    </div>
+                  ))}
                 </div>
                 <div className="mt-10">
                   <h3 className="text-lg font-bold text-primary mb-5">Sponsor Pro-Bono Consulting</h3>
@@ -466,53 +562,31 @@ export default function About() {
           </div>
         </section>
 
-        <section className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white border-b border-border" data-testid="section-partnerships">
-          <div className="container mx-auto px-4 md:px-8">
-            <div className="max-w-4xl mx-auto">
-              <div>
-                <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
-                  How We Work Together
-                </div>
-                <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                  Our Approach to <span className="text-accent italic">Partnerships</span>
-                </h2>
-                <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-[600px]">
-                  <p>
-                    We don't believe in one-size-fits-all consulting.
-                    Every relationship begins with deep listening —
-                    because meaningful change starts with trust.
-                  </p>
-                  <p>
-                    Our partnership model is built on three pillars:
-                    transparency, co-creation, and accountability.
-                    We share our thinking openly and develop strategies
-                    collaboratively with your team.
-                  </p>
-                  <p>
-                    From the first discovery conversation to final
-                    implementation, we embed ourselves within your
-                    team as a trusted extension of your leadership.
-                  </p>
-                  <p className="font-medium text-primary italic">
-                    Our goal isn't just to deliver a project —
-                    it's to build a lasting relationship that
-                    drives continuous improvement.
-                  </p>
-                </div>
-                <div className="mt-10 flex flex-wrap gap-4">
-                  <div className="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-white to-accent/5 rounded-xl border border-border shadow-sm">
-                    <Clock className="text-accent" size={16} />
-                    <span className="text-sm font-bold text-primary">Long-Term Focus</span>
-                  </div>
-                  <div className="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-white to-accent/5 rounded-xl border border-border shadow-sm">
-                    <Handshake className="text-accent" size={16} />
-                    <span className="text-sm font-bold text-primary">Co-Creation</span>
-                  </div>
-                  <div className="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-white to-accent/5 rounded-xl border border-border shadow-sm">
-                    <Shield className="text-accent" size={16} />
-                    <span className="text-sm font-bold text-primary">Trust-Based</span>
-                  </div>
-                </div>
+        <section className="bg-gradient-to-br from-primary via-primary to-primary/90 py-32 text-white relative overflow-hidden" data-testid="section-final-cta">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.05)_0%,transparent_60%)]" />
+          <div className="container mx-auto px-4 md:px-8 relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
+                Ready to Get Started?
+              </p>
+              <h2 className="text-4xl md:text-5xl font-heading font-extrabold mb-8 leading-tight">
+                Let's build something <span className="text-accent">meaningful</span> together
+              </h2>
+              <p className="text-xl text-white/70 mb-12 leading-relaxed max-w-2xl mx-auto">
+                Whether you need strategic clarity, operational systems, or leadership development — we're ready to partner with you.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
+                  <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-14 text-lg font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:shadow-2xl hover:scale-105 w-full sm:w-auto" data-testid="button-final-cta">
+                    <Calendar size={20} className="mr-2" />
+                    Book a Discovery Call
+                  </Button>
+                </a>
+                <Link href="/contact">
+                  <Button variant="outline" className="rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-16 px-12 text-lg font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-contact-cta">
+                    Contact Us
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

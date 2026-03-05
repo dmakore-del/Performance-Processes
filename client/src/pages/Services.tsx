@@ -665,20 +665,20 @@ export default function Services() {
     }
   };
 
-  const tabs: { key: typeof activeTab; label: string; icon: JSX.Element; priceRange: string }[] = [
-    { key: "enterprise", label: serviceTiers.enterprise.label, icon: <Briefcase size={18} />, priceRange: "$750+" },
-    { key: "business", label: serviceTiers.business.label, icon: <Rocket size={18} />, priceRange: "$500/mo+" },
-    { key: "professional", label: serviceTiers.professional.label, icon: <UserCheck size={18} />, priceRange: "$100/mo+" },
-    { key: "self-serve", label: serviceTiers["self-serve"].label, icon: <Package size={18} />, priceRange: "$49+" },
+  const tabs: { key: typeof activeTab; label: string; sublabel: string; icon: JSX.Element; priceRange: string }[] = [
+    { key: "enterprise", label: serviceTiers.enterprise.label, sublabel: language === "en" ? "Business Solutions" : "Solutions d'affaires", icon: <Briefcase size={18} />, priceRange: "$750+" },
+    { key: "business", label: serviceTiers.business.label, sublabel: language === "en" ? "Growth & Advisory" : "Croissance et conseil", icon: <Rocket size={18} />, priceRange: "$500/mo+" },
+    { key: "professional", label: serviceTiers.professional.label, sublabel: language === "en" ? "Coaching & Development" : "Coaching et développement", icon: <UserCheck size={18} />, priceRange: "$100/mo+" },
+    { key: "self-serve", label: serviceTiers["self-serve"].label, sublabel: language === "en" ? "Tools & Programs" : "Outils et programmes", icon: <Package size={18} />, priceRange: "$49+" },
   ];
 
   const currentTier = serviceTiers[activeTab];
 
   const resultStats = [
-    { value: language === "en" ? "Improved" : "Améliorée", label: language === "en" ? "Leadership Alignment" : "Alignement du leadership", icon: <Users size={20} className="text-accent" /> },
-    { value: language === "en" ? "Faster" : "Plus rapide", label: language === "en" ? "Strategy Execution" : "Exécution stratégique", icon: <Zap size={20} className="text-accent" /> },
-    { value: language === "en" ? "Measurable" : "Mesurable", label: language === "en" ? "Performance Improvement" : "Amélioration de la performance", icon: <TrendingUp size={20} className="text-accent" /> },
-    { value: language === "en" ? "Structured" : "Structuré", label: language === "en" ? "Accountability Systems" : "Systèmes de responsabilité", icon: <Target size={20} className="text-accent" /> },
+    { value: language === "en" ? "Enterprise" : "Entreprise", label: language === "en" ? "Business Solutions" : "Solutions d'affaires", icon: <Briefcase size={20} className="text-accent" /> },
+    { value: language === "en" ? "Small Business" : "PME", label: language === "en" ? "Growth & Advisory" : "Croissance et conseil", icon: <Rocket size={20} className="text-accent" /> },
+    { value: language === "en" ? "Professional" : "Professionnel", label: language === "en" ? "Coaching & Development" : "Coaching et développement", icon: <UserCheck size={20} className="text-accent" /> },
+    { value: language === "en" ? "Self-Serve" : "Libre-service", label: language === "en" ? "Tools & Programs" : "Outils et programmes", icon: <Package size={20} className="text-accent" /> },
   ];
 
   return (
@@ -696,19 +696,19 @@ export default function Services() {
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-4xl">
               <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="text-hero-label">
-                {language === "en" ? "Performance Consulting Services" : "Services de conseil en performance"}
+                {language === "en" ? "Performance Processes" : "Performance Processes"}
               </p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-hero-title">
                 {language === "en" ? (
-                  <>Helping organizations achieve <span className="text-accent">measurable performance</span> improvement</>
+                  <>Management consulting for <span className="text-accent">every stage</span> of growth</>
                 ) : (
-                  <>Aider les organisations à atteindre une <span className="text-accent">amélioration mesurable</span> de la performance</>
+                  <>Conseil en gestion pour <span className="text-accent">chaque étape</span> de croissance</>
                 )}
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-hero-subtitle">
                 {language === "en"
-                  ? "From strategy to systems to execution — we help founders scale, teams align, and organizations build the infrastructure for sustainable growth."
-                  : "De la stratégie aux systèmes à l'exécution — nous aidons les fondateurs, les équipes et les organisations à construire l'infrastructure pour une croissance durable."}
+                  ? "We partner with enterprises, small businesses, and professionals to build the management systems, leadership alignment, and accountability structures that drive measurable results."
+                  : "Nous accompagnons les entreprises, les PME et les professionnels pour bâtir les systèmes de gestion, l'alignement du leadership et les structures de responsabilité qui produisent des résultats mesurables."}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
@@ -751,7 +751,7 @@ export default function Services() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-6">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">
-                {language === "en" ? "Our Approach" : "Notre approche"}
+                {language === "en" ? "How We Deliver Results" : "Comment nous produisons des résultats"}
               </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
                 {language === "en" ? "The Performance Process Method" : "La méthode Performance Process"}
@@ -759,8 +759,8 @@ export default function Services() {
               <div className="w-16 h-1 bg-accent rounded-full mx-auto mb-6" />
               <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg mb-4">
                 {language === "en"
-                  ? "A proven four-step framework that turns ambition into consistent, measurable execution."
-                  : "Un cadre éprouvé en quatre étapes qui transforme l'ambition en exécution mesurable et cohérente."}
+                  ? "Whether you're an enterprise, small business, or individual professional — our proven four-step framework turns ambition into consistent, measurable execution."
+                  : "Que vous soyez une entreprise, une PME ou un professionnel — notre cadre éprouvé en quatre étapes transforme l'ambition en exécution mesurable et cohérente."}
               </p>
             </div>
 
@@ -814,13 +814,13 @@ export default function Services() {
                 {language === "en" ? "Our Services" : "Nos services"}
               </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
-                {language === "en" ? "Performance systems for every stage" : "Des systèmes de performance pour chaque étape"}
+                {language === "en" ? "Enterprise solutions, small business support & professional services" : "Solutions d'entreprise, soutien aux PME et services professionnels"}
               </h2>
               <div className="w-16 h-1 bg-accent rounded-full mx-auto mb-6" />
               <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg">
                 {language === "en"
-                  ? "From self-serve tools to enterprise advisory — choose the level of support that fits where you are right now."
-                  : "Des outils en libre-service au conseil d'entreprise — choisissez le niveau de soutien qui correspond à votre situation actuelle."}
+                  ? "Choose the level of support that fits where you are — from full enterprise advisory to self-serve tools and templates."
+                  : "Choisissez le niveau de soutien qui vous convient — du conseil d'entreprise complet aux outils en libre-service."}
               </p>
             </div>
 
@@ -838,6 +838,7 @@ export default function Services() {
                 >
                   {tab.icon}
                   <span>{tab.label}</span>
+                  <span className="hidden sm:inline text-xs opacity-70">— {tab.sublabel}</span>
                   <span className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${activeTab === tab.key ? "bg-white/20 text-white" : "bg-accent/10 text-accent"}`}>{tab.priceRange}</span>
                 </button>
               ))}
@@ -901,12 +902,12 @@ export default function Services() {
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-6 leading-tight">
-                {language === "en" ? "Ready to improve your organization's performance?" : "Prêt à améliorer la performance de votre organisation ?"}
+                {language === "en" ? "Need enterprise strategy, small business support, or professional coaching?" : "Besoin de stratégie d'entreprise, de soutien aux PME ou de coaching professionnel ?"}
               </h2>
               <p className="text-lg text-white/70 mb-8 leading-relaxed">
                 {language === "en"
-                  ? "Book a free discovery call to discuss your challenges and explore how we can help."
-                  : "Réservez un appel découverte gratuit pour discuter de vos défis et explorer comment nous pouvons vous aider."}
+                  ? "Book a free discovery call to discuss your challenges and find the right service for your situation."
+                  : "Réservez un appel découverte gratuit pour discuter de vos défis et trouver le bon service pour votre situation."}
               </p>
               <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                 <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-12 text-base font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="button-mid-cta">
@@ -1219,8 +1220,8 @@ export default function Services() {
               </h2>
               <p className="text-xl text-white/70 mb-12 leading-relaxed max-w-2xl mx-auto">
                 {language === "en"
-                  ? "Whether you're a professional looking to level up, a founder building systems, or a company ready for transformation — we'll help you find the right fit."
-                  : "Que vous soyez un professionnel cherchant à évoluer, un fondateur construisant des systèmes ou une entreprise prête pour la transformation — nous vous aiderons à trouver la bonne solution."}
+                  ? "Whether you're an enterprise, a growing business, or a professional looking to level up — we'll help you find the right fit."
+                  : "Que vous soyez une entreprise, une PME en croissance ou un professionnel cherchant à évoluer — nous vous aiderons à trouver la bonne solution."}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">

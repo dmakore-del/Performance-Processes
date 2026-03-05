@@ -32,94 +32,94 @@ export default function Home() {
   const outcomes = [
     {
       icon: Target,
-      title: language === "en" ? "Clear Leadership Alignment" : "Alignement clair du leadership",
+      title: language === "en" ? "Get Your Team on the Same Page" : "Alignez votre équipe",
       desc: language === "en"
-        ? "Unify your leadership team around shared goals and strategic priorities."
-        : "Unifiez votre équipe de direction autour d'objectifs communs et de priorités stratégiques.",
+        ? "Stop miscommunication and misalignment. We help leadership teams get clear on direction so everyone pulls together."
+        : "Arrêtez les malentendus et le désalignement. Nous aidons les équipes de direction à clarifier la direction.",
     },
     {
       icon: BarChart3,
-      title: language === "en" ? "Stronger Strategy Execution" : "Exécution stratégique renforcée",
+      title: language === "en" ? "Turn Plans Into Action" : "Transformez les plans en action",
       desc: language === "en"
-        ? "Turn plans into measurable action with accountability systems that work."
-        : "Transformez les plans en actions mesurables avec des systèmes de responsabilité efficaces.",
+        ? "Great plans mean nothing without execution. We build the accountability structures that make things happen."
+        : "Les bons plans ne valent rien sans exécution. Nous construisons les structures de responsabilité qui font bouger les choses.",
     },
     {
       icon: TrendingUp,
-      title: language === "en" ? "Improved Organizational Performance" : "Performance organisationnelle améliorée",
+      title: language === "en" ? "See Measurable Progress" : "Voyez des progrès mesurables",
       desc: language === "en"
-        ? "Drive consistent results through structured processes and data-driven decisions."
-        : "Obtenez des résultats constants grâce à des processus structurés et des décisions basées sur les données.",
+        ? "No guesswork. Track real performance improvements with clear KPIs and regular check-ins."
+        : "Pas de devinettes. Suivez de vrais progrès avec des KPI clairs et des suivis réguliers.",
     },
     {
       icon: RefreshCw,
-      title: language === "en" ? "Sustainable Accountability Systems" : "Systèmes de responsabilité durables",
+      title: language === "en" ? "Build Systems That Last" : "Construisez des systèmes durables",
       desc: language === "en"
-        ? "Build internal capability that lasts long after the engagement ends."
-        : "Développez des capacités internes qui perdurent bien après la fin de l'engagement.",
+        ? "We don't create dependency. You walk away with processes and tools your team can run on their own."
+        : "Nous ne créons pas de dépendance. Vous repartez avec des processus que votre équipe peut gérer seule.",
     },
   ];
 
   const whoWeHelp = [
     {
       icon: <Briefcase className="text-accent" size={32} />,
-      title: language === "en" ? "Leaders & Organizations" : "Dirigeants et organisations",
+      title: language === "en" ? "Enterprise & Leadership Teams" : "Entreprises et équipes de direction",
       desc: language === "en"
-        ? "Improve strategy, execution, and team performance."
-        : "Améliorer la stratégie, l'exécution et la performance des équipes.",
+        ? "Strategic planning, performance management, and governance for organizations ready to operate at a higher level."
+        : "Planification stratégique, gestion de la performance et gouvernance pour les organisations prêtes à fonctionner à un niveau supérieur.",
     },
     {
       icon: <Rocket className="text-accent" size={32} />,
-      title: language === "en" ? "Small Businesses" : "Petites entreprises",
+      title: language === "en" ? "Small Business Owners & Founders" : "Propriétaires de PME et fondateurs",
       desc: language === "en"
-        ? "Build structure, accountability, and growth systems."
-        : "Bâtir la structure, la responsabilité et les systèmes de croissance.",
+        ? "Monthly strategy support, operational structure, and accountability systems to help you grow without the chaos."
+        : "Soutien stratégique mensuel, structure opérationnelle et systèmes de responsabilité pour vous aider à grandir sans le chaos.",
     },
     {
       icon: <GraduationCap className="text-accent" size={32} />,
-      title: language === "en" ? "Professionals" : "Professionnels",
+      title: language === "en" ? "Professionals & Entrepreneurs" : "Professionnels et entrepreneurs",
       desc: language === "en"
-        ? "Improve focus, productivity, and career performance."
-        : "Améliorer la concentration, la productivité et la performance de carrière.",
+        ? "Coaching, 90-day programs, and practical toolkits to sharpen your focus and take your career to the next level."
+        : "Coaching, programmes de 90 jours et outils pratiques pour affiner votre concentration et passer au niveau supérieur.",
     },
   ];
 
   const frameworkSteps = [
     {
       step: "01",
-      label: language === "en" ? "Diagnose" : "Diagnostiquer",
+      label: language === "en" ? "Assess" : "Évaluer",
       icon: <Target size={28} />,
-      title: language === "en" ? "Diagnose Challenges" : "Diagnostiquer les défis",
+      title: language === "en" ? "Assess Where You Are" : "Évaluez votre situation",
       desc: language === "en"
-        ? "Assess your organization's current state, gaps, and opportunities through stakeholder interviews and data analysis."
-        : "Évaluez l'état actuel de votre organisation, les lacunes et les opportunités grâce aux entretiens et à l'analyse des données.",
+        ? "We listen first. Through interviews, audits, and data review, we identify what is working, what is not, and where to focus."
+        : "Nous écoutons d'abord. Par des entretiens, des audits et l'analyse des données, nous identifions ce qui fonctionne et ce qui ne fonctionne pas.",
     },
     {
       step: "02",
       label: language === "en" ? "Align" : "Aligner",
       icon: <Users size={28} />,
-      title: language === "en" ? "Align Leadership" : "Aligner le leadership",
+      title: language === "en" ? "Align Your Team" : "Alignez votre équipe",
       desc: language === "en"
-        ? "Clarify strategic direction, build consensus, and ensure every level of the organization understands the priorities."
-        : "Clarifiez la direction stratégique, construisez un consensus et assurez-vous que chaque niveau comprend les priorités.",
+        ? "We bring your leadership together around shared priorities, clear goals, and a strategy everyone understands."
+        : "Nous rassemblons votre leadership autour de priorités communes, d'objectifs clairs et d'une stratégie que tous comprennent.",
     },
     {
       step: "03",
-      label: language === "en" ? "Implement" : "Mettre en œuvre",
+      label: language === "en" ? "Build" : "Construire",
       icon: <Settings size={28} />,
-      title: language === "en" ? "Implement Processes" : "Mettre en œuvre les processus",
+      title: language === "en" ? "Build the Systems" : "Construisez les systèmes",
       desc: language === "en"
-        ? "Deploy structured systems, train your teams, and build internal capability for sustainable improvement."
-        : "Déployez des systèmes structurés, formez vos équipes et développez les capacités internes pour une amélioration durable.",
+        ? "We design and implement the processes, tools, and training your team needs to execute consistently."
+        : "Nous concevons et mettons en œuvre les processus, outils et formations dont votre équipe a besoin pour exécuter de manière cohérente.",
     },
     {
       step: "04",
-      label: language === "en" ? "Measure" : "Mesurer",
+      label: language === "en" ? "Grow" : "Croître",
       icon: <BarChart3 size={28} />,
-      title: language === "en" ? "Measure Outcomes" : "Mesurer les résultats",
+      title: language === "en" ? "Grow & Improve" : "Croître et s'améliorer",
       desc: language === "en"
-        ? "Track progress with clear KPIs, optimize continuously, and ensure measurable ROI on every initiative."
-        : "Suivez les progrès avec des KPI clairs, optimisez en continu et assurez un ROI mesurable sur chaque initiative.",
+        ? "We track what matters, refine what is not working, and help you build a culture of continuous improvement."
+        : "Nous suivons ce qui compte, affinons ce qui ne fonctionne pas et vous aidons à bâtir une culture d'amélioration continue.",
     },
   ];
 
@@ -128,29 +128,29 @@ export default function Home() {
       icon: <Briefcase className="text-accent" />,
       title: language === "en" ? "Executive Advisory" : "Conseil exécutif",
       desc: language === "en"
-        ? "Strategic performance systems for leadership teams."
-        : "Systèmes de performance stratégiques pour les équipes de direction.",
+        ? "For leadership teams that need strategic planning, performance systems, and governance support."
+        : "Pour les équipes de direction qui ont besoin de planification stratégique et de systèmes de performance.",
     },
     {
       icon: <Rocket className="text-accent" />,
-      title: language === "en" ? "Small Business Performance Program" : "Programme de performance pour petites entreprises",
+      title: language === "en" ? "Small Business Growth System" : "Système de croissance PME",
       desc: language === "en"
-        ? "Structure and accountability for growing companies."
-        : "Structure et responsabilité pour les entreprises en croissance.",
+        ? "A dedicated strategy partner to help you prioritize, plan, and build structure as you grow."
+        : "Un partenaire stratégique dédié pour vous aider à prioriser, planifier et structurer votre croissance.",
     },
     {
       icon: <GraduationCap className="text-accent" />,
-      title: language === "en" ? "Personal Performance Coaching" : "Coaching de performance personnelle",
+      title: language === "en" ? "Coaching & Development" : "Coaching et développement",
       desc: language === "en"
-        ? "Build systems that improve daily performance."
-        : "Construire des systèmes qui améliorent la performance quotidienne.",
+        ? "Personal performance coaching and structured programs for professionals ready to level up."
+        : "Coaching de performance personnel et programmes structurés pour les professionnels prêts à progresser.",
     },
     {
       icon: <BookOpen className="text-accent" />,
-      title: language === "en" ? "Programs & Tools" : "Programmes et outils",
+      title: language === "en" ? "Programs & Toolkits" : "Programmes et outils",
       desc: language === "en"
-        ? "Self-serve planners, toolkits, and 90-day programs."
-        : "Planificateurs, boîtes à outils et programmes de 90 jours en libre-service.",
+        ? "Self-paced 90-day programs, planners, and frameworks you can implement on your own."
+        : "Programmes de 90 jours, planificateurs et cadres que vous pouvez mettre en œuvre par vous-même.",
     },
   ];
 
@@ -158,7 +158,7 @@ export default function Home() {
     { icon: Building2, label: language === "en" ? "Corporate" : "Entreprises" },
     { icon: Heart, label: language === "en" ? "Nonprofit" : "OBNL" },
     { icon: Shield, label: language === "en" ? "Government" : "Gouvernement" },
-    { icon: Rocket, label: language === "en" ? "Startups" : "Startups" },
+    { icon: Rocket, label: language === "en" ? "Startups & SMBs" : "Startups et PME" },
     { icon: GraduationCap, label: language === "en" ? "Education" : "Éducation" },
     { icon: Award, label: language === "en" ? "Professional Services" : "Services professionnels" },
   ];
@@ -195,7 +195,7 @@ export default function Home() {
       <Navbar />
 
       <main className="flex-grow">
-        {/* Hero — Dark, Outcome-Focused */}
+        {/* Hero */}
         <section className="relative min-h-[650px] lg:min-h-[750px] flex items-center overflow-hidden bg-primary" data-testid="section-hero">
           <div className="absolute inset-0 z-0">
             <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-15">
@@ -207,15 +207,15 @@ export default function Home() {
             <div className="max-w-4xl">
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-hero-title">
                 {language === "en" ? (
-                  <>Improve Organizational Performance and <span className="text-accent">Strategic Alignment</span></>
+                  <>Build High-Performance Teams With <span className="text-accent">Better Management Systems</span></>
                 ) : (
-                  <>Améliorez la performance organisationnelle et <span className="text-accent">l'alignement stratégique</span></>
+                  <>Bâtissez des équipes performantes avec <span className="text-accent">de meilleurs systèmes de gestion</span></>
                 )}
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-hero-subtitle">
                 {language === "en"
-                  ? "We help leadership teams strengthen strategy execution, accountability, and measurable results across corporate, nonprofit, and mission-driven organizations."
-                  : "Nous aidons les équipes de direction à renforcer l'exécution stratégique, la responsabilité et les résultats mesurables dans les organisations corporatives, à but non lucratif et à vocation sociale."}
+                  ? "We help leaders, business owners, and professionals build the systems that drive consistent execution, team alignment, and measurable growth."
+                  : "Nous aidons les dirigeants, les propriétaires d'entreprise et les professionnels à bâtir les systèmes qui favorisent une exécution cohérente, l'alignement des équipes et une croissance mesurable."}
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-hero-book">
@@ -257,20 +257,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What We Help Organizations Achieve */}
+        {/* What We Help You Achieve */}
         <section className="py-32 bg-white" data-testid="section-outcomes">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center max-w-3xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                {language === "en" ? "Why Organizations Choose Us" : "Pourquoi les organisations nous choisissent"}
+                {language === "en" ? "What You Get" : "Ce que vous obtenez"}
               </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                {language === "en" ? "What we help organizations achieve" : "Ce que nous aidons les organisations à accomplir"}
+                {language === "en" ? "What we help you achieve" : "Ce que nous vous aidons à accomplir"}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {language === "en"
-                  ? "We partner with leadership teams to solve the structural challenges that hold organizations back from reaching their potential."
-                  : "Nous nous associons aux équipes de direction pour résoudre les défis structurels qui empêchent les organisations d'atteindre leur potentiel."}
+                  ? "Whether you lead a team of 5 or 500, the challenge is the same: turning strategy into action. Here is how we help."
+                  : "Que vous dirigiez une équipe de 5 ou 500 personnes, le défi est le même : transformer la stratégie en action. Voici comment nous aidons."}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -292,7 +292,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Who This Is For */}
+        {/* Who We Work With */}
         <section className="py-32 bg-[#F8FAFC]" data-testid="section-who-we-help">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center max-w-2xl mx-auto mb-20">
@@ -300,12 +300,12 @@ export default function Home() {
                 {language === "en" ? "Who We Work With" : "Avec qui nous travaillons"}
               </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                {language === "en" ? "Performance systems for every level" : "Des systèmes de performance pour chaque niveau"}
+                {language === "en" ? "Built for leaders at every stage" : "Conçu pour les leaders à chaque étape"}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {language === "en"
-                  ? "Supporting corporate, nonprofit, and mission-driven organizations of all sizes."
-                  : "Accompagnement des organisations corporatives, à but non lucratif et à vocation sociale de toutes tailles."}
+                  ? "From solo founders to enterprise leadership teams, we meet you where you are and help you get where you want to go."
+                  : "Des fondateurs solo aux équipes de direction, nous vous rencontrons là où vous êtes et vous aidons à atteindre vos objectifs."}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -344,34 +344,34 @@ export default function Home() {
         <section className="py-20 bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 border-y border-accent/10" data-testid="section-mid-cta">
           <div className="container mx-auto px-4 md:px-8 text-center">
             <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-4">
-              {language === "en" ? "Have organizational challenges you want to discuss?" : "Avez-vous des défis organisationnels à discuter ?"}
+              {language === "en" ? "Not sure where to start?" : "Vous ne savez pas par où commencer ?"}
             </h3>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
               {language === "en"
-                ? "Book a complimentary strategy session to explore how we can help."
-                : "Réservez une session stratégique gratuite pour explorer comment nous pouvons vous aider."}
+                ? "Book a free strategy call. We will listen to your challenges and help you figure out the right next step."
+                : "Réservez un appel stratégique gratuit. Nous écouterons vos défis et vous aiderons à trouver la prochaine étape."}
             </p>
             <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-accent/90 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-lg shadow-accent/20" data-testid="link-mid-cta-book">
               <Calendar size={16} />
-              {language === "en" ? "Discuss Your Challenges" : "Discutez de vos défis"}
+              {language === "en" ? "Book a Free Strategy Call" : "Réservez un appel stratégique gratuit"}
             </a>
           </div>
         </section>
 
-        {/* Our Approach — Framework Diagram */}
+        {/* Our Approach */}
         <section id="framework" className="py-32 bg-white" data-testid="section-framework">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center max-w-3xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                {language === "en" ? "Our Approach" : "Notre approche"}
+                {language === "en" ? "How We Work" : "Comment nous travaillons"}
               </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                {language === "en" ? "Performance Improvement Model" : "Modèle d'amélioration de la performance"}
+                {language === "en" ? "Our four-phase approach" : "Notre approche en quatre phases"}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {language === "en"
-                  ? "A proven four-phase methodology that moves organizations from assessment to measurable outcomes."
-                  : "Une méthodologie éprouvée en quatre phases qui fait passer les organisations de l'évaluation aux résultats mesurables."}
+                  ? "We follow a structured process that takes you from where you are today to where you want to be, with clear milestones along the way."
+                  : "Nous suivons un processus structuré qui vous mène de votre situation actuelle à vos objectifs, avec des jalons clairs en cours de route."}
               </p>
             </div>
 
@@ -413,11 +413,16 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center max-w-2xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                {language === "en" ? "Our Solutions" : "Nos solutions"}
+                {language === "en" ? "What We Offer" : "Ce que nous offrons"}
               </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                {language === "en" ? "Choose your level of support" : "Choisissez votre niveau de soutien"}
+                {language === "en" ? "Find the right level of support" : "Trouvez le bon niveau de soutien"}
               </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {language === "en"
+                  ? "Whether you need a strategic partner, a growth system, or coaching to sharpen your edge, we have a solution."
+                  : "Que vous ayez besoin d'un partenaire stratégique, d'un système de croissance ou d'un coaching, nous avons une solution."}
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -439,21 +444,21 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Results / Stats Section */}
+        {/* Results */}
         <section className="py-32 bg-gradient-to-br from-primary via-primary to-primary/90 relative overflow-hidden" data-testid="section-results">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.08),transparent_60%)]" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="text-center max-w-3xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                {language === "en" ? "Results That Matter" : "Des résultats qui comptent"}
+                {language === "en" ? "The Outcomes" : "Les résultats"}
               </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6">
-                {language === "en" ? "What our systems deliver" : "Ce que nos systèmes produisent"}
+                {language === "en" ? "What working with us looks like" : "Ce à quoi ressemble le travail avec nous"}
               </h2>
               <p className="text-lg text-white/60 leading-relaxed">
                 {language === "en"
-                  ? "Organizations invest in outcomes, not consulting hours. Here is what you can expect."
-                  : "Les organisations investissent dans les résultats, pas dans les heures de conseil. Voici ce à quoi vous pouvez vous attendre."}
+                  ? "Our clients do not pay for consulting hours. They invest in outcomes. Here is what you can expect."
+                  : "Nos clients n'achètent pas des heures de conseil. Ils investissent dans des résultats. Voici ce à quoi vous pouvez vous attendre."}
               </p>
             </div>
 
@@ -464,37 +469,37 @@ export default function Home() {
                 </div>
                 <p className="text-4xl font-extrabold text-white mb-2">100%</p>
                 <p className="text-white/60 text-sm">
-                  {language === "en" ? "Leadership alignment on strategic direction" : "Alignement du leadership sur la direction stratégique"}
+                  {language === "en" ? "Teams aligned on goals and priorities" : "Équipes alignées sur les objectifs et les priorités"}
                 </p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-white/5 text-center" data-testid="stat-execution">
                 <div className="w-14 h-14 rounded-2xl bg-accent/20 flex items-center justify-center mx-auto mb-5">
                   <Target size={24} className="text-accent" />
                 </div>
-                <p className="text-4xl font-extrabold text-white mb-2">4-Phase</p>
+                <p className="text-4xl font-extrabold text-white mb-2">4 Phases</p>
                 <p className="text-white/60 text-sm">
-                  {language === "en" ? "Proven methodology from diagnosis to results" : "Méthodologie éprouvée du diagnostic aux résultats"}
+                  {language === "en" ? "Structured path from diagnosis to results" : "Chemin structuré du diagnostic aux résultats"}
                 </p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-white/5 text-center" data-testid="stat-sustainable">
                 <div className="w-14 h-14 rounded-2xl bg-accent/20 flex items-center justify-center mx-auto mb-5">
                   <TrendingUp size={24} className="text-accent" />
                 </div>
-                <p className="text-4xl font-extrabold text-white mb-2">Sustainable</p>
+                <p className="text-4xl font-extrabold text-white mb-2">Lasting</p>
                 <p className="text-white/60 text-sm">
-                  {language === "en" ? "Internal capability that lasts beyond engagement" : "Capacité interne qui perdure au-delà de l'engagement"}
+                  {language === "en" ? "Systems your team can run without us" : "Des systèmes que votre équipe peut gérer sans nous"}
                 </p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
               {[
-                language === "en" ? "Consistent strategy execution across teams" : "Exécution stratégique cohérente entre les équipes",
-                language === "en" ? "Clear KPIs and accountability at every level" : "KPI clairs et responsabilité à chaque niveau",
-                language === "en" ? "Stronger leadership alignment and communication" : "Alignement et communication du leadership renforcés",
-                language === "en" ? "Measurable performance improvements" : "Améliorations de performance mesurables",
-                language === "en" ? "Reduced decision bottlenecks" : "Réduction des goulots d'étranglement décisionnels",
-                language === "en" ? "Systems that drive growth without dependency" : "Des systèmes qui favorisent la croissance sans dépendance",
+                language === "en" ? "Teams executing on the same priorities" : "Des équipes exécutant les mêmes priorités",
+                language === "en" ? "Clear KPIs everyone can track" : "Des KPI clairs que tous peuvent suivre",
+                language === "en" ? "Leadership that communicates effectively" : "Un leadership qui communique efficacement",
+                language === "en" ? "Processes that reduce daily firefighting" : "Des processus qui réduisent la gestion de crise quotidienne",
+                language === "en" ? "Decisions backed by data, not guesswork" : "Des décisions basées sur les données, pas sur l'intuition",
+                language === "en" ? "Growth without adding unnecessary complexity" : "De la croissance sans complexité inutile",
               ].map((text, i) => (
                 <div key={i} className="flex items-center gap-3 bg-white/5 rounded-2xl p-4 border border-white/5" data-testid={`result-item-${i}`}>
                   <CheckCircle2 size={18} className="text-accent shrink-0" />
@@ -505,13 +510,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Insights / Thought Leadership */}
+        {/* Insights */}
         <section className="py-32 bg-white" data-testid="section-insights">
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-20">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                  {language === "en" ? "Thought Leadership" : "Leadership éclairé"}
+                  {language === "en" ? "From Our Practice" : "De notre pratique"}
                 </p>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-2">
                   {language === "en" ? "Latest Insights" : "Dernières perspectives"}
@@ -547,29 +552,29 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Final CTA — Strong Closing */}
+        {/* Final CTA */}
         <section className="py-32 bg-[#F8FAFC] border-t" data-testid="section-cta">
           <div className="container mx-auto px-4 md:px-8">
             <div className="bg-gradient-to-br from-primary via-primary to-primary/90 rounded-[2rem] p-12 lg:p-20 text-center max-w-4xl mx-auto relative overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.1),transparent_70%)]"></div>
               <div className="relative z-10">
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
-                  {language === "en" ? "Get Started" : "Commencez"}
+                  {language === "en" ? "Let's Talk" : "Parlons-en"}
                 </p>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
                   {language === "en"
-                    ? "Ready to strengthen your organization's performance?"
-                    : "Prêt à renforcer la performance de votre organisation ?"}
+                    ? "Ready to build something that works?"
+                    : "Prêt à construire quelque chose qui fonctionne ?"}
                 </h2>
                 <p className="text-lg text-white/70 mb-12 max-w-2xl mx-auto">
                   {language === "en"
-                    ? "Book a complimentary strategy session to discuss your organizational challenges and explore how our methodology can deliver measurable, sustainable results."
-                    : "Réservez une session stratégique gratuite pour discuter de vos défis organisationnels et explorer comment notre méthodologie peut produire des résultats mesurables et durables."}
+                    ? "Whether you are leading a team, growing a business, or leveling up your own performance, the first step is a conversation. Let's figure out the right path forward, together."
+                    : "Que vous dirigiez une équipe, développiez une entreprise ou amélioriez votre propre performance, la première étape est une conversation. Trouvons ensemble la bonne voie à suivre."}
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-cta-book">
                     <Calendar size={16} />
-                    {language === "en" ? "Schedule a Consultation" : "Planifier une consultation"}
+                    {language === "en" ? "Book a Free Strategy Call" : "Réservez un appel stratégique gratuit"}
                   </a>
                   <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-cta-services">
                     {language === "en" ? "Explore services" : "Découvrir les services"}

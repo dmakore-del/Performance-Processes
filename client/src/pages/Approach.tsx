@@ -53,6 +53,9 @@ export default function Approach() {
         ? "We start by understanding your unique challenges and auditing your current performance systems to identify gaps."
         : "Nous commençons par comprendre vos défis uniques et par auditer vos systèmes de performance actuels pour identifier les lacunes.",
       duration: "2–4 weeks",
+      color: "from-blue-500/15 to-blue-600/5",
+      accentColor: "text-blue-600",
+      bgAccent: "bg-blue-600",
       details: [
         "Every successful engagement begins with a deep understanding of where your organization stands today. Our Discovery & Assessment phase goes far beyond surface-level analysis, we immerse ourselves in your organizational culture, strategic objectives, operational processes, and leadership dynamics to build a comprehensive picture of your current state.",
         "During this phase, we conduct extensive stakeholder interviews across all levels of the organization, from senior leadership to front-line teams. These conversations reveal not only the formal structures and processes in place but also the informal dynamics, unspoken challenges, and latent opportunities that data alone cannot capture.",
@@ -82,6 +85,9 @@ export default function Approach() {
         ? "We work with your leadership team to clarify strategic direction and ensure it's communicated effectively throughout the organization."
         : "Nous travaillons avec votre équipe de direction pour clarifier l'orientation stratégique et veiller à ce qu'elle soit communiquée efficacement dans toute l'organisation.",
       duration: "3–6 weeks",
+      color: "from-emerald-500/15 to-emerald-600/5",
+      accentColor: "text-emerald-600",
+      bgAccent: "bg-emerald-600",
       details: [
         "With a clear picture of your current state, we move into Strategic Alignment, the most critical phase for setting the trajectory of your transformation. This is where vision meets actionable planning, and where leadership teams come together around a unified strategic direction.",
         "We facilitate structured strategic planning workshops with your leadership team, using proven frameworks to clarify your mission, refine your vision, and define measurable strategic objectives. These sessions are designed to surface diverse perspectives, build consensus, and create genuine buy-in from the people who will drive change.",
@@ -111,6 +117,9 @@ export default function Approach() {
         ? "Our experts provide hands-on support to implement new systems and strengthen leadership capabilities."
         : "Nos experts fournissent un soutien concret pour mettre en œuvre de nouveaux systèmes et renforcer les capacités de leadership.",
       duration: "4–12 weeks",
+      color: "from-amber-500/15 to-amber-600/5",
+      accentColor: "text-amber-600",
+      bgAccent: "bg-amber-600",
       details: [
         "Implementation is where strategy becomes reality. During this phase, we work shoulder-to-shoulder with your teams to put new systems, processes, and practices into action. Unlike firms that hand over a report and walk away, we stay deeply involved to ensure successful execution.",
         "We begin by developing a detailed Implementation Roadmap with clear milestones, responsibilities, and timelines. This roadmap is designed to be realistic and achievable, balancing the urgency for improvement with the practical realities of organizational capacity and change management.",
@@ -140,6 +149,9 @@ export default function Approach() {
         ? "We establish continuous feedback loops and performance metrics to ensure long-term, sustainable impact."
         : "Nous établissons des boucles de rétroaction continue et des indicateurs de performance pour garantir un impact durable à long terme.",
       duration: "Ongoing",
+      color: "from-violet-500/15 to-violet-600/5",
+      accentColor: "text-violet-600",
+      bgAccent: "bg-violet-600",
       details: [
         "Sustainable performance improvement requires ongoing attention and refinement. Our Monitoring & Optimization phase ensures that the changes implemented in previous phases take root, deliver measurable results, and continue to evolve as your organization grows.",
         "We establish robust performance monitoring systems that give you real-time visibility into how your organization is performing against its strategic objectives. This includes setting up dashboards, reporting cadences, and feedback mechanisms that keep leadership informed and enable data-driven decision-making.",
@@ -252,13 +264,12 @@ export default function Approach() {
             : "Notre méthodologie est conçue pour garantir des améliorations de performance durables et un ROI maximal."}
         />
 
-        {/* Our Methodology Intro Section */}
-        <section className="py-24 bg-white" data-testid="section-methodology-intro">
+        <section className="py-28 bg-white" data-testid="section-methodology-intro">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
               <div>
                 <p className="text-accent font-semibold uppercase tracking-wider mb-4" data-testid="text-methodology-label">Our Methodology</p>
-                <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6 italic" data-testid="text-methodology-title">
+                <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-8 italic" data-testid="text-methodology-title">
                   Built on Experience, Driven by Results
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
@@ -287,8 +298,7 @@ export default function Approach() {
           </div>
         </section>
 
-        {/* Expanded Steps Section */}
-        <section className="py-24" data-testid="section-approach-steps">
+        <section className="py-28" data-testid="section-approach-steps">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-20">
               <p className="text-accent font-semibold uppercase tracking-wider mb-4">Our Process</p>
@@ -297,26 +307,26 @@ export default function Approach() {
               </h2>
             </div>
 
-            <div className="space-y-8">
+            <div className="space-y-6">
               {steps.map((step, i) => {
                 const Icon = step.icon;
                 return (
                   <div key={i} data-testid={`step-${step.num}`}>
-                    {/* Step Header */}
-                    <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                    <div className="bg-white rounded-3xl shadow-lg border border-gray-100/80 overflow-hidden hover:shadow-xl transition-shadow duration-300">
                       <div className="flex flex-col lg:flex-row">
-                        {/* Left: Number and Icon */}
-                        <div className="bg-primary text-white p-8 lg:p-12 flex flex-col items-center justify-center lg:min-w-[200px]">
-                          <span className="text-6xl lg:text-7xl font-black opacity-30 italic leading-none">{step.num}</span>
-                          <Icon className="w-10 h-10 mt-4 text-accent" />
-                          <div className="mt-4 bg-white/10 rounded-full px-4 py-1 text-sm">
-                            <Clock className="w-3 h-3 inline mr-1" />
+                        <div className={`bg-gradient-to-b from-primary to-primary/90 text-white p-8 lg:p-12 flex flex-col items-center justify-center lg:min-w-[220px] relative overflow-hidden`}>
+                          <div className="absolute inset-0 opacity-10">
+                            <div className={`absolute top-4 right-4 w-32 h-32 rounded-full bg-gradient-to-br ${step.color}`} />
+                          </div>
+                          <span className="text-7xl lg:text-8xl font-black opacity-20 italic leading-none relative z-10">{step.num}</span>
+                          <Icon className="w-10 h-10 mt-4 text-accent relative z-10" />
+                          <div className="mt-4 bg-white/10 backdrop-blur-sm rounded-full px-5 py-1.5 text-sm relative z-10 flex items-center gap-1.5">
+                            <Clock className="w-3 h-3" />
                             {step.duration}
                           </div>
                         </div>
 
-                        {/* Right: Content */}
-                        <div className="p-8 lg:p-12 flex-1">
+                        <div className="p-8 lg:p-14 flex-1">
                           <h3 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4 italic" data-testid={`text-step-title-${step.num}`}>
                             {step.title}
                           </h3>
@@ -324,8 +334,7 @@ export default function Approach() {
                             {step.desc}
                           </p>
 
-                          {/* Detailed paragraphs */}
-                          <div className="space-y-4 mb-8">
+                          <div className="space-y-4 mb-10">
                             {step.details.map((para, j) => (
                               <p key={j} className="text-muted-foreground leading-relaxed">
                                 {para}
@@ -333,10 +342,9 @@ export default function Approach() {
                             ))}
                           </div>
 
-                          {/* Activities and Outcomes Grid */}
-                          <div className="grid md:grid-cols-2 gap-8 mt-8 pt-8 border-t border-gray-100">
-                            <div>
-                              <h4 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+                          <div className="grid md:grid-cols-2 gap-10 mt-10 pt-10 border-t border-gray-100">
+                            <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl p-7 border border-border/40">
+                              <h4 className="text-lg font-bold text-primary mb-5 flex items-center gap-2">
                                 <ClipboardList className="w-5 h-5 text-accent" />
                                 Key Activities
                               </h4>
@@ -349,8 +357,8 @@ export default function Approach() {
                                 ))}
                               </ul>
                             </div>
-                            <div>
-                              <h4 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+                            <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl p-7 border border-border/40">
+                              <h4 className="text-lg font-bold text-primary mb-5 flex items-center gap-2">
                                 <Target className="w-5 h-5 text-accent" />
                                 Expected Outcomes
                               </h4>
@@ -368,12 +376,14 @@ export default function Approach() {
                       </div>
                     </div>
 
-                    {/* Connecting Arrow */}
                     {i < steps.length - 1 && (
-                      <div className="flex justify-center py-4">
+                      <div className="flex justify-center py-3">
                         <div className="flex flex-col items-center text-accent">
-                          <div className="w-0.5 h-8 bg-accent/30" />
-                          <ArrowDown className="w-6 h-6" />
+                          <div className="w-0.5 h-6 bg-gradient-to-b from-accent/40 to-accent/20" />
+                          <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
+                            <ArrowDown className="w-4 h-4 text-accent" />
+                          </div>
+                          <div className="w-0.5 h-6 bg-gradient-to-b from-accent/20 to-accent/5" />
                         </div>
                       </div>
                     )}
@@ -384,30 +394,29 @@ export default function Approach() {
           </div>
         </section>
 
-        {/* Tools & Frameworks Section */}
-        <section className="py-24 bg-white" data-testid="section-tools-frameworks">
+        <section className="py-28 bg-white" data-testid="section-tools-frameworks">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-16">
+            <div className="text-center mb-20">
               <p className="text-accent font-semibold uppercase tracking-wider mb-4">Our Toolkit</p>
               <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-6" data-testid="text-tools-title">
                 Tools & Frameworks We Use
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 We leverage proven methodologies and industry-standard frameworks to deliver consistent, measurable results across every engagement.
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {toolsAndFrameworks.map((tool, i) => {
                 const Icon = tool.icon;
                 return (
                   <div
                     key={i}
-                    className="bg-[#F8FAFC] rounded-xl p-8 border border-gray-100 hover:shadow-lg hover:border-accent/30 transition-all duration-300 group"
+                    className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl p-8 border border-gray-100/80 hover:shadow-xl hover:border-accent/20 transition-all duration-300 group"
                     data-testid={`card-tool-${i}`}
                   >
-                    <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent/10 transition-colors">
-                      <Icon className="w-7 h-7 text-primary group-hover:text-accent transition-colors" />
+                    <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl flex items-center justify-center mb-6 group-hover:from-accent/15 group-hover:to-accent/5 transition-all duration-300">
+                      <Icon className="w-7 h-7 text-primary group-hover:text-accent transition-colors duration-300" />
                     </div>
                     <h3 className="text-xl font-bold text-primary mb-3">{tool.title}</h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">{tool.desc}</p>
@@ -418,16 +427,15 @@ export default function Approach() {
           </div>
         </section>
 
-        {/* What to Expect FAQ Section */}
-        <section className="py-24" data-testid="section-faq">
+        <section className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white" data-testid="section-faq">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-16">
+              <div className="text-center mb-20">
                 <p className="text-accent font-semibold uppercase tracking-wider mb-4">FAQ</p>
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-6" data-testid="text-faq-title">
                   What to Expect
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                   Common questions about our engagement process, methodology, and what it's like to work with Performance Processes.
                 </p>
               </div>
@@ -437,13 +445,13 @@ export default function Approach() {
                   <AccordionItem
                     key={i}
                     value={`faq-${i}`}
-                    className="bg-white rounded-xl border border-gray-100 px-6 shadow-sm"
+                    className="bg-white rounded-2xl border border-gray-100/80 px-7 shadow-sm hover:shadow-md transition-shadow duration-300"
                     data-testid={`faq-item-${i}`}
                   >
-                    <AccordionTrigger className="text-lg font-semibold text-primary hover:text-accent py-6 text-left">
+                    <AccordionTrigger className="text-lg font-semibold text-primary hover:text-accent py-7 text-left">
                       {item.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground leading-relaxed pb-6 text-base">
+                    <AccordionContent className="text-muted-foreground leading-relaxed pb-7 text-base">
                       {item.answer}
                     </AccordionContent>
                   </AccordionItem>
@@ -453,10 +461,9 @@ export default function Approach() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-24 bg-white" data-testid="section-cta">
+        <section className="py-28 bg-white" data-testid="section-cta">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
               <div className="order-2 md:order-1">
                 <img
                   src={strategyImg}
@@ -467,19 +474,19 @@ export default function Approach() {
               </div>
               <div className="order-1 md:order-2">
                 <p className="text-accent font-semibold uppercase tracking-wider mb-4">Get Started</p>
-                <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-6" data-testid="text-cta-title">
+                <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-8" data-testid="text-cta-title">
                   Ready to Begin Your Transformation?
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                   Every high-performing organization started with a single decision, the decision to invest in their people, processes, and performance. Whether you're looking to refine your strategic direction, strengthen your leadership team, or build a culture of accountability and results, we're here to help.
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-10">
                   Book a complimentary discovery call to discuss your organization's challenges and explore how our methodology can deliver measurable, sustainable results.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link href="/contact">
                     <div
-                      className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-full font-semibold text-lg transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 cursor-pointer shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30"
                       data-testid="button-cta-consultation"
                     >
                       Book a Consultation
@@ -488,7 +495,7 @@ export default function Approach() {
                   </Link>
                   <Link href="/services">
                     <div
-                      className="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 cursor-pointer"
                       data-testid="button-cta-services"
                     >
                       View Our Services

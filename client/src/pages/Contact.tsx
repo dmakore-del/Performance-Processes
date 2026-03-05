@@ -114,37 +114,41 @@ export default function Contact() {
             : "Prêt à faire passer votre entreprise au niveau supérieur ? Nos consultants sont prêts à vous aider."}
         />
 
-        {/* Trust Strip */}
-        <section className="bg-primary py-6" data-testid="section-trust-strip">
+        <section className="bg-gradient-to-r from-primary via-primary to-primary/95 py-8" data-testid="section-trust-strip">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-white">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-white">
               <div className="flex items-center gap-3">
-                <Shield size={20} className="text-accent" />
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                  <Shield size={18} className="text-accent" />
+                </div>
                 <span className="font-bold text-sm uppercase tracking-wider">Results-Driven Consulting</span>
               </div>
-              <div className="hidden md:block w-px h-6 bg-white/20" />
+              <div className="hidden md:block w-px h-8 bg-white/15" />
               <div className="flex items-center gap-3">
-                <Award size={20} className="text-accent" />
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                  <Award size={18} className="text-accent" />
+                </div>
                 <span className="font-bold text-sm uppercase tracking-wider">End-to-End Support</span>
               </div>
-              <div className="hidden md:block w-px h-6 bg-white/20" />
+              <div className="hidden md:block w-px h-8 bg-white/15" />
               <div className="flex items-center gap-3">
-                <Star size={20} className="text-accent" />
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                  <Star size={18} className="text-accent" />
+                </div>
                 <span className="font-bold text-sm uppercase tracking-wider">24hr Response Guarantee</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Why Reach Out Section */}
-        <section className="py-20 bg-white" data-testid="section-why-reach-out">
+        <section className="py-24 bg-white" data-testid="section-why-reach-out">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-16">
+            <div className="text-center mb-20">
               <span className="text-accent font-bold uppercase tracking-widest text-xs">How Can We Help</span>
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mt-4 italic">
                 Why Reach Out
               </h2>
-              <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-lg">
+              <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-lg leading-relaxed">
                 Whether you're exploring a new engagement or have a quick question, we're here to help. Here are the most common reasons clients connect with us.
               </p>
             </div>
@@ -152,10 +156,10 @@ export default function Contact() {
               {whyReachOutCards.map((card, index) => (
                 <div
                   key={index}
-                  className="bg-[#F8FAFC] rounded-2xl p-8 border border-border hover:border-accent/30 hover:shadow-lg transition-all duration-300"
+                  className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl p-8 border border-border/60 hover:border-accent/30 hover:shadow-xl transition-all duration-300 group"
                   data-testid={`card-why-reach-out-${index}`}
                 >
-                  <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center text-accent mb-6 group-hover:from-accent/25 group-hover:to-accent/10 transition-all duration-300">
                     <card.icon size={28} />
                   </div>
                   <h3 className="text-lg font-bold text-primary mb-3">{card.title}</h3>
@@ -166,17 +170,16 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* Contact Info + Form Section */}
-        <section className="py-24">
+        <section className="py-28 bg-[#F8FAFC]">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
               <div>
                 <h2 className="text-3xl font-heading font-extrabold text-primary mb-12 italic">
                   {language === "en" ? "Contact Information" : "Coordonnées"}
                 </h2>
-                <div className="space-y-12">
-                  <div className="flex gap-6 items-start">
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
+                <div className="space-y-10">
+                  <div className="flex gap-6 items-start group">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center text-accent flex-shrink-0 group-hover:from-accent/25 group-hover:to-accent/10 transition-all duration-300">
                       <Mail size={24} />
                     </div>
                     <div>
@@ -184,8 +187,8 @@ export default function Contact() {
                       <p className="text-xl font-bold text-primary">contact@performanceprocesses.com</p>
                     </div>
                   </div>
-                  <div className="flex gap-6 items-start">
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
+                  <div className="flex gap-6 items-start group">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center text-accent flex-shrink-0 group-hover:from-accent/25 group-hover:to-accent/10 transition-all duration-300">
                       <Phone size={24} />
                     </div>
                     <div>
@@ -193,8 +196,8 @@ export default function Contact() {
                       <p className="text-xl font-bold text-primary">+1 (905) 823-1324</p>
                     </div>
                   </div>
-                  <div className="flex gap-6 items-start">
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
+                  <div className="flex gap-6 items-start group">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center text-accent flex-shrink-0 group-hover:from-accent/25 group-hover:to-accent/10 transition-all duration-300">
                       <MapPin size={24} />
                     </div>
                     <div>
@@ -202,9 +205,8 @@ export default function Contact() {
                       <p className="text-xl font-bold text-primary">Toronto, Ontario</p>
                     </div>
                   </div>
-                  {/* Office Hours & Availability */}
-                  <div className="flex gap-6 items-start" data-testid="info-office-hours">
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
+                  <div className="flex gap-6 items-start group" data-testid="info-office-hours">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center text-accent flex-shrink-0 group-hover:from-accent/25 group-hover:to-accent/10 transition-all duration-300">
                       <Clock size={24} />
                     </div>
                     <div>
@@ -216,15 +218,14 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Toronto Location Card */}
-                <div className="mt-12 rounded-2xl overflow-hidden border border-border shadow-lg" data-testid="card-location">
+                <div className="mt-14 rounded-2xl overflow-hidden border border-border/60 shadow-lg hover:shadow-xl transition-shadow duration-300" data-testid="card-location">
                   <img
                     src={torontoSkyline}
                     alt="Toronto skyline"
-                    className="w-full h-48 object-cover"
+                    className="w-full h-52 object-cover"
                   />
-                  <div className="p-6 bg-white">
-                    <h4 className="font-bold text-primary text-lg mb-2">Based in Toronto, Serving Globally</h4>
+                  <div className="p-8 bg-gradient-to-br from-white to-[#F8FAFC]">
+                    <h4 className="font-bold text-primary text-lg mb-3">Based in Toronto, Serving Globally</h4>
                     <p className="text-muted-foreground text-sm leading-relaxed">
                       Our headquarters is located in the heart of Toronto, Ontario, Canada's business capital. We serve clients across Canada and internationally through both in-person and virtual engagements.
                     </p>
@@ -232,17 +233,16 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Contact Form */}
-              <div className="bg-white p-8 lg:p-12 rounded-3xl border border-border shadow-xl">
+              <div className="bg-white p-8 lg:p-12 rounded-3xl border border-border/60 shadow-2xl">
                 {submitted ? (
                   <div className="flex flex-col items-center justify-center py-12 text-center gap-6">
-                    <div className="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
                       <CheckCircle size={40} className="text-green-500" />
                     </div>
                     <h3 className="text-2xl font-bold text-primary" data-testid="text-success-title">
                       {language === "en" ? "Message Sent!" : "Message envoyé !"}
                     </h3>
-                    <p className="text-muted-foreground max-w-sm">
+                    <p className="text-muted-foreground max-w-sm leading-relaxed">
                       {language === "en" 
                         ? "Thank you for reaching out. We'll get back to you within 24 hours."
                         : "Merci de nous avoir contacté. Nous vous répondrons dans les 24 heures."}
@@ -258,16 +258,17 @@ export default function Contact() {
                   </div>
                 ) : (
                   <>
-                    <h3 className="text-2xl font-bold mb-8 text-primary uppercase italic">
+                    <h3 className="text-2xl font-bold mb-2 text-primary uppercase italic">
                       {language === "en" ? "Send us a message" : "Envoyez-nous un message"}
                     </h3>
+                    <p className="text-muted-foreground text-sm mb-8">Fill out the form below and we'll get back to you promptly.</p>
                     {mutation.isError && (
                       <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm font-medium" data-testid="text-error">
                         {language === "en" ? "Something went wrong. Please try again." : "Une erreur s'est produite. Veuillez réessayer."}
                       </div>
                     )}
                     <form 
-                      className="space-y-6"
+                      className="space-y-7"
                       onSubmit={(e) => {
                         e.preventDefault();
                         mutation.mutate({ name, email, message });
@@ -279,7 +280,7 @@ export default function Contact() {
                             {language === "en" ? "Name" : "Nom"}
                           </label>
                           <input 
-                            className="w-full bg-[#F8FAFC] border border-border rounded-xl px-6 py-4 outline-none focus:border-accent font-medium" 
+                            className="w-full bg-[#F8FAFC] border border-border/60 rounded-xl px-6 py-4 outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 font-medium transition-all duration-200" 
                             placeholder={language === "en" ? "Your name" : "Votre nom"}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
@@ -291,7 +292,7 @@ export default function Contact() {
                           <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">Email</label>
                           <input 
                             type="email"
-                            className="w-full bg-[#F8FAFC] border border-border rounded-xl px-6 py-4 outline-none focus:border-accent font-medium" 
+                            className="w-full bg-[#F8FAFC] border border-border/60 rounded-xl px-6 py-4 outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 font-medium transition-all duration-200" 
                             placeholder="your@email.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -305,7 +306,7 @@ export default function Contact() {
                           {language === "en" ? "How can we help?" : "Comment pouvons-nous vous aider ?"}
                         </label>
                         <textarea 
-                          className="w-full bg-[#F8FAFC] border border-border rounded-xl px-6 py-4 outline-none focus:border-accent font-medium h-40 resize-none" 
+                          className="w-full bg-[#F8FAFC] border border-border/60 rounded-xl px-6 py-4 outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 font-medium h-40 resize-none transition-all duration-200" 
                           placeholder={language === "en" ? "Tell us about your project..." : "Parlez-nous de votre projet..."}
                           value={message}
                           onChange={(e) => setMessage(e.target.value)}
@@ -316,7 +317,7 @@ export default function Contact() {
                       <Button 
                         type="submit"
                         disabled={mutation.isPending}
-                        className="w-full rounded-full bg-accent text-white hover:bg-primary h-16 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2"
+                        className="w-full rounded-full bg-accent text-white hover:bg-primary h-16 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300"
                         data-testid="button-submit"
                       >
                         {mutation.isPending ? (
@@ -333,46 +334,48 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* What Happens Next Section */}
-        <section className="py-20 bg-white" data-testid="section-what-happens-next">
+        <section className="py-24 bg-white" data-testid="section-what-happens-next">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-16">
+            <div className="text-center mb-20">
               <span className="text-accent font-bold uppercase tracking-widest text-xs">Your Journey</span>
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mt-4 italic">
                 What Happens Next
               </h2>
-              <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-lg">
+              <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-lg leading-relaxed">
                 After you reach out, here's exactly what to expect. We believe in transparency at every step.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
               {nextSteps.map((item, index) => (
                 <div key={index} className="relative text-center" data-testid={`card-next-step-${index}`}>
-                  <div className="w-16 h-16 rounded-full bg-accent text-white flex items-center justify-center text-2xl font-extrabold mx-auto mb-6">
-                    {item.step}
+                  <div className="relative z-10">
+                    <div className="w-18 h-18 w-[72px] h-[72px] rounded-full bg-gradient-to-br from-accent to-accent/80 text-white flex items-center justify-center text-2xl font-extrabold mx-auto mb-6 shadow-lg shadow-accent/20">
+                      {item.step}
+                    </div>
                   </div>
                   {index < nextSteps.length - 1 && (
-                    <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-px bg-accent/20">
-                      <ArrowRight size={16} className="text-accent/40 absolute -right-2 -top-2" />
+                    <div className="hidden md:block absolute top-9 left-[60%] w-[80%] h-[2px] bg-gradient-to-r from-accent/30 to-accent/10">
+                      <ArrowRight size={16} className="text-accent/40 absolute -right-2 -top-[7px]" />
                     </div>
                   )}
-                  <h3 className="text-lg font-bold text-primary mb-3">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                  <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl p-6 border border-border/60">
+                    <h3 className="text-lg font-bold text-primary mb-3">{item.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className="py-20 bg-[#F8FAFC]" data-testid="section-faq">
+        <section className="py-24 bg-gradient-to-b from-[#F8FAFC] to-white" data-testid="section-faq">
           <div className="container mx-auto px-4 md:px-8 max-w-4xl">
-            <div className="text-center mb-16">
+            <div className="text-center mb-20">
               <span className="text-accent font-bold uppercase tracking-widest text-xs">Common Questions</span>
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mt-4 italic">
                 Frequently Asked Questions
               </h2>
-              <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-lg">
+              <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-lg leading-relaxed">
                 Get answers to the most common questions about working with Performance Processes.
               </p>
             </div>
@@ -380,12 +383,12 @@ export default function Contact() {
               {faqItems.map((faq, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl border border-border overflow-hidden transition-all duration-300"
+                  className="bg-white rounded-2xl border border-border/60 overflow-hidden transition-all duration-300 hover:shadow-md"
                   data-testid={`faq-item-${index}`}
                 >
                   <button
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
+                    className="w-full flex items-center justify-between p-7 text-left hover:bg-gray-50/50 transition-colors"
                     data-testid={`button-faq-${index}`}
                   >
                     <span className="font-bold text-primary pr-4">{faq.question}</span>
@@ -395,7 +398,8 @@ export default function Contact() {
                     />
                   </button>
                   {openFaq === index && (
-                    <div className="px-6 pb-6">
+                    <div className="px-7 pb-7">
+                      <div className="h-px bg-border/40 mb-5" />
                       <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
                     </div>
                   )}

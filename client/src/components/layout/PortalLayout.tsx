@@ -15,7 +15,8 @@ import {
   Bell,
   Users,
   ChevronDown,
-  Briefcase
+  Briefcase,
+  Inbox
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -62,6 +63,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
   const adminNavItems = [
     ...staffNavItems,
     { label: "User Management", href: "/portal/admin/users", icon: <Users size={20} /> },
+    { label: "Submissions", href: "/portal/admin/submissions", icon: <Inbox size={20} /> },
   ];
 
   const navItems = user?.role === "admin" ? adminNavItems : isClient ? clientNavItems : staffNavItems;

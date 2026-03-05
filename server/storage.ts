@@ -31,6 +31,7 @@ export interface IStorage {
   createContactSubmission(data: InsertContact): Promise<ContactSubmission>;
   getContactSubmissions(): Promise<ContactSubmission[]>;
   createJobApplication(data: InsertJobApplication): Promise<JobApplication>;
+  getJobApplications(): Promise<JobApplication[]>;
 
   getEngagements(): Promise<Engagement[]>;
   getEngagementsForUser(userId: string, role: string): Promise<Engagement[]>;
@@ -131,6 +132,10 @@ export class DatabaseStorage implements IStorage {
   async createJobApplication(data: InsertJobApplication): Promise<JobApplication> {
     const [application] = await db.insert(jobApplications).values(data).returning();
     return application;
+  }
+
+  async getJobApplications(): Promise<JobApplication[]> {
+    return db.select().from(jobApplications).orderBy(desc(jobApplications.createdAt));
   }
 
   async getEngagements(): Promise<Engagement[]> {

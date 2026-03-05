@@ -72,11 +72,12 @@ All portal pages use live API data via custom hooks (`usePortalEngagement`, `use
 - **Resources** (`/portal/resources`): Resource library with category filtering, PDF upload, content display, external links; "Request a Resource" opens a contact form; improved content display in detail dialog
 - **Billing** (`/portal/billing`): Invoices (Stripe payment) and contracts (canvas signature); staff/admin can create & send invoices; staff/admin can upload agreement documents (PDF/DOC) with contract creation
 - **Admin Users** (`/portal/admin/users`): User management (admin-only) with approve/suspend/role changes and engagement creation
+- **Admin Submissions** (`/portal/admin/submissions`): Filterable table views for Contact Submissions, Job Applications, and Grant Applications with search functionality
 
 ### Role-Based Portal Experience
 - **Client sidebar**: Dashboard, Roadmap & Milestones, Deliverables & Docs, Meeting Hub, Action Tracker, Performance, Messages, Resource Library, Billing & Contracts
 - **Staff sidebar**: Dashboard, Milestones, Documents, Meeting Hub, Action Items, KPIs & Metrics, Client Messages, Resources, Billing & Contracts — with engagement/client switcher dropdown
-- **Admin sidebar**: Same as staff + User Management tab
+- **Admin sidebar**: Same as staff + User Management tab + Submissions tab
 - **Engagement switcher**: Staff and admin see a client selector in the sidebar to switch between assigned engagements; state managed via `EngagementProvider` (React Context in `use-portal.ts`)
 - The `usePortalEngagement` hook supports selecting a specific engagement; defaults to first engagement if none selected
 

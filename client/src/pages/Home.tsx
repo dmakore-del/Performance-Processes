@@ -155,59 +155,93 @@ export default function Home() {
       <Navbar />
 
       <main className="flex-grow">
-        {/* Hero — Clear & Simple */}
-        <section className="bg-white border-b overflow-hidden relative min-h-[600px] flex items-center">
+        {/* Hero — Clear & Impactful */}
+        <section className="bg-white border-b overflow-hidden relative min-h-[650px] lg:min-h-[700px] flex items-center">
           <div className="absolute inset-0 z-0">
-            <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-15">
+            <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-20">
               <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/90 to-white/70"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-white via-white/95 to-primary/5"></div>
           </div>
-          <div className="container mx-auto px-4 md:px-8 py-20 lg:py-32 relative z-10">
+          <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-primary mb-8 leading-[1.05]" data-testid="text-hero-title">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-8" data-testid="badge-hero-tag">
+                <Zap size={14} />
+                {language === "en" ? "Performance Management Consulting" : "Conseil en gestion de la performance"}
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-primary mb-6 leading-[1.08]" data-testid="text-hero-title">
                 {t("hero.title")} <br />
                 <span className="text-accent">{t("hero.titleAccent")}</span>
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-xl" data-testid="text-hero-subtitle">
+              <p className="text-lg md:text-xl text-muted-foreground mb-5 leading-relaxed max-w-2xl" data-testid="text-hero-subtitle">
+                {t("hero.subtitle")}
+              </p>
+              <p className="text-sm text-muted-foreground/70 mb-10 max-w-xl" data-testid="text-hero-audience">
                 {language === "en"
-                  ? "For leaders, small businesses, entrepreneurs, and professionals."
-                  : "Pour les dirigeants, petites entreprises, entrepreneurs et professionnels."}
+                  ? "For leaders, small businesses, entrepreneurs, and professionals ready to build systems that deliver results."
+                  : "Pour les dirigeants, petites entreprises, entrepreneurs et professionnels prêts à bâtir des systèmes qui produisent des résultats."}
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/services">
-                  <Button className="rounded-full bg-primary text-white hover:bg-accent h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all" data-testid="button-hero-services">
-                    {language === "en" ? "Explore services" : "Découvrir les services"} <ArrowRight size={16} className="ml-2" />
-                  </Button>
-                </Link>
-                <a href="#framework">
-                  <Button variant="outline" className="rounded-full border-primary text-primary hover:bg-primary/5 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all" data-testid="button-hero-framework">
-                    {language === "en" ? "See the framework" : "Voir le cadre"}
+                <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
+                  <Button className="rounded-full bg-accent text-white hover:bg-accent/90 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all shadow-lg shadow-accent/25" data-testid="button-hero-book">
+                    <Calendar size={16} className="mr-2" /> {t("hero.ctaPrimary")}
                   </Button>
                 </a>
+                <Link href="/services">
+                  <Button variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all" data-testid="button-hero-services">
+                    {t("hero.ctaSecondary")} <ArrowRight size={16} className="ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Trusted By */}
+        <section className="py-8 bg-white border-b" data-testid="section-trusted-by">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/60 shrink-0">
+                {language === "en" ? "Trusted By" : "Confiance de"}
+              </span>
+              <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
+                <div className="flex items-center gap-2 text-primary/70 hover:text-primary transition-colors" data-testid="logo-nextup">
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <TrendingUp size={16} className="text-primary" />
+                  </div>
+                  <span className="text-sm font-bold tracking-wide">NextUp Canada</span>
+                </div>
+                <div className="w-px h-6 bg-border hidden md:block"></div>
+                <div className="flex items-center gap-2 text-primary/70 hover:text-primary transition-colors" data-testid="logo-truenorth">
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Target size={16} className="text-primary" />
+                  </div>
+                  <span className="text-sm font-bold tracking-wide">TrueNorth Property & Facilities</span>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Who This Is For */}
-        <section className="py-24 bg-[#F8FAFC]" data-testid="section-who-we-help">
+        <section className="py-28 bg-[#F8FAFC]" data-testid="section-who-we-help">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-16">
+            <div className="text-center max-w-2xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
                 {language === "en" ? "Who This Is For" : "Pour qui est-ce"}
               </p>
-              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary">
+              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-4">
                 {language === "en" ? "Performance systems for everyone" : "Des systèmes de performance pour tous"}
               </h2>
+              <div className="w-16 h-1 bg-accent rounded-full mx-auto mt-6"></div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               {whoWeHelp.map((item, i) => (
-                <div key={i} className="bg-white rounded-2xl p-10 border border-border text-center hover:shadow-xl transition-all duration-300 group" data-testid={`who-card-${i}`}>
-                  <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                <div key={i} className="bg-gradient-to-br from-white via-white to-accent/5 rounded-3xl p-12 border border-border text-center hover:shadow-2xl hover:shadow-accent/5 transition-all duration-300 group" data-testid={`who-card-${i}`}>
+                  <div className="w-18 h-18 w-[72px] h-[72px] rounded-2xl bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center mx-auto mb-8 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
                     <span className="group-hover:text-white transition-colors">{item.icon}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-primary mb-3">{item.title}</h3>
+                  <h3 className="text-xl font-bold text-primary mb-4">{item.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
                 </div>
               ))}
@@ -216,50 +250,55 @@ export default function Home() {
         </section>
 
         {/* The Performance Processes Method */}
-        <section id="framework" className="py-24 bg-white border-y" data-testid="section-framework">
+        <section id="framework" className="py-28 bg-white border-y" data-testid="section-framework">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-16">
+            <div className="text-center max-w-2xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
                 {language === "en" ? "The Performance Process Method" : "La méthode Performance Process"}
               </p>
-              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4">
+              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-4">
                 {language === "en" ? "A continuous cycle of improvement" : "Un cycle continu d'amélioration"}
               </h2>
-              <p className="text-muted-foreground leading-relaxed">
+              <div className="w-16 h-1 bg-accent rounded-full mx-auto mt-4 mb-6"></div>
+              <p className="text-lg text-muted-foreground leading-relaxed">
                 {language === "en"
                   ? "Performance is built through systems, not willpower. Our four-step method works for individuals, teams, and organizations."
                   : "La performance se construit par des systèmes, pas par la volonté. Notre méthode en quatre étapes fonctionne pour les individus, les équipes et les organisations."}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative mb-16">
               {frameworkSteps.map((step, i) => (
                 <div key={i} className="relative" data-testid={`framework-step-${i}`}>
-                  <div className="bg-[#F8FAFC] rounded-2xl p-8 border border-border text-center hover:shadow-xl transition-all duration-300 h-full flex flex-col items-center group">
-                    <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:bg-accent group-hover:text-white group-hover:scale-110 transition-all duration-300">
+                  <div className="bg-gradient-to-b from-[#F8FAFC] to-white rounded-3xl p-10 border border-border text-center hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 h-full flex flex-col items-center group">
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center text-accent mb-6 group-hover:bg-accent group-hover:text-white group-hover:scale-110 transition-all duration-300">
                       {step.icon}
                     </div>
-                    <div className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-2">{language === "en" ? "Step" : "Étape"} {step.step}</div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-accent mb-3">{language === "en" ? "Step" : "Étape"} {step.step}</div>
                     <h3 className="text-xl font-bold text-primary mb-3">{step.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
                   </div>
                   {i < frameworkSteps.length - 1 && (
-                    <div className="hidden lg:flex absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                      <ArrowRight size={20} className="text-accent" />
+                    <div className="hidden lg:flex absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                      <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center">
+                        <ArrowRight size={14} className="text-accent" />
+                      </div>
                     </div>
                   )}
                 </div>
               ))}
             </div>
 
-            <div className="bg-accent/5 border border-accent/10 rounded-2xl p-8 text-center max-w-2xl mx-auto">
-              <div className="flex items-center justify-center gap-3 mb-3">
-                <RefreshCw size={20} className="text-accent" />
+            <div className="bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 border border-accent/10 rounded-3xl p-10 text-center max-w-2xl mx-auto">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center">
+                  <RefreshCw size={20} className="text-accent" />
+                </div>
                 <span className="text-sm font-bold text-primary uppercase tracking-wider">
                   {language === "en" ? "Continuous Cycle" : "Cycle continu"}
                 </span>
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 {language === "en"
                   ? "This isn't a one-time engagement. It's an ongoing system of planning, monitoring, development, and evaluation."
                   : "Ce n'est pas un engagement unique. C'est un système continu de planification, suivi, développement et évaluation."}
@@ -269,27 +308,28 @@ export default function Home() {
         </section>
 
         {/* Services — Simplified Cards */}
-        <section className="py-24 bg-[#F8FAFC]" data-testid="section-services">
+        <section className="py-28 bg-[#F8FAFC]" data-testid="section-services">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-16">
+            <div className="text-center max-w-2xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                {language === "en" ? "Services" : "Services"}
+                {language === "en" ? "Our Solutions" : "Nos solutions"}
               </p>
-              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary">
+              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-4">
                 {language === "en" ? "Choose your level of support" : "Choisissez votre niveau de soutien"}
               </h2>
+              <div className="w-16 h-1 bg-accent rounded-full mx-auto mt-6"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {services.map((s, i) => (
                 <Link key={i} href="/services">
-                  <div className="bg-white p-8 rounded-2xl border border-border hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col h-full min-h-[280px]" data-testid={`service-card-${i}`}>
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors">
+                  <div className="bg-gradient-to-b from-white to-[#FAFBFD] p-10 rounded-3xl border border-border hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 group cursor-pointer flex flex-col h-full min-h-[300px]" data-testid={`service-card-${i}`}>
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center mb-8 group-hover:bg-accent group-hover:text-white transition-all duration-300">
                       {s.icon}
                     </div>
-                    <h3 className="text-lg font-bold text-primary mb-3 group-hover:text-accent transition-colors">{s.title}</h3>
+                    <h3 className="text-lg font-bold text-primary mb-4 group-hover:text-accent transition-colors">{s.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{s.desc}</p>
-                    <div className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
+                    <div className="mt-8 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
                       {language === "en" ? "Learn more" : "En savoir plus"} <ArrowRight size={14} className="ml-2" />
                     </div>
                   </div>
@@ -300,25 +340,28 @@ export default function Home() {
         </section>
 
         {/* Results Section */}
-        <section className="py-24 bg-primary" data-testid="section-results">
+        <section className="py-28 bg-gradient-to-br from-primary via-primary to-primary/90" data-testid="section-results">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-16">
+            <div className="text-center max-w-2xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
                 {language === "en" ? "Results" : "Résultats"}
               </p>
-              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-4">
+              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-4">
                 {language === "en" ? "What you can expect" : "Ce à quoi vous pouvez vous attendre"}
               </h2>
-              <p className="text-white/70">
+              <div className="w-16 h-1 bg-accent rounded-full mx-auto mt-4 mb-6"></div>
+              <p className="text-lg text-white/70">
                 {language === "en"
                   ? "People buy outcomes, not consulting. Here's what our systems deliver."
                   : "On achète des résultats, pas du conseil. Voici ce que nos systèmes produisent."}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {results.map((r, i) => (
-                <div key={i} className="flex items-center gap-4 bg-white/10 rounded-xl p-5 backdrop-blur-sm" data-testid={`result-item-${i}`}>
-                  <CheckCircle2 size={20} className="text-accent shrink-0" />
+                <div key={i} className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/5 hover:bg-white/15 transition-all duration-300" data-testid={`result-item-${i}`}>
+                  <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center shrink-0">
+                    <CheckCircle2 size={18} className="text-accent" />
+                  </div>
                   <span className="text-white font-medium">{r.text}</span>
                 </div>
               ))}
@@ -327,19 +370,20 @@ export default function Home() {
         </section>
 
         {/* Insights / Thought Leadership */}
-        <section className="py-24 bg-white" data-testid="section-insights">
+        <section className="py-28 bg-white" data-testid="section-insights">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-20">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                  {language === "en" ? "Insights" : "Perspectives"}
+                  {language === "en" ? "Thought Leadership" : "Leadership éclairé"}
                 </p>
-                <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4">
-                  {language === "en" ? "Insights on performance, leadership, and systems" : "Perspectives sur la performance, le leadership et les systèmes"}
+                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-2">
+                  {language === "en" ? "Latest Insights" : "Dernières perspectives"}
                 </h2>
+                <div className="w-16 h-1 bg-accent rounded-full mt-4"></div>
               </div>
               <Link href="/insights">
-                <Button variant="outline" className="rounded-full border-primary text-primary hover:bg-primary/5 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all mt-6 md:mt-0" data-testid="button-view-all-insights">
+                <Button variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-white h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all mt-6 md:mt-0" data-testid="button-view-all-insights">
                   {language === "en" ? "View all insights" : "Voir toutes les perspectives"} <ArrowRight size={16} className="ml-2" />
                 </Button>
               </Link>
@@ -348,18 +392,18 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {insights.map((insight, i) => (
                 <Link key={i} href="/insights">
-                  <div className="bg-[#F8FAFC] rounded-2xl p-8 border border-border hover:shadow-xl transition-all duration-300 cursor-pointer group h-full flex flex-col" data-testid={`insight-card-${i}`}>
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest">
+                  <div className="bg-gradient-to-b from-[#F8FAFC] to-white rounded-3xl p-8 border border-border hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 cursor-pointer group h-full flex flex-col" data-testid={`insight-card-${i}`}>
+                    <div className="flex items-center gap-3 mb-6">
+                      <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest">
                         <Tag size={10} /> {insight.category}
                       </span>
                       <span className="flex items-center gap-1 text-xs text-muted-foreground">
                         <Calendar size={10} /> {insight.date}
                       </span>
                     </div>
-                    <h3 className="text-lg font-bold text-primary mb-3 group-hover:text-accent transition-colors">{insight.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{insight.excerpt}</p>
-                    <div className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
+                    <h3 className="text-lg font-bold text-primary mb-4 group-hover:text-accent transition-colors line-clamp-2">{insight.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-grow line-clamp-3">{insight.excerpt}</p>
+                    <div className="mt-8 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
                       {language === "en" ? "Read more" : "Lire la suite"} <ArrowRight size={14} className="ml-2" />
                     </div>
                   </div>
@@ -370,28 +414,34 @@ export default function Home() {
         </section>
 
         {/* Final CTA */}
-        <section className="py-24 bg-[#F8FAFC] border-t" data-testid="section-cta">
+        <section className="py-28 bg-[#F8FAFC] border-t" data-testid="section-cta">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="bg-primary rounded-3xl p-12 lg:p-20 text-center max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
-                {language === "en" ? "Start building better performance" : "Commencez à construire une meilleure performance"}
-              </h2>
-              <p className="text-lg text-white/70 mb-10 max-w-2xl mx-auto">
-                {language === "en"
-                  ? "Whether you're a professional, founder, or leading an organization — we'll help you build the systems that turn ambition into results."
-                  : "Que vous soyez un professionnel, un fondateur ou à la tête d'une organisation — nous vous aiderons à construire les systèmes qui transforment l'ambition en résultats."}
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link href="/services">
-                  <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all" data-testid="button-cta-services">
-                    {language === "en" ? "Explore services" : "Découvrir les services"}
-                  </Button>
-                </Link>
-                <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" className="rounded-full border-white text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all" data-testid="button-cta-book">
-                    {language === "en" ? "Book an intro call" : "Réserver un appel découverte"}
-                  </Button>
-                </a>
+            <div className="bg-gradient-to-br from-primary via-primary to-primary/90 rounded-[2rem] p-12 lg:p-20 text-center max-w-4xl mx-auto relative overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.1),transparent_70%)]"></div>
+              <div className="relative z-10">
+                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
+                  {language === "en" ? "Ready to Begin?" : "Prêt à commencer ?"}
+                </p>
+                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
+                  {language === "en" ? "Start building better performance" : "Commencez à construire une meilleure performance"}
+                </h2>
+                <p className="text-lg text-white/70 mb-12 max-w-2xl mx-auto">
+                  {language === "en"
+                    ? "Whether you're a professional, founder, or leading an organization — we'll help you build the systems that turn ambition into results."
+                    : "Que vous soyez un professionnel, un fondateur ou à la tête d'une organisation — nous vous aiderons à construire les systèmes qui transforment l'ambition en résultats."}
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
+                    <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all shadow-lg shadow-accent/25 hover:scale-105" data-testid="button-cta-book">
+                      {language === "en" ? "Book a consultation" : "Réserver une consultation"}
+                    </Button>
+                  </a>
+                  <Link href="/services">
+                    <Button variant="outline" className="rounded-full border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all" data-testid="button-cta-services">
+                      {language === "en" ? "Explore services" : "Découvrir les services"} <ArrowRight size={16} className="ml-2" />
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

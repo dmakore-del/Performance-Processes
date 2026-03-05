@@ -54,38 +54,6 @@ export async function registerRoutes(
       const { notifyContactForm } = await import('./emailNotifications');
       notifyContactForm({ name: parsed.data.name, email: parsed.data.email, message: parsed.data.message }).catch(err => console.error("Contact notification failed:", err));
 
-      const { forwardContactToList, forwardGrantApplicationToList } = await import('./sharepointLists');
-      if (parsed.data.message.includes('[WOMEN\'S PERFORMANCE GRANT APPLICATION]')) {
-        const lines = parsed.data.message.split('\n');
-        const getField = (label: string) => {
-          const line = lines.find(l => l.startsWith(label + ':'));
-          return line ? line.substring(label.length + 1).trim() : '';
-        };
-        const getSection = (header: string) => {
-          const idx = lines.findIndex(l => l.includes(`=== ${header} ===`));
-          if (idx === -1) return '';
-          const endIdx = lines.findIndex((l, i) => i > idx && l.includes('===') && !l.includes(header));
-          return lines.slice(idx + 1, endIdx === -1 ? undefined : endIdx).join('\n').trim();
-        };
-        forwardGrantApplicationToList({
-          fullName: getField('Full Name') || parsed.data.name,
-          email: getField('Email') || parsed.data.email,
-          phone: getField('Phone'),
-          city: getField('City'),
-          province: getField('Province/State'),
-          occupation: getField('Occupation/Role'),
-          companyOrOrg: getField('Company/Organization'),
-          industry: getField('Industry'),
-          yearsExperience: getField('Years of Experience'),
-          focusArea: getField('Primary Focus Area'),
-          goals: getSection('GOALS'),
-          challenges: getSection('CURRENT CHALLENGES'),
-          hopeToAchieve: getSection('WHAT THEY HOPE TO ACHIEVE'),
-        }).catch(err => console.error("Grant SharePoint forward failed:", err));
-      } else {
-        forwardContactToList({ name: parsed.data.name, email: parsed.data.email, message: parsed.data.message }).catch(err => console.error("Contact SharePoint forward failed:", err));
-      }
-
       return res.status(201).json({ message: "Message sent successfully", id: submission.id });
     } catch (error) {
       console.error("Contact form error:", error);
@@ -131,18 +99,6 @@ export async function registerRoutes(
         coverLetter: data.coverLetter,
         resumeFilename: data.resumeFilename,
       }).catch(err => console.error("Job application notification failed:", err));
-
-      const { forwardJobApplicationToList } = await import('./sharepointLists');
-      forwardJobApplicationToList({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        phone: data.phone,
-        position: data.position,
-        linkedIn: data.linkedIn,
-        coverLetter: data.coverLetter,
-        resumeFilename: data.resumeFilename,
-      }).catch(err => console.error("Job application SharePoint forward failed:", err));
 
       return res.status(201).json({ message: "Application submitted successfully", id: application.id });
     } catch (error) {
@@ -417,6 +373,26 @@ export async function registerRoutes(
       res.json({ id: user.id, role: user.role, fullName: user.fullName });
     } catch (error) {
       res.status(500).json({ message: "Failed to update user role" });
+    }
+  });
+
+  app.get("/api/admin/contacts", requireAdmin, async (_req, res) => {
+    try {
+      const submissions = await storage.getContactSubmissions();
+      res.json(submissions);
+    } catch (error) {
+      console.error("Admin contacts error:", error);
+      res.status(500).json({ message: "Failed to fetch contact submissions" });
+    }
+  });
+
+  app.get("/api/admin/applications", requireAdmin, async (_req, res) => {
+    try {
+      const applications = await storage.getJobApplications();
+      res.json(applications);
+    } catch (error) {
+      console.error("Admin applications error:", error);
+      res.status(500).json({ message: "Failed to fetch job applications" });
     }
   });
 

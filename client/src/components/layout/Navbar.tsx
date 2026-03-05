@@ -1,10 +1,12 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Search, ChevronDown, UserCircle } from "lucide-react";
+import { Menu, X, Search, ChevronDown, UserCircle, CalendarCheck } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/hooks/use-language";
 import logoImg from "@/assets/logo.png";
+
+const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -81,10 +83,16 @@ export function Navbar() {
             <UserCircle size={20} className="text-primary" />
           </Link>
           <Link href="/contact">
-            <Button className="rounded-full bg-accent text-white hover:bg-primary transition-all font-bold px-8 h-12 uppercase tracking-wider text-xs hidden md:flex">
+            <Button variant="outline" className="rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-white transition-all font-bold px-6 h-12 uppercase tracking-wider text-xs hidden md:flex" data-testid="button-contact-nav">
               {t("nav.contact")}
             </Button>
           </Link>
+          <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
+            <Button className="rounded-full bg-accent text-white hover:bg-primary transition-all font-bold px-6 h-12 uppercase tracking-wider text-xs hidden md:flex items-center gap-2" data-testid="button-book-consultation">
+              <CalendarCheck size={16} />
+              Book Consultation
+            </Button>
+          </a>
           <button
             className="lg:hidden p-2 text-primary hover:bg-secondary rounded-full"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -143,8 +151,14 @@ export function Navbar() {
               <button onClick={() => {setLanguage("fr"); setIsMobileMenuOpen(false);}} className={cn("font-bold", language === "fr" ? "text-accent underline" : "text-primary")}>FR</button>
             </div>
 
-            <Link href="/contact">
-              <Button className="w-full rounded-full bg-accent text-white py-8 text-lg font-bold uppercase tracking-widest mt-4 shadow-lg shadow-accent/20 cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
+            <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button className="w-full rounded-full bg-accent text-white py-8 text-lg font-bold uppercase tracking-widest mt-4 shadow-lg shadow-accent/20 cursor-pointer flex items-center justify-center gap-3" data-testid="button-book-consultation-mobile">
+                <CalendarCheck size={20} />
+                Book Consultation
+              </Button>
+            </a>
+            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button variant="outline" className="w-full rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-white py-8 text-lg font-bold uppercase tracking-widest cursor-pointer" data-testid="button-contact-mobile">
                 {t("nav.contact")}
               </Button>
             </Link>

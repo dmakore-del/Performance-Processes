@@ -651,33 +651,34 @@ export default function Services() {
             : "Aider les fondateurs à grandir, les professionnels à évoluer, les équipes à exécuter et les organisations à améliorer leur performance."}
         />
 
-        <section className="py-20 bg-white">
+        <section className="py-28 bg-white">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-16">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
+            <div className="text-center mb-20">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">
                 {language === "en" ? "The Performance Process Method" : "La méthode Performance Process"}
               </p>
-              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4">
+              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
                 {language === "en" ? "A simple system that works for everyone" : "Un système simple qui fonctionne pour tous"}
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <div className="w-16 h-1 bg-accent rounded-full mx-auto mb-6" />
+              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg">
                 {language === "en"
                   ? "Whether you're an individual, entrepreneur, team, or company — performance management works best when it includes planning, monitoring, development, and evaluation."
                   : "Que vous soyez un individu, un entrepreneur, une équipe ou une entreprise — la gestion de la performance fonctionne mieux avec la planification, le suivi, le développement et l'évaluation."}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
               {methodSteps.map((step, i) => (
                 <div key={i} className="relative text-center group" data-testid={`method-step-${i}`}>
-                  <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                  <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center mx-auto mb-8 group-hover:bg-accent group-hover:from-accent group-hover:to-accent group-hover:scale-110 transition-all duration-300 shadow-sm">
                     <span className="text-accent group-hover:text-white transition-colors">{step.icon}</span>
                   </div>
-                  <div className="text-[11px] font-black uppercase tracking-[0.3em] text-accent mb-2">{language === "en" ? "Step" : "Étape"} {step.step}</div>
-                  <h3 className="text-lg font-bold text-primary mb-3">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                  <div className="text-[11px] font-black uppercase tracking-[0.3em] text-accent mb-3">{language === "en" ? "Step" : "Étape"} {step.step}</div>
+                  <h3 className="text-xl font-bold text-primary mb-4">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed max-w-[280px] mx-auto">{step.desc}</p>
                   {i < methodSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-8 -right-4 w-8">
-                      <ArrowRight className="text-accent/30" size={24} />
+                    <div className="hidden lg:block absolute top-10 -right-5 w-10">
+                      <ArrowRight className="text-accent/40" size={28} />
                     </div>
                   )}
                 </div>
@@ -686,68 +687,73 @@ export default function Services() {
           </div>
         </section>
 
-        <section className="py-20">
+        <section className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-12">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
+            <div className="text-center mb-16">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">
                 {language === "en" ? "Our Services" : "Nos services"}
               </p>
-              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4">
+              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
                 {language === "en" ? "Performance systems for every stage" : "Des systèmes de performance pour chaque étape"}
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
+              <div className="w-16 h-1 bg-accent rounded-full mx-auto mb-6" />
+              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg">
                 {language === "en"
                   ? "From self-serve tools to enterprise advisory — choose the level of support that fits where you are right now."
                   : "Des outils en libre-service au conseil d'entreprise — choisissez le niveau de soutien qui correspond à votre situation actuelle."}
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-3 mb-12">
+            <div className="flex flex-wrap justify-center gap-3 mb-14">
               {tabs.map((tab) => (
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 ${
+                  className={`flex items-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-sm transition-all duration-300 ${
                     activeTab === tab.key
-                      ? "bg-primary text-white shadow-lg shadow-primary/20"
+                      ? "bg-primary text-white shadow-lg shadow-primary/20 scale-105"
                       : "bg-white text-primary border border-border hover:border-accent/40 hover:shadow-md"
                   }`}
                   data-testid={`tab-${tab.key}`}
                 >
                   {tab.icon}
                   <span>{tab.label}</span>
-                  <span className={`text-xs px-2 py-0.5 rounded-full ${activeTab === tab.key ? "bg-white/20 text-white" : "bg-accent/10 text-accent"}`}>{tab.priceRange}</span>
+                  <span className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${activeTab === tab.key ? "bg-white/20 text-white" : "bg-accent/10 text-accent"}`}>{tab.priceRange}</span>
                 </button>
               ))}
             </div>
 
-            <div className="bg-white rounded-2xl border border-border p-8 mb-8">
-              <div className="flex items-center gap-3 mb-2">
-                {currentTier.icon}
-                <h3 className="text-xl font-bold text-primary">{currentTier.label}</h3>
+            <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-3xl border border-border/50 p-8 md:p-10 mb-10">
+              <div className="flex items-center gap-4 mb-2">
+                <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center">
+                  {currentTier.icon}
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-primary">{currentTier.label}</h3>
+                  <p className="text-muted-foreground text-sm mt-1">{currentTier.tagline}</p>
+                </div>
               </div>
-              <p className="text-muted-foreground text-sm mb-0">{currentTier.tagline}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {currentTier.services.map((s: any, i: number) => (
                 <div 
                   key={i} 
-                  className="bg-white p-10 rounded-2xl border border-border hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col justify-between min-h-[350px]"
+                  className="bg-white p-10 rounded-3xl border border-border/60 hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-500 group cursor-pointer flex flex-col justify-between min-h-[380px]"
                   onClick={() => setSelectedService(s)}
                   data-testid={`card-service-${activeTab}-${i}`}
                 >
                   <div>
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-8 group-hover:bg-accent group-hover:text-white transition-colors">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center mb-8 group-hover:from-accent group-hover:to-accent group-hover:text-white transition-all duration-300 shadow-sm">
                       {s.icon}
                     </div>
                     <div className="flex justify-between items-start mb-4">
                       <h3 className="text-xl font-bold text-primary group-hover:text-accent transition-colors leading-tight">{s.title}</h3>
                     </div>
-                    <p className="text-muted-foreground leading-relaxed text-sm mb-4 line-clamp-3">{s.desc}</p>
-                    <div className="text-accent font-bold text-lg mb-2">{s.investment}</div>
+                    <p className="text-muted-foreground leading-relaxed text-sm mb-6 line-clamp-3">{s.desc}</p>
+                    <div className="inline-flex items-center bg-accent/5 border border-accent/10 rounded-full px-4 py-2 text-accent font-bold text-lg">{s.investment}</div>
                   </div>
-                  <div className="mt-8 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
+                  <div className="mt-8 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:text-accent group-hover:translate-x-2 transition-all duration-300">
                     {language === "en" ? "Learn more" : "En savoir plus"} <ArrowRight size={16} className="ml-2" />
                   </div>
                 </div>
@@ -756,22 +762,23 @@ export default function Services() {
           </div>
         </section>
 
-        <section className="py-20 bg-white">
+        <section className="py-28 bg-white">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-12">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
+            <div className="text-center mb-16">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">
                 {language === "en" ? "Performance Processes Collective" : "Collectif Performance Processes"}
               </p>
-              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4">
+              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
                 {language === "en" ? "Join the community" : "Rejoignez la communauté"}
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
+              <div className="w-16 h-1 bg-accent rounded-full mx-auto mb-6" />
+              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg">
                 {language === "en"
                   ? "Get group coaching, accountability partners, templates, and training — at a fraction of the cost of private consulting."
                   : "Bénéficiez de coaching de groupe, de partenaires de responsabilité, de modèles et de formation — pour une fraction du coût du conseil privé."}
               </p>
             </div>
-            <div className="max-w-3xl mx-auto bg-gradient-to-br from-primary to-primary/90 rounded-2xl p-10 text-white">
+            <div className="max-w-3xl mx-auto bg-gradient-to-br from-primary via-primary/95 to-primary/85 rounded-3xl p-12 text-white shadow-xl shadow-primary/10">
               <div className="flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-4">
@@ -809,7 +816,7 @@ export default function Services() {
           </div>
         </section>
 
-        <section className="py-20" data-testid="section-womens-grant">
+        <section className="py-28" data-testid="section-womens-grant">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="bg-gradient-to-br from-accent/5 via-white to-accent/10 rounded-3xl border-2 border-accent/20 overflow-hidden shadow-lg">
@@ -990,22 +997,22 @@ export default function Services() {
                     </h4>
                     <div className={`grid grid-cols-1 ${selectedService.pricingTiers.length === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : selectedService.pricingTiers.length >= 5 ? 'md:grid-cols-2 lg:grid-cols-3' : selectedService.pricingTiers.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-4`}>
                       {selectedService.pricingTiers.map((tier: any, idx: number) => (
-                        <div key={idx} className={`bg-white border rounded-2xl p-6 flex flex-col hover:shadow-lg transition-all ${idx === 1 ? 'border-accent shadow-md ring-2 ring-accent/20' : 'border-border hover:border-accent/40'}`} data-testid={`pricing-tier-${idx}`}>
-                          <div className="flex items-center gap-2 mb-2">
+                        <div key={idx} className={`border rounded-3xl p-7 flex flex-col hover:shadow-xl transition-all duration-300 ${idx === 1 ? 'border-accent shadow-lg ring-2 ring-accent/20 bg-gradient-to-b from-accent/5 to-white' : 'border-border/60 hover:border-accent/30 bg-gradient-to-b from-gray-50/50 to-white'}`} data-testid={`pricing-tier-${idx}`}>
+                          <div className="flex items-center gap-2 mb-3">
                             {idx === 1 && (
-                              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-accent">
+                              <span className="text-[10px] font-black uppercase tracking-[0.2em] bg-accent text-white px-3 py-1 rounded-full">
                                 {language === "en" ? "Most Popular" : "Le plus populaire"}
                               </span>
                             )}
                             {tier.isMonthly && (
-                              <span className="text-[10px] font-black uppercase tracking-[0.15em] bg-accent/10 text-accent px-2 py-0.5 rounded-full flex items-center gap-1">
+                              <span className="text-[10px] font-black uppercase tracking-[0.15em] bg-accent/10 text-accent px-3 py-1 rounded-full flex items-center gap-1">
                                 <RefreshCw size={10} /> {language === "en" ? "Monthly" : "Mensuel"}
                               </span>
                             )}
                           </div>
-                          <h5 className="text-lg font-extrabold text-primary mb-1">{tier.name}</h5>
-                          <div className="text-accent font-black text-xl mb-3">{tier.price}</div>
-                          <p className="text-xs text-muted-foreground leading-relaxed mb-4">{tier.subtitle}</p>
+                          <h5 className="text-lg font-extrabold text-primary mb-2">{tier.name}</h5>
+                          <div className="text-accent font-black text-2xl mb-3">{tier.price}</div>
+                          <p className="text-xs text-muted-foreground leading-relaxed mb-5">{tier.subtitle}</p>
                           <ul className="space-y-2 mb-6">
                             {tier.features.map((f: string, fi: number) => (
                               <li key={fi} className="flex items-start gap-2 text-sm text-primary">
@@ -1045,16 +1052,16 @@ export default function Services() {
                     </div>
                   </div>
 
-                  <div className="p-6 bg-primary rounded-2xl text-white">
-                    <h4 className="text-[10px] font-black uppercase tracking-[0.3em] mb-3 opacity-70">
+                  <div className="p-8 bg-gradient-to-r from-primary to-primary/90 rounded-3xl text-white">
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.3em] mb-4 text-accent">
                       {language === "en" ? "Ideal For" : "Idéal pour"}
                     </h4>
                     <p className="font-bold italic text-lg leading-relaxed">{selectedService.idealFor}</p>
                   </div>
 
-                  <div className="flex justify-center pt-4">
+                  <div className="flex justify-center pt-6">
                     <Button 
-                      className="rounded-full bg-accent text-white hover:bg-primary h-14 px-10 font-bold uppercase tracking-widest text-sm shadow-lg shadow-accent/20"
+                      className="rounded-full bg-accent text-white hover:bg-primary h-14 px-12 font-bold uppercase tracking-widest text-sm shadow-xl shadow-accent/20 transition-all duration-300 hover:scale-105"
                       onClick={() => {
                         window.location.href = `mailto:contact@performanceprocesses.com?subject=Inquiry: ${selectedService.title}`;
                         setSelectedService(null);
@@ -1070,23 +1077,27 @@ export default function Services() {
           </DialogContent>
         </Dialog>
 
-        <section className="bg-primary py-24 text-white">
-          <div className="container mx-auto px-4 md:px-8 flex flex-col lg:flex-row items-center justify-between gap-12">
-            <div className="max-w-2xl text-center lg:text-left">
-              <h2 className="text-3xl md:text-4xl font-heading font-extrabold mb-6 italic">
+        <section className="bg-gradient-to-br from-primary via-primary to-primary/90 py-32 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.05)_0%,transparent_60%)]" />
+          <div className="container mx-auto px-4 md:px-8 relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
+                {language === "en" ? "Get Started" : "Commencer"}
+              </p>
+              <h2 className="text-4xl md:text-5xl font-heading font-extrabold mb-8 leading-tight">
                 {language === "en" ? "Not sure where to start?" : "Vous ne savez pas par où commencer ?"}
               </h2>
-              <p className="text-lg text-primary-foreground/70 mb-8 leading-relaxed">
+              <p className="text-xl text-white/70 mb-12 leading-relaxed max-w-2xl mx-auto">
                 {language === "en" 
                   ? "Whether you're a professional looking to level up, a founder building systems, or a company ready for transformation — we'll help you find the right fit."
                   : "Que vous soyez un professionnel cherchant à évoluer, un fondateur construisant des systèmes ou une entreprise prête pour la transformation — nous vous aiderons à trouver la bonne solution."}
               </p>
+              <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
+                <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-14 text-lg font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:shadow-2xl hover:scale-105" data-testid="button-book-consultation-cta">
+                  {language === "en" ? "Book a free consultation" : "Réservez une consultation gratuite"}
+                </Button>
+              </a>
             </div>
-            <a href="https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled" target="_blank" rel="noopener noreferrer">
-              <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-12 text-lg font-bold uppercase tracking-widest transition-all" data-testid="button-book-consultation-cta">
-                {language === "en" ? "Book a free consultation" : "Réservez une consultation gratuite"}
-              </Button>
-            </a>
           </div>
         </section>
       </main>

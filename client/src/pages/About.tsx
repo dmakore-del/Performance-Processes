@@ -63,20 +63,20 @@ export default function About() {
   ];
 
   const industries = [
-    { icon: <Building2 size={22} />, name: "Corporate Organizations" },
-    { icon: <Heart size={22} />, name: "Nonprofit Institutions" },
-    { icon: <Rocket size={22} />, name: "Growth-Stage Companies" },
+    { icon: <Building2 size={22} />, name: "Enterprise Organizations" },
+    { icon: <Rocket size={22} />, name: "Small & Growing Businesses" },
+    { icon: <Briefcase size={22} />, name: "Professional Development" },
     { icon: <Globe size={22} />, name: "Government & Public Sector" },
-    { icon: <BarChart3 size={22} />, name: "Financial Services" },
+    { icon: <Heart size={22} />, name: "Nonprofit Institutions" },
     { icon: <GraduationCap size={22} />, name: "Healthcare & Education" },
   ];
 
   const credentials = [
     { label: "Psychology", detail: "Academic Training" },
     { label: "HR Management", detail: "Academic Training" },
-    { label: "Nonprofit Leadership", detail: "Sector Expertise" },
-    { label: "Financial Services", detail: "Sector Expertise" },
-    { label: "Mental Health Advocacy", detail: "Community Impact" },
+    { label: "Enterprise Advisory", detail: "Sector Expertise" },
+    { label: "Small Business Development", detail: "Sector Expertise" },
+    { label: "Professional Coaching", detail: "Service Area" },
   ];
 
   return (
@@ -94,13 +94,13 @@ export default function About() {
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-32 relative z-10">
             <div className="max-w-4xl">
               <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="text-hero-label">
-                About Performance Processes
+                Who We Are
               </p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-hero-title">
-                Helping organizations align <span className="text-accent">strategy, leadership,</span> and performance
+                Built by consultants who <span className="text-accent">understand your challenges</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-hero-subtitle">
-                We partner with leaders to build the systems, structures, and accountability that turn vision into measurable results.
+                Performance Processes was founded on a simple belief: organizations deserve consulting partners who stay until the work is done — not firms that hand over a report and walk away.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
@@ -169,24 +169,25 @@ export default function About() {
                 </p>
                 <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-[640px]">
                   <p>
-                    Danai Makore is a people-centered leader,
-                    strategist, and consultant whose work spans
-                    nonprofit leadership, financial services,
-                    and mental health advocacy.
+                    Danai Makore is a management consultant,
+                    strategist, and organizational leader whose
+                    work spans enterprise advisory, small business
+                    development, and professional coaching.
                   </p>
                   <p>
                     With academic training in Psychology and
                     Human Resource Management and a deep
                     commitment to equity, access, and sustainable
                     impact, Danai founded Performance Processes
-                    to help visionaries and organizations transform
-                    meaningful ideas into strong, lasting institutions.
+                    to help organizations of all sizes build the
+                    management systems that drive lasting performance.
                   </p>
                   <p>
                     Her approach blends human insight with
-                    practical systems — guiding clients from
-                    business formation and strategic development
-                    to performance management and long-term growth.
+                    practical management frameworks — guiding
+                    enterprises through operational transformation,
+                    helping small businesses build scalable systems,
+                    and coaching professionals toward career growth.
                   </p>
                 </div>
 
@@ -223,14 +224,16 @@ export default function About() {
                 Our Philosophy
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-primary mb-8 leading-tight">
-                Helping organizations build<br />
-                <span className="text-accent italic">performance-driven cultures</span>
+                Management consulting for<br />
+                <span className="text-accent italic">every stage of growth</span>
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-16">
-                We believe every organization has untapped potential.
-                Our mission is to unlock it — by aligning strategic
-                direction with measurable performance systems that
-                connect goals with execution.
+                Whether you're an enterprise seeking operational
+                transformation, a small business building scalable
+                systems, or a professional investing in your career —
+                we deliver the management frameworks, leadership
+                alignment, and accountability structures that produce
+                measurable results.
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 {[
@@ -257,10 +260,10 @@ export default function About() {
               <div className="flex-1">
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Our Mission</p>
                 <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-6 leading-tight">
-                  "To empower organizations to reach their full potential by aligning strategic direction with measurable performance systems."
+                  "To help enterprises scale, small businesses grow, and professionals lead — through structured management consulting that produces measurable outcomes."
                 </h2>
                 <p className="text-lg text-white/70 leading-relaxed">
-                  We support leaders in clarifying strategic direction, strengthening leadership capability, and optimizing performance systems that connect goals with execution.
+                  We deliver management consulting across three service pillars: enterprise business solutions, small business advisory, and professional development — each built on structured methodology and accountability.
                 </p>
               </div>
               <div className="shrink-0">
@@ -309,19 +312,20 @@ export default function About() {
                 <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-[600px]">
                   <p>
                     Sean Ogbonnaya leads strategic growth initiatives
-                    and builds lasting partnerships with organizations
-                    committed to operational excellence.
+                    and builds lasting partnerships with enterprises,
+                    small businesses, and professionals committed
+                    to management excellence.
                   </p>
                   <p>
                     With a strong background in relationship development
                     and strategic advisory, Sean specializes in identifying
-                    opportunities to help businesses streamline operations
-                    and improve performance outcomes.
+                    opportunities to help clients across all service tiers
+                    streamline operations and improve performance outcomes.
                   </p>
                   <p className="font-medium text-primary italic border-l-4 border-accent pl-6 py-2 bg-gradient-to-r from-[#F8FAFC] to-transparent rounded-r-lg">
-                    Passionate about helping organizations unlock
-                    their full potential through partnerships that
-                    create sustainable improvement.
+                    Passionate about connecting clients with the right
+                    management consulting solutions — from enterprise
+                    transformation to professional coaching.
                   </p>
                 </div>
 

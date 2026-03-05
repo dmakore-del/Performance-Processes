@@ -14,7 +14,6 @@ import {
   BookOpen,
   Calendar,
   Tag,
-  Zap,
   RefreshCw,
   Building2,
   Heart,
@@ -206,10 +205,6 @@ export default function Home() {
           </div>
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-4xl">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-accent text-xs font-bold uppercase tracking-widest mb-8 backdrop-blur-sm border border-white/10" data-testid="badge-hero-tag">
-                <Zap size={14} />
-                {language === "en" ? "Management Consulting" : "Conseil en gestion"}
-              </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-hero-title">
                 {language === "en" ? (
                   <>Improve Organizational Performance and <span className="text-accent">Strategic Alignment</span></>

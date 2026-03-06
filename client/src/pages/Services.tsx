@@ -386,6 +386,133 @@ export default function Services() {
               stripeProductName: "Website & Digital - Premium"
             }
           ]
+        },
+        {
+          title: language === "en" ? "Process Audit" : "Audit de processus",
+          investment: "$1,000 – $3,000",
+          desc: language === "en"
+            ? "A focused assessment of your current workflows and operations, identifying bottlenecks, inefficiencies, and automation opportunities with a clear improvement roadmap."
+            : "Une évaluation ciblée de vos flux de travail et opérations actuels, identifiant les goulots d'étranglement et les opportunités d'automatisation.",
+          benefits: language === "en"
+            ? ["Workflow mapping & analysis", "Bottleneck identification", "Automation opportunity assessment", "30–60 day improvement roadmap"]
+            : ["Cartographie et analyse des flux", "Identification des goulots", "Évaluation des opportunités d'automatisation", "Feuille de route de 30 à 60 jours"],
+          learnMore: language === "en"
+            ? "Not sure where to start? The Process Audit is a low-commitment first step that gives your organization immediate clarity on what is working, what is not, and where the biggest improvement opportunities lie.\n\nWe map your existing workflows, identify bottlenecks and redundancies, evaluate automation opportunities, and deliver a practical 30–60 day improvement roadmap you can act on immediately. Most audit clients convert into larger engagements because the findings create urgency and clarity."
+            : "Pas sûr de par où commencer ? L'audit de processus est une première étape accessible qui donne à votre organisation une clarté immédiate sur ce qui fonctionne et ce qui doit être amélioré.",
+          idealFor: language === "en" ? "Organizations experiencing operational friction, scaling challenges, or poor process visibility that want a quick, actionable assessment." : "Organisations confrontées à des frictions opérationnelles ou à des défis de mise à l'échelle.",
+          icon: <Search className="text-accent" />,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Essentials" : "Essentiel",
+              price: "$1,000",
+              subtitle: language === "en" ? "Focused audit of 1-2 core workflows with bottleneck analysis and recommendations." : "Audit ciblé de 1 à 2 flux de travail avec analyse et recommandations.",
+              features: language === "en"
+                ? ["1–2 core workflow mapping", "Bottleneck identification", "Quick-win recommendations", "Summary findings report", "30-day action plan"]
+                : ["Cartographie de 1-2 flux", "Identification des goulots", "Recommandations rapides", "Rapport de synthèse", "Plan d'action de 30 jours"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$2,000",
+              subtitle: language === "en" ? "Comprehensive audit across multiple workflows with stakeholder interviews and automation review." : "Audit complet avec entretiens et évaluation de l'automatisation.",
+              features: language === "en"
+                ? ["Everything in Essentials", "Full operational workflow audit", "Stakeholder interviews", "Automation opportunity assessment", "Prioritized improvement matrix", "60-day roadmap"]
+                : ["Tout dans Essentiel", "Audit complet des flux", "Entretiens parties prenantes", "Évaluation automatisation", "Matrice d'amélioration", "Feuille de route de 60 jours"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Comprehensive" : "Complet",
+              price: "$3,000",
+              subtitle: language === "en" ? "End-to-end process audit with detailed documentation, cost analysis, and implementation guidance." : "Audit complet avec documentation détaillée et analyse des coûts.",
+              features: language === "en"
+                ? ["Everything in Standard", "Cross-departmental process mapping", "Cost and efficiency analysis", "Technology stack review", "Detailed documentation package", "Implementation guidance session", "90-day transformation roadmap"]
+                : ["Tout dans Standard", "Cartographie inter-départementale", "Analyse des coûts et efficacité", "Revue technologique", "Documentation détaillée", "Session de guidance", "Feuille de route de 90 jours"],
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Operational Efficiency Workshop" : "Atelier d'efficacité opérationnelle",
+          investment: "$2,500 – $5,000",
+          desc: language === "en"
+            ? "A structured half-day or full-day workshop that brings your leadership team together to identify operational inefficiencies and align on a clear process improvement roadmap."
+            : "Un atelier structuré d'une demi-journée ou d'une journée complète pour identifier les inefficacités et aligner votre équipe sur un plan d'amélioration.",
+          benefits: language === "en"
+            ? ["Operational inefficiency diagnosis", "Leadership alignment on priorities", "Process improvement roadmap", "Team action planning"]
+            : ["Diagnostic des inefficacités", "Alignement du leadership", "Feuille de route d'amélioration", "Planification d'action d'équipe"],
+          learnMore: language === "en"
+            ? "Sometimes your team knows things are not working but cannot agree on what to fix first. The Operational Efficiency Workshop brings your leadership team into a structured session designed to surface operational friction, align on priorities, and leave with a concrete action plan.\n\nHalf-day workshops focus on diagnosing key inefficiencies and defining quick wins. Full-day workshops include deeper analysis, cross-functional alignment exercises, and a complete process improvement roadmap with ownership and timelines."
+            : "Parfois votre équipe sait que les choses ne fonctionnent pas mais ne peut pas s'entendre sur quoi corriger en premier. L'atelier apporte une approche structurée.",
+          idealFor: language === "en" ? "Leadership teams that need alignment on operational priorities, or organizations preparing for growth, restructuring, or process improvement initiatives." : "Équipes de direction qui ont besoin d'alignement sur les priorités opérationnelles.",
+          icon: <Users className="text-accent" />,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Half-Day" : "Demi-journée",
+              price: "$2,500",
+              subtitle: language === "en" ? "Focused 4-hour session on diagnosing inefficiencies and defining quick wins." : "Session ciblée de 4 heures pour diagnostiquer les inefficacités.",
+              features: language === "en"
+                ? ["4-hour facilitated workshop", "Current-state operational assessment", "Quick-win identification", "Priority alignment exercise", "Summary action plan", "Up to 8 participants"]
+                : ["Atelier facilité de 4 heures", "Évaluation opérationnelle", "Identification de gains rapides", "Exercice d'alignement", "Plan d'action de synthèse", "Jusqu'à 8 participants"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Full-Day" : "Journée complète",
+              price: "$5,000",
+              subtitle: language === "en" ? "Comprehensive 8-hour session with deep analysis, cross-functional alignment, and detailed roadmap." : "Session complète de 8 heures avec analyse approfondie et feuille de route détaillée.",
+              features: language === "en"
+                ? ["Everything in Half-Day", "8-hour comprehensive workshop", "Cross-functional alignment exercises", "Detailed process mapping", "Complete improvement roadmap", "Ownership and timeline assignments", "Up to 15 participants", "30-day follow-up session"]
+                : ["Tout dans Demi-journée", "Atelier complet de 8 heures", "Exercices d'alignement interfonctionnel", "Cartographie détaillée", "Feuille de route complète", "Assignation des responsabilités", "Jusqu'à 15 participants", "Session de suivi de 30 jours"],
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Fractional Process Consultant" : "Consultant en processus fractionné",
+          investment: "$3,000 – $10,000/mo",
+          investmentNote: language === "en" ? "(Monthly retainer, 3-month minimum)" : "(Mandat mensuel, minimum 3 mois)",
+          desc: language === "en"
+            ? "Embedded operational support on a monthly basis — including systems implementation, process design, and ongoing optimization without the cost of a full-time hire."
+            : "Un soutien opérationnel intégré sur une base mensuelle, incluant l'implantation de systèmes, la conception de processus et l'optimisation continue.",
+          benefits: language === "en"
+            ? ["Dedicated process consultant", "Systems implementation support", "Ongoing process optimization", "Operational performance reporting"]
+            : ["Consultant en processus dédié", "Implantation de systèmes", "Optimisation continue", "Rapports de performance"],
+          learnMore: language === "en"
+            ? "You need operational expertise but are not ready for a full-time hire. The Fractional Process Consultant model gives you a dedicated senior consultant who embeds into your team on a monthly basis to design, implement, and optimize your operational systems.\n\nThis is not advisory from a distance — your consultant works alongside your team to build real infrastructure: process documentation, systems implementation, performance tracking, and continuous improvement. Think of it as a hands-on operations partner who helps you build the systems your business needs to scale."
+            : "Vous avez besoin d'expertise opérationnelle mais n'êtes pas prêt pour un employé à temps plein. Le modèle fractionné vous donne un consultant senior dédié.",
+          idealFor: language === "en" ? "Growing companies that need hands-on operational support to build scalable systems, implement process improvements, and drive operational excellence." : "Entreprises en croissance qui ont besoin d'un soutien opérationnel pratique.",
+          icon: <Settings className="text-accent" />,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Core" : "Essentiel",
+              price: "$3,000/mo",
+              subtitle: language === "en" ? "Part-time process consultant with monthly systems work and optimization." : "Consultant à temps partiel avec travail mensuel sur les systèmes.",
+              features: language === "en"
+                ? ["Part-time consultant allocation", "Process documentation and mapping", "Monthly systems implementation", "Operational improvement tracking", "Monthly progress report", "Email and phone support"]
+                : ["Allocation consultant à temps partiel", "Documentation de processus", "Implantation mensuelle", "Suivi des améliorations", "Rapport mensuel", "Support par e-mail et téléphone"],
+              isMonthly: true,
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$6,000/mo",
+              subtitle: language === "en" ? "Dedicated consultant with weekly sessions, full systems build-out, and team training." : "Consultant dédié avec sessions hebdomadaires et formation d'équipe.",
+              features: language === "en"
+                ? ["Everything in Core", "Weekly strategy and operations sessions", "Full systems design and implementation", "Team training and onboarding", "SOP development", "Performance dashboards", "Bi-weekly progress reviews"]
+                : ["Tout dans Essentiel", "Sessions hebdomadaires", "Conception et implantation complète", "Formation d'équipe", "Développement de procédures", "Tableaux de bord", "Revues bimensuelles"],
+              isMonthly: true,
+              contactOnly: true
+            },
+            {
+              name: "Premium",
+              price: "$10,000/mo",
+              subtitle: language === "en" ? "Senior consultant with full operational integration, cross-department optimization, and executive reporting." : "Consultant senior avec intégration opérationnelle complète.",
+              features: language === "en"
+                ? ["Everything in Standard", "Senior consultant dedication", "Cross-department process optimization", "Automation implementation support", "Executive reporting and dashboards", "Change management guidance", "On-site availability", "Priority and on-demand support"]
+                : ["Tout dans Standard", "Consultant senior dédié", "Optimisation inter-départementale", "Automatisation", "Rapports exécutifs", "Gestion du changement", "Disponibilité sur site", "Support prioritaire"],
+              isMonthly: true,
+              contactOnly: true
+            }
+          ]
         }
       ]
     },

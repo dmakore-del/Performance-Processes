@@ -316,3 +316,38 @@ export const insertLeadSchema = createInsertSchema(leads).omit({
 
 export type InsertLead = z.infer<typeof insertLeadSchema>;
 export type Lead = typeof leads.$inferSelect;
+
+export const grantApplications = pgTable("grant_applications", {
+  id: serial("id").primaryKey(),
+  fullName: text("full_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  city: text("city").notNull(),
+  province: text("province").notNull(),
+  occupation: text("occupation").notNull(),
+  companyOrOrg: text("company_or_org"),
+  industry: text("industry").notNull(),
+  yearsExperience: text("years_experience").notNull(),
+  focusArea: text("focus_area").notNull(),
+  currentRole: text("current_role").notNull(),
+  teamSize: text("team_size"),
+  goals: text("goals").notNull(),
+  challenges: text("challenges").notNull(),
+  hopeToAchieve: text("hope_to_achieve").notNull(),
+  currentSystems: text("current_systems").notNull(),
+  previousCoaching: text("previous_coaching").notNull(),
+  commitment: text("commitment").notNull(),
+  howHeard: text("how_heard").notNull(),
+  additionalInfo: text("additional_info"),
+  status: text("status").notNull().default("new"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertGrantApplicationSchema = createInsertSchema(grantApplications).omit({
+  id: true,
+  status: true,
+  createdAt: true,
+});
+
+export type InsertGrantApplication = z.infer<typeof insertGrantApplicationSchema>;
+export type GrantApplication = typeof grantApplications.$inferSelect;

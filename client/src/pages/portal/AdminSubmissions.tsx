@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { PortalLayout } from "@/components/layout/PortalLayout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, Mail, Briefcase, Award, ExternalLink } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Search, Mail, Briefcase, Award, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 interface ContactSubmission {
   id: number;
@@ -29,6 +32,32 @@ interface JobApplication {
   createdAt: string;
 }
 
+interface GrantApplication {
+  id: number;
+  fullName: string;
+  email: string;
+  phone: string;
+  city: string;
+  province: string;
+  occupation: string;
+  companyOrOrg: string | null;
+  industry: string;
+  yearsExperience: string;
+  focusArea: string;
+  currentRole: string;
+  teamSize: string | null;
+  goals: string;
+  challenges: string;
+  hopeToAchieve: string;
+  currentSystems: string;
+  previousCoaching: string;
+  commitment: string;
+  howHeard: string;
+  additionalInfo: string | null;
+  status: string;
+  createdAt: string;
+}
+
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("en-CA", {
     year: "numeric",
@@ -39,10 +68,29 @@ function formatDate(dateStr: string) {
   });
 }
 
+const focusAreaLabels: Record<string, string> = {
+  leadership: "Leadership Development",
+  "business-growth": "Business Growth",
+  "career-advancement": "Career Advancement",
+  productivity: "Productivity & Focus",
+  "strategic-execution": "Strategic Goal Execution",
+};
+
+const statusColors: Record<string, string> = {
+  new: "default",
+  reviewing: "secondary",
+  shortlisted: "outline",
+  accepted: "default",
+  declined: "destructive",
+};
+
 export default function AdminSubmissions() {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
   const [contactSearch, setContactSearch] = useState("");
   const [appSearch, setAppSearch] = useState("");
   const [grantSearch, setGrantSearch] = useState("");
+  const [expandedGrant, setExpandedGrant] = useState<number | null>(null);
 
   const { data: contacts = [], isLoading: contactsLoading } = useQuery<ContactSubmission[]>({
     queryKey: ["/api/admin/contacts"],
@@ -52,9 +100,23 @@ export default function AdminSubmissions() {
     queryKey: ["/api/admin/applications"],
   });
 
-  const grantApplications = contacts.filter((c) =>
-    c.message.includes("[WOMEN'S PERFORMANCE GRANT APPLICATION]")
-  );
+  const { data: grantApps = [], isLoading: grantsLoading } = useQuery<GrantApplication[]>({
+    queryKey: ["/api/admin/grant-applications"],
+  });
+
+  const updateGrantStatus = useMutation({
+    mutationFn: async ({ id, status }: { id: number; status: string }) => {
+      const res = await apiRequest("PATCH", `/api/admin/grant-applications/${id}/status`, { status });
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/grant-applications"] });
+      toast({ title: "Status updated" });
+    },
+    onError: (error: Error) => {
+      toast({ title: "Failed to update status", description: error.message, variant: "destructive" });
+    },
+  });
 
   const regularContacts = contacts.filter(
     (c) => !c.message.includes("[WOMEN'S PERFORMANCE GRANT APPLICATION]")
@@ -74,11 +136,12 @@ export default function AdminSubmissions() {
       a.position.toLowerCase().includes(appSearch.toLowerCase())
   );
 
-  const filteredGrants = grantApplications.filter(
-    (c) =>
-      c.name.toLowerCase().includes(grantSearch.toLowerCase()) ||
-      c.email.toLowerCase().includes(grantSearch.toLowerCase()) ||
-      c.message.toLowerCase().includes(grantSearch.toLowerCase())
+  const filteredGrants = grantApps.filter(
+    (g) =>
+      g.fullName.toLowerCase().includes(grantSearch.toLowerCase()) ||
+      g.email.toLowerCase().includes(grantSearch.toLowerCase()) ||
+      g.occupation.toLowerCase().includes(grantSearch.toLowerCase()) ||
+      g.focusArea.toLowerCase().includes(grantSearch.toLowerCase())
   );
 
   return (
@@ -103,7 +166,7 @@ export default function AdminSubmissions() {
             </TabsTrigger>
             <TabsTrigger value="grants" className="flex items-center gap-2" data-testid="tab-grants">
               <Award size={16} />
-              Grants ({grantApplications.length})
+              Grants ({grantApps.length})
             </TabsTrigger>
           </TabsList>
 
@@ -241,53 +304,118 @@ export default function AdminSubmissions() {
                   />
                 </div>
               </div>
-              {contactsLoading ? (
+              {grantsLoading ? (
                 <div className="p-8 text-center text-muted-foreground">Loading...</div>
               ) : filteredGrants.length === 0 ? (
                 <div className="p-8 text-center text-muted-foreground">No grant applications found</div>
               ) : (
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm" data-testid="table-grants">
-                    <thead>
-                      <tr className="border-b border-border bg-secondary/50">
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Date</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Name</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Email</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Details</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredGrants.map((c) => {
-                        const occupationMatch = c.message.match(/Occupation\/Role:\s*(.+)/);
-                        const focusMatch = c.message.match(/Primary Focus Area:\s*(.+)/);
-                        return (
-                          <tr key={c.id} className="border-b border-border hover:bg-secondary/30 transition-colors" data-testid={`row-grant-${c.id}`}>
-                            <td className="px-4 py-3 whitespace-nowrap text-muted-foreground">{formatDate(c.createdAt)}</td>
-                            <td className="px-4 py-3 font-medium text-primary">{c.name}</td>
-                            <td className="px-4 py-3">
-                              <a href={`mailto:${c.email}`} className="text-accent hover:underline">{c.email}</a>
-                            </td>
-                            <td className="px-4 py-3">
-                              <div className="space-y-1">
-                                {occupationMatch && (
-                                  <p className="text-xs text-muted-foreground">Role: {occupationMatch[1]}</p>
-                                )}
-                                {focusMatch && (
-                                  <Badge variant="outline" className="text-xs">{focusMatch[1]}</Badge>
-                                )}
+                <div className="divide-y divide-border">
+                  {filteredGrants.map((g) => (
+                    <div key={g.id} data-testid={`row-grant-${g.id}`}>
+                      <div
+                        className="flex items-center gap-4 px-4 py-4 hover:bg-secondary/30 transition-colors cursor-pointer"
+                        onClick={() => setExpandedGrant(expandedGrant === g.id ? null : g.id)}
+                      >
+                        <div className="shrink-0">
+                          {expandedGrant === g.id ? <ChevronUp size={16} className="text-muted-foreground" /> : <ChevronDown size={16} className="text-muted-foreground" />}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-3 flex-wrap">
+                            <span className="font-medium text-primary">{g.fullName}</span>
+                            <a href={`mailto:${g.email}`} className="text-accent hover:underline text-sm" onClick={(e) => e.stopPropagation()}>{g.email}</a>
+                          </div>
+                          <div className="flex items-center gap-3 mt-1 flex-wrap">
+                            <span className="text-xs text-muted-foreground">{formatDate(g.createdAt)}</span>
+                            <Badge variant="outline" className="text-xs">{focusAreaLabels[g.focusArea] || g.focusArea}</Badge>
+                            <span className="text-xs text-muted-foreground">{g.occupation}</span>
+                          </div>
+                        </div>
+                        <div className="shrink-0" onClick={(e) => e.stopPropagation()}>
+                          <Select
+                            value={g.status}
+                            onValueChange={(status) => updateGrantStatus.mutate({ id: g.id, status })}
+                          >
+                            <SelectTrigger className="w-[130px] h-8 text-xs" data-testid={`select-grant-status-${g.id}`}>
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="new">New</SelectItem>
+                              <SelectItem value="reviewing">Reviewing</SelectItem>
+                              <SelectItem value="shortlisted">Shortlisted</SelectItem>
+                              <SelectItem value="accepted">Accepted</SelectItem>
+                              <SelectItem value="declined">Declined</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+
+                      {expandedGrant === g.id && (
+                        <div className="px-4 pb-6 pt-2 bg-secondary/20">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
+                            <div className="space-y-4">
+                              <div>
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Personal Information</h4>
+                                <div className="text-sm space-y-1">
+                                  <p><span className="font-medium">Phone:</span> {g.phone}</p>
+                                  <p><span className="font-medium">Location:</span> {g.city}, {g.province}</p>
+                                </div>
                               </div>
-                            </td>
-                            <td className="px-4 py-3">
-                              <Badge variant={c.read ? "secondary" : "default"}>
-                                {c.read ? "Reviewed" : "New"}
-                              </Badge>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+                              <div>
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Professional Background</h4>
+                                <div className="text-sm space-y-1">
+                                  <p><span className="font-medium">Occupation:</span> {g.occupation}</p>
+                                  {g.companyOrOrg && <p><span className="font-medium">Company:</span> {g.companyOrOrg}</p>}
+                                  <p><span className="font-medium">Industry:</span> {g.industry}</p>
+                                  <p><span className="font-medium">Experience:</span> {g.yearsExperience} years</p>
+                                  {g.teamSize && <p><span className="font-medium">Team Size:</span> {g.teamSize}</p>}
+                                </div>
+                              </div>
+                              <div>
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Current Role</h4>
+                                <p className="text-sm text-muted-foreground whitespace-pre-wrap">{g.currentRole}</p>
+                              </div>
+                              <div>
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">How They Heard About the Grant</h4>
+                                <p className="text-sm text-muted-foreground whitespace-pre-wrap">{g.howHeard}</p>
+                              </div>
+                            </div>
+                            <div className="space-y-4">
+                              <div>
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Goals</h4>
+                                <p className="text-sm text-muted-foreground whitespace-pre-wrap">{g.goals}</p>
+                              </div>
+                              <div>
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Challenges</h4>
+                                <p className="text-sm text-muted-foreground whitespace-pre-wrap">{g.challenges}</p>
+                              </div>
+                              <div>
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">What They Hope to Achieve</h4>
+                                <p className="text-sm text-muted-foreground whitespace-pre-wrap">{g.hopeToAchieve}</p>
+                              </div>
+                              <div>
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Current Performance Systems</h4>
+                                <p className="text-sm text-muted-foreground whitespace-pre-wrap">{g.currentSystems}</p>
+                              </div>
+                              <div>
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Previous Coaching Experience</h4>
+                                <p className="text-sm text-muted-foreground whitespace-pre-wrap">{g.previousCoaching}</p>
+                              </div>
+                              <div>
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Commitment & Availability</h4>
+                                <p className="text-sm text-muted-foreground whitespace-pre-wrap">{g.commitment}</p>
+                              </div>
+                              {g.additionalInfo && (
+                                <div>
+                                  <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Additional Information</h4>
+                                  <p className="text-sm text-muted-foreground whitespace-pre-wrap">{g.additionalInfo}</p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               )}
             </div>

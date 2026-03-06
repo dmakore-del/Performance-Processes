@@ -13,9 +13,11 @@ import {
   type Contract, type InsertContract,
   type PerformanceKpi, type InsertPerformanceKpi,
   type Lead, type InsertLead,
+  type GrantApplication, type InsertGrantApplication,
   users, contactSubmissions, jobApplications,
   engagements, milestones, documents, actionItems,
-  meetings, messages, resources, invoices, contracts, performanceKpis, leads
+  meetings, messages, resources, invoices, contracts, performanceKpis, leads,
+  grantApplications
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, asc, and, or } from "drizzle-orm";
@@ -86,6 +88,10 @@ export interface IStorage {
   createLead(data: InsertLead): Promise<Lead>;
   updateLead(id: number, data: Partial<InsertLead>): Promise<Lead>;
   deleteLead(id: number): Promise<void>;
+
+  createGrantApplication(data: InsertGrantApplication): Promise<GrantApplication>;
+  getGrantApplications(): Promise<GrantApplication[]>;
+  updateGrantApplicationStatus(id: number, status: string): Promise<GrantApplication>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -348,6 +354,21 @@ export class DatabaseStorage implements IStorage {
 
   async deleteLead(id: number): Promise<void> {
     await db.delete(leads).where(eq(leads.id, id));
+  }
+
+  async createGrantApplication(data: InsertGrantApplication): Promise<GrantApplication> {
+    const [app] = await db.insert(grantApplications).values(data).returning();
+    return app;
+  }
+
+  async getGrantApplications(): Promise<GrantApplication[]> {
+    return db.select().from(grantApplications).orderBy(desc(grantApplications.createdAt));
+  }
+
+  async updateGrantApplicationStatus(id: number, status: string): Promise<GrantApplication> {
+    const [app] = await db.update(grantApplications).set({ status }).where(eq(grantApplications.id, id)).returning();
+    if (!app) throw new Error("Grant application not found");
+    return app;
   }
 }
 

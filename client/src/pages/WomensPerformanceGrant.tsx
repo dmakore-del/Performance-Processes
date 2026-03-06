@@ -47,57 +47,7 @@ export default function WomensPerformanceGrant() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: typeof form) => {
-      const message = [
-        `[WOMEN'S PERFORMANCE GRANT APPLICATION]`,
-        ``,
-        `=== PERSONAL INFORMATION ===`,
-        `Full Name: ${data.fullName}`,
-        `Email: ${data.email}`,
-        `Phone: ${data.phone}`,
-        `City: ${data.city}`,
-        `Province/State: ${data.province}`,
-        ``,
-        `=== PROFESSIONAL BACKGROUND ===`,
-        `Occupation/Role: ${data.occupation}`,
-        `Current Role Description: ${data.currentRole}`,
-        `Company/Organization: ${data.companyOrOrg}`,
-        `Industry: ${data.industry}`,
-        `Years of Experience: ${data.yearsExperience}`,
-        `Team Size (if applicable): ${data.teamSize}`,
-        ``,
-        `=== GRANT FOCUS ===`,
-        `Primary Focus Area: ${data.focusArea}`,
-        ``,
-        `=== GOALS ===`,
-        data.goals,
-        ``,
-        `=== CURRENT CHALLENGES ===`,
-        data.challenges,
-        ``,
-        `=== WHAT THEY HOPE TO ACHIEVE ===`,
-        data.hopeToAchieve,
-        ``,
-        `=== CURRENT PERFORMANCE SYSTEMS ===`,
-        data.currentSystems,
-        ``,
-        `=== PREVIOUS COACHING/MENTORSHIP EXPERIENCE ===`,
-        data.previousCoaching,
-        ``,
-        `=== COMMITMENT & AVAILABILITY ===`,
-        data.commitment,
-        ``,
-        `=== HOW THEY HEARD ABOUT THE GRANT ===`,
-        data.howHeard,
-        ``,
-        `=== ADDITIONAL INFORMATION ===`,
-        data.additionalInfo || "(none provided)",
-      ].join("\n");
-
-      const res = await apiRequest("POST", "/api/contact", {
-        name: data.fullName,
-        email: data.email,
-        message,
-      });
+      const res = await apiRequest("POST", "/api/grant-applications", data);
       return res.json();
     },
     onSuccess: () => {

@@ -3,26 +3,30 @@ import { Footer } from "@/components/layout/Footer";
 import {
   ArrowRight,
   CheckCircle2,
-  TrendingUp,
-  Users,
-  Target,
-  Settings,
-  BarChart3,
-  Briefcase,
-  GraduationCap,
-  Rocket,
-  BookOpen,
   Calendar,
   Tag,
-  RefreshCw,
-  Building2,
-  Heart,
-  Shield,
-  Award,
   ChevronRight,
+  TrendingUp,
+  Target,
 } from "lucide-react";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
+
+import teamAlignmentImg from "@assets/stock_images/team_alignment.jpg";
+import actionPlanningImg from "@assets/stock_images/action_planning.jpg";
+import measurableProgressImg from "@assets/stock_images/measurable_progress.jpg";
+import lastingSystemsImg from "@assets/stock_images/lasting_systems.jpg";
+import enterpriseLeadershipImg from "@assets/stock_images/enterprise_leadership.jpg";
+import smallBusinessOwnerImg from "@assets/stock_images/small_business_owner.jpg";
+import professionalDevelopmentImg from "@assets/stock_images/professional_development.jpg";
+import assessmentPhaseImg from "@assets/stock_images/assessment_phase.jpg";
+import teamCollaborationImg from "@assets/stock_images/team_collaboration.jpg";
+import buildingSystemsImg from "@assets/stock_images/building_systems.jpg";
+import growthImprovementImg from "@assets/stock_images/growth_improvement.jpg";
+import executiveAdvisoryImg from "@assets/stock_images/executive_advisory.jpg";
+import businessCoachingImg from "@assets/stock_images/business_coaching.jpg";
+import personalCoachingImg from "@assets/stock_images/personal_coaching.jpg";
+import programsToolkitImg from "@assets/stock_images/programs_toolkit.jpg";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -31,28 +35,28 @@ export default function Home() {
 
   const outcomes = [
     {
-      icon: Target,
+      image: teamAlignmentImg,
       title: language === "en" ? "Get Your Team on the Same Page" : "Alignez votre équipe",
       desc: language === "en"
         ? "Stop miscommunication and misalignment. We help leadership teams get clear on direction so everyone pulls together."
         : "Arrêtez les malentendus et le désalignement. Nous aidons les équipes de direction à clarifier la direction.",
     },
     {
-      icon: BarChart3,
+      image: actionPlanningImg,
       title: language === "en" ? "Turn Plans Into Action" : "Transformez les plans en action",
       desc: language === "en"
         ? "Great plans mean nothing without execution. We build the accountability structures that make things happen."
         : "Les bons plans ne valent rien sans exécution. Nous construisons les structures de responsabilité qui font bouger les choses.",
     },
     {
-      icon: TrendingUp,
+      image: measurableProgressImg,
       title: language === "en" ? "See Measurable Progress" : "Voyez des progrès mesurables",
       desc: language === "en"
         ? "No guesswork. Track real performance improvements with clear KPIs and regular check-ins."
         : "Pas de devinettes. Suivez de vrais progrès avec des KPI clairs et des suivis réguliers.",
     },
     {
-      icon: RefreshCw,
+      image: lastingSystemsImg,
       title: language === "en" ? "Build Systems That Last" : "Construisez des systèmes durables",
       desc: language === "en"
         ? "We don't create dependency. You walk away with processes and tools your team can run on their own."
@@ -62,21 +66,21 @@ export default function Home() {
 
   const whoWeHelp = [
     {
-      icon: <Briefcase className="text-accent" size={32} />,
+      image: enterpriseLeadershipImg,
       title: language === "en" ? "Enterprise & Leadership Teams" : "Entreprises et équipes de direction",
       desc: language === "en"
         ? "Strategic planning, performance management, and governance for organizations ready to operate at a higher level."
         : "Planification stratégique, gestion de la performance et gouvernance pour les organisations prêtes à fonctionner à un niveau supérieur.",
     },
     {
-      icon: <Rocket className="text-accent" size={32} />,
+      image: smallBusinessOwnerImg,
       title: language === "en" ? "Small Business Owners & Founders" : "Propriétaires de PME et fondateurs",
       desc: language === "en"
         ? "Monthly strategy support, operational structure, and accountability systems to help you grow without the chaos."
         : "Soutien stratégique mensuel, structure opérationnelle et systèmes de responsabilité pour vous aider à grandir sans le chaos.",
     },
     {
-      icon: <GraduationCap className="text-accent" size={32} />,
+      image: professionalDevelopmentImg,
       title: language === "en" ? "Professionals & Entrepreneurs" : "Professionnels et entrepreneurs",
       desc: language === "en"
         ? "Coaching, 90-day programs, and practical toolkits to sharpen your focus and take your career to the next level."
@@ -88,7 +92,7 @@ export default function Home() {
     {
       step: "01",
       label: language === "en" ? "Assess" : "Évaluer",
-      icon: <Target size={28} />,
+      image: assessmentPhaseImg,
       title: language === "en" ? "Assess Where You Are" : "Évaluez votre situation",
       desc: language === "en"
         ? "We listen first. Through interviews, audits, and data review, we identify what is working, what is not, and where to focus."
@@ -97,7 +101,7 @@ export default function Home() {
     {
       step: "02",
       label: language === "en" ? "Align" : "Aligner",
-      icon: <Users size={28} />,
+      image: teamCollaborationImg,
       title: language === "en" ? "Align Your Team" : "Alignez votre équipe",
       desc: language === "en"
         ? "We bring your leadership together around shared priorities, clear goals, and a strategy everyone understands."
@@ -106,7 +110,7 @@ export default function Home() {
     {
       step: "03",
       label: language === "en" ? "Build" : "Construire",
-      icon: <Settings size={28} />,
+      image: buildingSystemsImg,
       title: language === "en" ? "Build the Systems" : "Construisez les systèmes",
       desc: language === "en"
         ? "We design and implement the processes, tools, and training your team needs to execute consistently."
@@ -115,7 +119,7 @@ export default function Home() {
     {
       step: "04",
       label: language === "en" ? "Grow" : "Croître",
-      icon: <BarChart3 size={28} />,
+      image: growthImprovementImg,
       title: language === "en" ? "Grow & Improve" : "Croître et s'améliorer",
       desc: language === "en"
         ? "We track what matters, refine what is not working, and help you build a culture of continuous improvement."
@@ -125,28 +129,28 @@ export default function Home() {
 
   const services = [
     {
-      icon: <Briefcase className="text-accent" />,
+      image: executiveAdvisoryImg,
       title: language === "en" ? "Executive Advisory" : "Conseil exécutif",
       desc: language === "en"
         ? "For leadership teams that need strategic planning, performance systems, and governance support."
         : "Pour les équipes de direction qui ont besoin de planification stratégique et de systèmes de performance.",
     },
     {
-      icon: <Rocket className="text-accent" />,
+      image: businessCoachingImg,
       title: language === "en" ? "Small Business Growth System" : "Système de croissance PME",
       desc: language === "en"
         ? "A dedicated strategy partner to help you prioritize, plan, and build structure as you grow."
         : "Un partenaire stratégique dédié pour vous aider à prioriser, planifier et structurer votre croissance.",
     },
     {
-      icon: <GraduationCap className="text-accent" />,
+      image: personalCoachingImg,
       title: language === "en" ? "Coaching & Development" : "Coaching et développement",
       desc: language === "en"
         ? "Personal performance coaching and structured programs for professionals ready to level up."
         : "Coaching de performance personnel et programmes structurés pour les professionnels prêts à progresser.",
     },
     {
-      icon: <BookOpen className="text-accent" />,
+      image: programsToolkitImg,
       title: language === "en" ? "Programs & Toolkits" : "Programmes et outils",
       desc: language === "en"
         ? "Self-paced 90-day programs, planners, and frameworks you can implement on your own."
@@ -155,12 +159,12 @@ export default function Home() {
   ];
 
   const industries = [
-    { icon: Building2, label: language === "en" ? "Corporate" : "Entreprises" },
-    { icon: Heart, label: language === "en" ? "Nonprofit" : "OBNL" },
-    { icon: Shield, label: language === "en" ? "Government" : "Gouvernement" },
-    { icon: Rocket, label: language === "en" ? "Startups & SMBs" : "Startups et PME" },
-    { icon: GraduationCap, label: language === "en" ? "Education" : "Éducation" },
-    { icon: Award, label: language === "en" ? "Professional Services" : "Services professionnels" },
+    { label: language === "en" ? "Corporate" : "Entreprises" },
+    { label: language === "en" ? "Nonprofit" : "OBNL" },
+    { label: language === "en" ? "Government" : "Gouvernement" },
+    { label: language === "en" ? "Startups & SMBs" : "Startups et PME" },
+    { label: language === "en" ? "Education" : "Éducation" },
+    { label: language === "en" ? "Professional Services" : "Services professionnels" },
   ];
 
   const insights = [
@@ -274,20 +278,17 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {outcomes.map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <div key={i} className="flex gap-6 p-8 bg-gradient-to-br from-[#F8FAFC] to-white rounded-3xl border border-border hover:shadow-xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 group" data-testid={`outcome-card-${i}`}>
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
-                      <Icon size={24} className="text-accent group-hover:text-white transition-colors" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-primary mb-2">{item.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
-                    </div>
+              {outcomes.map((item, i) => (
+                <div key={i} className="flex gap-6 p-8 bg-gradient-to-br from-[#F8FAFC] to-white rounded-3xl border border-border hover:shadow-xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 group" data-testid={`outcome-card-${i}`}>
+                  <div className="w-14 h-14 rounded-2xl overflow-hidden shrink-0 shadow-sm">
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
                   </div>
-                );
-              })}
+                  <div>
+                    <h3 className="text-lg font-bold text-primary mb-2">{item.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -310,12 +311,14 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               {whoWeHelp.map((item, i) => (
-                <div key={i} className="bg-gradient-to-br from-white via-white to-accent/5 rounded-3xl p-12 border border-border text-center hover:shadow-2xl hover:shadow-accent/5 transition-all duration-300 group" data-testid={`who-card-${i}`}>
-                  <div className="w-[72px] h-[72px] rounded-2xl bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center mx-auto mb-8 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
-                    <span className="group-hover:text-white transition-colors">{item.icon}</span>
+                <div key={i} className="bg-gradient-to-br from-white via-white to-accent/5 rounded-3xl border border-border text-center hover:shadow-2xl hover:shadow-accent/5 transition-all duration-300 group overflow-hidden" data-testid={`who-card-${i}`}>
+                  <div className="w-full aspect-[16/9] overflow-hidden">
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <h3 className="text-xl font-bold text-primary mb-4">{item.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+                  <div className="p-10">
+                    <h3 className="text-xl font-bold text-primary mb-4">{item.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -325,16 +328,12 @@ export default function Home() {
               <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-10">
                 {language === "en" ? "Industries We Serve" : "Industries que nous desservons"}
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-                {industries.map((ind, i) => {
-                  const Icon = ind.icon;
-                  return (
-                    <div key={i} className="flex items-center gap-2 text-primary/60" data-testid={`industry-${i}`}>
-                      <Icon size={16} />
-                      <span className="text-sm font-medium">{ind.label}</span>
-                    </div>
-                  );
-                })}
+              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+                {industries.map((ind, i) => (
+                  <div key={i} className="px-5 py-2.5 rounded-full bg-primary/5 border border-primary/10 text-primary/70" data-testid={`industry-${i}`}>
+                    <span className="text-sm font-semibold">{ind.label}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -378,15 +377,18 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 relative max-w-6xl mx-auto">
               {frameworkSteps.map((step, i) => (
                 <div key={i} className="relative" data-testid={`framework-step-${i}`}>
-                  <div className="bg-gradient-to-b from-[#F8FAFC] to-white rounded-3xl p-10 border border-border text-center hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 h-full flex flex-col items-center group mx-2">
-                    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-accent mb-4">
-                      {language === "en" ? "Phase" : "Phase"} {step.step}
+                  <div className="bg-gradient-to-b from-[#F8FAFC] to-white rounded-3xl border border-border text-center hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 h-full flex flex-col items-center group mx-2 overflow-hidden">
+                    <div className="w-full aspect-[16/10] overflow-hidden relative">
+                      <img src={step.image} alt={step.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                      <div className="absolute bottom-3 left-3 bg-accent text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full shadow-lg shadow-accent/30">
+                        {language === "en" ? "Phase" : "Phase"} {step.step}
+                      </div>
                     </div>
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center text-accent mb-5 group-hover:bg-accent group-hover:text-white group-hover:scale-110 transition-all duration-300">
-                      {step.icon}
+                    <div className="p-8">
+                      <h3 className="text-lg font-bold text-primary mb-3">{step.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
                     </div>
-                    <h3 className="text-lg font-bold text-primary mb-3">{step.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
                   </div>
                   {i < frameworkSteps.length - 1 && (
                     <div className="hidden lg:flex absolute top-1/2 -right-1 transform -translate-y-1/2 z-10">
@@ -428,14 +430,16 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {services.map((s, i) => (
                 <Link key={i} href="/services" className="block h-full" data-testid={`link-service-${i}`}>
-                  <div className="bg-gradient-to-b from-white to-[#FAFBFD] p-10 rounded-3xl border border-border hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 group cursor-pointer flex flex-col h-full min-h-[300px]" data-testid={`service-card-${i}`}>
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center mb-8 group-hover:bg-accent group-hover:text-white transition-all duration-300">
-                      {s.icon}
+                  <div className="bg-gradient-to-b from-white to-[#FAFBFD] rounded-3xl border border-border hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 group cursor-pointer flex flex-col h-full min-h-[300px] overflow-hidden" data-testid={`service-card-${i}`}>
+                    <div className="w-full aspect-[16/10] overflow-hidden">
+                      <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     </div>
-                    <h3 className="text-lg font-bold text-primary mb-4 group-hover:text-accent transition-colors">{s.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{s.desc}</p>
-                    <div className="mt-8 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
-                      {language === "en" ? "Learn more" : "En savoir plus"} <ArrowRight size={14} className="ml-2" />
+                    <div className="p-8 flex flex-col flex-grow">
+                      <h3 className="text-lg font-bold text-primary mb-4 group-hover:text-accent transition-colors">{s.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{s.desc}</p>
+                      <div className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
+                        {language === "en" ? "Learn more" : "En savoir plus"} <ArrowRight size={14} className="ml-2" />
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -463,32 +467,38 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
-              <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-white/5 text-center" data-testid="stat-alignment">
-                <div className="w-14 h-14 rounded-2xl bg-accent/20 flex items-center justify-center mx-auto mb-5">
-                  <Users size={24} className="text-accent" />
+              <div className="bg-white/10 backdrop-blur-sm rounded-3xl border border-white/5 text-center overflow-hidden" data-testid="stat-alignment">
+                <div className="w-full aspect-[16/9] overflow-hidden">
+                  <img src={teamCollaborationImg} alt="Team alignment" className="w-full h-full object-cover opacity-60" />
                 </div>
-                <p className="text-4xl font-extrabold text-white mb-2">100%</p>
-                <p className="text-white/60 text-sm">
-                  {language === "en" ? "Teams aligned on goals and priorities" : "Équipes alignées sur les objectifs et les priorités"}
-                </p>
+                <div className="p-8">
+                  <p className="text-4xl font-extrabold text-white mb-2">100%</p>
+                  <p className="text-white/60 text-sm">
+                    {language === "en" ? "Teams aligned on goals and priorities" : "Équipes alignées sur les objectifs et les priorités"}
+                  </p>
+                </div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-white/5 text-center" data-testid="stat-execution">
-                <div className="w-14 h-14 rounded-2xl bg-accent/20 flex items-center justify-center mx-auto mb-5">
-                  <Target size={24} className="text-accent" />
+              <div className="bg-white/10 backdrop-blur-sm rounded-3xl border border-white/5 text-center overflow-hidden" data-testid="stat-execution">
+                <div className="w-full aspect-[16/9] overflow-hidden">
+                  <img src={assessmentPhaseImg} alt="Structured approach" className="w-full h-full object-cover opacity-60" />
                 </div>
-                <p className="text-4xl font-extrabold text-white mb-2">4 Phases</p>
-                <p className="text-white/60 text-sm">
-                  {language === "en" ? "Structured path from diagnosis to results" : "Chemin structuré du diagnostic aux résultats"}
-                </p>
+                <div className="p-8">
+                  <p className="text-4xl font-extrabold text-white mb-2">4 Phases</p>
+                  <p className="text-white/60 text-sm">
+                    {language === "en" ? "Structured path from diagnosis to results" : "Chemin structuré du diagnostic aux résultats"}
+                  </p>
+                </div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-white/5 text-center" data-testid="stat-sustainable">
-                <div className="w-14 h-14 rounded-2xl bg-accent/20 flex items-center justify-center mx-auto mb-5">
-                  <TrendingUp size={24} className="text-accent" />
+              <div className="bg-white/10 backdrop-blur-sm rounded-3xl border border-white/5 text-center overflow-hidden" data-testid="stat-sustainable">
+                <div className="w-full aspect-[16/9] overflow-hidden">
+                  <img src={growthImprovementImg} alt="Lasting systems" className="w-full h-full object-cover opacity-60" />
                 </div>
-                <p className="text-4xl font-extrabold text-white mb-2">Lasting</p>
-                <p className="text-white/60 text-sm">
-                  {language === "en" ? "Systems your team can run without us" : "Des systèmes que votre équipe peut gérer sans nous"}
-                </p>
+                <div className="p-8">
+                  <p className="text-4xl font-extrabold text-white mb-2">Lasting</p>
+                  <p className="text-white/60 text-sm">
+                    {language === "en" ? "Systems your team can run without us" : "Des systèmes que votre équipe peut gérer sans nous"}
+                  </p>
+                </div>
               </div>
             </div>
 

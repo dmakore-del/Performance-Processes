@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, TrendingUp, Users, Target, Settings, BarChart3, Globe, CreditCard, Loader2, RefreshCw, ClipboardList, Search, Briefcase, Wrench, Rocket, BookOpen, UserCheck, Lightbulb, Calendar, Shield, Star, Zap, Package, GraduationCap, Heart, Sparkles, Award, ArrowDown, Phone } from "lucide-react";
+import { ArrowRight, CheckCircle2, Users, Target, Settings, BarChart3, CreditCard, Loader2, RefreshCw, Search, Briefcase, Rocket, UserCheck, Calendar, Package, Heart, ArrowDown, Phone } from "lucide-react";
 import { Link } from "wouter";
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -9,6 +9,21 @@ import { useLanguage } from "@/hooks/use-language";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import consultingAdvisoryImg from "@assets/stock_images/consulting_advisory.jpg";
+import strategicPlanningImg from "@assets/stock_images/strategic_planning.jpg";
+import systemsImplementationImg from "@assets/stock_images/systems_implementation.jpg";
+import executiveAdvisoryImg from "@assets/stock_images/executive_advisory.jpg";
+import businessRegistrationImg from "@assets/stock_images/business_registration.jpg";
+import websiteDevelopmentImg from "@assets/stock_images/website_development.jpg";
+import processAuditImg from "@assets/stock_images/process_audit.jpg";
+import workshopTrainingImg from "@assets/stock_images/workshop_training.jpg";
+import fractionalConsultantImg from "@assets/stock_images/fractional_consultant.jpg";
+import businessCoachingImg from "@assets/stock_images/business_coaching.jpg";
+import businessFoundationsImg from "@assets/stock_images/business_foundations.jpg";
+import personalCoachingImg from "@assets/stock_images/personal_coaching.jpg";
+import personalBrandImg from "@assets/stock_images/personal_brand.jpg";
+import performanceMgmtImg from "@assets/stock_images/performance_mgmt.jpg";
+import orgAssessmentImg from "@assets/stock_images/org_assessment.jpg";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -140,7 +155,7 @@ export default function Services() {
             ? "Before recommending any strategy or system, we invest time in understanding your organization's current state, challenges, and goals. The Discovery Phase is a structured intake process designed to align expectations, define scope, and build a clear roadmap.\n\nDiscovery fees can be credited toward your full engagement, so you never pay twice for this essential first step."
             : "Avant de recommander toute stratégie ou système, nous investissons du temps pour comprendre l'état actuel, les défis et les objectifs de votre organisation.",
           idealFor: language === "en" ? "Any organization beginning a new consulting engagement or exploring how we can help." : "Toute organisation commençant un nouvel engagement de conseil ou explorant comment nous pouvons aider.",
-          icon: <Search className="text-accent" />,
+          image: consultingAdvisoryImg,
           pricingTiers: [
             {
               name: language === "en" ? "Essentials" : "Essentiel",
@@ -176,7 +191,7 @@ export default function Services() {
             ? "Rather than selling hours, we sell outcomes. Our Strategic Engagement model is designed for organizations that need focused, time-bound support to address critical strategic challenges.\n\nThis model covers strategic planning, performance framework design, organizational alignment, and leadership development, all delivered within a structured 6–12 week timeline with clear milestones and deliverables."
             : "Plutôt que de vendre des heures, nous vendons des résultats.",
           idealFor: language === "en" ? "Organizations preparing for growth, restructuring, or transformation that need strategic clarity and alignment." : "Organisations se préparant à la croissance, à la restructuration ou à la transformation.",
-          icon: <TrendingUp className="text-accent" />,
+          image: strategicPlanningImg,
           pricingTiers: [
             {
               name: language === "en" ? "Foundation" : "Fondation",
@@ -220,7 +235,7 @@ export default function Services() {
             ? "Strategy without systems is just aspiration. Our Systems & Implementation engagements build the operational infrastructure your organization needs to execute consistently and scale effectively.\n\nWe design and implement full performance management systems, governance frameworks, and process architectures, turning strategic vision into measurable, repeatable operational excellence."
             : "La stratégie sans systèmes n'est qu'une aspiration.",
           idealFor: language === "en" ? "Organizations ready to build or overhaul their operational systems, governance structures, or performance infrastructure." : "Organisations prêtes à construire ou à refondre leurs systèmes opérationnels.",
-          icon: <Wrench className="text-accent" />,
+          image: systemsImplementationImg,
           pricingTiers: [
             {
               name: language === "en" ? "Foundation" : "Fondation",
@@ -265,7 +280,7 @@ export default function Services() {
             ? "Growth doesn't stop after a project ends. Our Executive Advisory Retainer provides dedicated, senior-level guidance on a monthly basis, including strategy sessions, performance oversight, ongoing advisory, and leadership coaching.\n\nThis model is designed for organizations that want a trusted strategic partner without the cost of a full-time executive hire."
             : "La croissance ne s'arrête pas à la fin d'un projet.",
           idealFor: language === "en" ? "Organizations seeking consistent access to senior strategic guidance, performance oversight, and leadership coaching." : "Organisations cherchant un accès constant à des conseils stratégiques de haut niveau.",
-          icon: <Briefcase className="text-accent" />,
+          image: executiveAdvisoryImg,
           pricingTiers: [
             {
               name: "Standard",
@@ -312,7 +327,7 @@ export default function Services() {
             ? "Starting a business involves more than just an idea, it requires proper legal structure, registration, and compliance. We guide you through the entire process, from choosing the right business structure to completing all government filings.\n\nOur team ensures your business is set up correctly from day one."
             : "Démarrer une entreprise implique plus qu'une simple idée.",
           idealFor: language === "en" ? "Entrepreneurs, startups, and organizations establishing a new legal entity or restructuring an existing one." : "Entrepreneurs, startups et organisations établissant une nouvelle entité juridique.",
-          icon: <ClipboardList className="text-accent" />,
+          image: businessRegistrationImg,
           pricingTiers: [
             {
               name: language === "en" ? "Starter" : "Démarrage",
@@ -356,7 +371,7 @@ export default function Services() {
             ? "Your website is often the first impression potential clients have of your business. We design and build professional, conversion-focused websites that communicate your value proposition clearly.\n\nOur digital presence packages include website design, SEO setup, content strategy, and analytics integration to help you attract and convert the right clients."
             : "Votre site Web est souvent la première impression. Nous concevons des sites professionnels axés sur la conversion.",
           idealFor: language === "en" ? "Businesses and professionals who need a professional web presence that converts visitors into clients." : "Entreprises et professionnels qui ont besoin d'une présence Web professionnelle.",
-          icon: <Globe className="text-accent" />,
+          image: websiteDevelopmentImg,
           pricingTiers: [
             {
               name: language === "en" ? "Essential" : "Essentiel",
@@ -400,7 +415,7 @@ export default function Services() {
             ? "Not sure where to start? The Process Audit is a low-commitment first step that gives your organization immediate clarity on what is working, what is not, and where the biggest improvement opportunities lie.\n\nWe map your existing workflows, identify bottlenecks and redundancies, evaluate automation opportunities, and deliver a practical 30–60 day improvement roadmap you can act on immediately. Most audit clients convert into larger engagements because the findings create urgency and clarity."
             : "Pas sûr de par où commencer ? L'audit de processus est une première étape accessible qui donne à votre organisation une clarté immédiate sur ce qui fonctionne et ce qui doit être amélioré.",
           idealFor: language === "en" ? "Organizations experiencing operational friction, scaling challenges, or poor process visibility that want a quick, actionable assessment." : "Organisations confrontées à des frictions opérationnelles ou à des défis de mise à l'échelle.",
-          icon: <Search className="text-accent" />,
+          image: processAuditImg,
           pricingTiers: [
             {
               name: language === "en" ? "Essentials" : "Essentiel",
@@ -444,7 +459,7 @@ export default function Services() {
             ? "Sometimes your team knows things are not working but cannot agree on what to fix first. The Operational Efficiency Workshop brings your leadership team into a structured session designed to surface operational friction, align on priorities, and leave with a concrete action plan.\n\nHalf-day workshops focus on diagnosing key inefficiencies and defining quick wins. Full-day workshops include deeper analysis, cross-functional alignment exercises, and a complete process improvement roadmap with ownership and timelines."
             : "Parfois votre équipe sait que les choses ne fonctionnent pas mais ne peut pas s'entendre sur quoi corriger en premier. L'atelier apporte une approche structurée.",
           idealFor: language === "en" ? "Leadership teams that need alignment on operational priorities, or organizations preparing for growth, restructuring, or process improvement initiatives." : "Équipes de direction qui ont besoin d'alignement sur les priorités opérationnelles.",
-          icon: <Users className="text-accent" />,
+          image: workshopTrainingImg,
           pricingTiers: [
             {
               name: language === "en" ? "Half-Day" : "Demi-journée",
@@ -480,7 +495,7 @@ export default function Services() {
             ? "You need operational expertise but are not ready for a full-time hire. The Fractional Process Consultant model gives you a dedicated senior consultant who embeds into your team on a monthly basis to design, implement, and optimize your operational systems.\n\nThis is not advisory from a distance — your consultant works alongside your team to build real infrastructure: process documentation, systems implementation, performance tracking, and continuous improvement. Think of it as a hands-on operations partner who helps you build the systems your business needs to scale."
             : "Vous avez besoin d'expertise opérationnelle mais n'êtes pas prêt pour un employé à temps plein. Le modèle fractionné vous donne un consultant senior dédié.",
           idealFor: language === "en" ? "Growing companies that need hands-on operational support to build scalable systems, implement process improvements, and drive operational excellence." : "Entreprises en croissance qui ont besoin d'un soutien opérationnel pratique.",
-          icon: <Settings className="text-accent" />,
+          image: fractionalConsultantImg,
           pricingTiers: [
             {
               name: language === "en" ? "Core" : "Essentiel",
@@ -535,7 +550,7 @@ export default function Services() {
             ? "Running a small business means wearing many hats. Our Small Business Growth System gives you a dedicated strategy partner who helps you prioritize, plan, and execute — so you stop spinning your wheels and start seeing real progress.\n\nThis monthly engagement includes strategic advising, operational process support, accountability systems, and regular check-ins to keep your business on track."
             : "Diriger une petite entreprise signifie porter plusieurs chapeaux. Notre système vous donne un partenaire stratégique dédié.",
           idealFor: language === "en" ? "Small business owners, founders, and entrepreneurs who want structured support to scale sustainably." : "Propriétaires de petites entreprises et fondateurs.",
-          icon: <Rocket className="text-accent" />,
+          image: businessCoachingImg,
           pricingTiers: [
             {
               name: language === "en" ? "Essentials" : "Essentiel",
@@ -582,7 +597,7 @@ export default function Services() {
             ? "Before you can scale, you need structure. Our Business Foundations Package helps you build the operational and organizational systems that most small businesses skip — until they become urgent.\n\nThis one-time engagement gives you a solid operational foundation: documented processes, clear roles, financial tracking, and accountability systems."
             : "Avant de pouvoir évoluer, vous avez besoin de structure.",
           idealFor: language === "en" ? "Early-stage businesses, startups, and entrepreneurs who need foundational business systems built properly from day one." : "Entreprises en démarrage et startups.",
-          icon: <Shield className="text-accent" />,
+          image: businessFoundationsImg,
           pricingTiers: [
             {
               name: language === "en" ? "Core" : "Essentiel",
@@ -626,7 +641,7 @@ export default function Services() {
             ? "As a small business owner, you know something is not working but you cannot pinpoint exactly where the time and money are going. The Process Audit gives you a clear picture of your current operations and a practical action plan to fix what is slowing you down.\n\nWe map your key workflows, identify where things break down, and give you a prioritized list of improvements you can start implementing right away. Many of our small business clients see immediate time savings after this engagement."
             : "En tant que propriétaire de petite entreprise, vous savez que quelque chose ne fonctionne pas. L'audit de processus vous donne une image claire et un plan d'action pratique.",
           idealFor: language === "en" ? "Small business owners who feel stuck in day-to-day chaos and want a clear picture of what to fix first." : "Propriétaires de PME qui veulent savoir quoi corriger en premier.",
-          icon: <Search className="text-accent" />,
+          image: processAuditImg,
           pricingTiers: [
             {
               name: language === "en" ? "Quick Scan" : "Analyse rapide",
@@ -670,7 +685,7 @@ export default function Services() {
             ? "When everyone on your team knows things need to change but nobody agrees on where to start, this workshop gets everyone on the same page. We facilitate a structured session that surfaces your biggest operational challenges, aligns your team on priorities, and produces a concrete action plan.\n\nThe half-day format is ideal for small teams who need focus and direction. The full-day format adds deeper process mapping and role clarity exercises for teams going through growth or transition."
             : "Quand tout le monde sait que les choses doivent changer mais personne ne s'entend sur par où commencer, cet atelier aligne votre équipe.",
           idealFor: language === "en" ? "Small business teams that need to get aligned on priorities and walk away with a clear action plan." : "Équipes de PME qui doivent s'aligner et repartir avec un plan concret.",
-          icon: <Users className="text-accent" />,
+          image: workshopTrainingImg,
           pricingTiers: [
             {
               name: language === "en" ? "Half-Day" : "Demi-journée",
@@ -705,7 +720,7 @@ export default function Services() {
             ? "Your website is the first thing potential clients see. If it does not look professional, you lose trust before the conversation even starts. We build clean, conversion-focused websites designed specifically for small businesses — no bloated features, no enterprise pricing.\n\nEvery package includes mobile-responsive design, basic SEO, and a contact form so you can start capturing leads from day one."
             : "Votre site Web est la première chose que voient vos clients potentiels. Nous construisons des sites professionnels conçus pour les petites entreprises.",
           idealFor: language === "en" ? "Small businesses, startups, and founders who need a professional web presence that builds trust and generates leads." : "PME, startups et fondateurs qui ont besoin d'un site professionnel.",
-          icon: <Globe className="text-accent" />,
+          image: websiteDevelopmentImg,
           pricingTiers: [
             {
               name: language === "en" ? "Starter" : "Démarrage",
@@ -756,7 +771,7 @@ export default function Services() {
             ? "Performance isn't just for organizations — it starts with you. Our Personal Performance Coaching helps ambitious professionals build the habits, systems, and accountability structures they need to consistently perform at their best.\n\nWhether you're a manager, entrepreneur, executive, or career professional — this coaching is designed to help you take control of your growth."
             : "La performance ne concerne pas que les organisations — elle commence par vous.",
           idealFor: language === "en" ? "Ambitious professionals, managers, entrepreneurs, and career-focused individuals who want structured personal performance coaching." : "Professionnels ambitieux et gestionnaires.",
-          icon: <UserCheck className="text-accent" />,
+          image: personalCoachingImg,
           pricingTiers: [
             {
               name: language === "en" ? "Essentials" : "Essentiel",
@@ -803,7 +818,7 @@ export default function Services() {
             ? "You are busy, but are you productive? The Personal Workflow Audit looks at how you actually spend your time, where tasks fall through the cracks, and what systems (or lack of systems) are holding you back.\n\nYou will walk away with a clear picture of your current workflow, practical recommendations tailored to your role, and a 30-day plan to start working more effectively. This is ideal as a standalone engagement or as a first step before coaching."
             : "Vous êtes occupé, mais êtes-vous productif ? L'audit examine comment vous passez votre temps et ce qui vous freine.",
           idealFor: language === "en" ? "Professionals, managers, and entrepreneurs who feel overwhelmed and want a clear system for managing their work." : "Professionnels et entrepreneurs qui se sentent débordés.",
-          icon: <Search className="text-accent" />,
+          image: processAuditImg,
           pricingTiers: [
             {
               name: language === "en" ? "Quick Scan" : "Analyse rapide",
@@ -847,7 +862,7 @@ export default function Services() {
             ? "Sometimes you need a reset. The Performance Workshop is a focused session designed for professionals who want to step back, get clear on their priorities, and build a plan they can actually follow through on.\n\nThe half-day format covers goal setting, performance diagnosis, and action planning. The full-day format adds deeper work on habits, systems, and accountability structures for lasting change."
             : "Parfois vous avez besoin d'un recul. L'atelier de performance est une session ciblée pour les professionnels qui veulent clarifier leurs priorités.",
           idealFor: language === "en" ? "Professionals at a crossroads, preparing for a career transition, or wanting to build better personal performance habits." : "Professionnels en transition ou cherchant à améliorer leurs habitudes de performance.",
-          icon: <Users className="text-accent" />,
+          image: workshopTrainingImg,
           pricingTiers: [
             {
               name: language === "en" ? "Half-Day" : "Demi-journée",
@@ -882,7 +897,7 @@ export default function Services() {
             ? "Whether you are a consultant, coach, freelancer, or professional building a personal brand, your website is your digital business card. We build clean, professional personal websites that position you as an expert and make it easy for opportunities to find you.\n\nEvery package includes mobile-responsive design, a portfolio or services section, and contact integration so people can reach you easily."
             : "Que vous soyez consultant, coach ou professionnel, votre site Web est votre carte de visite numérique. Nous construisons des sites personnels professionnels.",
           idealFor: language === "en" ? "Consultants, coaches, freelancers, and professionals who want a personal website that builds their brand and attracts clients." : "Consultants, coaches et professionnels indépendants.",
-          icon: <Globe className="text-accent" />,
+          image: personalBrandImg,
           pricingTiers: [
             {
               name: language === "en" ? "Essential" : "Essentiel",
@@ -933,7 +948,7 @@ export default function Services() {
             ? "The Performance Planner is your personal roadmap to consistent results. It includes a yearly planning framework, weekly review templates, and a built-in KPI tracker that helps you stay focused on what matters most.\n\nDesigned for individuals and small teams who want structure without the cost of a consultant."
             : "Le planificateur de performance est votre feuille de route personnelle vers des résultats cohérents.",
           idealFor: language === "en" ? "Individuals and small teams who want a structured planning system they can use independently." : "Individus et petites équipes.",
-          icon: <BookOpen className="text-accent" />,
+          image: performanceMgmtImg,
           pricingTiers: [
             {
               name: language === "en" ? "Digital" : "Numérique",
@@ -968,7 +983,7 @@ export default function Services() {
             ? "The 90-Day Performance Program is a self-guided transformation system designed to help you go from scattered to structured in just three months.\n\nYou'll get a proven strategy framework, a week-by-week execution plan, and a built-in accountability system that keeps you moving forward."
             : "Le programme de performance de 90 jours est un système de transformation auto-guidé.",
           idealFor: language === "en" ? "Professionals and entrepreneurs who want a structured transformation program they can follow at their own pace." : "Professionnels et entrepreneurs.",
-          icon: <Zap className="text-accent" />,
+          image: consultingAdvisoryImg,
           pricingTiers: [
             {
               name: language === "en" ? "Self-Guided" : "Auto-guidé",
@@ -1003,7 +1018,7 @@ export default function Services() {
             ? "Don't start from scratch. Our Performance Systems Toolkit gives you everything you need to build high-performing habits, manage your team, and execute your strategy.\n\nIncludes templates for KPI tracking, weekly planning, team accountability, strategy execution, meeting agendas, and more."
             : "Ne partez pas de zéro. Notre boîte à outils vous donne tout ce dont vous avez besoin.",
           idealFor: language === "en" ? "Managers, team leads, and business owners who want practical tools without consulting engagement." : "Gestionnaires et chefs d'équipe.",
-          icon: <Package className="text-accent" />,
+          image: orgAssessmentImg,
           pricingTiers: [
             {
               name: language === "en" ? "Starter Kit" : "Kit de démarrage",
@@ -1239,8 +1254,8 @@ export default function Services() {
                 >
                   <div className="p-8 pb-0 flex-1">
                     <div className="flex items-start justify-between mb-6">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center group-hover:from-accent group-hover:to-accent group-hover:text-white transition-all duration-300 shadow-sm shrink-0">
-                        {s.icon}
+                      <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-sm shrink-0">
+                        <img src={s.image} alt={s.title} className="w-full h-full object-cover" />
                       </div>
                       <div className="inline-flex items-center bg-accent/5 border border-accent/10 rounded-full px-4 py-1.5 text-accent font-bold text-sm">
                         {s.investment}

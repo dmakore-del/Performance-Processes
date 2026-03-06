@@ -12,18 +12,8 @@ import {
   ArrowDown,
   CheckCircle2,
   Clock,
-  BarChart3,
-  Users,
-  Scale,
-  Compass,
-  Network,
-  RefreshCw,
-  ChevronRight,
   ChevronDown,
   ClipboardList,
-  PieChart,
-  Workflow,
-  UserCheck,
   Calendar,
 } from "lucide-react";
 import {
@@ -35,6 +25,14 @@ import {
 
 import consultingImg from "@assets/stock_images/consulting.jpg";
 import strategyImg from "@assets/stock_images/strategy.jpg";
+import balancedScorecardImg from "@assets/stock_images/balanced_scorecard.jpg";
+import swotAnalysisImg from "@assets/stock_images/swot_analysis.jpg";
+import kpiFrameworksImg from "@assets/stock_images/kpi_frameworks.jpg";
+import processMappingImg from "@assets/stock_images/process_mapping.jpg";
+import stakeholderAnalysisImg from "@assets/stock_images/stakeholder_analysis.jpg";
+import changeManagementImg from "@assets/stock_images/change_management.jpg";
+import performanceDashboardsImg from "@assets/stock_images/performance_dashboards.jpg";
+import leadershipCompetencyImg from "@assets/stock_images/leadership_competency.jpg";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -179,42 +177,42 @@ export default function Approach() {
 
   const toolsAndFrameworks = [
     {
-      icon: Scale,
+      image: balancedScorecardImg,
       title: "Balanced Scorecard",
       desc: "Translate strategy into measurable objectives across financial, customer, process, and learning perspectives for holistic performance tracking.",
     },
     {
-      icon: Compass,
+      image: swotAnalysisImg,
       title: "SWOT Analysis",
       desc: "Systematically evaluate organizational strengths, weaknesses, opportunities, and threats to inform strategic decision-making.",
     },
     {
-      icon: BarChart3,
+      image: kpiFrameworksImg,
       title: "KPI Frameworks",
       desc: "Design and implement Key Performance Indicator systems that align individual and team performance with strategic objectives.",
     },
     {
-      icon: Workflow,
+      image: processMappingImg,
       title: "Process Mapping",
       desc: "Visualize and optimize organizational workflows to eliminate inefficiencies, reduce waste, and improve service delivery.",
     },
     {
-      icon: Network,
+      image: stakeholderAnalysisImg,
       title: "Stakeholder Analysis",
       desc: "Identify, prioritize, and engage key stakeholders to build support for change initiatives and ensure inclusive decision-making.",
     },
     {
-      icon: RefreshCw,
+      image: changeManagementImg,
       title: "Change Management Models",
       desc: "Apply proven change frameworks to guide organizations through transitions, minimize resistance, and accelerate adoption of new practices.",
     },
     {
-      icon: PieChart,
+      image: performanceDashboardsImg,
       title: "Performance Dashboards",
       desc: "Create visual, real-time performance monitoring tools that give leadership instant insight into organizational health and progress.",
     },
     {
-      icon: UserCheck,
+      image: leadershipCompetencyImg,
       title: "Leadership Competency Models",
       desc: "Define and develop the leadership capabilities needed to drive organizational performance and build a strong leadership pipeline.",
     },
@@ -456,18 +454,19 @@ export default function Approach() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {toolsAndFrameworks.map((tool, i) => {
-                const Icon = tool.icon;
                 return (
                   <div
                     key={i}
-                    className="bg-gradient-to-br from-[#f0f4f8] to-white rounded-3xl p-8 border border-gray-100/60 hover:shadow-xl hover:border-accent/20 transition-all duration-300 group hover:-translate-y-1"
+                    className="bg-gradient-to-br from-[#f0f4f8] to-white rounded-3xl border border-gray-100/60 hover:shadow-xl hover:border-accent/20 transition-all duration-300 group hover:-translate-y-1 overflow-hidden"
                     data-testid={`card-tool-${i}`}
                   >
-                    <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-accent/5 rounded-2xl flex items-center justify-center mb-6 group-hover:from-accent/15 group-hover:to-accent/10 transition-all duration-300">
-                      <Icon className="w-7 h-7 text-primary group-hover:text-accent transition-colors duration-300" />
+                    <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden">
+                      <img src={tool.image} alt={tool.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                     </div>
-                    <h3 className="text-xl font-bold text-primary mb-3">{tool.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">{tool.desc}</p>
+                    <div className="p-8 pt-5">
+                      <h3 className="text-xl font-bold text-primary mb-3">{tool.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed text-sm">{tool.desc}</p>
+                    </div>
                   </div>
                 );
               })}

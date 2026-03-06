@@ -152,6 +152,24 @@ const categoryIcons: Record<string, React.ReactNode> = {
   Culture: <TrendingUp size={14} />,
 };
 
+const categoryGradients: Record<string, string> = {
+  Strategy: "from-blue-600/20 via-blue-500/10 to-indigo-600/15",
+  Leadership: "from-amber-500/20 via-orange-400/10 to-amber-600/15",
+  Governance: "from-emerald-600/20 via-teal-500/10 to-emerald-600/15",
+  Execution: "from-violet-600/20 via-purple-500/10 to-violet-600/15",
+  Digital: "from-cyan-500/20 via-sky-400/10 to-cyan-600/15",
+  Culture: "from-rose-500/20 via-pink-400/10 to-rose-600/15",
+};
+
+const categoryLargeIcons: Record<string, React.ReactNode> = {
+  Strategy: <Target size={40} />,
+  Leadership: <Users size={40} />,
+  Governance: <Shield size={40} />,
+  Execution: <BarChart3 size={40} />,
+  Digital: <Lightbulb size={40} />,
+  Culture: <TrendingUp size={40} />,
+};
+
 export default function Insights() {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
   const [email, setEmail] = useState("");
@@ -281,13 +299,12 @@ export default function Insights() {
                         />
                       </div>
                     ) : (
-                      <div className="aspect-[16/9] bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10 flex items-center justify-center">
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/10 to-accent/20 flex items-center justify-center">
-                          {categoryIcons[insight.cat] ? (
-                            <span className="text-accent scale-[2]">{categoryIcons[insight.cat]}</span>
-                          ) : (
-                            <BookOpen size={28} className="text-accent" />
-                          )}
+                      <div className={`aspect-[16/9] bg-gradient-to-br ${categoryGradients[insight.cat] || "from-primary/5 via-accent/5 to-primary/10"} flex items-center justify-center relative overflow-hidden`}>
+                        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)", backgroundSize: "24px 24px" }} />
+                        <div className="w-20 h-20 rounded-3xl bg-white/60 backdrop-blur-sm flex items-center justify-center shadow-lg border border-white/40 group-hover:scale-110 transition-transform duration-500">
+                          <span className="text-primary/60 group-hover:text-accent transition-colors duration-300">
+                            {categoryLargeIcons[insight.cat] || <BookOpen size={40} className="text-accent" />}
+                          </span>
                         </div>
                       </div>
                     )}
@@ -395,13 +412,12 @@ export default function Insights() {
                 <img src={openInsight.image} alt={openInsight.title} className="w-full h-full object-cover" />
               </div>
             ) : (
-              <div className="w-full aspect-[16/6] bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10 flex items-center justify-center">
-                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/10 to-accent/20 flex items-center justify-center">
-                  {categoryIcons[openInsight.cat] ? (
-                    <span className="text-accent scale-[3]">{categoryIcons[openInsight.cat]}</span>
-                  ) : (
-                    <BookOpen size={36} className="text-accent" />
-                  )}
+              <div className={`w-full aspect-[16/6] bg-gradient-to-br ${categoryGradients[openInsight.cat] || "from-primary/5 via-accent/5 to-primary/10"} flex items-center justify-center relative overflow-hidden`}>
+                <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)", backgroundSize: "24px 24px" }} />
+                <div className="w-24 h-24 rounded-3xl bg-white/60 backdrop-blur-sm flex items-center justify-center shadow-xl border border-white/40">
+                  <span className="text-primary/50">
+                    {categoryLargeIcons[openInsight.cat] || <BookOpen size={40} className="text-accent" />}
+                  </span>
                 </div>
               </div>
             )}

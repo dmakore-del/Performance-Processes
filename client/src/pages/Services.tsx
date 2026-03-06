@@ -612,6 +612,129 @@ export default function Services() {
               contactOnly: true
             }
           ]
+        },
+        {
+          title: language === "en" ? "Process Audit" : "Audit de processus",
+          investment: "$500 – $1,500",
+          desc: language === "en"
+            ? "A focused review of your business workflows to identify bottlenecks, wasted effort, and quick wins that can immediately improve how your business runs."
+            : "Une revue ciblée de vos flux de travail pour identifier les goulots d'étranglement et les gains rapides.",
+          benefits: language === "en"
+            ? ["Core workflow mapping", "Bottleneck identification", "Quick-win recommendations", "30-day action plan"]
+            : ["Cartographie des flux clés", "Identification des goulots", "Recommandations rapides", "Plan d'action de 30 jours"],
+          learnMore: language === "en"
+            ? "As a small business owner, you know something is not working but you cannot pinpoint exactly where the time and money are going. The Process Audit gives you a clear picture of your current operations and a practical action plan to fix what is slowing you down.\n\nWe map your key workflows, identify where things break down, and give you a prioritized list of improvements you can start implementing right away. Many of our small business clients see immediate time savings after this engagement."
+            : "En tant que propriétaire de petite entreprise, vous savez que quelque chose ne fonctionne pas. L'audit de processus vous donne une image claire et un plan d'action pratique.",
+          idealFor: language === "en" ? "Small business owners who feel stuck in day-to-day chaos and want a clear picture of what to fix first." : "Propriétaires de PME qui veulent savoir quoi corriger en premier.",
+          icon: <Search className="text-accent" />,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Quick Scan" : "Analyse rapide",
+              price: "$500",
+              subtitle: language === "en" ? "Focused review of your top 1-2 pain points with actionable recommendations." : "Revue ciblée de vos 1-2 problèmes principaux avec recommandations.",
+              features: language === "en"
+                ? ["1–2 workflow review", "Pain point analysis", "Quick-win recommendations", "Summary report", "30-minute debrief call"]
+                : ["Revue de 1-2 flux", "Analyse des problèmes", "Recommandations rapides", "Rapport de synthèse", "Appel de débriefing de 30 minutes"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$1,000",
+              subtitle: language === "en" ? "Full workflow audit across your core business operations." : "Audit complet de vos opérations principales.",
+              features: language === "en"
+                ? ["Everything in Quick Scan", "Full operational workflow audit", "Team input and feedback", "Prioritized improvement plan", "30-day action roadmap"]
+                : ["Tout dans Analyse rapide", "Audit complet des opérations", "Retour d'équipe", "Plan d'amélioration priorisé", "Feuille de route de 30 jours"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Comprehensive" : "Complet",
+              price: "$1,500",
+              subtitle: language === "en" ? "Deep-dive audit with documentation, cost analysis, and implementation guidance." : "Audit approfondi avec documentation et analyse des coûts.",
+              features: language === "en"
+                ? ["Everything in Standard", "Process documentation", "Cost and time analysis", "Technology and tools review", "Implementation guidance session", "60-day follow-up check-in"]
+                : ["Tout dans Standard", "Documentation des processus", "Analyse des coûts et du temps", "Revue des outils", "Session de guidance", "Suivi de 60 jours"],
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Operational Efficiency Workshop" : "Atelier d'efficacité opérationnelle",
+          investment: "$1,500 – $3,000",
+          desc: language === "en"
+            ? "A hands-on working session for you and your team to diagnose what is slowing your business down and leave with a clear plan to fix it."
+            : "Une session de travail pratique pour diagnostiquer ce qui ralentit votre entreprise et repartir avec un plan clair.",
+          benefits: language === "en"
+            ? ["Team alignment on priorities", "Operational bottleneck diagnosis", "Clear improvement roadmap", "Actionable next steps"]
+            : ["Alignement de l'équipe", "Diagnostic des goulots", "Feuille de route claire", "Prochaines étapes concrètes"],
+          learnMore: language === "en"
+            ? "When everyone on your team knows things need to change but nobody agrees on where to start, this workshop gets everyone on the same page. We facilitate a structured session that surfaces your biggest operational challenges, aligns your team on priorities, and produces a concrete action plan.\n\nThe half-day format is ideal for small teams who need focus and direction. The full-day format adds deeper process mapping and role clarity exercises for teams going through growth or transition."
+            : "Quand tout le monde sait que les choses doivent changer mais personne ne s'entend sur par où commencer, cet atelier aligne votre équipe.",
+          idealFor: language === "en" ? "Small business teams that need to get aligned on priorities and walk away with a clear action plan." : "Équipes de PME qui doivent s'aligner et repartir avec un plan concret.",
+          icon: <Users className="text-accent" />,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Half-Day" : "Demi-journée",
+              price: "$1,500",
+              subtitle: language === "en" ? "Focused 3-hour session to diagnose issues and define priorities." : "Session ciblée de 3 heures pour diagnostiquer et prioriser.",
+              features: language === "en"
+                ? ["3-hour facilitated session", "Operational pain point mapping", "Priority alignment exercise", "Action plan with next steps", "Up to 6 participants"]
+                : ["Session facilitée de 3 heures", "Cartographie des problèmes", "Exercice d'alignement", "Plan d'action", "Jusqu'à 6 participants"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Full-Day" : "Journée complète",
+              price: "$3,000",
+              subtitle: language === "en" ? "Comprehensive working session with process mapping, role clarity, and detailed roadmap." : "Session de travail complète avec cartographie et feuille de route.",
+              features: language === "en"
+                ? ["Everything in Half-Day", "6-hour comprehensive session", "Process mapping exercises", "Role clarity and accountability design", "Detailed improvement roadmap", "Ownership assignments", "Up to 10 participants", "30-day follow-up call"]
+                : ["Tout dans Demi-journée", "Session complète de 6 heures", "Exercices de cartographie", "Clarté des rôles", "Feuille de route détaillée", "Assignation des responsabilités", "Jusqu'à 10 participants", "Appel de suivi de 30 jours"],
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Website & Digital Presence" : "Site Web et présence numérique",
+          investment: "$1,500 – $5,000",
+          desc: language === "en"
+            ? "A professional website that makes your business look credible and helps you attract the right clients, without the enterprise price tag."
+            : "Un site Web professionnel qui donne de la crédibilité à votre entreprise à un prix accessible.",
+          benefits: language === "en"
+            ? ["Professional website design", "Mobile-friendly & fast", "SEO basics included", "Contact and lead capture"]
+            : ["Conception professionnelle", "Mobile et rapide", "SEO de base inclus", "Capture de contacts"],
+          learnMore: language === "en"
+            ? "Your website is the first thing potential clients see. If it does not look professional, you lose trust before the conversation even starts. We build clean, conversion-focused websites designed specifically for small businesses — no bloated features, no enterprise pricing.\n\nEvery package includes mobile-responsive design, basic SEO, and a contact form so you can start capturing leads from day one."
+            : "Votre site Web est la première chose que voient vos clients potentiels. Nous construisons des sites professionnels conçus pour les petites entreprises.",
+          idealFor: language === "en" ? "Small businesses, startups, and founders who need a professional web presence that builds trust and generates leads." : "PME, startups et fondateurs qui ont besoin d'un site professionnel.",
+          icon: <Globe className="text-accent" />,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Starter" : "Démarrage",
+              price: "$1,500",
+              subtitle: language === "en" ? "Clean single-page website with contact form and mobile-friendly design." : "Site Web à page unique avec formulaire de contact.",
+              features: language === "en"
+                ? ["Single-page website", "Mobile responsive design", "Contact form", "Basic SEO setup", "Google Analytics", "1 round of revisions"]
+                : ["Site à page unique", "Design responsive", "Formulaire de contact", "SEO de base", "Google Analytics", "1 révision"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$3,000",
+              subtitle: language === "en" ? "Multi-page website with content strategy and lead capture." : "Site multi-pages avec stratégie de contenu.",
+              features: language === "en"
+                ? ["Everything in Starter", "Up to 5 custom pages", "Content strategy guidance", "Lead capture integration", "Social media links", "2 rounds of revisions"]
+                : ["Tout dans Démarrage", "Jusqu'à 5 pages", "Stratégie de contenu", "Capture de prospects", "Réseaux sociaux", "2 révisions"],
+              contactOnly: true
+            },
+            {
+              name: "Premium",
+              price: "$5,000",
+              subtitle: language === "en" ? "Full digital presence with brand identity, content, and ongoing support." : "Présence numérique complète avec identité de marque et support.",
+              features: language === "en"
+                ? ["Everything in Standard", "Brand identity basics", "Blog or news section", "Email newsletter integration", "Conversion optimization", "3 months post-launch support"]
+                : ["Tout dans Standard", "Identité de marque", "Section blog", "Newsletter par e-mail", "Optimisation de conversion", "3 mois de support"],
+              contactOnly: true
+            }
+          ]
         }
       ]
     },
@@ -663,6 +786,129 @@ export default function Services() {
                 ? ["Everything in Standard", "Weekly coaching sessions", "Complete personal performance system", "Leadership development focus", "Career strategy planning", "Personal KPI dashboard", "On-demand messaging support", "Quarterly strategic review"]
                 : ["Tout dans Standard", "Sessions hebdomadaires", "Système de performance personnelle complet", "Développement du leadership", "Planification de carrière", "Tableau de bord KPI personnel", "Support messagerie", "Revue stratégique trimestrielle"],
               isMonthly: true,
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Personal Workflow Audit" : "Audit de flux de travail personnel",
+          investment: "$250 – $750",
+          desc: language === "en"
+            ? "A focused review of how you manage your time, tasks, and priorities, with a personalized system designed to help you work smarter."
+            : "Une revue ciblée de votre gestion du temps et des priorités, avec un système personnalisé.",
+          benefits: language === "en"
+            ? ["Time and task flow analysis", "Productivity bottleneck diagnosis", "Personalized system recommendations", "30-day improvement plan"]
+            : ["Analyse du flux de travail", "Diagnostic de productivité", "Recommandations personnalisées", "Plan d'amélioration de 30 jours"],
+          learnMore: language === "en"
+            ? "You are busy, but are you productive? The Personal Workflow Audit looks at how you actually spend your time, where tasks fall through the cracks, and what systems (or lack of systems) are holding you back.\n\nYou will walk away with a clear picture of your current workflow, practical recommendations tailored to your role, and a 30-day plan to start working more effectively. This is ideal as a standalone engagement or as a first step before coaching."
+            : "Vous êtes occupé, mais êtes-vous productif ? L'audit examine comment vous passez votre temps et ce qui vous freine.",
+          idealFor: language === "en" ? "Professionals, managers, and entrepreneurs who feel overwhelmed and want a clear system for managing their work." : "Professionnels et entrepreneurs qui se sentent débordés.",
+          icon: <Search className="text-accent" />,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Quick Scan" : "Analyse rapide",
+              price: "$250",
+              subtitle: language === "en" ? "Focused review of your top productivity challenges with practical fixes." : "Revue ciblée de vos défis de productivité avec solutions pratiques.",
+              features: language === "en"
+                ? ["60-minute deep-dive session", "Time and task flow analysis", "Top 3 quick-win recommendations", "Summary action plan"]
+                : ["Session approfondie de 60 minutes", "Analyse du flux de travail", "3 recommandations rapides", "Plan d'action de synthèse"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$500",
+              subtitle: language === "en" ? "Full workflow audit with personalized productivity system design." : "Audit complet avec conception de système de productivité personnalisé.",
+              features: language === "en"
+                ? ["Everything in Quick Scan", "Full workflow and habits audit", "Personalized productivity system", "Tool and app recommendations", "30-day implementation plan", "Follow-up check-in call"]
+                : ["Tout dans Analyse rapide", "Audit complet", "Système personnalisé", "Recommandations d'outils", "Plan de 30 jours", "Appel de suivi"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Comprehensive" : "Complet",
+              price: "$750",
+              subtitle: language === "en" ? "Deep-dive audit with full system setup, accountability design, and ongoing support." : "Audit approfondi avec mise en place complète et support continu.",
+              features: language === "en"
+                ? ["Everything in Standard", "Complete system setup assistance", "Accountability structure design", "Calendar and priority management", "60-day follow-up with adjustments", "Email support for 30 days"]
+                : ["Tout dans Standard", "Aide à la mise en place complète", "Conception de la responsabilité", "Gestion du calendrier", "Suivi de 60 jours", "Support e-mail de 30 jours"],
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Performance Workshop" : "Atelier de performance",
+          investment: "$500 – $1,500",
+          desc: language === "en"
+            ? "A structured working session to help you clarify your goals, identify what is holding you back, and build a personal performance plan you can execute."
+            : "Une session structurée pour clarifier vos objectifs et construire un plan de performance personnel.",
+          benefits: language === "en"
+            ? ["Goal clarity and prioritization", "Personal performance diagnosis", "Custom action plan", "Accountability framework setup"]
+            : ["Clarté des objectifs", "Diagnostic de performance", "Plan d'action personnalisé", "Cadre de responsabilité"],
+          learnMore: language === "en"
+            ? "Sometimes you need a reset. The Performance Workshop is a focused session designed for professionals who want to step back, get clear on their priorities, and build a plan they can actually follow through on.\n\nThe half-day format covers goal setting, performance diagnosis, and action planning. The full-day format adds deeper work on habits, systems, and accountability structures for lasting change."
+            : "Parfois vous avez besoin d'un recul. L'atelier de performance est une session ciblée pour les professionnels qui veulent clarifier leurs priorités.",
+          idealFor: language === "en" ? "Professionals at a crossroads, preparing for a career transition, or wanting to build better personal performance habits." : "Professionnels en transition ou cherchant à améliorer leurs habitudes de performance.",
+          icon: <Users className="text-accent" />,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Half-Day" : "Demi-journée",
+              price: "$500",
+              subtitle: language === "en" ? "Focused 2-hour session on goals, priorities, and personal action planning." : "Session ciblée de 2 heures sur les objectifs et le plan d'action.",
+              features: language === "en"
+                ? ["2-hour facilitated session", "Goal clarity and prioritization", "Performance gap diagnosis", "Personal action plan", "Follow-up summary document"]
+                : ["Session facilitée de 2 heures", "Clarté des objectifs", "Diagnostic des écarts", "Plan d'action personnel", "Document de synthèse"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Full-Day" : "Journée complète",
+              price: "$1,500",
+              subtitle: language === "en" ? "Comprehensive session with habit design, systems setup, and accountability framework." : "Session complète avec conception d'habitudes et cadre de responsabilité.",
+              features: language === "en"
+                ? ["Everything in Half-Day", "4-hour comprehensive session", "Habit and routine design", "Personal systems setup", "Accountability framework", "KPI and progress tracking setup", "30-day follow-up call"]
+                : ["Tout dans Demi-journée", "Session complète de 4 heures", "Conception d'habitudes", "Mise en place de systèmes", "Cadre de responsabilité", "Configuration du suivi", "Appel de suivi de 30 jours"],
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Personal Brand Website" : "Site Web de marque personnelle",
+          investment: "$1,000 – $3,000",
+          desc: language === "en"
+            ? "A professional personal website that showcases your expertise, builds credibility, and helps you attract opportunities."
+            : "Un site Web personnel professionnel qui met en valeur votre expertise et attire les opportunités.",
+          benefits: language === "en"
+            ? ["Professional personal website", "Portfolio or services showcase", "Mobile-friendly design", "Contact and booking integration"]
+            : ["Site personnel professionnel", "Portfolio ou vitrine", "Design mobile", "Intégration de contact et réservation"],
+          learnMore: language === "en"
+            ? "Whether you are a consultant, coach, freelancer, or professional building a personal brand, your website is your digital business card. We build clean, professional personal websites that position you as an expert and make it easy for opportunities to find you.\n\nEvery package includes mobile-responsive design, a portfolio or services section, and contact integration so people can reach you easily."
+            : "Que vous soyez consultant, coach ou professionnel, votre site Web est votre carte de visite numérique. Nous construisons des sites personnels professionnels.",
+          idealFor: language === "en" ? "Consultants, coaches, freelancers, and professionals who want a personal website that builds their brand and attracts clients." : "Consultants, coaches et professionnels indépendants.",
+          icon: <Globe className="text-accent" />,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Essential" : "Essentiel",
+              price: "$1,000",
+              subtitle: language === "en" ? "Clean single-page personal website with bio, services, and contact form." : "Site personnel à page unique avec bio et formulaire de contact.",
+              features: language === "en"
+                ? ["Single-page personal website", "Professional bio section", "Services or expertise showcase", "Contact form", "Mobile responsive", "Basic SEO"]
+                : ["Site à page unique", "Section bio professionnelle", "Vitrine expertise", "Formulaire de contact", "Responsive mobile", "SEO de base"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$2,000",
+              subtitle: language === "en" ? "Multi-page website with portfolio, testimonials, and booking integration." : "Site multi-pages avec portfolio et intégration de réservation.",
+              features: language === "en"
+                ? ["Everything in Essential", "Up to 4 pages", "Portfolio or case studies section", "Testimonials section", "Booking calendar integration", "Social media links", "1 round of revisions"]
+                : ["Tout dans Essentiel", "Jusqu'à 4 pages", "Portfolio ou études de cas", "Témoignages", "Intégration calendrier", "Réseaux sociaux", "1 révision"],
+              contactOnly: true
+            },
+            {
+              name: "Premium",
+              price: "$3,000",
+              subtitle: language === "en" ? "Full personal brand website with blog, newsletter, and content strategy." : "Site complet avec blog, newsletter et stratégie de contenu.",
+              features: language === "en"
+                ? ["Everything in Standard", "Blog or articles section", "Email newsletter setup", "Content strategy guidance", "Personal brand identity basics", "SEO optimization", "2 rounds of revisions", "60-day post-launch support"]
+                : ["Tout dans Standard", "Section blog", "Newsletter par e-mail", "Stratégie de contenu", "Identité de marque", "Optimisation SEO", "2 révisions", "Support de 60 jours"],
               contactOnly: true
             }
           ]

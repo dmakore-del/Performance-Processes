@@ -351,3 +351,36 @@ export const insertGrantApplicationSchema = createInsertSchema(grantApplications
 
 export type InsertGrantApplication = z.infer<typeof insertGrantApplicationSchema>;
 export type GrantApplication = typeof grantApplications.$inferSelect;
+
+export const subscribers = pgTable("subscribers", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  source: text("source").notNull().default("website"),
+  status: text("status").notNull().default("active"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertSubscriberSchema = createInsertSchema(subscribers).omit({
+  id: true,
+  status: true,
+  createdAt: true,
+});
+
+export type InsertSubscriber = z.infer<typeof insertSubscriberSchema>;
+export type Subscriber = typeof subscribers.$inferSelect;
+
+export const scheduledEmails = pgTable("scheduled_emails", {
+  id: serial("id").primaryKey(),
+  recipientEmail: text("recipient_email").notNull(),
+  recipientName: text("recipient_name").notNull(),
+  emailType: text("email_type").notNull(),
+  sequenceStep: integer("sequence_step").notNull().default(1),
+  subject: text("subject").notNull(),
+  status: text("status").notNull().default("pending"),
+  sendAt: timestamp("send_at").notNull(),
+  sentAt: timestamp("sent_at"),
+  metadata: text("metadata"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export type ScheduledEmail = typeof scheduledEmails.$inferSelect;

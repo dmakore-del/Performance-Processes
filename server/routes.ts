@@ -54,6 +54,9 @@ export async function registerRoutes(
       const { notifyContactForm } = await import('./emailNotifications');
       notifyContactForm({ name: parsed.data.name, email: parsed.data.email, message: parsed.data.message }).catch(err => console.error("Contact notification failed:", err));
 
+      const { sendContactConfirmation } = await import('./leadNurtureEmails');
+      sendContactConfirmation(parsed.data.email, parsed.data.name).catch(err => console.error("Contact confirmation email failed:", err));
+
       return res.status(201).json({ message: "Message sent successfully", id: submission.id });
     } catch (error) {
       console.error("Contact form error:", error);
@@ -92,10 +95,65 @@ export async function registerRoutes(
         console.error("Audit notification email failed:", emailErr);
       }
 
+      try {
+        const { sendAuditChecklistEmail } = await import('./leadNurtureEmails');
+        await sendAuditChecklistEmail(email, fullName);
+
+        const { scheduleNurtureSequence } = await import('./emailScheduler');
+        scheduleNurtureSequence(email, fullName);
+      } catch (nurtureErr) {
+        console.error("Nurture email failed:", nurtureErr);
+      }
+
       return res.status(201).json({ message: "Checklist request received", success: true });
     } catch (error) {
       console.error("Audit checklist error:", error);
       return res.status(500).json({ message: "Failed to process request" });
+    }
+  });
+
+  app.post("/api/subscribe", async (req, res) => {
+    try {
+      const { email, source } = req.body;
+      if (!email || typeof email !== 'string') {
+        return res.status(400).json({ message: "Email is required" });
+      }
+
+      const { subscribers } = await import("@shared/schema");
+      const { eq } = await import("drizzle-orm");
+
+      const existing = await db.select().from(subscribers).where(eq(subscribers.email, email.toLowerCase().trim()));
+      if (existing.length > 0) {
+        return res.status(200).json({ message: "Already subscribed", success: true });
+      }
+
+      await db.insert(subscribers).values({
+        email: email.toLowerCase().trim(),
+        source: source || 'website',
+      });
+
+      try {
+        const { sendSubscriberWelcome } = await import('./leadNurtureEmails');
+        await sendSubscriberWelcome(email.toLowerCase().trim());
+      } catch (emailErr) {
+        console.error("Subscriber welcome email failed:", emailErr);
+      }
+
+      try {
+        const { notifyContactForm } = await import('./emailNotifications');
+        await notifyContactForm({
+          name: 'New Subscriber',
+          email: email.toLowerCase().trim(),
+          message: `New newsletter subscription from the website.\nSource: ${source || 'footer lead magnet'}`
+        });
+      } catch (notifyErr) {
+        console.error("Subscriber admin notification failed:", notifyErr);
+      }
+
+      return res.status(201).json({ message: "Subscribed successfully", success: true });
+    } catch (error) {
+      console.error("Subscription error:", error);
+      return res.status(500).json({ message: "Failed to subscribe" });
     }
   });
 
@@ -137,6 +195,9 @@ export async function registerRoutes(
         coverLetter: data.coverLetter,
         resumeFilename: data.resumeFilename,
       }).catch(err => console.error("Job application notification failed:", err));
+
+      const { sendJobApplicationConfirmation } = await import('./leadNurtureEmails');
+      sendJobApplicationConfirmation(data.email, data.firstName, data.lastName, data.position).catch(err => console.error("Job confirmation email failed:", err));
 
       return res.status(201).json({ message: "Application submitted successfully", id: application.id });
     } catch (error) {
@@ -443,13 +504,21 @@ export async function registerRoutes(
       const application = await storage.createGrantApplication(parsed.data);
 
       try {
-        const { sendEmailNotification } = await import("./email");
-        await sendEmailNotification(
-          "New Women's Performance Grant Application",
-          `A new grant application has been submitted by ${parsed.data.fullName} (${parsed.data.email}).\n\nFocus Area: ${parsed.data.focusArea}\nOccupation: ${parsed.data.occupation}\nIndustry: ${parsed.data.industry}\nCity: ${parsed.data.city}, ${parsed.data.province}\n\nLog in to the admin portal to review the full application.`
-        );
+        const { notifyContactForm } = await import('./emailNotifications');
+        await notifyContactForm({
+          name: parsed.data.fullName,
+          email: parsed.data.email,
+          message: `[WOMEN'S PERFORMANCE GRANT APPLICATION]\n\nFocus Area: ${parsed.data.focusArea}\nOccupation: ${parsed.data.occupation}\nIndustry: ${parsed.data.industry}\nCity: ${parsed.data.city}, ${parsed.data.province}\nYears Experience: ${parsed.data.yearsExperience}\nGoals: ${parsed.data.goals}\nChallenges: ${parsed.data.challenges}\n\nLog in to the admin portal to review the full application.`
+        });
       } catch (emailErr) {
         console.error("Grant notification email failed:", emailErr);
+      }
+
+      try {
+        const { sendGrantConfirmation } = await import('./leadNurtureEmails');
+        await sendGrantConfirmation(parsed.data.email, parsed.data.fullName, parsed.data.focusArea);
+      } catch (confirmErr) {
+        console.error("Grant confirmation email failed:", confirmErr);
       }
 
       res.status(201).json(application);

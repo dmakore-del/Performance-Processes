@@ -15,6 +15,7 @@ import {
   Settings,
 } from "lucide-react";
 import { Link } from "wouter";
+import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/components/ui/animate-on-scroll";
 
@@ -46,6 +47,42 @@ import smallBizOwnerImg from "@assets/generated/small-business-owner-new.png";
 import geoPatternImg from "@assets/generated/geo-pattern-new.png";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+
+const subtitles = [
+  { start: 0, end: 2, text: "The organizations that thrive aren't the ones with the best strategy on paper..." },
+  { start: 2, end: 4.5, text: "They're the ones that build accountability into every layer of their culture." },
+  { start: 4.5, end: 6, text: "That's where real transformation begins." },
+];
+
+function VideoWithSubtitles() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [currentSub, setCurrentSub] = useState("");
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const onTime = () => {
+      const t = video.currentTime;
+      const match = subtitles.find(s => t >= s.start && t < s.end);
+      setCurrentSub(match?.text || "");
+    };
+    video.addEventListener("timeupdate", onTime);
+    return () => video.removeEventListener("timeupdate", onTime);
+  }, []);
+
+  return (
+    <div className="relative">
+      <video ref={videoRef} src="/ted-talk-speaker.mp4" autoPlay muted loop playsInline className="w-full h-auto object-cover aspect-[4/3]" data-testid="video-measurable-results" />
+      {currentSub && (
+        <div className="absolute bottom-4 left-4 right-4 flex justify-end pointer-events-none">
+          <div className="bg-black/75 backdrop-blur-sm text-white text-sm md:text-base font-medium px-5 py-2.5 rounded-lg text-right max-w-[65%] leading-snug">
+            {currentSub}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Home() {
   const { t, language } = useLanguage();
@@ -336,7 +373,7 @@ export default function Home() {
               <AnimateOnScroll animation="fade-right" delay={200}>
                 <div className="relative">
                   <div className="rounded-3xl overflow-hidden shadow-2xl shadow-primary/10">
-                    <video src="/ted-talk-speaker.mp4" autoPlay muted loop playsInline className="w-full h-auto object-cover aspect-[4/3]" data-testid="video-measurable-results" />
+                    <VideoWithSubtitles />
                   </div>
                   <FloatingShape className="w-20 h-20 -top-5 -right-5 z-[-1]" variant="square" />
                   <FloatingShape className="w-12 h-12 -bottom-3 right-10 z-[-1]" variant="ring" />

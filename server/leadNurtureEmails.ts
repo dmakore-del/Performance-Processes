@@ -63,7 +63,7 @@ async function sendEmail(to: string, subject: string, html: string, attachments?
 }
 
 export async function sendAuditChecklistEmail(recipientEmail: string, recipientName: string): Promise<void> {
-  const checklistPath = path.resolve(process.cwd(), 'attached_assets/Process_&_People_Management_Audit_Checklist_1773430773508.pdf');
+  const checklistPath = path.resolve(process.cwd(), 'attached_assets/Process_&_People_Management_Audit_Checklist_1773432261017.pdf');
   let attachments: nodemailer.SendMailOptions['attachments'] = [];
 
   if (fs.existsSync(checklistPath)) {

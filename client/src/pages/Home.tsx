@@ -336,7 +336,7 @@ export default function Home() {
               <AnimateOnScroll animation="fade-right" delay={200}>
                 <div className="relative">
                   <div className="rounded-3xl overflow-hidden shadow-2xl shadow-primary/10">
-                    <img src={leadershipPresentationImg} alt="Leadership strategy session" className="w-full h-auto object-cover aspect-[4/3] hover:scale-105 transition-transform duration-700" />
+                    <video src="/ted-talk-speaker.mp4" autoPlay muted loop playsInline className="w-full h-auto object-cover aspect-[4/3]" data-testid="video-measurable-results" />
                   </div>
                   <FloatingShape className="w-20 h-20 -top-5 -right-5 z-[-1]" variant="square" />
                   <FloatingShape className="w-12 h-12 -bottom-3 right-10 z-[-1]" variant="ring" />

@@ -61,6 +61,44 @@ export async function registerRoutes(
     }
   });
 
+  app.post("/api/audit-checklist", async (req, res) => {
+    try {
+      const { fullName, email, company, role } = req.body;
+      if (!fullName || !email) {
+        return res.status(400).json({ message: "Name and email are required" });
+      }
+
+      await db.execute(sql`
+        INSERT INTO leads (company_name, contact_name, contact_email, source, status, service_interest, notes)
+        VALUES (
+          ${company || 'Not provided'},
+          ${fullName},
+          ${email},
+          'audit-checklist',
+          'new',
+          'Free Process & People Management Audit',
+          ${'Role: ' + (role || 'Not specified') + ' | Downloaded audit checklist'}
+        )
+      `);
+
+      try {
+        const { notifyContactForm } = await import('./emailNotifications');
+        await notifyContactForm({
+          name: fullName,
+          email: email,
+          message: `New audit checklist download:\nCompany: ${company || 'Not provided'}\nRole: ${role || 'Not specified'}\n\nThis lead downloaded the Process & People Management Audit Checklist. Follow up to schedule the free audit consultation.`
+        });
+      } catch (emailErr) {
+        console.error("Audit notification email failed:", emailErr);
+      }
+
+      return res.status(201).json({ message: "Checklist request received", success: true });
+    } catch (error) {
+      console.error("Audit checklist error:", error);
+      return res.status(500).json({ message: "Failed to process request" });
+    }
+  });
+
   app.post("/api/apply", upload.single("resume"), async (req, res) => {
     try {
       if (!req.file) {

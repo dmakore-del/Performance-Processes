@@ -18,6 +18,7 @@ import Careers from "./pages/Careers";
 import News from "./pages/News";
 import Insights from "./pages/Insights";
 import WomensPerformanceGrant from "./pages/WomensPerformanceGrant";
+import FreeAudit from "./pages/FreeAudit";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -66,6 +67,7 @@ function Router() {
       <Route path="/news" component={News} />
       <Route path="/insights" component={Insights} />
       <Route path="/womens-performance-grant" component={WomensPerformanceGrant} />
+      <Route path="/free-audit" component={FreeAudit} />
 
       {/* Auth Routes */}
       <Route path="/portal/login" component={Login} />

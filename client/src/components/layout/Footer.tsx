@@ -63,7 +63,7 @@ function LeadMagnetSection() {
 }
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <>
@@ -125,6 +125,7 @@ export function Footer() {
                 <li><Link href="/contact" className="hover:text-accent transition-colors cursor-pointer">{t("nav.contact")}</Link></li>
                 <li><Link href="/careers" className="hover:text-accent transition-colors cursor-pointer">Careers</Link></li>
                 <li><Link href="/insights" className="hover:text-accent transition-colors cursor-pointer">Insights</Link></li>
+                <li><Link href="/free-audit" className="hover:text-accent transition-colors cursor-pointer text-accent font-bold">{language === "en" ? "Free Audit" : "Audit gratuit"}</Link></li>
                 <li><Link href="/portal" className="hover:text-accent transition-colors cursor-pointer">Client Portal</Link></li>
               </ul>
             </div>

@@ -8,6 +8,7 @@ import {
   ChevronRight,
   TrendingUp,
   Target,
+  ClipboardCheck,
 } from "lucide-react";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
@@ -230,10 +231,10 @@ export default function Home() {
                   : "Nous aidons les professionnels et les organisations à améliorer leur performance grâce à de meilleurs processus, systèmes de leadership et gestion des personnes."}
               </p>
               <div className="flex flex-wrap gap-4">
-                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-hero-book">
-                  <Calendar size={16} />
-                  {language === "en" ? "Book a Free Audit" : "Réservez un audit gratuit"}
-                </a>
+                <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-hero-audit">
+                  <ClipboardCheck size={16} />
+                  {language === "en" ? "Get a Free Audit" : "Obtenez un audit gratuit"}
+                </Link>
                 <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-hero-services">
                   {t("hero.ctaSecondary")}
                   <ArrowRight size={16} />
@@ -355,13 +356,13 @@ export default function Home() {
             </h3>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
               {language === "en"
-                ? "Book a free strategy call. We will listen to your challenges and help you figure out the right next step."
-                : "Réservez un appel stratégique gratuit. Nous écouterons vos défis et vous aiderons à trouver la prochaine étape."}
+                ? "Get a free Process & People Management Audit. We'll identify operational and leadership inefficiencies in just 20 minutes."
+                : "Obtenez un audit gratuit de vos processus et de gestion des personnes. Nous identifierons les inefficacités en seulement 20 minutes."}
             </p>
-            <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-accent/90 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-lg shadow-accent/20" data-testid="link-mid-cta-book">
-              <Calendar size={16} />
-              {language === "en" ? "Book a Free Strategy Call" : "Réservez un appel stratégique gratuit"}
-            </a>
+            <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-accent/90 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-lg shadow-accent/20" data-testid="link-mid-cta-audit">
+              <ClipboardCheck size={16} />
+              {language === "en" ? "Get Your Free Audit" : "Obtenez votre audit gratuit"}
+            </Link>
           </div>
         </section>
 
@@ -590,10 +591,10 @@ export default function Home() {
                     : "Que vous dirigiez une équipe, développiez une entreprise ou amélioriez votre propre performance, la première étape est une conversation. Trouvons ensemble la bonne voie à suivre."}
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
-                  <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-cta-book">
-                    <Calendar size={16} />
-                    {language === "en" ? "Book a Free Strategy Call" : "Réservez un appel stratégique gratuit"}
-                  </a>
+                  <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-cta-audit">
+                    <ClipboardCheck size={16} />
+                    {language === "en" ? "Get a Free Audit" : "Obtenez un audit gratuit"}
+                  </Link>
                   <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-cta-services">
                     {language === "en" ? "Explore services" : "Découvrir les services"}
                     <ArrowRight size={16} />

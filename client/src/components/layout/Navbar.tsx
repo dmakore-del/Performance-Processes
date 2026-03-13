@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { useLanguage } from "@/hooks/use-language";
 import logoImg from "@/assets/logo.png";
 
-const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -84,10 +83,10 @@ export function Navbar() {
           <Link href="/contact" className="hidden md:inline-flex items-center justify-center rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-white transition-all font-bold px-6 h-12 uppercase tracking-wider text-xs" data-testid="link-contact-nav">
               {t("nav.contact")}
           </Link>
-          <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-primary transition-all font-bold px-6 h-12 uppercase tracking-wider text-xs" data-testid="link-book-consultation">
+          <Link href="/free-audit" className="hidden md:inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-primary transition-all font-bold px-6 h-12 uppercase tracking-wider text-xs" data-testid="link-free-audit-nav">
               <CalendarCheck size={16} />
-              Book Consultation
-          </a>
+              {language === "en" ? "Free Audit" : "Audit gratuit"}
+          </Link>
           <button
             className="lg:hidden p-2 text-primary hover:bg-secondary rounded-full"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -146,10 +145,10 @@ export function Navbar() {
               <button onClick={() => {setLanguage("fr"); setIsMobileMenuOpen(false);}} className={cn("font-bold", language === "fr" ? "text-accent underline" : "text-primary")}>FR</button>
             </div>
 
-            <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-3 rounded-full bg-accent text-white py-5 text-lg font-bold uppercase tracking-widest mt-4 shadow-lg shadow-accent/20" onClick={() => setIsMobileMenuOpen(false)} data-testid="link-book-consultation-mobile">
+            <Link href="/free-audit" className="w-full flex items-center justify-center gap-3 rounded-full bg-accent text-white py-5 text-lg font-bold uppercase tracking-widest mt-4 shadow-lg shadow-accent/20" onClick={() => setIsMobileMenuOpen(false)} data-testid="link-free-audit-mobile">
                 <CalendarCheck size={20} />
-                Book Consultation
-            </a>
+                {language === "en" ? "Free Audit" : "Audit gratuit"}
+            </Link>
             <Link href="/contact" className="w-full flex items-center justify-center rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-white py-5 text-lg font-bold uppercase tracking-widest" onClick={() => setIsMobileMenuOpen(false)} data-testid="link-contact-mobile">
                 {t("nav.contact")}
             </Link>

@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
+import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/components/ui/animate-on-scroll";
 
 import teamAlignmentImg from "@assets/stock_images/team_alignment.jpg";
 import actionPlanningImg from "@assets/stock_images/action_planning.jpg";
@@ -226,36 +227,40 @@ export default function Home() {
       <Navbar />
 
       <main className="flex-grow">
-        {/* Hero — EY-style split with large featured image */}
+        {/* Hero — EY-style split with large featured image + floating accents */}
         <section className="relative min-h-[700px] lg:min-h-[800px] flex items-center overflow-hidden bg-primary" data-testid="section-hero">
           <div className="absolute inset-0 z-0">
-            <img src={heroAbstractImg} alt="" className="w-full h-full object-cover opacity-20" />
+            <img src={heroAbstractImg} alt="" className="w-full h-full object-cover opacity-20 animate-ken-burns" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/98 to-primary/70" />
           </div>
           <div className="absolute bottom-0 right-0 w-1/2 h-full hidden lg:block z-[1]">
-            <img src={teamStrategyImg} alt="" className="w-full h-full object-cover" />
+            <img src={teamStrategyImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/60 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
           </div>
+          <GradientOrb className="w-96 h-96 bg-accent/10 -top-20 -right-20 z-[2]" />
+          <FloatingShape className="w-16 h-16 top-[20%] right-[10%] z-[3]" variant="ring" />
+          <FloatingShape className="w-8 h-8 bottom-[30%] right-[35%] z-[3]" variant="dot" />
+          <GeometricAccent className="bottom-[15%] right-[5%] text-white z-[2]" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-2xl lg:max-w-[55%]">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-8 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-8 backdrop-blur-sm animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
                 <ClipboardCheck size={14} />
                 {language === "en" ? "Management Consulting" : "Conseil en gestion"}
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-hero-title">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.2s" }} data-testid="text-hero-title">
                 {language === "en" ? (
                   <>Improve Your Processes. Strengthen Your Leadership. <span className="text-accent">Elevate Performance.</span></>
                 ) : (
                   <>Améliorez vos processus. Renforcez votre leadership. <span className="text-accent">Élevez la performance.</span></>
                 )}
               </h1>
-              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-xl" data-testid="text-hero-subtitle">
+              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-xl animate-fade-in-up" style={{ animationDelay: "0.35s" }} data-testid="text-hero-subtitle">
                 {language === "en"
                   ? "We help professionals and organizations improve performance through better processes, leadership systems, and people management."
                   : "Nous aidons les professionnels et les organisations à améliorer leur performance grâce à de meilleurs processus, systèmes de leadership et gestion des personnes."}
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
                 <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-hero-audit">
                   <ClipboardCheck size={16} />
                   {language === "en" ? "Get a Free Audit" : "Obtenez un audit gratuit"}
@@ -297,10 +302,12 @@ export default function Home() {
         </section>
 
         {/* What We Help You Achieve — EY-style editorial split */}
-        <section className="py-32 bg-white" data-testid="section-outcomes">
+        <section className="py-32 bg-white relative overflow-hidden" data-testid="section-outcomes">
+          <GeometricAccent className="top-20 -right-10 text-primary" />
+          <GradientOrb className="w-80 h-80 bg-accent/5 -bottom-40 -left-40" />
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
-              <div>
+              <AnimateOnScroll animation="fade-left">
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
                   {language === "en" ? "What You Get" : "Ce que vous obtenez"}
                 </p>
@@ -325,44 +332,52 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-              </div>
-              <div className="relative">
-                <div className="rounded-3xl overflow-hidden shadow-2xl shadow-primary/10">
-                  <img src={leadershipPresentationImg} alt="Leadership strategy session" className="w-full h-auto object-cover aspect-[4/3]" />
-                </div>
-                <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-6 border border-border max-w-[240px] hidden md:block">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
-                      <BarChart3 size={20} className="text-accent" />
-                    </div>
-                    <p className="text-sm font-bold text-primary">{language === "en" ? "Measurable Results" : "Résultats mesurables"}</p>
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="fade-right" delay={200}>
+                <div className="relative">
+                  <div className="rounded-3xl overflow-hidden shadow-2xl shadow-primary/10">
+                    <img src={leadershipPresentationImg} alt="Leadership strategy session" className="w-full h-auto object-cover aspect-[4/3] hover:scale-105 transition-transform duration-700" />
                   </div>
-                  <p className="text-xs text-muted-foreground">{language === "en" ? "Track progress with clear KPIs and dashboards" : "Suivez les progrès avec des KPI clairs"}</p>
+                  <FloatingShape className="w-20 h-20 -top-5 -right-5 z-[-1]" variant="square" />
+                  <FloatingShape className="w-12 h-12 -bottom-3 right-10 z-[-1]" variant="ring" />
+                  <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-6 border border-border max-w-[240px] hidden md:block animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                        <BarChart3 size={20} className="text-accent" />
+                      </div>
+                      <p className="text-sm font-bold text-primary">{language === "en" ? "Measurable Results" : "Résultats mesurables"}</p>
+                    </div>
+                    <p className="text-xs text-muted-foreground">{language === "en" ? "Track progress with clear KPIs and dashboards" : "Suivez les progrès avec des KPI clairs"}</p>
+                  </div>
                 </div>
-              </div>
+              </AnimateOnScroll>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
               {outcomes.map((item, i) => (
-                <div key={i} className="relative flex gap-6 p-8 rounded-2xl border border-border bg-white hover:shadow-xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 group overflow-hidden" data-testid={`outcome-card-${i}`}>
-                  <div className="absolute top-0 left-0 w-1 h-full bg-accent/0 group-hover:bg-accent transition-all duration-300" />
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center shrink-0">
-                    {item.icon}
+                <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
+                  <div className="relative flex gap-6 p-8 rounded-2xl border border-border bg-white hover:shadow-xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 group overflow-hidden h-full" data-testid={`outcome-card-${i}`}>
+                    <div className="absolute top-0 left-0 w-1 h-full bg-accent/0 group-hover:bg-accent transition-all duration-300" />
+                    <div className="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-primary mb-2">{item.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-primary mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
+                </AnimateOnScroll>
               ))}
             </div>
           </div>
         </section>
 
         {/* Who We Work With — EY-style full-bleed cards */}
-        <section className="py-32 bg-[#F8FAFC]" data-testid="section-who-we-help">
+        <section className="py-32 bg-[#F8FAFC] relative overflow-hidden" data-testid="section-who-we-help">
+          <FloatingShape className="w-24 h-24 top-20 -left-8" variant="ring" />
+          <FloatingShape className="w-10 h-10 top-40 right-20" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-20">
+            <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
                 {language === "en" ? "Who We Work With" : "Avec qui nous travaillons"}
               </p>
@@ -374,19 +389,21 @@ export default function Home() {
                   ? "From solo founders to enterprise leadership teams, we meet you where you are and help you get where you want to go."
                   : "Des fondateurs solo aux équipes de direction, nous vous rencontrons là où vous êtes et vous aidons à atteindre vos objectifs."}
               </p>
-            </div>
+            </AnimateOnScroll>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {whoWeHelp.map((item, i) => (
-                <div key={i} className="group cursor-pointer" data-testid={`who-card-${i}`}>
-                  <div className="relative rounded-2xl overflow-hidden mb-6 aspect-[4/3]">
-                    <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                <AnimateOnScroll key={i} animation="fade-up" delay={i * 150}>
+                  <div className="group cursor-pointer" data-testid={`who-card-${i}`}>
+                    <div className="relative rounded-2xl overflow-hidden mb-6 aspect-[4/3]">
+                      <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent group-hover:from-primary/90 transition-all duration-500" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 className="text-xl font-bold text-white group-hover:translate-x-2 transition-transform duration-300">{item.title}</h3>
+                      </div>
                     </div>
+                    <p className="text-muted-foreground leading-relaxed px-1">{item.desc}</p>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed px-1">{item.desc}</p>
-                </div>
+                </AnimateOnScroll>
               ))}
             </div>
 
@@ -408,7 +425,7 @@ export default function Home() {
         {/* Mid-Page CTA — EY-style full-bleed image CTA */}
         <section className="relative py-28 overflow-hidden" data-testid="section-mid-cta">
           <div className="absolute inset-0">
-            <img src={cityAerialImg} alt="" className="w-full h-full object-cover" />
+            <img src={cityAerialImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
             <div className="absolute inset-0 bg-primary/85" />
           </div>
           <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
@@ -428,17 +445,20 @@ export default function Home() {
         </section>
 
         {/* Our Approach — EY-style timeline with large imagery */}
-        <section id="framework" className="py-32 bg-white" data-testid="section-framework">
+        <section id="framework" className="py-32 bg-white relative overflow-hidden" data-testid="section-framework">
+          <GeometricAccent className="-left-10 top-40 text-primary" />
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
-              <div className="relative">
-                <div className="rounded-3xl overflow-hidden shadow-2xl">
-                  <img src={strategyWhiteboardImg} alt="Strategy planning" className="w-full h-auto aspect-[4/3] object-cover" />
+              <AnimateOnScroll animation="fade-left">
+                <div className="relative">
+                  <div className="rounded-3xl overflow-hidden shadow-2xl">
+                    <img src={strategyWhiteboardImg} alt="Strategy planning" className="w-full h-auto aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700" />
+                  </div>
+                  <FloatingShape className="w-24 h-24 -top-4 -right-4 z-[-1]" variant="square" />
+                  <FloatingShape className="w-32 h-32 -bottom-4 -left-4 z-[-1]" variant="ring" />
                 </div>
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/10 rounded-2xl -z-10" />
-                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/5 rounded-2xl -z-10" />
-              </div>
-              <div>
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="fade-right" delay={200}>
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
                   {language === "en" ? "How We Work" : "Comment nous travaillons"}
                 </p>
@@ -450,11 +470,11 @@ export default function Home() {
                     ? "We follow a structured process that takes you from where you are today to where you want to be, with clear milestones along the way."
                     : "Nous suivons un processus structuré qui vous mène de votre situation actuelle à vos objectifs, avec des jalons clairs en cours de route."}
                 </p>
-                <Link href="/approach" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors" data-testid="link-learn-approach">
+                <Link href="/approach" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors group" data-testid="link-learn-approach">
                   {language === "en" ? "Explore our methodology" : "Découvrir notre méthodologie"}
-                  <ArrowRight size={16} />
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
-              </div>
+              </AnimateOnScroll>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 relative max-w-6xl mx-auto">
@@ -489,9 +509,11 @@ export default function Home() {
         </section>
 
         {/* Services — EY-style editorial grid with large imagery */}
-        <section className="py-32 bg-[#F8FAFC]" data-testid="section-services">
+        <section className="py-32 bg-[#F8FAFC] relative overflow-hidden" data-testid="section-services">
+          <FloatingShape className="w-20 h-20 top-32 right-10" variant="ring" />
+          <GradientOrb className="w-72 h-72 bg-accent/5 -bottom-32 right-20" />
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-20">
+            <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
                 {language === "en" ? "What We Offer" : "Ce que nous offrons"}
               </p>
@@ -503,40 +525,44 @@ export default function Home() {
                   ? "From operational strategy and leadership systems to recruiting, staffing, and career placement — we help companies hire the right talent and professionals land the right roles."
                   : "De la stratégie opérationnelle et des systèmes de leadership au recrutement, à la dotation et au placement de carrière — nous aidons les entreprises à recruter et les professionnels à se faire recruter."}
               </p>
-            </div>
+            </AnimateOnScroll>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-8">
               {services.slice(0, 3).map((s, i) => (
-                <Link key={i} href="/services" className="block h-full group" data-testid={`link-service-${i}`}>
-                  <div className="relative rounded-2xl overflow-hidden h-full min-h-[400px] shadow-lg" data-testid={`service-card-${i}`}>
-                    <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/10" />
-                    <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">{s.title}</h3>
-                      <p className="text-white/70 text-sm leading-relaxed mb-4">{s.desc}</p>
-                      <span className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-transform">
-                        {language === "en" ? "Learn more" : "En savoir plus"} <ArrowRight size={14} className="ml-2" />
-                      </span>
+                <AnimateOnScroll key={i} animation="fade-up" delay={i * 150}>
+                  <Link href="/services" className="block h-full group" data-testid={`link-service-${i}`}>
+                    <div className="relative rounded-2xl overflow-hidden h-full min-h-[400px] shadow-lg" data-testid={`service-card-${i}`}>
+                      <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/10 group-hover:from-primary/95 transition-all duration-500" />
+                      <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">{s.title}</h3>
+                        <p className="text-white/70 text-sm leading-relaxed mb-4">{s.desc}</p>
+                        <span className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-transform">
+                          {language === "en" ? "Learn more" : "En savoir plus"} <ArrowRight size={14} className="ml-2" />
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </AnimateOnScroll>
               ))}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {services.slice(3).map((s, i) => (
-                <Link key={i + 3} href="/services" className="block h-full group" data-testid={`link-service-${i + 3}`}>
-                  <div className="relative rounded-2xl overflow-hidden h-full min-h-[350px] shadow-lg" data-testid={`service-card-${i + 3}`}>
-                    <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/10" />
-                    <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">{s.title}</h3>
-                      <p className="text-white/70 text-sm leading-relaxed mb-4">{s.desc}</p>
-                      <span className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-transform">
-                        {language === "en" ? "Learn more" : "En savoir plus"} <ArrowRight size={14} className="ml-2" />
-                      </span>
+                <AnimateOnScroll key={i + 3} animation="fade-up" delay={(i + 3) * 100}>
+                  <Link href="/services" className="block h-full group" data-testid={`link-service-${i + 3}`}>
+                    <div className="relative rounded-2xl overflow-hidden h-full min-h-[350px] shadow-lg" data-testid={`service-card-${i + 3}`}>
+                      <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/10 group-hover:from-primary/95 transition-all duration-500" />
+                      <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">{s.title}</h3>
+                        <p className="text-white/70 text-sm leading-relaxed mb-4">{s.desc}</p>
+                        <span className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-transform">
+                          {language === "en" ? "Learn more" : "En savoir plus"} <ArrowRight size={14} className="ml-2" />
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </AnimateOnScroll>
               ))}
             </div>
           </div>
@@ -545,12 +571,14 @@ export default function Home() {
         {/* Results — EY-style bold stats with editorial image */}
         <section className="py-32 bg-primary relative overflow-hidden" data-testid="section-results">
           <div className="absolute inset-0">
-            <img src={processFlowImg} alt="" className="w-full h-full object-cover opacity-10" />
+            <img src={processFlowImg} alt="" className="w-full h-full object-cover opacity-10 animate-ken-burns" />
           </div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(236,72,153,0.12),transparent_60%)]" />
+          <FloatingShape className="w-16 h-16 top-20 right-[15%]" variant="ring" />
+          <FloatingShape className="w-8 h-8 bottom-32 left-[10%]" variant="dot" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div>
+              <AnimateOnScroll animation="fade-left">
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
                   {language === "en" ? "The Outcomes" : "Les résultats"}
                 </p>
@@ -593,22 +621,23 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-              </div>
-              <div className="relative hidden lg:block">
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="fade-right" delay={200} className="relative hidden lg:block">
                 <div className="rounded-3xl overflow-hidden shadow-2xl shadow-black/30">
-                  <img src={analyticsDashboardImg} alt="Performance analytics" className="w-full h-auto aspect-[4/3] object-cover" />
+                  <img src={analyticsDashboardImg} alt="Performance analytics" className="w-full h-auto aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700" />
                 </div>
-                <div className="absolute -top-6 -right-6 w-28 h-28 bg-accent/20 rounded-3xl -z-10" />
-                <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-white/10 rounded-2xl -z-10" />
-              </div>
+                <FloatingShape className="w-28 h-28 -top-6 -right-6 z-[-1]" variant="square" />
+                <FloatingShape className="w-20 h-20 -bottom-6 -left-6 z-[-1]" variant="ring" />
+              </AnimateOnScroll>
             </div>
           </div>
         </section>
 
         {/* Insights */}
-        <section className="py-32 bg-white" data-testid="section-insights">
+        <section className="py-32 bg-white relative overflow-hidden" data-testid="section-insights">
+          <GeometricAccent className="top-10 right-20 text-primary" />
           <div className="container mx-auto px-4 md:px-8">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-20">
+            <AnimateOnScroll className="flex flex-col md:flex-row md:items-end md:justify-between mb-20">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
                   {language === "en" ? "From Our Practice" : "De notre pratique"}
@@ -617,39 +646,41 @@ export default function Home() {
                   {language === "en" ? "Latest Insights" : "Dernières perspectives"}
                 </h2>
               </div>
-              <Link href="/insights" className="inline-flex items-center gap-2 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all mt-6 md:mt-0" data-testid="link-view-all-insights">
+              <Link href="/insights" className="inline-flex items-center gap-2 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all mt-6 md:mt-0 group" data-testid="link-view-all-insights">
                 {language === "en" ? "View all insights" : "Voir toutes les perspectives"}
-                <ArrowRight size={16} />
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
-            </div>
+            </AnimateOnScroll>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {insights.map((insight, i) => (
-                <Link key={i} href="/insights" className="block h-full" data-testid={`link-insight-${i}`}>
-                  <div className="bg-white rounded-2xl border border-border hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 cursor-pointer group h-full flex flex-col overflow-hidden" data-testid={`insight-card-${i}`}>
-                    <div className="h-48 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10 flex items-center justify-center relative overflow-hidden">
-                      <div className="absolute inset-0 opacity-30">
-                        <img src={geoPatternImg} alt="" className="w-full h-full object-cover" />
+                <AnimateOnScroll key={i} animation="fade-up" delay={i * 150}>
+                  <Link href="/insights" className="block h-full" data-testid={`link-insight-${i}`}>
+                    <div className="bg-white rounded-2xl border border-border hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 cursor-pointer group h-full flex flex-col overflow-hidden" data-testid={`insight-card-${i}`}>
+                      <div className="h-48 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10 flex items-center justify-center relative overflow-hidden">
+                        <div className="absolute inset-0 opacity-30">
+                          <img src={geoPatternImg} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        </div>
+                        <span className="relative z-10 text-5xl font-extrabold text-primary/10 group-hover:text-accent/20 transition-colors">{String(i + 1).padStart(2, '0')}</span>
                       </div>
-                      <span className="relative z-10 text-5xl font-extrabold text-primary/10 group-hover:text-accent/20 transition-colors">{String(i + 1).padStart(2, '0')}</span>
+                      <div className="p-8 flex flex-col flex-grow">
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest">
+                            <Tag size={10} /> {insight.category}
+                          </span>
+                          <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                            <Calendar size={10} /> {insight.date}
+                          </span>
+                        </div>
+                        <h3 className="text-lg font-bold text-primary mb-4 group-hover:text-accent transition-colors line-clamp-2">{insight.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed flex-grow line-clamp-3">{insight.excerpt}</p>
+                        <div className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
+                          {language === "en" ? "Read more" : "Lire la suite"} <ArrowRight size={14} className="ml-2" />
+                        </div>
+                      </div>
                     </div>
-                    <div className="p-8 flex flex-col flex-grow">
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest">
-                          <Tag size={10} /> {insight.category}
-                        </span>
-                        <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                          <Calendar size={10} /> {insight.date}
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-bold text-primary mb-4 group-hover:text-accent transition-colors line-clamp-2">{insight.title}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed flex-grow line-clamp-3">{insight.excerpt}</p>
-                      <div className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
-                        {language === "en" ? "Read more" : "Lire la suite"} <ArrowRight size={14} className="ml-2" />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+                  </Link>
+                </AnimateOnScroll>
               ))}
             </div>
           </div>
@@ -658,37 +689,40 @@ export default function Home() {
         {/* Final CTA — EY-style with featured image */}
         <section className="py-32 bg-[#F8FAFC] border-t" data-testid="section-cta">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="relative rounded-[2rem] overflow-hidden max-w-5xl mx-auto">
-              <div className="absolute inset-0">
-                <img src={smallBizOwnerImg} alt="" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
-              </div>
-              <div className="relative z-10 p-12 lg:p-20 max-w-2xl">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
-                  {language === "en" ? "Let's Talk" : "Parlons-en"}
-                </p>
-                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
-                  {language === "en"
-                    ? "Ready to build something that works?"
-                    : "Prêt à construire quelque chose qui fonctionne ?"}
-                </h2>
-                <p className="text-lg text-white/70 mb-12">
-                  {language === "en"
-                    ? "Whether you are leading a team, growing a business, or leveling up your own performance, the first step is a conversation. Let's figure out the right path forward, together."
-                    : "Que vous dirigiez une équipe, développiez une entreprise ou amélioriez votre propre performance, la première étape est une conversation. Trouvons ensemble la bonne voie à suivre."}
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-cta-audit">
-                    <ClipboardCheck size={16} />
-                    {language === "en" ? "Get a Free Audit" : "Obtenez un audit gratuit"}
-                  </Link>
-                  <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-cta-services">
-                    {language === "en" ? "Explore services" : "Découvrir les services"}
-                    <ArrowRight size={16} />
-                  </Link>
+            <AnimateOnScroll animation="fade-scale">
+              <div className="relative rounded-[2rem] overflow-hidden max-w-5xl mx-auto">
+                <div className="absolute inset-0">
+                  <img src={smallBizOwnerImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
+                </div>
+                <FloatingShape className="w-14 h-14 top-10 right-10 z-[5]" variant="ring" />
+                <div className="relative z-10 p-12 lg:p-20 max-w-2xl">
+                  <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
+                    {language === "en" ? "Let's Talk" : "Parlons-en"}
+                  </p>
+                  <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
+                    {language === "en"
+                      ? "Ready to build something that works?"
+                      : "Prêt à construire quelque chose qui fonctionne ?"}
+                  </h2>
+                  <p className="text-lg text-white/70 mb-12">
+                    {language === "en"
+                      ? "Whether you are leading a team, growing a business, or leveling up your own performance, the first step is a conversation. Let's figure out the right path forward, together."
+                      : "Que vous dirigiez une équipe, développiez une entreprise ou amélioriez votre propre performance, la première étape est une conversation. Trouvons ensemble la bonne voie à suivre."}
+                  </p>
+                  <div className="flex flex-wrap gap-4">
+                    <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-cta-audit">
+                      <ClipboardCheck size={16} />
+                      {language === "en" ? "Get a Free Audit" : "Obtenez un audit gratuit"}
+                    </Link>
+                    <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-cta-services">
+                      {language === "en" ? "Explore services" : "Découvrir les services"}
+                      <ArrowRight size={16} />
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
+            </AnimateOnScroll>
           </div>
         </section>
       </main>

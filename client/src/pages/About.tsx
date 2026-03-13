@@ -8,8 +8,8 @@ import trainingImg from "@assets/stock_images/training.jpg";
 import teamStrategyImg from "@assets/generated/team-strategy.png";
 import cityAerialImg from "@assets/generated/city-aerial.png";
 import { useLanguage } from "@/hooks/use-language";
-import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/components/ui/animate-on-scroll";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -88,36 +88,36 @@ export default function About() {
 
         <section className="relative min-h-[550px] lg:min-h-[700px] flex items-center overflow-hidden bg-primary">
           <div className="absolute inset-0 z-0">
-            <img src={teamStrategyImg} alt="" className="w-full h-full object-cover opacity-25" />
+            <img src={teamStrategyImg} alt="" className="w-full h-full object-cover opacity-25 animate-ken-burns" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
           </div>
           <div className="absolute bottom-0 right-0 w-2/5 h-full hidden lg:block z-[1]">
-            <img src={cityAerialImg} alt="" className="w-full h-full object-cover" />
+            <img src={cityAerialImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/50 to-transparent" />
           </div>
+          <GradientOrb className="w-80 h-80 bg-accent/10 -top-20 -right-20 z-[2]" />
+          <FloatingShape className="w-14 h-14 top-[25%] right-[12%] z-[3]" variant="ring" />
+          <FloatingShape className="w-8 h-8 bottom-[25%] right-[30%] z-[3]" variant="dot" />
+          <GeometricAccent className="bottom-[10%] right-[5%] text-white z-[2]" />
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-32 relative z-10">
             <div className="max-w-3xl lg:max-w-[55%]">
-              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="text-hero-label">
+              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }} data-testid="text-hero-label">
                 Who We Are
               </p>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-hero-title">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.2s" }} data-testid="text-hero-title">
                 Built by consultants who <span className="text-accent">understand your challenges</span>
               </h1>
-              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-hero-subtitle">
+              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl animate-fade-in-up" style={{ animationDelay: "0.35s" }} data-testid="text-hero-subtitle">
                 Performance Processes was founded on a simple belief: organizations deserve consulting partners who stay until the work is done — not firms that hand over a report and walk away.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
-                  <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="button-hero-book">
+                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="button-hero-book">
                     <Calendar size={18} className="mr-2" />
                     Book a Discovery Call
-                  </Button>
                 </a>
-                <Link href="/services">
-                  <Button variant="outline" className="rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-hero-services">
+                <Link href="/services" className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-hero-services">
                     Explore Our Services <ArrowRight size={18} className="ml-2" />
-                  </Button>
                 </Link>
               </div>
             </div>
@@ -126,31 +126,35 @@ export default function About() {
 
         <section className="py-16 bg-white border-b" data-testid="section-trust-strip">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-10">
+            <AnimateOnScroll className="text-center mb-10">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground">Trusted by leaders across</p>
-            </div>
+            </AnimateOnScroll>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {industries.map((ind, i) => (
-                <div key={i} className="flex flex-col items-center gap-3 p-5 rounded-2xl bg-[#F8FAFC] border border-border/50 hover:border-accent/30 hover:shadow-sm transition-all" data-testid={`industry-${i}`}>
-                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
-                    {ind.icon}
+                <AnimateOnScroll key={i} animation="fade-up" delay={i * 80}>
+                  <div className="flex flex-col items-center gap-3 p-5 rounded-2xl bg-[#F8FAFC] border border-border/50 hover:border-accent/30 hover:shadow-sm transition-all hover:scale-105 duration-300" data-testid={`industry-${i}`}>
+                    <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
+                      {ind.icon}
+                    </div>
+                    <span className="text-xs font-bold text-primary text-center leading-tight">{ind.name}</span>
                   </div>
-                  <span className="text-xs font-bold text-primary text-center leading-tight">{ind.name}</span>
-                </div>
+                </AnimateOnScroll>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-28 bg-white border-b" data-testid="section-founder">
+        <section className="py-28 bg-white border-b relative overflow-hidden" data-testid="section-founder">
+          <GeometricAccent className="top-20 -right-10 text-primary" />
+          <GradientOrb className="w-72 h-72 bg-accent/5 -bottom-36 -left-36" />
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex flex-col lg:flex-row gap-20 items-center">
-              <div className="lg:w-2/5 relative">
+              <AnimateOnScroll animation="fade-left" className="lg:w-2/5 relative">
                 <div className="absolute -top-6 -left-6 w-full h-full border-2 border-accent/20 rounded-2xl -z-10 translate-x-4 translate-y-4"></div>
                 <img
                   src={founderImage}
                   alt="Danai Makore - Principal Consultant at Performance Processes"
-                  className="rounded-2xl shadow-2xl w-full h-auto object-cover"
+                  className="rounded-2xl shadow-2xl w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700"
                   data-testid="img-founder"
                 />
                 <div className="absolute -bottom-8 -right-8 bg-white p-8 rounded-2xl shadow-xl border border-border hidden md:block max-w-[280px]">
@@ -161,8 +165,8 @@ export default function About() {
                   </p>
                   <p className="text-accent font-black text-[10px] uppercase tracking-widest">— Danai Makore</p>
                 </div>
-              </div>
-              <div className="lg:w-3/5">
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="fade-right" delay={200} className="lg:w-3/5">
                 <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
                   Meet Our Founder
                 </div>
@@ -206,25 +210,23 @@ export default function About() {
                 </div>
 
                 <div className="mt-10 flex flex-wrap gap-4 items-center">
-                  <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
-                    <Button className="rounded-full bg-accent text-white hover:bg-primary h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-accent/20" data-testid="button-schedule-consultation">
+                  <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-primary h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-accent/20" data-testid="button-schedule-consultation">
                       Schedule Consultation
-                    </Button>
                   </a>
-                  <a href="https://danaimakore.com" target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" className="rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all" data-testid="button-learn-founder">
+                  <a href="https://danaimakore.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all" data-testid="button-learn-founder">
                       Learn More About Danai
-                    </Button>
                   </a>
                 </div>
-              </div>
+              </AnimateOnScroll>
             </div>
           </div>
         </section>
 
-        <section className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white border-b" data-testid="section-philosophy">
+        <section className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white border-b relative overflow-hidden" data-testid="section-philosophy">
+          <FloatingShape className="w-20 h-20 top-16 -left-6" variant="ring" />
+          <FloatingShape className="w-10 h-10 bottom-20 right-16" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
-            <div className="max-w-5xl mx-auto text-center">
+            <AnimateOnScroll className="max-w-5xl mx-auto text-center">
               <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-8">
                 Our Philosophy
               </div>
@@ -240,21 +242,23 @@ export default function About() {
                 alignment, and accountability structures that produce
                 measurable results.
               </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            </AnimateOnScroll>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
                 {[
                   { label: "Founded", val: "2023", icon: <Target className="text-accent" /> },
                   { label: "Expert Consultants", val: "3+", icon: <Users className="text-accent" /> },
                   { label: "Service Categories", val: "6+", icon: <CheckCircle2 className="text-accent" /> },
                   { label: "Industries Served", val: "8+", icon: <TrendingUp className="text-accent" /> }
                 ].map((s, i) => (
-                  <div key={i} className="bg-white p-8 rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow" data-testid={`stat-card-${i}`}>
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4 mx-auto">{s.icon}</div>
-                    <div className="text-4xl font-black text-primary mb-2">{s.val}</div>
-                    <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">{s.label}</div>
-                  </div>
+                  <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
+                    <div className="bg-white p-8 rounded-2xl border border-border shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300" data-testid={`stat-card-${i}`}>
+                      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4 mx-auto">{s.icon}</div>
+                      <div className="text-4xl font-black text-primary mb-2">{s.val}</div>
+                      <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">{s.label}</div>
+                    </div>
+                  </AnimateOnScroll>
                 ))}
               </div>
-            </div>
           </div>
         </section>
 
@@ -272,41 +276,40 @@ export default function About() {
                 </p>
               </div>
               <div className="shrink-0">
-                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
-                  <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="button-mission-cta">
+                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="button-mission-cta">
                     <Calendar size={16} className="mr-2" />
                     Book a Discovery Call
-                  </Button>
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-28 bg-white border-b border-border">
+        <section className="py-28 bg-white border-b border-border relative overflow-hidden">
+          <FloatingShape className="w-16 h-16 top-20 right-20" variant="ring" />
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-16">
+            <AnimateOnScroll className="text-center mb-16">
               <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
                 Our Team
               </div>
               <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">
                 Leadership
               </h2>
-            </div>
+            </AnimateOnScroll>
 
             <div className="flex flex-col lg:flex-row gap-16 items-center lg:items-start max-w-6xl mx-auto">
-              <div className="lg:w-1/3">
+              <AnimateOnScroll animation="fade-left" className="lg:w-1/3">
                 <div className="relative">
                   <div className="absolute top-4 -right-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
                   <img
                     src={seanImage}
                     alt="Sean Ogbonnaya - Director of Business Development"
-                    className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[3/4]"
+                    className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[3/4] hover:scale-[1.02] transition-transform duration-700"
                     data-testid="img-sean"
                   />
                 </div>
-              </div>
-              <div className="lg:w-2/3">
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="fade-right" delay={200} className="lg:w-2/3">
                 <h3 className="text-3xl font-heading font-extrabold text-primary mb-2">
                   Sean <span className="text-accent italic">Ogbonnaya</span>
                 </h3>
@@ -335,10 +338,8 @@ export default function About() {
                 </div>
 
                 <div className="mt-10 flex flex-wrap gap-4 items-center">
-                  <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
-                    <Button className="rounded-full bg-accent text-white hover:bg-primary h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-accent/20" data-testid="button-schedule-sean">
+                  <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-primary h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-accent/20" data-testid="button-schedule-sean">
                       Schedule Consultation
-                    </Button>
                   </a>
                   <div className="flex flex-wrap gap-3">
                     <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-[#F8FAFC] to-white rounded-xl border border-border">
@@ -351,14 +352,16 @@ export default function About() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </AnimateOnScroll>
             </div>
           </div>
         </section>
 
-        <section className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white border-b" data-testid="section-values">
+        <section className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white border-b relative overflow-hidden" data-testid="section-values">
+          <GeometricAccent className="-left-10 top-32 text-primary" />
+          <FloatingShape className="w-12 h-12 bottom-20 right-16" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-16">
+            <AnimateOnScroll className="text-center mb-16">
               <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
                 What Drives Us
               </div>
@@ -369,29 +372,32 @@ export default function About() {
                 These principles guide every decision we make
                 and every relationship we build.
               </p>
-            </div>
+            </AnimateOnScroll>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {values.map((value, i) => (
-                <div key={i} className="bg-gradient-to-br from-white via-white to-accent/5 p-8 rounded-2xl border border-border hover:border-accent/30 hover:shadow-lg transition-all group" data-testid={`value-card-${i}`}>
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center mb-6 group-hover:from-accent/20 group-hover:to-accent/10 transition-colors">
-                    {value.icon}
+                <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
+                  <div className="bg-gradient-to-br from-white via-white to-accent/5 p-8 rounded-2xl border border-border hover:border-accent/30 hover:shadow-lg transition-all group hover:scale-[1.02] duration-300 h-full" data-testid={`value-card-${i}`}>
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center mb-6 group-hover:from-accent/20 group-hover:to-accent/10 transition-colors group-hover:scale-110 duration-300">
+                      {value.icon}
+                    </div>
+                    <h3 className="text-xl font-heading font-extrabold text-primary mb-2">{value.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed mb-4">{value.description}</p>
+                    <div className="pt-4 border-t border-border/60">
+                      <p className="text-sm text-primary/70 leading-relaxed italic">{value.practice}</p>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-heading font-extrabold text-primary mb-2">{value.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{value.description}</p>
-                  <div className="pt-4 border-t border-border/60">
-                    <p className="text-sm text-primary/70 leading-relaxed italic">{value.practice}</p>
-                  </div>
-                </div>
+                </AnimateOnScroll>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-28 bg-white border-b" data-testid="section-what-sets-us-apart">
+        <section className="py-28 bg-white border-b relative overflow-hidden" data-testid="section-what-sets-us-apart">
+          <GradientOrb className="w-72 h-72 bg-accent/5 -top-32 -right-32" />
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
+                <AnimateOnScroll animation="fade-left">
                   <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
                     Our Difference
                   </div>
@@ -421,38 +427,42 @@ export default function About() {
                       </div>
                     ))}
                   </div>
-                </div>
-                <div className="relative">
-                  <div className="absolute -top-4 -left-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
-                  <img
-                    src={collaborationImg}
-                    alt="Team collaboration at Performance Processes"
-                    className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[4/3]"
-                    data-testid="img-collaboration"
-                  />
-                  <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-border">
-                    <div className="flex items-center gap-4">
-                      <div className="flex gap-2">
-                        <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full">
-                          <Clock className="text-accent" size={14} />
-                          <span className="text-xs font-bold text-primary">Long-Term Focus</span>
-                        </div>
-                        <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full">
-                          <Shield className="text-accent" size={14} />
-                          <span className="text-xs font-bold text-primary">Trust-Based</span>
+                </AnimateOnScroll>
+                <AnimateOnScroll animation="fade-right" delay={200}>
+                  <div className="relative">
+                    <div className="absolute -top-4 -left-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
+                    <img
+                      src={collaborationImg}
+                      alt="Team collaboration at Performance Processes"
+                      className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[4/3] hover:scale-[1.02] transition-transform duration-700"
+                      data-testid="img-collaboration"
+                    />
+                    <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-border">
+                      <div className="flex items-center gap-4">
+                        <div className="flex gap-2">
+                          <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full">
+                            <Clock className="text-accent" size={14} />
+                            <span className="text-xs font-bold text-primary">Long-Term Focus</span>
+                          </div>
+                          <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full">
+                            <Shield className="text-accent" size={14} />
+                            <span className="text-xs font-bold text-primary">Trust-Based</span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </AnimateOnScroll>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-28 bg-[#F8FAFC] border-b" data-testid="section-timeline">
+        <section className="py-28 bg-[#F8FAFC] border-b relative overflow-hidden" data-testid="section-timeline">
+          <FloatingShape className="w-14 h-14 top-20 right-10" variant="ring" />
+          <GradientOrb className="w-64 h-64 bg-primary/3 -bottom-32 -left-32" />
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-16">
+            <AnimateOnScroll className="text-center mb-16">
               <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
                 Our Journey
               </div>
@@ -463,11 +473,12 @@ export default function About() {
                 From a bold vision to a growing consultancy — here's
                 how Performance Processes has evolved.
               </p>
-            </div>
+            </AnimateOnScroll>
             <div className="relative max-w-4xl mx-auto">
               <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-accent/20 -translate-x-1/2"></div>
               {timelineItems.map((item, i) => (
-                <div key={i} className={`relative flex items-start mb-14 last:mb-0 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`} data-testid={`timeline-item-${i}`}>
+                <AnimateOnScroll key={i} animation={i % 2 === 0 ? "fade-left" : "fade-right"} delay={i * 150}>
+                <div className={`relative flex items-start mb-14 last:mb-0 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`} data-testid={`timeline-item-${i}`}>
                   <div className="hidden md:block md:w-1/2"></div>
                   <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white border-2 border-accent flex items-center justify-center z-10 shadow-md">
                     {item.icon}
@@ -480,15 +491,17 @@ export default function About() {
                     </div>
                   </div>
                 </div>
+                </AnimateOnScroll>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-28 bg-white border-b border-border" data-testid="section-community">
+        <section className="py-28 bg-white border-b border-border relative overflow-hidden" data-testid="section-community">
+          <GeometricAccent className="-right-10 top-20 text-accent" />
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-              <div>
+              <AnimateOnScroll animation="fade-left">
                 <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
                   Giving Back
                 </div>
@@ -557,24 +570,28 @@ export default function About() {
                     ))}
                   </div>
                 </div>
-              </div>
-              <div className="relative">
-                <div className="absolute -top-4 -right-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
-                <img
-                  src={trainingImg}
-                  alt="Performance Processes community engagement and training"
-                  className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[4/3]"
-                  data-testid="img-community"
-                />
-              </div>
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="fade-right" delay={200}>
+                <div className="relative">
+                  <div className="absolute -top-4 -right-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
+                  <img
+                    src={trainingImg}
+                    alt="Performance Processes community engagement and training"
+                    className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[4/3] hover:scale-[1.02] transition-transform duration-700"
+                    data-testid="img-community"
+                  />
+                </div>
+              </AnimateOnScroll>
             </div>
           </div>
         </section>
 
         <section className="bg-gradient-to-br from-primary via-primary to-primary/90 py-32 text-white relative overflow-hidden" data-testid="section-final-cta">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.05)_0%,transparent_60%)]" />
+          <FloatingShape className="w-20 h-20 top-16 left-16 opacity-20" variant="ring" />
+          <FloatingShape className="w-12 h-12 bottom-20 right-24 opacity-20" variant="dot" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
+            <AnimateOnScroll className="max-w-4xl mx-auto text-center">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
                 Ready to Get Started?
               </p>
@@ -585,19 +602,15 @@ export default function About() {
                 Whether you need strategic clarity, operational systems, or leadership development — we're ready to partner with you.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
-                  <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-14 text-lg font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:shadow-2xl hover:scale-105 w-full sm:w-auto" data-testid="button-final-cta">
+                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-14 text-lg font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:shadow-2xl hover:scale-105 w-full sm:w-auto" data-testid="button-final-cta">
                     <Calendar size={20} className="mr-2" />
                     Book a Discovery Call
-                  </Button>
                 </a>
-                <Link href="/contact">
-                  <Button variant="outline" className="rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-16 px-12 text-lg font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-contact-cta">
+                <Link href="/contact" className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-16 px-12 text-lg font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-contact-cta">
                     Contact Us
-                  </Button>
                 </Link>
               </div>
-            </div>
+            </AnimateOnScroll>
           </div>
         </section>
 

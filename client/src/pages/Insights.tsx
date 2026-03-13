@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ArrowRight, Filter, Mail, BookOpen, TrendingUp, Users, Shield, Lightbulb, BarChart3, Target, X, Sparkles, Loader2 } from "lucide-react";
+import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/components/ui/animate-on-scroll";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -208,46 +209,54 @@ export default function Insights() {
       <main className="flex-grow">
         <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-primary">
           <div className="absolute inset-0 z-0">
-            <img src={geoPatternImg} alt="" className="w-full h-full object-cover opacity-15" />
+            <img src={geoPatternImg} alt="" className="w-full h-full object-cover opacity-15 animate-ken-burns" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
           </div>
           <div className="absolute bottom-0 right-0 w-2/5 h-full hidden lg:block z-[1]">
-            <img src={strategyWhiteboardImg} alt="" className="w-full h-full object-cover" />
+            <img src={strategyWhiteboardImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/40 to-transparent" />
           </div>
+          <GradientOrb className="w-72 h-72 bg-accent/10 -top-16 -right-16 z-[2]" />
+          <FloatingShape className="w-14 h-14 top-[22%] right-[8%] z-[3]" variant="ring" />
+          <FloatingShape className="w-8 h-8 bottom-[28%] right-[32%] z-[3]" variant="dot" />
+          <GeometricAccent className="bottom-[15%] right-[6%] text-white z-[2]" />
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-4xl">
-              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="text-insights-label">
+              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }} data-testid="text-insights-label">
                 Research & Perspectives
               </p>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-insights-title">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.2s" }} data-testid="text-insights-title">
                 Latest <span className="text-accent">Insights</span>
               </h1>
-              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-insights-subtitle">
+              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl animate-fade-in-up" style={{ animationDelay: "0.35s" }} data-testid="text-insights-subtitle">
                 Perspectives, research, and practical frameworks from our consulting practice to help your organization perform at its best.
               </p>
             </div>
           </div>
         </section>
 
-        <section className="py-32 bg-gradient-to-b from-slate-50 to-white" data-testid="section-featured-insight">
+        <section className="py-32 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden" data-testid="section-featured-insight">
+          <GeometricAccent className="top-16 -right-10 text-primary" />
+          <GradientOrb className="w-72 h-72 bg-accent/5 -bottom-32 -left-32" />
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div className="relative overflow-hidden rounded-3xl aspect-[16/10] shadow-2xl group">
-                <img
-                  src={featuredInsight.image}
-                  alt={featuredInsight.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  data-testid="img-featured-insight"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                <div className="absolute top-5 left-5 bg-accent text-white text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2 rounded-full shadow-lg shadow-accent/30 flex items-center gap-2">
-                  <Sparkles size={12} />
-                  Featured
+              <AnimateOnScroll animation="fade-left">
+                <div className="relative overflow-hidden rounded-3xl aspect-[16/10] shadow-2xl group">
+                  <img
+                    src={featuredInsight.image}
+                    alt={featuredInsight.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                    data-testid="img-featured-insight"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                  <div className="absolute top-5 left-5 bg-accent text-white text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2 rounded-full shadow-lg shadow-accent/30 flex items-center gap-2">
+                    <Sparkles size={12} />
+                    Featured
+                  </div>
                 </div>
-              </div>
-              <div>
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="fade-right" delay={200}>
                 <div className="flex items-center gap-4 mb-6">
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-accent/10 to-accent/5 text-[10px] font-black uppercase tracking-[0.3em] text-accent border border-accent/10" data-testid="text-featured-cat">
                     {categoryIcons[featuredInsight.cat]}
@@ -271,7 +280,7 @@ export default function Insights() {
                   <span>Read Full Insight</span>
                   <ArrowRight size={16} />
                 </button>
-              </div>
+              </AnimateOnScroll>
             </div>
           </div>
         </section>
@@ -300,14 +309,16 @@ export default function Insights() {
           </div>
         </section>
 
-        <section className="py-32 bg-gradient-to-b from-slate-50/50 to-white" data-testid="section-insights-grid">
+        <section className="py-32 bg-gradient-to-b from-slate-50/50 to-white relative overflow-hidden" data-testid="section-insights-grid">
+          <FloatingShape className="w-16 h-16 top-32 -left-4" variant="ring" />
+          <FloatingShape className="w-10 h-10 bottom-20 right-16" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {filteredInsights.map((insight, i) => {
                 return (
+                  <AnimateOnScroll key={insight.id} animation="fade-up" delay={i * 100}>
                   <button
                     type="button"
-                    key={insight.id}
                     onClick={() => setSelectedInsight(insight.id)}
                     className="bg-white rounded-3xl border border-border/40 group cursor-pointer hover:shadow-2xl hover:border-accent/20 transition-all duration-500 flex flex-col text-left overflow-hidden hover:-translate-y-1"
                     data-testid={`card-insight-${i}`}
@@ -351,6 +362,7 @@ export default function Insights() {
                       </div>
                     </div>
                   </button>
+                  </AnimateOnScroll>
                 );
               })}
             </div>

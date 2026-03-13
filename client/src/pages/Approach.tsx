@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { useLanguage } from "@/hooks/use-language";
 import { Link } from "wouter";
 import { useState } from "react";
+import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/components/ui/animate-on-scroll";
 import {
   Search,
   Target,
@@ -262,27 +263,31 @@ export default function Approach() {
 
         <section className="relative min-h-[600px] lg:min-h-[750px] flex items-center overflow-hidden bg-primary">
           <div className="absolute inset-0 z-0">
-            <img src={processFlowImg} alt="" className="w-full h-full object-cover opacity-15" />
+            <img src={processFlowImg} alt="" className="w-full h-full object-cover opacity-15 animate-ken-burns" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
           </div>
           <div className="absolute bottom-0 right-0 w-2/5 h-full hidden lg:block z-[1]">
-            <img src={strategyWhiteboardImg} alt="" className="w-full h-full object-cover" />
+            <img src={strategyWhiteboardImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/50 to-transparent" />
           </div>
+          <GradientOrb className="w-80 h-80 bg-accent/10 -top-20 -right-20 z-[2]" />
+          <FloatingShape className="w-16 h-16 top-[20%] right-[10%] z-[3]" variant="ring" />
+          <FloatingShape className="w-8 h-8 bottom-[30%] right-[35%] z-[3]" variant="dot" />
+          <GeometricAccent className="bottom-[12%] right-[5%] text-white z-[2]" />
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-3xl lg:max-w-[55%]">
-              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="text-hero-label">
+              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }} data-testid="text-hero-label">
                 {language === "en" ? "Our Approach" : "Notre approche"}
               </p>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-hero-title">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.2s" }} data-testid="text-hero-title">
                 {language === "en" ? (
                   <>A collaborative, <span className="text-accent italic">results-focused</span> approach</>
                 ) : (
                   <>Une approche collaborative, <span className="text-accent italic">axée sur les résultats</span></>
                 )}
               </h1>
-              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-hero-subtitle">
+              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl animate-fade-in-up" style={{ animationDelay: "0.35s" }} data-testid="text-hero-subtitle">
                 {language === "en"
                   ? "Our methodology is designed to drive sustainable improvements across operations, people management, and organizational performance."
                   : "Notre méthodologie est conçue pour favoriser des améliorations durables dans les opérations, la gestion des personnes et la performance organisationnelle."}
@@ -301,10 +306,12 @@ export default function Approach() {
           </div>
         </section>
 
-        <section className="py-32 bg-white" data-testid="section-methodology-intro">
+        <section className="py-32 bg-white relative overflow-hidden" data-testid="section-methodology-intro">
+          <GeometricAccent className="top-20 -right-10 text-primary" />
+          <GradientOrb className="w-72 h-72 bg-accent/5 -bottom-36 -left-36" />
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
-              <div>
+              <AnimateOnScroll animation="fade-left">
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5" data-testid="text-methodology-label">Our Methodology</p>
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-8 italic" data-testid="text-methodology-title">
                   Built on Experience, Driven by Results
@@ -315,34 +322,40 @@ export default function Approach() {
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                   At the heart of our methodology is a simple belief: <strong className="text-primary">sustainable improvement comes from building internal capability, not creating dependency on external consultants.</strong> Every tool we introduce, every process we design, and every skill we teach is intended to strengthen your organization's ability to perform at its best, long after our engagement ends.
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="fade-right" delay={200}>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                   Our four-phase approach provides a clear, structured path from assessment to optimization, while remaining flexible enough to adapt to the unique needs, pace, and culture of your organization.
                 </p>
-              </div>
-              <div className="relative">
-                <img
-                  src={consultingImg}
-                  alt="Performance consulting methodology"
-                  className="rounded-3xl shadow-2xl w-full object-cover aspect-[4/3]"
-                  data-testid="img-methodology"
-                />
-                <div className="absolute -bottom-6 -left-6 bg-primary text-white p-6 rounded-2xl shadow-lg hidden md:block">
-                  <p className="text-3xl font-extrabold italic">4 Phases</p>
-                  <p className="text-sm opacity-80">Proven methodology</p>
+                <div className="relative">
+                  <img
+                    src={consultingImg}
+                    alt="Performance consulting methodology"
+                    className="rounded-3xl shadow-2xl w-full object-cover aspect-[4/3] hover:scale-[1.02] transition-transform duration-700"
+                    data-testid="img-methodology"
+                  />
+                  <FloatingShape className="w-20 h-20 -top-4 -right-4 z-[-1]" variant="square" />
+                  <FloatingShape className="w-14 h-14 -bottom-3 left-10 z-[-1]" variant="ring" />
+                  <div className="absolute -bottom-6 -left-6 bg-primary text-white p-6 rounded-2xl shadow-lg hidden md:block">
+                    <p className="text-3xl font-extrabold italic">4 Phases</p>
+                    <p className="text-sm opacity-80">Proven methodology</p>
+                  </div>
                 </div>
-              </div>
+              </AnimateOnScroll>
             </div>
           </div>
         </section>
 
-        <section className="py-32 bg-gradient-to-b from-[#F8FAFC] to-white" data-testid="section-approach-steps">
+        <section className="py-32 bg-gradient-to-b from-[#F8FAFC] to-white relative overflow-hidden" data-testid="section-approach-steps">
+          <FloatingShape className="w-20 h-20 top-24 -left-6" variant="ring" />
+          <FloatingShape className="w-10 h-10 top-40 right-20" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-20">
+            <AnimateOnScroll className="text-center mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">Our Process</p>
               <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic" data-testid="text-process-title">
                 Four Phases to Lasting Impact
               </h2>
-            </div>
+            </AnimateOnScroll>
 
             <div className="space-y-5">
               {steps.map((step, i) => {
@@ -445,9 +458,11 @@ export default function Approach() {
           </div>
         </section>
 
-        <section className="py-32 bg-white" data-testid="section-tools-frameworks">
+        <section className="py-32 bg-white relative overflow-hidden" data-testid="section-tools-frameworks">
+          <GeometricAccent className="top-16 -left-10 text-primary" />
+          <GradientOrb className="w-72 h-72 bg-accent/5 -bottom-32 right-20" />
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-20">
+            <AnimateOnScroll className="text-center mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">Our Toolkit</p>
               <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-6" data-testid="text-tools-title">
                 Tools & Frameworks We Use
@@ -455,24 +470,25 @@ export default function Approach() {
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 We leverage proven methodologies and industry-standard frameworks to deliver consistent, measurable results across every engagement.
               </p>
-            </div>
+            </AnimateOnScroll>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {toolsAndFrameworks.map((tool, i) => {
                 return (
-                  <div
-                    key={i}
-                    className="bg-gradient-to-br from-[#f0f4f8] to-white rounded-3xl border border-gray-100/60 hover:shadow-xl hover:border-accent/20 transition-all duration-300 group hover:-translate-y-1 overflow-hidden"
-                    data-testid={`card-tool-${i}`}
-                  >
-                    <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden">
-                      <img src={tool.image} alt={tool.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
+                    <div
+                      className="bg-gradient-to-br from-[#f0f4f8] to-white rounded-3xl border border-gray-100/60 hover:shadow-xl hover:border-accent/20 transition-all duration-300 group hover:-translate-y-1 overflow-hidden h-full"
+                      data-testid={`card-tool-${i}`}
+                    >
+                      <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden">
+                        <img src={tool.image} alt={tool.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                      </div>
+                      <div className="p-8 pt-5">
+                        <h3 className="text-xl font-bold text-primary mb-3">{tool.title}</h3>
+                        <p className="text-muted-foreground leading-relaxed text-sm">{tool.desc}</p>
+                      </div>
                     </div>
-                    <div className="p-8 pt-5">
-                      <h3 className="text-xl font-bold text-primary mb-3">{tool.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed text-sm">{tool.desc}</p>
-                    </div>
-                  </div>
+                  </AnimateOnScroll>
                 );
               })}
             </div>
@@ -518,17 +534,18 @@ export default function Approach() {
           <div className="absolute inset-0 opacity-10">
             <img src={processFlowImg} alt="" className="w-full h-full object-cover" />
           </div>
+          <FloatingShape className="w-20 h-20 top-16 right-16 opacity-20" variant="ring" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
-              <div className="order-2 md:order-1">
+              <AnimateOnScroll animation="fade-left" className="order-2 md:order-1">
                 <img
                   src={strategyImg}
                   alt="Strategic planning consultation"
-                  className="rounded-3xl shadow-2xl w-full object-cover aspect-[4/3] ring-1 ring-white/10"
+                  className="rounded-3xl shadow-2xl w-full object-cover aspect-[4/3] ring-1 ring-white/10 hover:scale-[1.02] transition-transform duration-700"
                   data-testid="img-cta-strategy"
                 />
-              </div>
-              <div className="order-1 md:order-2">
+              </AnimateOnScroll>
+              <AnimateOnScroll animation="fade-right" delay={200} className="order-1 md:order-2">
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">Get Started</p>
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-white italic mb-8" data-testid="text-cta-title">
                   Ready to Begin Your Transformation?
@@ -543,7 +560,7 @@ export default function Approach() {
                     <Calendar size={18} />
                     Book a Consultation
                 </a>
-              </div>
+              </AnimateOnScroll>
             </div>
           </div>
         </section>

@@ -41,6 +41,16 @@ Preferred communication style: Simple, everyday language.
 - **Dev Server**: Vite dev server is integrated as middleware in Express during development (`server/vite.ts`), with HMR support. Production serves static files from `dist/public/`
 
 ### Authentication & Authorization
+- **Email Nurture System**: Automated lead nurture funnel:
+  - `server/leadNurtureEmails.ts` — All outbound email templates (audit checklist delivery w/ PDF attachment, nurture sequence emails 2-4, contact confirmation, grant confirmation, job application confirmation, subscriber welcome)
+  - `server/emailScheduler.ts` — DB-backed scheduled email processor (checks every 5 min); `scheduleNurtureSequence()` queues 3 follow-up emails over 6 days after audit checklist download
+  - `POST /api/subscribe` — Newsletter subscription endpoint; saves to `subscribers` table, sends welcome email, notifies admin
+  - `POST /api/audit-checklist` — Now sends checklist PDF attachment to lead + schedules nurture emails 2-4
+  - `POST /api/contact` — Now sends confirmation email to submitter
+  - `POST /api/grant-applications` — Now sends confirmation email to applicant (fixed broken `server/email.ts` import)
+  - `POST /api/apply` — Now sends confirmation email to applicant
+  - DB tables: `subscribers` (email, source, status), `scheduled_emails` (recipient, type, step, subject, status, send_at, sent_at)
+
 - **Auth System**: Passport.js with local strategy, bcryptjs for password hashing
 - **Sessions**: express-session with connect-pg-simple for PostgreSQL session storage. `user_sessions` table created programmatically in `setupAuth`
 - **2FA**: Removed — no 2FA setup or verification in login/register flows
@@ -98,7 +108,7 @@ Services are organized into 4 tabs with tabbed navigation:
 3. **Staff approval workflow**: Staff accounts require admin approval before access
 4. **Engagement-centric architecture**: Admin assigns clients to staff via engagements; staff manage their assigned clients' milestones, actions, KPIs, etc.
 5. **Single-page app with server-side fallback**: All unmatched routes fall through to `index.html`
-6. **Video backgrounds**: Hero sections and auth pages (Login/Register) use background videos with gradient overlays
+6. **EY-inspired editorial heroes**: Hero sections use generated images with split layout (background + right-side panel + accent bar), replacing video backgrounds
 7. **Portal data hooks**: `usePortalEngagement()` and `usePortalData()` in `client/src/hooks/use-portal.ts` for consistent data fetching
 
 ## External Dependencies

@@ -141,6 +141,13 @@ app.use((req, res, next) => {
     console.error("Admin seed error (non-fatal):", err);
   }
 
+  try {
+    const { startEmailScheduler } = await import('./emailScheduler');
+    startEmailScheduler();
+  } catch (err) {
+    console.error("Email scheduler start error (non-fatal):", err);
+  }
+
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";

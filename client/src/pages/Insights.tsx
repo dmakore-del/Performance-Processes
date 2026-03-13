@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { ArrowRight, Filter, Mail, BookOpen, TrendingUp, Users, Shield, Lightbulb, BarChart3, Target, X, Sparkles } from "lucide-react";
+import { ArrowRight, Filter, Mail, BookOpen, TrendingUp, Users, Shield, Lightbulb, BarChart3, Target, X, Sparkles, Loader2 } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 import geoPatternImg from "@assets/generated/geo-pattern.png";
 import strategyWhiteboardImg from "@assets/generated/strategy-whiteboard.png";
 import analyticsImg from "@assets/stock_images/analytics.jpg";
@@ -176,6 +179,21 @@ export default function Insights() {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
   const [email, setEmail] = useState("");
   const [selectedInsight, setSelectedInsight] = useState<number | null>(null);
+  const { toast } = useToast();
+
+  const subscribeMutation = useMutation({
+    mutationFn: async (emailAddr: string) => {
+      const res = await apiRequest("POST", "/api/subscribe", { email: emailAddr, source: "insights-page" });
+      return res.json();
+    },
+    onSuccess: () => {
+      toast({ title: "You're subscribed!", description: "Check your inbox for a welcome email with leadership insights." });
+      setEmail("");
+    },
+    onError: () => {
+      toast({ title: "Something went wrong", description: "Please try again or contact us directly.", variant: "destructive" });
+    },
+  });
 
   const featuredInsight = insights[0];
   const filteredInsights = activeCategory === "All"
@@ -374,7 +392,8 @@ export default function Insights() {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                setEmail("");
+                if (!email) return;
+                subscribeMutation.mutate(email);
               }}
               className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto"
             >
@@ -389,10 +408,11 @@ export default function Insights() {
               />
               <button
                 type="submit"
-                className="px-10 py-4 bg-accent text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-white hover:text-primary transition-all duration-300 whitespace-nowrap shadow-xl shadow-accent/30 hover:scale-105"
+                disabled={subscribeMutation.isPending}
+                className="px-10 py-4 bg-accent text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-white hover:text-primary transition-all duration-300 whitespace-nowrap shadow-xl shadow-accent/30 hover:scale-105 disabled:opacity-60"
                 data-testid="button-subscribe"
               >
-                Subscribe
+                {subscribeMutation.isPending ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> : "Subscribe"}
               </button>
             </form>
             <p className="text-white/30 text-xs mt-8 uppercase tracking-wider">Monthly digest · Unsubscribe anytime</p>

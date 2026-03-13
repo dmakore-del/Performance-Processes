@@ -67,16 +67,20 @@ export async function registerRoutes(
   app.post("/api/audit-checklist", async (req, res) => {
     try {
       const { fullName, email, company, role } = req.body;
-      if (!fullName || !email) {
+      if (!fullName || !email || typeof email !== 'string' || typeof fullName !== 'string') {
         return res.status(400).json({ message: "Name and email are required" });
+      }
+      const trimmedEmail = email.toLowerCase().trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+        return res.status(400).json({ message: "Please provide a valid email address" });
       }
 
       await db.execute(sql`
         INSERT INTO leads (company_name, contact_name, contact_email, source, status, service_interest, notes)
         VALUES (
           ${company || 'Not provided'},
-          ${fullName},
-          ${email},
+          ${fullName.trim()},
+          ${trimmedEmail},
           'audit-checklist',
           'new',
           'Free Process & People Management Audit',
@@ -84,26 +88,18 @@ export async function registerRoutes(
         )
       `);
 
-      try {
-        const { notifyContactForm } = await import('./emailNotifications');
-        await notifyContactForm({
-          name: fullName,
-          email: email,
-          message: `New audit checklist download:\nCompany: ${company || 'Not provided'}\nRole: ${role || 'Not specified'}\n\nThis lead downloaded the Process & People Management Audit Checklist. Follow up to schedule the free audit consultation.`
-        });
-      } catch (emailErr) {
-        console.error("Audit notification email failed:", emailErr);
-      }
+      const { notifyContactForm } = await import('./emailNotifications');
+      notifyContactForm({
+        name: fullName.trim(),
+        email: trimmedEmail,
+        message: `New audit checklist download:\nCompany: ${company || 'Not provided'}\nRole: ${role || 'Not specified'}\n\nThis lead downloaded the Process & People Management Audit Checklist. Follow up to schedule the free audit consultation.`
+      }).catch(err => console.error("Audit notification email failed:", err));
 
-      try {
-        const { sendAuditChecklistEmail } = await import('./leadNurtureEmails');
-        await sendAuditChecklistEmail(email, fullName);
+      const { sendAuditChecklistEmail } = await import('./leadNurtureEmails');
+      sendAuditChecklistEmail(trimmedEmail, fullName.trim()).catch(err => console.error("Checklist delivery email failed:", err));
 
-        const { scheduleNurtureSequence } = await import('./emailScheduler');
-        scheduleNurtureSequence(email, fullName);
-      } catch (nurtureErr) {
-        console.error("Nurture email failed:", nurtureErr);
-      }
+      const { scheduleNurtureSequence } = await import('./emailScheduler');
+      scheduleNurtureSequence(trimmedEmail, fullName.trim());
 
       return res.status(201).json({ message: "Checklist request received", success: true });
     } catch (error) {
@@ -115,40 +111,36 @@ export async function registerRoutes(
   app.post("/api/subscribe", async (req, res) => {
     try {
       const { email, source } = req.body;
-      if (!email || typeof email !== 'string') {
+      if (!email || typeof email !== 'string' || !email.trim()) {
         return res.status(400).json({ message: "Email is required" });
+      }
+      const trimmedEmail = email.toLowerCase().trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+        return res.status(400).json({ message: "Please provide a valid email address" });
       }
 
       const { subscribers } = await import("@shared/schema");
       const { eq } = await import("drizzle-orm");
 
-      const existing = await db.select().from(subscribers).where(eq(subscribers.email, email.toLowerCase().trim()));
+      const existing = await db.select().from(subscribers).where(eq(subscribers.email, trimmedEmail));
       if (existing.length > 0) {
         return res.status(200).json({ message: "Already subscribed", success: true });
       }
 
       await db.insert(subscribers).values({
-        email: email.toLowerCase().trim(),
+        email: trimmedEmail,
         source: source || 'website',
       });
 
-      try {
-        const { sendSubscriberWelcome } = await import('./leadNurtureEmails');
-        await sendSubscriberWelcome(email.toLowerCase().trim());
-      } catch (emailErr) {
-        console.error("Subscriber welcome email failed:", emailErr);
-      }
+      const { sendSubscriberWelcome } = await import('./leadNurtureEmails');
+      sendSubscriberWelcome(trimmedEmail).catch(err => console.error("Subscriber welcome email failed:", err));
 
-      try {
-        const { notifyContactForm } = await import('./emailNotifications');
-        await notifyContactForm({
-          name: 'New Subscriber',
-          email: email.toLowerCase().trim(),
-          message: `New newsletter subscription from the website.\nSource: ${source || 'footer lead magnet'}`
-        });
-      } catch (notifyErr) {
-        console.error("Subscriber admin notification failed:", notifyErr);
-      }
+      const { notifyContactForm } = await import('./emailNotifications');
+      notifyContactForm({
+        name: 'New Subscriber',
+        email: trimmedEmail,
+        message: `New newsletter subscription from the website.\nSource: ${source || 'footer lead magnet'}`
+      }).catch(err => console.error("Subscriber admin notification failed:", err));
 
       return res.status(201).json({ message: "Subscribed successfully", success: true });
     } catch (error) {

@@ -1,0 +1,108 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "EYInterstate",
+      "role": "body"
+    },
+    {
+      "family": "Noto Sans",
+      "role": "body"
+    },
+    {
+      "family": "Times New Roman",
+      "role": "unknown"
+    },
+    {
+      "family": "Arial",
+      "role": "unknown"
+    },
+    {
+      "family": "Helvetica",
+      "role": "unknown"
+    }
+  ],
+  "colors": {
+    "primary": "#FFE600",
+    "accent": "#686E77",
+    "background": "#F6F6FA",
+    "textPrimary": "#2E2E38",
+    "link": "#686E77"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "EYInterstate",
+      "heading": "EYInterstate"
+    },
+    "fontStacks": {
+      "heading": [
+        "EYInterstate",
+        "Noto Sans",
+        "sans-serif"
+      ],
+      "body": [
+        "EYInterstate",
+        "Noto Sans",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "EYInterstate",
+        "Noto Sans",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "52px",
+      "h2": "40px",
+      "body": "16px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "2px"
+  },
+  "components": {},
+  "images": {
+    "logo": "File saved at: attached_assets/logo.svg",
+    "favicon": "File saved at: attached_assets/favicon.jpg",
+    "ogImage": "File saved at: attached_assets/ogImage.jpg",
+    "logoHref": "File saved at: attached_assets/logoHref.html",
+    "logoAlt": "a"
+  },
+  "__llm_logo_reasoning": {
+    "selectedIndex": 0,
+    "reasoning": "Selected #0 because it is visible, medium-sized, and matches the brand name 'EY' in the source. It is the most prominent logo available, aligning with the brand's identity.",
+    "confidence": 0.85,
+    "source": "llm"
+  },
+  "personality": {
+    "tone": "professional",
+    "energy": "medium",
+    "targetAudience": "business professionals"
+  },
+  "designSystem": {
+    "framework": "custom",
+    "componentLibrary": ""
+  },
+  "confidence": {
+    "buttons": 0,
+    "colors": 0.9,
+    "overall": 0.45
+  },
+  "__llm_metadata": {
+    "logoSelection": {
+      "llmCalled": true,
+      "llmSucceeded": true,
+      "finalSource": "llm",
+      "rawLogoSelection": {
+        "selectedLogoIndex": 0,
+        "selectedLogoReasoning": "Selected #0 because it is visible, medium-sized, and matches the brand name 'EY' in the source. It is the most prominent logo available, aligning with the brand's identity.",
+        "confidence": 0.85
+      }
+    },
+    "buttonClassification": {
+      "llmCalled": false,
+      "llmSucceeded": false
+    }
+  }
+}

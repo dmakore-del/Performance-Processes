@@ -1,23 +1,42 @@
 import { Link } from "wouter";
-import { ArrowRight, Mail, BookOpen } from "lucide-react";
+import { ArrowRight, Mail, BookOpen, Loader2 } from "lucide-react";
 import { Linkedin, Instagram } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 import logoImg from "@/assets/logo.png";
 
 function LeadMagnetSection() {
   const [email, setEmail] = useState("");
   const { toast } = useToast();
 
+  const subscribeMutation = useMutation({
+    mutationFn: async (emailAddr: string) => {
+      const res = await apiRequest("POST", "/api/subscribe", { email: emailAddr, source: "footer-lead-magnet" });
+      return res.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "You're subscribed!",
+        description: "Check your inbox for a welcome email with leadership insights and resources.",
+      });
+      setEmail("");
+    },
+    onError: () => {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    toast({
-      title: "You're subscribed!",
-      description: "Check your inbox for the Performance Management Playbook.",
-    });
-    setEmail("");
+    subscribeMutation.mutate(email);
   };
 
   return (
@@ -48,11 +67,11 @@ function LeadMagnetSection() {
             </div>
             <button
               type="submit"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accent/90 transition-colors shrink-0"
+              disabled={subscribeMutation.isPending}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accent/90 transition-colors shrink-0 disabled:opacity-60"
               data-testid="button-lead-magnet-subscribe"
             >
-              Subscribe
-              <ArrowRight className="w-4 h-4" />
+              {subscribeMutation.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Subscribe <ArrowRight className="w-4 h-4" /></>}
             </button>
           </form>
           <p className="text-white/40 text-xs mt-4">No spam. Unsubscribe anytime.</p>

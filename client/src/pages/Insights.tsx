@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ArrowRight, Filter, Mail, BookOpen, TrendingUp, Users, Shield, Lightbulb, BarChart3, Target, X, Sparkles } from "lucide-react";
+import geoPatternImg from "@assets/generated/geo-pattern.png";
+import strategyWhiteboardImg from "@assets/generated/strategy-whiteboard.png";
 import analyticsImg from "@assets/stock_images/analytics.jpg";
 import leadershipImg from "@assets/stock_images/leadership.jpg";
 import strategyImg from "@assets/stock_images/strategy.jpg";
@@ -188,11 +190,14 @@ export default function Insights() {
       <main className="flex-grow">
         <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-primary">
           <div className="absolute inset-0 z-0">
-            <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-15">
-              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/80" />
+            <img src={geoPatternImg} alt="" className="w-full h-full object-cover opacity-15" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
           </div>
+          <div className="absolute bottom-0 right-0 w-2/5 h-full hidden lg:block z-[1]">
+            <img src={strategyWhiteboardImg} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/40 to-transparent" />
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-4xl">
               <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="text-insights-label">

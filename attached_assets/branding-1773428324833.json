@@ -1,0 +1,122 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "EYInterstate",
+      "role": "heading"
+    },
+    {
+      "family": "Noto Sans",
+      "role": "body"
+    }
+  ],
+  "colors": {
+    "primary": "#FFE600",
+    "accent": "#2E2E38",
+    "background": "#F6F6FA",
+    "textPrimary": "#2E2E38",
+    "link": "#686E77"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Noto Sans",
+      "heading": "EYInterstate"
+    },
+    "fontStacks": {
+      "heading": [
+        "EYInterstate",
+        "Noto Sans",
+        "sans-serif"
+      ],
+      "body": [
+        "EYInterstate",
+        "Noto Sans",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "EYInterstate",
+        "Noto Sans",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "52px",
+      "h2": "40px",
+      "body": "16px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "2px"
+  },
+  "components": {
+    "buttonPrimary": {
+      "background": "#2E2E38",
+      "textColor": "#FFFFFF",
+      "borderRadius": "0px",
+      "borderRadiusCorners": {
+        "topLeft": "0px",
+        "topRight": "0px",
+        "bottomRight": "0px",
+        "bottomLeft": "0px"
+      },
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "logo": "File saved at: attached_assets/logo.svg",
+    "favicon": "File saved at: attached_assets/favicon.jpg",
+    "ogImage": "File saved at: attached_assets/ogImage.png",
+    "logoHref": "File saved at: attached_assets/logoHref.html",
+    "logoAlt": "a"
+  },
+  "__llm_logo_reasoning": {
+    "selectedIndex": 0,
+    "reasoning": "Selected #0 because it is visible, medium-sized, and matches the brand EY, which is inferred from the page title and URL. It is the most prominent logo available.",
+    "confidence": 0.85,
+    "source": "llm"
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": 0,
+      "text": "Learn more",
+      "reasoning": "Button #0 is selected as the primary CTA because it shares the same color and style as Button #1, but it is the first in the list, suggesting a higher priority. Both buttons have the same neutral color, but without a vibrant option, the first button is assumed to be primary."
+    },
+    "secondary": {
+      "index": -1,
+      "text": "N/A",
+      "reasoning": "Both buttons have the same background color, making it impossible to select a secondary button with a different color. Therefore, no valid secondary button exists."
+    },
+    "confidence": 0.7
+  },
+  "personality": {
+    "tone": "professional",
+    "energy": "medium",
+    "targetAudience": "corporate clients and businesses focused on sustainability"
+  },
+  "designSystem": {
+    "framework": "custom",
+    "componentLibrary": ""
+  },
+  "confidence": {
+    "buttons": 0.7,
+    "colors": 0.9,
+    "overall": 0.8
+  },
+  "__llm_metadata": {
+    "logoSelection": {
+      "llmCalled": true,
+      "llmSucceeded": true,
+      "finalSource": "llm",
+      "rawLogoSelection": {
+        "selectedLogoIndex": 0,
+        "selectedLogoReasoning": "Selected #0 because it is visible, medium-sized, and matches the brand EY, which is inferred from the page title and URL. It is the most prominent logo available.",
+        "confidence": 0.85
+      }
+    },
+    "buttonClassification": {
+      "llmCalled": true,
+      "llmSucceeded": true
+    }
+  }
+}

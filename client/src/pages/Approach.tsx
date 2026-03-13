@@ -25,6 +25,8 @@ import {
 
 import consultingImg from "@assets/stock_images/consulting.jpg";
 import strategyImg from "@assets/stock_images/strategy.jpg";
+import strategyWhiteboardImg from "@assets/generated/strategy-whiteboard.png";
+import processFlowImg from "@assets/generated/process-flow-abstract.png";
 import balancedScorecardImg from "@assets/stock_images/balanced_scorecard.jpg";
 import swotAnalysisImg from "@assets/stock_images/swot_analysis.jpg";
 import kpiFrameworksImg from "@assets/stock_images/kpi_frameworks.jpg";
@@ -258,15 +260,18 @@ export default function Approach() {
       <Navbar />
       <main className="flex-grow">
 
-        <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-primary">
+        <section className="relative min-h-[600px] lg:min-h-[750px] flex items-center overflow-hidden bg-primary">
           <div className="absolute inset-0 z-0">
-            <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-15">
-              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/80" />
+            <img src={processFlowImg} alt="" className="w-full h-full object-cover opacity-15" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
           </div>
+          <div className="absolute bottom-0 right-0 w-2/5 h-full hidden lg:block z-[1]">
+            <img src={strategyWhiteboardImg} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/50 to-transparent" />
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
-            <div className="max-w-4xl">
+            <div className="max-w-3xl lg:max-w-[55%]">
               <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="text-hero-label">
                 {language === "en" ? "Our Approach" : "Notre approche"}
               </p>
@@ -510,10 +515,8 @@ export default function Approach() {
 
         <section className="relative py-32 overflow-hidden" data-testid="section-cta">
           <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/90" />
-          <div className="absolute inset-0 opacity-5">
-            <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
-            </video>
+          <div className="absolute inset-0 opacity-10">
+            <img src={processFlowImg} alt="" className="w-full h-full object-cover" />
           </div>
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">

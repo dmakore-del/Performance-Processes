@@ -9,6 +9,10 @@ import {
   TrendingUp,
   Target,
   ClipboardCheck,
+  Zap,
+  Users,
+  BarChart3,
+  Settings,
 } from "lucide-react";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
@@ -30,6 +34,16 @@ import personalCoachingImg from "@assets/stock_images/personal_coaching.jpg";
 import programsToolkitImg from "@assets/stock_images/programs_toolkit.jpg";
 import hrPeopleStrategyImg from "@assets/stock_images/hr_people_strategy.jpg";
 
+import heroAbstractImg from "@assets/generated/hero-abstract.png";
+import teamStrategyImg from "@assets/generated/team-strategy.png";
+import analyticsDashboardImg from "@assets/generated/analytics-dashboard.png";
+import leadershipPresentationImg from "@assets/generated/leadership-presentation.png";
+import processFlowImg from "@assets/generated/process-flow-abstract.png";
+import cityAerialImg from "@assets/generated/city-aerial.png";
+import strategyWhiteboardImg from "@assets/generated/strategy-whiteboard.png";
+import smallBizOwnerImg from "@assets/generated/small-business-owner.png";
+import geoPatternImg from "@assets/generated/geo-pattern.png";
+
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
 export default function Home() {
@@ -37,6 +51,7 @@ export default function Home() {
 
   const outcomes = [
     {
+      icon: <Zap size={24} />,
       image: teamAlignmentImg,
       title: language === "en" ? "Improve Workflow Efficiency" : "Améliorez l'efficacité des flux de travail",
       desc: language === "en"
@@ -44,6 +59,7 @@ export default function Home() {
         : "Que vous soyez un professionnel solo ou à la tête d'une équipe, nous identifions les goulots d'étranglement et concevons des processus efficaces.",
     },
     {
+      icon: <Users size={24} />,
       image: actionPlanningImg,
       title: language === "en" ? "Strengthen Leadership & Accountability" : "Renforcez le leadership et la responsabilité",
       desc: language === "en"
@@ -51,6 +67,7 @@ export default function Home() {
         : "Construisez des structures de responsabilité et des systèmes de leadership qui transforment les plans en exécution cohérente.",
     },
     {
+      icon: <BarChart3 size={24} />,
       image: measurableProgressImg,
       title: language === "en" ? "See Measurable Progress" : "Voyez des progrès mesurables",
       desc: language === "en"
@@ -58,6 +75,7 @@ export default function Home() {
         : "Pas de devinettes. Suivez de vrais progrès avec des KPI clairs, des métriques de productivité et des suivis réguliers.",
     },
     {
+      icon: <Settings size={24} />,
       image: lastingSystemsImg,
       title: language === "en" ? "Build Systems That Scale" : "Construisez des systèmes évolutifs",
       desc: language === "en"
@@ -208,16 +226,23 @@ export default function Home() {
       <Navbar />
 
       <main className="flex-grow">
-        {/* Hero */}
-        <section className="relative min-h-[650px] lg:min-h-[750px] flex items-center overflow-hidden bg-primary" data-testid="section-hero">
+        {/* Hero — EY-style split with large featured image */}
+        <section className="relative min-h-[700px] lg:min-h-[800px] flex items-center overflow-hidden bg-primary" data-testid="section-hero">
           <div className="absolute inset-0 z-0">
-            <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-15">
-              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/80" />
+            <img src={heroAbstractImg} alt="" className="w-full h-full object-cover opacity-20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/98 to-primary/70" />
+          </div>
+          <div className="absolute bottom-0 right-0 w-1/2 h-full hidden lg:block z-[1]">
+            <img src={teamStrategyImg} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
           </div>
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
-            <div className="max-w-4xl">
+            <div className="max-w-2xl lg:max-w-[55%]">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-8 backdrop-blur-sm">
+                <ClipboardCheck size={14} />
+                {language === "en" ? "Management Consulting" : "Conseil en gestion"}
+              </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-hero-title">
                 {language === "en" ? (
                   <>Improve Your Processes. Strengthen Your Leadership. <span className="text-accent">Elevate Performance.</span></>
@@ -225,7 +250,7 @@ export default function Home() {
                   <>Améliorez vos processus. Renforcez votre leadership. <span className="text-accent">Élevez la performance.</span></>
                 )}
               </h1>
-              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-hero-subtitle">
+              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-xl" data-testid="text-hero-subtitle">
                 {language === "en"
                   ? "We help professionals and organizations improve performance through better processes, leadership systems, and people management."
                   : "Nous aidons les professionnels et les organisations à améliorer leur performance grâce à de meilleurs processus, systèmes de leadership et gestion des personnes."}
@@ -242,6 +267,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
         </section>
 
         {/* Trusted By */}
@@ -270,27 +296,58 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What We Help You Achieve */}
+        {/* What We Help You Achieve — EY-style editorial split */}
         <section className="py-32 bg-white" data-testid="section-outcomes">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                {language === "en" ? "What You Get" : "Ce que vous obtenez"}
-              </p>
-              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                {language === "en" ? "What we help you achieve" : "Ce que nous vous aidons à accomplir"}
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {language === "en"
-                  ? "Whether you lead a team of 5 or 500, the challenge is the same: turning strategy into action. Here is how we help."
-                  : "Que vous dirigiez une équipe de 5 ou 500 personnes, le défi est le même : transformer la stratégie en action. Voici comment nous aidons."}
-              </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
+                  {language === "en" ? "What You Get" : "Ce que vous obtenez"}
+                </p>
+                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
+                  {language === "en" ? "What we help you achieve" : "Ce que nous vous aidons à accomplir"}
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-10">
+                  {language === "en"
+                    ? "Whether you lead a team of 5 or 500, the challenge is the same: turning strategy into action. Here is how we help."
+                    : "Que vous dirigiez une équipe de 5 ou 500 personnes, le défi est le même : transformer la stratégie en action. Voici comment nous aidons."}
+                </p>
+                <div className="grid grid-cols-2 gap-6">
+                  {[
+                    { val: "4x", label: language === "en" ? "Faster execution" : "Exécution plus rapide" },
+                    { val: "100%", label: language === "en" ? "Teams aligned" : "Équipes alignées" },
+                    { val: "4", label: language === "en" ? "Phase approach" : "Phases structurées" },
+                    { val: "24/7", label: language === "en" ? "Portal access" : "Accès portail" },
+                  ].map((stat, i) => (
+                    <div key={i} className="text-left" data-testid={`stat-hero-${i}`}>
+                      <p className="text-3xl md:text-4xl font-extrabold text-accent mb-1">{stat.val}</p>
+                      <p className="text-sm text-muted-foreground font-medium">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="relative">
+                <div className="rounded-3xl overflow-hidden shadow-2xl shadow-primary/10">
+                  <img src={leadershipPresentationImg} alt="Leadership strategy session" className="w-full h-auto object-cover aspect-[4/3]" />
+                </div>
+                <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-6 border border-border max-w-[240px] hidden md:block">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                      <BarChart3 size={20} className="text-accent" />
+                    </div>
+                    <p className="text-sm font-bold text-primary">{language === "en" ? "Measurable Results" : "Résultats mesurables"}</p>
+                  </div>
+                  <p className="text-xs text-muted-foreground">{language === "en" ? "Track progress with clear KPIs and dashboards" : "Suivez les progrès avec des KPI clairs"}</p>
+                </div>
+              </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
               {outcomes.map((item, i) => (
-                <div key={i} className="flex gap-6 p-8 bg-gradient-to-br from-[#F8FAFC] to-white rounded-3xl border border-border hover:shadow-xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 group" data-testid={`outcome-card-${i}`}>
-                  <div className="w-14 h-14 rounded-2xl overflow-hidden shrink-0 shadow-sm">
-                    <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                <div key={i} className="relative flex gap-6 p-8 rounded-2xl border border-border bg-white hover:shadow-xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 group overflow-hidden" data-testid={`outcome-card-${i}`}>
+                  <div className="absolute top-0 left-0 w-1 h-full bg-accent/0 group-hover:bg-accent transition-all duration-300" />
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                    {item.icon}
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-primary mb-2">{item.title}</h3>
@@ -302,7 +359,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Who We Work With */}
+        {/* Who We Work With — EY-style full-bleed cards */}
         <section className="py-32 bg-[#F8FAFC]" data-testid="section-who-we-help">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center max-w-2xl mx-auto mb-20">
@@ -318,21 +375,21 @@ export default function Home() {
                   : "Des fondateurs solo aux équipes de direction, nous vous rencontrons là où vous êtes et vous aidons à atteindre vos objectifs."}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {whoWeHelp.map((item, i) => (
-                <div key={i} className="bg-gradient-to-br from-white via-white to-accent/5 rounded-3xl border border-border text-center hover:shadow-2xl hover:shadow-accent/5 transition-all duration-300 group overflow-hidden" data-testid={`who-card-${i}`}>
-                  <div className="w-full aspect-[16/9] overflow-hidden">
-                    <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div key={i} className="group cursor-pointer" data-testid={`who-card-${i}`}>
+                  <div className="relative rounded-2xl overflow-hidden mb-6 aspect-[4/3]">
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                    </div>
                   </div>
-                  <div className="p-10">
-                    <h3 className="text-xl font-bold text-primary mb-4">{item.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
-                  </div>
+                  <p className="text-muted-foreground leading-relaxed px-1">{item.desc}</p>
                 </div>
               ))}
             </div>
 
-            {/* Industries strip */}
             <div className="mt-20 pt-16 border-t border-border/60">
               <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-10">
                 {language === "en" ? "Industries We Serve" : "Industries que nous desservons"}
@@ -348,78 +405,90 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Mid-Page CTA */}
-        <section className="py-20 bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 border-y border-accent/10" data-testid="section-mid-cta">
-          <div className="container mx-auto px-4 md:px-8 text-center">
-            <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-4">
+        {/* Mid-Page CTA — EY-style full-bleed image CTA */}
+        <section className="relative py-28 overflow-hidden" data-testid="section-mid-cta">
+          <div className="absolute inset-0">
+            <img src={cityAerialImg} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-primary/85" />
+          </div>
+          <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
+            <h3 className="text-2xl md:text-4xl font-heading font-extrabold text-white mb-4">
               {language === "en" ? "Not sure where to start?" : "Vous ne savez pas par où commencer ?"}
             </h3>
-            <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+            <p className="text-white/60 mb-10 max-w-xl mx-auto text-lg">
               {language === "en"
                 ? "Get a free Process & People Management Audit. We'll identify operational and leadership inefficiencies in just 20 minutes."
                 : "Obtenez un audit gratuit de vos processus et de gestion des personnes. Nous identifierons les inefficacités en seulement 20 minutes."}
             </p>
-            <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-accent/90 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-lg shadow-accent/20" data-testid="link-mid-cta-audit">
+            <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-mid-cta-audit">
               <ClipboardCheck size={16} />
               {language === "en" ? "Get Your Free Audit" : "Obtenez votre audit gratuit"}
             </Link>
           </div>
         </section>
 
-        {/* Our Approach */}
+        {/* Our Approach — EY-style timeline with large imagery */}
         <section id="framework" className="py-32 bg-white" data-testid="section-framework">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                {language === "en" ? "How We Work" : "Comment nous travaillons"}
-              </p>
-              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                {language === "en" ? "Our four-phase approach" : "Notre approche en quatre phases"}
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {language === "en"
-                  ? "We follow a structured process that takes you from where you are today to where you want to be, with clear milestones along the way."
-                  : "Nous suivons un processus structuré qui vous mène de votre situation actuelle à vos objectifs, avec des jalons clairs en cours de route."}
-              </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+              <div className="relative">
+                <div className="rounded-3xl overflow-hidden shadow-2xl">
+                  <img src={strategyWhiteboardImg} alt="Strategy planning" className="w-full h-auto aspect-[4/3] object-cover" />
+                </div>
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/10 rounded-2xl -z-10" />
+                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/5 rounded-2xl -z-10" />
+              </div>
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
+                  {language === "en" ? "How We Work" : "Comment nous travaillons"}
+                </p>
+                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
+                  {language === "en" ? "Our four-phase approach" : "Notre approche en quatre phases"}
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-10">
+                  {language === "en"
+                    ? "We follow a structured process that takes you from where you are today to where you want to be, with clear milestones along the way."
+                    : "Nous suivons un processus structuré qui vous mène de votre situation actuelle à vos objectifs, avec des jalons clairs en cours de route."}
+                </p>
+                <Link href="/approach" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors" data-testid="link-learn-approach">
+                  {language === "en" ? "Explore our methodology" : "Découvrir notre méthodologie"}
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 relative max-w-6xl mx-auto">
+              <div className="hidden lg:block absolute top-[100px] left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent z-0" />
               {frameworkSteps.map((step, i) => (
-                <div key={i} className="relative" data-testid={`framework-step-${i}`}>
-                  <div className="bg-gradient-to-b from-[#F8FAFC] to-white rounded-3xl border border-border text-center hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 h-full flex flex-col items-center group mx-2 overflow-hidden">
-                    <div className="w-full aspect-[16/10] overflow-hidden relative">
-                      <img src={step.image} alt={step.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                      <div className="absolute bottom-3 left-3 bg-accent text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full shadow-lg shadow-accent/30">
-                        {language === "en" ? "Phase" : "Phase"} {step.step}
+                <div key={i} className="relative z-10" data-testid={`framework-step-${i}`}>
+                  <div className="mx-2 h-full flex flex-col items-center group">
+                    <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden mb-6 shadow-lg">
+                      <img src={step.image} alt={step.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/70 to-transparent" />
+                      <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-accent flex items-center justify-center text-white text-sm font-black shadow-lg shadow-accent/30">
+                        {step.step}
                       </div>
                     </div>
-                    <div className="p-8">
-                      <h3 className="text-lg font-bold text-primary mb-3">{step.title}</h3>
+                    <div className="text-center px-2">
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-accent mb-2">{step.label}</p>
+                      <h3 className="text-base font-bold text-primary mb-3">{step.title}</h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
                     </div>
                   </div>
                   {i < frameworkSteps.length - 1 && (
-                    <div className="hidden lg:flex absolute top-1/2 -right-1 transform -translate-y-1/2 z-10">
-                      <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center">
-                        <ChevronRight size={14} className="text-accent" />
+                    <div className="hidden lg:flex absolute top-[50px] -right-1 transform z-20">
+                      <div className="w-6 h-6 rounded-full bg-white border-2 border-accent flex items-center justify-center shadow-sm">
+                        <ChevronRight size={12} className="text-accent" />
                       </div>
                     </div>
                   )}
                 </div>
               ))}
             </div>
-
-            <div className="text-center mt-14">
-              <Link href="/approach" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors" data-testid="link-learn-approach">
-                {language === "en" ? "Learn more about our methodology" : "En savoir plus sur notre méthodologie"}
-                <ArrowRight size={16} />
-              </Link>
-            </div>
           </div>
         </section>
 
-        {/* Services */}
+        {/* Services — EY-style editorial grid with large imagery */}
         <section className="py-32 bg-[#F8FAFC]" data-testid="section-services">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center max-w-2xl mx-auto mb-20">
@@ -436,19 +505,35 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
-              {services.map((s, i) => (
-                <Link key={i} href="/services" className="block h-full" data-testid={`link-service-${i}`}>
-                  <div className="bg-gradient-to-b from-white to-[#FAFBFD] rounded-3xl border border-border hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 group cursor-pointer flex flex-col h-full min-h-[300px] overflow-hidden" data-testid={`service-card-${i}`}>
-                    <div className="w-full aspect-[16/10] overflow-hidden">
-                      <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    </div>
-                    <div className="p-8 flex flex-col flex-grow">
-                      <h3 className="text-lg font-bold text-primary mb-4 group-hover:text-accent transition-colors">{s.title}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{s.desc}</p>
-                      <div className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-8">
+              {services.slice(0, 3).map((s, i) => (
+                <Link key={i} href="/services" className="block h-full group" data-testid={`link-service-${i}`}>
+                  <div className="relative rounded-2xl overflow-hidden h-full min-h-[400px] shadow-lg" data-testid={`service-card-${i}`}>
+                    <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/10" />
+                    <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">{s.title}</h3>
+                      <p className="text-white/70 text-sm leading-relaxed mb-4">{s.desc}</p>
+                      <span className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-transform">
                         {language === "en" ? "Learn more" : "En savoir plus"} <ArrowRight size={14} className="ml-2" />
-                      </div>
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {services.slice(3).map((s, i) => (
+                <Link key={i + 3} href="/services" className="block h-full group" data-testid={`link-service-${i + 3}`}>
+                  <div className="relative rounded-2xl overflow-hidden h-full min-h-[350px] shadow-lg" data-testid={`service-card-${i + 3}`}>
+                    <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/10" />
+                    <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">{s.title}</h3>
+                      <p className="text-white/70 text-sm leading-relaxed mb-4">{s.desc}</p>
+                      <span className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-transform">
+                        {language === "en" ? "Learn more" : "En savoir plus"} <ArrowRight size={14} className="ml-2" />
+                      </span>
                     </div>
                   </div>
                 </Link>
@@ -457,74 +542,65 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Results */}
-        <section className="py-32 bg-gradient-to-br from-primary via-primary to-primary/90 relative overflow-hidden" data-testid="section-results">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.08),transparent_60%)]" />
+        {/* Results — EY-style bold stats with editorial image */}
+        <section className="py-32 bg-primary relative overflow-hidden" data-testid="section-results">
+          <div className="absolute inset-0">
+            <img src={processFlowImg} alt="" className="w-full h-full object-cover opacity-10" />
+          </div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(236,72,153,0.12),transparent_60%)]" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
-            <div className="text-center max-w-3xl mx-auto mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                {language === "en" ? "The Outcomes" : "Les résultats"}
-              </p>
-              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6">
-                {language === "en" ? "What working with us looks like" : "Ce à quoi ressemble le travail avec nous"}
-              </h2>
-              <p className="text-lg text-white/60 leading-relaxed">
-                {language === "en"
-                  ? "Our clients do not pay for consulting hours. They invest in outcomes. Here is what you can expect."
-                  : "Nos clients n'achètent pas des heures de conseil. Ils investissent dans des résultats. Voici ce à quoi vous pouvez vous attendre."}
-              </p>
-            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
+                  {language === "en" ? "The Outcomes" : "Les résultats"}
+                </p>
+                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6">
+                  {language === "en" ? "What working with us looks like" : "Ce à quoi ressemble le travail avec nous"}
+                </h2>
+                <p className="text-lg text-white/60 leading-relaxed mb-10">
+                  {language === "en"
+                    ? "Our clients do not pay for consulting hours. They invest in outcomes. Here is what you can expect."
+                    : "Nos clients n'achètent pas des heures de conseil. Ils investissent dans des résultats. Voici ce à quoi vous pouvez vous attendre."}
+                </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
-              <div className="bg-white/10 backdrop-blur-sm rounded-3xl border border-white/5 text-center overflow-hidden" data-testid="stat-alignment">
-                <div className="w-full aspect-[16/9] overflow-hidden">
-                  <img src={teamCollaborationImg} alt="Team alignment" className="w-full h-full object-cover opacity-60" />
+                <div className="grid grid-cols-3 gap-8 mb-10">
+                  <div data-testid="stat-alignment">
+                    <p className="text-4xl md:text-5xl font-extrabold text-white mb-2">100%</p>
+                    <p className="text-white/50 text-sm">{language === "en" ? "Teams aligned" : "Équipes alignées"}</p>
+                  </div>
+                  <div data-testid="stat-execution">
+                    <p className="text-4xl md:text-5xl font-extrabold text-accent mb-2">4</p>
+                    <p className="text-white/50 text-sm">{language === "en" ? "Phase approach" : "Phases"}</p>
+                  </div>
+                  <div data-testid="stat-sustainable">
+                    <p className="text-4xl md:text-5xl font-extrabold text-white mb-2">∞</p>
+                    <p className="text-white/50 text-sm">{language === "en" ? "Lasting systems" : "Systèmes durables"}</p>
+                  </div>
                 </div>
-                <div className="p-8">
-                  <p className="text-4xl font-extrabold text-white mb-2">100%</p>
-                  <p className="text-white/60 text-sm">
-                    {language === "en" ? "Teams aligned on goals and priorities" : "Équipes alignées sur les objectifs et les priorités"}
-                  </p>
-                </div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-3xl border border-white/5 text-center overflow-hidden" data-testid="stat-execution">
-                <div className="w-full aspect-[16/9] overflow-hidden">
-                  <img src={assessmentPhaseImg} alt="Structured approach" className="w-full h-full object-cover opacity-60" />
-                </div>
-                <div className="p-8">
-                  <p className="text-4xl font-extrabold text-white mb-2">4 Phases</p>
-                  <p className="text-white/60 text-sm">
-                    {language === "en" ? "Structured path from diagnosis to results" : "Chemin structuré du diagnostic aux résultats"}
-                  </p>
-                </div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-3xl border border-white/5 text-center overflow-hidden" data-testid="stat-sustainable">
-                <div className="w-full aspect-[16/9] overflow-hidden">
-                  <img src={growthImprovementImg} alt="Lasting systems" className="w-full h-full object-cover opacity-60" />
-                </div>
-                <div className="p-8">
-                  <p className="text-4xl font-extrabold text-white mb-2">Lasting</p>
-                  <p className="text-white/60 text-sm">
-                    {language === "en" ? "Systems your team can run without us" : "Des systèmes que votre équipe peut gérer sans nous"}
-                  </p>
-                </div>
-              </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-              {[
-                language === "en" ? "Teams executing on the same priorities" : "Des équipes exécutant les mêmes priorités",
-                language === "en" ? "Clear KPIs everyone can track" : "Des KPI clairs que tous peuvent suivre",
-                language === "en" ? "Leadership that communicates effectively" : "Un leadership qui communique efficacement",
-                language === "en" ? "Processes that reduce daily firefighting" : "Des processus qui réduisent la gestion de crise quotidienne",
-                language === "en" ? "Decisions backed by data, not guesswork" : "Des décisions basées sur les données, pas sur l'intuition",
-                language === "en" ? "Growth without adding unnecessary complexity" : "De la croissance sans complexité inutile",
-              ].map((text, i) => (
-                <div key={i} className="flex items-center gap-3 bg-white/5 rounded-2xl p-4 border border-white/5" data-testid={`result-item-${i}`}>
-                  <CheckCircle2 size={18} className="text-accent shrink-0" />
-                  <span className="text-white/80 text-sm font-medium">{text}</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    language === "en" ? "Teams executing on the same priorities" : "Des équipes exécutant les mêmes priorités",
+                    language === "en" ? "Clear KPIs everyone can track" : "Des KPI clairs que tous peuvent suivre",
+                    language === "en" ? "Leadership that communicates effectively" : "Un leadership qui communique efficacement",
+                    language === "en" ? "Processes that reduce daily firefighting" : "Des processus qui réduisent la gestion de crise quotidienne",
+                    language === "en" ? "Decisions backed by data, not guesswork" : "Des décisions basées sur les données, pas sur l'intuition",
+                    language === "en" ? "Growth without adding unnecessary complexity" : "De la croissance sans complexité inutile",
+                  ].map((text, i) => (
+                    <div key={i} className="flex items-center gap-3 py-2" data-testid={`result-item-${i}`}>
+                      <CheckCircle2 size={16} className="text-accent shrink-0" />
+                      <span className="text-white/80 text-sm font-medium">{text}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+              <div className="relative hidden lg:block">
+                <div className="rounded-3xl overflow-hidden shadow-2xl shadow-black/30">
+                  <img src={analyticsDashboardImg} alt="Performance analytics" className="w-full h-auto aspect-[4/3] object-cover" />
+                </div>
+                <div className="absolute -top-6 -right-6 w-28 h-28 bg-accent/20 rounded-3xl -z-10" />
+                <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-white/10 rounded-2xl -z-10" />
+              </div>
             </div>
           </div>
         </section>
@@ -550,19 +626,27 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {insights.map((insight, i) => (
                 <Link key={i} href="/insights" className="block h-full" data-testid={`link-insight-${i}`}>
-                  <div className="bg-gradient-to-b from-[#F8FAFC] to-white rounded-3xl p-8 border border-border hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 cursor-pointer group h-full flex flex-col" data-testid={`insight-card-${i}`}>
-                    <div className="flex items-center gap-3 mb-6">
-                      <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest">
-                        <Tag size={10} /> {insight.category}
-                      </span>
-                      <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <Calendar size={10} /> {insight.date}
-                      </span>
+                  <div className="bg-white rounded-2xl border border-border hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 cursor-pointer group h-full flex flex-col overflow-hidden" data-testid={`insight-card-${i}`}>
+                    <div className="h-48 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10 flex items-center justify-center relative overflow-hidden">
+                      <div className="absolute inset-0 opacity-30">
+                        <img src={geoPatternImg} alt="" className="w-full h-full object-cover" />
+                      </div>
+                      <span className="relative z-10 text-5xl font-extrabold text-primary/10 group-hover:text-accent/20 transition-colors">{String(i + 1).padStart(2, '0')}</span>
                     </div>
-                    <h3 className="text-lg font-bold text-primary mb-4 group-hover:text-accent transition-colors line-clamp-2">{insight.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-grow line-clamp-3">{insight.excerpt}</p>
-                    <div className="mt-8 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
-                      {language === "en" ? "Read more" : "Lire la suite"} <ArrowRight size={14} className="ml-2" />
+                    <div className="p-8 flex flex-col flex-grow">
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest">
+                          <Tag size={10} /> {insight.category}
+                        </span>
+                        <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                          <Calendar size={10} /> {insight.date}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-primary mb-4 group-hover:text-accent transition-colors line-clamp-2">{insight.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed flex-grow line-clamp-3">{insight.excerpt}</p>
+                      <div className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
+                        {language === "en" ? "Read more" : "Lire la suite"} <ArrowRight size={14} className="ml-2" />
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -571,12 +655,15 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Final CTA */}
+        {/* Final CTA — EY-style with featured image */}
         <section className="py-32 bg-[#F8FAFC] border-t" data-testid="section-cta">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="bg-gradient-to-br from-primary via-primary to-primary/90 rounded-[2rem] p-12 lg:p-20 text-center max-w-4xl mx-auto relative overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.1),transparent_70%)]"></div>
-              <div className="relative z-10">
+            <div className="relative rounded-[2rem] overflow-hidden max-w-5xl mx-auto">
+              <div className="absolute inset-0">
+                <img src={smallBizOwnerImg} alt="" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
+              </div>
+              <div className="relative z-10 p-12 lg:p-20 max-w-2xl">
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
                   {language === "en" ? "Let's Talk" : "Parlons-en"}
                 </p>
@@ -585,12 +672,12 @@ export default function Home() {
                     ? "Ready to build something that works?"
                     : "Prêt à construire quelque chose qui fonctionne ?"}
                 </h2>
-                <p className="text-lg text-white/70 mb-12 max-w-2xl mx-auto">
+                <p className="text-lg text-white/70 mb-12">
                   {language === "en"
                     ? "Whether you are leading a team, growing a business, or leveling up your own performance, the first step is a conversation. Let's figure out the right path forward, together."
                     : "Que vous dirigiez une équipe, développiez une entreprise ou amélioriez votre propre performance, la première étape est une conversation. Trouvons ensemble la bonne voie à suivre."}
                 </p>
-                <div className="flex flex-wrap justify-center gap-4">
+                <div className="flex flex-wrap gap-4">
                   <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-cta-audit">
                     <ClipboardCheck size={16} />
                     {language === "en" ? "Get a Free Audit" : "Obtenez un audit gratuit"}

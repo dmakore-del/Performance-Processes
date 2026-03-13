@@ -5,6 +5,8 @@ import founderImage from "@/assets/founder.png";
 import seanImage from "@/assets/ChatGPT_Image_Feb_20,_2026,_04_07_16_PM_1771621735605.png";
 import collaborationImg from "@assets/stock_images/collaboration.jpg";
 import trainingImg from "@assets/stock_images/training.jpg";
+import teamStrategyImg from "@assets/generated/team-strategy.png";
+import cityAerialImg from "@assets/generated/city-aerial.png";
 import { useLanguage } from "@/hooks/use-language";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -84,15 +86,18 @@ export default function About() {
       <Navbar />
       <main className="flex-grow">
 
-        <section className="relative min-h-[550px] lg:min-h-[650px] flex items-center overflow-hidden bg-primary">
+        <section className="relative min-h-[550px] lg:min-h-[700px] flex items-center overflow-hidden bg-primary">
           <div className="absolute inset-0 z-0">
-            <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-15">
-              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/80" />
+            <img src={teamStrategyImg} alt="" className="w-full h-full object-cover opacity-25" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
           </div>
+          <div className="absolute bottom-0 right-0 w-2/5 h-full hidden lg:block z-[1]">
+            <img src={cityAerialImg} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/50 to-transparent" />
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-32 relative z-10">
-            <div className="max-w-4xl">
+            <div className="max-w-3xl lg:max-w-[55%]">
               <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="text-hero-label">
                 Who We Are
               </p>

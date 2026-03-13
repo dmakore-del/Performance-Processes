@@ -6,6 +6,8 @@ import { useLanguage } from "@/hooks/use-language";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import heroAbstractImg from "@assets/generated/hero-abstract.png";
+import analyticsDashboardImg from "@assets/generated/analytics-dashboard.png";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -112,11 +114,14 @@ export default function FreeAudit() {
         {/* Hero */}
         <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-primary" data-testid="section-audit-hero">
           <div className="absolute inset-0 z-0">
-            <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-15">
-              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/80" />
+            <img src={heroAbstractImg} alt="" className="w-full h-full object-cover opacity-20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
           </div>
+          <div className="absolute bottom-0 right-0 w-2/5 h-full hidden lg:block z-[1]">
+            <img src={analyticsDashboardImg} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/50 to-transparent" />
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-32 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-sm font-bold uppercase tracking-widest mb-8" data-testid="badge-free">

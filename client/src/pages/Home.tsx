@@ -27,6 +27,7 @@ import executiveAdvisoryImg from "@assets/stock_images/executive_advisory.jpg";
 import businessCoachingImg from "@assets/stock_images/business_coaching.jpg";
 import personalCoachingImg from "@assets/stock_images/personal_coaching.jpg";
 import programsToolkitImg from "@assets/stock_images/programs_toolkit.jpg";
+import hrPeopleStrategyImg from "@assets/stock_images/hr_people_strategy.jpg";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -36,55 +37,55 @@ export default function Home() {
   const outcomes = [
     {
       image: teamAlignmentImg,
-      title: language === "en" ? "Get Your Team on the Same Page" : "Alignez votre équipe",
+      title: language === "en" ? "Improve Workflow Efficiency" : "Améliorez l'efficacité des flux de travail",
       desc: language === "en"
-        ? "Stop miscommunication and misalignment. We help leadership teams get clear on direction so everyone pulls together."
-        : "Arrêtez les malentendus et le désalignement. Nous aidons les équipes de direction à clarifier la direction.",
+        ? "Whether you are a solo professional or leading a team, we identify bottlenecks and design processes that eliminate wasted effort."
+        : "Que vous soyez un professionnel solo ou à la tête d'une équipe, nous identifions les goulots d'étranglement et concevons des processus efficaces.",
     },
     {
       image: actionPlanningImg,
-      title: language === "en" ? "Turn Plans Into Action" : "Transformez les plans en action",
+      title: language === "en" ? "Strengthen Leadership & Accountability" : "Renforcez le leadership et la responsabilité",
       desc: language === "en"
-        ? "Great plans mean nothing without execution. We build the accountability structures that make things happen."
-        : "Les bons plans ne valent rien sans exécution. Nous construisons les structures de responsabilité qui font bouger les choses.",
+        ? "Build accountability structures and leadership systems that turn plans into consistent execution."
+        : "Construisez des structures de responsabilité et des systèmes de leadership qui transforment les plans en exécution cohérente.",
     },
     {
       image: measurableProgressImg,
       title: language === "en" ? "See Measurable Progress" : "Voyez des progrès mesurables",
       desc: language === "en"
-        ? "No guesswork. Track real performance improvements with clear KPIs and regular check-ins."
-        : "Pas de devinettes. Suivez de vrais progrès avec des KPI clairs et des suivis réguliers.",
+        ? "No guesswork. Track real performance improvements with clear KPIs, productivity metrics, and regular check-ins."
+        : "Pas de devinettes. Suivez de vrais progrès avec des KPI clairs, des métriques de productivité et des suivis réguliers.",
     },
     {
       image: lastingSystemsImg,
-      title: language === "en" ? "Build Systems That Last" : "Construisez des systèmes durables",
+      title: language === "en" ? "Build Systems That Scale" : "Construisez des systèmes évolutifs",
       desc: language === "en"
-        ? "We don't create dependency. You walk away with processes and tools your team can run on their own."
-        : "Nous ne créons pas de dépendance. Vous repartez avec des processus que votre équipe peut gérer seule.",
+        ? "We don't create dependency. You walk away with processes and tools you can run on your own — whether you are a team of one or one hundred."
+        : "Nous ne créons pas de dépendance. Vous repartez avec des processus que vous pouvez gérer seul — que vous soyez un professionnel solo ou une équipe de cent.",
     },
   ];
 
   const whoWeHelp = [
     {
-      image: enterpriseLeadershipImg,
-      title: language === "en" ? "Enterprise & Leadership Teams" : "Entreprises et équipes de direction",
+      image: professionalDevelopmentImg,
+      title: language === "en" ? "Independent Professionals" : "Professionnels indépendants",
       desc: language === "en"
-        ? "Strategic planning, performance management, and governance for organizations ready to operate at a higher level."
-        : "Planification stratégique, gestion de la performance et gouvernance pour les organisations prêtes à fonctionner à un niveau supérieur.",
+        ? "Lawyers, accountants, consultants, and advisors looking to structure their work, improve productivity, and build systems that reduce overwhelm."
+        : "Avocats, comptables, consultants et conseillers cherchant à structurer leur travail, améliorer leur productivité et réduire la surcharge.",
     },
     {
       image: smallBusinessOwnerImg,
-      title: language === "en" ? "Small Business Owners & Founders" : "Propriétaires de PME et fondateurs",
+      title: language === "en" ? "Small & Growing Businesses" : "Petites et moyennes entreprises",
       desc: language === "en"
-        ? "Monthly strategy support, operational structure, and accountability systems to help you grow without the chaos."
-        : "Soutien stratégique mensuel, structure opérationnelle et systèmes de responsabilité pour vous aider à grandir sans le chaos.",
+        ? "Founders, CEOs, and business owners who need operational structure, people management systems, and accountability to scale effectively."
+        : "Fondateurs, PDG et propriétaires d'entreprise qui ont besoin de structure opérationnelle, de gestion des personnes et de responsabilité pour croître efficacement.",
     },
     {
-      image: professionalDevelopmentImg,
-      title: language === "en" ? "Professionals & Entrepreneurs" : "Professionnels et entrepreneurs",
+      image: enterpriseLeadershipImg,
+      title: language === "en" ? "Corporate & Enterprise Teams" : "Équipes corporatives et entreprises",
       desc: language === "en"
-        ? "Coaching, 90-day programs, and practical toolkits to sharpen your focus and take your career to the next level."
-        : "Coaching, programmes de 90 jours et outils pratiques pour affiner votre concentration et passer au niveau supérieur.",
+        ? "Leaders and managers seeking strategic planning, performance management, and governance to align teams and improve operational efficiency."
+        : "Dirigeants et gestionnaires cherchant la planification stratégique, la gestion de la performance et la gouvernance pour aligner les équipes.",
     },
   ];
 
@@ -136,8 +137,15 @@ export default function Home() {
         : "Pour les équipes de direction qui ont besoin de planification stratégique et de systèmes de performance.",
     },
     {
+      image: hrPeopleStrategyImg,
+      title: language === "en" ? "Recruiting & Staffing" : "Recrutement et dotation",
+      desc: language === "en"
+        ? "We help companies find and hire the right talent — and help professionals get recruited into the right roles."
+        : "Nous aidons les entreprises à recruter les bons talents — et les professionnels à se faire recruter dans les bons postes.",
+    },
+    {
       image: businessCoachingImg,
-      title: language === "en" ? "Small Business Growth System" : "Système de croissance PME",
+      title: language === "en" ? "Small Business Growth" : "Croissance PME",
       desc: language === "en"
         ? "A dedicated strategy partner to help you prioritize, plan, and build structure as you grow."
         : "Un partenaire stratégique dédié pour vous aider à prioriser, planifier et structurer votre croissance.",
@@ -146,15 +154,15 @@ export default function Home() {
       image: personalCoachingImg,
       title: language === "en" ? "Coaching & Development" : "Coaching et développement",
       desc: language === "en"
-        ? "Personal performance coaching and structured programs for professionals ready to level up."
-        : "Coaching de performance personnel et programmes structurés pour les professionnels prêts à progresser.",
+        ? "Personal performance coaching, leadership development, and people management skills for professionals ready to level up."
+        : "Coaching de performance, développement du leadership et compétences en gestion des personnes pour les professionnels.",
     },
     {
       image: programsToolkitImg,
       title: language === "en" ? "Programs & Toolkits" : "Programmes et outils",
       desc: language === "en"
-        ? "Self-paced 90-day programs, planners, and frameworks you can implement on your own."
-        : "Programmes de 90 jours, planificateurs et cadres que vous pouvez mettre en œuvre par vous-même.",
+        ? "Self-paced programs, planners, hiring templates, and HR frameworks you can implement on your own."
+        : "Programmes, planificateurs, modèles d'embauche et cadres RH que vous pouvez mettre en œuvre par vous-même.",
     },
   ];
 
@@ -211,20 +219,20 @@ export default function Home() {
             <div className="max-w-4xl">
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-hero-title">
                 {language === "en" ? (
-                  <>Build High-Performance Teams With <span className="text-accent">Better Management Systems</span></>
+                  <>Improve Your Processes. Strengthen Your Leadership. <span className="text-accent">Elevate Performance.</span></>
                 ) : (
-                  <>Bâtissez des équipes performantes avec <span className="text-accent">de meilleurs systèmes de gestion</span></>
+                  <>Améliorez vos processus. Renforcez votre leadership. <span className="text-accent">Élevez la performance.</span></>
                 )}
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-hero-subtitle">
                 {language === "en"
-                  ? "We help leaders, business owners, and professionals build the systems that drive consistent execution, team alignment, and measurable growth."
-                  : "Nous aidons les dirigeants, les propriétaires d'entreprise et les professionnels à bâtir les systèmes qui favorisent une exécution cohérente, l'alignement des équipes et une croissance mesurable."}
+                  ? "We help professionals and organizations improve performance through better processes, leadership systems, and people management."
+                  : "Nous aidons les professionnels et les organisations à améliorer leur performance grâce à de meilleurs processus, systèmes de leadership et gestion des personnes."}
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-hero-book">
                   <Calendar size={16} />
-                  {t("hero.ctaPrimary")}
+                  {language === "en" ? "Book a Free Audit" : "Réservez un audit gratuit"}
                 </a>
                 <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-hero-services">
                   {t("hero.ctaSecondary")}
@@ -422,12 +430,12 @@ export default function Home() {
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {language === "en"
-                  ? "Whether you need a strategic partner, a growth system, or coaching to sharpen your edge, we have a solution."
-                  : "Que vous ayez besoin d'un partenaire stratégique, d'un système de croissance ou d'un coaching, nous avons une solution."}
+                  ? "From operational strategy and leadership systems to recruiting, staffing, and career placement — we help companies hire the right talent and professionals land the right roles."
+                  : "De la stratégie opérationnelle et des systèmes de leadership au recrutement, à la dotation et au placement de carrière — nous aidons les entreprises à recruter et les professionnels à se faire recruter."}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
               {services.map((s, i) => (
                 <Link key={i} href="/services" className="block h-full" data-testid={`link-service-${i}`}>
                   <div className="bg-gradient-to-b from-white to-[#FAFBFD] rounded-3xl border border-border hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 group cursor-pointer flex flex-col h-full min-h-[300px] overflow-hidden" data-testid={`service-card-${i}`}>

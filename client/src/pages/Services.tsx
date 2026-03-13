@@ -24,6 +24,12 @@ import personalCoachingImg from "@assets/stock_images/personal_coaching.jpg";
 import personalBrandImg from "@assets/stock_images/personal_brand.jpg";
 import performanceMgmtImg from "@assets/stock_images/performance_mgmt.jpg";
 import orgAssessmentImg from "@assets/stock_images/org_assessment.jpg";
+import hrPeopleStrategyImg from "@assets/stock_images/hr_people_strategy.jpg";
+import recruitmentHiringImg from "@assets/stock_images/recruitment_hiring.jpg";
+import talentDevelopmentImg from "@assets/stock_images/talent_development.jpg";
+import peopleOperationsImg from "@assets/stock_images/people_operations.jpg";
+import hiringSupportImg from "@assets/stock_images/hiring_support.jpg";
+import hrToolkitImg from "@assets/stock_images/hr_toolkit.jpg";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -105,7 +111,7 @@ export default function Services() {
       step: "01",
       title: language === "en" ? "Diagnose" : "Diagnostiquer",
       desc: language === "en" ? "Understand your current state, challenges, and what's holding performance back." : "Comprendre votre état actuel, vos défis et ce qui freine la performance.",
-      outcomes: language === "en" ? ["Organizational assessment", "Gap analysis", "Stakeholder alignment"] : ["Évaluation organisationnelle", "Analyse des écarts", "Alignement des parties prenantes"],
+      outcomes: language === "en" ? ["Organizational assessment", "Gap analysis", "People & talent review", "Stakeholder alignment"] : ["Évaluation organisationnelle", "Analyse des écarts", "Revue des personnes et talents", "Alignement des parties prenantes"],
       icon: <Search className="text-accent" size={28} />,
       color: "from-blue-500/10 to-blue-600/5",
     },
@@ -120,8 +126,8 @@ export default function Services() {
     {
       step: "03",
       title: language === "en" ? "Implement" : "Implémenter",
-      desc: language === "en" ? "Build practical systems, processes, and habits that support consistent execution." : "Construire des systèmes, processus et habitudes pratiques qui soutiennent l'exécution.",
-      outcomes: language === "en" ? ["Performance systems", "Process documentation", "Accountability structures"] : ["Systèmes de performance", "Documentation des processus", "Structures de responsabilité"],
+      desc: language === "en" ? "Build practical systems, people processes, and habits that support consistent execution." : "Construire des systèmes, des processus de gestion des personnes et des habitudes qui soutiennent l'exécution.",
+      outcomes: language === "en" ? ["Performance systems", "People & HR infrastructure", "Process documentation", "Accountability structures"] : ["Systèmes de performance", "Infrastructure RH", "Documentation des processus", "Structures de responsabilité"],
       icon: <Settings className="text-accent" size={28} />,
       color: "from-emerald-500/10 to-emerald-600/5",
     },
@@ -528,6 +534,184 @@ export default function Services() {
               contactOnly: true
             }
           ]
+        },
+        {
+          title: language === "en" ? "HR & People Strategy" : "Stratégie RH et gestion des personnes",
+          investment: "$5,000 – $15,000",
+          investmentNote: language === "en" ? "(6–12 week engagement)" : "(Engagement de 6 à 12 semaines)",
+          desc: language === "en"
+            ? "Build the people infrastructure your organization needs — from HR frameworks and policies to performance management, employee engagement, and workforce planning."
+            : "Construisez l'infrastructure RH dont votre organisation a besoin — des cadres de politiques à la gestion de la performance et à la planification de la main-d'œuvre.",
+          benefits: language === "en"
+            ? ["HR policy & framework design", "Performance management systems", "Employee engagement strategy", "Workforce planning & org design"]
+            : ["Conception de politiques RH", "Systèmes de gestion de la performance", "Stratégie d'engagement des employés", "Planification de la main-d'œuvre"],
+          learnMore: language === "en"
+            ? "People are your most valuable asset, but without the right systems, even great talent underperforms. Our HR & People Strategy engagements help you design and implement the frameworks, policies, and systems that attract, develop, and retain top talent.\n\nWe cover everything from HR policy development and performance review systems to employee engagement strategies, succession planning, and organizational design. Whether you're building HR from scratch or overhauling an existing function, we create people infrastructure that scales with your business."
+            : "Les personnes sont votre atout le plus précieux. Nous vous aidons à concevoir et mettre en œuvre les cadres, politiques et systèmes qui attirent, développent et retiennent les meilleurs talents.",
+          idealFor: language === "en" ? "Organizations building or restructuring their HR function, or leadership teams that need people systems to support growth." : "Organisations construisant ou restructurant leur fonction RH.",
+          image: hrPeopleStrategyImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Foundation" : "Fondation",
+              price: "$5,000",
+              subtitle: language === "en" ? "Core HR framework with policies, role clarity, and performance review design." : "Cadre RH de base avec politiques et conception de revue de performance.",
+              features: language === "en"
+                ? ["HR policy framework", "Role and responsibility mapping", "Performance review system design", "Employee handbook template", "Compliance checklist"]
+                : ["Cadre de politiques RH", "Cartographie des rôles", "Conception du système de revue", "Modèle de manuel employé", "Liste de conformité"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$10,000",
+              subtitle: language === "en" ? "Full people strategy with engagement systems, compensation framework, and talent planning." : "Stratégie complète avec systèmes d'engagement et planification des talents.",
+              features: language === "en"
+                ? ["Everything in Foundation", "Employee engagement strategy", "Compensation and benefits framework", "Talent management roadmap", "Onboarding program design", "HR metrics and KPI dashboard", "Leadership development recommendations"]
+                : ["Tout dans Fondation", "Stratégie d'engagement", "Cadre de rémunération", "Feuille de route de gestion des talents", "Programme d'intégration", "Tableau de bord RH", "Recommandations de développement du leadership"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Comprehensive" : "Complet",
+              price: "$15,000",
+              subtitle: language === "en" ? "Complete people infrastructure with succession planning, organizational design, and implementation support." : "Infrastructure complète avec planification de la relève et conception organisationnelle.",
+              features: language === "en"
+                ? ["Everything in Standard", "Organizational design and restructuring", "Succession planning framework", "Culture assessment and strategy", "DEI strategy development", "Workforce planning model", "Full implementation support", "Quarterly review sessions"]
+                : ["Tout dans Standard", "Conception organisationnelle", "Planification de la relève", "Évaluation de la culture", "Stratégie DEI", "Planification de la main-d'œuvre", "Soutien à la mise en œuvre", "Revues trimestrielles"],
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Recruitment Process Design" : "Conception du processus de recrutement",
+          investment: "$3,000 – $10,000",
+          desc: language === "en"
+            ? "Design a structured, repeatable hiring process that helps you attract the right talent, reduce time-to-hire, and make better hiring decisions."
+            : "Concevez un processus d'embauche structuré et reproductible qui vous aide à attirer les bons talents et à prendre de meilleures décisions.",
+          benefits: language === "en"
+            ? ["End-to-end hiring process design", "Job description frameworks", "Interview & scoring systems", "Onboarding program development"]
+            : ["Conception du processus d'embauche", "Cadres de description de poste", "Systèmes d'entrevue et de notation", "Programme d'intégration"],
+          learnMore: language === "en"
+            ? "Bad hires are expensive — in time, money, and team morale. Our Recruitment Process Design service builds you a structured, scalable hiring system that takes the guesswork out of talent acquisition.\n\nWe design everything from job description templates and sourcing strategies to interview frameworks, candidate scoring systems, and onboarding programs. The result is a repeatable process that helps you consistently hire the right people, faster."
+            : "Les mauvaises embauches coûtent cher. Nous construisons un système d'embauche structuré et évolutif qui élimine les conjectures du recrutement.",
+          idealFor: language === "en" ? "Organizations experiencing hiring challenges, rapid growth, or high turnover that need a structured approach to recruitment." : "Organisations confrontées à des défis de recrutement ou à une croissance rapide.",
+          image: recruitmentHiringImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Foundation" : "Fondation",
+              price: "$3,000",
+              subtitle: language === "en" ? "Core hiring process design with job frameworks and interview templates." : "Conception du processus d'embauche de base avec cadres et modèles.",
+              features: language === "en"
+                ? ["Hiring process audit", "Job description templates (up to 5 roles)", "Interview question framework", "Candidate scoring rubric", "Offer letter templates", "Process documentation"]
+                : ["Audit du processus d'embauche", "Modèles de description (5 rôles)", "Cadre de questions d'entrevue", "Grille de notation", "Modèles de lettre d'offre", "Documentation du processus"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$6,000",
+              subtitle: language === "en" ? "Full recruitment system with sourcing strategy, employer branding, and onboarding design." : "Système de recrutement complet avec stratégie de sourcing et intégration.",
+              features: language === "en"
+                ? ["Everything in Foundation", "Talent sourcing strategy", "Employer brand positioning", "Structured interview training", "Onboarding program design (30/60/90 day)", "Recruitment metrics dashboard", "Hiring manager toolkit"]
+                : ["Tout dans Fondation", "Stratégie de sourcing", "Positionnement de la marque employeur", "Formation aux entrevues", "Programme d'intégration 30/60/90", "Tableau de bord de recrutement", "Boîte à outils du gestionnaire"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Enterprise" : "Entreprise",
+              price: "$10,000",
+              subtitle: language === "en" ? "Complete talent acquisition infrastructure with ATS setup, DEI hiring strategy, and ongoing support." : "Infrastructure complète d'acquisition de talents avec stratégie DEI et soutien continu.",
+              features: language === "en"
+                ? ["Everything in Standard", "ATS selection and setup guidance", "DEI hiring strategy", "Campus and early talent program design", "Recruitment marketing strategy", "Compensation benchmarking", "Full implementation support", "90-day post-implementation review"]
+                : ["Tout dans Standard", "Configuration ATS", "Stratégie DEI d'embauche", "Programme de talents émergents", "Marketing de recrutement", "Analyse comparative de rémunération", "Soutien à la mise en œuvre", "Revue post-implémentation de 90 jours"],
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Leadership & Talent Development" : "Développement du leadership et des talents",
+          investment: "$5,000 – $20,000",
+          desc: language === "en"
+            ? "Develop your leadership pipeline and build the capabilities your organization needs through structured development programs, coaching, and succession planning."
+            : "Développez votre pipeline de leadership et renforcez les capacités de votre organisation par des programmes structurés de développement.",
+          benefits: language === "en"
+            ? ["Leadership development programs", "High-potential talent identification", "Succession planning", "Management training design"]
+            : ["Programmes de développement du leadership", "Identification des hauts potentiels", "Planification de la relève", "Conception de formation en gestion"],
+          learnMore: language === "en"
+            ? "Your organization's future depends on the leaders you develop today. Our Leadership & Talent Development engagements build structured programs that identify, develop, and retain your best people.\n\nFrom high-potential identification and competency frameworks to management training programs and succession planning, we help you create a leadership pipeline that ensures your organization is never dependent on a single person or team."
+            : "L'avenir de votre organisation dépend des leaders que vous développez aujourd'hui. Nous construisons des programmes structurés pour identifier, développer et retenir vos meilleurs talents.",
+          idealFor: language === "en" ? "Organizations investing in leadership capacity, facing succession gaps, or building management bench strength." : "Organisations investissant dans la capacité de leadership ou confrontées à des défis de relève.",
+          image: talentDevelopmentImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Foundation" : "Fondation",
+              price: "$5,000",
+              subtitle: language === "en" ? "Leadership competency framework with talent assessment and development planning." : "Cadre de compétences en leadership avec évaluation des talents.",
+              features: language === "en"
+                ? ["Leadership competency framework", "Talent assessment methodology", "Individual development plan templates", "Management skills gap analysis", "Development roadmap", "Summary recommendations report"]
+                : ["Cadre de compétences en leadership", "Méthodologie d'évaluation", "Modèles de plan de développement", "Analyse des écarts", "Feuille de route de développement", "Rapport de recommandations"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$12,000",
+              subtitle: language === "en" ? "Full talent development program with training design, coaching framework, and succession planning." : "Programme complet de développement avec formation, coaching et planification de la relève.",
+              features: language === "en"
+                ? ["Everything in Foundation", "Custom training program design", "Coaching framework and toolkit", "High-potential identification system", "Succession planning framework", "Mentorship program design", "Quarterly progress reviews"]
+                : ["Tout dans Fondation", "Conception de programme de formation", "Cadre de coaching", "Système d'identification des hauts potentiels", "Planification de la relève", "Programme de mentorat", "Revues trimestrielles"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Enterprise" : "Entreprise",
+              price: "$20,000",
+              subtitle: language === "en" ? "Comprehensive leadership development with multi-level programs, 360 assessments, and ongoing support." : "Développement complet du leadership avec programmes multi-niveaux et évaluations 360.",
+              features: language === "en"
+                ? ["Everything in Standard", "Multi-level leadership programs", "360-degree assessment integration", "Executive coaching integration", "Leadership academy design", "Culture and engagement surveys", "Full implementation support", "6-month post-program support"]
+                : ["Tout dans Standard", "Programmes multi-niveaux", "Évaluation 360 degrés", "Coaching exécutif", "Conception d'académie de leadership", "Sondages culture et engagement", "Soutien à la mise en œuvre", "Support de 6 mois"],
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Talent Acquisition & Staffing" : "Acquisition de talents et dotation",
+          investment: "$5,000 – $25,000",
+          investmentNote: language === "en" ? "(Per placement or retainer model)" : "(Par placement ou mandat)",
+          desc: language === "en"
+            ? "We find, screen, and place the right talent for your organization — from executive searches to operational hires. End-to-end recruiting so you can focus on running your business."
+            : "Nous trouvons, évaluons et plaçons les bons talents pour votre organisation — des recherches de cadres aux embauches opérationnelles.",
+          benefits: language === "en"
+            ? ["End-to-end candidate sourcing", "Screening & shortlisting", "Interview coordination", "Offer negotiation & placement support"]
+            : ["Sourcing de candidats complet", "Présélection et tri", "Coordination des entrevues", "Négociation et placement"],
+          learnMore: language === "en"
+            ? "Hiring the wrong person is costly — in time, money, and team morale. Our Talent Acquisition & Staffing service takes the burden of recruiting off your plate entirely. We handle everything from defining the role and sourcing candidates to screening, interviewing, and negotiating offers.\n\nWhether you need a single key hire or are scaling an entire team, we act as your dedicated recruiting partner. We combine our process expertise with deep candidate assessment to ensure you get the right person, not just a fast hire."
+            : "Embaucher la mauvaise personne coûte cher. Notre service prend en charge tout le processus de recrutement pour vous.",
+          idealFor: language === "en" ? "Organizations that need to hire quickly and effectively without the overhead of an internal recruiting team." : "Organisations qui doivent recruter rapidement et efficacement.",
+          image: recruitmentHiringImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Single Placement" : "Placement unique",
+              price: "$5,000",
+              subtitle: language === "en" ? "End-to-end recruitment for a single role including sourcing, screening, and placement." : "Recrutement complet pour un seul poste.",
+              features: language === "en"
+                ? ["Role definition and job posting", "Candidate sourcing across platforms", "Resume screening and shortlisting", "Interview coordination", "Reference checks", "Offer support and negotiation guidance", "30-day placement guarantee"]
+                : ["Définition du poste et affichage", "Sourcing sur toutes les plateformes", "Présélection des CV", "Coordination des entrevues", "Vérification des références", "Soutien à l'offre et négociation", "Garantie de placement de 30 jours"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Multi-Hire" : "Recrutement multiple",
+              price: "$12,000",
+              subtitle: language === "en" ? "Recruitment for 2–5 roles with dedicated recruiter and talent pipeline development." : "Recrutement pour 2 à 5 postes avec recruteur dédié.",
+              features: language === "en"
+                ? ["Everything in Single Placement", "Dedicated recruiter assigned", "Recruitment for 2–5 roles", "Talent pipeline development", "Employer brand positioning", "Candidate experience management", "Bi-weekly progress reporting", "60-day placement guarantee"]
+                : ["Tout dans Placement unique", "Recruteur dédié", "Recrutement pour 2-5 postes", "Développement du pipeline", "Marque employeur", "Gestion de l'expérience candidat", "Rapports bimensuels", "Garantie de 60 jours"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Recruiting Retainer" : "Mandat de recrutement",
+              price: "$25,000",
+              subtitle: language === "en" ? "Ongoing recruiting partnership with dedicated team, executive search, and unlimited placements." : "Partenariat de recrutement continu avec équipe dédiée.",
+              features: language === "en"
+                ? ["Everything in Multi-Hire", "Dedicated recruiting team", "Unlimited role placements", "Executive and leadership searches", "Full ATS management", "Workforce planning integration", "Weekly strategy calls", "90-day placement guarantee", "Quarterly hiring strategy reviews"]
+                : ["Tout dans Multi-Hire", "Équipe de recrutement dédiée", "Placements illimités", "Recherches de cadres", "Gestion ATS complète", "Planification de la main-d'œuvre", "Appels hebdomadaires", "Garantie de 90 jours", "Revues stratégiques trimestrielles"],
+              contactOnly: true
+            }
+          ]
         }
       ]
     },
@@ -750,6 +934,139 @@ export default function Services() {
               contactOnly: true
             }
           ]
+        },
+        {
+          title: language === "en" ? "People Operations Setup" : "Mise en place des opérations RH",
+          investment: "$2,000 – $5,000",
+          desc: language === "en"
+            ? "Get the HR foundations right from day one — employee policies, onboarding processes, performance reviews, and team management systems built for small business reality."
+            : "Mettez en place les fondations RH dès le départ — politiques, intégration, revues de performance et systèmes de gestion d'équipe adaptés aux petites entreprises.",
+          benefits: language === "en"
+            ? ["Employee policy handbook", "Onboarding process design", "Performance review framework", "Team management systems"]
+            : ["Manuel de politiques", "Processus d'intégration", "Cadre de revue de performance", "Systèmes de gestion d'équipe"],
+          learnMore: language === "en"
+            ? "Most small businesses wing it when it comes to managing people — and it catches up with them. Unclear expectations, no onboarding process, inconsistent reviews, and reactive problem-solving create turnover, low morale, and legal risk.\n\nOur People Operations Setup gives you the essential HR infrastructure every growing business needs: clear policies, a structured onboarding process, a simple performance review system, and team management templates you can actually use. No corporate bloat — just what works."
+            : "La plupart des PME improvisent la gestion des personnes. Nous vous donnons les fondations RH essentielles : politiques claires, intégration structurée et système de revue de performance simple.",
+          idealFor: language === "en" ? "Small businesses with 3–25 employees who need professional HR foundations without the overhead of a full HR department." : "PME de 3 à 25 employés qui ont besoin de fondations RH professionnelles.",
+          image: peopleOperationsImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Essentials" : "Essentiel",
+              price: "$2,000",
+              subtitle: language === "en" ? "Core HR policies and employee handbook for small teams." : "Politiques RH de base et manuel employé pour petites équipes.",
+              features: language === "en"
+                ? ["Employee policy handbook", "Core HR policies (5–8 policies)", "Simple onboarding checklist", "Role description templates", "Basic compliance guidance"]
+                : ["Manuel de politiques", "Politiques RH de base (5-8)", "Liste d'intégration", "Modèles de description de rôle", "Guide de conformité de base"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$3,500",
+              subtitle: language === "en" ? "Full people operations setup with onboarding, reviews, and team systems." : "Configuration complète des opérations RH avec intégration et revues.",
+              features: language === "en"
+                ? ["Everything in Essentials", "Structured onboarding program", "Performance review system", "Team accountability framework", "1-on-1 meeting templates", "Employee feedback process", "30-day follow-up session"]
+                : ["Tout dans Essentiel", "Programme d'intégration structuré", "Système de revue de performance", "Cadre de responsabilité", "Modèles de rencontres 1-à-1", "Processus de rétroaction", "Session de suivi de 30 jours"],
+              contactOnly: true
+            },
+            {
+              name: "Premium",
+              price: "$5,000",
+              subtitle: language === "en" ? "Complete HR foundation with culture strategy, compensation framework, and ongoing support." : "Fondation RH complète avec stratégie de culture et cadre de rémunération.",
+              features: language === "en"
+                ? ["Everything in Standard", "Culture and values framework", "Compensation and benefits guide", "Employee development plan templates", "Conflict resolution process", "HR compliance audit", "60-day post-engagement support"]
+                : ["Tout dans Standard", "Cadre de culture et valeurs", "Guide de rémunération", "Modèles de plan de développement", "Processus de résolution de conflits", "Audit de conformité RH", "Support de 60 jours"],
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Recruitment & Hiring Support" : "Soutien au recrutement et à l'embauche",
+          investment: "$1,000 – $3,000",
+          desc: language === "en"
+            ? "Stop guessing when you hire. Get a structured hiring process with job description templates, interview guides, and scoring systems designed for small business budgets."
+            : "Arrêtez de deviner lors de vos embauches. Obtenez un processus structuré avec des modèles et des guides adaptés aux budgets des PME.",
+          benefits: language === "en"
+            ? ["Job description templates", "Interview question framework", "Candidate scoring system", "Onboarding checklist"]
+            : ["Modèles de description de poste", "Cadre de questions d'entrevue", "Système de notation des candidats", "Liste d'intégration"],
+          learnMore: language === "en"
+            ? "Every bad hire costs you 3–6 months of salary, plus the disruption to your team. Most small businesses hire on gut feeling because they do not have a system. We fix that.\n\nOur Recruitment & Hiring Support gives you everything you need to hire with confidence: job description templates, structured interview guides, candidate scoring rubrics, and a simple onboarding checklist. You will make better hires, faster, and set new employees up for success from day one."
+            : "Chaque mauvaise embauche coûte 3 à 6 mois de salaire. Nous vous donnons tout ce dont vous avez besoin pour embaucher avec confiance.",
+          idealFor: language === "en" ? "Small business owners making their first hires, or founders struggling with turnover and inconsistent hiring results." : "Propriétaires de PME qui recrutent ou qui font face à un roulement élevé.",
+          image: hiringSupportImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Starter" : "Démarrage",
+              price: "$1,000",
+              subtitle: language === "en" ? "Essential hiring tools with job templates and interview framework for 1–3 roles." : "Outils d'embauche essentiels avec modèles pour 1 à 3 rôles.",
+              features: language === "en"
+                ? ["Job description templates (up to 3 roles)", "Interview question guide", "Candidate scoring rubric", "Offer letter template", "New hire onboarding checklist"]
+                : ["Modèles de description de poste (3 rôles)", "Guide de questions d'entrevue", "Grille de notation", "Modèle de lettre d'offre", "Liste d'intégration"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$2,000",
+              subtitle: language === "en" ? "Complete hiring system with sourcing strategy and structured onboarding." : "Système d'embauche complet avec stratégie de sourcing et intégration.",
+              features: language === "en"
+                ? ["Everything in Starter", "Job description templates (up to 6 roles)", "Talent sourcing strategy", "Structured interview training guide", "30/60/90 day onboarding plan", "Reference check framework", "Hiring process documentation"]
+                : ["Tout dans Démarrage", "Modèles pour 6 rôles", "Stratégie de sourcing", "Guide de formation aux entrevues", "Plan d'intégration 30/60/90", "Cadre de vérification des références", "Documentation du processus"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Comprehensive" : "Complet",
+              price: "$3,000",
+              subtitle: language === "en" ? "Full recruitment setup with employer branding, compensation guidance, and hands-on support." : "Configuration complète avec marque employeur et accompagnement.",
+              features: language === "en"
+                ? ["Everything in Standard", "Employer brand positioning basics", "Compensation benchmarking guidance", "Job posting optimization", "Candidate experience design", "Hiring manager coaching session", "60-day post-hire follow-up"]
+                : ["Tout dans Standard", "Positionnement de marque employeur", "Guide de rémunération", "Optimisation des affichages", "Expérience candidat", "Session de coaching gestionnaire", "Suivi de 60 jours post-embauche"],
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Recruiting & Staffing for Small Business" : "Recrutement et dotation pour PME",
+          investment: "$2,000 – $5,000",
+          investmentNote: language === "en" ? "(Per hire)" : "(Par embauche)",
+          desc: language === "en"
+            ? "We handle your hiring so you don't have to. From sourcing candidates and screening resumes to coordinating interviews and helping with offers — recruiting made simple for small business budgets."
+            : "Nous gérons votre recrutement pour vous — du sourcing à l'embauche, adapté aux budgets des PME.",
+          benefits: language === "en"
+            ? ["Candidate sourcing & screening", "Interview setup & coordination", "Shortlist & recommendations", "Offer support & onboarding guidance"]
+            : ["Sourcing et présélection", "Coordination des entrevues", "Liste restreinte et recommandations", "Soutien à l'offre et intégration"],
+          learnMore: language === "en"
+            ? "As a small business, you cannot afford to get hiring wrong — but you also cannot afford to spend weeks sorting through applications. Our Recruiting & Staffing service gives you a dedicated recruiting partner who handles the heavy lifting: writing job postings, sourcing candidates, screening resumes, and coordinating interviews.\n\nYou get a curated shortlist of qualified candidates, so you can focus on choosing the right person instead of drowning in applications. Every placement includes onboarding guidance to set your new hire up for success."
+            : "En tant que PME, vous ne pouvez pas vous permettre de mal embaucher. Nous gérons tout le processus pour vous.",
+          idealFor: language === "en" ? "Small business owners and founders who need to hire but don't have the time or expertise to manage the full recruiting process." : "Propriétaires de PME qui doivent recruter mais manquent de temps pour gérer le processus.",
+          image: recruitmentHiringImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Single Hire" : "Embauche unique",
+              price: "$2,000",
+              subtitle: language === "en" ? "Full recruitment support for one role — sourcing, screening, and interview coordination." : "Recrutement complet pour un poste.",
+              features: language === "en"
+                ? ["Job posting creation", "Candidate sourcing", "Resume screening and shortlisting", "Interview scheduling", "Top 3–5 candidate shortlist", "Reference check guidance", "Offer letter review"]
+                : ["Création de l'affichage", "Sourcing de candidats", "Présélection des CV", "Planification des entrevues", "Liste de 3 à 5 candidats", "Guide de vérification des références", "Revue de la lettre d'offre"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$3,500",
+              subtitle: language === "en" ? "Enhanced recruiting with employer branding, structured interviews, and onboarding support." : "Recrutement amélioré avec marque employeur et soutien à l'intégration.",
+              features: language === "en"
+                ? ["Everything in Single Hire", "Employer brand positioning basics", "Structured interview guide and training", "Candidate experience management", "30/60/90 day onboarding plan", "Hiring process documentation", "30-day post-hire check-in"]
+                : ["Tout dans Embauche unique", "Positionnement de marque employeur", "Guide d'entrevue structuré", "Gestion de l'expérience candidat", "Plan d'intégration 30/60/90", "Documentation du processus", "Suivi de 30 jours"],
+              contactOnly: true
+            },
+            {
+              name: "Premium",
+              price: "$5,000",
+              subtitle: language === "en" ? "Priority recruiting with dedicated support, multiple candidates, and extended placement guarantee." : "Recrutement prioritaire avec soutien dédié et garantie prolongée.",
+              features: language === "en"
+                ? ["Everything in Standard", "Priority candidate sourcing", "Expanded candidate pipeline (8–10 candidates)", "Compensation benchmarking", "Dedicated recruiting support", "Hiring manager coaching", "60-day placement guarantee", "2 replacement candidates if needed"]
+                : ["Tout dans Standard", "Sourcing prioritaire", "Pipeline élargi (8-10 candidats)", "Analyse comparative de rémunération", "Support dédié", "Coaching du gestionnaire", "Garantie de 60 jours", "2 remplacements si nécessaire"],
+              contactOnly: true
+            }
+          ]
         }
       ]
     },
@@ -927,6 +1244,141 @@ export default function Services() {
               contactOnly: true
             }
           ]
+        },
+        {
+          title: language === "en" ? "Leadership & People Management Coaching" : "Coaching en leadership et gestion des personnes",
+          investment: "$200 – $750/mo",
+          desc: language === "en"
+            ? "Coaching for new and aspiring managers to build confidence in hiring, managing teams, giving feedback, and handling difficult conversations."
+            : "Coaching pour gestionnaires nouveaux et aspirants, pour développer la confiance en gestion d'équipe, rétroaction et conversations difficiles.",
+          benefits: language === "en"
+            ? ["Management confidence building", "Effective feedback techniques", "Hiring & interview skills", "Difficult conversation frameworks"]
+            : ["Développement de la confiance en gestion", "Techniques de rétroaction efficace", "Compétences en embauche", "Cadres de conversations difficiles"],
+          learnMore: language === "en"
+            ? "Becoming a manager is one of the biggest career transitions — and most people get no training for it. Our Leadership & People Management Coaching helps you build the skills to hire effectively, manage your team with confidence, deliver constructive feedback, and navigate the tough conversations that come with leadership.\n\nWhether you are a first-time manager, a founder building your first team, or a professional preparing for a leadership role, this coaching gives you the practical tools and frameworks you need."
+            : "Devenir gestionnaire est l'une des plus grandes transitions de carrière. Notre coaching vous aide à bâtir les compétences pour recruter, gérer votre équipe et donner de la rétroaction constructive.",
+          idealFor: language === "en" ? "First-time managers, team leads, founders hiring their first employees, or professionals preparing for management roles." : "Nouveaux gestionnaires, fondateurs recrutant pour la première fois.",
+          image: talentDevelopmentImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Essentials" : "Essentiel",
+              price: "$200/mo",
+              subtitle: language === "en" ? "Monthly coaching on core management skills and team leadership." : "Coaching mensuel sur les compétences de gestion de base.",
+              features: language === "en"
+                ? ["Monthly coaching session", "Management fundamentals framework", "Feedback delivery techniques", "Team communication strategies", "Email support between sessions"]
+                : ["Session de coaching mensuelle", "Cadre de gestion fondamentale", "Techniques de rétroaction", "Stratégies de communication", "Support par e-mail"],
+              isMonthly: true,
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$450/mo",
+              subtitle: language === "en" ? "Bi-weekly coaching with hiring skills, difficult conversations, and team building." : "Coaching bimensuel avec compétences d'embauche et gestion des conversations difficiles.",
+              features: language === "en"
+                ? ["Everything in Essentials", "Bi-weekly coaching sessions", "Hiring and interview coaching", "Difficult conversation frameworks", "Team motivation strategies", "1-on-1 meeting templates", "Priority messaging support"]
+                : ["Tout dans Essentiel", "Sessions bimensuelles", "Coaching d'embauche", "Gestion des conversations difficiles", "Stratégies de motivation", "Modèles de 1-à-1", "Support prioritaire"],
+              isMonthly: true,
+              contactOnly: true
+            },
+            {
+              name: "Premium",
+              price: "$750/mo",
+              subtitle: language === "en" ? "Weekly coaching with comprehensive leadership development and performance management mastery." : "Coaching hebdomadaire avec développement du leadership et maîtrise de la gestion de la performance.",
+              features: language === "en"
+                ? ["Everything in Standard", "Weekly coaching sessions", "Performance management coaching", "Delegation and empowerment skills", "Conflict resolution techniques", "Career development planning", "On-demand messaging support", "Quarterly leadership assessment"]
+                : ["Tout dans Standard", "Sessions hebdomadaires", "Coaching en gestion de la performance", "Compétences en délégation", "Techniques de résolution de conflits", "Planification de carrière", "Support à la demande", "Évaluation trimestrielle"],
+              isMonthly: true,
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Interview & Career Readiness" : "Préparation aux entrevues et à la carrière",
+          investment: "$250 – $750",
+          desc: language === "en"
+            ? "Get interview-ready with structured preparation, personal branding coaching, and practical tools to land the role you want."
+            : "Préparez-vous aux entrevues avec une préparation structurée et des outils pratiques pour obtenir le rôle que vous visez.",
+          benefits: language === "en"
+            ? ["Interview preparation coaching", "Personal brand development", "Resume and LinkedIn optimization", "Salary negotiation guidance"]
+            : ["Coaching de préparation aux entrevues", "Développement de la marque personnelle", "Optimisation CV et LinkedIn", "Guidance de négociation salariale"],
+          learnMore: language === "en"
+            ? "Whether you are job hunting, preparing for a promotion interview, or transitioning to a new career, our Interview & Career Readiness program helps you show up with confidence.\n\nWe cover everything from resume and LinkedIn optimization to mock interviews, personal branding, and salary negotiation. You will walk away with a clear personal narrative, polished interview technique, and the confidence to pursue the opportunities you deserve."
+            : "Que vous soyez en recherche d'emploi ou en préparation pour une promotion, notre programme vous aide à vous présenter avec confiance.",
+          idealFor: language === "en" ? "Professionals preparing for interviews, career transitions, or seeking promotions who want structured preparation and coaching." : "Professionnels se préparant pour des entrevues ou des transitions de carrière.",
+          image: hiringSupportImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Quick Prep" : "Préparation rapide",
+              price: "$250",
+              subtitle: language === "en" ? "Focused interview preparation session with personal narrative coaching." : "Session de préparation ciblée avec coaching de narration personnelle.",
+              features: language === "en"
+                ? ["60-minute coaching session", "Interview technique fundamentals", "Personal narrative development", "Top 10 question preparation", "Summary action plan"]
+                : ["Session de coaching de 60 minutes", "Fondamentaux des techniques d'entrevue", "Développement du récit personnel", "Préparation de 10 questions", "Plan d'action de synthèse"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$500",
+              subtitle: language === "en" ? "Full interview preparation with mock interviews, resume review, and personal branding." : "Préparation complète avec simulation d'entrevue et révision de CV.",
+              features: language === "en"
+                ? ["Everything in Quick Prep", "Resume and cover letter review", "LinkedIn profile optimization", "2 mock interview sessions", "Personalized feedback report", "Follow-up coaching call"]
+                : ["Tout dans Préparation rapide", "Révision de CV et lettre", "Optimisation LinkedIn", "2 simulations d'entrevue", "Rapport de rétroaction", "Appel de suivi"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Comprehensive" : "Complet",
+              price: "$750",
+              subtitle: language === "en" ? "Complete career readiness with negotiation coaching, personal branding, and ongoing support." : "Préparation complète avec coaching de négociation et soutien continu.",
+              features: language === "en"
+                ? ["Everything in Standard", "Salary negotiation coaching", "Personal brand strategy", "Executive presence coaching", "3 mock interview sessions", "30-day post-interview support", "Career strategy session"]
+                : ["Tout dans Standard", "Coaching de négociation salariale", "Stratégie de marque personnelle", "Coaching de présence", "3 simulations d'entrevue", "Support de 30 jours", "Session de stratégie de carrière"],
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Career Placement & Job Search Support" : "Placement de carrière et soutien à la recherche d'emploi",
+          investment: "$500 – $2,000",
+          desc: language === "en"
+            ? "We help you get recruited. From resume optimization and targeted job applications to employer introductions and placement support — we work with you until you land the right role."
+            : "Nous vous aidons à vous faire recruter. De l'optimisation du CV aux introductions auprès d'employeurs — nous travaillons avec vous jusqu'à ce que vous décrochiez le bon poste.",
+          benefits: language === "en"
+            ? ["Resume & LinkedIn makeover", "Targeted job search strategy", "Employer introductions", "Application & follow-up management"]
+            : ["Refonte CV et LinkedIn", "Stratégie de recherche ciblée", "Introductions auprès d'employeurs", "Gestion des candidatures et suivis"],
+          learnMore: language === "en"
+            ? "Job searching alone is exhausting and inefficient. Our Career Placement & Job Search Support puts a recruiting professional in your corner. We help you craft a compelling resume, optimize your LinkedIn presence, build a targeted job search strategy, and connect you with employers who are hiring.\n\nUnlike traditional career coaches who just give advice, we actively work alongside you — submitting applications, making introductions, and managing follow-ups. You focus on preparing for interviews while we focus on getting you in the door."
+            : "Chercher un emploi seul est épuisant et inefficace. Notre service met un professionnel du recrutement à vos côtés pour vous aider à décrocher le bon poste.",
+          idealFor: language === "en" ? "Professionals actively job searching, career changers, or anyone who wants dedicated support to find and land their next role faster." : "Professionnels en recherche d'emploi active ou en changement de carrière.",
+          image: recruitmentHiringImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Job Search Starter" : "Démarrage recherche d'emploi",
+              price: "$500",
+              subtitle: language === "en" ? "Resume and LinkedIn optimization with a personalized job search strategy." : "Optimisation du CV et de LinkedIn avec stratégie de recherche personnalisée.",
+              features: language === "en"
+                ? ["Professional resume rewrite", "LinkedIn profile optimization", "Target role and industry analysis", "Job search strategy plan", "Application tracking template", "30-minute strategy call"]
+                : ["Réécriture professionnelle du CV", "Optimisation du profil LinkedIn", "Analyse des rôles ciblés", "Plan de stratégie de recherche", "Modèle de suivi des candidatures", "Appel stratégique de 30 minutes"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$1,000",
+              subtitle: language === "en" ? "Active job search support with employer outreach, application management, and interview prep." : "Soutien actif avec contacts employeurs et préparation aux entrevues.",
+              features: language === "en"
+                ? ["Everything in Job Search Starter", "Targeted job applications (up to 20)", "Employer and recruiter outreach", "Application follow-up management", "2 mock interview sessions", "Weekly check-in calls (4 weeks)", "Cover letter templates"]
+                : ["Tout dans Démarrage", "Candidatures ciblées (jusqu'à 20)", "Contact avec les employeurs", "Gestion des suivis", "2 simulations d'entrevue", "Appels hebdomadaires (4 semaines)", "Modèles de lettre de motivation"],
+              contactOnly: true
+            },
+            {
+              name: "Premium",
+              price: "$2,000",
+              subtitle: language === "en" ? "Full placement support with dedicated career partner, employer introductions, and negotiation coaching." : "Soutien complet avec partenaire dédié et introductions auprès d'employeurs.",
+              features: language === "en"
+                ? ["Everything in Standard", "Dedicated career partner", "Targeted employer introductions", "Expanded applications (up to 50)", "Salary and benefits negotiation coaching", "Personal brand strategy", "Executive presence coaching", "8-week active support", "Post-placement 30-day check-in"]
+                : ["Tout dans Standard", "Partenaire de carrière dédié", "Introductions ciblées auprès d'employeurs", "Candidatures élargies (jusqu'à 50)", "Coaching de négociation salariale", "Stratégie de marque personnelle", "Coaching de présence", "Soutien actif de 8 semaines", "Suivi de 30 jours post-placement"],
+              contactOnly: true
+            }
+          ]
         }
       ]
     },
@@ -1048,6 +1500,94 @@ export default function Services() {
               contactOnly: true
             }
           ]
+        },
+        {
+          title: language === "en" ? "Hiring & People Management Toolkit" : "Boîte à outils d'embauche et de gestion des personnes",
+          investment: "$49 – $199",
+          desc: language === "en"
+            ? "Ready-to-use templates for hiring, onboarding, performance reviews, and team management — designed for managers and business owners who want professional HR tools without consulting fees."
+            : "Modèles prêts à l'emploi pour l'embauche, l'intégration, les revues de performance et la gestion d'équipe.",
+          benefits: language === "en"
+            ? ["Hiring process templates", "Onboarding checklists", "Performance review frameworks", "People management guides"]
+            : ["Modèles de recrutement", "Listes d'intégration", "Cadres de revue de performance", "Guides de gestion des personnes"],
+          learnMore: language === "en"
+            ? "Managing people should not require an HR degree. This toolkit gives you everything you need to hire, onboard, manage, and develop your team — all in practical, ready-to-use templates.\n\nIncludes job description templates, interview scoring rubrics, onboarding checklists, performance review frameworks, 1-on-1 meeting templates, and feedback guides. Perfect for first-time managers, founders building teams, or small businesses without an HR department."
+            : "Gérer des personnes ne devrait pas nécessiter un diplôme en RH. Cette boîte à outils vous donne tout ce dont vous avez besoin pour recruter, intégrer, gérer et développer votre équipe.",
+          idealFor: language === "en" ? "Managers, team leads, founders, and small business owners who need professional HR tools they can implement immediately." : "Gestionnaires, chefs d'équipe et propriétaires de PME.",
+          image: hrToolkitImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Starter Kit" : "Kit de démarrage",
+              price: "$49",
+              subtitle: language === "en" ? "Essential hiring and onboarding templates for individual managers." : "Modèles essentiels d'embauche et d'intégration.",
+              features: language === "en"
+                ? ["Job description templates (5 roles)", "Interview question guide", "Candidate scoring rubric", "New hire onboarding checklist", "First 30-day plan template"]
+                : ["Modèles de description de poste (5 rôles)", "Guide de questions d'entrevue", "Grille de notation", "Liste d'intégration", "Plan des 30 premiers jours"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Manager Edition" : "Édition gestionnaire",
+              price: "$129",
+              subtitle: language === "en" ? "Complete people management toolkit with reviews, feedback, and team development." : "Boîte à outils complète pour gestionnaires.",
+              features: language === "en"
+                ? ["Everything in Starter Kit", "Performance review templates", "1-on-1 meeting framework", "Feedback delivery guide", "Team development plan template", "Difficult conversation scripts", "Employee recognition ideas"]
+                : ["Tout dans Kit de démarrage", "Modèles de revue de performance", "Cadre de 1-à-1", "Guide de rétroaction", "Modèle de développement", "Scripts de conversation", "Idées de reconnaissance"],
+              contactOnly: true
+            },
+            {
+              name: language === "en" ? "Business Edition" : "Édition entreprise",
+              price: "$199",
+              subtitle: language === "en" ? "Full HR toolkit with policies, compliance, and organizational frameworks." : "Boîte à outils RH complète avec politiques et conformité.",
+              features: language === "en"
+                ? ["Everything in Manager Edition", "Employee handbook template", "HR policy templates", "Compensation framework guide", "Exit interview template", "Employee satisfaction survey", "Compliance checklist", "Succession planning worksheet"]
+                : ["Tout dans Édition gestionnaire", "Modèle de manuel employé", "Politiques RH", "Guide de rémunération", "Modèle d'entrevue de départ", "Sondage de satisfaction", "Liste de conformité", "Planification de la relève"],
+              contactOnly: true
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Job Search & Career Toolkit" : "Boîte à outils de recherche d'emploi et de carrière",
+          investment: "$29 – $99",
+          desc: language === "en"
+            ? "Everything you need to run a professional job search — resume templates, cover letter guides, interview preparation checklists, and a job application tracker to stay organized."
+            : "Tout ce dont vous avez besoin pour une recherche d'emploi professionnelle — modèles de CV, guides de lettre de motivation et suivi des candidatures.",
+          benefits: language === "en"
+            ? ["Professional resume templates", "Cover letter & email templates", "Interview preparation checklists", "Job application tracker"]
+            : ["Modèles de CV professionnels", "Modèles de lettres et courriels", "Listes de préparation aux entrevues", "Suivi des candidatures"],
+          learnMore: language === "en"
+            ? "Job searching without a system is overwhelming. The Job Search & Career Toolkit gives you all the tools and templates you need to run an organized, professional job search.\n\nIncludes multiple resume templates, cover letter guides, interview preparation checklists, salary research frameworks, and a job application tracker that keeps everything in one place. Whether you are entering the workforce, changing careers, or pursuing your next opportunity, this toolkit helps you show up prepared and stay on track."
+            : "Chercher un emploi sans système est accablant. Cette boîte à outils vous donne tout ce dont vous avez besoin pour une recherche d'emploi organisée et professionnelle.",
+          idealFor: language === "en" ? "Job seekers, career changers, new graduates, and professionals who want a structured approach to their job search." : "Chercheurs d'emploi, nouveaux diplômés et professionnels en changement de carrière.",
+          image: hiringSupportImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Essential" : "Essentiel",
+              price: "$29",
+              subtitle: language === "en" ? "Core job search templates including resume, cover letter, and application tracker." : "Modèles essentiels de recherche d'emploi.",
+              features: language === "en"
+                ? ["Professional resume template (3 formats)", "Cover letter template", "Job application tracker spreadsheet", "Interview preparation checklist", "Thank-you email templates"]
+                : ["Modèle de CV (3 formats)", "Modèle de lettre de motivation", "Suivi des candidatures", "Liste de préparation aux entrevues", "Modèles de courriel de remerciement"],
+              contactOnly: true
+            },
+            {
+              name: "Standard",
+              price: "$59",
+              subtitle: language === "en" ? "Complete toolkit with LinkedIn optimization guide, salary research, and networking templates." : "Boîte à outils complète avec guide LinkedIn et recherche salariale.",
+              features: language === "en"
+                ? ["Everything in Essential", "LinkedIn profile optimization guide", "Networking outreach templates", "Salary research framework", "Personal brand worksheet", "Video interview tips guide", "30-day job search action plan"]
+                : ["Tout dans Essentiel", "Guide d'optimisation LinkedIn", "Modèles de réseautage", "Cadre de recherche salariale", "Feuille de marque personnelle", "Guide pour entrevues vidéo", "Plan d'action de 30 jours"],
+              contactOnly: true
+            },
+            {
+              name: "Premium",
+              price: "$99",
+              subtitle: language === "en" ? "Full career toolkit with video walkthroughs, negotiation scripts, and career transition guide." : "Boîte à outils complète avec vidéos et guide de transition de carrière.",
+              features: language === "en"
+                ? ["Everything in Standard", "Video walkthrough for each template", "Salary negotiation scripts", "Career transition planning guide", "Executive resume template", "Portfolio presentation template", "60-day follow-up strategy", "Bonus: recruiter outreach scripts"]
+                : ["Tout dans Standard", "Vidéo pour chaque modèle", "Scripts de négociation salariale", "Guide de transition de carrière", "Modèle CV exécutif", "Modèle de présentation portfolio", "Stratégie de suivi de 60 jours", "Bonus: scripts de contact recruteur"],
+              contactOnly: true
+            }
+          ]
         }
       ]
     }
@@ -1095,8 +1635,8 @@ export default function Services() {
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-hero-subtitle">
                 {language === "en"
-                  ? "We partner with enterprises, small businesses, and professionals to build the management systems, leadership alignment, and accountability structures that drive measurable results."
-                  : "Nous accompagnons les entreprises, les PME et les professionnels pour bâtir les systèmes de gestion, l'alignement du leadership et les structures de responsabilité qui produisent des résultats mesurables."}
+                  ? "From operational excellence and people strategy to recruiting and staffing — we help companies find the right talent and help professionals get recruited into the right roles. Enterprise, small business, and professional solutions."
+                  : "De l'excellence opérationnelle et la stratégie RH au recrutement et à la dotation — nous aidons les entreprises à trouver les bons talents et les professionnels à se faire recruter. Solutions entreprises, PME et professionnels."}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">

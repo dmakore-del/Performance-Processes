@@ -279,8 +279,8 @@ export default function Approach() {
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-hero-subtitle">
                 {language === "en"
-                  ? "Our methodology is designed to ensure sustainable performance improvements and maximum ROI."
-                  : "Notre méthodologie est conçue pour garantir des améliorations de performance durables et un ROI maximal."}
+                  ? "Our methodology is designed to drive sustainable improvements across operations, people management, and organizational performance."
+                  : "Notre méthodologie est conçue pour favoriser des améliorations durables dans les opérations, la gestion des personnes et la performance organisationnelle."}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="link-hero-book">

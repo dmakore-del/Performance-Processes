@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import geoPatternImg from "@assets/generated/geo-pattern.png";
+import geoPatternImg from "@assets/generated/geo-pattern-new.png";
 
 interface PageHeroProps {
   title: ReactNode;

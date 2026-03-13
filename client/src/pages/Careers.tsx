@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useState, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
-import collaborationImg from "@assets/stock_images/collaboration.jpg";
-import leadershipImg from "@assets/stock_images/leadership.jpg";
+import collaborationImg from "@assets/generated/collaboration.png";
+import leadershipImg from "@assets/generated/leadership.png";
 
 export default function Careers() {
   const { language } = useLanguage();

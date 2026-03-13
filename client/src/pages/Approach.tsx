@@ -24,18 +24,18 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import consultingImg from "@assets/stock_images/consulting.jpg";
-import strategyImg from "@assets/stock_images/strategy.jpg";
-import strategyWhiteboardImg from "@assets/generated/strategy-whiteboard.png";
-import processFlowImg from "@assets/generated/process-flow-abstract.png";
-import balancedScorecardImg from "@assets/stock_images/balanced_scorecard.jpg";
-import swotAnalysisImg from "@assets/stock_images/swot_analysis.jpg";
-import kpiFrameworksImg from "@assets/stock_images/kpi_frameworks.jpg";
-import processMappingImg from "@assets/stock_images/process_mapping.jpg";
-import stakeholderAnalysisImg from "@assets/stock_images/stakeholder_analysis.jpg";
-import changeManagementImg from "@assets/stock_images/change_management.jpg";
-import performanceDashboardsImg from "@assets/stock_images/performance_dashboards.jpg";
-import leadershipCompetencyImg from "@assets/stock_images/leadership_competency.jpg";
+import consultingImg from "@assets/generated/consulting.png";
+import strategyImg from "@assets/generated/strategy.png";
+import strategyWhiteboardImg from "@assets/generated/strategy-whiteboard-new.png";
+import processFlowImg from "@assets/generated/process-flow-new.png";
+import balancedScorecardImg from "@assets/generated/balanced-scorecard.png";
+import swotAnalysisImg from "@assets/generated/swot-analysis.png";
+import kpiFrameworksImg from "@assets/generated/kpi-frameworks.png";
+import processMappingImg from "@assets/generated/process-mapping.png";
+import stakeholderAnalysisImg from "@assets/generated/stakeholder-analysis.png";
+import changeManagementImg from "@assets/generated/change-management.png";
+import performanceDashboardsImg from "@assets/generated/performance-dashboards.png";
+import leadershipCompetencyImg from "@assets/generated/leadership-competency.png";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 

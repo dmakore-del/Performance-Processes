@@ -6,8 +6,8 @@ import { useLanguage } from "@/hooks/use-language";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import heroAbstractImg from "@assets/generated/hero-abstract.png";
-import analyticsDashboardImg from "@assets/generated/analytics-dashboard.png";
+import heroAbstractImg from "@assets/generated/hero-abstract-new.png";
+import analyticsDashboardImg from "@assets/generated/analytics-dashboard-new.png";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 

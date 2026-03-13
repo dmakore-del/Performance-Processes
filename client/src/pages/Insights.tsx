@@ -6,14 +6,14 @@ import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import geoPatternImg from "@assets/generated/geo-pattern.png";
-import strategyWhiteboardImg from "@assets/generated/strategy-whiteboard.png";
-import analyticsImg from "@assets/stock_images/analytics.jpg";
-import leadershipImg from "@assets/stock_images/leadership.jpg";
-import strategyImg from "@assets/stock_images/strategy.jpg";
-import collaborationImg from "@assets/stock_images/collaboration.jpg";
-import growthChartImg from "@assets/stock_images/growth_chart.jpg";
-import trainingImg from "@assets/stock_images/training.jpg";
+import geoPatternImg from "@assets/generated/geo-pattern-new.png";
+import strategyWhiteboardImg from "@assets/generated/strategy-whiteboard-new.png";
+import analyticsImg from "@assets/generated/analytics.png";
+import leadershipImg from "@assets/generated/leadership.png";
+import strategyImg from "@assets/generated/strategy.png";
+import collaborationImg from "@assets/generated/collaboration.png";
+import growthChartImg from "@assets/generated/growth-chart.png";
+import trainingImg from "@assets/generated/training.png";
 
 const categories = ["All", "Strategy", "Leadership", "Governance", "Execution", "Digital", "Culture"] as const;
 

@@ -7,7 +7,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import torontoSkyline from "@assets/stock_images/toronto_skyline.jpg";
+import torontoSkyline from "@assets/generated/toronto-skyline.png";
 
 const whyReachOutCards = [
   {

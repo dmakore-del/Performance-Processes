@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SEOHead } from "@/components/SEOHead";
 import { ArrowRight, CheckCircle2, Calendar, AlertTriangle, ClipboardCheck, Users, Settings, BarChart3, Download, Mail } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/hooks/use-language";
@@ -108,10 +109,10 @@ export default function FreeAudit() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
+      <SEOHead title="Free Process & People Management Audit" description="Get a free audit checklist to evaluate your organization's processes and people management. Identify gaps, improve efficiency, and build accountability with Performance Processes." path="/free-audit" />
       <Navbar />
 
       <main className="flex-grow">
-        {/* Hero */}
         <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-primary" data-testid="section-audit-hero">
           <div className="absolute inset-0 z-0">
             <img src={heroAbstractImg} alt="" className="w-full h-full object-cover opacity-20" />

@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SEOHead } from "@/components/SEOHead";
 import { CheckCircle2, TrendingUp, Users, Target, Quote, Shield, Lightbulb, Handshake, Star, Award, Heart, BookOpen, GraduationCap, Globe, Clock, Milestone, Rocket, Building, ArrowRight, Calendar, Briefcase, BarChart3, Building2 } from "lucide-react";
 import founderImage from "@/assets/founder.png";
 import seanImage from "@/assets/ChatGPT_Image_Feb_20,_2026,_04_07_16_PM_1771621735605.png";
@@ -83,6 +84,7 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+      <SEOHead title="About Us - Our Story & Mission" description="Learn about Performance Processes, a Toronto management consulting firm founded by Danai Makore in 2023. We help organizations build systems for leadership development, operational efficiency, and measurable performance." path="/about" />
       <Navbar />
       <main className="flex-grow">
 

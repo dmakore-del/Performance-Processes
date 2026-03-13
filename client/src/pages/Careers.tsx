@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SEOHead } from "@/components/SEOHead";
 import { PageHero } from "@/components/layout/PageHero";
 import { useLanguage } from "@/hooks/use-language";
 import { CheckCircle2, Upload, Loader2, CheckCircle, FileText, X, Users, Clock, Home, BookOpen, DollarSign, Compass, TrendingUp, Quote, Briefcase, Send, ArrowRight, Heart, Star, Lightbulb } from "lucide-react";
@@ -76,6 +77,7 @@ export default function Careers() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+      <SEOHead title="Careers - Join Our Team" description="Explore career opportunities at Performance Processes. We're looking for talented consultants, strategists, and leaders who want to make a meaningful impact on organizations." path="/careers" />
       <Navbar />
       <main className="flex-grow">
         <PageHero 

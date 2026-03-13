@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ArrowRight, Filter, Mail, BookOpen, TrendingUp, Users, Shield, Lightbulb, BarChart3, Target, X, Sparkles, Loader2 } from "lucide-react";
 import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/components/ui/animate-on-scroll";
+import { SEOHead } from "@/components/SEOHead";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -205,6 +206,7 @@ export default function Insights() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans">
+      <SEOHead title="Insights - Leadership & Management Articles" description="Read expert articles on leadership development, organizational performance, strategic planning, process optimization, and business growth from Performance Processes consultants." path="/insights" />
       <Navbar />
       <main className="flex-grow">
         <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-primary">

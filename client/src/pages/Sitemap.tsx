@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SEOHead } from "@/components/SEOHead";
 import { Link } from "wouter";
 import { ChevronRight } from "lucide-react";
 
@@ -21,6 +22,7 @@ export default function Sitemap() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+      <SEOHead title="Sitemap" description="Navigate all pages on the Performance Processes website. Find consulting services, insights, career opportunities, and more." path="/sitemap" noindex />
       <Navbar />
       <main className="flex-grow">
         <PageHero 

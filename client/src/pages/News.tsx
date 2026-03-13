@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SEOHead } from "@/components/SEOHead";
 import { PageHero } from "@/components/layout/PageHero";
 import { ExternalLink, Clock, Newspaper, RefreshCw, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -45,6 +46,7 @@ export default function News() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+      <SEOHead title="Industry News - Management & Leadership Updates" description="Stay updated with the latest industry news, trends, and developments in management consulting, leadership, and organizational performance." path="/news" />
       <Navbar />
       <main className="flex-grow">
         <PageHero

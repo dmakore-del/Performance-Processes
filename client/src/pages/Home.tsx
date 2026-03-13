@@ -18,6 +18,7 @@ import { Link } from "wouter";
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/components/ui/animate-on-scroll";
+import { SEOHead } from "@/components/SEOHead";
 
 import teamAlignmentImg from "@assets/generated/team-alignment.png";
 import actionPlanningImg from "@assets/generated/action-planning.png";
@@ -261,6 +262,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
+      <SEOHead title="Performance Processes | Management Consulting Toronto" description="Performance Processes helps organizations build accountability systems, leadership frameworks, and operational processes that deliver measurable, repeatable results. Toronto-based consulting firm founded 2023." path="/" />
       <Navbar />
 
       <main className="flex-grow">

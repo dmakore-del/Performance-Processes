@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SEOHead } from "@/components/SEOHead";
 import { useLanguage } from "@/hooks/use-language";
 import { Link } from "wouter";
 import { useState } from "react";
@@ -258,6 +259,7 @@ export default function Approach() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+      <SEOHead title="Our Approach - Structured Consulting Methodology" description="Discover how Performance Processes delivers results through a structured 4-phase consulting methodology: Discovery, Strategy Design, Implementation, and Performance Review. Built for measurable outcomes." path="/approach" />
       <Navbar />
       <main className="flex-grow">
 

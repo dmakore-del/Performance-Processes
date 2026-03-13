@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Send, CheckCircle, Loader2, Clock, Briefcase, Users, HelpCircle, MessageSquare, ArrowRight, Shield, Award, Star, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
@@ -105,6 +106,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+      <SEOHead title="Contact Us - Book a Consultation" description="Get in touch with Performance Processes. Schedule a consultation, request a proposal, or learn how our management consulting services can help your organization achieve measurable results." path="/contact" />
       <Navbar />
       <main className="flex-grow">
         <PageHero 

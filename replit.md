@@ -102,6 +102,14 @@ Services are organized into 4 tabs with tabbed navigation:
 - Includes "Performance Processes Collective" community section ($49–$99/mo)
 - Enterprise tiers use Stripe checkout; all other tiers use "Book a Call" linking to MS Bookings
 
+### SEO
+- **Per-page SEO**: `client/src/components/SEOHead.tsx` component dynamically sets `<title>`, `<meta description>`, `<canonical>`, Open Graph, and Twitter Card tags per page
+- **Structured data**: JSON-LD in `client/index.html` — ManagementConsulting schema (business info, services catalog, founder, location) + WebSite schema with SearchAction
+- **Sitemap**: `client/public/sitemap.xml` with all 12 public pages, priorities, and change frequencies
+- **Robots.txt**: `client/public/robots.txt` — allows all crawlers, blocks `/portal/` and `/api/`, references sitemap
+- **Geo-targeting**: Toronto, Ontario, Canada meta tags for local SEO
+- **Keywords**: Management consulting, leadership development, organizational consulting, process optimization, etc.
+
 ### Key Design Decisions
 1. **Shared schema directory** (`shared/`): Drizzle schema and Zod validation schemas are shared between frontend and backend
 2. **Role-based access control**: Three tiers (client, staff, admin) with middleware enforcement

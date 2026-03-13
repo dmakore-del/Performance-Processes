@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, Users, Target, Settings, BarChart3, CreditCard, Loader2, RefreshCw, Search, Briefcase, Rocket, UserCheck, Calendar, Package, Heart, ArrowDown, Phone } from "lucide-react";
 import { Link } from "wouter";
@@ -1613,6 +1614,7 @@ export default function Services() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+      <SEOHead title="Consulting Services - Enterprise, Small Business & HR" description="Explore Performance Processes consulting services: enterprise business solutions, small business advisory, professional development coaching, HR strategy, recruitment process design, and operational efficiency workshops." path="/services" />
       <Navbar />
       <main className="flex-grow">
 

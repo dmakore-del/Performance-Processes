@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -95,6 +96,7 @@ export default function WomensPerformanceGrant() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+      <SEOHead title="Women's Performance Grant - Leadership Support for Women" description="Apply for the Performance Processes Women's Performance Grant. Supporting women professionals and entrepreneurs with strategic coaching, tools, and guidance for sustainable growth and leadership development." path="/womens-performance-grant" />
       <Navbar />
       <main className="flex-grow">
         <PageHero

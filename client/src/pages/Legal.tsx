@@ -1,11 +1,12 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-
+import { SEOHead } from "@/components/SEOHead";
 import { PageHero } from "@/components/layout/PageHero";
 
 export default function Legal() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+      <SEOHead title="Privacy Policy & Terms of Service" description="Read the Performance Processes privacy policy and terms of service. Learn how we handle your data and the terms governing use of our consulting services." path="/legal" />
       <Navbar />
       <main className="flex-grow">
         <PageHero 

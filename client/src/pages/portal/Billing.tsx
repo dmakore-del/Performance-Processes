@@ -269,16 +269,23 @@ export default function Billing() {
                           {inv.status}
                         </span>
                         {inv.status !== 'paid' && !isStaffOrAdmin && (
-                          <Button
-                            size="sm"
-                            className="bg-accent text-white hover:bg-primary text-xs h-7 px-3 rounded-lg"
-                            onClick={() => payMutation.mutate(inv.id)}
-                            disabled={payMutation.isPending}
-                            data-testid={`button-pay-${inv.id}`}
-                          >
-                            <DollarSign size={12} className="mr-1" />
-                            {payMutation.isPending ? "Processing..." : "Pay Now"}
-                          </Button>
+                          <div className="flex items-center gap-2">
+                            <Button
+                              size="sm"
+                              className="bg-accent text-white hover:bg-primary text-xs h-7 px-3 rounded-lg"
+                              onClick={() => payMutation.mutate(inv.id)}
+                              disabled={payMutation.isPending}
+                              data-testid={`button-pay-${inv.id}`}
+                            >
+                              <DollarSign size={12} className="mr-1" />
+                              {payMutation.isPending ? "Processing..." : "Pay Now"}
+                            </Button>
+                            <div className="flex items-center gap-1">
+                              <span className="inline-flex px-1 py-0.5 rounded bg-gray-100 text-[8px] font-semibold text-gray-500">Card</span>
+                              <span className="inline-flex px-1 py-0.5 rounded bg-[#FFC43926] text-[8px] font-semibold text-[#003087]">PayPal</span>
+                              <span className="inline-flex px-1 py-0.5 rounded bg-gray-900 text-[8px] font-semibold text-white"> Pay</span>
+                            </div>
+                          </div>
                         )}
                         {inv.status !== 'paid' && isStaffOrAdmin && (
                           <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md border bg-blue-50 text-blue-600 border-blue-200">

@@ -2026,6 +2026,14 @@ export default function Services() {
                       <><CreditCard size={14} className="mr-2" /> {language === "en" ? "Subscribe" : "S'abonner"}</>
                     )}
                   </Button>
+                  <div className="flex items-center justify-center gap-2 mt-2">
+                    <span className="text-[10px] text-muted-foreground">Accepts</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-100 text-[9px] font-semibold text-gray-600"><CreditCard size={10} />Card</span>
+                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-[#FFC43926] text-[9px] font-semibold text-[#003087]">PayPal</span>
+                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-900 text-[9px] font-semibold text-white"> Pay</span>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -2097,21 +2105,30 @@ export default function Services() {
                               </Button>
                             </a>
                           ) : (
-                            <Button
-                              className={`mt-auto w-full rounded-full h-10 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 ${idx === 1 ? 'bg-accent text-white hover:bg-primary' : 'bg-primary text-white hover:bg-accent'}`}
-                              onClick={() => handlePay(tier.stripeProductName)}
-                              disabled={checkoutMutation.isPending && payingProduct === tier.stripeProductName}
-                              data-testid={`button-pay-tier-${idx}`}
-                            >
-                              {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
-                                <><Loader2 size={14} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
-                              ) : (
-                                <><CreditCard size={14} /> {tier.isMonthly
-                                  ? (language === "en" ? "Subscribe" : "S'abonner")
-                                  : (language === "en" ? "Select & Pay" : "Sélectionner et payer")
-                                }</>
-                              )}
-                            </Button>
+                            <>
+                              <Button
+                                className={`mt-auto w-full rounded-full h-10 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 ${idx === 1 ? 'bg-accent text-white hover:bg-primary' : 'bg-primary text-white hover:bg-accent'}`}
+                                onClick={() => handlePay(tier.stripeProductName)}
+                                disabled={checkoutMutation.isPending && payingProduct === tier.stripeProductName}
+                                data-testid={`button-pay-tier-${idx}`}
+                              >
+                                {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
+                                  <><Loader2 size={14} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
+                                ) : (
+                                  <><CreditCard size={14} /> {tier.isMonthly
+                                    ? (language === "en" ? "Subscribe" : "S'abonner")
+                                    : (language === "en" ? "Select & Pay" : "Sélectionner et payer")
+                                  }</>
+                                )}
+                              </Button>
+                              <div className="flex items-center justify-center gap-2 mt-2">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-100 text-[9px] font-semibold text-gray-600"><CreditCard size={10} />Card</span>
+                                  <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-[#FFC43926] text-[9px] font-semibold text-[#003087]">PayPal</span>
+                                  <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-900 text-[9px] font-semibold text-white"> Pay</span>
+                                </div>
+                              </div>
+                            </>
                           )}
                         </div>
                       ))}

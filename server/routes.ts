@@ -286,9 +286,6 @@ export async function registerRoutes(
       }
       const session = await stripe.checkout.sessions.create({
         payment_method_types: paymentMethodTypes,
-        payment_method_options: {
-          card: { setup_future_usage: isRecurring ? undefined : 'none' },
-        },
         line_items: [{ price: priceId, quantity: 1 }],
         mode: isRecurring ? 'subscription' : 'payment',
         success_url: `${baseUrl}/services?payment=success`,

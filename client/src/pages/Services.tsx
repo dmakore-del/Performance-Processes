@@ -389,7 +389,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Professional website design", "Mobile responsive", "Contact form integration", "Basic SEO setup", "Google Analytics setup", "1 round of revisions"]
                 : ["Conception de site Web professionnel", "Responsive mobile", "Formulaire de contact", "SEO de base", "Google Analytics", "1 série de révisions"],
-              stripeProductName: "Website & Digital - Essential"
+              stripeProductName: "Standard Business Website"
             },
             {
               name: "Standard",
@@ -398,7 +398,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Essential", "Up to 8 custom pages", "Content strategy and copywriting", "Advanced SEO optimization", "Social media integration", "Email newsletter setup", "2 rounds of revisions"]
                 : ["Tout dans Essentiel", "Jusqu'à 8 pages personnalisées", "Stratégie de contenu", "SEO avancé", "Intégration réseaux sociaux", "Newsletter par e-mail", "2 séries de révisions"],
-              stripeProductName: "Website & Digital - Standard"
+              stripeProductName: "Advanced / Growth Website"
             },
             {
               name: "Premium",
@@ -407,7 +407,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Custom web application features", "Full brand identity package", "Content marketing strategy", "Conversion optimization", "Performance dashboard", "3 months post-launch support", "Priority support"]
                 : ["Tout dans Standard", "Fonctionnalités web personnalisées", "Identité de marque complète", "Stratégie de marketing de contenu", "Optimisation de la conversion", "Tableau de bord", "3 mois de support", "Support prioritaire"],
-              stripeProductName: "Website & Digital - Premium"
+              stripeProductName: "Premium / Enterprise Website"
             }
           ]
         },
@@ -433,7 +433,7 @@ export default function Services() {
               features: language === "en"
                 ? ["1–2 core workflow mapping", "Bottleneck identification", "Quick-win recommendations", "Summary findings report", "30-day action plan"]
                 : ["Cartographie de 1-2 flux", "Identification des goulots", "Recommandations rapides", "Rapport de synthèse", "Plan d'action de 30 jours"],
-              contactOnly: true
+              stripeProductName: "Process Audit - Essentials"
             },
             {
               name: "Standard",
@@ -442,7 +442,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Essentials", "Full operational workflow audit", "Stakeholder interviews", "Automation opportunity assessment", "Prioritized improvement matrix", "60-day roadmap"]
                 : ["Tout dans Essentiel", "Audit complet des flux", "Entretiens parties prenantes", "Évaluation automatisation", "Matrice d'amélioration", "Feuille de route de 60 jours"],
-              contactOnly: true
+              stripeProductName: "Process Audit - Standard"
             },
             {
               name: language === "en" ? "Comprehensive" : "Complet",
@@ -451,7 +451,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Cross-departmental process mapping", "Cost and efficiency analysis", "Technology stack review", "Detailed documentation package", "Implementation guidance session", "90-day transformation roadmap"]
                 : ["Tout dans Standard", "Cartographie inter-départementale", "Analyse des coûts et efficacité", "Revue technologique", "Documentation détaillée", "Session de guidance", "Feuille de route de 90 jours"],
-              contactOnly: true
+              stripeProductName: "Process Audit - Comprehensive"
             }
           ]
         },
@@ -477,7 +477,7 @@ export default function Services() {
               features: language === "en"
                 ? ["4-hour facilitated workshop", "Current-state operational assessment", "Quick-win identification", "Priority alignment exercise", "Summary action plan", "Up to 8 participants"]
                 : ["Atelier facilité de 4 heures", "Évaluation opérationnelle", "Identification de gains rapides", "Exercice d'alignement", "Plan d'action de synthèse", "Jusqu'à 8 participants"],
-              contactOnly: true
+              stripeProductName: "Efficiency Workshop - Half-Day"
             },
             {
               name: language === "en" ? "Full-Day" : "Journée complète",
@@ -486,7 +486,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Half-Day", "8-hour comprehensive workshop", "Cross-functional alignment exercises", "Detailed process mapping", "Complete improvement roadmap", "Ownership and timeline assignments", "Up to 15 participants", "30-day follow-up session"]
                 : ["Tout dans Demi-journée", "Atelier complet de 8 heures", "Exercices d'alignement interfonctionnel", "Cartographie détaillée", "Feuille de route complète", "Assignation des responsabilités", "Jusqu'à 15 participants", "Session de suivi de 30 jours"],
-              contactOnly: true
+              stripeProductName: "Efficiency Workshop - Full-Day"
             }
           ]
         },
@@ -514,7 +514,7 @@ export default function Services() {
                 ? ["Part-time consultant allocation", "Process documentation and mapping", "Monthly systems implementation", "Operational improvement tracking", "Monthly progress report", "Email and phone support"]
                 : ["Allocation consultant à temps partiel", "Documentation de processus", "Implantation mensuelle", "Suivi des améliorations", "Rapport mensuel", "Support par e-mail et téléphone"],
               isMonthly: true,
-              contactOnly: true
+              stripeProductName: "Fractional Consultant - Core"
             },
             {
               name: "Standard",
@@ -524,7 +524,7 @@ export default function Services() {
                 ? ["Everything in Core", "Weekly strategy and operations sessions", "Full systems design and implementation", "Team training and onboarding", "SOP development", "Performance dashboards", "Bi-weekly progress reviews"]
                 : ["Tout dans Essentiel", "Sessions hebdomadaires", "Conception et implantation complète", "Formation d'équipe", "Développement de procédures", "Tableaux de bord", "Revues bimensuelles"],
               isMonthly: true,
-              contactOnly: true
+              stripeProductName: "Fractional Consultant - Standard"
             },
             {
               name: "Premium",
@@ -534,7 +534,7 @@ export default function Services() {
                 ? ["Everything in Standard", "Senior consultant dedication", "Cross-department process optimization", "Automation implementation support", "Executive reporting and dashboards", "Change management guidance", "On-site availability", "Priority and on-demand support"]
                 : ["Tout dans Standard", "Consultant senior dédié", "Optimisation inter-départementale", "Automatisation", "Rapports exécutifs", "Gestion du changement", "Disponibilité sur site", "Support prioritaire"],
               isMonthly: true,
-              contactOnly: true
+              stripeProductName: "Fractional Consultant - Premium"
             }
           ]
         },
@@ -561,7 +561,7 @@ export default function Services() {
               features: language === "en"
                 ? ["HR policy framework", "Role and responsibility mapping", "Performance review system design", "Employee handbook template", "Compliance checklist"]
                 : ["Cadre de politiques RH", "Cartographie des rôles", "Conception du système de revue", "Modèle de manuel employé", "Liste de conformité"],
-              contactOnly: true
+              stripeProductName: "HR Strategy - Foundation"
             },
             {
               name: "Standard",
@@ -570,7 +570,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Foundation", "Employee engagement strategy", "Compensation and benefits framework", "Talent management roadmap", "Onboarding program design", "HR metrics and KPI dashboard", "Leadership development recommendations"]
                 : ["Tout dans Fondation", "Stratégie d'engagement", "Cadre de rémunération", "Feuille de route de gestion des talents", "Programme d'intégration", "Tableau de bord RH", "Recommandations de développement du leadership"],
-              contactOnly: true
+              stripeProductName: "HR Strategy - Standard"
             },
             {
               name: language === "en" ? "Comprehensive" : "Complet",
@@ -579,7 +579,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Organizational design and restructuring", "Succession planning framework", "Culture assessment and strategy", "DEI strategy development", "Workforce planning model", "Full implementation support", "Quarterly review sessions"]
                 : ["Tout dans Standard", "Conception organisationnelle", "Planification de la relève", "Évaluation de la culture", "Stratégie DEI", "Planification de la main-d'œuvre", "Soutien à la mise en œuvre", "Revues trimestrielles"],
-              contactOnly: true
+              stripeProductName: "HR Strategy - Comprehensive"
             }
           ]
         },
@@ -605,7 +605,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Hiring process audit", "Job description templates (up to 5 roles)", "Interview question framework", "Candidate scoring rubric", "Offer letter templates", "Process documentation"]
                 : ["Audit du processus d'embauche", "Modèles de description (5 rôles)", "Cadre de questions d'entrevue", "Grille de notation", "Modèles de lettre d'offre", "Documentation du processus"],
-              contactOnly: true
+              stripeProductName: "Recruitment Design - Foundation"
             },
             {
               name: "Standard",
@@ -614,7 +614,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Foundation", "Talent sourcing strategy", "Employer brand positioning", "Structured interview training", "Onboarding program design (30/60/90 day)", "Recruitment metrics dashboard", "Hiring manager toolkit"]
                 : ["Tout dans Fondation", "Stratégie de sourcing", "Positionnement de la marque employeur", "Formation aux entrevues", "Programme d'intégration 30/60/90", "Tableau de bord de recrutement", "Boîte à outils du gestionnaire"],
-              contactOnly: true
+              stripeProductName: "Recruitment Design - Standard"
             },
             {
               name: language === "en" ? "Enterprise" : "Entreprise",
@@ -623,7 +623,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "ATS selection and setup guidance", "DEI hiring strategy", "Campus and early talent program design", "Recruitment marketing strategy", "Compensation benchmarking", "Full implementation support", "90-day post-implementation review"]
                 : ["Tout dans Standard", "Configuration ATS", "Stratégie DEI d'embauche", "Programme de talents émergents", "Marketing de recrutement", "Analyse comparative de rémunération", "Soutien à la mise en œuvre", "Revue post-implémentation de 90 jours"],
-              contactOnly: true
+              stripeProductName: "Recruitment Design - Enterprise"
             }
           ]
         },
@@ -649,7 +649,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Leadership competency framework", "Talent assessment methodology", "Individual development plan templates", "Management skills gap analysis", "Development roadmap", "Summary recommendations report"]
                 : ["Cadre de compétences en leadership", "Méthodologie d'évaluation", "Modèles de plan de développement", "Analyse des écarts", "Feuille de route de développement", "Rapport de recommandations"],
-              contactOnly: true
+              stripeProductName: "Talent Development - Foundation"
             },
             {
               name: "Standard",
@@ -658,7 +658,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Foundation", "Custom training program design", "Coaching framework and toolkit", "High-potential identification system", "Succession planning framework", "Mentorship program design", "Quarterly progress reviews"]
                 : ["Tout dans Fondation", "Conception de programme de formation", "Cadre de coaching", "Système d'identification des hauts potentiels", "Planification de la relève", "Programme de mentorat", "Revues trimestrielles"],
-              contactOnly: true
+              stripeProductName: "Talent Development - Standard"
             },
             {
               name: language === "en" ? "Enterprise" : "Entreprise",
@@ -667,7 +667,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Multi-level leadership programs", "360-degree assessment integration", "Executive coaching integration", "Leadership academy design", "Culture and engagement surveys", "Full implementation support", "6-month post-program support"]
                 : ["Tout dans Standard", "Programmes multi-niveaux", "Évaluation 360 degrés", "Coaching exécutif", "Conception d'académie de leadership", "Sondages culture et engagement", "Soutien à la mise en œuvre", "Support de 6 mois"],
-              contactOnly: true
+              stripeProductName: "Talent Development - Enterprise"
             }
           ]
         },
@@ -694,7 +694,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Role definition and job posting", "Candidate sourcing across platforms", "Resume screening and shortlisting", "Interview coordination", "Reference checks", "Offer support and negotiation guidance", "30-day placement guarantee"]
                 : ["Définition du poste et affichage", "Sourcing sur toutes les plateformes", "Présélection des CV", "Coordination des entrevues", "Vérification des références", "Soutien à l'offre et négociation", "Garantie de placement de 30 jours"],
-              contactOnly: true
+              stripeProductName: "Talent Acquisition - Single Placement"
             },
             {
               name: language === "en" ? "Multi-Hire" : "Recrutement multiple",
@@ -703,7 +703,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Single Placement", "Dedicated recruiter assigned", "Recruitment for 2–5 roles", "Talent pipeline development", "Employer brand positioning", "Candidate experience management", "Bi-weekly progress reporting", "60-day placement guarantee"]
                 : ["Tout dans Placement unique", "Recruteur dédié", "Recrutement pour 2-5 postes", "Développement du pipeline", "Marque employeur", "Gestion de l'expérience candidat", "Rapports bimensuels", "Garantie de 60 jours"],
-              contactOnly: true
+              stripeProductName: "Talent Acquisition - Multi-Hire"
             },
             {
               name: language === "en" ? "Recruiting Retainer" : "Mandat de recrutement",
@@ -712,7 +712,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Multi-Hire", "Dedicated recruiting team", "Unlimited role placements", "Executive and leadership searches", "Full ATS management", "Workforce planning integration", "Weekly strategy calls", "90-day placement guarantee", "Quarterly hiring strategy reviews"]
                 : ["Tout dans Multi-Hire", "Équipe de recrutement dédiée", "Placements illimités", "Recherches de cadres", "Gestion ATS complète", "Planification de la main-d'œuvre", "Appels hebdomadaires", "Garantie de 90 jours", "Revues stratégiques trimestrielles"],
-              contactOnly: true
+              stripeProductName: "Talent Acquisition - Recruiting Retainer"
             }
           ]
         }
@@ -747,7 +747,7 @@ export default function Services() {
                 ? ["Monthly strategy session", "Priority setting and planning", "Basic accountability check-ins", "Email support", "Progress tracking template"]
                 : ["Session stratégique mensuelle", "Définition des priorités", "Points de contrôle de base", "Support par e-mail", "Modèle de suivi"],
               isMonthly: true,
-              contactOnly: true
+              stripeProductName: "SB Growth System - Essentials"
             },
             {
               name: "Standard",
@@ -757,7 +757,7 @@ export default function Services() {
                 ? ["Everything in Essentials", "Bi-weekly strategy sessions", "Operational process development", "KPI tracking setup", "Team management guidance", "Priority phone support"]
                 : ["Tout dans Essentiel", "Sessions bimensuelles", "Développement de processus", "Configuration des KPI", "Gestion d'équipe", "Support téléphonique prioritaire"],
               isMonthly: true,
-              contactOnly: true
+              stripeProductName: "SB Growth System - Standard"
             },
             {
               name: "Premium",
@@ -767,7 +767,7 @@ export default function Services() {
                 ? ["Everything in Standard", "Weekly strategy sessions", "Full business systems review", "Growth strategy development", "Financial planning support", "Vendor and partner evaluation", "On-demand messaging support"]
                 : ["Tout dans Standard", "Sessions hebdomadaires", "Revue complète des systèmes", "Stratégie de croissance", "Planification financière", "Évaluation des partenaires", "Support messagerie"],
               isMonthly: true,
-              contactOnly: true
+              stripeProductName: "SB Growth System - Premium"
             }
           ]
         },
@@ -793,7 +793,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Business model review", "Core process documentation", "Role and responsibility mapping", "Basic financial tracking setup", "Operational checklist"]
                 : ["Revue du modèle d'affaires", "Documentation des processus", "Cartographie des rôles", "Suivi financier de base", "Liste de contrôle opérationnelle"],
-              contactOnly: true
+              stripeProductName: "Business Foundations - Core"
             },
             {
               name: "Standard",
@@ -802,7 +802,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Core", "Strategic business plan", "Full operational process design", "Team accountability framework", "KPI dashboard setup", "90-day execution roadmap"]
                 : ["Tout dans Essentiel", "Plan d'affaires stratégique", "Conception opérationnelle complète", "Cadre de responsabilité", "Tableau de bord KPI", "Feuille de route de 90 jours"],
-              contactOnly: true
+              stripeProductName: "Business Foundations - Standard"
             },
             {
               name: "Premium",
@@ -811,7 +811,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Governance framework", "Compliance setup", "Growth strategy outline", "Vendor management framework", "Quarterly review template", "60-day post-engagement support"]
                 : ["Tout dans Standard", "Cadre de gouvernance", "Configuration de la conformité", "Stratégie de croissance", "Gestion des fournisseurs", "Modèle de revue trimestrielle", "Support de 60 jours"],
-              contactOnly: true
+              stripeProductName: "Business Foundations - Premium"
             }
           ]
         },
@@ -837,7 +837,7 @@ export default function Services() {
               features: language === "en"
                 ? ["1–2 workflow review", "Pain point analysis", "Quick-win recommendations", "Summary report", "30-minute debrief call"]
                 : ["Revue de 1-2 flux", "Analyse des problèmes", "Recommandations rapides", "Rapport de synthèse", "Appel de débriefing de 30 minutes"],
-              contactOnly: true
+              stripeProductName: "SB Process Audit - Quick Scan"
             },
             {
               name: "Standard",
@@ -846,7 +846,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Quick Scan", "Full operational workflow audit", "Team input and feedback", "Prioritized improvement plan", "30-day action roadmap"]
                 : ["Tout dans Analyse rapide", "Audit complet des opérations", "Retour d'équipe", "Plan d'amélioration priorisé", "Feuille de route de 30 jours"],
-              contactOnly: true
+              stripeProductName: "SB Process Audit - Standard"
             },
             {
               name: language === "en" ? "Comprehensive" : "Complet",
@@ -855,7 +855,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Process documentation", "Cost and time analysis", "Technology and tools review", "Implementation guidance session", "60-day follow-up check-in"]
                 : ["Tout dans Standard", "Documentation des processus", "Analyse des coûts et du temps", "Revue des outils", "Session de guidance", "Suivi de 60 jours"],
-              contactOnly: true
+              stripeProductName: "SB Process Audit - Comprehensive"
             }
           ]
         },
@@ -881,7 +881,7 @@ export default function Services() {
               features: language === "en"
                 ? ["3-hour facilitated session", "Operational pain point mapping", "Priority alignment exercise", "Action plan with next steps", "Up to 6 participants"]
                 : ["Session facilitée de 3 heures", "Cartographie des problèmes", "Exercice d'alignement", "Plan d'action", "Jusqu'à 6 participants"],
-              contactOnly: true
+              stripeProductName: "SB Workshop - Half-Day"
             },
             {
               name: language === "en" ? "Full-Day" : "Journée complète",
@@ -890,7 +890,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Half-Day", "6-hour comprehensive session", "Process mapping exercises", "Role clarity and accountability design", "Detailed improvement roadmap", "Ownership assignments", "Up to 10 participants", "30-day follow-up call"]
                 : ["Tout dans Demi-journée", "Session complète de 6 heures", "Exercices de cartographie", "Clarté des rôles", "Feuille de route détaillée", "Assignation des responsabilités", "Jusqu'à 10 participants", "Appel de suivi de 30 jours"],
-              contactOnly: true
+              stripeProductName: "SB Workshop - Full-Day"
             }
           ]
         },
@@ -916,7 +916,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Single-page website", "Mobile responsive design", "Contact form", "Basic SEO setup", "Google Analytics", "1 round of revisions"]
                 : ["Site à page unique", "Design responsive", "Formulaire de contact", "SEO de base", "Google Analytics", "1 révision"],
-              contactOnly: true
+              stripeProductName: "SB Website - Starter"
             },
             {
               name: "Standard",
@@ -925,7 +925,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Starter", "Up to 5 custom pages", "Content strategy guidance", "Lead capture integration", "Social media links", "2 rounds of revisions"]
                 : ["Tout dans Démarrage", "Jusqu'à 5 pages", "Stratégie de contenu", "Capture de prospects", "Réseaux sociaux", "2 révisions"],
-              contactOnly: true
+              stripeProductName: "SB Website - Standard"
             },
             {
               name: "Premium",
@@ -934,7 +934,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Brand identity basics", "Blog or news section", "Email newsletter integration", "Conversion optimization", "3 months post-launch support"]
                 : ["Tout dans Standard", "Identité de marque", "Section blog", "Newsletter par e-mail", "Optimisation de conversion", "3 mois de support"],
-              contactOnly: true
+              stripeProductName: "SB Website - Premium"
             }
           ]
         },
@@ -960,7 +960,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Employee policy handbook", "Core HR policies (5–8 policies)", "Simple onboarding checklist", "Role description templates", "Basic compliance guidance"]
                 : ["Manuel de politiques", "Politiques RH de base (5-8)", "Liste d'intégration", "Modèles de description de rôle", "Guide de conformité de base"],
-              contactOnly: true
+              stripeProductName: "People Ops - Essentials"
             },
             {
               name: "Standard",
@@ -969,7 +969,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Essentials", "Structured onboarding program", "Performance review system", "Team accountability framework", "1-on-1 meeting templates", "Employee feedback process", "30-day follow-up session"]
                 : ["Tout dans Essentiel", "Programme d'intégration structuré", "Système de revue de performance", "Cadre de responsabilité", "Modèles de rencontres 1-à-1", "Processus de rétroaction", "Session de suivi de 30 jours"],
-              contactOnly: true
+              stripeProductName: "People Ops - Standard"
             },
             {
               name: "Premium",
@@ -978,7 +978,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Culture and values framework", "Compensation and benefits guide", "Employee development plan templates", "Conflict resolution process", "HR compliance audit", "60-day post-engagement support"]
                 : ["Tout dans Standard", "Cadre de culture et valeurs", "Guide de rémunération", "Modèles de plan de développement", "Processus de résolution de conflits", "Audit de conformité RH", "Support de 60 jours"],
-              contactOnly: true
+              stripeProductName: "People Ops - Premium"
             }
           ]
         },
@@ -1004,7 +1004,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Job description templates (up to 3 roles)", "Interview question guide", "Candidate scoring rubric", "Offer letter template", "New hire onboarding checklist"]
                 : ["Modèles de description de poste (3 rôles)", "Guide de questions d'entrevue", "Grille de notation", "Modèle de lettre d'offre", "Liste d'intégration"],
-              contactOnly: true
+              stripeProductName: "SB Hiring Support - Starter"
             },
             {
               name: "Standard",
@@ -1013,7 +1013,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Starter", "Job description templates (up to 6 roles)", "Talent sourcing strategy", "Structured interview training guide", "30/60/90 day onboarding plan", "Reference check framework", "Hiring process documentation"]
                 : ["Tout dans Démarrage", "Modèles pour 6 rôles", "Stratégie de sourcing", "Guide de formation aux entrevues", "Plan d'intégration 30/60/90", "Cadre de vérification des références", "Documentation du processus"],
-              contactOnly: true
+              stripeProductName: "SB Hiring Support - Standard"
             },
             {
               name: language === "en" ? "Comprehensive" : "Complet",
@@ -1022,7 +1022,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Employer brand positioning basics", "Compensation benchmarking guidance", "Job posting optimization", "Candidate experience design", "Hiring manager coaching session", "60-day post-hire follow-up"]
                 : ["Tout dans Standard", "Positionnement de marque employeur", "Guide de rémunération", "Optimisation des affichages", "Expérience candidat", "Session de coaching gestionnaire", "Suivi de 60 jours post-embauche"],
-              contactOnly: true
+              stripeProductName: "SB Hiring Support - Comprehensive"
             }
           ]
         },
@@ -1049,7 +1049,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Job posting creation", "Candidate sourcing", "Resume screening and shortlisting", "Interview scheduling", "Top 3–5 candidate shortlist", "Reference check guidance", "Offer letter review"]
                 : ["Création de l'affichage", "Sourcing de candidats", "Présélection des CV", "Planification des entrevues", "Liste de 3 à 5 candidats", "Guide de vérification des références", "Revue de la lettre d'offre"],
-              contactOnly: true
+              stripeProductName: "SB Recruiting - Single Hire"
             },
             {
               name: "Standard",
@@ -1058,7 +1058,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Single Hire", "Employer brand positioning basics", "Structured interview guide and training", "Candidate experience management", "30/60/90 day onboarding plan", "Hiring process documentation", "30-day post-hire check-in"]
                 : ["Tout dans Embauche unique", "Positionnement de marque employeur", "Guide d'entrevue structuré", "Gestion de l'expérience candidat", "Plan d'intégration 30/60/90", "Documentation du processus", "Suivi de 30 jours"],
-              contactOnly: true
+              stripeProductName: "SB Recruiting - Standard"
             },
             {
               name: "Premium",
@@ -1067,7 +1067,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Priority candidate sourcing", "Expanded candidate pipeline (8–10 candidates)", "Compensation benchmarking", "Dedicated recruiting support", "Hiring manager coaching", "60-day placement guarantee", "2 replacement candidates if needed"]
                 : ["Tout dans Standard", "Sourcing prioritaire", "Pipeline élargi (8-10 candidats)", "Analyse comparative de rémunération", "Support dédié", "Coaching du gestionnaire", "Garantie de 60 jours", "2 remplacements si nécessaire"],
-              contactOnly: true
+              stripeProductName: "SB Recruiting - Premium"
             }
           ]
         }
@@ -1101,7 +1101,7 @@ export default function Services() {
                 ? ["Monthly coaching session", "Personal goal-setting framework", "Basic accountability system", "Email check-ins", "Monthly progress review"]
                 : ["Session de coaching mensuelle", "Cadre d'objectifs personnels", "Système de responsabilité de base", "Points de contrôle par e-mail", "Revue mensuelle"],
               isMonthly: true,
-              contactOnly: true
+              stripeProductName: "Personal Coaching - Essentials"
             },
             {
               name: "Standard",
@@ -1111,7 +1111,7 @@ export default function Services() {
                 ? ["Everything in Essentials", "Bi-weekly coaching sessions", "Productivity system design", "Habit building framework", "Time management strategies", "Priority support"]
                 : ["Tout dans Essentiel", "Sessions bimensuelles", "Conception de systèmes de productivité", "Construction d'habitudes", "Stratégies de gestion du temps", "Support prioritaire"],
               isMonthly: true,
-              contactOnly: true
+              stripeProductName: "Personal Coaching - Standard"
             },
             {
               name: "Premium",
@@ -1121,7 +1121,7 @@ export default function Services() {
                 ? ["Everything in Standard", "Weekly coaching sessions", "Complete personal performance system", "Leadership development focus", "Career strategy planning", "Personal KPI dashboard", "On-demand messaging support", "Quarterly strategic review"]
                 : ["Tout dans Standard", "Sessions hebdomadaires", "Système de performance personnelle complet", "Développement du leadership", "Planification de carrière", "Tableau de bord KPI personnel", "Support messagerie", "Revue stratégique trimestrielle"],
               isMonthly: true,
-              contactOnly: true
+              stripeProductName: "Personal Coaching - Premium"
             }
           ]
         },
@@ -1147,7 +1147,7 @@ export default function Services() {
               features: language === "en"
                 ? ["60-minute deep-dive session", "Time and task flow analysis", "Top 3 quick-win recommendations", "Summary action plan"]
                 : ["Session approfondie de 60 minutes", "Analyse du flux de travail", "3 recommandations rapides", "Plan d'action de synthèse"],
-              contactOnly: true
+              stripeProductName: "Workflow Audit - Quick Scan"
             },
             {
               name: "Standard",
@@ -1156,7 +1156,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Quick Scan", "Full workflow and habits audit", "Personalized productivity system", "Tool and app recommendations", "30-day implementation plan", "Follow-up check-in call"]
                 : ["Tout dans Analyse rapide", "Audit complet", "Système personnalisé", "Recommandations d'outils", "Plan de 30 jours", "Appel de suivi"],
-              contactOnly: true
+              stripeProductName: "Workflow Audit - Standard"
             },
             {
               name: language === "en" ? "Comprehensive" : "Complet",
@@ -1165,7 +1165,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Complete system setup assistance", "Accountability structure design", "Calendar and priority management", "60-day follow-up with adjustments", "Email support for 30 days"]
                 : ["Tout dans Standard", "Aide à la mise en place complète", "Conception de la responsabilité", "Gestion du calendrier", "Suivi de 60 jours", "Support e-mail de 30 jours"],
-              contactOnly: true
+              stripeProductName: "Workflow Audit - Comprehensive"
             }
           ]
         },
@@ -1191,7 +1191,7 @@ export default function Services() {
               features: language === "en"
                 ? ["2-hour facilitated session", "Goal clarity and prioritization", "Performance gap diagnosis", "Personal action plan", "Follow-up summary document"]
                 : ["Session facilitée de 2 heures", "Clarté des objectifs", "Diagnostic des écarts", "Plan d'action personnel", "Document de synthèse"],
-              contactOnly: true
+              stripeProductName: "Performance Workshop - Half-Day"
             },
             {
               name: language === "en" ? "Full-Day" : "Journée complète",
@@ -1200,7 +1200,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Half-Day", "4-hour comprehensive session", "Habit and routine design", "Personal systems setup", "Accountability framework", "KPI and progress tracking setup", "30-day follow-up call"]
                 : ["Tout dans Demi-journée", "Session complète de 4 heures", "Conception d'habitudes", "Mise en place de systèmes", "Cadre de responsabilité", "Configuration du suivi", "Appel de suivi de 30 jours"],
-              contactOnly: true
+              stripeProductName: "Performance Workshop - Full-Day"
             }
           ]
         },
@@ -1226,7 +1226,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Single-page personal website", "Professional bio section", "Services or expertise showcase", "Contact form", "Mobile responsive", "Basic SEO"]
                 : ["Site à page unique", "Section bio professionnelle", "Vitrine expertise", "Formulaire de contact", "Responsive mobile", "SEO de base"],
-              contactOnly: true
+              stripeProductName: "Personal Website - Essential"
             },
             {
               name: "Standard",
@@ -1235,7 +1235,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Essential", "Up to 4 pages", "Portfolio or case studies section", "Testimonials section", "Booking calendar integration", "Social media links", "1 round of revisions"]
                 : ["Tout dans Essentiel", "Jusqu'à 4 pages", "Portfolio ou études de cas", "Témoignages", "Intégration calendrier", "Réseaux sociaux", "1 révision"],
-              contactOnly: true
+              stripeProductName: "Personal Website - Standard"
             },
             {
               name: "Premium",
@@ -1244,7 +1244,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Blog or articles section", "Email newsletter setup", "Content strategy guidance", "Personal brand identity basics", "SEO optimization", "2 rounds of revisions", "60-day post-launch support"]
                 : ["Tout dans Standard", "Section blog", "Newsletter par e-mail", "Stratégie de contenu", "Identité de marque", "Optimisation SEO", "2 révisions", "Support de 60 jours"],
-              contactOnly: true
+              stripeProductName: "Personal Website - Premium"
             }
           ]
         },
@@ -1271,7 +1271,7 @@ export default function Services() {
                 ? ["Monthly coaching session", "Management fundamentals framework", "Feedback delivery techniques", "Team communication strategies", "Email support between sessions"]
                 : ["Session de coaching mensuelle", "Cadre de gestion fondamentale", "Techniques de rétroaction", "Stratégies de communication", "Support par e-mail"],
               isMonthly: true,
-              contactOnly: true
+              stripeProductName: "Leadership Coaching - Essentials"
             },
             {
               name: "Standard",
@@ -1281,7 +1281,7 @@ export default function Services() {
                 ? ["Everything in Essentials", "Bi-weekly coaching sessions", "Hiring and interview coaching", "Difficult conversation frameworks", "Team motivation strategies", "1-on-1 meeting templates", "Priority messaging support"]
                 : ["Tout dans Essentiel", "Sessions bimensuelles", "Coaching d'embauche", "Gestion des conversations difficiles", "Stratégies de motivation", "Modèles de 1-à-1", "Support prioritaire"],
               isMonthly: true,
-              contactOnly: true
+              stripeProductName: "Leadership Coaching - Standard"
             },
             {
               name: "Premium",
@@ -1291,7 +1291,7 @@ export default function Services() {
                 ? ["Everything in Standard", "Weekly coaching sessions", "Performance management coaching", "Delegation and empowerment skills", "Conflict resolution techniques", "Career development planning", "On-demand messaging support", "Quarterly leadership assessment"]
                 : ["Tout dans Standard", "Sessions hebdomadaires", "Coaching en gestion de la performance", "Compétences en délégation", "Techniques de résolution de conflits", "Planification de carrière", "Support à la demande", "Évaluation trimestrielle"],
               isMonthly: true,
-              contactOnly: true
+              stripeProductName: "Leadership Coaching - Premium"
             }
           ]
         },
@@ -1317,7 +1317,7 @@ export default function Services() {
               features: language === "en"
                 ? ["60-minute coaching session", "Interview technique fundamentals", "Personal narrative development", "Top 10 question preparation", "Summary action plan"]
                 : ["Session de coaching de 60 minutes", "Fondamentaux des techniques d'entrevue", "Développement du récit personnel", "Préparation de 10 questions", "Plan d'action de synthèse"],
-              contactOnly: true
+              stripeProductName: "Career Readiness - Quick Prep"
             },
             {
               name: "Standard",
@@ -1326,7 +1326,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Quick Prep", "Resume and cover letter review", "LinkedIn profile optimization", "2 mock interview sessions", "Personalized feedback report", "Follow-up coaching call"]
                 : ["Tout dans Préparation rapide", "Révision de CV et lettre", "Optimisation LinkedIn", "2 simulations d'entrevue", "Rapport de rétroaction", "Appel de suivi"],
-              contactOnly: true
+              stripeProductName: "Career Readiness - Standard"
             },
             {
               name: language === "en" ? "Comprehensive" : "Complet",
@@ -1335,7 +1335,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Salary negotiation coaching", "Personal brand strategy", "Executive presence coaching", "3 mock interview sessions", "30-day post-interview support", "Career strategy session"]
                 : ["Tout dans Standard", "Coaching de négociation salariale", "Stratégie de marque personnelle", "Coaching de présence", "3 simulations d'entrevue", "Support de 30 jours", "Session de stratégie de carrière"],
-              contactOnly: true
+              stripeProductName: "Career Readiness - Comprehensive"
             }
           ]
         },
@@ -1361,7 +1361,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Professional resume rewrite", "LinkedIn profile optimization", "Target role and industry analysis", "Job search strategy plan", "Application tracking template", "30-minute strategy call"]
                 : ["Réécriture professionnelle du CV", "Optimisation du profil LinkedIn", "Analyse des rôles ciblés", "Plan de stratégie de recherche", "Modèle de suivi des candidatures", "Appel stratégique de 30 minutes"],
-              contactOnly: true
+              stripeProductName: "Career Placement - Starter"
             },
             {
               name: "Standard",
@@ -1370,7 +1370,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Job Search Starter", "Targeted job applications (up to 20)", "Employer and recruiter outreach", "Application follow-up management", "2 mock interview sessions", "Weekly check-in calls (4 weeks)", "Cover letter templates"]
                 : ["Tout dans Démarrage", "Candidatures ciblées (jusqu'à 20)", "Contact avec les employeurs", "Gestion des suivis", "2 simulations d'entrevue", "Appels hebdomadaires (4 semaines)", "Modèles de lettre de motivation"],
-              contactOnly: true
+              stripeProductName: "Career Placement - Standard"
             },
             {
               name: "Premium",
@@ -1379,7 +1379,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Dedicated career partner", "Targeted employer introductions", "Expanded applications (up to 50)", "Salary and benefits negotiation coaching", "Personal brand strategy", "Executive presence coaching", "8-week active support", "Post-placement 30-day check-in"]
                 : ["Tout dans Standard", "Partenaire de carrière dédié", "Introductions ciblées auprès d'employeurs", "Candidatures élargies (jusqu'à 50)", "Coaching de négociation salariale", "Stratégie de marque personnelle", "Coaching de présence", "Soutien actif de 8 semaines", "Suivi de 30 jours post-placement"],
-              contactOnly: true
+              stripeProductName: "Career Placement - Premium"
             }
           ]
         }
@@ -1412,7 +1412,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Yearly planning framework", "Weekly review template", "Monthly reflection guide", "KPI tracker spreadsheet", "Goal setting worksheet"]
                 : ["Cadre de planification annuelle", "Modèle de revue hebdomadaire", "Guide de réflexion mensuelle", "Feuille de suivi KPI", "Feuille de définition d'objectifs"],
-              contactOnly: true
+              stripeProductName: "Performance Planner - Digital"
             },
             {
               name: "Premium",
@@ -1421,7 +1421,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Digital", "Video walkthrough guides", "Quarterly planning template", "Team accountability framework", "Priority email support (30 days)", "Bonus: habit tracker template"]
                 : ["Tout dans Numérique", "Guides vidéo", "Modèle de planification trimestrielle", "Cadre de responsabilité d'équipe", "Support e-mail prioritaire (30 jours)", "Bonus: modèle de suivi d'habitudes"],
-              contactOnly: true
+              stripeProductName: "Performance Planner - Premium"
             }
           ]
         },
@@ -1447,7 +1447,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Strategy framework workbook", "12-week execution plan", "Weekly action templates", "Progress tracking system", "Accountability checklist", "Completion certificate"]
                 : ["Cahier de stratégie", "Plan d'exécution de 12 semaines", "Modèles d'action hebdomadaires", "Système de suivi des progrès", "Liste de responsabilité", "Certificat de complétion"],
-              contactOnly: true
+              stripeProductName: "90-Day Program - Self-Guided"
             },
             {
               name: language === "en" ? "Guided" : "Guidé",
@@ -1456,7 +1456,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Self-Guided", "3 live group coaching calls", "Private community access", "Peer accountability partner matching", "Direct coach Q&A support", "Bonus: personal KPI setup session"]
                 : ["Tout dans Auto-guidé", "3 appels de coaching de groupe", "Accès communauté privée", "Jumelage de partenaires de responsabilité", "Support Q&R du coach", "Bonus: session de configuration KPI"],
-              contactOnly: true
+              stripeProductName: "90-Day Program - Guided"
             }
           ]
         },
@@ -1482,7 +1482,7 @@ export default function Services() {
               features: language === "en"
                 ? ["KPI tracking template", "Weekly planning sheet", "Goal setting framework", "Meeting agenda template", "Progress review guide"]
                 : ["Modèle de suivi KPI", "Feuille de planification", "Cadre d'objectifs", "Modèle d'ordre du jour", "Guide de revue"],
-              contactOnly: true
+              stripeProductName: "Systems Toolkit - Starter"
             },
             {
               name: language === "en" ? "Team Edition" : "Édition équipe",
@@ -1491,7 +1491,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Starter Kit", "Team accountability framework", "Performance review templates", "Strategy execution tracker", "Role clarity worksheet", "Team alignment guide"]
                 : ["Tout dans Kit de démarrage", "Cadre de responsabilité d'équipe", "Modèles de revue de performance", "Suivi d'exécution stratégique", "Feuille de clarté des rôles", "Guide d'alignement d'équipe"],
-              contactOnly: true
+              stripeProductName: "Systems Toolkit - Team"
             },
             {
               name: language === "en" ? "Business Edition" : "Édition entreprise",
@@ -1500,7 +1500,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Team Edition", "SOP templates", "Governance framework guide", "Balanced scorecard template", "Change management checklist", "Board reporting template", "Onboarding framework"]
                 : ["Tout dans Édition équipe", "Modèles de procédures", "Guide de gouvernance", "Modèle de tableau de bord prospectif", "Liste de gestion du changement", "Modèle de rapport au conseil", "Cadre d'intégration"],
-              contactOnly: true
+              stripeProductName: "Systems Toolkit - Business"
             }
           ]
         },
@@ -1526,7 +1526,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Job description templates (5 roles)", "Interview question guide", "Candidate scoring rubric", "New hire onboarding checklist", "First 30-day plan template"]
                 : ["Modèles de description de poste (5 rôles)", "Guide de questions d'entrevue", "Grille de notation", "Liste d'intégration", "Plan des 30 premiers jours"],
-              contactOnly: true
+              stripeProductName: "Hiring Toolkit - Starter"
             },
             {
               name: language === "en" ? "Manager Edition" : "Édition gestionnaire",
@@ -1535,7 +1535,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Starter Kit", "Performance review templates", "1-on-1 meeting framework", "Feedback delivery guide", "Team development plan template", "Difficult conversation scripts", "Employee recognition ideas"]
                 : ["Tout dans Kit de démarrage", "Modèles de revue de performance", "Cadre de 1-à-1", "Guide de rétroaction", "Modèle de développement", "Scripts de conversation", "Idées de reconnaissance"],
-              contactOnly: true
+              stripeProductName: "Hiring Toolkit - Manager"
             },
             {
               name: language === "en" ? "Business Edition" : "Édition entreprise",
@@ -1544,7 +1544,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Manager Edition", "Employee handbook template", "HR policy templates", "Compensation framework guide", "Exit interview template", "Employee satisfaction survey", "Compliance checklist", "Succession planning worksheet"]
                 : ["Tout dans Édition gestionnaire", "Modèle de manuel employé", "Politiques RH", "Guide de rémunération", "Modèle d'entrevue de départ", "Sondage de satisfaction", "Liste de conformité", "Planification de la relève"],
-              contactOnly: true
+              stripeProductName: "Hiring Toolkit - Business"
             }
           ]
         },
@@ -1570,7 +1570,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Professional resume template (3 formats)", "Cover letter template", "Job application tracker spreadsheet", "Interview preparation checklist", "Thank-you email templates"]
                 : ["Modèle de CV (3 formats)", "Modèle de lettre de motivation", "Suivi des candidatures", "Liste de préparation aux entrevues", "Modèles de courriel de remerciement"],
-              contactOnly: true
+              stripeProductName: "Career Toolkit - Essential"
             },
             {
               name: "Standard",
@@ -1579,7 +1579,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Essential", "LinkedIn profile optimization guide", "Networking outreach templates", "Salary research framework", "Personal brand worksheet", "Video interview tips guide", "30-day job search action plan"]
                 : ["Tout dans Essentiel", "Guide d'optimisation LinkedIn", "Modèles de réseautage", "Cadre de recherche salariale", "Feuille de marque personnelle", "Guide pour entrevues vidéo", "Plan d'action de 30 jours"],
-              contactOnly: true
+              stripeProductName: "Career Toolkit - Standard"
             },
             {
               name: "Premium",
@@ -1588,7 +1588,7 @@ export default function Services() {
               features: language === "en"
                 ? ["Everything in Standard", "Video walkthrough for each template", "Salary negotiation scripts", "Career transition planning guide", "Executive resume template", "Portfolio presentation template", "60-day follow-up strategy", "Bonus: recruiter outreach scripts"]
                 : ["Tout dans Standard", "Vidéo pour chaque modèle", "Scripts de négociation salariale", "Guide de transition de carrière", "Modèle CV exécutif", "Modèle de présentation portfolio", "Stratégie de suivi de 60 jours", "Bonus: scripts de contact recruteur"],
-              contactOnly: true
+              stripeProductName: "Career Toolkit - Premium"
             }
           ]
         }
@@ -2095,41 +2095,28 @@ export default function Services() {
                               </li>
                             ))}
                           </ul>
-                          {tier.contactOnly ? (
-                            <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="mt-auto">
-                              <Button
-                                className={`w-full rounded-full h-10 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 ${idx === 1 ? 'bg-accent text-white hover:bg-primary' : 'bg-primary text-white hover:bg-accent'}`}
-                                data-testid={`button-book-tier-${idx}`}
-                              >
-                                <Calendar size={14} /> {language === "en" ? "Book a Call" : "Réserver un appel"}
-                              </Button>
-                            </a>
-                          ) : (
-                            <>
-                              <Button
-                                className={`mt-auto w-full rounded-full h-10 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 ${idx === 1 ? 'bg-accent text-white hover:bg-primary' : 'bg-primary text-white hover:bg-accent'}`}
-                                onClick={() => handlePay(tier.stripeProductName)}
-                                disabled={checkoutMutation.isPending && payingProduct === tier.stripeProductName}
-                                data-testid={`button-pay-tier-${idx}`}
-                              >
-                                {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
-                                  <><Loader2 size={14} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
-                                ) : (
-                                  <><CreditCard size={14} /> {tier.isMonthly
-                                    ? (language === "en" ? "Subscribe" : "S'abonner")
-                                    : (language === "en" ? "Select & Pay" : "Sélectionner et payer")
-                                  }</>
-                                )}
-                              </Button>
-                              <div className="flex items-center justify-center gap-2 mt-2">
-                                <div className="flex items-center gap-1.5">
-                                  <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-100 text-[9px] font-semibold text-gray-600"><CreditCard size={10} />Card</span>
-                                  <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-[#FFC43926] text-[9px] font-semibold text-[#003087]">PayPal</span>
-                                  <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-900 text-[9px] font-semibold text-white"> Pay</span>
-                                </div>
-                              </div>
-                            </>
-                          )}
+                          <Button
+                            className={`mt-auto w-full rounded-full h-10 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 ${idx === 1 ? 'bg-accent text-white hover:bg-primary' : 'bg-primary text-white hover:bg-accent'}`}
+                            onClick={() => handlePay(tier.stripeProductName)}
+                            disabled={checkoutMutation.isPending && payingProduct === tier.stripeProductName}
+                            data-testid={`button-pay-tier-${idx}`}
+                          >
+                            {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
+                              <><Loader2 size={14} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
+                            ) : (
+                              <><CreditCard size={14} /> {tier.isMonthly
+                                ? (language === "en" ? "Subscribe" : "S'abonner")
+                                : (language === "en" ? "Select & Pay" : "Sélectionner et payer")
+                              }</>
+                            )}
+                          </Button>
+                          <div className="flex items-center justify-center gap-2 mt-2">
+                            <div className="flex items-center gap-1.5">
+                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-100 text-[9px] font-semibold text-gray-600"><CreditCard size={10} />Card</span>
+                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-[#FFC43926] text-[9px] font-semibold text-[#003087]">PayPal</span>
+                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-900 text-[9px] font-semibold text-white"> Pay</span>
+                            </div>
+                          </div>
                         </div>
                       ))}
                     </div>

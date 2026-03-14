@@ -280,12 +280,8 @@ export async function registerRoutes(
         ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
         : `${req.protocol}://${req.get('host')}`;
 
-      const paymentMethodTypes: any[] = ['card'];
-      if (!isRecurring) {
-        paymentMethodTypes.push('paypal');
-      }
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: paymentMethodTypes,
+        payment_method_types: ['card'],
         line_items: [{ price: priceId, quantity: 1 }],
         mode: isRecurring ? 'subscription' : 'payment',
         success_url: `${baseUrl}/services?payment=success`,
@@ -347,7 +343,7 @@ export async function registerRoutes(
         : `${req.protocol}://${req.get('host')}`;
 
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card', 'paypal'],
+        payment_method_types: ['card'],
         line_items: [{
           price_data: {
             currency: 'cad',
@@ -951,7 +947,7 @@ export async function registerRoutes(
       const amountCents = invoice.amountCents || Math.round(parseFloat(invoice.amount.replace(/[^0-9.]/g, "")) * 100);
 
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card", "paypal"],
+        payment_method_types: ["card"],
         line_items: [{
           price_data: {
             currency: "cad",

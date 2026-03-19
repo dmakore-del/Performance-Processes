@@ -13,6 +13,10 @@ import {
   Users,
   BarChart3,
   Settings,
+  Heart,
+  Handshake,
+  Sparkles,
+  Shield,
 } from "lucide-react";
 import { Link } from "wouter";
 import { useState, useEffect, useRef } from "react";
@@ -20,39 +24,26 @@ import { useLanguage } from "@/hooks/use-language";
 import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/components/ui/animate-on-scroll";
 import { SEOHead } from "@/components/SEOHead";
 
-import teamAlignmentImg from "@assets/generated/team-alignment.png";
-import actionPlanningImg from "@assets/generated/action-planning.png";
-import measurableProgressImg from "@assets/generated/measurable-progress.png";
-import lastingSystemsImg from "@assets/generated/lasting-systems.png";
-import enterpriseLeadershipImg from "@assets/generated/enterprise-leadership.png";
-import smallBusinessOwnerImg from "@assets/generated/small-business-owner-new.png";
-import professionalDevelopmentImg from "@assets/generated/professional-development.png";
-import assessmentPhaseImg from "@assets/generated/assessment-phase.png";
-import teamCollaborationImg from "@assets/generated/team-collaboration.png";
-import buildingSystemsImg from "@assets/generated/building-systems.png";
-import growthImprovementImg from "@assets/generated/growth-improvement.png";
-import executiveAdvisoryImg from "@assets/generated/executive-advisory.png";
-import businessCoachingImg from "@assets/generated/business-coaching.png";
-import personalCoachingImg from "@assets/generated/personal-coaching.png";
-import programsToolkitImg from "@assets/generated/programs-toolkit.png";
-import hrPeopleStrategyImg from "@assets/generated/hr-people-strategy.png";
+import communityCollaborationImg from "@assets/generated/community-collaboration.png";
+import handsPartnershipImg from "@assets/generated/hands-together-partnership.png";
+import communityWorkspaceImg from "@assets/generated/community-workspace.png";
+import mentorshipConnectionImg from "@assets/generated/mentorship-connection.png";
+import communityNetworkImg from "@assets/generated/community-network-abstract.png";
+import empoweredOwnerImg from "@assets/generated/empowered-business-owner.png";
+import communityTownhallImg from "@assets/generated/community-townhall.png";
+import milestoneImg from "@assets/generated/milestone-celebration.png";
+import growthSeedlingImg from "@assets/generated/growth-seedling.png";
+import teamMovingForwardImg from "@assets/generated/team-moving-forward.png";
 
 import heroAbstractImg from "@assets/generated/hero-abstract-new.png";
-import teamStrategyImg from "@assets/generated/team-strategy-new.png";
-import analyticsDashboardImg from "@assets/generated/analytics-dashboard-new.png";
-import leadershipPresentationImg from "@assets/generated/leadership-presentation-new.png";
-import processFlowImg from "@assets/generated/process-flow-new.png";
-import cityAerialImg from "@assets/generated/city-aerial-new.png";
-import strategyWhiteboardImg from "@assets/generated/strategy-whiteboard-new.png";
-import smallBizOwnerImg from "@assets/generated/small-business-owner-new.png";
 import geoPatternImg from "@assets/generated/geo-pattern-new.png";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
 const subtitles = [
-  { start: 0, end: 2, text: "The organizations that thrive aren't the ones with the best strategy on paper..." },
-  { start: 2, end: 4.5, text: "They're the ones that build accountability into every layer of their culture." },
-  { start: 4.5, end: 6, text: "That's where real transformation begins." },
+  { start: 0, end: 2, text: "The leaders who create lasting change aren't doing it alone..." },
+  { start: 2, end: 4.5, text: "They're part of a community that holds them accountable and lifts them higher." },
+  { start: 4.5, end: 6, text: "That's the kind of partnership we build." },
 ];
 
 function VideoWithSubtitles() {
@@ -88,139 +79,139 @@ function VideoWithSubtitles() {
 export default function Home() {
   const { t, language } = useLanguage();
 
-  const outcomes = [
+  const valuePromises = [
     {
-      icon: <Zap size={24} />,
-      image: teamAlignmentImg,
-      title: language === "en" ? "Improve Workflow Efficiency" : "Améliorez l'efficacité des flux de travail",
+      icon: <Heart size={24} />,
+      image: communityCollaborationImg,
+      title: language === "en" ? "A Partner Who Truly Cares" : "Un partenaire qui se soucie vraiment",
       desc: language === "en"
-        ? "Whether you are a solo professional or leading a team, we identify bottlenecks and design processes that eliminate wasted effort."
-        : "Que vous soyez un professionnel solo ou à la tête d'une équipe, nous identifions les goulots d'étranglement et concevons des processus efficaces.",
+        ? "You're not just another client. We invest in understanding your story, your goals, and the legacy you want to build — then we walk beside you every step of the way."
+        : "Vous n'êtes pas qu'un simple client. Nous investissons pour comprendre votre histoire, vos objectifs et l'héritage que vous souhaitez bâtir.",
     },
     {
-      icon: <Users size={24} />,
-      image: actionPlanningImg,
-      title: language === "en" ? "Strengthen Leadership & Accountability" : "Renforcez le leadership et la responsabilité",
+      icon: <Handshake size={24} />,
+      image: handsPartnershipImg,
+      title: language === "en" ? "A Community That Lifts You Up" : "Une communauté qui vous soutient",
       desc: language === "en"
-        ? "Build accountability structures and leadership systems that turn plans into consistent execution."
-        : "Construisez des structures de responsabilité et des systèmes de leadership qui transforment les plans en exécution cohérente.",
+        ? "Join a growing network of professionals and business owners who share insights, celebrate wins, and support each other through the hard parts of growth."
+        : "Rejoignez un réseau croissant de professionnels qui partagent des idées, célèbrent les victoires et se soutiennent mutuellement.",
     },
     {
-      icon: <BarChart3 size={24} />,
-      image: measurableProgressImg,
-      title: language === "en" ? "See Measurable Progress" : "Voyez des progrès mesurables",
+      icon: <Sparkles size={24} />,
+      image: milestoneImg,
+      title: language === "en" ? "Real Results You Can Feel" : "Des résultats concrets que vous ressentez",
       desc: language === "en"
-        ? "No guesswork. Track real performance improvements with clear KPIs, productivity metrics, and regular check-ins."
-        : "Pas de devinettes. Suivez de vrais progrès avec des KPI clairs, des métriques de productivité et des suivis réguliers.",
+        ? "Less stress, clearer direction, and the confidence that comes from knowing your business is built on solid ground. Our clients don't just grow — they thrive."
+        : "Moins de stress, une direction plus claire et la confiance de savoir que votre entreprise repose sur des bases solides.",
     },
     {
-      icon: <Settings size={24} />,
-      image: lastingSystemsImg,
-      title: language === "en" ? "Build Systems That Scale" : "Construisez des systèmes évolutifs",
+      icon: <Shield size={24} />,
+      image: growthSeedlingImg,
+      title: language === "en" ? "Tools You Keep Forever" : "Des outils que vous gardez pour toujours",
       desc: language === "en"
-        ? "We don't create dependency. You walk away with processes and tools you can run on your own — whether you are a team of one or one hundred."
-        : "Nous ne créons pas de dépendance. Vous repartez avec des processus que vous pouvez gérer seul — que vous soyez un professionnel solo ou une équipe de cent.",
-    },
-  ];
-
-  const whoWeHelp = [
-    {
-      image: professionalDevelopmentImg,
-      title: language === "en" ? "Independent Professionals" : "Professionnels indépendants",
-      desc: language === "en"
-        ? "Lawyers, accountants, consultants, and advisors looking to structure their work, improve productivity, and build systems that reduce overwhelm."
-        : "Avocats, comptables, consultants et conseillers cherchant à structurer leur travail, améliorer leur productivité et réduire la surcharge.",
-    },
-    {
-      image: smallBusinessOwnerImg,
-      title: language === "en" ? "Small & Growing Businesses" : "Petites et moyennes entreprises",
-      desc: language === "en"
-        ? "Founders, CEOs, and business owners who need operational structure, people management systems, and accountability to scale effectively."
-        : "Fondateurs, PDG et propriétaires d'entreprise qui ont besoin de structure opérationnelle, de gestion des personnes et de responsabilité pour croître efficacement.",
-    },
-    {
-      image: enterpriseLeadershipImg,
-      title: language === "en" ? "Corporate & Enterprise Teams" : "Équipes corporatives et entreprises",
-      desc: language === "en"
-        ? "Leaders and managers seeking strategic planning, performance management, and governance to align teams and improve operational efficiency."
-        : "Dirigeants et gestionnaires cherchant la planification stratégique, la gestion de la performance et la gouvernance pour aligner les équipes.",
+        ? "We don't create dependency. Every framework, system, and strategy we build together becomes yours to keep, use, and grow with long after our engagement ends."
+        : "Nous ne créons pas de dépendance. Chaque cadre et stratégie que nous construisons ensemble vous appartient pour toujours.",
     },
   ];
 
-  const frameworkSteps = [
+  const communityMembers = [
+    {
+      image: mentorshipConnectionImg,
+      title: language === "en" ? "Professionals Ready to Level Up" : "Professionnels prêts à évoluer",
+      desc: language === "en"
+        ? "Lawyers, consultants, coaches, and advisors who want more than just productivity — they want purpose-driven careers and a community that gets it."
+        : "Avocats, consultants, coaches et conseillers qui veulent plus que de la productivité — ils veulent des carrières motivées par un but.",
+    },
+    {
+      image: empoweredOwnerImg,
+      title: language === "en" ? "Business Owners Building Their Vision" : "Entrepreneurs construisant leur vision",
+      desc: language === "en"
+        ? "Founders and CEOs who are tired of doing it all alone. They join us for the systems and stay for the support, accountability, and shared wisdom."
+        : "Fondateurs et PDG fatigués de tout faire seuls. Ils nous rejoignent pour les systèmes et restent pour le soutien et la sagesse partagée.",
+    },
+    {
+      image: teamMovingForwardImg,
+      title: language === "en" ? "Teams Moving Forward Together" : "Des équipes qui avancent ensemble",
+      desc: language === "en"
+        ? "Leadership teams seeking alignment, shared purpose, and the kind of operational clarity that turns good organizations into great ones."
+        : "Des équipes de direction qui cherchent l'alignement, un objectif commun et la clarté opérationnelle.",
+    },
+  ];
+
+  const journeySteps = [
     {
       step: "01",
-      label: language === "en" ? "Assess" : "Évaluer",
-      image: assessmentPhaseImg,
-      title: language === "en" ? "Assess Where You Are" : "Évaluez votre situation",
+      label: language === "en" ? "Listen" : "Écouter",
+      image: mentorshipConnectionImg,
+      title: language === "en" ? "We Start by Listening" : "Nous commençons par écouter",
       desc: language === "en"
-        ? "We listen first. Through interviews, audits, and data review, we identify what is working, what is not, and where to focus."
-        : "Nous écoutons d'abord. Par des entretiens, des audits et l'analyse des données, nous identifions ce qui fonctionne et ce qui ne fonctionne pas.",
+        ? "Before we prescribe anything, we learn your story. What's working, what keeps you up at night, and what success looks like for you."
+        : "Avant de prescrire quoi que ce soit, nous apprenons votre histoire. Ce qui fonctionne, ce qui vous préoccupe et ce que le succès signifie pour vous.",
     },
     {
       step: "02",
       label: language === "en" ? "Align" : "Aligner",
-      image: teamCollaborationImg,
-      title: language === "en" ? "Align Your Team" : "Alignez votre équipe",
+      image: communityTownhallImg,
+      title: language === "en" ? "We Get Everyone on the Same Page" : "Nous alignons tout le monde",
       desc: language === "en"
-        ? "We bring your leadership together around shared priorities, clear goals, and a strategy everyone understands."
-        : "Nous rassemblons votre leadership autour de priorités communes, d'objectifs clairs et d'une stratégie que tous comprennent.",
+        ? "Together, we build shared clarity around your priorities so your team moves as one — with purpose, direction, and mutual accountability."
+        : "Ensemble, nous construisons une clarté partagée autour de vos priorités pour que votre équipe avance comme une seule.",
     },
     {
       step: "03",
       label: language === "en" ? "Build" : "Construire",
-      image: buildingSystemsImg,
-      title: language === "en" ? "Build the Systems" : "Construisez les systèmes",
+      image: communityWorkspaceImg,
+      title: language === "en" ? "We Build What You Need" : "Nous construisons ce dont vous avez besoin",
       desc: language === "en"
-        ? "We design and implement the processes, tools, and training your team needs to execute consistently."
-        : "Nous concevons et mettons en œuvre les processus, outils et formations dont votre équipe a besoin pour exécuter de manière cohérente.",
+        ? "Custom frameworks, processes, and tools designed around your reality — not cookie-cutter templates. Everything we create, you own."
+        : "Des cadres, processus et outils personnalisés conçus autour de votre réalité — pas des modèles génériques.",
     },
     {
       step: "04",
-      label: language === "en" ? "Grow" : "Croître",
-      image: growthImprovementImg,
-      title: language === "en" ? "Grow & Improve" : "Croître et s'améliorer",
+      label: language === "en" ? "Thrive" : "Prospérer",
+      image: milestoneImg,
+      title: language === "en" ? "You Grow With Confidence" : "Vous grandissez avec confiance",
       desc: language === "en"
-        ? "We track what matters, refine what is not working, and help you build a culture of continuous improvement."
-        : "Nous suivons ce qui compte, affinons ce qui ne fonctionne pas et vous aidons à bâtir une culture d'amélioration continue.",
+        ? "With the right systems in place and a community behind you, growth stops feeling overwhelming and starts feeling inevitable."
+        : "Avec les bons systèmes en place et une communauté derrière vous, la croissance cesse d'être accablante et devient inévitable.",
     },
   ];
 
   const services = [
     {
-      image: executiveAdvisoryImg,
+      image: communityCollaborationImg,
       title: language === "en" ? "Executive Advisory" : "Conseil exécutif",
       desc: language === "en"
-        ? "For leadership teams that need strategic planning, performance systems, and governance support."
-        : "Pour les équipes de direction qui ont besoin de planification stratégique et de systèmes de performance.",
+        ? "A trusted partner for leaders who want strategic clarity, performance systems that actually work, and someone in their corner who tells it like it is."
+        : "Un partenaire de confiance pour les leaders qui veulent la clarté stratégique et des systèmes de performance qui fonctionnent.",
     },
     {
-      image: hrPeopleStrategyImg,
-      title: language === "en" ? "Recruiting & Staffing" : "Recrutement et dotation",
+      image: handsPartnershipImg,
+      title: language === "en" ? "Recruiting & Talent" : "Recrutement et talent",
       desc: language === "en"
-        ? "We help companies find and hire the right talent — and help professionals get recruited into the right roles."
-        : "Nous aidons les entreprises à recruter les bons talents — et les professionnels à se faire recruter dans les bons postes.",
+        ? "Finding the right people changes everything. We help companies attract talent that fits their culture — and help professionals find roles where they'll truly belong."
+        : "Trouver les bonnes personnes change tout. Nous aidons les entreprises à attirer des talents qui correspondent à leur culture.",
     },
     {
-      image: businessCoachingImg,
+      image: empoweredOwnerImg,
       title: language === "en" ? "Small Business Growth" : "Croissance PME",
       desc: language === "en"
-        ? "A dedicated strategy partner to help you prioritize, plan, and build structure as you grow."
-        : "Un partenaire stratégique dédié pour vous aider à prioriser, planifier et structurer votre croissance.",
+        ? "A dedicated growth partner who helps you stop firefighting and start building — with structure, strategy, and a community of fellow founders cheering you on."
+        : "Un partenaire de croissance dédié qui vous aide à arrêter de gérer les urgences et à commencer à construire.",
     },
     {
-      image: personalCoachingImg,
+      image: mentorshipConnectionImg,
       title: language === "en" ? "Coaching & Development" : "Coaching et développement",
       desc: language === "en"
-        ? "Personal performance coaching, leadership development, and people management skills for professionals ready to level up."
-        : "Coaching de performance, développement du leadership et compétences en gestion des personnes pour les professionnels.",
+        ? "Personal coaching that goes beyond performance metrics. We help you grow as a leader, find your voice, and build the confidence to lead with impact."
+        : "Un coaching personnel qui va au-delà des métriques. Nous vous aidons à grandir en tant que leader.",
     },
     {
-      image: programsToolkitImg,
+      image: growthSeedlingImg,
       title: language === "en" ? "Programs & Toolkits" : "Programmes et outils",
       desc: language === "en"
-        ? "Self-paced programs, planners, hiring templates, and HR frameworks you can implement on your own."
-        : "Programmes, planificateurs, modèles d'embauche et cadres RH que vous pouvez mettre en œuvre par vous-même.",
+        ? "Self-paced programs and ready-to-use templates designed by consultants who've been in your shoes. Start building better systems today, at your own pace."
+        : "Des programmes à votre rythme et des modèles prêts à l'emploi conçus par des consultants qui comprennent votre réalité.",
     },
   ];
 
@@ -235,45 +226,44 @@ export default function Home() {
 
   const insights = [
     {
-      title: language === "en" ? "Why Most Strategy Fails" : "Pourquoi la plupart des stratégies échouent",
-      category: language === "en" ? "Strategy" : "Stratégie",
+      title: language === "en" ? "Why Growth Feels Hard (And How Community Changes That)" : "Pourquoi la croissance semble difficile",
+      category: language === "en" ? "Community" : "Communauté",
       date: language === "en" ? "January 15, 2026" : "15 janvier 2026",
       excerpt: language === "en"
-        ? "Strategy without systems is just aspiration. Learn why execution gaps kill good plans."
-        : "La stratégie sans systèmes n'est qu'une aspiration. Découvrez pourquoi les lacunes d'exécution tuent les bons plans.",
+        ? "The biggest challenge in business isn't strategy — it's isolation. Here's why the most successful leaders surround themselves with the right people."
+        : "Le plus grand défi en affaires n'est pas la stratégie — c'est l'isolement.",
     },
     {
-      title: language === "en" ? "Systems vs. Motivation" : "Systèmes contre motivation",
-      category: language === "en" ? "Performance" : "Performance",
+      title: language === "en" ? "Building Systems That Set You Free" : "Construire des systèmes qui vous libèrent",
+      category: language === "en" ? "Growth" : "Croissance",
       date: language === "en" ? "January 8, 2026" : "8 janvier 2026",
       excerpt: language === "en"
-        ? "Motivation fades. Systems don't. How to build performance infrastructure that works without willpower."
-        : "La motivation s'estompe. Les systèmes non. Comment construire une infrastructure de performance qui fonctionne sans volonté.",
+        ? "The right systems don't add complexity — they remove it. How our clients went from overwhelmed to in control, and how you can too."
+        : "Les bons systèmes ne rajoutent pas de complexité — ils l'éliminent.",
     },
     {
-      title: language === "en" ? "The Performance Process Framework" : "Le cadre Performance Process",
-      category: language === "en" ? "Framework" : "Cadre",
+      title: language === "en" ? "Your People Are Your Strategy" : "Vos gens sont votre stratégie",
+      category: language === "en" ? "Leadership" : "Leadership",
       date: language === "en" ? "December 20, 2025" : "20 décembre 2025",
       excerpt: language === "en"
-        ? "A four-step cycle for continuous improvement that works for individuals, teams, and organizations."
-        : "Un cycle en quatre étapes pour l'amélioration continue qui fonctionne pour les individus, les équipes et les organisations.",
+        ? "Behind every successful organization is a team that feels valued, heard, and empowered. Here's how to build that culture from the inside out."
+        : "Derrière chaque organisation prospère se trouve une équipe qui se sent valorisée et responsabilisée.",
     },
   ];
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
-      <SEOHead title="Performance Processes | Management Consulting Toronto" description="Performance Processes helps organizations build accountability systems, leadership frameworks, and operational processes that deliver measurable, repeatable results. Toronto-based consulting firm founded 2023." path="/" />
+      <SEOHead title="Performance Processes | Your Growth Partner & Community" description="Performance Processes is more than a consulting firm — we're a community of professionals and business owners building something meaningful together. Join us for strategic support, accountability, and lasting growth." path="/" />
       <Navbar />
 
       <main className="flex-grow">
-        {/* Hero — EY-style split with large featured image + floating accents */}
         <section className="relative min-h-[700px] lg:min-h-[800px] flex items-center overflow-hidden bg-primary" data-testid="section-hero">
           <div className="absolute inset-0 z-0">
-            <img src={heroAbstractImg} alt="" className="w-full h-full object-cover opacity-20 animate-ken-burns" />
+            <img src={communityNetworkImg} alt="" className="w-full h-full object-cover opacity-20 animate-ken-burns" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/98 to-primary/70" />
           </div>
           <div className="absolute bottom-0 right-0 w-1/2 h-full hidden lg:block z-[1]">
-            <img src={teamStrategyImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
+            <img src={communityCollaborationImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/60 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
           </div>
@@ -284,28 +274,28 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-2xl lg:max-w-[55%]">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-8 backdrop-blur-sm animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                <ClipboardCheck size={14} />
-                {language === "en" ? "Management Consulting" : "Conseil en gestion"}
+                <Heart size={14} />
+                {language === "en" ? "Your Growth Community" : "Votre communauté de croissance"}
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.2s" }} data-testid="text-hero-title">
                 {language === "en" ? (
-                  <>Improve Your Processes. Strengthen Your Leadership. <span className="text-accent">Elevate Performance.</span></>
+                  <>You Don't Have to Build It Alone. <span className="text-accent">Grow With Us.</span></>
                 ) : (
-                  <>Améliorez vos processus. Renforcez votre leadership. <span className="text-accent">Élevez la performance.</span></>
+                  <>Vous n'avez pas à le construire seul. <span className="text-accent">Grandissez avec nous.</span></>
                 )}
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-xl animate-fade-in-up" style={{ animationDelay: "0.35s" }} data-testid="text-hero-subtitle">
                 {language === "en"
-                  ? "We help professionals and organizations improve performance through better processes, leadership systems, and people management."
-                  : "Nous aidons les professionnels et les organisations à améliorer leur performance grâce à de meilleurs processus, systèmes de leadership et gestion des personnes."}
+                  ? "Performance Processes is more than consulting — we're a community of professionals and business owners who support each other, share what works, and grow together."
+                  : "Performance Processes est plus que du conseil — nous sommes une communauté de professionnels qui se soutiennent mutuellement et grandissent ensemble."}
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
                 <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-hero-audit">
-                  <ClipboardCheck size={16} />
-                  {language === "en" ? "Get a Free Audit" : "Obtenez un audit gratuit"}
+                  <Sparkles size={16} />
+                  {language === "en" ? "Start Your Journey" : "Commencez votre parcours"}
                 </Link>
                 <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-hero-services">
-                  {t("hero.ctaSecondary")}
+                  {language === "en" ? "See How We Help" : "Voir comment nous aidons"}
                   <ArrowRight size={16} />
                 </Link>
               </div>
@@ -314,12 +304,11 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
         </section>
 
-        {/* Trusted By */}
         <section className="py-8 bg-white border-b" data-testid="section-trusted-by">
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/60 shrink-0">
-                {language === "en" ? "Trusted By" : "Confiance de"}
+                {language === "en" ? "Trusted By Our Community" : "Confiance de notre communauté"}
               </span>
               <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
                 <div className="flex items-center gap-2 text-primary/70 hover:text-primary transition-colors" data-testid="logo-nextup">
@@ -340,7 +329,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What We Help You Achieve — EY-style editorial split */}
         <section className="py-32 bg-white relative overflow-hidden" data-testid="section-outcomes">
           <GeometricAccent className="top-20 -right-10 text-primary" />
           <GradientOrb className="w-80 h-80 bg-accent/5 -bottom-40 -left-40" />
@@ -348,21 +336,21 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
               <AnimateOnScroll animation="fade-left">
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                  {language === "en" ? "What You Get" : "Ce que vous obtenez"}
+                  {language === "en" ? "The Value We Bring" : "La valeur que nous apportons"}
                 </p>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                  {language === "en" ? "What we help you achieve" : "Ce que nous vous aidons à accomplir"}
+                  {language === "en" ? "More than consulting. A partnership built on trust." : "Plus que du conseil. Un partenariat bâti sur la confiance."}
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-10">
                   {language === "en"
-                    ? "Whether you lead a team of 5 or 500, the challenge is the same: turning strategy into action. Here is how we help."
-                    : "Que vous dirigiez une équipe de 5 ou 500 personnes, le défi est le même : transformer la stratégie en action. Voici comment nous aidons."}
+                    ? "When you join Performance Processes, you're not hiring a firm — you're gaining a team that genuinely cares about your success and a community that has your back."
+                    : "Quand vous rejoignez Performance Processes, vous ne recrutez pas une firme — vous gagnez une équipe qui se soucie vraiment de votre succès."}
                 </p>
                 <div className="grid grid-cols-2 gap-6">
                   {[
-                    { val: "4x", label: language === "en" ? "Faster execution" : "Exécution plus rapide" },
-                    { val: "100%", label: language === "en" ? "Teams aligned" : "Équipes alignées" },
-                    { val: "4", label: language === "en" ? "Phase approach" : "Phases structurées" },
+                    { val: "100+", label: language === "en" ? "Community members" : "Membres de la communauté" },
+                    { val: "97%", label: language === "en" ? "Client satisfaction" : "Satisfaction client" },
+                    { val: "∞", label: language === "en" ? "Ongoing support" : "Soutien continu" },
                     { val: "24/7", label: language === "en" ? "Portal access" : "Accès portail" },
                   ].map((stat, i) => (
                     <div key={i} className="text-left" data-testid={`stat-hero-${i}`}>
@@ -382,18 +370,18 @@ export default function Home() {
                   <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-6 border border-border max-w-[240px] hidden md:block animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
                     <div className="flex items-center gap-3 mb-2">
                       <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
-                        <BarChart3 size={20} className="text-accent" />
+                        <Heart size={20} className="text-accent" />
                       </div>
-                      <p className="text-sm font-bold text-primary">{language === "en" ? "Measurable Results" : "Résultats mesurables"}</p>
+                      <p className="text-sm font-bold text-primary">{language === "en" ? "Built on Trust" : "Bâti sur la confiance"}</p>
                     </div>
-                    <p className="text-xs text-muted-foreground">{language === "en" ? "Track progress with clear KPIs and dashboards" : "Suivez les progrès avec des KPI clairs"}</p>
+                    <p className="text-xs text-muted-foreground">{language === "en" ? "Every relationship starts with understanding your story" : "Chaque relation commence par comprendre votre histoire"}</p>
                   </div>
                 </div>
               </AnimateOnScroll>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              {outcomes.map((item, i) => (
+              {valuePromises.map((item, i) => (
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
                   <div className="relative flex gap-6 p-8 rounded-2xl border border-border bg-white hover:shadow-xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 group overflow-hidden h-full" data-testid={`outcome-card-${i}`}>
                     <div className="absolute top-0 left-0 w-1 h-full bg-accent/0 group-hover:bg-accent transition-all duration-300" />
@@ -411,26 +399,25 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Who We Work With — EY-style full-bleed cards */}
         <section className="py-32 bg-[#F8FAFC] relative overflow-hidden" data-testid="section-who-we-help">
           <FloatingShape className="w-24 h-24 top-20 -left-8" variant="ring" />
           <FloatingShape className="w-10 h-10 top-40 right-20" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                {language === "en" ? "Who We Work With" : "Avec qui nous travaillons"}
+                {language === "en" ? "Our Community" : "Notre communauté"}
               </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                {language === "en" ? "Built for leaders at every stage" : "Conçu pour les leaders à chaque étape"}
+                {language === "en" ? "You belong here" : "Vous avez votre place ici"}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {language === "en"
-                  ? "From solo founders to enterprise leadership teams, we meet you where you are and help you get where you want to go."
-                  : "Des fondateurs solo aux équipes de direction, nous vous rencontrons là où vous êtes et vous aidons à atteindre vos objectifs."}
+                  ? "Whether you're a solo professional, a growing business owner, or leading a team — you'll find people who understand your journey and want to see you succeed."
+                  : "Que vous soyez un professionnel solo, un entrepreneur en croissance ou un leader d'équipe — vous trouverez des gens qui comprennent votre parcours."}
               </p>
             </AnimateOnScroll>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {whoWeHelp.map((item, i) => (
+              {communityMembers.map((item, i) => (
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 150}>
                   <div className="group cursor-pointer" data-testid={`who-card-${i}`}>
                     <div className="relative rounded-2xl overflow-hidden mb-6 aspect-[4/3]">
@@ -461,29 +448,27 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Mid-Page CTA — EY-style full-bleed image CTA */}
         <section className="relative py-28 overflow-hidden" data-testid="section-mid-cta">
           <div className="absolute inset-0">
-            <img src={cityAerialImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
+            <img src={communityWorkspaceImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
             <div className="absolute inset-0 bg-primary/85" />
           </div>
           <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
             <h3 className="text-2xl md:text-4xl font-heading font-extrabold text-white mb-4">
-              {language === "en" ? "Not sure where to start?" : "Vous ne savez pas par où commencer ?"}
+              {language === "en" ? "Wondering if this is right for you?" : "Vous vous demandez si c'est fait pour vous ?"}
             </h3>
             <p className="text-white/60 mb-10 max-w-xl mx-auto text-lg">
               {language === "en"
-                ? "Get a free Process & People Management Audit. We'll identify operational and leadership inefficiencies in just 20 minutes."
-                : "Obtenez un audit gratuit de vos processus et de gestion des personnes. Nous identifierons les inefficacités en seulement 20 minutes."}
+                ? "Let's have an honest conversation. No pressure, no pitch — just a chance to understand your situation and see if we can genuinely help."
+                : "Ayons une conversation honnête. Pas de pression, pas de pitch — juste une chance de comprendre votre situation."}
             </p>
             <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-mid-cta-audit">
               <ClipboardCheck size={16} />
-              {language === "en" ? "Get Your Free Audit" : "Obtenez votre audit gratuit"}
+              {language === "en" ? "Book a Free Conversation" : "Réservez une conversation gratuite"}
             </Link>
           </div>
         </section>
 
-        {/* Our Approach — EY-style timeline with large imagery */}
         <section id="framework" className="py-32 bg-white relative overflow-hidden" data-testid="section-framework">
           <GeometricAccent className="-left-10 top-40 text-primary" />
           <div className="container mx-auto px-4 md:px-8">
@@ -491,7 +476,7 @@ export default function Home() {
               <AnimateOnScroll animation="fade-left">
                 <div className="relative">
                   <div className="rounded-3xl overflow-hidden shadow-2xl">
-                    <img src={strategyWhiteboardImg} alt="Strategy planning" className="w-full h-auto aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700" />
+                    <img src={communityTownhallImg} alt="Community collaboration" className="w-full h-auto aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700" />
                   </div>
                   <FloatingShape className="w-24 h-24 -top-4 -right-4 z-[-1]" variant="square" />
                   <FloatingShape className="w-32 h-32 -bottom-4 -left-4 z-[-1]" variant="ring" />
@@ -499,18 +484,18 @@ export default function Home() {
               </AnimateOnScroll>
               <AnimateOnScroll animation="fade-right" delay={200}>
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                  {language === "en" ? "How We Work" : "Comment nous travaillons"}
+                  {language === "en" ? "Your Journey With Us" : "Votre parcours avec nous"}
                 </p>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                  {language === "en" ? "Our four-phase approach" : "Notre approche en quatre phases"}
+                  {language === "en" ? "A partnership, not a project" : "Un partenariat, pas un projet"}
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-10">
                   {language === "en"
-                    ? "We follow a structured process that takes you from where you are today to where you want to be, with clear milestones along the way."
-                    : "Nous suivons un processus structuré qui vous mène de votre situation actuelle à vos objectifs, avec des jalons clairs en cours de route."}
+                    ? "We don't believe in one-size-fits-all approaches. Your journey with us is personal, collaborative, and designed to create lasting change you can feel."
+                    : "Nous ne croyons pas aux approches universelles. Votre parcours avec nous est personnel, collaboratif et conçu pour créer un changement durable."}
                 </p>
                 <Link href="/approach" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors group" data-testid="link-learn-approach">
-                  {language === "en" ? "Explore our methodology" : "Découvrir notre méthodologie"}
+                  {language === "en" ? "See how we work together" : "Découvrir comment nous travaillons ensemble"}
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
               </AnimateOnScroll>
@@ -518,7 +503,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 relative max-w-6xl mx-auto">
               <div className="hidden lg:block absolute top-[100px] left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent z-0" />
-              {frameworkSteps.map((step, i) => (
+              {journeySteps.map((step, i) => (
                 <div key={i} className="relative z-10" data-testid={`framework-step-${i}`}>
                   <div className="mx-2 h-full flex flex-col items-center group">
                     <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden mb-6 shadow-lg">
@@ -534,7 +519,7 @@ export default function Home() {
                       <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
                     </div>
                   </div>
-                  {i < frameworkSteps.length - 1 && (
+                  {i < journeySteps.length - 1 && (
                     <div className="hidden lg:flex absolute top-[50px] -right-1 transform z-20">
                       <div className="w-6 h-6 rounded-full bg-white border-2 border-accent flex items-center justify-center shadow-sm">
                         <ChevronRight size={12} className="text-accent" />
@@ -547,22 +532,21 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Services — EY-style editorial grid with large imagery */}
         <section className="py-32 bg-[#F8FAFC] relative overflow-hidden" data-testid="section-services">
           <FloatingShape className="w-20 h-20 top-32 right-10" variant="ring" />
           <GradientOrb className="w-72 h-72 bg-accent/5 -bottom-32 right-20" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                {language === "en" ? "What We Offer" : "Ce que nous offrons"}
+                {language === "en" ? "How We Help" : "Comment nous aidons"}
               </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                {language === "en" ? "Find the right level of support" : "Trouvez le bon niveau de soutien"}
+                {language === "en" ? "Support designed around your needs" : "Un soutien conçu autour de vos besoins"}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {language === "en"
-                  ? "From operational strategy and leadership systems to recruiting, staffing, and career placement — we help companies hire the right talent and professionals land the right roles."
-                  : "De la stratégie opérationnelle et des systèmes de leadership au recrutement, à la dotation et au placement de carrière — nous aidons les entreprises à recruter et les professionnels à se faire recruter."}
+                  ? "Whether you need a strategic partner, a sounding board, or practical tools to run your business better — we meet you where you are and help you get where you want to go."
+                  : "Que vous ayez besoin d'un partenaire stratégique, d'un interlocuteur de confiance ou d'outils pratiques — nous vous accompagnons là où vous êtes."}
               </p>
             </AnimateOnScroll>
 
@@ -607,10 +591,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Results — EY-style bold stats with editorial image */}
         <section className="py-32 bg-primary relative overflow-hidden" data-testid="section-results">
           <div className="absolute inset-0">
-            <img src={processFlowImg} alt="" className="w-full h-full object-cover opacity-10 animate-ken-burns" />
+            <img src={handsPartnershipImg} alt="" className="w-full h-full object-cover opacity-10 animate-ken-burns" />
           </div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(236,72,153,0.12),transparent_60%)]" />
           <FloatingShape className="w-16 h-16 top-20 right-[15%]" variant="ring" />
@@ -619,40 +602,40 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <AnimateOnScroll animation="fade-left">
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                  {language === "en" ? "The Outcomes" : "Les résultats"}
+                  {language === "en" ? "What Our Clients Experience" : "Ce que nos clients vivent"}
                 </p>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6">
-                  {language === "en" ? "What working with us looks like" : "Ce à quoi ressemble le travail avec nous"}
+                  {language === "en" ? "The difference you'll feel" : "La différence que vous ressentirez"}
                 </h2>
                 <p className="text-lg text-white/60 leading-relaxed mb-10">
                   {language === "en"
-                    ? "Our clients do not pay for consulting hours. They invest in outcomes. Here is what you can expect."
-                    : "Nos clients n'achètent pas des heures de conseil. Ils investissent dans des résultats. Voici ce à quoi vous pouvez vous attendre."}
+                    ? "Our clients don't just get better systems — they get peace of mind, clarity, and the confidence that comes from knowing they're not doing this alone."
+                    : "Nos clients n'obtiennent pas seulement de meilleurs systèmes — ils obtiennent la tranquillité d'esprit et la confiance de savoir qu'ils ne sont pas seuls."}
                 </p>
 
                 <div className="grid grid-cols-3 gap-8 mb-10">
                   <div data-testid="stat-alignment">
-                    <p className="text-4xl md:text-5xl font-extrabold text-white mb-2">100%</p>
-                    <p className="text-white/50 text-sm">{language === "en" ? "Teams aligned" : "Équipes alignées"}</p>
+                    <p className="text-4xl md:text-5xl font-extrabold text-white mb-2">97%</p>
+                    <p className="text-white/50 text-sm">{language === "en" ? "Feel more confident" : "Se sentent plus confiants"}</p>
                   </div>
                   <div data-testid="stat-execution">
-                    <p className="text-4xl md:text-5xl font-extrabold text-accent mb-2">4</p>
-                    <p className="text-white/50 text-sm">{language === "en" ? "Phase approach" : "Phases"}</p>
+                    <p className="text-4xl md:text-5xl font-extrabold text-accent mb-2">100+</p>
+                    <p className="text-white/50 text-sm">{language === "en" ? "Community members" : "Membres"}</p>
                   </div>
                   <div data-testid="stat-sustainable">
                     <p className="text-4xl md:text-5xl font-extrabold text-white mb-2">∞</p>
-                    <p className="text-white/50 text-sm">{language === "en" ? "Lasting systems" : "Systèmes durables"}</p>
+                    <p className="text-white/50 text-sm">{language === "en" ? "Lasting impact" : "Impact durable"}</p>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
-                    language === "en" ? "Teams executing on the same priorities" : "Des équipes exécutant les mêmes priorités",
-                    language === "en" ? "Clear KPIs everyone can track" : "Des KPI clairs que tous peuvent suivre",
-                    language === "en" ? "Leadership that communicates effectively" : "Un leadership qui communique efficacement",
-                    language === "en" ? "Processes that reduce daily firefighting" : "Des processus qui réduisent la gestion de crise quotidienne",
-                    language === "en" ? "Decisions backed by data, not guesswork" : "Des décisions basées sur les données, pas sur l'intuition",
-                    language === "en" ? "Growth without adding unnecessary complexity" : "De la croissance sans complexité inutile",
+                    language === "en" ? "Clarity on what matters most" : "Clarté sur ce qui compte le plus",
+                    language === "en" ? "A team that moves together with purpose" : "Une équipe qui avance ensemble avec un but",
+                    language === "en" ? "Less stress, more strategic focus" : "Moins de stress, plus de concentration stratégique",
+                    language === "en" ? "Systems that run without you babysitting them" : "Des systèmes qui fonctionnent sans surveillance constante",
+                    language === "en" ? "A community that celebrates your wins" : "Une communauté qui célèbre vos victoires",
+                    language === "en" ? "Confidence that growth is sustainable" : "Confiance que la croissance est durable",
                   ].map((text, i) => (
                     <div key={i} className="flex items-center gap-3 py-2" data-testid={`result-item-${i}`}>
                       <CheckCircle2 size={16} className="text-accent shrink-0" />
@@ -663,7 +646,7 @@ export default function Home() {
               </AnimateOnScroll>
               <AnimateOnScroll animation="fade-right" delay={200} className="relative hidden lg:block">
                 <div className="rounded-3xl overflow-hidden shadow-2xl shadow-black/30">
-                  <img src={analyticsDashboardImg} alt="Performance analytics" className="w-full h-auto aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700" />
+                  <img src={teamMovingForwardImg} alt="Team moving forward together" className="w-full h-auto aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700" />
                 </div>
                 <FloatingShape className="w-28 h-28 -top-6 -right-6 z-[-1]" variant="square" />
                 <FloatingShape className="w-20 h-20 -bottom-6 -left-6 z-[-1]" variant="ring" />
@@ -672,17 +655,16 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Insights */}
         <section className="py-32 bg-white relative overflow-hidden" data-testid="section-insights">
           <GeometricAccent className="top-10 right-20 text-primary" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="flex flex-col md:flex-row md:items-end md:justify-between mb-20">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                  {language === "en" ? "From Our Practice" : "De notre pratique"}
+                  {language === "en" ? "From Our Community" : "De notre communauté"}
                 </p>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-2">
-                  {language === "en" ? "Latest Insights" : "Dernières perspectives"}
+                  {language === "en" ? "Ideas Worth Sharing" : "Des idées qui méritent d'être partagées"}
                 </h2>
               </div>
               <Link href="/insights" className="inline-flex items-center gap-2 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all mt-6 md:mt-0 group" data-testid="link-view-all-insights">
@@ -725,37 +707,36 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Final CTA — EY-style with featured image */}
         <section className="py-32 bg-[#F8FAFC] border-t" data-testid="section-cta">
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll animation="fade-scale">
               <div className="relative rounded-[2rem] overflow-hidden max-w-5xl mx-auto">
                 <div className="absolute inset-0">
-                  <img src={smallBizOwnerImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
+                  <img src={communityCollaborationImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
                 </div>
                 <FloatingShape className="w-14 h-14 top-10 right-10 z-[5]" variant="ring" />
                 <div className="relative z-10 p-12 lg:p-20 max-w-2xl">
                   <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
-                    {language === "en" ? "Let's Talk" : "Parlons-en"}
+                    {language === "en" ? "Join Our Community" : "Rejoignez notre communauté"}
                   </p>
                   <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
                     {language === "en"
-                      ? "Ready to build something that works?"
-                      : "Prêt à construire quelque chose qui fonctionne ?"}
+                      ? "Ready to stop going it alone?"
+                      : "Prêt à arrêter de faire cavalier seul ?"}
                   </h2>
                   <p className="text-lg text-white/70 mb-12">
                     {language === "en"
-                      ? "Whether you are leading a team, growing a business, or leveling up your own performance, the first step is a conversation. Let's figure out the right path forward, together."
-                      : "Que vous dirigiez une équipe, développiez une entreprise ou amélioriez votre propre performance, la première étape est une conversation. Trouvons ensemble la bonne voie à suivre."}
+                      ? "Whether you're looking for strategic clarity, better systems, or simply people who get what you're going through — the first step is a conversation. Let's figure it out together."
+                      : "Que vous cherchiez de la clarté stratégique, de meilleurs systèmes ou simplement des gens qui comprennent ce que vous traversez — la première étape est une conversation."}
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-cta-audit">
-                      <ClipboardCheck size={16} />
-                      {language === "en" ? "Get a Free Audit" : "Obtenez un audit gratuit"}
+                      <Sparkles size={16} />
+                      {language === "en" ? "Start Your Journey" : "Commencez votre parcours"}
                     </Link>
                     <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-cta-services">
-                      {language === "en" ? "Explore services" : "Découvrir les services"}
+                      {language === "en" ? "Explore how we help" : "Découvrir comment nous aidons"}
                       <ArrowRight size={16} />
                     </Link>
                   </div>

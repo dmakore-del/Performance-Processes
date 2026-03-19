@@ -112,33 +112,33 @@ export default function Services() {
   const methodSteps = [
     {
       step: "01",
-      title: language === "en" ? "Diagnose" : "Diagnostiquer",
-      desc: language === "en" ? "Understand your current state, challenges, and what's holding performance back." : "Comprendre votre état actuel, vos défis et ce qui freine la performance.",
-      outcomes: language === "en" ? ["Organizational assessment", "Gap analysis", "People & talent review", "Stakeholder alignment"] : ["Évaluation organisationnelle", "Analyse des écarts", "Revue des personnes et talents", "Alignement des parties prenantes"],
+      title: language === "en" ? "Listen" : "Écouter",
+      desc: language === "en" ? "We start by understanding your world — your goals, your challenges, and what matters most to you and your people." : "Nous commençons par comprendre votre réalité — vos objectifs, vos défis et ce qui compte le plus pour vous.",
+      outcomes: language === "en" ? ["Deep-dive discovery", "Understanding your vision", "People & culture review", "Stakeholder conversations"] : ["Découverte approfondie", "Comprendre votre vision", "Revue des personnes et de la culture", "Conversations avec les parties prenantes"],
       icon: <Search className="text-accent" size={28} />,
       color: "from-blue-500/10 to-blue-600/5",
     },
     {
       step: "02",
       title: language === "en" ? "Align" : "Aligner",
-      desc: language === "en" ? "Clarify strategy, leadership priorities, and what success looks like." : "Clarifier la stratégie, les priorités du leadership et la définition du succès.",
-      outcomes: language === "en" ? ["Strategic clarity", "Leadership buy-in", "Clear success metrics"] : ["Clarté stratégique", "Adhésion du leadership", "Métriques claires"],
+      desc: language === "en" ? "Together, we define what success looks like for you — and make sure everyone is moving in the same direction." : "Ensemble, nous définissons ce que le succès signifie pour vous — et veillons à ce que tout le monde avance dans la même direction.",
+      outcomes: language === "en" ? ["Shared vision & clarity", "Team buy-in", "Clear success picture", "Prioritized goals"] : ["Vision et clarté partagées", "Adhésion de l'équipe", "Image claire du succès", "Objectifs priorisés"],
       icon: <Target className="text-accent" size={28} />,
       color: "from-accent/10 to-accent/5",
     },
     {
       step: "03",
-      title: language === "en" ? "Implement" : "Implémenter",
-      desc: language === "en" ? "Build practical systems, people processes, and habits that support consistent execution." : "Construire des systèmes, des processus de gestion des personnes et des habitudes qui soutiennent l'exécution.",
-      outcomes: language === "en" ? ["Performance systems", "People & HR infrastructure", "Process documentation", "Accountability structures"] : ["Systèmes de performance", "Infrastructure RH", "Documentation des processus", "Structures de responsabilité"],
+      title: language === "en" ? "Build Together" : "Construire ensemble",
+      desc: language === "en" ? "We work alongside you — not from the sidelines — to build the systems, habits, and infrastructure that make progress stick." : "Nous travaillons à vos côtés — pas en retrait — pour bâtir les systèmes et habitudes qui ancrent le progrès.",
+      outcomes: language === "en" ? ["Practical systems that work", "People-first processes", "Habits that last", "Real accountability"] : ["Systèmes pratiques qui fonctionnent", "Processus axés sur les personnes", "Habitudes durables", "Responsabilité réelle"],
       icon: <Settings className="text-accent" size={28} />,
       color: "from-emerald-500/10 to-emerald-600/5",
     },
     {
       step: "04",
-      title: language === "en" ? "Measure & Improve" : "Mesurer et améliorer",
-      desc: language === "en" ? "Track progress with clear KPIs and continuously refine for better results." : "Suivre les progrès avec des KPI clairs et affiner continuellement.",
-      outcomes: language === "en" ? ["KPI dashboards", "Regular reviews", "Continuous improvement"] : ["Tableaux de bord KPI", "Revues régulières", "Amélioration continue"],
+      title: language === "en" ? "Grow & Evolve" : "Grandir et évoluer",
+      desc: language === "en" ? "We celebrate your wins, learn from what's working, and keep evolving with you as your needs change." : "Nous célébrons vos réussites, apprenons de ce qui fonctionne et continuons à évoluer avec vous.",
+      outcomes: language === "en" ? ["Visible progress", "Regular check-ins", "Evolving support", "Lasting momentum"] : ["Progrès visibles", "Points de contact réguliers", "Soutien évolutif", "Élan durable"],
       icon: <BarChart3 className="text-accent" size={28} />,
       color: "from-purple-500/10 to-purple-600/5",
     },
@@ -147,7 +147,7 @@ export default function Services() {
   const serviceTiers = {
     enterprise: {
       label: language === "en" ? "Enterprise" : "Entreprise",
-      tagline: language === "en" ? "For companies, leadership teams & scaling organizations" : "Pour les entreprises, les équipes de direction et les organisations en croissance",
+      tagline: language === "en" ? "For leadership teams ready to build lasting systems and a culture of shared success" : "Pour les équipes de direction prêtes à bâtir des systèmes durables et une culture de réussite partagée",
       icon: <Briefcase className="text-accent" size={24} />,
       services: [
         {
@@ -155,8 +155,8 @@ export default function Services() {
           investment: "$750 – $1,500",
           investmentNote: language === "en" ? "(Mandatory first step, fee can be credited toward full engagement)" : "(Première étape obligatoire, les frais peuvent être crédités vers un engagement complet)",
           desc: language === "en"
-            ? "Every successful engagement begins with clarity. Our Discovery Phase ensures we understand your organization before proposing solutions."
-            : "Chaque engagement réussi commence par la clarté. Notre phase de découverte garantit que nous comprenons votre organisation avant de proposer des solutions.",
+            ? "Before we propose anything, we listen. The Discovery Phase is about truly understanding your organization — your people, your goals, and what success means to you."
+            : "Avant de proposer quoi que ce soit, nous écoutons. La phase de découverte consiste à comprendre votre organisation — vos gens, vos objectifs et ce que le succès signifie pour vous.",
           benefits: language === "en"
             ? ["Organizational intake & needs assessment", "Stakeholder alignment", "Scope definition & roadmap", "Fee credited toward full engagement"]
             : ["Évaluation des besoins organisationnels", "Alignement des parties prenantes", "Définition de la portée", "Frais crédités vers l'engagement complet"],
@@ -191,8 +191,8 @@ export default function Services() {
           investment: "$5,000 – $15,000",
           investmentNote: language === "en" ? "(6–12 week engagement)" : "(Engagement de 6 à 12 semaines)",
           desc: language === "en"
-            ? "Outcome-focused engagements that align your strategy, leadership, and performance systems for measurable results."
-            : "Des engagements axés sur les résultats qui alignent votre stratégie, votre leadership et vos systèmes de performance.",
+            ? "Get your whole team rowing in the same direction. We help you clarify your vision, align your leadership, and create a roadmap everyone believes in."
+            : "Faites avancer toute votre équipe dans la même direction. Nous clarifions votre vision et créons une feuille de route à laquelle tous adhèrent.",
           benefits: language === "en"
             ? ["Strategic planning & vision refinement", "KPI & success metric design", "Leadership alignment workshops", "1–3 year strategic roadmap"]
             : ["Planification stratégique", "Conception de KPI", "Ateliers d'alignement", "Feuille de route stratégique"],
@@ -235,8 +235,8 @@ export default function Services() {
           title: language === "en" ? "Systems & Implementation" : "Systèmes et mise en œuvre",
           investment: "$8,000 – $25,000",
           desc: language === "en"
-            ? "End-to-end design and implementation of performance management systems, governance frameworks, and process redesign."
-            : "Conception et mise en œuvre de bout en bout des systèmes de gestion de la performance.",
+            ? "Turn your strategy into something your team can actually execute — with systems, structures, and processes that make consistency the default."
+            : "Transformez votre stratégie en quelque chose que votre équipe peut exécuter — avec des systèmes et processus qui font de la cohérence la norme.",
           benefits: language === "en"
             ? ["Performance management systems", "Governance & SOP frameworks", "Process optimization", "Implementation support & training"]
             : ["Systèmes de gestion de la performance", "Cadres de gouvernance", "Optimisation des processus", "Soutien à la mise en œuvre"],
@@ -280,8 +280,8 @@ export default function Services() {
           investment: "$2,500 – $7,500/mo",
           investmentNote: language === "en" ? "(Monthly retainer, 3-month minimum)" : "(Mandat mensuel, minimum 3 mois)",
           desc: language === "en"
-            ? "Ongoing executive-level advisory for organizations that need consistent strategic guidance and leadership coaching."
-            : "Conseil exécutif continu pour les organisations qui ont besoin d'un accompagnement stratégique constant.",
+            ? "A trusted strategic partner by your side — monthly guidance, leadership coaching, and someone who understands your business as well as you do."
+            : "Un partenaire stratégique de confiance à vos côtés — accompagnement mensuel, coaching de leadership et quelqu'un qui comprend votre entreprise aussi bien que vous.",
           benefits: language === "en"
             ? ["Dedicated senior consultant", "Strategy & operations sessions", "Performance oversight & reporting", "Leadership coaching & development"]
             : ["Consultant senior dédié", "Sessions stratégiques", "Suivi de la performance", "Coaching de leadership"],
@@ -327,8 +327,8 @@ export default function Services() {
           title: language === "en" ? "Business Registration" : "Enregistrement d'entreprise",
           investment: "$3,500 – $8,500",
           desc: language === "en"
-            ? "We handle the complexities of business registration so you can focus on building your vision."
-            : "Nous gérons les complexités de l'enregistrement d'entreprise pour que vous puissiez vous concentrer sur votre vision.",
+            ? "Starting something new is exciting — and complicated. We handle the legal and administrative setup so you can focus on bringing your vision to life."
+            : "Démarrer quelque chose de nouveau est passionnant — et compliqué. Nous gérons la paperasse pour que vous puissiez donner vie à votre vision.",
           benefits: language === "en"
             ? ["Structure consultation & name search", "Articles of incorporation filing", "Tax & compliance registration", "Governance document setup"]
             : ["Consultation structurelle", "Dépôt des statuts", "Inscription fiscale", "Documents de gouvernance"],
@@ -371,8 +371,8 @@ export default function Services() {
           title: language === "en" ? "Website & Digital Presence" : "Site Web et présence numérique",
           investment: "$3,000 – $12,000",
           desc: language === "en"
-            ? "Professionally designed websites and digital presence setup to help your business look credible and convert visitors into clients."
-            : "Sites Web professionnels et configuration de la présence numérique.",
+            ? "Your online presence should reflect who you really are. We build websites that tell your story, build trust, and turn visitors into clients who believe in what you do."
+            : "Votre présence en ligne doit refléter qui vous êtes vraiment. Nous construisons des sites qui racontent votre histoire et transforment les visiteurs en clients.",
           benefits: language === "en"
             ? ["Professional website design", "SEO & content strategy", "Brand identity setup", "Analytics & conversion tracking"]
             : ["Conception de site Web professionnel", "SEO et stratégie de contenu", "Identité de marque", "Analytique et suivi"],
@@ -415,8 +415,8 @@ export default function Services() {
           title: language === "en" ? "Process Audit" : "Audit de processus",
           investment: "$1,000 – $3,000",
           desc: language === "en"
-            ? "A focused assessment of your current workflows and operations, identifying bottlenecks, inefficiencies, and automation opportunities with a clear improvement roadmap."
-            : "Une évaluation ciblée de vos flux de travail et opérations actuels, identifiant les goulots d'étranglement et les opportunités d'automatisation.",
+            ? "Something isn't working, but you can't pinpoint exactly what. We help you see clearly, find the friction, and leave with a practical roadmap to fix it."
+            : "Quelque chose ne fonctionne pas, mais vous ne savez pas exactement quoi. Nous vous aidons à voir clairement et à repartir avec un plan concret.",
           benefits: language === "en"
             ? ["Workflow mapping & analysis", "Bottleneck identification", "Automation opportunity assessment", "30–60 day improvement roadmap"]
             : ["Cartographie et analyse des flux", "Identification des goulots", "Évaluation des opportunités d'automatisation", "Feuille de route de 30 à 60 jours"],
@@ -459,8 +459,8 @@ export default function Services() {
           title: language === "en" ? "Operational Efficiency Workshop" : "Atelier d'efficacité opérationnelle",
           investment: "$2,500 – $5,000",
           desc: language === "en"
-            ? "A structured half-day or full-day workshop that brings your leadership team together to identify operational inefficiencies and align on a clear process improvement roadmap."
-            : "Un atelier structuré d'une demi-journée ou d'une journée complète pour identifier les inefficacités et aligner votre équipe sur un plan d'amélioration.",
+            ? "Get your leadership team in a room, aligned on what needs to change, and walking out with a concrete plan everyone owns. That's what this workshop delivers."
+            : "Réunissez votre équipe de direction, alignez-vous sur ce qui doit changer, et repartez avec un plan concret que tout le monde porte. C'est ce que cet atelier offre.",
           benefits: language === "en"
             ? ["Operational inefficiency diagnosis", "Leadership alignment on priorities", "Process improvement roadmap", "Team action planning"]
             : ["Diagnostic des inefficacités", "Alignement du leadership", "Feuille de route d'amélioration", "Planification d'action d'équipe"],
@@ -495,8 +495,8 @@ export default function Services() {
           investment: "$3,000 – $10,000/mo",
           investmentNote: language === "en" ? "(Monthly retainer, 3-month minimum)" : "(Mandat mensuel, minimum 3 mois)",
           desc: language === "en"
-            ? "Embedded operational support on a monthly basis — including systems implementation, process design, and ongoing optimization without the cost of a full-time hire."
-            : "Un soutien opérationnel intégré sur une base mensuelle, incluant l'implantation de systèmes, la conception de processus et l'optimisation continue.",
+            ? "Think of it as having a trusted operations partner on your team — someone who rolls up their sleeves, builds real systems, and helps your business run the way you always knew it could."
+            : "Pensez à un partenaire opérationnel de confiance dans votre équipe — quelqu'un qui retrousse ses manches et aide votre entreprise à fonctionner comme vous l'avez toujours voulu.",
           benefits: language === "en"
             ? ["Dedicated process consultant", "Systems implementation support", "Ongoing process optimization", "Operational performance reporting"]
             : ["Consultant en processus dédié", "Implantation de systèmes", "Optimisation continue", "Rapports de performance"],
@@ -543,8 +543,8 @@ export default function Services() {
           investment: "$5,000 – $15,000",
           investmentNote: language === "en" ? "(6–12 week engagement)" : "(Engagement de 6 à 12 semaines)",
           desc: language === "en"
-            ? "Build the people infrastructure your organization needs — from HR frameworks and policies to performance management, employee engagement, and workforce planning."
-            : "Construisez l'infrastructure RH dont votre organisation a besoin — des cadres de politiques à la gestion de la performance et à la planification de la main-d'œuvre.",
+            ? "Your people are the heart of your business. We help you create the systems, policies, and culture that attract great talent and make them want to stay."
+            : "Vos gens sont le cœur de votre entreprise. Nous créons les systèmes, politiques et la culture qui attirent les meilleurs talents et les fidélisent.",
           benefits: language === "en"
             ? ["HR policy & framework design", "Performance management systems", "Employee engagement strategy", "Workforce planning & org design"]
             : ["Conception de politiques RH", "Systèmes de gestion de la performance", "Stratégie d'engagement des employés", "Planification de la main-d'œuvre"],
@@ -587,8 +587,8 @@ export default function Services() {
           title: language === "en" ? "Recruitment Process Design" : "Conception du processus de recrutement",
           investment: "$3,000 – $10,000",
           desc: language === "en"
-            ? "Design a structured, repeatable hiring process that helps you attract the right talent, reduce time-to-hire, and make better hiring decisions."
-            : "Concevez un processus d'embauche structuré et reproductible qui vous aide à attirer les bons talents et à prendre de meilleures décisions.",
+            ? "Stop hiring on gut feeling. We build you a system that helps you find the right people, faster — and set them up to succeed from day one."
+            : "Arrêtez de recruter à l'instinct. Nous construisons un système qui vous aide à trouver les bonnes personnes plus vite et à les préparer au succès dès le premier jour.",
           benefits: language === "en"
             ? ["End-to-end hiring process design", "Job description frameworks", "Interview & scoring systems", "Onboarding program development"]
             : ["Conception du processus d'embauche", "Cadres de description de poste", "Systèmes d'entrevue et de notation", "Programme d'intégration"],
@@ -631,8 +631,8 @@ export default function Services() {
           title: language === "en" ? "Leadership & Talent Development" : "Développement du leadership et des talents",
           investment: "$5,000 – $20,000",
           desc: language === "en"
-            ? "Develop your leadership pipeline and build the capabilities your organization needs through structured development programs, coaching, and succession planning."
-            : "Développez votre pipeline de leadership et renforcez les capacités de votre organisation par des programmes structurés de développement.",
+            ? "Invest in the people who will lead your organization tomorrow. We help you identify, develop, and retain the leaders who will carry your vision forward."
+            : "Investissez dans ceux qui dirigeront votre organisation demain. Nous identifions, développons et retenons les leaders qui porteront votre vision.",
           benefits: language === "en"
             ? ["Leadership development programs", "High-potential talent identification", "Succession planning", "Management training design"]
             : ["Programmes de développement du leadership", "Identification des hauts potentiels", "Planification de la relève", "Conception de formation en gestion"],
@@ -676,8 +676,8 @@ export default function Services() {
           investment: "$5,000 – $25,000",
           investmentNote: language === "en" ? "(Per placement or retainer model)" : "(Par placement ou mandat)",
           desc: language === "en"
-            ? "We find, screen, and place the right talent for your organization — from executive searches to operational hires. End-to-end recruiting so you can focus on running your business."
-            : "Nous trouvons, évaluons et plaçons les bons talents pour votre organisation — des recherches de cadres aux embauches opérationnelles.",
+            ? "Let us find the right people for your team. We handle the entire hiring process — sourcing, screening, and placing — so you can focus on what you do best."
+            : "Laissez-nous trouver les bonnes personnes pour votre équipe. Nous gérons tout le processus de recrutement pour que vous puissiez vous concentrer sur ce que vous faites de mieux.",
           benefits: language === "en"
             ? ["End-to-end candidate sourcing", "Screening & shortlisting", "Interview coordination", "Offer negotiation & placement support"]
             : ["Sourcing de candidats complet", "Présélection et tri", "Coordination des entrevues", "Négociation et placement"],
@@ -720,7 +720,7 @@ export default function Services() {
     },
     business: {
       label: language === "en" ? "Small Business" : "Petite entreprise",
-      tagline: language === "en" ? "For founders, entrepreneurs & growing businesses" : "Pour les fondateurs, entrepreneurs et entreprises en croissance",
+      tagline: language === "en" ? "For founders and small business owners who want a real partner in their corner, not just advice from the sidelines" : "Pour les fondateurs et propriétaires de PME qui veulent un vrai partenaire à leurs côtés",
       icon: <Rocket className="text-accent" size={24} />,
       services: [
         {
@@ -728,8 +728,8 @@ export default function Services() {
           investment: "$500 – $1,500/mo",
           investmentNote: language === "en" ? "(3-month minimum)" : "(Minimum 3 mois)",
           desc: language === "en"
-            ? "A complete consulting package for small businesses that combines strategic advising, operational support, and accountability."
-            : "Un forfait complet de conseil pour les petites entreprises.",
+            ? "You don't have to figure it all out alone. Get a dedicated strategy partner who helps you prioritize, plan, and actually follow through — month after month."
+            : "Vous n'avez pas à tout comprendre seul. Obtenez un partenaire stratégique qui vous aide à prioriser, planifier et exécuter — mois après mois.",
           benefits: language === "en"
             ? ["Strategic advising & planning", "Operational process support", "Accountability systems", "Monthly progress reviews"]
             : ["Conseil stratégique", "Soutien opérationnel", "Systèmes de responsabilité", "Revues mensuelles"],
@@ -775,8 +775,8 @@ export default function Services() {
           title: language === "en" ? "Business Foundations Package" : "Forfait fondations d'entreprise",
           investment: "$2,500 – $5,000",
           desc: language === "en"
-            ? "A one-time setup engagement to build core business systems — operations, structure, and accountability from the ground up."
-            : "Un engagement unique pour construire les systèmes fondamentaux de votre entreprise.",
+            ? "Starting a business is overwhelming. We help you lay a strong foundation from day one — structure, plans, processes, and a clear 90-day path forward."
+            : "Démarrer une entreprise est accablant. Nous vous aidons à poser des fondations solides dès le premier jour — structure, plans et un parcours clair de 90 jours.",
           benefits: language === "en"
             ? ["Operational process design", "Role & accountability structures", "Business planning foundations", "Performance tracking setup"]
             : ["Conception des processus opérationnels", "Structures de responsabilité", "Fondations de planification", "Configuration du suivi"],
@@ -819,8 +819,8 @@ export default function Services() {
           title: language === "en" ? "Process Audit" : "Audit de processus",
           investment: "$500 – $1,500",
           desc: language === "en"
-            ? "A focused review of your business workflows to identify bottlenecks, wasted effort, and quick wins that can immediately improve how your business runs."
-            : "Une revue ciblée de vos flux de travail pour identifier les goulots d'étranglement et les gains rapides.",
+            ? "You know something's slowing you down — you just can't see exactly where. We map your workflows, spot the friction, and give you a plan to fix it fast."
+            : "Vous savez que quelque chose vous ralentit — vous ne voyez juste pas exactement où. Nous cartographions vos flux et vous donnons un plan pour corriger rapidement.",
           benefits: language === "en"
             ? ["Core workflow mapping", "Bottleneck identification", "Quick-win recommendations", "30-day action plan"]
             : ["Cartographie des flux clés", "Identification des goulots", "Recommandations rapides", "Plan d'action de 30 jours"],
@@ -863,8 +863,8 @@ export default function Services() {
           title: language === "en" ? "Operational Efficiency Workshop" : "Atelier d'efficacité opérationnelle",
           investment: "$1,500 – $3,000",
           desc: language === "en"
-            ? "A hands-on working session for you and your team to diagnose what is slowing your business down and leave with a clear plan to fix it."
-            : "Une session de travail pratique pour diagnostiquer ce qui ralentit votre entreprise et repartir avec un plan clair.",
+            ? "When your team knows things need to change but can't agree on where to start — this workshop gets everyone on the same page and walking out with a shared plan."
+            : "Quand votre équipe sait que les choses doivent changer mais ne s'entend pas sur par où commencer — cet atelier aligne tout le monde sur un plan commun.",
           benefits: language === "en"
             ? ["Team alignment on priorities", "Operational bottleneck diagnosis", "Clear improvement roadmap", "Actionable next steps"]
             : ["Alignement de l'équipe", "Diagnostic des goulots", "Feuille de route claire", "Prochaines étapes concrètes"],
@@ -898,8 +898,8 @@ export default function Services() {
           title: language === "en" ? "Website & Digital Presence" : "Site Web et présence numérique",
           investment: "$1,500 – $5,000",
           desc: language === "en"
-            ? "A professional website that makes your business look credible and helps you attract the right clients, without the enterprise price tag."
-            : "Un site Web professionnel qui donne de la crédibilité à votre entreprise à un prix accessible.",
+            ? "Your website is often the first impression — make it count. We build clean, professional sites that tell your story and help the right clients find you."
+            : "Votre site Web est souvent la première impression — faites qu'elle compte. Nous construisons des sites professionnels qui racontent votre histoire.",
           benefits: language === "en"
             ? ["Professional website design", "Mobile-friendly & fast", "SEO basics included", "Contact and lead capture"]
             : ["Conception professionnelle", "Mobile et rapide", "SEO de base inclus", "Capture de contacts"],
@@ -942,8 +942,8 @@ export default function Services() {
           title: language === "en" ? "People Operations Setup" : "Mise en place des opérations RH",
           investment: "$2,000 – $5,000",
           desc: language === "en"
-            ? "Get the HR foundations right from day one — employee policies, onboarding processes, performance reviews, and team management systems built for small business reality."
-            : "Mettez en place les fondations RH dès le départ — politiques, intégration, revues de performance et systèmes de gestion d'équipe adaptés aux petites entreprises.",
+            ? "Your team deserves more than guesswork. We set up the HR essentials — clear policies, smooth onboarding, and fair reviews — so your people feel supported and valued."
+            : "Votre équipe mérite mieux que l'improvisation. Nous mettons en place les essentiels RH pour que vos employés se sentent soutenus et valorisés.",
           benefits: language === "en"
             ? ["Employee policy handbook", "Onboarding process design", "Performance review framework", "Team management systems"]
             : ["Manuel de politiques", "Processus d'intégration", "Cadre de revue de performance", "Systèmes de gestion d'équipe"],
@@ -986,8 +986,8 @@ export default function Services() {
           title: language === "en" ? "Recruitment & Hiring Support" : "Soutien au recrutement et à l'embauche",
           investment: "$1,000 – $3,000",
           desc: language === "en"
-            ? "Stop guessing when you hire. Get a structured hiring process with job description templates, interview guides, and scoring systems designed for small business budgets."
-            : "Arrêtez de deviner lors de vos embauches. Obtenez un processus structuré avec des modèles et des guides adaptés aux budgets des PME.",
+            ? "Every hire matters when you're small. We give you the tools and structure to hire with confidence — so you build a team that grows with you."
+            : "Chaque embauche compte quand on est petit. Nous vous donnons les outils pour recruter avec confiance — et bâtir une équipe qui grandit avec vous.",
           benefits: language === "en"
             ? ["Job description templates", "Interview question framework", "Candidate scoring system", "Onboarding checklist"]
             : ["Modèles de description de poste", "Cadre de questions d'entrevue", "Système de notation des candidats", "Liste d'intégration"],
@@ -1031,8 +1031,8 @@ export default function Services() {
           investment: "$2,000 – $5,000",
           investmentNote: language === "en" ? "(Per hire)" : "(Par embauche)",
           desc: language === "en"
-            ? "We handle your hiring so you don't have to. From sourcing candidates and screening resumes to coordinating interviews and helping with offers — recruiting made simple for small business budgets."
-            : "Nous gérons votre recrutement pour vous — du sourcing à l'embauche, adapté aux budgets des PME.",
+            ? "You need to hire, but you're buried in everything else. Let us handle the recruiting so you can focus on running your business — we'll find the right person for you."
+            : "Vous devez recruter, mais vous êtes submergé par tout le reste. Laissez-nous gérer le recrutement pendant que vous vous concentrez sur votre entreprise.",
           benefits: language === "en"
             ? ["Candidate sourcing & screening", "Interview setup & coordination", "Shortlist & recommendations", "Offer support & onboarding guidance"]
             : ["Sourcing et présélection", "Coordination des entrevues", "Liste restreinte et recommandations", "Soutien à l'offre et intégration"],
@@ -1075,15 +1075,15 @@ export default function Services() {
     },
     professional: {
       label: language === "en" ? "Professional" : "Professionnel",
-      tagline: language === "en" ? "For individuals looking to build personal performance systems" : "Pour les individus cherchant à construire des systèmes de performance personnelle",
+      tagline: language === "en" ? "For professionals ready to invest in themselves — build confidence, clarity, and a career you're proud of" : "Pour les professionnels prêts à investir en eux-mêmes — confiance, clarté et une carrière dont vous êtes fier",
       icon: <UserCheck className="text-accent" size={24} />,
       services: [
         {
           title: language === "en" ? "Personal Performance Coaching" : "Coaching de performance personnelle",
           investment: "$100 – $500/mo",
           desc: language === "en"
-            ? "One-on-one coaching to help you build a personal performance system — with goal setting, accountability, and consistent execution."
-            : "Coaching individuel pour vous aider à construire un système de performance personnelle.",
+            ? "You don't need more advice — you need someone in your corner. Our coaching helps you gain clarity, build momentum, and become the professional you know you can be."
+            : "Vous n'avez pas besoin de plus de conseils — vous avez besoin de quelqu'un à vos côtés. Notre coaching vous aide à gagner en clarté et devenir le professionnel que vous savez pouvoir être.",
           benefits: language === "en"
             ? ["Personal goal-setting framework", "Accountability & habit systems", "Productivity & time management", "Career strategy & growth planning"]
             : ["Cadre d'objectifs personnels", "Systèmes de responsabilité", "Productivité et gestion du temps", "Planification de carrière"],
@@ -1129,8 +1129,8 @@ export default function Services() {
           title: language === "en" ? "Personal Workflow Audit" : "Audit de flux de travail personnel",
           investment: "$250 – $750",
           desc: language === "en"
-            ? "A focused review of how you manage your time, tasks, and priorities, with a personalized system designed to help you work smarter."
-            : "Une revue ciblée de votre gestion du temps et des priorités, avec un système personnalisé.",
+            ? "Feeling overwhelmed? We look at how you actually spend your time, find what's stealing your energy, and design a system that works for the way you think."
+            : "Vous vous sentez débordé ? Nous examinons comment vous passez votre temps, trouvons ce qui vole votre énergie et concevons un système adapté à votre façon de penser.",
           benefits: language === "en"
             ? ["Time and task flow analysis", "Productivity bottleneck diagnosis", "Personalized system recommendations", "30-day improvement plan"]
             : ["Analyse du flux de travail", "Diagnostic de productivité", "Recommandations personnalisées", "Plan d'amélioration de 30 jours"],
@@ -1173,8 +1173,8 @@ export default function Services() {
           title: language === "en" ? "Performance Workshop" : "Atelier de performance",
           investment: "$500 – $1,500",
           desc: language === "en"
-            ? "A structured working session to help you clarify your goals, identify what is holding you back, and build a personal performance plan you can execute."
-            : "Une session structurée pour clarifier vos objectifs et construire un plan de performance personnel.",
+            ? "Sometimes you need to step back and reset. This workshop helps you get clear on what matters, what's holding you back, and what to do next."
+            : "Parfois, vous avez besoin de prendre du recul. Cet atelier vous aide à clarifier ce qui compte, ce qui vous retient et quoi faire ensuite.",
           benefits: language === "en"
             ? ["Goal clarity and prioritization", "Personal performance diagnosis", "Custom action plan", "Accountability framework setup"]
             : ["Clarté des objectifs", "Diagnostic de performance", "Plan d'action personnalisé", "Cadre de responsabilité"],
@@ -1208,8 +1208,8 @@ export default function Services() {
           title: language === "en" ? "Personal Brand Website" : "Site Web de marque personnelle",
           investment: "$1,000 – $3,000",
           desc: language === "en"
-            ? "A professional personal website that showcases your expertise, builds credibility, and helps you attract opportunities."
-            : "Un site Web personnel professionnel qui met en valeur votre expertise et attire les opportunités.",
+            ? "Show the world who you are and what you bring. We build personal websites that position you as the expert you are and help opportunities find you."
+            : "Montrez au monde qui vous êtes. Nous construisons des sites personnels qui vous positionnent en tant qu'expert et aident les opportunités à vous trouver.",
           benefits: language === "en"
             ? ["Professional personal website", "Portfolio or services showcase", "Mobile-friendly design", "Contact and booking integration"]
             : ["Site personnel professionnel", "Portfolio ou vitrine", "Design mobile", "Intégration de contact et réservation"],
@@ -1252,8 +1252,8 @@ export default function Services() {
           title: language === "en" ? "Leadership & People Management Coaching" : "Coaching en leadership et gestion des personnes",
           investment: "$200 – $750/mo",
           desc: language === "en"
-            ? "Coaching for new and aspiring managers to build confidence in hiring, managing teams, giving feedback, and handling difficult conversations."
-            : "Coaching pour gestionnaires nouveaux et aspirants, pour développer la confiance en gestion d'équipe, rétroaction et conversations difficiles.",
+            ? "Becoming a manager is one of the biggest career leaps — and most people get zero training for it. We help you lead with confidence, give feedback that lands, and build a team that trusts you."
+            : "Devenir gestionnaire est l'un des plus grands sauts de carrière — et la plupart des gens n'ont aucune formation. Nous vous aidons à diriger avec confiance.",
           benefits: language === "en"
             ? ["Management confidence building", "Effective feedback techniques", "Hiring & interview skills", "Difficult conversation frameworks"]
             : ["Développement de la confiance en gestion", "Techniques de rétroaction efficace", "Compétences en embauche", "Cadres de conversations difficiles"],
@@ -1299,8 +1299,8 @@ export default function Services() {
           title: language === "en" ? "Interview & Career Readiness" : "Préparation aux entrevues et à la carrière",
           investment: "$250 – $750",
           desc: language === "en"
-            ? "Get interview-ready with structured preparation, personal branding coaching, and practical tools to land the role you want."
-            : "Préparez-vous aux entrevues avec une préparation structurée et des outils pratiques pour obtenir le rôle que vous visez.",
+            ? "Walk into your next interview with confidence. We help you prepare, tell your story, and show up as the candidate employers remember."
+            : "Entrez dans votre prochaine entrevue avec confiance. Nous vous aidons à vous préparer, raconter votre histoire et marquer les esprits.",
           benefits: language === "en"
             ? ["Interview preparation coaching", "Personal brand development", "Resume and LinkedIn optimization", "Salary negotiation guidance"]
             : ["Coaching de préparation aux entrevues", "Développement de la marque personnelle", "Optimisation CV et LinkedIn", "Guidance de négociation salariale"],
@@ -1343,8 +1343,8 @@ export default function Services() {
           title: language === "en" ? "Career Placement & Job Search Support" : "Placement de carrière et soutien à la recherche d'emploi",
           investment: "$500 – $2,000",
           desc: language === "en"
-            ? "We help you get recruited. From resume optimization and targeted job applications to employer introductions and placement support — we work with you until you land the right role."
-            : "Nous vous aidons à vous faire recruter. De l'optimisation du CV aux introductions auprès d'employeurs — nous travaillons avec vous jusqu'à ce que vous décrochiez le bon poste.",
+            ? "Job searching alone is exhausting. We put a recruiting professional in your corner — helping you apply, connect, and land the right role faster."
+            : "Chercher un emploi seul est épuisant. Nous mettons un professionnel du recrutement à vos côtés — pour vous aider à postuler, réseauter et décrocher le bon poste plus vite.",
           benefits: language === "en"
             ? ["Resume & LinkedIn makeover", "Targeted job search strategy", "Employer introductions", "Application & follow-up management"]
             : ["Refonte CV et LinkedIn", "Stratégie de recherche ciblée", "Introductions auprès d'employeurs", "Gestion des candidatures et suivis"],
@@ -1387,15 +1387,15 @@ export default function Services() {
     },
     "self-serve": {
       label: language === "en" ? "Self-Serve" : "Libre-service",
-      tagline: language === "en" ? "Tools, programs & templates for self-guided performance improvement" : "Outils, programmes et modèles pour l'amélioration autonome de la performance",
+      tagline: language === "en" ? "Practical tools and programs you can start using today — because growth shouldn't wait" : "Des outils et programmes pratiques que vous pouvez utiliser dès aujourd'hui — parce que la croissance n'attend pas",
       icon: <Package className="text-accent" size={24} />,
       services: [
         {
           title: language === "en" ? "Performance Planner" : "Planificateur de performance",
           investment: "$49 – $99",
           desc: language === "en"
-            ? "A guided goal system with yearly planning, weekly review templates, and a KPI tracker to keep you on track."
-            : "Un système d'objectifs guidé avec planification annuelle et suivi de KPI.",
+            ? "Your personal roadmap to staying focused, organized, and on track — with planning frameworks and tracking tools that actually fit your life."
+            : "Votre feuille de route personnelle pour rester concentré, organisé et sur la bonne voie — avec des outils qui s'adaptent à votre vie.",
           benefits: language === "en"
             ? ["Yearly planning framework", "Weekly review templates", "Built-in KPI tracker", "Goal setting worksheet"]
             : ["Cadre de planification annuelle", "Modèles de revue", "Suivi de KPI intégré", "Feuille d'objectifs"],
@@ -1429,8 +1429,8 @@ export default function Services() {
           title: language === "en" ? "90-Day Performance Program" : "Programme de performance de 90 jours",
           investment: "$297 – $997",
           desc: language === "en"
-            ? "A structured growth program with a strategy framework, execution plan, and accountability system to transform your performance in 90 days."
-            : "Un programme de croissance structuré avec un cadre stratégique et un plan d'exécution.",
+            ? "Ready for real change? This 90-day program gives you the framework, the plan, and the accountability to go from scattered to structured — at your own pace."
+            : "Prêt pour un vrai changement ? Ce programme de 90 jours vous donne le cadre, le plan et la responsabilité pour passer du chaos à la structure — à votre rythme.",
           benefits: language === "en"
             ? ["Proven strategy framework", "12-week execution plan", "Built-in accountability system", "Progress tracking tools"]
             : ["Cadre stratégique éprouvé", "Plan d'exécution de 12 semaines", "Système de responsabilité", "Outils de suivi"],
@@ -1464,8 +1464,8 @@ export default function Services() {
           title: language === "en" ? "Performance Systems Toolkit" : "Boîte à outils de systèmes de performance",
           investment: "$49 – $199",
           desc: language === "en"
-            ? "Ready-to-use templates for KPIs, weekly planning, team accountability, and strategy execution."
-            : "Modèles prêts à l'emploi pour KPI, planification et exécution stratégique.",
+            ? "Don't start from scratch. Grab the same planning, tracking, and accountability tools we use with our consulting clients — ready to use right now."
+            : "Ne partez pas de zéro. Utilisez les mêmes outils de planification et de suivi que nous utilisons avec nos clients — prêts à l'emploi dès maintenant.",
           benefits: language === "en"
             ? ["KPI tracking templates", "Weekly planning sheets", "Team accountability frameworks", "Strategy execution tools"]
             : ["Modèles de suivi KPI", "Feuilles de planification", "Cadres de responsabilité", "Outils d'exécution"],
@@ -1508,8 +1508,8 @@ export default function Services() {
           title: language === "en" ? "Hiring & People Management Toolkit" : "Boîte à outils d'embauche et de gestion des personnes",
           investment: "$49 – $199",
           desc: language === "en"
-            ? "Ready-to-use templates for hiring, onboarding, performance reviews, and team management — designed for managers and business owners who want professional HR tools without consulting fees."
-            : "Modèles prêts à l'emploi pour l'embauche, l'intégration, les revues de performance et la gestion d'équipe.",
+            ? "Managing people shouldn't require an HR degree. Get practical, ready-to-use tools for hiring, onboarding, and managing your team — built for real managers, not corporate bureaucracies."
+            : "Gérer des personnes ne devrait pas nécessiter un diplôme RH. Obtenez des outils pratiques pour recruter, intégrer et gérer votre équipe — conçus pour de vrais gestionnaires.",
           benefits: language === "en"
             ? ["Hiring process templates", "Onboarding checklists", "Performance review frameworks", "People management guides"]
             : ["Modèles de recrutement", "Listes d'intégration", "Cadres de revue de performance", "Guides de gestion des personnes"],
@@ -1552,8 +1552,8 @@ export default function Services() {
           title: language === "en" ? "Job Search & Career Toolkit" : "Boîte à outils de recherche d'emploi et de carrière",
           investment: "$29 – $99",
           desc: language === "en"
-            ? "Everything you need to run a professional job search — resume templates, cover letter guides, interview preparation checklists, and a job application tracker to stay organized."
-            : "Tout ce dont vous avez besoin pour une recherche d'emploi professionnelle — modèles de CV, guides de lettre de motivation et suivi des candidatures.",
+            ? "Job searching without a system is overwhelming. This toolkit gives you everything you need to stay organized, present yourself well, and land interviews faster."
+            : "Chercher un emploi sans système est accablant. Cette boîte à outils vous donne tout pour rester organisé, bien vous présenter et décrocher des entrevues plus vite.",
           benefits: language === "en"
             ? ["Professional resume templates", "Cover letter & email templates", "Interview preparation checklists", "Job application tracker"]
             : ["Modèles de CV professionnels", "Modèles de lettres et courriels", "Listes de préparation aux entrevues", "Suivi des candidatures"],
@@ -1614,7 +1614,7 @@ export default function Services() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-      <SEOHead title="Consulting Services - Enterprise, Small Business & HR" description="Explore Performance Processes consulting services: enterprise business solutions, small business advisory, professional development coaching, HR strategy, recruitment process design, and operational efficiency workshops." path="/services" />
+      <SEOHead title="Services Built Around You — Enterprise, Small Business & Professional Growth" description="Find the support that fits where you are. From enterprise advisory and small business growth to personal coaching and career tools — our services are built to help you thrive, not just survive." path="/services" />
       <Navbar />
       <main className="flex-grow">
 
@@ -1635,15 +1635,15 @@ export default function Services() {
               </p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="text-hero-title">
                 {language === "en" ? (
-                  <>Management consulting for <span className="text-accent">every stage</span> of growth</>
+                  <>The right support at <span className="text-accent">every stage</span> of your journey</>
                 ) : (
-                  <>Conseil en gestion pour <span className="text-accent">chaque étape</span> de croissance</>
+                  <>Le bon soutien à <span className="text-accent">chaque étape</span> de votre parcours</>
                 )}
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="text-hero-subtitle">
                 {language === "en"
-                  ? "From operational excellence and people strategy to recruiting and staffing — we help companies find the right talent and help professionals get recruited into the right roles. Enterprise, small business, and professional solutions."
-                  : "De l'excellence opérationnelle et la stratégie RH au recrutement et à la dotation — nous aidons les entreprises à trouver les bons talents et les professionnels à se faire recruter. Solutions entreprises, PME et professionnels."}
+                  ? "Whether you're leading an enterprise, growing a small business, or investing in yourself — we meet you where you are and help you get where you want to go."
+                  : "Que vous dirigiez une entreprise, développiez une PME ou investissiez en vous-même — nous vous accompagnons là où vous êtes pour vous aider à atteindre vos objectifs."}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
@@ -1686,16 +1686,16 @@ export default function Services() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-6">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">
-                {language === "en" ? "How We Deliver Results" : "Comment nous produisons des résultats"}
+                {language === "en" ? "How We Walk With You" : "Comment nous vous accompagnons"}
               </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
-                {language === "en" ? "The Performance Process Method" : "La méthode Performance Process"}
+                {language === "en" ? "A Partnership, Not a Process" : "Un partenariat, pas un processus"}
               </h2>
               <div className="w-16 h-1 bg-accent rounded-full mx-auto mb-6" />
               <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg mb-4">
                 {language === "en"
-                  ? "Whether you're an enterprise, small business, or individual professional — our proven four-step framework turns ambition into consistent, measurable execution."
-                  : "Que vous soyez une entreprise, une PME ou un professionnel — notre cadre éprouvé en quatre étapes transforme l'ambition en exécution mesurable et cohérente."}
+                  ? "Every engagement starts with listening and ends with lasting change. We don't just hand you a plan — we walk with you through every step."
+                  : "Chaque engagement commence par l'écoute et se termine par un changement durable. Nous ne vous remettons pas simplement un plan — nous vous accompagnons à chaque étape."}
               </p>
             </div>
 
@@ -1735,7 +1735,7 @@ export default function Services() {
               <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                 <Button className="rounded-full bg-primary text-white hover:bg-accent h-14 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105" data-testid="button-methodology-cta">
                   <Phone size={16} className="mr-2" />
-                  {language === "en" ? "See How This Applies to You" : "Voyez comment cela s'applique à vous"}
+                  {language === "en" ? "Let's Talk About Your Journey" : "Parlons de votre parcours"}
                 </Button>
               </a>
             </div>
@@ -1746,16 +1746,16 @@ export default function Services() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-16">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">
-                {language === "en" ? "Our Services" : "Nos services"}
+                {language === "en" ? "Find Your Fit" : "Trouvez ce qui vous convient"}
               </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
-                {language === "en" ? "Enterprise solutions, small business support & professional services" : "Solutions d'entreprise, soutien aux PME et services professionnels"}
+                {language === "en" ? "Services built around where you are right now" : "Des services adaptés à là où vous en êtes maintenant"}
               </h2>
               <div className="w-16 h-1 bg-accent rounded-full mx-auto mb-6" />
               <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg">
                 {language === "en"
-                  ? "Choose the level of support that fits where you are — from full enterprise advisory to self-serve tools and templates."
-                  : "Choisissez le niveau de soutien qui vous convient — du conseil d'entreprise complet aux outils en libre-service."}
+                  ? "No two journeys are the same. Whether you need enterprise strategy, hands-on small business support, personal coaching, or ready-to-use tools — there's a place for you here."
+                  : "Chaque parcours est unique. Que vous ayez besoin de stratégie d'entreprise, de soutien pratique, de coaching personnel ou d'outils prêts à l'emploi — il y a une place pour vous ici."}
               </p>
             </div>
 

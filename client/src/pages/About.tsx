@@ -128,9 +128,6 @@ export default function About() {
 
         <section className="py-16 bg-white border-b" data-testid="section-trust-strip">
           <div className="container mx-auto px-4 md:px-8">
-            <AnimateOnScroll className="text-center mb-10">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground">Trusted by leaders across</p>
-            </AnimateOnScroll>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {industries.map((ind, i) => (
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 80}>
@@ -269,7 +266,6 @@ export default function About() {
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-12">
               <div className="flex-1">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Our Mission</p>
                 <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-6 leading-tight">
                   "To help enterprises scale, small businesses grow, and professionals lead — through structured management consulting that produces measurable outcomes."
                 </h2>
@@ -594,9 +590,6 @@ export default function About() {
           <FloatingShape className="w-12 h-12 bottom-20 right-24 opacity-20" variant="dot" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <AnimateOnScroll className="max-w-4xl mx-auto text-center">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
-                Ready to Get Started?
-              </p>
               <h2 className="text-4xl md:text-5xl font-heading font-extrabold mb-8 leading-tight">
                 Let's build something <span className="text-accent">meaningful</span> together
               </h2>

@@ -1685,9 +1685,6 @@ export default function Services() {
         <section className="py-28 bg-white" data-testid="section-methodology">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-6">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">
-                {language === "en" ? "How We Walk With You" : "Comment nous vous accompagnons"}
-              </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
                 {language === "en" ? "A Partnership, Not a Process" : "Un partenariat, pas un processus"}
               </h2>
@@ -1745,9 +1742,6 @@ export default function Services() {
         <section id="services-section" className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white" data-testid="section-services">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-16">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">
-                {language === "en" ? "Find Your Fit" : "Trouvez ce qui vous convient"}
-              </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
                 {language === "en" ? "Services built around where you are right now" : "Des services adaptés à là où vous en êtes maintenant"}
               </h2>
@@ -1857,11 +1851,8 @@ export default function Services() {
         <section className="py-28 bg-white" data-testid="section-collective">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-16">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">
-                {language === "en" ? "Performance Processes Collective" : "Collectif Performance Processes"}
-              </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
-                {language === "en" ? "Join the community" : "Rejoignez la communauté"}
+                {language === "en" ? "Join the Collective" : "Rejoignez le Collectif"}
               </h2>
               <div className="w-16 h-1 bg-accent rounded-full mx-auto mb-6" />
               <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg">
@@ -1943,9 +1934,6 @@ export default function Services() {
                       <Heart className="text-accent" size={26} />
                     </div>
                     <div>
-                      <p className="text-xs font-black uppercase tracking-[0.3em] text-accent">
-                        {language === "en" ? "International Women's Month" : "Mois international de la femme"}
-                      </p>
                       <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-primary">
                         {language === "en" ? "Women's Performance Grant" : "Bourse de performance pour les femmes"}
                       </h2>
@@ -2066,7 +2054,7 @@ export default function Services() {
 
                 <div className="mt-8 space-y-8">
                   <div>
-                    <h4 className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
+                    <h4 className="text-sm font-bold text-primary mb-6">
                       {language === "en" ? "Pricing Options" : "Options de prix"}
                     </h4>
                     <div className={`grid gap-6 ${selectedService.pricingTiers.length === 2 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1 md:grid-cols-3"}`}>
@@ -2151,9 +2139,6 @@ export default function Services() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.05)_0%,transparent_60%)]" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
-                {language === "en" ? "Get Started" : "Commencer"}
-              </p>
               <h2 className="text-4xl md:text-5xl font-heading font-extrabold mb-8 leading-tight">
                 {language === "en" ? "Not sure where to start?" : "Vous ne savez pas par où commencer ?"}
               </h2>

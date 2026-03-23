@@ -314,7 +314,6 @@ export default function Approach() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
               <AnimateOnScroll animation="fade-left">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5" data-testid="text-methodology-label">Our Methodology</p>
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-8 italic" data-testid="text-methodology-title">
                   Built on Experience, Driven by Results
                 </h2>
@@ -353,7 +352,6 @@ export default function Approach() {
           <FloatingShape className="w-10 h-10 top-40 right-20" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">Our Process</p>
               <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic" data-testid="text-process-title">
                 Four Phases to Lasting Impact
               </h2>
@@ -465,7 +463,6 @@ export default function Approach() {
           <GradientOrb className="w-72 h-72 bg-accent/5 -bottom-32 right-20" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">Our Toolkit</p>
               <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-6" data-testid="text-tools-title">
                 Tools & Frameworks We Use
               </h2>
@@ -501,7 +498,6 @@ export default function Approach() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-20">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">FAQ</p>
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-6" data-testid="text-faq-title">
                   What to Expect
                 </h2>
@@ -548,7 +544,6 @@ export default function Approach() {
                 />
               </AnimateOnScroll>
               <AnimateOnScroll animation="fade-right" delay={200} className="order-1 md:order-2">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-5">Get Started</p>
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-white italic mb-8" data-testid="text-cta-title">
                   Ready to Begin Your Transformation?
                 </h2>

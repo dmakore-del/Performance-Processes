@@ -112,7 +112,6 @@ export default function WomensPerformanceGrant() {
                   <Heart className="text-accent" size={24} />
                 </div>
                 <div>
-                  <p className="text-xs font-black uppercase tracking-[0.3em] text-accent">International Women's Month Initiative</p>
                   <h2 className="text-2xl font-heading font-extrabold text-primary">Initiative Overview</h2>
                 </div>
               </div>
@@ -160,7 +159,6 @@ export default function WomensPerformanceGrant() {
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
-                  <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Eligibility</p>
                   <h2 className="text-3xl font-heading font-extrabold text-primary mb-6">Who Should Apply</h2>
                   <p className="text-muted-foreground leading-relaxed mb-6">
                     This grant is intended for women who are driven, committed to growth, and ready to build the systems that support sustainable success.
@@ -215,7 +213,6 @@ export default function WomensPerformanceGrant() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-10">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Apply Now</p>
                 <h2 className="text-3xl font-heading font-extrabold text-primary mb-4">Grant Application</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   Complete the form below to apply for the Women's Performance Grant. Only 3 recipients will be selected. Take your time to provide thoughtful responses — your answers help us understand your goals and how this program can best support you.

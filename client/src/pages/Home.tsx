@@ -42,7 +42,7 @@ const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@perf
 
 const subtitles = [
   { start: 0, end: 2, text: "The leaders who create lasting change aren't doing it alone..." },
-  { start: 2, end: 4.5, text: "They're part of a community that holds them accountable and lifts them higher." },
+  { start: 2, end: 4.5, text: "They surround themselves with the right people — partners who hold them accountable." },
   { start: 4.5, end: 6, text: "That's the kind of partnership we build." },
 ];
 
@@ -91,10 +91,10 @@ export default function Home() {
     {
       icon: <Handshake size={24} />,
       image: handsPartnershipImg,
-      title: language === "en" ? "A Community That Lifts You Up" : "Une communauté qui vous soutient",
+      title: language === "en" ? "A Network That Lifts You Up" : "Un réseau qui vous soutient",
       desc: language === "en"
-        ? "Join a growing network of professionals and business owners who share insights, celebrate wins, and support each other through the hard parts of growth."
-        : "Rejoignez un réseau croissant de professionnels qui partagent des idées, célèbrent les victoires et se soutiennent mutuellement.",
+        ? "Connect with a growing network of professionals and business owners who share insights, celebrate wins, and support each other through the hard parts of growth."
+        : "Connectez-vous avec un réseau croissant de professionnels qui partagent des idées, célèbrent les victoires et se soutiennent mutuellement.",
     },
     {
       icon: <Sparkles size={24} />,
@@ -119,8 +119,8 @@ export default function Home() {
       image: mentorshipConnectionImg,
       title: language === "en" ? "Professionals Ready to Level Up" : "Professionnels prêts à évoluer",
       desc: language === "en"
-        ? "Lawyers, consultants, coaches, and advisors who want more than just productivity — they want purpose-driven careers and a community that gets it."
-        : "Avocats, consultants, coaches et conseillers qui veulent plus que de la productivité — ils veulent des carrières motivées par un but.",
+        ? "Lawyers, consultants, coaches, and advisors who want more than productivity — they want purpose-driven careers and a partner who helps them get there."
+        : "Avocats, consultants, coaches et conseillers qui veulent plus que de la productivité — ils veulent des carrières motivées par un but et un partenaire pour y arriver.",
     },
     {
       image: empoweredOwnerImg,
@@ -172,8 +172,8 @@ export default function Home() {
       image: milestoneImg,
       title: language === "en" ? "You Grow With Confidence" : "Vous grandissez avec confiance",
       desc: language === "en"
-        ? "With the right systems in place and a community behind you, growth stops feeling overwhelming and starts feeling inevitable."
-        : "Avec les bons systèmes en place et une communauté derrière vous, la croissance cesse d'être accablante et devient inévitable.",
+        ? "With the right systems in place and the right support behind you, growth stops feeling overwhelming and starts feeling inevitable."
+        : "Avec les bons systèmes en place et le bon soutien derrière vous, la croissance cesse d'être accablante et devient inévitable.",
     },
   ];
 
@@ -196,7 +196,7 @@ export default function Home() {
       image: empoweredOwnerImg,
       title: language === "en" ? "Small Business Growth" : "Croissance PME",
       desc: language === "en"
-        ? "A dedicated growth partner who helps you stop firefighting and start building — with structure, strategy, and a community of fellow founders cheering you on."
+        ? "A dedicated growth partner who helps you stop firefighting and start building — with structure, strategy, and the accountability to follow through."
         : "Un partenaire de croissance dédié qui vous aide à arrêter de gérer les urgences et à commencer à construire.",
     },
     {
@@ -226,12 +226,12 @@ export default function Home() {
 
   const insights = [
     {
-      title: language === "en" ? "Why Growth Feels Hard (And How Community Changes That)" : "Pourquoi la croissance semble difficile",
-      category: language === "en" ? "Community" : "Communauté",
+      title: language === "en" ? "Why Growth Feels Hard (And What Actually Helps)" : "Pourquoi la croissance semble difficile",
+      category: language === "en" ? "Strategy" : "Stratégie",
       date: language === "en" ? "January 15, 2026" : "15 janvier 2026",
       excerpt: language === "en"
-        ? "The biggest challenge in business isn't strategy — it's isolation. Here's why the most successful leaders surround themselves with the right people."
-        : "Le plus grand défi en affaires n'est pas la stratégie — c'est l'isolement.",
+        ? "The biggest challenge in business isn't strategy — it's trying to do it all alone. Here's why the most successful leaders invest in the right support."
+        : "Le plus grand défi en affaires n'est pas la stratégie — c'est d'essayer de tout faire seul.",
     },
     {
       title: language === "en" ? "Building Systems That Set You Free" : "Construire des systèmes qui vous libèrent",
@@ -253,7 +253,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
-      <SEOHead title="Performance Processes | Your Growth Partner & Community" description="Performance Processes is more than a consulting firm — we're a community of professionals and business owners building something meaningful together. Join us for strategic support, accountability, and lasting growth." path="/" />
+      <SEOHead title="Performance Processes | Management Consulting for Every Stage of Growth" description="Performance Processes helps professionals, business owners, and leadership teams build better systems, develop their people, and grow with confidence. Strategic advisory, coaching, and operational support." path="/" />
       <Navbar />
 
       <main className="flex-grow">
@@ -273,10 +273,6 @@ export default function Home() {
           <GeometricAccent className="bottom-[15%] right-[5%] text-white z-[2]" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-2xl lg:max-w-[55%]">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-8 backdrop-blur-sm animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                <Heart size={14} />
-                {language === "en" ? "Your Growth Community" : "Votre communauté de croissance"}
-              </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.2s" }} data-testid="text-hero-title">
                 {language === "en" ? (
                   <>You Don't Have to Build It Alone. <span className="text-accent">Grow With Us.</span></>
@@ -286,8 +282,8 @@ export default function Home() {
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-xl animate-fade-in-up" style={{ animationDelay: "0.35s" }} data-testid="text-hero-subtitle">
                 {language === "en"
-                  ? "Performance Processes is more than consulting — we're a community of professionals and business owners who support each other, share what works, and grow together."
-                  : "Performance Processes est plus que du conseil — nous sommes une communauté de professionnels qui se soutiennent mutuellement et grandissent ensemble."}
+                  ? "We partner with professionals, business owners, and leadership teams to build better systems, develop their people, and grow with confidence."
+                  : "Nous travaillons avec les professionnels, les entrepreneurs et les équipes de direction pour bâtir de meilleurs systèmes et grandir avec confiance."}
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
                 <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-hero-audit">
@@ -308,7 +304,7 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/60 shrink-0">
-                {language === "en" ? "Trusted By Our Community" : "Confiance de notre communauté"}
+                {language === "en" ? "Trusted By" : "Confiance de"}
               </span>
               <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
                 <div className="flex items-center gap-2 text-primary/70 hover:text-primary transition-colors" data-testid="logo-nextup">
@@ -335,20 +331,17 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
               <AnimateOnScroll animation="fade-left">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                  {language === "en" ? "The Value We Bring" : "La valeur que nous apportons"}
-                </p>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
                   {language === "en" ? "More than consulting. A partnership built on trust." : "Plus que du conseil. Un partenariat bâti sur la confiance."}
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-10">
                   {language === "en"
-                    ? "When you join Performance Processes, you're not hiring a firm — you're gaining a team that genuinely cares about your success and a community that has your back."
-                    : "Quand vous rejoignez Performance Processes, vous ne recrutez pas une firme — vous gagnez une équipe qui se soucie vraiment de votre succès."}
+                    ? "When you work with Performance Processes, you're not hiring a firm — you're gaining a dedicated team that genuinely cares about your success."
+                    : "Quand vous travaillez avec Performance Processes, vous ne recrutez pas une firme — vous gagnez une équipe dédiée qui se soucie vraiment de votre succès."}
                 </p>
                 <div className="grid grid-cols-2 gap-6">
                   {[
-                    { val: "100+", label: language === "en" ? "Community members" : "Membres de la communauté" },
+                    { val: "100+", label: language === "en" ? "Clients served" : "Clients servis" },
                     { val: "97%", label: language === "en" ? "Client satisfaction" : "Satisfaction client" },
                     { val: "∞", label: language === "en" ? "Ongoing support" : "Soutien continu" },
                     { val: "24/7", label: language === "en" ? "Portal access" : "Accès portail" },
@@ -404,16 +397,13 @@ export default function Home() {
           <FloatingShape className="w-10 h-10 top-40 right-20" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                {language === "en" ? "Our Community" : "Notre communauté"}
-              </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                {language === "en" ? "You belong here" : "Vous avez votre place ici"}
+                {language === "en" ? "Who We Work With" : "Avec qui nous travaillons"}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {language === "en"
-                  ? "Whether you're a solo professional, a growing business owner, or leading a team — you'll find people who understand your journey and want to see you succeed."
-                  : "Que vous soyez un professionnel solo, un entrepreneur en croissance ou un leader d'équipe — vous trouverez des gens qui comprennent votre parcours."}
+                  ? "Whether you're a solo professional, a growing business owner, or leading a team — we understand your challenges and we're ready to help."
+                  : "Que vous soyez un professionnel solo, un entrepreneur en croissance ou un leader d'équipe — nous comprenons vos défis et sommes prêts à vous aider."}
               </p>
             </AnimateOnScroll>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -483,9 +473,6 @@ export default function Home() {
                 </div>
               </AnimateOnScroll>
               <AnimateOnScroll animation="fade-right" delay={200}>
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                  {language === "en" ? "Your Journey With Us" : "Votre parcours avec nous"}
-                </p>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
                   {language === "en" ? "A partnership, not a project" : "Un partenariat, pas un projet"}
                 </h2>
@@ -537,11 +524,8 @@ export default function Home() {
           <GradientOrb className="w-72 h-72 bg-accent/5 -bottom-32 right-20" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                {language === "en" ? "How We Help" : "Comment nous aidons"}
-              </p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                {language === "en" ? "Support designed around your needs" : "Un soutien conçu autour de vos besoins"}
+                {language === "en" ? "How We Help" : "Comment nous aidons"}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {language === "en"
@@ -601,9 +585,6 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <AnimateOnScroll animation="fade-left">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                  {language === "en" ? "What Our Clients Experience" : "Ce que nos clients vivent"}
-                </p>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6">
                   {language === "en" ? "The difference you'll feel" : "La différence que vous ressentirez"}
                 </h2>
@@ -620,7 +601,7 @@ export default function Home() {
                   </div>
                   <div data-testid="stat-execution">
                     <p className="text-4xl md:text-5xl font-extrabold text-accent mb-2">100+</p>
-                    <p className="text-white/50 text-sm">{language === "en" ? "Community members" : "Membres"}</p>
+                    <p className="text-white/50 text-sm">{language === "en" ? "Clients served" : "Clients servis"}</p>
                   </div>
                   <div data-testid="stat-sustainable">
                     <p className="text-4xl md:text-5xl font-extrabold text-white mb-2">∞</p>
@@ -634,7 +615,7 @@ export default function Home() {
                     language === "en" ? "A team that moves together with purpose" : "Une équipe qui avance ensemble avec un but",
                     language === "en" ? "Less stress, more strategic focus" : "Moins de stress, plus de concentration stratégique",
                     language === "en" ? "Systems that run without you babysitting them" : "Des systèmes qui fonctionnent sans surveillance constante",
-                    language === "en" ? "A community that celebrates your wins" : "Une communauté qui célèbre vos victoires",
+                    language === "en" ? "A team that celebrates your wins" : "Une équipe qui célèbre vos victoires",
                     language === "en" ? "Confidence that growth is sustainable" : "Confiance que la croissance est durable",
                   ].map((text, i) => (
                     <div key={i} className="flex items-center gap-3 py-2" data-testid={`result-item-${i}`}>
@@ -660,11 +641,8 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="flex flex-col md:flex-row md:items-end md:justify-between mb-20">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">
-                  {language === "en" ? "From Our Community" : "De notre communauté"}
-                </p>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-2">
-                  {language === "en" ? "Ideas Worth Sharing" : "Des idées qui méritent d'être partagées"}
+                  {language === "en" ? "Latest Insights" : "Dernières perspectives"}
                 </h2>
               </div>
               <Link href="/insights" className="inline-flex items-center gap-2 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all mt-6 md:mt-0 group" data-testid="link-view-all-insights">
@@ -717,9 +695,6 @@ export default function Home() {
                 </div>
                 <FloatingShape className="w-14 h-14 top-10 right-10 z-[5]" variant="ring" />
                 <div className="relative z-10 p-12 lg:p-20 max-w-2xl">
-                  <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">
-                    {language === "en" ? "Join Our Community" : "Rejoignez notre communauté"}
-                  </p>
                   <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
                     {language === "en"
                       ? "Ready to stop going it alone?"

@@ -30,6 +30,16 @@ interface CartItem {
   quantity: number;
 }
 
+interface StripeProductRow {
+  product_id: string;
+  product_name: string;
+  product_description: string;
+  product_metadata: Record<string, string>;
+  price_id: string;
+  unit_amount: number;
+  currency: string;
+}
+
 const PLAYBOOK_PRODUCTS: PlaybookProduct[] = [
   {
     id: "performance-kickstart",
@@ -437,7 +447,7 @@ export default function Playbooks() {
     const missing: string[] = [];
 
     for (const cartItem of cart) {
-      const stripeProduct = productsData.data.find((p: any) => p.product_name === cartItem.product.name);
+      const stripeProduct = (productsData.data as StripeProductRow[]).find((p) => p.product_name === cartItem.product.name);
       if (stripeProduct) {
         items.push({ priceId: stripeProduct.price_id, quantity: cartItem.quantity });
       } else {

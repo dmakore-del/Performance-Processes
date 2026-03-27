@@ -324,8 +324,8 @@ export async function registerRoutes(
 
       for (const item of items) {
         const price = await stripe.prices.retrieve(item.priceId, { expand: ['product'] });
-        const product = price.product as any;
-        if (!product || product.metadata?.category !== 'playbook') {
+        const product = typeof price.product === 'object' ? price.product : null;
+        if (!product || !('metadata' in product) || product.metadata?.category !== 'playbook') {
           return res.status(400).json({ message: `Invalid product: ${item.priceId}` });
         }
       }

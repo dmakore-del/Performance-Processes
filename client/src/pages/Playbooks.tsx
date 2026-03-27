@@ -426,6 +426,7 @@ export default function Playbooks() {
       setCart((prev) => prev.filter((item) => item.product.id !== id));
       return;
     }
+    if (qty > 10) return;
     setCart((prev) => prev.map((item) => (item.product.id === id ? { ...item, quantity: qty } : item)));
   };
 

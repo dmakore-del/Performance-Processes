@@ -9,6 +9,9 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import ppLogo from "@assets/ChatGPT_Image_Feb_21,_2026,_09_32_25_PM_1774628332564.png";
+import foundationsImg from "@assets/generated/playbook-foundations.png";
+import systemsImg from "@assets/generated/playbook-systems.png";
+import advancedImg from "@assets/generated/playbook-advanced.png";
 
 interface PlaybookProduct {
   id: string;
@@ -149,7 +152,7 @@ const TIER_CONFIG = {
     bgColor: "bg-blue-50",
     borderColor: "border-blue-200",
     textColor: "text-blue-700",
-    badgeColor: "bg-blue-100 text-blue-800",
+    image: foundationsImg,
   },
   systems: {
     label: "Systems",
@@ -159,7 +162,7 @@ const TIER_CONFIG = {
     bgColor: "bg-pink-50",
     borderColor: "border-pink-200",
     textColor: "text-pink-700",
-    badgeColor: "bg-pink-100 text-pink-800",
+    image: systemsImg,
   },
   advanced: {
     label: "Advanced",
@@ -169,7 +172,7 @@ const TIER_CONFIG = {
     bgColor: "bg-slate-50",
     borderColor: "border-slate-200",
     textColor: "text-slate-700",
-    badgeColor: "bg-slate-100 text-slate-800",
+    image: advancedImg,
   },
 };
 
@@ -182,7 +185,7 @@ function ProductCard({ product, onAddToCart, isInCart }: { product: PlaybookProd
       <div className={`relative overflow-hidden rounded-t-2xl p-6 bg-gradient-to-br ${tier.color} flex items-center justify-center h-44`}>
         <img src={ppLogo} alt="Performance Processes" className="h-16 w-auto opacity-20 absolute top-4 right-4" />
         <div className="text-white text-center relative z-10">
-          <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${tier.badgeColor} mb-3`}>{tier.label}</span>
+          <p className="text-xs font-bold uppercase tracking-wider text-white/70 mb-3">{tier.label}</p>
           <h3 className="text-lg font-bold leading-tight">{product.name}</h3>
         </div>
       </div>
@@ -523,15 +526,20 @@ export default function Playbooks() {
           <section key={tierKey} className="py-20 md:py-24 bg-white even:bg-secondary/30" data-testid={`section-tier-${tierKey}`}>
             <div className="container mx-auto px-4 md:px-8">
               <AnimateOnScroll animation="fade-up">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${tier.color} flex items-center justify-center`}>
-                    <TierIcon size={22} className="text-white" />
-                  </div>
-                  <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-primary">{tier.label}</h2>
+                <div className="relative rounded-2xl overflow-hidden mb-12">
+                  <img src={tier.image} alt={`${tier.label} playbooks`} className="w-full h-48 md:h-64 object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/40 flex items-center">
+                    <div className="px-8 md:px-12">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className={`w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center`}>
+                          <TierIcon size={20} className="text-white" />
+                        </div>
+                        <h2 className="text-3xl md:text-4xl font-bold text-white">{tier.label}</h2>
+                      </div>
+                      <p className="text-lg text-white/80 max-w-xl">{tier.description}</p>
+                    </div>
                   </div>
                 </div>
-                <p className="text-lg text-muted-foreground mb-12 max-w-2xl">{tier.description}</p>
               </AnimateOnScroll>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {products.map((product, i) => (

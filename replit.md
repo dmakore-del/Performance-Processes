@@ -131,5 +131,6 @@ Services are organized into 4 tabs with tabbed navigation:
 - **Google Fonts**: Inter and Plus Jakarta Sans loaded via CDN
 - **Stripe**: Payment processing via Replit Stripe connector with receipt emails
 - **Email (SMTP)**: Nodemailer with Microsoft 365/Outlook SMTP for receipt emails
-- **PDFKit**: Branded receipt PDF generation
+- **PDFKit**: Branded receipt PDF generation and playbook content PDF delivery
+- **Playbook Delivery**: `server/playbookDelivery.ts` — generates branded playbook content PDFs (cover page, table of contents, sections with tips/action items, CTA page) and sends delivery email with PDF attachments on purchase. Triggered by `checkout.session.completed` webhook when `session.metadata.source === 'playbooks'`. Uses product metadata (`category: 'playbook'`) for robust detection. Separate deduplication from receipt emails to allow independent retry on failure.
 - **FAQ Chatbot**: Client-side keyword-matching chatbot rendered globally

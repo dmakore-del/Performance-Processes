@@ -14,6 +14,7 @@ export function Navbar() {
   const navLinks = [
     { label: t("nav.home"), href: "/" },
     { label: t("nav.services"), href: "/services" },
+    { label: "Playbooks", href: "/playbooks" },
     { label: t("nav.about"), href: "/about" },
     { label: t("nav.approach"), href: "/approach" },
     { label: "Insights", href: "/insights" },
@@ -58,6 +59,7 @@ export function Navbar() {
                   "text-[14px] font-bold text-primary hover:text-accent transition-all px-4 py-2 rounded-full",
                   location === link.href ? "bg-secondary text-accent" : "hover:bg-secondary"
                 )}
+                data-testid={`link-nav-${link.href.replace(/\//g, '') || 'home'}`}
               >
                 {link.label}
             </Link>
@@ -113,6 +115,7 @@ export function Navbar() {
                     location === link.href ? "text-accent border-accent" : "text-primary"
                   )}
                   onClick={() => setIsMobileMenuOpen(false)}
+                  data-testid={`link-mobile-nav-${link.href.replace(/\//g, '') || 'home'}`}
                 >
                   {link.label}
                   <ChevronDown size={24} className="-rotate-90" />

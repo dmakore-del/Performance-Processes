@@ -132,6 +132,17 @@ const PRODUCTS: { name: string; description: string; metadata: Record<string, st
   // === COLLECTIVE ===
   { name: 'Collective - Essential', description: 'Performance Processes Collective monthly membership - essential tier.', metadata: { category: 'collective', tier: 'essential', billing: 'monthly' }, price: 4900, recurring: true },
   { name: 'Collective - Premium', description: 'Performance Processes Collective monthly membership - premium tier.', metadata: { category: 'collective', tier: 'premium', billing: 'monthly' }, price: 9900, recurring: true },
+  // === PLAYBOOKS ===
+  { name: 'The Performance Kickstart Kit', description: 'Goal-setting templates, weekly planning tools, and a personal performance scorecard.', metadata: { category: 'playbook', tier: 'foundations' }, price: 4900 },
+  { name: 'The Hiring Right Playbook', description: 'Job description templates, interview scorecards, and onboarding checklists.', metadata: { category: 'playbook', tier: 'foundations' }, price: 2900 },
+  { name: 'The SOPs That Scale Starter Pack', description: 'SOP templates, process mapping guide, and team accountability tracker.', metadata: { category: 'playbook', tier: 'foundations' }, price: 2500 },
+  { name: 'The Manager\'s First 90 Days', description: 'Transition plan, team assessment framework, and quick-win action planner.', metadata: { category: 'playbook', tier: 'foundations' }, price: 2900 },
+  { name: 'The Strategic Planning Blueprint', description: 'Full strategic planning workbook with SWOT, OKR frameworks, and 1-3 year roadmap templates.', metadata: { category: 'playbook', tier: 'systems' }, price: 14900 },
+  { name: 'The Performance Management System', description: 'Complete KPI library, review cycle templates, feedback frameworks, and performance dashboard.', metadata: { category: 'playbook', tier: 'systems' }, price: 12900 },
+  { name: 'The Culture & Engagement Toolkit', description: 'Engagement survey templates, culture audit framework, and values alignment workshop guide.', metadata: { category: 'playbook', tier: 'systems' }, price: 9900 },
+  { name: 'The Organizational Design Playbook', description: 'Org structure templates, role clarity matrices, RACI charts, and restructuring guide.', metadata: { category: 'playbook', tier: 'advanced' }, price: 19900 },
+  { name: 'The Executive Transition Toolkit', description: 'Leadership transition roadmap, stakeholder mapping, first 100 days plan, and board reporting templates.', metadata: { category: 'playbook', tier: 'advanced' }, price: 14900 },
+  { name: 'The Change Management Playbook', description: 'Change readiness assessment, communication plan templates, resistance management guide, and adoption tracker.', metadata: { category: 'playbook', tier: 'advanced' }, price: 8900 },
 ];
 
 export async function ensureStripeProducts(): Promise<void> {

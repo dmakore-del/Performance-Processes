@@ -2,7 +2,7 @@
 
 ## Overview
 
-Performance Processes is a professional management consulting firm website built as a full-stack TypeScript application. Founded in 2023 by Danai Makore (contact@performanceprocesses.com). The site helps organizations bridge the gap between vision and execution by offering management consulting services across four pillars: enterprise solutions (including HR & People Strategy, Recruitment Process Design, and Leadership & Talent Development), small business advisory (including People Operations Setup and Recruitment & Hiring Support), professional development (including Leadership & People Management Coaching and Interview & Career Readiness), and self-serve tools (including Hiring & People Management Toolkit). It includes a public-facing marketing site (Home, About, Services, Approach, Contact, Careers, News, Insights, Legal, Accessibility, Sitemap, Women's Performance Grant) and a fully functional client portal with dashboard, roadmap, documents, meetings, action tracking, performance metrics, messaging, resources, billing, leads tracker, and admin user management. The site supports English/French bilingual content. All content is authentic with no fabricated testimonials, fake case studies, or inflated statistics.
+Performance Processes is a professional management consulting firm website built as a full-stack TypeScript application. Founded in 2023 by Danai Makore (contact@performanceprocesses.com). The site helps organizations bridge the gap between vision and execution by offering management consulting services across four pillars: enterprise solutions (including HR & People Strategy, Recruitment Process Design, and Leadership & Talent Development), small business advisory (including People Operations Setup and Recruitment & Hiring Support), professional development (including Leadership & People Management Coaching and Interview & Career Readiness), and self-serve tools (including Hiring & People Management Toolkit). It includes a public-facing marketing site (Home, About, Services, Approach, Playbooks, Contact, Careers, News, Insights, Legal, Accessibility, Sitemap, Women's Performance Grant) and a fully functional client portal with dashboard, roadmap, documents, meetings, action tracking, performance metrics, messaging, resources, billing, leads tracker, and admin user management. The site supports English/French bilingual content. All content is authentic with no fabricated testimonials, fake case studies, or inflated statistics.
 
 ## User Preferences
 
@@ -29,6 +29,7 @@ Preferred communication style: Simple, everyday language.
   - `GET /api/stripe/key` — returns Stripe publishable key
   - `GET /api/products` — lists active Stripe products with prices
   - `POST /api/checkout` — creates Stripe checkout session (auto-detects one-time vs subscription)
+  - `POST /api/cart-checkout` — creates Stripe checkout session for multi-item playbook cart (validates priceId belongs to playbook category, enforces quantity bounds 1-10)
   - `POST /api/stripe/webhook` — Stripe webhook (registered before express.json() for raw body); sends payment notification to admin via Outlook
   - `GET /api/news` — fetches live business news from Google News RSS feed (rss-parser)
   - `POST /api/sponsor-checkout` — creates Stripe checkout for pro-bono sponsorship tiers

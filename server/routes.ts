@@ -298,6 +298,65 @@ export async function registerRoutes(
     }
   });
 
+  app.post("/api/cart-checkout", async (req, res) => {
+    try {
+      const { items } = req.body;
+
+      if (!items || !Array.isArray(items) || items.length === 0) {
+        return res.status(400).json({ message: "Cart items are required" });
+      }
+
+      if (items.length > 20) {
+        return res.status(400).json({ message: "Too many items in cart" });
+      }
+
+      for (const item of items) {
+        if (!item.priceId || typeof item.priceId !== 'string') {
+          return res.status(400).json({ message: "Each item must have a valid priceId" });
+        }
+        const qty = Number(item.quantity);
+        if (!Number.isInteger(qty) || qty < 1 || qty > 10) {
+          return res.status(400).json({ message: "Quantity must be an integer between 1 and 10" });
+        }
+      }
+
+      const stripe = await getUncachableStripeClient();
+
+      for (const item of items) {
+        const price = await stripe.prices.retrieve(item.priceId, { expand: ['product'] });
+        const product = price.product as any;
+        if (!product || product.metadata?.category !== 'playbook') {
+          return res.status(400).json({ message: `Invalid product: ${item.priceId}` });
+        }
+      }
+
+      const baseUrl = process.env.REPLIT_DOMAINS
+        ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
+        : `${req.protocol}://${req.get('host')}`;
+
+      const line_items = items.map((item: { priceId: string; quantity: number }) => ({
+        price: item.priceId,
+        quantity: item.quantity,
+      }));
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items,
+        mode: 'payment',
+        success_url: `${baseUrl}/playbooks?payment=success`,
+        cancel_url: `${baseUrl}/playbooks?payment=cancelled`,
+        metadata: {
+          source: 'playbooks',
+        },
+      });
+
+      res.json({ url: session.url });
+    } catch (error) {
+      console.error("Cart checkout error:", error);
+      res.status(500).json({ message: "Failed to create checkout session" });
+    }
+  });
+
   app.get("/api/news", async (_req, res) => {
     try {
       const Parser = (await import("rss-parser")).default;

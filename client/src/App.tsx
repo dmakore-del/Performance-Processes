@@ -8,7 +8,7 @@ import { ProtectedRoute } from "@/components/ProtectedRoute";
 import NotFound from "./pages/not-found";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Services from "./pages/Services";
+import { Redirect } from "wouter";
 import Approach from "./pages/Approach";
 import Contact from "./pages/Contact";
 import Legal from "./pages/Legal";
@@ -60,7 +60,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/services" component={Services} />
+      <Route path="/services">{() => <Redirect to="/consulting" />}</Route>
       <Route path="/approach" component={Approach} />
       <Route path="/contact" component={Contact} />
       <Route path="/legal" component={Legal} />

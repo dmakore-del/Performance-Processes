@@ -39,17 +39,19 @@ interface PricingTier {
   subtitle: string;
   features: string[];
   stripeProductName: string;
+  isMonthly?: boolean;
 }
 
 interface ServiceEntry {
   title: string;
   investment: string;
-  investmentNote: string;
+  investmentNote?: string;
   desc: string;
   benefits: string[];
   learnMore: string;
   idealFor: string;
   image: string;
+  icon?: React.ReactNode;
   pricingTiers: PricingTier[];
 }
 

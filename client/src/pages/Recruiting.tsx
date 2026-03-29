@@ -77,7 +77,7 @@ export default function Recruiting() {
 
   const checkoutMutation = useMutation({
     mutationFn: async ({ priceId, serviceName }: { priceId: string; serviceName: string }) => {
-      const res = await apiRequest("POST", "/api/checkout", { priceId, serviceName });
+      const res = await apiRequest("POST", "/api/checkout", { priceId, serviceName, returnPage: "/recruiting" });
       return res.json();
     },
     onSuccess: (data) => {

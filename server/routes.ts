@@ -271,6 +271,8 @@ export async function registerRoutes(
         return res.status(400).json({ message: "Price ID is required" });
       }
 
+      const returnPage = typeof req.body.returnPage === "string" ? req.body.returnPage : "/consulting";
+
       const stripe = await getUncachableStripeClient();
 
       const price = await stripe.prices.retrieve(priceId);
@@ -284,8 +286,8 @@ export async function registerRoutes(
         payment_method_types: ['card'],
         line_items: [{ price: priceId, quantity: 1 }],
         mode: isRecurring ? 'subscription' : 'payment',
-        success_url: `${baseUrl}/consulting?payment=success`,
-        cancel_url: `${baseUrl}/consulting?payment=cancelled`,
+        success_url: `${baseUrl}${returnPage}?payment=success`,
+        cancel_url: `${baseUrl}${returnPage}?payment=cancelled`,
         metadata: {
           serviceName: serviceName || '',
         },

@@ -271,7 +271,8 @@ export async function registerRoutes(
         return res.status(400).json({ message: "Price ID is required" });
       }
 
-      const returnPage = typeof req.body.returnPage === "string" ? req.body.returnPage : "/consulting";
+      const allowedReturnPages = ["/consulting", "/recruiting", "/playbooks", "/services"];
+      const returnPage = allowedReturnPages.includes(req.body.returnPage) ? req.body.returnPage : "/consulting";
 
       const stripe = await getUncachableStripeClient();
 

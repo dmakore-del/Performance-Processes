@@ -33,8 +33,33 @@ import peopleOperationsImg from "@assets/generated/people-operations.png";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
+interface PricingTier {
+  name: string;
+  price: string;
+  subtitle: string;
+  features: string[];
+  stripeProductName: string;
+}
+
+interface ServiceEntry {
+  title: string;
+  investment: string;
+  investmentNote: string;
+  desc: string;
+  benefits: string[];
+  learnMore: string;
+  idealFor: string;
+  image: string;
+  pricingTiers: PricingTier[];
+}
+
+interface StripeProduct {
+  product_name: string;
+  price_id: string;
+}
+
 export default function Consulting() {
-  const [selectedService, setSelectedService] = useState<any>(null);
+  const [selectedService, setSelectedService] = useState<ServiceEntry | null>(null);
   const [payingProduct, setPayingProduct] = useState<string | null>(null);
   const [collectiveOpen, setCollectiveOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"enterprise" | "business" | "professional" | "self-serve">("enterprise");
@@ -60,7 +85,7 @@ export default function Consulting() {
     }
   }, []);
 
-  const { data: productsData } = useQuery({
+  const { data: productsData } = useQuery<{ data: StripeProduct[] }>({
     queryKey: ["/api/products"],
   });
 
@@ -93,7 +118,7 @@ export default function Consulting() {
       });
       return;
     }
-    const product = productsData.data.find((p: any) => p.product_name === productName);
+    const product = productsData.data.find((p: StripeProduct) => p.product_name === productName);
     if (product) {
       setPayingProduct(productName);
       checkoutMutation.mutate({ priceId: product.price_id, serviceName: productName });
@@ -1429,7 +1454,7 @@ export default function Consulting() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {currentTier.services.map((s: any, i: number) => (
+              {currentTier.services.map((s: ServiceEntry, i: number) => (
                 <div
                   key={i}
                   className="bg-white rounded-3xl border border-border/60 hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-500 group cursor-pointer flex flex-col overflow-hidden"
@@ -1701,7 +1726,7 @@ export default function Consulting() {
                       {language === "en" ? "Pricing Options" : "Options de prix"}
                     </h4>
                     <div className={`grid gap-6 ${selectedService.pricingTiers.length === 2 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1 md:grid-cols-3"}`}>
-                      {selectedService.pricingTiers.map((tier: any, idx: number) => (
+                      {selectedService.pricingTiers.map((tier: PricingTier, idx: number) => (
                         <div key={idx} className={`relative p-7 rounded-2xl border-2 flex flex-col ${idx === 1 ? "border-accent bg-accent/5 shadow-lg" : "border-border bg-white"}`}>
                           <div className="flex items-center gap-2 mb-3">
                             {idx === 1 && (

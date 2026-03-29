@@ -284,8 +284,8 @@ export async function registerRoutes(
         payment_method_types: ['card'],
         line_items: [{ price: priceId, quantity: 1 }],
         mode: isRecurring ? 'subscription' : 'payment',
-        success_url: `${baseUrl}/services?payment=success`,
-        cancel_url: `${baseUrl}/services?payment=cancelled`,
+        success_url: `${baseUrl}/consulting?payment=success`,
+        cancel_url: `${baseUrl}/consulting?payment=cancelled`,
         metadata: {
           serviceName: serviceName || '',
         },

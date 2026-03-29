@@ -516,7 +516,7 @@ export default function Playbooks() {
               </h1>
               <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8 max-w-2xl mx-auto">
                 Proven frameworks, templates, and playbooks built from real consulting engagements.
-                Everything you need to build organizational performance — without starting from scratch.
+                Everything you need to build organizational performance, without starting from scratch.
               </p>
               <div className="flex flex-wrap justify-center gap-6 text-sm text-white/60">
                 <span className="flex items-center gap-2"><CheckCircle2 size={16} className="text-accent" /> Instant digital delivery</span>

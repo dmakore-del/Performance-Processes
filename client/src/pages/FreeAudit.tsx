@@ -275,8 +275,8 @@ export default function FreeAudit() {
               </h2>
               <p className="text-lg text-white/60 mb-10 leading-relaxed">
                 {language === "en"
-                  ? "Download the Process & People Management Audit Checklist used by leaders to identify operational and leadership inefficiencies. It's free — no obligation."
-                  : "Téléchargez la liste de vérification utilisée par les dirigeants pour identifier les inefficacités opérationnelles et de leadership. C'est gratuit — sans obligation."}
+                  ? "Download the Process & People Management Audit Checklist used by leaders to identify operational and leadership inefficiencies. It's free, no obligation."
+                  : "Téléchargez la liste de vérification utilisée par les dirigeants pour identifier les inefficacités opérationnelles et de leadership. C'est gratuit, sans obligation."}
               </p>
 
               {!downloaded ? (

@@ -13,7 +13,8 @@ export function Navbar() {
 
   const navLinks = [
     { label: t("nav.home"), href: "/" },
-    { label: t("nav.services"), href: "/services" },
+    { label: language === "en" ? "Consulting" : "Consultation", href: "/consulting" },
+    { label: language === "en" ? "Recruiting" : "Recrutement", href: "/recruiting" },
     { label: "Playbooks", href: "/playbooks" },
     { label: t("nav.about"), href: "/about" },
     { label: t("nav.approach"), href: "/approach" },

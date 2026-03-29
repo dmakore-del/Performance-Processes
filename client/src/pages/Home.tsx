@@ -42,7 +42,7 @@ const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@perf
 
 const subtitles = [
   { start: 0, end: 2, text: "The leaders who create lasting change aren't doing it alone..." },
-  { start: 2, end: 4.5, text: "They surround themselves with the right people — partners who hold them accountable." },
+  { start: 2, end: 4.5, text: "They surround themselves with the right people, partners who hold them accountable." },
   { start: 4.5, end: 6, text: "That's the kind of partnership we build." },
 ];
 
@@ -85,7 +85,7 @@ export default function Home() {
       image: communityCollaborationImg,
       title: language === "en" ? "A Partner Who Truly Cares" : "Un partenaire qui se soucie vraiment",
       desc: language === "en"
-        ? "You're not just another client. We invest in understanding your story, your goals, and the legacy you want to build — then we walk beside you every step of the way."
+        ? "You're not just another client. We invest in understanding your story, your goals, and the legacy you want to build, then we walk beside you every step of the way."
         : "Vous n'êtes pas qu'un simple client. Nous investissons pour comprendre votre histoire, vos objectifs et l'héritage que vous souhaitez bâtir.",
     },
     {
@@ -101,7 +101,7 @@ export default function Home() {
       image: milestoneImg,
       title: language === "en" ? "Real Results You Can Feel" : "Des résultats concrets que vous ressentez",
       desc: language === "en"
-        ? "Less stress, clearer direction, and the confidence that comes from knowing your business is built on solid ground. Our clients don't just grow — they thrive."
+        ? "Less stress, clearer direction, and the confidence that comes from knowing your business is built on solid ground. Our clients don't just grow, they thrive."
         : "Moins de stress, une direction plus claire et la confiance de savoir que votre entreprise repose sur des bases solides.",
     },
     {
@@ -119,8 +119,8 @@ export default function Home() {
       image: mentorshipConnectionImg,
       title: language === "en" ? "Professionals Ready to Level Up" : "Professionnels prêts à évoluer",
       desc: language === "en"
-        ? "Lawyers, consultants, coaches, and advisors who want more than productivity — they want purpose-driven careers and a partner who helps them get there."
-        : "Avocats, consultants, coaches et conseillers qui veulent plus que de la productivité — ils veulent des carrières motivées par un but et un partenaire pour y arriver.",
+        ? "Lawyers, consultants, coaches, and advisors who want more than productivity, they want purpose-driven careers and a partner who helps them get there."
+        : "Avocats, consultants, coaches et conseillers qui veulent plus que de la productivité, ils veulent des carrières motivées par un but et un partenaire pour y arriver.",
     },
     {
       image: empoweredOwnerImg,
@@ -154,7 +154,7 @@ export default function Home() {
       image: communityTownhallImg,
       title: language === "en" ? "We Get Everyone on the Same Page" : "Nous alignons tout le monde",
       desc: language === "en"
-        ? "Together, we build shared clarity around your priorities so your team moves as one — with purpose, direction, and mutual accountability."
+        ? "Together, we build shared clarity around your priorities so your team moves as one, with purpose, direction, and mutual accountability."
         : "Ensemble, nous construisons une clarté partagée autour de vos priorités pour que votre équipe avance comme une seule.",
     },
     {
@@ -163,8 +163,8 @@ export default function Home() {
       image: communityWorkspaceImg,
       title: language === "en" ? "We Build What You Need" : "Nous construisons ce dont vous avez besoin",
       desc: language === "en"
-        ? "Custom frameworks, processes, and tools designed around your reality — not cookie-cutter templates. Everything we create, you own."
-        : "Des cadres, processus et outils personnalisés conçus autour de votre réalité — pas des modèles génériques.",
+        ? "Custom frameworks, processes, and tools designed around your reality, not cookie-cutter templates. Everything we create, you own."
+        : "Des cadres, processus et outils personnalisés conçus autour de votre réalité, pas des modèles génériques.",
     },
     {
       step: "04",
@@ -180,24 +180,27 @@ export default function Home() {
   const services = [
     {
       image: communityCollaborationImg,
-      title: language === "en" ? "Executive Advisory" : "Conseil exécutif",
+      title: language === "en" ? "Management Consulting" : "Consultation en gestion",
       desc: language === "en"
-        ? "A trusted partner for leaders who want strategic clarity, performance systems that actually work, and someone in their corner who tells it like it is."
-        : "Un partenaire de confiance pour les leaders qui veulent la clarté stratégique et des systèmes de performance qui fonctionnent.",
+        ? "Strategic advisory, operational systems, and performance frameworks that help your organization scale with clarity and confidence."
+        : "Conseil stratégique, systèmes opérationnels et cadres de performance pour aider votre organisation à croître avec clarté et confiance.",
+      href: "/consulting",
     },
     {
       image: handsPartnershipImg,
-      title: language === "en" ? "Recruiting & Talent" : "Recrutement et talent",
+      title: language === "en" ? "Recruiting & Headhunting" : "Recrutement et chasse de têtes",
       desc: language === "en"
-        ? "Finding the right people changes everything. We help companies attract talent that fits their culture — and help professionals find roles where they'll truly belong."
-        : "Trouver les bonnes personnes change tout. Nous aidons les entreprises à attirer des talents qui correspondent à leur culture.",
+        ? "Finding the right people changes everything. From executive search to talent acquisition, we help you build teams that drive results."
+        : "Trouver les bonnes personnes change tout. De la recherche de cadres à l'acquisition de talents, nous vous aidons à bâtir des équipes performantes.",
+      href: "/recruiting",
     },
     {
       image: empoweredOwnerImg,
       title: language === "en" ? "Small Business Growth" : "Croissance PME",
       desc: language === "en"
-        ? "A dedicated growth partner who helps you stop firefighting and start building — with structure, strategy, and the accountability to follow through."
+        ? "A dedicated growth partner who helps you stop firefighting and start building, with structure, strategy, and the accountability to follow through."
         : "Un partenaire de croissance dédié qui vous aide à arrêter de gérer les urgences et à commencer à construire.",
+      href: "/consulting",
     },
     {
       image: mentorshipConnectionImg,
@@ -205,6 +208,7 @@ export default function Home() {
       desc: language === "en"
         ? "Personal coaching that goes beyond performance metrics. We help you grow as a leader, find your voice, and build the confidence to lead with impact."
         : "Un coaching personnel qui va au-delà des métriques. Nous vous aidons à grandir en tant que leader.",
+      href: "/consulting",
     },
     {
       image: growthSeedlingImg,
@@ -212,6 +216,7 @@ export default function Home() {
       desc: language === "en"
         ? "Self-paced programs and ready-to-use templates designed by consultants who've been in your shoes. Start building better systems today, at your own pace."
         : "Des programmes à votre rythme et des modèles prêts à l'emploi conçus par des consultants qui comprennent votre réalité.",
+      href: "/consulting",
     },
   ];
 
@@ -230,16 +235,16 @@ export default function Home() {
       category: language === "en" ? "Strategy" : "Stratégie",
       date: language === "en" ? "January 15, 2026" : "15 janvier 2026",
       excerpt: language === "en"
-        ? "The biggest challenge in business isn't strategy — it's trying to do it all alone. Here's why the most successful leaders invest in the right support."
-        : "Le plus grand défi en affaires n'est pas la stratégie — c'est d'essayer de tout faire seul.",
+        ? "The biggest challenge in business isn't strategy, it's trying to do it all alone. Here's why the most successful leaders invest in the right support."
+        : "Le plus grand défi en affaires n'est pas la stratégie, c'est d'essayer de tout faire seul.",
     },
     {
       title: language === "en" ? "Building Systems That Set You Free" : "Construire des systèmes qui vous libèrent",
       category: language === "en" ? "Growth" : "Croissance",
       date: language === "en" ? "January 8, 2026" : "8 janvier 2026",
       excerpt: language === "en"
-        ? "The right systems don't add complexity — they remove it. How our clients went from overwhelmed to in control, and how you can too."
-        : "Les bons systèmes ne rajoutent pas de complexité — ils l'éliminent.",
+        ? "The right systems don't add complexity, they remove it. How our clients went from overwhelmed to in control, and how you can too."
+        : "Les bons systèmes ne rajoutent pas de complexité, ils l'éliminent.",
     },
     {
       title: language === "en" ? "Your People Are Your Strategy" : "Vos gens sont votre stratégie",
@@ -253,7 +258,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
-      <SEOHead title="Performance Processes | Management Consulting for Every Stage of Growth" description="Performance Processes helps professionals, business owners, and leadership teams build better systems, develop their people, and grow with confidence. Strategic advisory, coaching, and operational support." path="/" />
+      <SEOHead title="Performance Processes | Management Consulting & Recruiting for Every Stage of Growth" description="Performance Processes helps professionals, business owners, and leadership teams through management consulting and recruiting services. Strategic advisory, talent acquisition, coaching, and operational support." path="/" />
       <Navbar />
 
       <main className="flex-grow">
@@ -282,15 +287,15 @@ export default function Home() {
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-xl animate-fade-in-up" style={{ animationDelay: "0.35s" }} data-testid="text-hero-subtitle">
                 {language === "en"
-                  ? "We partner with professionals, business owners, and leadership teams to build better systems, develop their people, and grow with confidence."
-                  : "Nous travaillons avec les professionnels, les entrepreneurs et les équipes de direction pour bâtir de meilleurs systèmes et grandir avec confiance."}
+                  ? "Management consulting and recruiting services for professionals, business owners, and leadership teams, helping you build better systems, find the right people, and grow with confidence."
+                  : "Services de consultation en gestion et de recrutement pour les professionnels, les entrepreneurs et les équipes de direction, pour bâtir de meilleurs systèmes, trouver les bonnes personnes et grandir avec confiance."}
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
                 <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-hero-audit">
                   <Sparkles size={16} />
                   {language === "en" ? "Start Your Journey" : "Commencez votre parcours"}
                 </Link>
-                <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-hero-services">
+                <Link href="/consulting" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-hero-services">
                   {language === "en" ? "See How We Help" : "Voir comment nous aidons"}
                   <ArrowRight size={16} />
                 </Link>
@@ -336,8 +341,8 @@ export default function Home() {
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-10">
                   {language === "en"
-                    ? "When you work with Performance Processes, you're not hiring a firm — you're gaining a dedicated team that genuinely cares about your success."
-                    : "Quand vous travaillez avec Performance Processes, vous ne recrutez pas une firme — vous gagnez une équipe dédiée qui se soucie vraiment de votre succès."}
+                    ? "When you work with Performance Processes, you're not hiring a firm, you're gaining a dedicated team that genuinely cares about your success."
+                    : "Quand vous travaillez avec Performance Processes, vous ne recrutez pas une firme, vous gagnez une équipe dédiée qui se soucie vraiment de votre succès."}
                 </p>
                 <div className="grid grid-cols-2 gap-6">
                   {[
@@ -402,8 +407,8 @@ export default function Home() {
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {language === "en"
-                  ? "Whether you're a solo professional, a growing business owner, or leading a team — we understand your challenges and we're ready to help."
-                  : "Que vous soyez un professionnel solo, un entrepreneur en croissance ou un leader d'équipe — nous comprenons vos défis et sommes prêts à vous aider."}
+                  ? "Whether you're a solo professional, a growing business owner, or leading a team, we understand your challenges and we're ready to help."
+                  : "Que vous soyez un professionnel solo, un entrepreneur en croissance ou un leader d'équipe, nous comprenons vos défis et sommes prêts à vous aider."}
               </p>
             </AnimateOnScroll>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -449,8 +454,8 @@ export default function Home() {
             </h3>
             <p className="text-white/60 mb-10 max-w-xl mx-auto text-lg">
               {language === "en"
-                ? "Let's have an honest conversation. No pressure, no pitch — just a chance to understand your situation and see if we can genuinely help."
-                : "Ayons une conversation honnête. Pas de pression, pas de pitch — juste une chance de comprendre votre situation."}
+                ? "Let's have an honest conversation. No pressure, no pitch, just a chance to understand your situation and see if we can genuinely help."
+                : "Ayons une conversation honnête. Pas de pression, pas de pitch, juste une chance de comprendre votre situation."}
             </p>
             <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-mid-cta-audit">
               <ClipboardCheck size={16} />
@@ -529,15 +534,15 @@ export default function Home() {
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {language === "en"
-                  ? "Whether you need a strategic partner, a sounding board, or practical tools to run your business better — we meet you where you are and help you get where you want to go."
-                  : "Que vous ayez besoin d'un partenaire stratégique, d'un interlocuteur de confiance ou d'outils pratiques — nous vous accompagnons là où vous êtes."}
+                  ? "Whether you need a strategic partner, a sounding board, or practical tools to run your business better, we meet you where you are and help you get where you want to go."
+                  : "Que vous ayez besoin d'un partenaire stratégique, d'un interlocuteur de confiance ou d'outils pratiques, nous vous accompagnons là où vous êtes."}
               </p>
             </AnimateOnScroll>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-8">
               {services.slice(0, 3).map((s, i) => (
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 150}>
-                  <Link href="/services" className="block h-full group" data-testid={`link-service-${i}`}>
+                  <Link href={s.href} className="block h-full group" data-testid={`link-service-${i}`}>
                     <div className="relative rounded-2xl overflow-hidden h-full min-h-[400px] shadow-lg" data-testid={`service-card-${i}`}>
                       <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/10 group-hover:from-primary/95 transition-all duration-500" />
@@ -556,7 +561,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {services.slice(3).map((s, i) => (
                 <AnimateOnScroll key={i + 3} animation="fade-up" delay={(i + 3) * 100}>
-                  <Link href="/services" className="block h-full group" data-testid={`link-service-${i + 3}`}>
+                  <Link href={s.href} className="block h-full group" data-testid={`link-service-${i + 3}`}>
                     <div className="relative rounded-2xl overflow-hidden h-full min-h-[350px] shadow-lg" data-testid={`service-card-${i + 3}`}>
                       <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/10 group-hover:from-primary/95 transition-all duration-500" />
@@ -590,8 +595,8 @@ export default function Home() {
                 </h2>
                 <p className="text-lg text-white/60 leading-relaxed mb-10">
                   {language === "en"
-                    ? "Our clients don't just get better systems — they get peace of mind, clarity, and the confidence that comes from knowing they're not doing this alone."
-                    : "Nos clients n'obtiennent pas seulement de meilleurs systèmes — ils obtiennent la tranquillité d'esprit et la confiance de savoir qu'ils ne sont pas seuls."}
+                    ? "Our clients don't just get better systems, they get peace of mind, clarity, and the confidence that comes from knowing they're not doing this alone."
+                    : "Nos clients n'obtiennent pas seulement de meilleurs systèmes, ils obtiennent la tranquillité d'esprit et la confiance de savoir qu'ils ne sont pas seuls."}
                 </p>
 
                 <div className="grid grid-cols-3 gap-8 mb-10">
@@ -702,15 +707,15 @@ export default function Home() {
                   </h2>
                   <p className="text-lg text-white/70 mb-12">
                     {language === "en"
-                      ? "Whether you're looking for strategic clarity, better systems, or simply people who get what you're going through — the first step is a conversation. Let's figure it out together."
-                      : "Que vous cherchiez de la clarté stratégique, de meilleurs systèmes ou simplement des gens qui comprennent ce que vous traversez — la première étape est une conversation."}
+                      ? "Whether you're looking for strategic clarity, better systems, or simply people who get what you're going through, the first step is a conversation. Let's figure it out together."
+                      : "Que vous cherchiez de la clarté stratégique, de meilleurs systèmes ou simplement des gens qui comprennent ce que vous traversez, la première étape est une conversation."}
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-cta-audit">
                       <Sparkles size={16} />
                       {language === "en" ? "Start Your Journey" : "Commencez votre parcours"}
                     </Link>
-                    <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-cta-services">
+                    <Link href="/consulting" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-cta-services">
                       {language === "en" ? "Explore how we help" : "Découvrir comment nous aidons"}
                       <ArrowRight size={16} />
                     </Link>

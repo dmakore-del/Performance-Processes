@@ -77,7 +77,7 @@ export default function Careers() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-      <SEOHead title="Careers - Join Our Team" description="Explore career opportunities at Performance Processes. We're looking for talented consultants, strategists, and leaders who want to make a meaningful impact on organizations." path="/careers" />
+      <SEOHead title="Careers, Join Our Team" description="Explore career opportunities at Performance Processes. We're looking for talented consultants, strategists, and leaders who want to make a meaningful impact on organizations." path="/careers" />
       <Navbar />
       <main className="flex-grow">
         <PageHero 

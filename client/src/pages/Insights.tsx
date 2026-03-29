@@ -206,7 +206,7 @@ export default function Insights() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans">
-      <SEOHead title="Insights - Leadership & Management Articles" description="Read expert articles on leadership development, organizational performance, strategic planning, process optimization, and business growth from Performance Processes consultants." path="/insights" />
+      <SEOHead title="Insights, Leadership & Management Articles" description="Read expert articles on leadership development, organizational performance, strategic planning, process optimization, and business growth from Performance Processes consultants." path="/insights" />
       <Navbar />
       <main className="flex-grow">
         <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-primary">

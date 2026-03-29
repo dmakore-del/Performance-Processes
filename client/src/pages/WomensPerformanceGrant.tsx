@@ -96,7 +96,7 @@ export default function WomensPerformanceGrant() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-      <SEOHead title="Women's Performance Grant - Leadership Support for Women" description="Apply for the Performance Processes Women's Performance Grant. Supporting women professionals and entrepreneurs with strategic coaching, tools, and guidance for sustainable growth and leadership development." path="/womens-performance-grant" />
+      <SEOHead title="Women's Performance Grant, Leadership Support for Women" description="Apply for the Performance Processes Women's Performance Grant. Supporting women professionals and entrepreneurs with strategic coaching, tools, and guidance for sustainable growth and leadership development." path="/womens-performance-grant" />
       <Navbar />
       <main className="flex-grow">
         <PageHero
@@ -215,7 +215,7 @@ export default function WomensPerformanceGrant() {
               <div className="text-center mb-10">
                 <h2 className="text-3xl font-heading font-extrabold text-primary mb-4">Grant Application</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Complete the form below to apply for the Women's Performance Grant. Only 3 recipients will be selected. Take your time to provide thoughtful responses — your answers help us understand your goals and how this program can best support you.
+                  Complete the form below to apply for the Women's Performance Grant. Only 3 recipients will be selected. Take your time to provide thoughtful responses, your answers help us understand your goals and how this program can best support you.
                 </p>
               </div>
 
@@ -543,7 +543,7 @@ export default function WomensPerformanceGrant() {
                         data-testid="input-grant-additional"
                         value={form.additionalInfo}
                         onChange={(e) => updateField("additionalInfo", e.target.value)}
-                        placeholder="Share anything else that might be relevant to your application — your story, motivation, or any additional context you think is important..."
+                        placeholder="Share anything else that might be relevant to your application, your story, motivation, or any additional context you think is important..."
                         rows={4}
                       />
                     </div>

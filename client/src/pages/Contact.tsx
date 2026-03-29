@@ -106,7 +106,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-      <SEOHead title="Contact Us - Book a Consultation" description="Get in touch with Performance Processes. Schedule a consultation, request a proposal, or learn how our management consulting services can help your organization achieve measurable results." path="/contact" />
+      <SEOHead title="Contact Us, Book a Consultation" description="Get in touch with Performance Processes. Schedule a consultation, request a proposal, or learn how our management consulting services can help your organization achieve measurable results." path="/contact" />
       <Navbar />
       <main className="flex-grow">
         <PageHero 

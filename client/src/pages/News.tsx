@@ -46,7 +46,7 @@ export default function News() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-      <SEOHead title="Industry News - Management & Leadership Updates" description="Stay updated with the latest industry news, trends, and developments in management consulting, leadership, and organizational performance." path="/news" />
+      <SEOHead title="Industry News, Management & Leadership Updates" description="Stay updated with the latest industry news, trends, and developments in management consulting, leadership, and organizational performance." path="/news" />
       <Navbar />
       <main className="flex-grow">
         <PageHero

@@ -259,7 +259,7 @@ export default function Approach() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-      <SEOHead title="Our Approach - Structured Consulting Methodology" description="Discover how Performance Processes delivers results through a structured 4-phase consulting methodology: Discovery, Strategy Design, Implementation, and Performance Review. Built for measurable outcomes." path="/approach" />
+      <SEOHead title="Our Approach, Structured Consulting Methodology" description="Discover how Performance Processes delivers results through a structured 4-phase consulting methodology: Discovery, Strategy Design, Implementation, and Performance Review. Built for measurable outcomes." path="/approach" />
       <Navbar />
       <main className="flex-grow">
 

@@ -19,7 +19,7 @@ export default function About() {
 
   const timelineItems = [
     { year: "2023", title: "Performance Processes Founded", description: "Danai Makore launches Performance Processes with a vision to help organizations align strategy with measurable performance.", icon: <Rocket className="text-accent" size={20} /> },
-    { year: "2024", title: "Service Portfolio Launch", description: "Launching a comprehensive suite of consulting services spanning strategic planning, performance management, and governance advisory.", icon: <Building className="text-accent" size={20} /> },
+    { year: "2024", title: "Service Portfolio Launch", description: "Launching a comprehensive suite of consulting and recruiting services spanning strategic planning, talent acquisition, performance management, and governance advisory.", icon: <Building className="text-accent" size={20} /> },
     { year: "2024–2025", title: "Building Multi-Industry Expertise", description: "Targeting engagements across government, nonprofit, healthcare, financial services, and technology sectors.", icon: <Globe className="text-accent" size={20} /> },
     { year: "2025", title: "National Expansion", description: "Growing our footprint beyond Toronto to serve organizations across Canada with deepening regional expertise.", icon: <Target className="text-accent" size={20} /> },
     { year: "2026", title: "Core Team Assembled", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory.", icon: <Users className="text-accent" size={20} /> },
@@ -31,7 +31,7 @@ export default function About() {
       icon: <Shield className="text-accent" size={28} />,
       title: "Integrity",
       description: "We operate with unwavering honesty and transparency.",
-      practice: "Every recommendation is grounded in what's truly best for our clients — not what generates the most revenue.",
+      practice: "Every recommendation is grounded in what's truly best for our clients, not what generates the most revenue.",
     },
     {
       icon: <Star className="text-accent" size={28} />,
@@ -55,7 +55,7 @@ export default function About() {
       icon: <TrendingUp className="text-accent" size={28} />,
       title: "Impact",
       description: "Every engagement must produce measurable results.",
-      practice: "We track outcomes with clear KPIs and success metrics — because sustainable change requires proof.",
+      practice: "We track outcomes with clear KPIs and success metrics, because sustainable change requires proof.",
     },
     {
       icon: <Award className="text-accent" size={28} />,
@@ -84,7 +84,7 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-      <SEOHead title="About Us - Our Story & Mission" description="Learn about Performance Processes, a Toronto management consulting firm founded by Danai Makore in 2023. We help organizations build systems for leadership development, operational efficiency, and measurable performance." path="/about" />
+      <SEOHead title="About Us, Our Story & Mission" description="Learn about Performance Processes, a Toronto management consulting and recruiting firm founded by Danai Makore in 2023. We help organizations build systems, find the right talent, and achieve measurable performance." path="/about" />
       <Navbar />
       <main className="flex-grow">
 
@@ -111,14 +111,14 @@ export default function About() {
                 Built by consultants who <span className="text-accent">understand your challenges</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl animate-fade-in-up" style={{ animationDelay: "0.35s" }} data-testid="text-hero-subtitle">
-                Performance Processes was founded on a simple belief: organizations deserve consulting partners who stay until the work is done — not firms that hand over a report and walk away.
+                Performance Processes was founded on a simple belief: organizations deserve partners who stay until the work is done, whether that means building better systems through consulting or finding the right people through recruiting.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="button-hero-book">
                     <Calendar size={18} className="mr-2" />
                     Book a Discovery Call
                 </a>
-                <Link href="/services" className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-hero-services">
+                <Link href="/consulting" className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-hero-services">
                     Explore Our Services <ArrowRight size={18} className="ml-2" />
                 </Link>
               </div>
@@ -192,7 +192,7 @@ export default function About() {
                   </p>
                   <p>
                     Her approach blends human insight with
-                    practical management frameworks — guiding
+                    practical management frameworks, guiding
                     enterprises through operational transformation,
                     helping small businesses build scalable systems,
                     and coaching professionals toward career growth.
@@ -230,16 +230,16 @@ export default function About() {
                 Our Philosophy
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-primary mb-8 leading-tight">
-                Management consulting for<br />
+                Consulting & recruiting for<br />
                 <span className="text-accent italic">every stage of growth</span>
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-16">
                 Whether you're an enterprise seeking operational
-                transformation, a small business building scalable
-                systems, or a professional investing in your career —
-                we deliver the management frameworks, leadership
-                alignment, and accountability structures that produce
-                measurable results.
+                transformation, a company looking to hire top talent,
+                a small business building scalable systems, or a
+                professional investing in your career, we deliver
+                the management frameworks, recruiting expertise,
+                and accountability structures that produce measurable results.
               </p>
             </AnimateOnScroll>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
@@ -267,10 +267,10 @@ export default function About() {
             <div className="max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-12">
               <div className="flex-1">
                 <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-6 leading-tight">
-                  "To help enterprises scale, small businesses grow, and professionals lead — through structured management consulting that produces measurable outcomes."
+                  "To help enterprises scale, small businesses grow, and professionals lead, through management consulting and recruiting that produce measurable outcomes."
                 </h2>
                 <p className="text-lg text-white/70 leading-relaxed">
-                  We deliver management consulting across three service pillars: enterprise business solutions, small business advisory, and professional development — each built on structured methodology and accountability.
+                  We deliver management consulting and recruiting services across two core pillars, helping organizations build better systems and find the right people, each built on structured methodology and accountability.
                 </p>
               </div>
               <div className="shrink-0">
@@ -330,8 +330,8 @@ export default function About() {
                   </p>
                   <p className="font-medium text-primary italic border-l-4 border-accent pl-6 py-2 bg-gradient-to-r from-[#F8FAFC] to-transparent rounded-r-lg">
                     Passionate about connecting clients with the right
-                    management consulting solutions — from enterprise
-                    transformation to professional coaching.
+                    consulting and recruiting solutions, from enterprise
+                    transformation and talent acquisition to professional coaching.
                   </p>
                 </div>
 
@@ -403,11 +403,11 @@ export default function About() {
                     What Sets Us <span className="text-accent italic">Apart</span>
                   </h2>
                   <p className="text-lg text-muted-foreground mb-10 max-w-lg leading-relaxed">
-                    We don't believe in one-size-fits-all consulting. Every relationship begins with deep listening — because meaningful change starts with trust.
+                    We don't believe in one-size-fits-all consulting. Every relationship begins with deep listening, because meaningful change starts with trust.
                   </p>
                   <div className="space-y-5">
                     {[
-                      { icon: <Heart className="text-accent" size={20} />, title: "People-Centered Approach", desc: "We prioritize the human element — sustainable change requires buy-in, trust, and genuine connection." },
+                      { icon: <Heart className="text-accent" size={20} />, title: "People-Centered Approach", desc: "We prioritize the human element, sustainable change requires buy-in, trust, and genuine connection." },
                       { icon: <Target className="text-accent" size={20} />, title: "Measurable Outcomes", desc: "Every project includes clear KPIs and success metrics. We track, measure, and report on impact." },
                       { icon: <Globe className="text-accent" size={20} />, title: "Cross-Industry Expertise", desc: "Diverse experience across sectors allows us to apply proven best practices from multiple industries." },
                       { icon: <Handshake className="text-accent" size={20} />, title: "End-to-End Partnership", desc: "From discovery through implementation and beyond, we stay engaged to ensure real-world results." },
@@ -468,7 +468,7 @@ export default function About() {
                 Our Story & <span className="text-accent italic">Milestones</span>
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                From a bold vision to a growing consultancy — here's
+                From a bold vision to a growing consultancy, here's
                 how Performance Processes has evolved.
               </p>
             </AnimateOnScroll>
@@ -594,7 +594,7 @@ export default function About() {
                 Let's build something <span className="text-accent">meaningful</span> together
               </h2>
               <p className="text-xl text-white/70 mb-12 leading-relaxed max-w-2xl mx-auto">
-                Whether you need strategic clarity, operational systems, or leadership development — we're ready to partner with you.
+                Whether you need strategic clarity, operational systems, or leadership development, we're ready to partner with you.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-14 text-lg font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:shadow-2xl hover:scale-105 w-full sm:w-auto" data-testid="button-final-cta">

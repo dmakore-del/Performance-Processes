@@ -130,9 +130,8 @@ export function Footer() {
               <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{t("footer.expertise")}</h3>
               <ul className="flex flex-col gap-3.5 text-sm font-medium text-muted-foreground">
                 <li><Link href="/consulting" className="hover:text-accent transition-colors">Management Consulting</Link></li>
-                <li><Link href="/recruiting" className="hover:text-accent transition-colors">Recruiting & Headhunting</Link></li>
-                <li><Link href="/consulting" className="hover:text-accent transition-colors">Small Business Growth</Link></li>
-                <li><Link href="/consulting" className="hover:text-accent transition-colors">Performance Coaching</Link></li>
+                <li><Link href="/recruiting" className="hover:text-accent transition-colors">Human Resources</Link></li>
+                <li><Link href="/marketing" className="hover:text-accent transition-colors">Marketing & Websites</Link></li>
                 <li><Link href="/playbooks" className="hover:text-accent transition-colors">Playbooks & Tools</Link></li>
               </ul>
             </div>

@@ -22,6 +22,7 @@ import FreeAudit from "./pages/FreeAudit";
 import Playbooks from "./pages/Playbooks";
 import Consulting from "./pages/Consulting";
 import Recruiting from "./pages/Recruiting";
+import Marketing from "./pages/Marketing";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -74,6 +75,7 @@ function Router() {
       <Route path="/playbooks" component={Playbooks} />
       <Route path="/consulting" component={Consulting} />
       <Route path="/recruiting" component={Recruiting} />
+      <Route path="/marketing" component={Marketing} />
 
       {/* Auth Routes */}
       <Route path="/portal/login" component={Login} />

@@ -17,19 +17,14 @@ import strategicPlanningImg from "@assets/generated/strategic-planning.png";
 import systemsImplementationImg from "@assets/generated/systems-implementation.png";
 import executiveAdvisoryImg from "@assets/generated/executive-advisory.png";
 import businessRegistrationImg from "@assets/generated/business-registration.png";
-import websiteDevelopmentImg from "@assets/generated/website-development.png";
 import processAuditImg from "@assets/generated/process-audit.png";
 import workshopTrainingImg from "@assets/generated/workshop-training.png";
 import fractionalConsultantImg from "@assets/generated/fractional-consultant.png";
 import businessCoachingImg from "@assets/generated/business-coaching.png";
 import businessFoundationsImg from "@assets/generated/business-foundations.png";
 import personalCoachingImg from "@assets/generated/personal-coaching.png";
-import personalBrandImg from "@assets/generated/personal-brand.png";
 import performanceMgmtImg from "@assets/generated/performance-mgmt.png";
 import orgAssessmentImg from "@assets/generated/org-assessment.png";
-import hrPeopleStrategyImg from "@assets/generated/hr-people-strategy.png";
-import talentDevelopmentImg from "@assets/generated/talent-development.png";
-import peopleOperationsImg from "@assets/generated/people-operations.png";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -392,50 +387,6 @@ export default function Consulting() {
           ]
         },
         {
-          title: language === "en" ? "Website & Digital Presence" : "Site Web et présence numérique",
-          investment: "$3,000 – $12,000",
-          desc: language === "en"
-            ? "Your online presence should reflect who you really are. We build websites that tell your story, build trust, and turn visitors into clients who believe in what you do."
-            : "Votre présence en ligne doit refléter qui vous êtes vraiment. Nous construisons des sites qui racontent votre histoire et transforment les visiteurs en clients.",
-          benefits: language === "en"
-            ? ["Professional website design", "SEO & content strategy", "Brand identity setup", "Analytics & conversion tracking"]
-            : ["Conception de site Web professionnel", "SEO et stratégie de contenu", "Identité de marque", "Analytique et suivi"],
-          learnMore: language === "en"
-            ? "Your website is often the first impression potential clients have of your business. We design and build professional, conversion-focused websites that communicate your value proposition clearly.\n\nOur digital presence packages include website design, SEO setup, content strategy, and analytics integration to help you attract and convert the right clients."
-            : "Votre site Web est souvent la première impression. Nous concevons des sites professionnels axés sur la conversion.",
-          idealFor: language === "en" ? "Businesses and professionals who need a professional web presence that converts visitors into clients." : "Entreprises et professionnels qui ont besoin d'une présence Web professionnelle.",
-          image: websiteDevelopmentImg,
-          pricingTiers: [
-            {
-              name: language === "en" ? "Essential" : "Essentiel",
-              price: "$3,000",
-              subtitle: language === "en" ? "Professional single-page or multi-section website with responsive design." : "Site Web professionnel à page unique avec design responsive.",
-              features: language === "en"
-                ? ["Professional website design", "Mobile responsive", "Contact form integration", "Basic SEO setup", "Google Analytics setup", "1 round of revisions"]
-                : ["Conception de site Web professionnel", "Responsive mobile", "Formulaire de contact", "SEO de base", "Google Analytics", "1 série de révisions"],
-              stripeProductName: "Standard Business Website"
-            },
-            {
-              name: "Standard",
-              price: "$6,000",
-              subtitle: language === "en" ? "Multi-page website with content strategy, advanced SEO, and brand alignment." : "Site Web multi-pages avec stratégie de contenu et SEO avancé.",
-              features: language === "en"
-                ? ["Everything in Essential", "Up to 8 custom pages", "Content strategy and copywriting", "Advanced SEO optimization", "Social media integration", "Email newsletter setup", "2 rounds of revisions"]
-                : ["Tout dans Essentiel", "Jusqu'à 8 pages personnalisées", "Stratégie de contenu", "SEO avancé", "Intégration réseaux sociaux", "Newsletter par e-mail", "2 séries de révisions"],
-              stripeProductName: "Advanced / Growth Website"
-            },
-            {
-              name: "Premium",
-              price: "$12,000",
-              subtitle: language === "en" ? "Full digital presence with custom website, brand identity, content marketing, and analytics." : "Présence numérique complète avec site personnalisé et marketing de contenu.",
-              features: language === "en"
-                ? ["Everything in Standard", "Custom web application features", "Full brand identity package", "Content marketing strategy", "Conversion optimization", "Performance dashboard", "3 months post-launch support", "Priority support"]
-                : ["Tout dans Standard", "Fonctionnalités web personnalisées", "Identité de marque complète", "Stratégie de marketing de contenu", "Optimisation de la conversion", "Tableau de bord", "3 mois de support", "Support prioritaire"],
-              stripeProductName: "Premium / Enterprise Website"
-            }
-          ]
-        },
-        {
           title: language === "en" ? "Process Audit" : "Audit de processus",
           investment: "$1,000 – $3,000",
           desc: language === "en"
@@ -559,95 +510,6 @@ export default function Consulting() {
                 : ["Tout dans Standard", "Consultant senior dédié", "Optimisation inter-départementale", "Automatisation", "Rapports exécutifs", "Gestion du changement", "Disponibilité sur site", "Support prioritaire"],
               isMonthly: true,
               stripeProductName: "Fractional Consultant - Premium"
-            }
-          ]
-        },
-        {
-          title: language === "en" ? "HR & People Strategy" : "Stratégie RH et gestion des personnes",
-          investment: "$5,000 – $15,000",
-          investmentNote: language === "en" ? "(6–12 week engagement)" : "(Engagement de 6 à 12 semaines)",
-          desc: language === "en"
-            ? "Your people are the heart of your business. We help you create the systems, policies, and culture that attract great talent and make them want to stay."
-            : "Vos gens sont le cœur de votre entreprise. Nous créons les systèmes, politiques et la culture qui attirent les meilleurs talents et les fidélisent.",
-          benefits: language === "en"
-            ? ["HR policy & framework design", "Performance management systems", "Employee engagement strategy", "Workforce planning & org design"]
-            : ["Conception de politiques RH", "Systèmes de gestion de la performance", "Stratégie d'engagement des employés", "Planification de la main-d'œuvre"],
-          learnMore: language === "en"
-            ? "People are your most valuable asset, but without the right systems, even great talent underperforms. Our HR & People Strategy engagements help you design and implement the frameworks, policies, and systems that attract, develop, and retain top talent.\n\nWe cover everything from HR policy development and performance review systems to employee engagement strategies, succession planning, and organizational design. Whether you're building HR from scratch or overhauling an existing function, we create people infrastructure that scales with your business."
-            : "Les personnes sont votre atout le plus précieux. Nous vous aidons à concevoir et mettre en œuvre les cadres, politiques et systèmes qui attirent, développent et retiennent les meilleurs talents.",
-          idealFor: language === "en" ? "Organizations building or restructuring their HR function, or leadership teams that need people systems to support growth." : "Organisations construisant ou restructurant leur fonction RH.",
-          image: hrPeopleStrategyImg,
-          pricingTiers: [
-            {
-              name: language === "en" ? "Foundation" : "Fondation",
-              price: "$5,000",
-              subtitle: language === "en" ? "Core HR framework with policies, role clarity, and performance review design." : "Cadre RH de base avec politiques et conception de revue de performance.",
-              features: language === "en"
-                ? ["HR policy framework", "Role and responsibility mapping", "Performance review system design", "Employee handbook template", "Compliance checklist"]
-                : ["Cadre de politiques RH", "Cartographie des rôles", "Conception du système de revue", "Modèle de manuel employé", "Liste de conformité"],
-              stripeProductName: "HR Strategy - Foundation"
-            },
-            {
-              name: "Standard",
-              price: "$10,000",
-              subtitle: language === "en" ? "Full people strategy with engagement systems, compensation framework, and talent planning." : "Stratégie complète avec systèmes d'engagement et planification des talents.",
-              features: language === "en"
-                ? ["Everything in Foundation", "Employee engagement strategy", "Compensation and benefits framework", "Talent management roadmap", "Onboarding program design", "HR metrics and KPI dashboard", "Leadership development recommendations"]
-                : ["Tout dans Fondation", "Stratégie d'engagement", "Cadre de rémunération", "Feuille de route de gestion des talents", "Programme d'intégration", "Tableau de bord RH", "Recommandations de développement du leadership"],
-              stripeProductName: "HR Strategy - Standard"
-            },
-            {
-              name: language === "en" ? "Comprehensive" : "Complet",
-              price: "$15,000",
-              subtitle: language === "en" ? "Complete people infrastructure with succession planning, organizational design, and implementation support." : "Infrastructure complète avec planification de la relève et conception organisationnelle.",
-              features: language === "en"
-                ? ["Everything in Standard", "Organizational design and restructuring", "Succession planning framework", "Culture assessment and strategy", "DEI strategy development", "Workforce planning model", "Full implementation support", "Quarterly review sessions"]
-                : ["Tout dans Standard", "Conception organisationnelle", "Planification de la relève", "Évaluation de la culture", "Stratégie DEI", "Planification de la main-d'œuvre", "Soutien à la mise en œuvre", "Revues trimestrielles"],
-              stripeProductName: "HR Strategy - Comprehensive"
-            }
-          ]
-        },
-        {
-          title: language === "en" ? "Leadership & Talent Development" : "Développement du leadership et des talents",
-          investment: "$5,000 – $20,000",
-          desc: language === "en"
-            ? "Invest in the people who will lead your organization tomorrow. We help you identify, develop, and retain the leaders who will carry your vision forward."
-            : "Investissez dans ceux qui dirigeront votre organisation demain. Nous identifions, développons et retenons les leaders qui porteront votre vision.",
-          benefits: language === "en"
-            ? ["Leadership development programs", "High-potential talent identification", "Succession planning", "Management training design"]
-            : ["Programmes de développement du leadership", "Identification des hauts potentiels", "Planification de la relève", "Conception de formation en gestion"],
-          learnMore: language === "en"
-            ? "Your organization's future depends on the leaders you develop today. Our Leadership & Talent Development engagements build structured programs that identify, develop, and retain your best people.\n\nFrom high-potential identification and competency frameworks to management training programs and succession planning, we help you create a leadership pipeline that ensures your organization is never dependent on a single person or team."
-            : "L'avenir de votre organisation dépend des leaders que vous développez aujourd'hui. Nous construisons des programmes structurés pour identifier, développer et retenir vos meilleurs talents.",
-          idealFor: language === "en" ? "Organizations investing in leadership capacity, facing succession gaps, or building management bench strength." : "Organisations investissant dans la capacité de leadership ou confrontées à des défis de relève.",
-          image: talentDevelopmentImg,
-          pricingTiers: [
-            {
-              name: language === "en" ? "Foundation" : "Fondation",
-              price: "$5,000",
-              subtitle: language === "en" ? "Leadership competency framework with talent assessment and development planning." : "Cadre de compétences en leadership avec évaluation des talents.",
-              features: language === "en"
-                ? ["Leadership competency framework", "Talent assessment methodology", "Individual development plan templates", "Management skills gap analysis", "Development roadmap", "Summary recommendations report"]
-                : ["Cadre de compétences en leadership", "Méthodologie d'évaluation", "Modèles de plan de développement", "Analyse des écarts", "Feuille de route de développement", "Rapport de recommandations"],
-              stripeProductName: "Talent Development - Foundation"
-            },
-            {
-              name: "Standard",
-              price: "$12,000",
-              subtitle: language === "en" ? "Full talent development program with training design, coaching framework, and succession planning." : "Programme complet de développement avec formation, coaching et planification de la relève.",
-              features: language === "en"
-                ? ["Everything in Foundation", "Custom training program design", "Coaching framework and toolkit", "High-potential identification system", "Succession planning framework", "Mentorship program design", "Quarterly progress reviews"]
-                : ["Tout dans Fondation", "Conception de programme de formation", "Cadre de coaching", "Système d'identification des hauts potentiels", "Planification de la relève", "Programme de mentorat", "Revues trimestrielles"],
-              stripeProductName: "Talent Development - Standard"
-            },
-            {
-              name: language === "en" ? "Enterprise" : "Entreprise",
-              price: "$20,000",
-              subtitle: language === "en" ? "Comprehensive leadership development with multi-level programs, 360 assessments, and ongoing support." : "Développement complet du leadership avec programmes multi-niveaux et évaluations 360.",
-              features: language === "en"
-                ? ["Everything in Standard", "Multi-level leadership programs", "360-degree assessment integration", "Executive coaching integration", "Leadership academy design", "Culture and engagement surveys", "Full implementation support", "6-month post-program support"]
-                : ["Tout dans Standard", "Programmes multi-niveaux", "Évaluation 360 degrés", "Coaching exécutif", "Conception d'académie de leadership", "Sondages culture et engagement", "Soutien à la mise en œuvre", "Support de 6 mois"],
-              stripeProductName: "Talent Development - Enterprise"
             }
           ]
         }
@@ -828,94 +690,6 @@ export default function Consulting() {
               stripeProductName: "SB Workshop - Full-Day"
             }
           ]
-        },
-        {
-          title: language === "en" ? "Website & Digital Presence" : "Site Web et présence numérique",
-          investment: "$1,500 – $5,000",
-          desc: language === "en"
-            ? "Your website is often the first impression, make it count. We build clean, professional sites that tell your story and help the right clients find you."
-            : "Votre site Web est souvent la première impression, faites qu'elle compte. Nous construisons des sites professionnels qui racontent votre histoire.",
-          benefits: language === "en"
-            ? ["Professional website design", "Mobile-friendly & fast", "SEO basics included", "Contact and lead capture"]
-            : ["Conception professionnelle", "Mobile et rapide", "SEO de base inclus", "Capture de contacts"],
-          learnMore: language === "en"
-            ? "Your website is the first thing potential clients see. If it does not look professional, you lose trust before the conversation even starts. We build clean, conversion-focused websites designed specifically for small businesses, no bloated features, no enterprise pricing.\n\nEvery package includes mobile-responsive design, basic SEO, and a contact form so you can start capturing leads from day one."
-            : "Votre site Web est la première chose que voient vos clients potentiels. Nous construisons des sites professionnels conçus pour les petites entreprises.",
-          idealFor: language === "en" ? "Small businesses, startups, and founders who need a professional web presence that builds trust and generates leads." : "PME, startups et fondateurs qui ont besoin d'un site professionnel.",
-          image: websiteDevelopmentImg,
-          pricingTiers: [
-            {
-              name: language === "en" ? "Starter" : "Démarrage",
-              price: "$1,500",
-              subtitle: language === "en" ? "Clean single-page website with contact form and mobile-friendly design." : "Site Web à page unique avec formulaire de contact.",
-              features: language === "en"
-                ? ["Single-page website", "Mobile responsive design", "Contact form", "Basic SEO setup", "Google Analytics", "1 round of revisions"]
-                : ["Site à page unique", "Design responsive", "Formulaire de contact", "SEO de base", "Google Analytics", "1 révision"],
-              stripeProductName: "SB Website - Starter"
-            },
-            {
-              name: "Standard",
-              price: "$3,000",
-              subtitle: language === "en" ? "Multi-page website with content strategy and lead capture." : "Site multi-pages avec stratégie de contenu.",
-              features: language === "en"
-                ? ["Everything in Starter", "Up to 5 custom pages", "Content strategy guidance", "Lead capture integration", "Social media links", "2 rounds of revisions"]
-                : ["Tout dans Démarrage", "Jusqu'à 5 pages", "Stratégie de contenu", "Capture de prospects", "Réseaux sociaux", "2 révisions"],
-              stripeProductName: "SB Website - Standard"
-            },
-            {
-              name: "Premium",
-              price: "$5,000",
-              subtitle: language === "en" ? "Full digital presence with brand identity, content, and ongoing support." : "Présence numérique complète avec identité de marque et support.",
-              features: language === "en"
-                ? ["Everything in Standard", "Brand identity basics", "Blog or news section", "Email newsletter integration", "Conversion optimization", "3 months post-launch support"]
-                : ["Tout dans Standard", "Identité de marque", "Section blog", "Newsletter par e-mail", "Optimisation de conversion", "3 mois de support"],
-              stripeProductName: "SB Website - Premium"
-            }
-          ]
-        },
-        {
-          title: language === "en" ? "People Operations Setup" : "Mise en place des opérations RH",
-          investment: "$2,000 – $5,000",
-          desc: language === "en"
-            ? "Your team deserves more than guesswork. We set up the HR essentials, clear policies, smooth onboarding, and fair reviews, so your people feel supported and valued."
-            : "Votre équipe mérite mieux que l'improvisation. Nous mettons en place les essentiels RH pour que vos employés se sentent soutenus et valorisés.",
-          benefits: language === "en"
-            ? ["Employee policy handbook", "Onboarding process design", "Performance review framework", "Team management systems"]
-            : ["Manuel de politiques", "Processus d'intégration", "Cadre de revue de performance", "Systèmes de gestion d'équipe"],
-          learnMore: language === "en"
-            ? "Most small businesses wing it when it comes to managing people, and it catches up with them. Unclear expectations, no onboarding process, inconsistent reviews, and reactive problem-solving create turnover, low morale, and legal risk.\n\nOur People Operations Setup gives you the essential HR infrastructure every growing business needs: clear policies, a structured onboarding process, a simple performance review system, and team management templates you can actually use. No corporate bloat, just what works."
-            : "La plupart des PME improvisent la gestion des personnes. Nous vous donnons les fondations RH essentielles : politiques claires, intégration structurée et système de revue de performance simple.",
-          idealFor: language === "en" ? "Small businesses with 3–25 employees who need professional HR foundations without the overhead of a full HR department." : "PME de 3 à 25 employés qui ont besoin de fondations RH professionnelles.",
-          image: peopleOperationsImg,
-          pricingTiers: [
-            {
-              name: language === "en" ? "Essentials" : "Essentiel",
-              price: "$2,000",
-              subtitle: language === "en" ? "Core HR policies and employee handbook for small teams." : "Politiques RH de base et manuel employé pour petites équipes.",
-              features: language === "en"
-                ? ["Employee policy handbook", "Core HR policies (5–8 policies)", "Simple onboarding checklist", "Role description templates", "Basic compliance guidance"]
-                : ["Manuel de politiques", "Politiques RH de base (5-8)", "Liste d'intégration", "Modèles de description de rôle", "Guide de conformité de base"],
-              stripeProductName: "People Ops - Essentials"
-            },
-            {
-              name: "Standard",
-              price: "$3,500",
-              subtitle: language === "en" ? "Full people operations setup with onboarding, reviews, and team systems." : "Configuration complète des opérations RH avec intégration et revues.",
-              features: language === "en"
-                ? ["Everything in Essentials", "Structured onboarding program", "Performance review system", "Team accountability framework", "1-on-1 meeting templates", "Employee feedback process", "30-day follow-up session"]
-                : ["Tout dans Essentiel", "Programme d'intégration structuré", "Système de revue de performance", "Cadre de responsabilité", "Modèles de rencontres 1-à-1", "Processus de rétroaction", "Session de suivi de 30 jours"],
-              stripeProductName: "People Ops - Standard"
-            },
-            {
-              name: "Premium",
-              price: "$5,000",
-              subtitle: language === "en" ? "Complete HR foundation with culture strategy, compensation framework, and ongoing support." : "Fondation RH complète avec stratégie de culture et cadre de rémunération.",
-              features: language === "en"
-                ? ["Everything in Standard", "Culture and values framework", "Compensation and benefits guide", "Employee development plan templates", "Conflict resolution process", "HR compliance audit", "60-day post-engagement support"]
-                : ["Tout dans Standard", "Cadre de culture et valeurs", "Guide de rémunération", "Modèles de plan de développement", "Processus de résolution de conflits", "Audit de conformité RH", "Support de 60 jours"],
-              stripeProductName: "People Ops - Premium"
-            }
-          ]
         }
       ]
     },
@@ -1047,97 +821,6 @@ export default function Consulting() {
                 ? ["Everything in Half-Day", "4-hour comprehensive session", "Habit and routine design", "Personal systems setup", "Accountability framework", "KPI and progress tracking setup", "30-day follow-up call"]
                 : ["Tout dans Demi-journée", "Session complète de 4 heures", "Conception d'habitudes", "Mise en place de systèmes", "Cadre de responsabilité", "Configuration du suivi", "Appel de suivi de 30 jours"],
               stripeProductName: "Performance Workshop - Full-Day"
-            }
-          ]
-        },
-        {
-          title: language === "en" ? "Personal Brand Website" : "Site Web de marque personnelle",
-          investment: "$1,000 – $3,000",
-          desc: language === "en"
-            ? "Show the world who you are and what you bring. We build personal websites that position you as the expert you are and help opportunities find you."
-            : "Montrez au monde qui vous êtes. Nous construisons des sites personnels qui vous positionnent en tant qu'expert et aident les opportunités à vous trouver.",
-          benefits: language === "en"
-            ? ["Professional personal website", "Portfolio or services showcase", "Mobile-friendly design", "Contact and booking integration"]
-            : ["Site personnel professionnel", "Portfolio ou vitrine", "Design mobile", "Intégration de contact et réservation"],
-          learnMore: language === "en"
-            ? "Whether you are a consultant, coach, freelancer, or professional building a personal brand, your website is your digital business card. We build clean, professional personal websites that position you as an expert and make it easy for opportunities to find you.\n\nEvery package includes mobile-responsive design, a portfolio or services section, and contact integration so people can reach you easily."
-            : "Que vous soyez consultant, coach ou professionnel, votre site Web est votre carte de visite numérique. Nous construisons des sites personnels professionnels.",
-          idealFor: language === "en" ? "Consultants, coaches, freelancers, and professionals who want a personal website that builds their brand and attracts clients." : "Consultants, coaches et professionnels indépendants.",
-          image: personalBrandImg,
-          pricingTiers: [
-            {
-              name: language === "en" ? "Essential" : "Essentiel",
-              price: "$1,000",
-              subtitle: language === "en" ? "Clean single-page personal website with bio, services, and contact form." : "Site personnel à page unique avec bio et formulaire de contact.",
-              features: language === "en"
-                ? ["Single-page personal website", "Professional bio section", "Services or expertise showcase", "Contact form", "Mobile responsive", "Basic SEO"]
-                : ["Site à page unique", "Section bio professionnelle", "Vitrine expertise", "Formulaire de contact", "Responsive mobile", "SEO de base"],
-              stripeProductName: "Personal Website - Essential"
-            },
-            {
-              name: "Standard",
-              price: "$2,000",
-              subtitle: language === "en" ? "Multi-page website with portfolio, testimonials, and booking integration." : "Site multi-pages avec portfolio et intégration de réservation.",
-              features: language === "en"
-                ? ["Everything in Essential", "Up to 4 pages", "Portfolio or case studies section", "Testimonials section", "Booking calendar integration", "Social media links", "1 round of revisions"]
-                : ["Tout dans Essentiel", "Jusqu'à 4 pages", "Portfolio ou études de cas", "Témoignages", "Intégration calendrier", "Réseaux sociaux", "1 révision"],
-              stripeProductName: "Personal Website - Standard"
-            },
-            {
-              name: "Premium",
-              price: "$3,000",
-              subtitle: language === "en" ? "Full personal brand website with blog, newsletter, and content strategy." : "Site complet avec blog, newsletter et stratégie de contenu.",
-              features: language === "en"
-                ? ["Everything in Standard", "Blog or articles section", "Email newsletter setup", "Content strategy guidance", "Personal brand identity basics", "SEO optimization", "2 rounds of revisions", "60-day post-launch support"]
-                : ["Tout dans Standard", "Section blog", "Newsletter par e-mail", "Stratégie de contenu", "Identité de marque", "Optimisation SEO", "2 révisions", "Support de 60 jours"],
-              stripeProductName: "Personal Website - Premium"
-            }
-          ]
-        },
-        {
-          title: language === "en" ? "Leadership & People Management Coaching" : "Coaching en leadership et gestion des personnes",
-          investment: "$200 – $750/mo",
-          desc: language === "en"
-            ? "Becoming a manager is one of the biggest career leaps, and most people get zero training for it. We help you lead with confidence, give feedback that lands, and build a team that trusts you."
-            : "Devenir gestionnaire est l'un des plus grands sauts de carrière, et la plupart des gens n'ont aucune formation. Nous vous aidons à diriger avec confiance.",
-          benefits: language === "en"
-            ? ["Management confidence building", "Effective feedback techniques", "Hiring & interview skills", "Difficult conversation frameworks"]
-            : ["Développement de la confiance en gestion", "Techniques de rétroaction efficace", "Compétences en embauche", "Cadres de conversations difficiles"],
-          learnMore: language === "en"
-            ? "Becoming a manager is one of the biggest career transitions, and most people get no training for it. Our Leadership & People Management Coaching helps you build the skills to hire effectively, manage your team with confidence, deliver constructive feedback, and navigate the tough conversations that come with leadership.\n\nWhether you are a first-time manager, a founder building your first team, or a professional preparing for a leadership role, this coaching gives you the practical tools and frameworks you need."
-            : "Devenir gestionnaire est l'une des plus grandes transitions de carrière. Notre coaching vous aide à bâtir les compétences pour recruter, gérer votre équipe et donner de la rétroaction constructive.",
-          idealFor: language === "en" ? "First-time managers, team leads, founders hiring their first employees, or professionals preparing for management roles." : "Nouveaux gestionnaires, fondateurs recrutant pour la première fois.",
-          image: talentDevelopmentImg,
-          pricingTiers: [
-            {
-              name: language === "en" ? "Essentials" : "Essentiel",
-              price: "$200/mo",
-              subtitle: language === "en" ? "Monthly coaching on core management skills and team leadership." : "Coaching mensuel sur les compétences de gestion de base.",
-              features: language === "en"
-                ? ["Monthly coaching session", "Management fundamentals framework", "Feedback delivery techniques", "Team communication strategies", "Email support between sessions"]
-                : ["Session de coaching mensuelle", "Cadre de gestion fondamentale", "Techniques de rétroaction", "Stratégies de communication", "Support par e-mail"],
-              isMonthly: true,
-              stripeProductName: "Leadership Coaching - Essentials"
-            },
-            {
-              name: "Standard",
-              price: "$450/mo",
-              subtitle: language === "en" ? "Bi-weekly coaching with hiring skills, difficult conversations, and team building." : "Coaching bimensuel avec compétences d'embauche et gestion des conversations difficiles.",
-              features: language === "en"
-                ? ["Everything in Essentials", "Bi-weekly coaching sessions", "Hiring and interview coaching", "Difficult conversation frameworks", "Team motivation strategies", "1-on-1 meeting templates", "Priority messaging support"]
-                : ["Tout dans Essentiel", "Sessions bimensuelles", "Coaching d'embauche", "Gestion des conversations difficiles", "Stratégies de motivation", "Modèles de 1-à-1", "Support prioritaire"],
-              isMonthly: true,
-              stripeProductName: "Leadership Coaching - Standard"
-            },
-            {
-              name: "Premium",
-              price: "$750/mo",
-              subtitle: language === "en" ? "Weekly coaching with comprehensive leadership development and performance management mastery." : "Coaching hebdomadaire avec développement du leadership et maîtrise de la gestion de la performance.",
-              features: language === "en"
-                ? ["Everything in Standard", "Weekly coaching sessions", "Performance management coaching", "Delegation and empowerment skills", "Conflict resolution techniques", "Career development planning", "On-demand messaging support", "Quarterly leadership assessment"]
-                : ["Tout dans Standard", "Sessions hebdomadaires", "Coaching en gestion de la performance", "Compétences en délégation", "Techniques de résolution de conflits", "Planification de carrière", "Support à la demande", "Évaluation trimestrielle"],
-              isMonthly: true,
-              stripeProductName: "Leadership Coaching - Premium"
             }
           ]
         }

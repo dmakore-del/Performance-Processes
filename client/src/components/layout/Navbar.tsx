@@ -25,7 +25,8 @@ export function Navbar() {
 
   const serviceLinks = [
     { label: language === "en" ? "Management Consulting" : "Consultation en gestion", href: "/consulting", desc: language === "en" ? "Strategy, operations & growth" : "Stratégie, opérations et croissance" },
-    { label: language === "en" ? "Recruiting & Headhunting" : "Recrutement et chasse de têtes", href: "/recruiting", desc: language === "en" ? "Talent acquisition & placement" : "Acquisition de talents et placement" },
+    { label: language === "en" ? "Human Resources" : "Ressources humaines", href: "/recruiting", desc: language === "en" ? "HR strategy, recruiting & talent" : "Stratégie RH, recrutement et talents" },
+    { label: language === "en" ? "Marketing & Websites" : "Marketing et sites Web", href: "/marketing", desc: language === "en" ? "Digital presence & brand building" : "Présence numérique et développement de marque" },
     { label: "Playbooks", href: "/playbooks", desc: language === "en" ? "Templates, tools & frameworks" : "Modèles, outils et cadres" },
   ];
 
@@ -35,7 +36,7 @@ export function Navbar() {
     { label: "Insights", href: "/insights" },
   ];
 
-  const isServicesActive = ["/consulting", "/recruiting", "/playbooks", "/services"].includes(location);
+  const isServicesActive = ["/consulting", "/recruiting", "/marketing", "/playbooks", "/services"].includes(location);
 
   return (
     <header className="w-full bg-white z-[60] sticky top-0 shadow-sm">
@@ -95,7 +96,7 @@ export function Navbar() {
             </button>
             {servicesOpen && (
               <div 
-                className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[340px] bg-white rounded-2xl shadow-xl border border-border/50 p-3 z-50"
+                className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[360px] bg-white rounded-2xl shadow-xl border border-border/50 p-3 z-50"
                 onMouseLeave={() => setServicesOpen(false)}
               >
                 {serviceLinks.map((link) => (

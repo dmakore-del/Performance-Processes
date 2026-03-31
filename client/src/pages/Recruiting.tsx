@@ -15,6 +15,9 @@ import teamStrategyImg from "@assets/generated/team-strategy-new.png";
 import recruitmentHiringImg from "@assets/generated/recruitment-hiring.png";
 import hiringSupportImg from "@assets/generated/hiring-support.png";
 import hrToolkitImg from "@assets/generated/hr-toolkit.png";
+import hrPeopleStrategyImg from "@assets/generated/hr-people-strategy.png";
+import talentDevelopmentImg from "@assets/generated/talent-development.png";
+import peopleOperationsImg from "@assets/generated/people-operations.png";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -155,7 +158,7 @@ export default function Recruiting() {
   const serviceTiers = {
     enterprise: {
       label: language === "en" ? "Enterprise" : "Entreprise",
-      tagline: language === "en" ? "For organizations that need structured recruiting systems and dedicated talent acquisition partnerships" : "Pour les organisations qui ont besoin de systèmes de recrutement structurés et de partenariats d'acquisition de talents",
+      tagline: language === "en" ? "For organizations that need structured HR systems, talent acquisition partnerships, and people strategy" : "Pour les organisations qui ont besoin de systèmes RH structurés, de partenariats d'acquisition de talents et de stratégie humaine",
       icon: <Briefcase className="text-accent" size={24} />,
       services: [
         {
@@ -246,12 +249,149 @@ export default function Recruiting() {
               stripeProductName: "Talent Acquisition - Recruiting Retainer"
             }
           ]
+        },
+        {
+          title: language === "en" ? "HR & People Strategy" : "Stratégie RH et gestion des personnes",
+          investment: "$5,000 – $15,000",
+          investmentNote: language === "en" ? "(6–12 week engagement)" : "(Engagement de 6 à 12 semaines)",
+          desc: language === "en"
+            ? "Your people are the heart of your business. We help you create the systems, policies, and culture that attract great talent and make them want to stay."
+            : "Vos gens sont le cœur de votre entreprise. Nous créons les systèmes, politiques et la culture qui attirent les meilleurs talents et les fidélisent.",
+          benefits: language === "en"
+            ? ["HR policy & framework design", "Performance management systems", "Employee engagement strategy", "Workforce planning & org design"]
+            : ["Conception de politiques RH", "Systèmes de gestion de la performance", "Stratégie d'engagement des employés", "Planification de la main-d'œuvre"],
+          learnMore: language === "en"
+            ? "People are your most valuable asset, but without the right systems, even great talent underperforms. Our HR & People Strategy engagements help you design and implement the frameworks, policies, and systems that attract, develop, and retain top talent.\n\nWe cover everything from HR policy development and performance review systems to employee engagement strategies, succession planning, and organizational design. Whether you're building HR from scratch or overhauling an existing function, we create people infrastructure that scales with your business."
+            : "Les personnes sont votre atout le plus précieux. Nous vous aidons à concevoir et mettre en œuvre les cadres, politiques et systèmes qui attirent, développent et retiennent les meilleurs talents.",
+          idealFor: language === "en" ? "Organizations building or restructuring their HR function, or leadership teams that need people systems to support growth." : "Organisations construisant ou restructurant leur fonction RH.",
+          image: hrPeopleStrategyImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Foundation" : "Fondation",
+              price: "$5,000",
+              subtitle: language === "en" ? "Core HR framework with policies, role clarity, and performance review design." : "Cadre RH de base avec politiques et conception de revue de performance.",
+              features: language === "en"
+                ? ["HR policy framework", "Role and responsibility mapping", "Performance review system design", "Employee handbook template", "Compliance checklist"]
+                : ["Cadre de politiques RH", "Cartographie des rôles", "Conception du système de revue", "Modèle de manuel employé", "Liste de conformité"],
+              stripeProductName: "HR Strategy - Foundation"
+            },
+            {
+              name: "Standard",
+              price: "$10,000",
+              subtitle: language === "en" ? "Full people strategy with engagement systems, compensation framework, and talent planning." : "Stratégie complète avec systèmes d'engagement et planification des talents.",
+              features: language === "en"
+                ? ["Everything in Foundation", "Employee engagement strategy", "Compensation and benefits framework", "Talent management roadmap", "Onboarding program design", "HR metrics and KPI dashboard", "Leadership development recommendations"]
+                : ["Tout dans Fondation", "Stratégie d'engagement", "Cadre de rémunération", "Feuille de route de gestion des talents", "Programme d'intégration", "Tableau de bord RH", "Recommandations de développement du leadership"],
+              stripeProductName: "HR Strategy - Standard"
+            },
+            {
+              name: language === "en" ? "Comprehensive" : "Complet",
+              price: "$15,000",
+              subtitle: language === "en" ? "Complete people infrastructure with succession planning, organizational design, and implementation support." : "Infrastructure complète avec planification de la relève et conception organisationnelle.",
+              features: language === "en"
+                ? ["Everything in Standard", "Organizational design and restructuring", "Succession planning framework", "Culture assessment and strategy", "DEI strategy development", "Workforce planning model", "Full implementation support", "Quarterly review sessions"]
+                : ["Tout dans Standard", "Conception organisationnelle", "Planification de la relève", "Évaluation de la culture", "Stratégie DEI", "Planification de la main-d'œuvre", "Soutien à la mise en œuvre", "Revues trimestrielles"],
+              stripeProductName: "HR Strategy - Comprehensive"
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Leadership & Talent Development" : "Développement du leadership et des talents",
+          investment: "$5,000 – $20,000",
+          desc: language === "en"
+            ? "Invest in the people who will lead your organization tomorrow. We help you identify, develop, and retain the leaders who will carry your vision forward."
+            : "Investissez dans ceux qui dirigeront votre organisation demain. Nous identifions, développons et retenons les leaders qui porteront votre vision.",
+          benefits: language === "en"
+            ? ["Leadership development programs", "High-potential talent identification", "Succession planning", "Management training design"]
+            : ["Programmes de développement du leadership", "Identification des hauts potentiels", "Planification de la relève", "Conception de formation en gestion"],
+          learnMore: language === "en"
+            ? "Your organization's future depends on the leaders you develop today. Our Leadership & Talent Development engagements build structured programs that identify, develop, and retain your best people.\n\nFrom high-potential identification and competency frameworks to management training programs and succession planning, we help you create a leadership pipeline that ensures your organization is never dependent on a single person or team."
+            : "L'avenir de votre organisation dépend des leaders que vous développez aujourd'hui. Nous construisons des programmes structurés pour identifier, développer et retenir vos meilleurs talents.",
+          idealFor: language === "en" ? "Organizations investing in leadership capacity, facing succession gaps, or building management bench strength." : "Organisations investissant dans la capacité de leadership ou confrontées à des défis de relève.",
+          image: talentDevelopmentImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Foundation" : "Fondation",
+              price: "$5,000",
+              subtitle: language === "en" ? "Leadership competency framework with talent assessment and development planning." : "Cadre de compétences en leadership avec évaluation des talents.",
+              features: language === "en"
+                ? ["Leadership competency framework", "Talent assessment methodology", "Individual development plan templates", "Management skills gap analysis", "Development roadmap", "Summary recommendations report"]
+                : ["Cadre de compétences en leadership", "Méthodologie d'évaluation", "Modèles de plan de développement", "Analyse des écarts", "Feuille de route de développement", "Rapport de recommandations"],
+              stripeProductName: "Talent Development - Foundation"
+            },
+            {
+              name: "Standard",
+              price: "$12,000",
+              subtitle: language === "en" ? "Full talent development program with training design, coaching framework, and succession planning." : "Programme complet de développement avec formation, coaching et planification de la relève.",
+              features: language === "en"
+                ? ["Everything in Foundation", "Custom training program design", "Coaching framework and toolkit", "High-potential identification system", "Succession planning framework", "Mentorship program design", "Quarterly progress reviews"]
+                : ["Tout dans Fondation", "Conception de programme de formation", "Cadre de coaching", "Système d'identification des hauts potentiels", "Planification de la relève", "Programme de mentorat", "Revues trimestrielles"],
+              stripeProductName: "Talent Development - Standard"
+            },
+            {
+              name: language === "en" ? "Enterprise" : "Entreprise",
+              price: "$20,000",
+              subtitle: language === "en" ? "Comprehensive leadership development with multi-level programs, 360 assessments, and ongoing support." : "Développement complet du leadership avec programmes multi-niveaux et évaluations 360.",
+              features: language === "en"
+                ? ["Everything in Standard", "Multi-level leadership programs", "360-degree assessment integration", "Executive coaching integration", "Leadership academy design", "Culture and engagement surveys", "Full implementation support", "6-month post-program support"]
+                : ["Tout dans Standard", "Programmes multi-niveaux", "Évaluation 360 degrés", "Coaching exécutif", "Conception d'académie de leadership", "Sondages culture et engagement", "Soutien à la mise en œuvre", "Support de 6 mois"],
+              stripeProductName: "Talent Development - Enterprise"
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "HR Retainer, Large Corporations" : "Mandat RH, grandes entreprises",
+          investment: "$5,000 – $15,000/mo",
+          investmentNote: language === "en" ? "(6-month minimum)" : "(Minimum 6 mois)",
+          desc: language === "en"
+            ? "Get a dedicated HR strategy partner embedded in your organization. We provide ongoing people operations support, policy management, and strategic workforce planning."
+            : "Obtenez un partenaire stratégique RH dédié intégré à votre organisation. Nous fournissons un soutien continu aux opérations humaines et à la planification de la main-d'œuvre.",
+          benefits: language === "en"
+            ? ["Dedicated HR strategy partner", "Ongoing policy and compliance management", "Workforce planning & analytics", "Leadership development support"]
+            : ["Partenaire stratégique RH dédié", "Gestion de politiques et conformité", "Planification de la main-d'œuvre", "Soutien au développement du leadership"],
+          learnMore: language === "en"
+            ? "Large organizations need consistent, strategic HR guidance that goes beyond day-to-day administration. Our HR Retainer for Large Corporations provides a dedicated senior HR consultant who becomes a strategic partner in your organization.\n\nThis includes ongoing workforce planning, policy management, compliance oversight, leadership development support, employee relations guidance, and regular reporting on HR metrics. Think of it as having a fractional Chief People Officer who knows your organization inside out."
+            : "Les grandes organisations ont besoin d'un accompagnement RH stratégique et cohérent. Notre mandat RH fournit un consultant senior dédié qui devient votre partenaire stratégique.",
+          idealFor: language === "en" ? "Corporations with 100+ employees needing strategic HR partnership, compliance oversight, and ongoing people operations support." : "Entreprises de 100+ employés ayant besoin d'un partenariat RH stratégique.",
+          image: hrPeopleStrategyImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Strategic" : "Stratégique",
+              price: "$5,000/mo",
+              subtitle: language === "en" ? "Monthly HR advisory with policy reviews, compliance support, and strategic workforce planning." : "Conseil RH mensuel avec revues de politiques et planification de la main-d'œuvre.",
+              features: language === "en"
+                ? ["Monthly HR strategy sessions", "Policy review and updates", "Compliance monitoring", "HR metrics dashboard", "Employee relations guidance", "Quarterly workforce planning review", "Email and phone support"]
+                : ["Sessions stratégiques RH mensuelles", "Revue et mise à jour des politiques", "Suivi de la conformité", "Tableau de bord RH", "Guidance en relations employés", "Revue trimestrielle", "Support par e-mail et téléphone"],
+              isMonthly: true,
+              stripeProductName: "HR Retainer Corp - Strategic"
+            },
+            {
+              name: "Standard",
+              price: "$10,000/mo",
+              subtitle: language === "en" ? "Bi-weekly engagement with leadership coaching, talent management, and organizational development." : "Engagement bimensuel avec coaching de leadership et développement organisationnel.",
+              features: language === "en"
+                ? ["Everything in Strategic", "Bi-weekly strategy sessions", "Leadership coaching and development", "Talent management oversight", "Performance management system support", "Organizational development consulting", "Change management guidance", "Priority support"]
+                : ["Tout dans Stratégique", "Sessions bimensuelles", "Coaching de leadership", "Gestion des talents", "Soutien au système de performance", "Consultation en développement organisationnel", "Gestion du changement", "Support prioritaire"],
+              isMonthly: true,
+              stripeProductName: "HR Retainer Corp - Standard"
+            },
+            {
+              name: "Premium",
+              price: "$15,000/mo",
+              subtitle: language === "en" ? "Dedicated fractional CPO with full HR strategy, implementation, and executive advisory." : "Directeur des ressources humaines fractionné avec stratégie RH complète.",
+              features: language === "en"
+                ? ["Everything in Standard", "Weekly strategy sessions", "Dedicated senior HR consultant", "Full HR transformation support", "Executive team advisory", "Board-ready HR reporting", "Culture and engagement programs", "Succession planning management", "DEI strategy implementation", "On-demand support"]
+                : ["Tout dans Standard", "Sessions hebdomadaires", "Consultant senior dédié", "Transformation RH complète", "Conseil à l'équipe exécutive", "Rapports RH pour le conseil", "Programmes de culture", "Gestion de la relève", "Stratégie DEI", "Support à la demande"],
+              isMonthly: true,
+              stripeProductName: "HR Retainer Corp - Premium"
+            }
+          ]
         }
       ]
     },
     business: {
       label: language === "en" ? "Small Business" : "Petite entreprise",
-      tagline: language === "en" ? "For founders and small business owners who need to hire the right people without the overhead of an HR department" : "Pour les fondateurs et propriétaires de PME qui doivent recruter les bonnes personnes sans les coûts d'un département RH",
+      tagline: language === "en" ? "For founders and small business owners who need to hire right, build HR foundations, and manage their people with confidence" : "Pour les fondateurs et propriétaires de PME qui doivent recruter correctement, bâtir des fondations RH et gérer leur équipe avec confiance",
       icon: <Rocket className="text-accent" size={24} />,
       services: [
         {
@@ -342,12 +482,104 @@ export default function Recruiting() {
               stripeProductName: "SB Recruiting - Premium"
             }
           ]
+        },
+        {
+          title: language === "en" ? "People Operations Setup" : "Mise en place des opérations RH",
+          investment: "$2,000 – $5,000",
+          desc: language === "en"
+            ? "Your team deserves more than guesswork. We set up the HR essentials, clear policies, smooth onboarding, and fair reviews, so your people feel supported and valued."
+            : "Votre équipe mérite mieux que l'improvisation. Nous mettons en place les essentiels RH pour que vos employés se sentent soutenus et valorisés.",
+          benefits: language === "en"
+            ? ["Employee policy handbook", "Onboarding process design", "Performance review framework", "Team management systems"]
+            : ["Manuel de politiques", "Processus d'intégration", "Cadre de revue de performance", "Systèmes de gestion d'équipe"],
+          learnMore: language === "en"
+            ? "Most small businesses wing it when it comes to managing people, and it catches up with them. Unclear expectations, no onboarding process, inconsistent reviews, and reactive problem-solving create turnover, low morale, and legal risk.\n\nOur People Operations Setup gives you the essential HR infrastructure every growing business needs: clear policies, a structured onboarding process, a simple performance review system, and team management templates you can actually use. No corporate bloat, just what works."
+            : "La plupart des PME improvisent la gestion des personnes. Nous vous donnons les fondations RH essentielles : politiques claires, intégration structurée et système de revue de performance simple.",
+          idealFor: language === "en" ? "Small businesses with 3–25 employees who need professional HR foundations without the overhead of a full HR department." : "PME de 3 à 25 employés qui ont besoin de fondations RH professionnelles.",
+          image: peopleOperationsImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Essentials" : "Essentiel",
+              price: "$2,000",
+              subtitle: language === "en" ? "Core HR policies and employee handbook for small teams." : "Politiques RH de base et manuel employé pour petites équipes.",
+              features: language === "en"
+                ? ["Employee policy handbook", "Core HR policies (5–8 policies)", "Simple onboarding checklist", "Role description templates", "Basic compliance guidance"]
+                : ["Manuel de politiques", "Politiques RH de base (5-8)", "Liste d'intégration", "Modèles de description de rôle", "Guide de conformité de base"],
+              stripeProductName: "People Ops - Essentials"
+            },
+            {
+              name: "Standard",
+              price: "$3,500",
+              subtitle: language === "en" ? "Full people operations setup with onboarding, reviews, and team systems." : "Configuration complète des opérations RH avec intégration et revues.",
+              features: language === "en"
+                ? ["Everything in Essentials", "Structured onboarding program", "Performance review system", "Team accountability framework", "1-on-1 meeting templates", "Employee feedback process", "30-day follow-up session"]
+                : ["Tout dans Essentiel", "Programme d'intégration structuré", "Système de revue de performance", "Cadre de responsabilité", "Modèles de rencontres 1-à-1", "Processus de rétroaction", "Session de suivi de 30 jours"],
+              stripeProductName: "People Ops - Standard"
+            },
+            {
+              name: "Premium",
+              price: "$5,000",
+              subtitle: language === "en" ? "Complete HR foundation with culture strategy, compensation framework, and ongoing support." : "Fondation RH complète avec stratégie de culture et cadre de rémunération.",
+              features: language === "en"
+                ? ["Everything in Standard", "Culture and values framework", "Compensation and benefits guide", "Employee development plan templates", "Conflict resolution process", "HR compliance audit", "60-day post-engagement support"]
+                : ["Tout dans Standard", "Cadre de culture et valeurs", "Guide de rémunération", "Modèles de plan de développement", "Processus de résolution de conflits", "Audit de conformité RH", "Support de 60 jours"],
+              stripeProductName: "People Ops - Premium"
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "HR Retainer, Small Business" : "Mandat RH, petites entreprises",
+          investment: "$500 – $2,000/mo",
+          investmentNote: language === "en" ? "(3-month minimum)" : "(Minimum 3 mois)",
+          desc: language === "en"
+            ? "You can't afford a full-time HR person, but you need one. Get a dedicated HR partner who handles the people side of your business so you can focus on growth."
+            : "Vous ne pouvez pas vous permettre un responsable RH à temps plein, mais vous en avez besoin. Obtenez un partenaire RH dédié.",
+          benefits: language === "en"
+            ? ["Ongoing HR advisory support", "Hiring and onboarding guidance", "Employee relations support", "Policy updates and compliance"]
+            : ["Soutien RH continu", "Guidance en recrutement et intégration", "Relations employés", "Mises à jour de politiques et conformité"],
+          learnMore: language === "en"
+            ? "Small businesses rarely have the budget for a dedicated HR professional, but they still face hiring decisions, employee issues, compliance questions, and policy needs. Our HR Retainer for Small Business gives you a dedicated HR partner who handles the people side of your business on an ongoing basis.\n\nThis monthly retainer includes hiring support, employee relations guidance, policy updates, compliance advice, and a resource you can call when people issues arise. It's like having your own HR department without the overhead."
+            : "Les petites entreprises ont rarement le budget pour un professionnel RH dédié. Notre mandat RH vous donne un partenaire qui gère le côté humain de votre entreprise.",
+          idealFor: language === "en" ? "Small businesses with 5–50 employees who need ongoing HR support without hiring a full-time HR professional." : "PME de 5 à 50 employés qui ont besoin de soutien RH continu.",
+          image: hrPeopleStrategyImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Essentials" : "Essentiel",
+              price: "$500/mo",
+              subtitle: language === "en" ? "Monthly HR advisory with email support and hiring guidance." : "Conseil RH mensuel avec support par e-mail et guidance en recrutement.",
+              features: language === "en"
+                ? ["Monthly HR advisory call", "Hiring guidance (up to 2 roles)", "Employee handbook maintenance", "Basic compliance reviews", "Policy question support via email", "Onboarding checklist updates"]
+                : ["Appel de conseil RH mensuel", "Guidance en recrutement (2 rôles)", "Maintenance du manuel employé", "Revues de conformité", "Support par e-mail", "Mises à jour d'intégration"],
+              isMonthly: true,
+              stripeProductName: "HR Retainer SB - Essentials"
+            },
+            {
+              name: "Standard",
+              price: "$1,000/mo",
+              subtitle: language === "en" ? "Bi-weekly HR support with employee relations, performance reviews, and hiring assistance." : "Soutien RH bimensuel avec relations employés et gestion de la performance.",
+              features: language === "en"
+                ? ["Everything in Essentials", "Bi-weekly advisory sessions", "Employee relations support", "Performance review management", "Hiring process support (up to 5 roles)", "Conflict resolution guidance", "Quarterly policy updates", "Priority phone support"]
+                : ["Tout dans Essentiel", "Sessions bimensuelles", "Relations employés", "Gestion de revue de performance", "Soutien au recrutement (5 rôles)", "Résolution de conflits", "Mises à jour trimestrielles", "Support téléphonique"],
+              isMonthly: true,
+              stripeProductName: "HR Retainer SB - Standard"
+            },
+            {
+              name: "Premium",
+              price: "$2,000/mo",
+              subtitle: language === "en" ? "Dedicated fractional HR manager with full people operations support." : "Gestionnaire RH fractionné dédié avec soutien complet aux opérations humaines.",
+              features: language === "en"
+                ? ["Everything in Standard", "Weekly advisory sessions", "Dedicated HR manager", "Full recruitment support", "Employee development programs", "Compensation and benefits guidance", "Culture and engagement initiatives", "On-demand support", "Team training facilitation"]
+                : ["Tout dans Standard", "Sessions hebdomadaires", "Gestionnaire RH dédié", "Soutien complet au recrutement", "Programmes de développement", "Guidance en rémunération", "Initiatives de culture", "Support à la demande", "Animation de formation"],
+              isMonthly: true,
+              stripeProductName: "HR Retainer SB - Premium"
+            }
+          ]
         }
       ]
     },
     professional: {
       label: language === "en" ? "Professional" : "Professionnel",
-      tagline: language === "en" ? "For professionals ready to take control of their career, land the right role, ace the interview, and negotiate with confidence" : "Pour les professionnels prêts à prendre le contrôle de leur carrière, décrocher le bon poste et négocier avec confiance",
+      tagline: language === "en" ? "For professionals ready to lead with confidence, land the right role, and build the career they deserve" : "Pour les professionnels prêts à diriger avec confiance, décrocher le bon poste et bâtir la carrière qu'ils méritent",
       icon: <UserCheck className="text-accent" size={24} />,
       services: [
         {
@@ -435,6 +667,101 @@ export default function Recruiting() {
                 ? ["Everything in Standard", "Dedicated career partner", "Targeted employer introductions", "Expanded applications (up to 50)", "Salary and benefits negotiation coaching", "Personal brand strategy", "Executive presence coaching", "8-week active support", "Post-placement 30-day check-in"]
                 : ["Tout dans Standard", "Partenaire de carrière dédié", "Introductions ciblées auprès d'employeurs", "Candidatures élargies (jusqu'à 50)", "Coaching de négociation salariale", "Stratégie de marque personnelle", "Coaching de présence", "Soutien actif de 8 semaines", "Suivi de 30 jours post-placement"],
               stripeProductName: "Career Placement - Premium"
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "Leadership & People Management Coaching" : "Coaching en leadership et gestion des personnes",
+          investment: "$200 – $750/mo",
+          desc: language === "en"
+            ? "Becoming a manager is one of the biggest career leaps, and most people get zero training for it. We help you lead with confidence, give feedback that lands, and build a team that trusts you."
+            : "Devenir gestionnaire est l'un des plus grands sauts de carrière, et la plupart des gens n'ont aucune formation. Nous vous aidons à diriger avec confiance.",
+          benefits: language === "en"
+            ? ["Management confidence building", "Effective feedback techniques", "Hiring & interview skills", "Difficult conversation frameworks"]
+            : ["Développement de la confiance en gestion", "Techniques de rétroaction efficace", "Compétences en embauche", "Cadres de conversations difficiles"],
+          learnMore: language === "en"
+            ? "Becoming a manager is one of the biggest career transitions, and most people get no training for it. Our Leadership & People Management Coaching helps you build the skills to hire effectively, manage your team with confidence, deliver constructive feedback, and navigate the tough conversations that come with leadership.\n\nWhether you are a first-time manager, a founder building your first team, or a professional preparing for a leadership role, this coaching gives you the practical tools and frameworks you need."
+            : "Devenir gestionnaire est l'une des plus grandes transitions de carrière. Notre coaching vous aide à bâtir les compétences pour recruter, gérer votre équipe et donner de la rétroaction constructive.",
+          idealFor: language === "en" ? "First-time managers, team leads, founders hiring their first employees, or professionals preparing for management roles." : "Nouveaux gestionnaires, fondateurs recrutant pour la première fois.",
+          image: talentDevelopmentImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Essentials" : "Essentiel",
+              price: "$200/mo",
+              subtitle: language === "en" ? "Monthly coaching on core management skills and team leadership." : "Coaching mensuel sur les compétences de gestion de base.",
+              features: language === "en"
+                ? ["Monthly coaching session", "Management fundamentals framework", "Feedback delivery techniques", "Team communication strategies", "Email support between sessions"]
+                : ["Session de coaching mensuelle", "Cadre de gestion fondamentale", "Techniques de rétroaction", "Stratégies de communication", "Support par e-mail"],
+              isMonthly: true,
+              stripeProductName: "Leadership Coaching - Essentials"
+            },
+            {
+              name: "Standard",
+              price: "$450/mo",
+              subtitle: language === "en" ? "Bi-weekly coaching with hiring skills, difficult conversations, and team building." : "Coaching bimensuel avec compétences d'embauche et gestion des conversations difficiles.",
+              features: language === "en"
+                ? ["Everything in Essentials", "Bi-weekly coaching sessions", "Hiring and interview coaching", "Difficult conversation frameworks", "Team motivation strategies", "1-on-1 meeting templates", "Priority messaging support"]
+                : ["Tout dans Essentiel", "Sessions bimensuelles", "Coaching d'embauche", "Gestion des conversations difficiles", "Stratégies de motivation", "Modèles de 1-à-1", "Support prioritaire"],
+              isMonthly: true,
+              stripeProductName: "Leadership Coaching - Standard"
+            },
+            {
+              name: "Premium",
+              price: "$750/mo",
+              subtitle: language === "en" ? "Weekly coaching with comprehensive leadership development and performance management mastery." : "Coaching hebdomadaire avec développement du leadership et maîtrise de la gestion de la performance.",
+              features: language === "en"
+                ? ["Everything in Standard", "Weekly coaching sessions", "Performance management coaching", "Delegation and empowerment skills", "Conflict resolution techniques", "Career development planning", "On-demand messaging support", "Quarterly leadership assessment"]
+                : ["Tout dans Standard", "Sessions hebdomadaires", "Coaching en gestion de la performance", "Compétences en délégation", "Techniques de résolution de conflits", "Planification de carrière", "Support à la demande", "Évaluation trimestrielle"],
+              isMonthly: true,
+              stripeProductName: "Leadership Coaching - Premium"
+            }
+          ]
+        },
+        {
+          title: language === "en" ? "HR Retainer, Non-Profits" : "Mandat RH, organismes à but non lucratif",
+          investment: "$300 – $1,500/mo",
+          investmentNote: language === "en" ? "(3-month minimum)" : "(Minimum 3 mois)",
+          desc: language === "en"
+            ? "Non-profits have unique people challenges, tight budgets, passionate teams, and complex compliance. We provide affordable, mission-aligned HR support that helps you focus on impact."
+            : "Les OBNL ont des défis uniques en matière de personnel. Nous fournissons un soutien RH abordable et aligné sur votre mission.",
+          benefits: language === "en"
+            ? ["Non-profit HR advisory", "Volunteer management support", "Grant compliance HR guidance", "Board governance & HR alignment"]
+            : ["Conseil RH pour OBNL", "Gestion des bénévoles", "Conformité des subventions", "Gouvernance et alignement RH"],
+          learnMore: language === "en"
+            ? "Non-profit organizations face unique HR challenges: managing both paid staff and volunteers, navigating grant compliance requirements, handling board governance, and doing it all on tight budgets. Our HR Retainer for Non-Profits provides dedicated, affordable HR support designed specifically for mission-driven organizations.\n\nThis retainer covers hiring guidance, volunteer management, policy development, compliance support, board-HR alignment, and employee relations. We understand the non-profit landscape and provide practical solutions that respect your budget while protecting your people and your mission."
+            : "Les OBNL font face à des défis RH uniques. Notre mandat fournit un soutien RH dédié et abordable conçu pour les organisations à mission.",
+          idealFor: language === "en" ? "Non-profit organizations, charities, and social enterprises that need dedicated HR support aligned with their mission and budget constraints." : "Organismes à but non lucratif et entreprises sociales.",
+          image: hrPeopleStrategyImg,
+          pricingTiers: [
+            {
+              name: language === "en" ? "Community" : "Communauté",
+              price: "$300/mo",
+              subtitle: language === "en" ? "Monthly HR advisory for small non-profits with basic compliance and volunteer guidance." : "Conseil RH mensuel pour petits OBNL.",
+              features: language === "en"
+                ? ["Monthly HR advisory call", "Basic policy development", "Volunteer management guidance", "Employment compliance basics", "Email support", "Non-profit best practices"]
+                : ["Appel de conseil RH mensuel", "Développement de politiques de base", "Gestion des bénévoles", "Conformité d'emploi", "Support par e-mail", "Meilleures pratiques OBNL"],
+              isMonthly: true,
+              stripeProductName: "HR Retainer NP - Community"
+            },
+            {
+              name: "Standard",
+              price: "$750/mo",
+              subtitle: language === "en" ? "Bi-weekly HR support with hiring, grant compliance, and staff development." : "Soutien RH bimensuel avec recrutement et conformité des subventions.",
+              features: language === "en"
+                ? ["Everything in Community", "Bi-weekly advisory sessions", "Hiring process support", "Grant compliance HR documentation", "Staff development planning", "Board-HR alignment guidance", "Conflict resolution support", "Priority phone support"]
+                : ["Tout dans Communauté", "Sessions bimensuelles", "Soutien au recrutement", "Documentation RH de conformité", "Planification du développement", "Alignement conseil-RH", "Résolution de conflits", "Support téléphonique"],
+              isMonthly: true,
+              stripeProductName: "HR Retainer NP - Standard"
+            },
+            {
+              name: "Premium",
+              price: "$1,500/mo",
+              subtitle: language === "en" ? "Dedicated HR partner for larger non-profits with full people operations support." : "Partenaire RH dédié pour grands OBNL.",
+              features: language === "en"
+                ? ["Everything in Standard", "Weekly advisory sessions", "Dedicated HR consultant", "Full recruitment support", "Compensation benchmarking for non-profits", "Employee engagement programs", "Volunteer program design", "Board reporting and governance support", "On-demand support"]
+                : ["Tout dans Standard", "Sessions hebdomadaires", "Consultant RH dédié", "Soutien complet au recrutement", "Analyse comparative de rémunération", "Programmes d'engagement", "Conception de programme bénévole", "Rapports au conseil", "Support à la demande"],
+              isMonthly: true,
+              stripeProductName: "HR Retainer NP - Premium"
             }
           ]
         }
@@ -538,24 +865,24 @@ export default function Recruiting() {
   };
 
   const tabs: { key: typeof activeTab; label: string; sublabel: string; icon: React.ReactNode; priceRange: string }[] = [
-    { key: "enterprise", label: serviceTiers.enterprise.label, sublabel: language === "en" ? "Talent Acquisition" : "Acquisition de talents", icon: <Briefcase size={18} />, priceRange: "$3,000+" },
-    { key: "business", label: serviceTiers.business.label, sublabel: language === "en" ? "Hiring Support" : "Soutien au recrutement", icon: <Rocket size={18} />, priceRange: "$1,000+" },
-    { key: "professional", label: serviceTiers.professional.label, sublabel: language === "en" ? "Career & Placement" : "Carrière et placement", icon: <UserCheck size={18} />, priceRange: "$250+" },
-    { key: "self-serve", label: serviceTiers["self-serve"].label, sublabel: language === "en" ? "Hiring & Career Tools" : "Outils de recrutement", icon: <Package size={18} />, priceRange: "$29+" },
+    { key: "enterprise", label: serviceTiers.enterprise.label, sublabel: language === "en" ? "Recruiting & HR Strategy" : "Recrutement et stratégie RH", icon: <Briefcase size={18} />, priceRange: "$3,000+" },
+    { key: "business", label: serviceTiers.business.label, sublabel: language === "en" ? "Hiring & People Ops" : "Embauche et opérations RH", icon: <Rocket size={18} />, priceRange: "$500+" },
+    { key: "professional", label: serviceTiers.professional.label, sublabel: language === "en" ? "Career & Leadership" : "Carrière et leadership", icon: <UserCheck size={18} />, priceRange: "$200+" },
+    { key: "self-serve", label: serviceTiers["self-serve"].label, sublabel: language === "en" ? "HR & Career Tools" : "Outils RH et carrière", icon: <Package size={18} />, priceRange: "$29+" },
   ];
 
   const currentTier = serviceTiers[activeTab];
 
   const resultStats = [
-    { value: language === "en" ? "Enterprise" : "Entreprise", label: language === "en" ? "Talent Acquisition" : "Acquisition de talents", icon: <Briefcase size={20} className="text-accent" /> },
-    { value: language === "en" ? "Small Business" : "PME", label: language === "en" ? "Hiring Support" : "Soutien au recrutement", icon: <Rocket size={20} className="text-accent" /> },
-    { value: language === "en" ? "Professional" : "Professionnel", label: language === "en" ? "Career & Placement" : "Carrière et placement", icon: <UserCheck size={20} className="text-accent" /> },
-    { value: language === "en" ? "Self-Serve" : "Libre-service", label: language === "en" ? "Hiring & Career Tools" : "Outils de recrutement", icon: <Package size={20} className="text-accent" /> },
+    { value: language === "en" ? "Enterprise" : "Entreprise", label: language === "en" ? "Recruiting & HR Strategy" : "Recrutement et stratégie RH", icon: <Briefcase size={20} className="text-accent" /> },
+    { value: language === "en" ? "Small Business" : "PME", label: language === "en" ? "Hiring & People Ops" : "Embauche et opérations RH", icon: <Rocket size={20} className="text-accent" /> },
+    { value: language === "en" ? "Professional" : "Professionnel", label: language === "en" ? "Career & Leadership" : "Carrière et leadership", icon: <UserCheck size={20} className="text-accent" /> },
+    { value: language === "en" ? "Self-Serve" : "Libre-service", label: language === "en" ? "HR & Career Tools" : "Outils RH et carrière", icon: <Package size={20} className="text-accent" /> },
   ];
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-      <SEOHead title="Recruiting & Headhunting, Find the Right People, Faster" description="From enterprise talent acquisition and executive search to small business hiring support and career placement, we help you find, evaluate, and place the right people." path="/recruiting" />
+      <SEOHead title="Human Resources, Recruiting, Talent Development & People Strategy" description="From talent acquisition and HR strategy to leadership development, people operations, and career coaching, we help you build, manage, and grow the teams that power your success." path="/recruiting" />
       <Navbar />
       <main className="flex-grow">
 
@@ -572,19 +899,19 @@ export default function Recruiting() {
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-4xl">
               <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="recruiting-text-hero-label">
-                {language === "en" ? "Performance Processes" : "Performance Processes"}
+                {language === "en" ? "Human Resources" : "Ressources humaines"}
               </p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="recruiting-text-hero-title">
                 {language === "en" ? (
-                  <>Recruiting & <span className="text-accent">Headhunting</span> that delivers results</>
+                  <>Build, manage, and grow the <span className="text-accent">people</span> who power your success</>
                 ) : (
-                  <>Recrutement et <span className="text-accent">chasse de têtes</span> qui livrent des résultats</>
+                  <>Bâtir, gérer et développer les <span className="text-accent">personnes</span> qui alimentent votre succès</>
                 )}
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl" data-testid="recruiting-text-hero-subtitle">
                 {language === "en"
-                  ? "Whether you need to build a talent acquisition system, hire your next key player, or land your dream role, we connect the right people with the right opportunities."
-                  : "Que vous ayez besoin de bâtir un système d'acquisition de talents, recruter votre prochain joueur clé ou décrocher le poste de vos rêves, nous connectons les bonnes personnes aux bonnes opportunités."}
+                  ? "From talent acquisition and people strategy to leadership development, HR retainers, and career coaching, we help you build the teams and systems that drive real results."
+                  : "De l'acquisition de talents et de la stratégie humaine au développement du leadership, aux mandats RH et au coaching de carrière, nous vous aidons à bâtir les équipes et systèmes qui génèrent de vrais résultats."}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
@@ -627,13 +954,13 @@ export default function Recruiting() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-6">
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
-                {language === "en" ? "Our Recruiting Approach" : "Notre approche de recrutement"}
+                {language === "en" ? "Our People-First Approach" : "Notre approche axée sur les personnes"}
               </h2>
               <div className="w-16 h-1 bg-accent rounded-full mx-auto mb-6" />
               <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg mb-4">
                 {language === "en"
-                  ? "We don't just fill positions, we find the people who will drive your organization forward. Every placement starts with understanding and ends with lasting impact."
-                  : "Nous ne remplissons pas simplement des postes, nous trouvons les personnes qui feront avancer votre organisation. Chaque placement commence par la compréhension et se termine par un impact durable."}
+                  ? "Whether we are finding you the right hire, building your HR infrastructure, or developing your leaders, every engagement starts with understanding your people and ends with lasting impact."
+                  : "Que nous trouvions la bonne recrue, construisions votre infrastructure RH ou développions vos leaders, chaque engagement commence par la compréhension de vos gens et se termine par un impact durable."}
               </p>
             </div>
 
@@ -684,7 +1011,7 @@ export default function Recruiting() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
-                {language === "en" ? "Recruiting services built around your needs" : "Des services de recrutement adaptés à vos besoins"}
+                {language === "en" ? "HR and recruiting services built around your needs" : "Des services RH et de recrutement adaptés à vos besoins"}
               </h2>
               <div className="w-16 h-1 bg-accent rounded-full mx-auto mb-6" />
               <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg">

@@ -42,26 +42,51 @@ interface StripeProductRow {
   currency: string;
 }
 
-const FLAGSHIP_PRODUCT: PlaybookProduct = {
-  id: "growth-infrastructure-system",
-  name: "Growth Infrastructure System",
-  price: 399,
-  priceLabel: "$299 – $499",
-  description: "Our complete methodology in one system. Design, build, and run scalable business infrastructure using the same frameworks we deploy in consulting engagements.",
-  included: [
-    "Foundation phase frameworks and templates",
-    "Build phase implementation guides",
-    "Run phase optimization playbooks",
-    "KPI libraries and scorecard templates",
-    "Hiring, performance, and operations systems",
-    "Marketing and conversion frameworks",
-    "Strategic planning workbook",
-    "90-day implementation roadmap",
-  ],
-  tier: "foundation",
-  tagline: "The full methodology. One system.",
-  isFlagship: true,
-};
+interface FlagshipOption {
+  id: string;
+  name: string;
+  label: string;
+  price: number;
+  priceLabel: string;
+  description: string;
+  included: string[];
+}
+
+const FLAGSHIP_OPTIONS: FlagshipOption[] = [
+  {
+    id: "growth-infrastructure-system-standard",
+    name: "Growth Infrastructure System (Standard)",
+    label: "Standard",
+    price: 299,
+    priceLabel: "$299",
+    description: "Core frameworks and templates for all three phases.",
+    included: [
+      "Foundation phase frameworks and templates",
+      "Build phase implementation guides",
+      "Run phase optimization playbooks",
+      "KPI libraries and scorecard templates",
+      "Implementation checklist",
+    ],
+  },
+  {
+    id: "growth-infrastructure-system-complete",
+    name: "Growth Infrastructure System (Complete)",
+    label: "Complete",
+    price: 499,
+    priceLabel: "$499",
+    description: "Everything in Standard, plus advanced tools and the full 90-day roadmap.",
+    included: [
+      "Foundation phase frameworks and templates",
+      "Build phase implementation guides",
+      "Run phase optimization playbooks",
+      "KPI libraries and scorecard templates",
+      "Hiring, performance, and operations systems",
+      "Marketing and conversion frameworks",
+      "Strategic planning workbook",
+      "90-day implementation roadmap",
+    ],
+  },
+];
 
 const PLAYBOOK_PRODUCTS: PlaybookProduct[] = [
   {
@@ -241,8 +266,22 @@ const TIER_CONFIG = {
   },
 };
 
-function FlagshipCard({ product, onAddToCart, isInCart }: { product: PlaybookProduct; onAddToCart: (p: PlaybookProduct) => void; isInCart: boolean }) {
-  const [showIncluded, setShowIncluded] = useState(false);
+function FlagshipCard({ options, onAddToCart, cartProductIds }: { options: FlagshipOption[]; onAddToCart: (p: PlaybookProduct) => void; cartProductIds: Set<string> }) {
+  const [selectedIndex, setSelectedIndex] = useState(1);
+  const selected = options[selectedIndex];
+  const isInCart = cartProductIds.has(selected.id);
+
+  const productForCart: PlaybookProduct = {
+    id: selected.id,
+    name: selected.name,
+    price: selected.price,
+    priceLabel: selected.priceLabel,
+    description: selected.description,
+    included: selected.included,
+    tier: "foundation",
+    tagline: "The full methodology. One system.",
+    isFlagship: true,
+  };
 
   return (
     <div className="relative bg-gradient-to-br from-primary via-primary to-blue-900 rounded-3xl overflow-hidden shadow-2xl" data-testid="card-flagship-playbook">
@@ -257,14 +296,37 @@ function FlagshipCard({ product, onAddToCart, isInCart }: { product: PlaybookPro
               <Star size={14} />
               Flagship System
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{product.name}</h2>
-            <p className="text-lg text-white/80 leading-relaxed mb-6">{product.description}</p>
-            <div className="flex items-center gap-4 mb-8">
-              <span className="text-3xl font-bold text-accent">{product.priceLabel}</span>
-              <span className="text-sm text-white/50">Foundation + Build + Run</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Growth Infrastructure System</h2>
+            <p className="text-lg text-white/80 leading-relaxed mb-6">
+              Our complete methodology in one system. Design, build, and run scalable business infrastructure using the same frameworks we deploy in consulting engagements.
+            </p>
+
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-wider text-white/50 mb-3">Select your edition</p>
+              <div className="flex gap-3">
+                {options.map((opt, i) => (
+                  <button
+                    key={opt.id}
+                    onClick={() => setSelectedIndex(i)}
+                    className={`flex-1 rounded-xl p-4 border-2 transition-all text-left ${
+                      selectedIndex === i
+                        ? "border-accent bg-accent/10"
+                        : "border-white/15 bg-white/5 hover:border-white/30"
+                    }`}
+                    data-testid={`button-flagship-option-${i}`}
+                  >
+                    <p className={`text-xs font-bold uppercase tracking-wider mb-1 ${selectedIndex === i ? "text-accent" : "text-white/50"}`}>
+                      {opt.label}
+                    </p>
+                    <p className="text-2xl font-bold text-white">{opt.priceLabel}</p>
+                    <p className="text-xs text-white/60 mt-1">{opt.description}</p>
+                  </button>
+                ))}
+              </div>
             </div>
+
             <button
-              onClick={() => onAddToCart(product)}
+              onClick={() => onAddToCart(productForCart)}
               className={`inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-wider transition-all ${
                 isInCart
                   ? "bg-green-500/20 text-green-300 border border-green-400/30"
@@ -280,40 +342,21 @@ function FlagshipCard({ product, onAddToCart, isInCart }: { product: PlaybookPro
               ) : (
                 <>
                   <ShoppingCart size={18} />
-                  Add to Cart
+                  Add {selected.label} to Cart
                 </>
               )}
             </button>
           </div>
           <div>
-            <button
-              onClick={() => setShowIncluded(!showIncluded)}
-              className="text-sm font-bold text-accent hover:text-white transition-colors mb-4 flex items-center gap-2"
-              data-testid="toggle-flagship-included"
-            >
-              What's included ({product.included.length} components)
-              {showIncluded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-            </button>
-            {showIncluded && (
-              <ul className="space-y-2.5">
-                {product.included.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-white/80">
-                    <CheckCircle2 size={14} className="text-accent mt-0.5 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            )}
-            {!showIncluded && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {["Foundation frameworks", "Build implementation guides", "Run optimization systems", "90-day roadmap"].map((item, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm text-white/70">
-                    <CheckCircle2 size={14} className="text-accent shrink-0" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-            )}
+            <p className="text-xs font-bold uppercase tracking-wider text-white/50 mb-3">What's included in {selected.label}</p>
+            <ul className="space-y-2.5">
+              {selected.included.map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm text-white/80">
+                  <CheckCircle2 size={14} className="text-accent mt-0.5 shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
@@ -729,9 +772,9 @@ export default function Playbooks() {
         <div className="container mx-auto px-4 md:px-8">
           <AnimateOnScroll animation="fade-up">
             <FlagshipCard
-              product={FLAGSHIP_PRODUCT}
+              options={FLAGSHIP_OPTIONS}
               onAddToCart={addToCart}
-              isInCart={cartProductIds.has(FLAGSHIP_PRODUCT.id)}
+              cartProductIds={cartProductIds}
             />
           </AnimateOnScroll>
         </div>

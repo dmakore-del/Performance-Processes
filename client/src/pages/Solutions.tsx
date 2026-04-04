@@ -328,7 +328,7 @@ export default function Solutions() {
                       <div className="h-full min-h-[280px] bg-gradient-to-br from-primary to-blue-900 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
                           <Rocket size={12} />
-                          Tier 3: Premium
+                          Tier 3: Scale
                         </div>
                         <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Full System Build</h3>
                         <p className="text-white/80 leading-relaxed mb-4">Complete design, build, and ongoing operation of your business systems. We become your infrastructure partner.</p>

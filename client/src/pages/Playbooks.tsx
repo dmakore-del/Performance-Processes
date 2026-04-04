@@ -2,7 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
-import { ShoppingCart, X, Plus, Minus, CheckCircle2, ArrowRight, BookOpen, Layers, Rocket, Loader2 } from "lucide-react";
+import { ShoppingCart, X, Plus, Minus, CheckCircle2, ArrowRight, BookOpen, Layers, Rocket, Loader2, Star, Package, ChevronDown, ChevronUp } from "lucide-react";
 import { Link } from "wouter";
 import { useState, useEffect, useMemo } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
@@ -19,10 +19,12 @@ interface PlaybookProduct {
   price: number;
   priceLabel: string;
   description: string;
-  idealFor: string;
   included: string[];
-  tier: "foundations" | "systems" | "advanced";
+  tier: "foundation" | "build" | "run";
   tagline: string;
+  isBundle?: boolean;
+  isFlagship?: boolean;
+  bundleContents?: string[];
 }
 
 interface CartItem {
@@ -40,123 +42,174 @@ interface StripeProductRow {
   currency: string;
 }
 
+const FLAGSHIP_PRODUCT: PlaybookProduct = {
+  id: "growth-infrastructure-system",
+  name: "Growth Infrastructure System",
+  price: 399,
+  priceLabel: "$299 – $499",
+  description: "Our complete methodology in one system. Design, build, and run scalable business infrastructure using the same frameworks we deploy in consulting engagements.",
+  included: [
+    "Foundation phase frameworks and templates",
+    "Build phase implementation guides",
+    "Run phase optimization playbooks",
+    "KPI libraries and scorecard templates",
+    "Hiring, performance, and operations systems",
+    "Marketing and conversion frameworks",
+    "Strategic planning workbook",
+    "90-day implementation roadmap",
+  ],
+  tier: "foundation",
+  tagline: "The full methodology. One system.",
+  isFlagship: true,
+};
+
 const PLAYBOOK_PRODUCTS: PlaybookProduct[] = [
   {
-    id: "performance-kickstart",
-    name: "The Performance Kickstart Kit",
-    price: 79,
-    priceLabel: "$79",
-    description: "Everything you need to set meaningful goals, build weekly momentum, and track what matters.",
-    idealFor: "New managers, solo founders, and professionals who want structure without complexity.",
-    included: ["Goal-setting templates", "Weekly planning tools", "Personal performance scorecard", "Progress tracking guide"],
-    tier: "foundations",
-    tagline: "Start strong. Stay consistent.",
-  },
-  {
-    id: "hiring-right",
-    name: "The Hiring Right Playbook",
-    price: 47,
-    priceLabel: "$47",
-    description: "Hire with confidence using structured templates that reduce bias and improve outcomes.",
-    idealFor: "Growing teams, first-time hiring managers, and HR professionals building repeatable processes.",
-    included: ["Job description templates", "Interview scorecards", "Onboarding checklists", "Candidate evaluation rubrics"],
-    tier: "foundations",
+    id: "hiring-system",
+    name: "Hiring System",
+    price: 199,
+    priceLabel: "$199",
+    description: "Build a repeatable hiring process that attracts, evaluates, and onboards the right people, every time.",
+    included: ["Job description templates", "Interview scorecards", "Candidate evaluation rubrics", "Onboarding checklists", "Hiring process flowcharts", "Implementation guide"],
+    tier: "foundation",
     tagline: "Better hires. Fewer regrets.",
   },
   {
-    id: "sops-that-scale",
-    name: "The SOPs That Scale Starter Pack",
-    price: 40,
-    priceLabel: "$40",
-    description: "Document your processes so your team can execute without you in the room.",
-    idealFor: "Operations leads, growing teams, and founders preparing to delegate.",
-    included: ["SOP templates", "Process mapping guide", "Team accountability tracker", "Quality checklist framework"],
-    tier: "foundations",
+    id: "operations-blueprint",
+    name: "Operations & SOP Blueprint",
+    price: 199,
+    priceLabel: "$199",
+    description: "Document and systematize your operations so your team can execute without you in the room.",
+    included: ["SOP templates", "Process mapping frameworks", "Team accountability tracker", "Quality checklist system", "Delegation frameworks", "Implementation steps"],
+    tier: "foundation",
     tagline: "Build once. Scale forever.",
   },
   {
-    id: "managers-first-90",
-    name: "The Manager's First 90 Days",
-    price: 47,
-    priceLabel: "$47",
-    description: "Hit the ground running in a new leadership role with a clear plan for your first three months.",
-    idealFor: "Newly promoted managers, leaders transitioning to new teams, and first-time people managers.",
-    included: ["Transition plan template", "Team assessment framework", "Quick-win action planner", "Stakeholder mapping tool"],
-    tier: "foundations",
+    id: "leadership-transition-system",
+    name: "Leadership Transition System",
+    price: 199,
+    priceLabel: "$199",
+    description: "Equip new managers with a structured plan for their first 90 days of leadership.",
+    included: ["Transition plan template", "Team assessment framework", "Quick-win action planner", "Stakeholder mapping tool", "Communication cadence template", "30/60/90 day milestones"],
+    tier: "foundation",
     tagline: "Lead with clarity from day one.",
   },
   {
-    id: "strategic-planning-blueprint",
-    name: "The Strategic Planning Blueprint",
-    price: 239,
-    priceLabel: "$239",
-    description: "A complete strategic planning system to align your team, set priorities, and build a roadmap that sticks.",
-    idealFor: "Leadership teams, department heads, and organizations entering a new growth phase.",
-    included: ["Strategic planning workbook", "SWOT analysis framework", "OKR setting templates", "1-3 year roadmap builder", "Quarterly review guide"],
-    tier: "systems",
+    id: "performance-foundation-system",
+    name: "Performance Foundation System",
+    price: 149,
+    priceLabel: "$149",
+    description: "Install the goal-setting, tracking, and accountability infrastructure every team needs to perform.",
+    included: ["Goal-setting frameworks", "Weekly planning system", "Personal performance scorecard", "Progress tracking templates", "Team alignment tools", "Implementation checklist"],
+    tier: "foundation",
+    tagline: "Start strong. Stay consistent.",
+  },
+  {
+    id: "strategic-planning-system",
+    name: "Strategic Planning System",
+    price: 299,
+    priceLabel: "$299",
+    description: "Align your team, set priorities, and build a roadmap that converts strategy into execution.",
+    included: ["Strategic planning workbook", "SWOT analysis framework", "OKR setting templates", "1 to 3 year roadmap builder", "Quarterly review system", "Team alignment workshop guide"],
+    tier: "build",
     tagline: "From vision to execution.",
   },
   {
     id: "performance-management-system",
-    name: "The Performance Management System",
-    price: 207,
-    priceLabel: "$207",
-    description: "A ready-to-deploy performance management system with KPIs, review cycles, and feedback frameworks.",
-    idealFor: "HR leaders, COOs, and organizations building or overhauling their performance infrastructure.",
-    included: ["KPI library (100+ metrics)", "Review cycle templates", "Feedback frameworks", "Performance dashboard template", "Calibration guide"],
-    tier: "systems",
+    name: "Performance Management System",
+    price: 279,
+    priceLabel: "$279",
+    description: "Implement a complete performance management system with KPIs, review cycles, and feedback frameworks across your organization.",
+    included: ["KPI library (100+ metrics)", "Review cycle templates", "Feedback frameworks", "Performance dashboard template", "Calibration system", "Implementation roadmap"],
+    tier: "build",
     tagline: "Measure what matters. Manage with intention.",
   },
   {
-    id: "culture-engagement-toolkit",
-    name: "The Culture & Engagement Toolkit",
-    price: 159,
-    priceLabel: "$159",
-    description: "Understand and shape your workplace culture with practical tools for engagement and alignment.",
-    idealFor: "People & culture teams, founders building intentional culture, and HR professionals.",
-    included: ["Engagement survey templates", "Culture audit framework", "Values alignment workshop guide", "Action planning templates"],
-    tier: "systems",
+    id: "culture-engagement-system",
+    name: "Culture & Engagement System",
+    price: 249,
+    priceLabel: "$249",
+    description: "Design and embed the culture your organization needs to attract, retain, and motivate top performers.",
+    included: ["Engagement survey system", "Culture audit framework", "Values alignment workshop", "Action planning templates", "Retention strategy builder", "Implementation timeline"],
+    tier: "build",
     tagline: "Culture by design, not by default.",
   },
   {
-    id: "organizational-design",
-    name: "The Organizational Design Playbook",
-    price: 319,
-    priceLabel: "$319",
-    description: "Redesign your organization for clarity, efficiency, and growth with proven structural frameworks.",
-    idealFor: "CEOs, COOs, and leadership teams navigating restructuring, rapid growth, or role confusion.",
-    included: ["Org structure templates", "Role clarity matrices", "RACI charts", "Restructuring guide", "Span of control analysis", "Communication flow mapping"],
-    tier: "advanced",
+    id: "organizational-design-system",
+    name: "Organizational Design System",
+    price: 399,
+    priceLabel: "$399",
+    description: "Redesign your organization for clarity, efficiency, and sustainable growth using proven structural frameworks.",
+    included: ["Org structure templates", "Role clarity matrices", "RACI charts", "Restructuring guide", "Span of control analysis", "Communication flow mapping", "Change impact assessment"],
+    tier: "run",
     tagline: "Design the organization your strategy demands.",
   },
   {
-    id: "executive-transition",
-    name: "The Executive Transition Toolkit",
-    price: 239,
-    priceLabel: "$239",
+    id: "executive-transition-framework",
+    name: "Executive Transition Framework",
+    price: 299,
+    priceLabel: "$299",
     description: "Navigate senior leadership transitions with a structured approach to the critical first 100 days.",
-    idealFor: "Incoming executives, board members overseeing transitions, and HR supporting C-suite changes.",
-    included: ["Leadership transition roadmap", "Stakeholder mapping tool", "First 100 days plan", "Board reporting templates", "Team alignment framework"],
-    tier: "advanced",
+    included: ["Leadership transition roadmap", "Stakeholder mapping tool", "First 100 days plan", "Board reporting templates", "Team alignment framework", "Quick-win identification system"],
+    tier: "run",
     tagline: "Set the tone. Build trust. Deliver early wins.",
   },
   {
-    id: "change-management",
-    name: "The Change Management Playbook",
-    price: 143,
-    priceLabel: "$143",
-    description: "Lead organizational change with confidence using proven frameworks for communication, adoption, and resistance.",
-    idealFor: "Change leaders, project managers, and organizations undergoing transformation or integration.",
-    included: ["Change readiness assessment", "Communication plan templates", "Resistance management guide", "Adoption tracker", "Stakeholder engagement playbook"],
-    tier: "advanced",
+    id: "change-management-system",
+    name: "Change Management System",
+    price: 249,
+    priceLabel: "$249",
+    description: "Lead organizational change with confidence using proven frameworks for communication, adoption, and resistance management.",
+    included: ["Change readiness assessment", "Communication plan templates", "Resistance management system", "Adoption tracker", "Stakeholder engagement framework", "Post-change optimization guide"],
+    tier: "run",
     tagline: "Change happens. Lead it.",
   },
 ];
 
+const BUNDLE_PRODUCTS: PlaybookProduct[] = [
+  {
+    id: "business-foundation-kit",
+    name: "Business Foundation Kit",
+    price: 399,
+    priceLabel: "$399",
+    description: "Everything you need to design the structure, roles, and systems your business needs before scaling.",
+    included: ["Hiring System", "Operations & SOP Blueprint", "Performance Foundation System", "Leadership Transition System"],
+    tier: "foundation",
+    tagline: "Design the business. Then build it.",
+    isBundle: true,
+    bundleContents: ["Hiring System", "Operations & SOP Blueprint", "Performance Foundation System", "Leadership Transition System"],
+  },
+  {
+    id: "growth-engine-kit",
+    name: "Growth Engine Kit",
+    price: 599,
+    priceLabel: "$599",
+    description: "Implement the strategy, performance, and culture systems that drive scalable growth.",
+    included: ["Strategic Planning System", "Performance Management System", "Culture & Engagement System"],
+    tier: "build",
+    tagline: "Build the engine. Fuel the growth.",
+    isBundle: true,
+    bundleContents: ["Strategic Planning System", "Performance Management System", "Culture & Engagement System"],
+  },
+  {
+    id: "execution-scaling-kit",
+    name: "Execution & Scaling Kit",
+    price: 699,
+    priceLabel: "$699",
+    description: "Optimize, restructure, and scale your organization with advanced execution frameworks.",
+    included: ["Organizational Design System", "Executive Transition Framework", "Change Management System"],
+    tier: "run",
+    tagline: "Operate at scale. Optimize continuously.",
+    isBundle: true,
+    bundleContents: ["Organizational Design System", "Executive Transition Framework", "Change Management System"],
+  },
+];
+
 const TIER_CONFIG = {
-  foundations: {
-    label: "Foundations",
-    description: "Essential tools and templates to get started with structure and clarity",
+  foundation: {
+    label: "Foundation",
+    subtitle: "Design the business",
+    description: "Design the structure and systems your business needs to scale",
     icon: BookOpen,
     color: "from-blue-500 to-blue-600",
     bgColor: "bg-blue-50",
@@ -164,9 +217,10 @@ const TIER_CONFIG = {
     textColor: "text-blue-700",
     image: foundationsImg,
   },
-  systems: {
-    label: "Systems",
-    description: "Comprehensive frameworks to build and scale your organizational infrastructure",
+  build: {
+    label: "Build",
+    subtitle: "Implement systems and infrastructure",
+    description: "Implement the people, tools, and growth systems",
     icon: Layers,
     color: "from-accent to-pink-600",
     bgColor: "bg-pink-50",
@@ -174,9 +228,10 @@ const TIER_CONFIG = {
     textColor: "text-pink-700",
     image: systemsImg,
   },
-  advanced: {
-    label: "Advanced",
-    description: "Enterprise-grade playbooks for senior leaders navigating complex organizational challenges",
+  run: {
+    label: "Run",
+    subtitle: "Operate and optimize",
+    description: "Operate, optimize, and scale performance continuously",
     icon: Rocket,
     color: "from-primary to-blue-900",
     bgColor: "bg-slate-50",
@@ -185,6 +240,151 @@ const TIER_CONFIG = {
     image: advancedImg,
   },
 };
+
+function FlagshipCard({ product, onAddToCart, isInCart }: { product: PlaybookProduct; onAddToCart: (p: PlaybookProduct) => void; isInCart: boolean }) {
+  const [showIncluded, setShowIncluded] = useState(false);
+
+  return (
+    <div className="relative bg-gradient-to-br from-primary via-primary to-blue-900 rounded-3xl overflow-hidden shadow-2xl" data-testid="card-flagship-playbook">
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-72 h-72 bg-accent rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-20 w-96 h-96 bg-blue-400 rounded-full blur-3xl" />
+      </div>
+      <div className="relative z-10 p-8 md:p-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+              <Star size={14} />
+              Flagship System
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{product.name}</h2>
+            <p className="text-lg text-white/80 leading-relaxed mb-6">{product.description}</p>
+            <div className="flex items-center gap-4 mb-8">
+              <span className="text-3xl font-bold text-accent">{product.priceLabel}</span>
+              <span className="text-sm text-white/50">Foundation + Build + Run</span>
+            </div>
+            <button
+              onClick={() => onAddToCart(product)}
+              className={`inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-wider transition-all ${
+                isInCart
+                  ? "bg-green-500/20 text-green-300 border border-green-400/30"
+                  : "bg-accent text-white hover:bg-white hover:text-primary"
+              }`}
+              data-testid="button-add-cart-flagship"
+            >
+              {isInCart ? (
+                <>
+                  <CheckCircle2 size={18} />
+                  In Cart
+                </>
+              ) : (
+                <>
+                  <ShoppingCart size={18} />
+                  Add to Cart
+                </>
+              )}
+            </button>
+          </div>
+          <div>
+            <button
+              onClick={() => setShowIncluded(!showIncluded)}
+              className="text-sm font-bold text-accent hover:text-white transition-colors mb-4 flex items-center gap-2"
+              data-testid="toggle-flagship-included"
+            >
+              What's included ({product.included.length} components)
+              {showIncluded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            </button>
+            {showIncluded && (
+              <ul className="space-y-2.5">
+                {product.included.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-white/80">
+                    <CheckCircle2 size={14} className="text-accent mt-0.5 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {!showIncluded && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {["Foundation frameworks", "Build implementation guides", "Run optimization systems", "90-day roadmap"].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm text-white/70">
+                    <CheckCircle2 size={14} className="text-accent shrink-0" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BundleCard({ product, onAddToCart, isInCart }: { product: PlaybookProduct; onAddToCart: (p: PlaybookProduct) => void; isInCart: boolean }) {
+  const tier = TIER_CONFIG[product.tier];
+  const [showContents, setShowContents] = useState(false);
+
+  return (
+    <div className="bg-white rounded-2xl border-2 border-accent/20 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full relative overflow-hidden" data-testid={`card-bundle-${product.id}`}>
+      <div className="absolute top-0 right-0">
+        <div className="bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-bl-lg flex items-center gap-1">
+          <Package size={10} />
+          Bundle
+        </div>
+      </div>
+      <div className={`p-6 bg-gradient-to-br ${tier.color} text-white`}>
+        <p className="text-xs font-bold uppercase tracking-wider text-white/70 mb-2">{tier.label} Phase</p>
+        <h3 className="text-xl font-bold mb-2">{product.name}</h3>
+        <p className="text-sm text-white/80 leading-relaxed">{product.description}</p>
+      </div>
+      <div className="p-6 flex flex-col flex-1">
+        <button
+          onClick={() => setShowContents(!showContents)}
+          className="text-xs font-bold text-accent hover:text-accent/80 transition-colors mb-3 text-left flex items-center gap-1"
+          data-testid={`toggle-bundle-${product.id}`}
+        >
+          {showContents ? "Hide" : "What's included"} ({product.bundleContents?.length || 0} systems)
+          {showContents ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+        </button>
+        {showContents && (
+          <ul className="space-y-2 mb-6 flex-1">
+            {product.bundleContents?.map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
+                <CheckCircle2 size={14} className="text-accent mt-0.5 shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        )}
+        <div className="pt-4 border-t border-border flex items-center justify-between mt-auto">
+          <span className="text-2xl font-bold text-primary">{product.priceLabel}</span>
+          <button
+            onClick={() => onAddToCart(product)}
+            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
+              isInCart
+                ? "bg-green-100 text-green-700 border border-green-300"
+                : "bg-accent text-white hover:bg-primary"
+            }`}
+            data-testid={`button-add-cart-${product.id}`}
+          >
+            {isInCart ? (
+              <>
+                <CheckCircle2 size={16} />
+                In Cart
+              </>
+            ) : (
+              <>
+                <ShoppingCart size={16} />
+                Add Bundle
+              </>
+            )}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function ProductCard({ product, onAddToCart, isInCart }: { product: PlaybookProduct; onAddToCart: (p: PlaybookProduct) => void; isInCart: boolean }) {
   const tier = TIER_CONFIG[product.tier];
@@ -202,17 +402,13 @@ function ProductCard({ product, onAddToCart, isInCart }: { product: PlaybookProd
       <div className="p-6 flex flex-col flex-1">
         <p className="text-sm italic text-muted-foreground mb-3">{product.tagline}</p>
         <p className="text-sm text-foreground/80 mb-4 leading-relaxed">{product.description}</p>
-        <div className="mb-4">
-          <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Ideal for</p>
-          <p className="text-sm text-foreground/70">{product.idealFor}</p>
-        </div>
         <button
           onClick={() => setShowIncluded(!showIncluded)}
           className="text-xs font-bold text-accent hover:text-accent/80 transition-colors mb-3 text-left flex items-center gap-1"
           data-testid={`toggle-included-${product.id}`}
         >
           {showIncluded ? "Hide" : "What's included"} ({product.included.length} items)
-          <ArrowRight size={12} className={`transition-transform ${showIncluded ? "rotate-90" : ""}`} />
+          {showIncluded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
         </button>
         {showIncluded && (
           <ul className="mb-4 space-y-1.5">
@@ -288,7 +484,7 @@ function CartDrawer({
             <div className="text-center py-12 text-muted-foreground">
               <ShoppingCart size={48} className="mx-auto mb-4 opacity-30" />
               <p className="font-medium">Your cart is empty</p>
-              <p className="text-sm mt-1">Browse our playbooks and add items to get started.</p>
+              <p className="text-sm mt-1">Browse our systems and add items to get started.</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -296,7 +492,9 @@ function CartDrawer({
                 <div key={item.product.id} className="bg-secondary/50 rounded-xl p-4 flex gap-4" data-testid={`cart-item-${item.product.id}`}>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold text-sm text-primary truncate">{item.product.name}</h3>
-                    <p className="text-xs text-muted-foreground mt-1">{TIER_CONFIG[item.product.tier].label}</p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {item.product.isBundle ? "Bundle" : item.product.isFlagship ? "Flagship" : TIER_CONFIG[item.product.tier].label}
+                    </p>
                     <div className="flex items-center gap-3 mt-3">
                       <button
                         onClick={() => onUpdateQuantity(item.product.id, item.quantity - 1)}
@@ -387,7 +585,7 @@ export default function Playbooks() {
     }
   }, []);
 
-  const { data: productsData } = useQuery({
+  const { data: productsData } = useQuery<{ data: StripeProductRow[] }>({
     queryKey: ["/api/products"],
   });
 
@@ -448,7 +646,7 @@ export default function Playbooks() {
     const missing: string[] = [];
 
     for (const cartItem of cart) {
-      const stripeProduct = (productsData.data as StripeProductRow[]).find((p) => p.product_name === cartItem.product.name);
+      const stripeProduct = productsData.data.find((p) => p.product_name === cartItem.product.name);
       if (stripeProduct) {
         items.push({ priceId: stripeProduct.price_id, quantity: cartItem.quantity });
       } else {
@@ -470,13 +668,13 @@ export default function Playbooks() {
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  const tiers: Array<"foundations" | "systems" | "advanced"> = ["foundations", "systems", "advanced"];
+  const tiers: Array<"foundation" | "build" | "run"> = ["foundation", "build", "run"];
 
   return (
     <>
       <SEOHead
-        title="Performance Playbooks | Performance Processes"
-        description="Digital tools, templates, and frameworks to build organizational performance systems. From goal-setting kits to enterprise change management playbooks."
+        title="Growth Infrastructure Systems | Performance Processes"
+        description="Structured systems, frameworks, and blueprints built from real consulting engagements. Design, build, and run scalable business infrastructure."
         path="/playbooks"
       />
       <Navbar />
@@ -512,18 +710,54 @@ export default function Playbooks() {
           <div className="max-w-3xl mx-auto text-center">
             <AnimateOnScroll animation="fade-up">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Performance Systems & Tools
+                Growth Infrastructure Systems
               </h1>
               <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8 max-w-2xl mx-auto">
-                Proven frameworks, templates, and playbooks built from real consulting engagements.
-                Everything you need to build organizational performance, without starting from scratch.
+                These are not generic resources. They are structured systems built from real consulting engagements, designed to help you design, build, and run scalable business infrastructure.
               </p>
               <div className="flex flex-wrap justify-center gap-6 text-sm text-white/60">
                 <span className="flex items-center gap-2"><CheckCircle2 size={16} className="text-accent" /> Instant digital delivery</span>
-                <span className="flex items-center gap-2"><CheckCircle2 size={16} className="text-accent" /> Ready-to-use templates</span>
+                <span className="flex items-center gap-2"><CheckCircle2 size={16} className="text-accent" /> Implementation-ready systems</span>
                 <span className="flex items-center gap-2"><CheckCircle2 size={16} className="text-accent" /> Built by consultants</span>
               </div>
             </AnimateOnScroll>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-white" data-testid="section-flagship">
+        <div className="container mx-auto px-4 md:px-8">
+          <AnimateOnScroll animation="fade-up">
+            <FlagshipCard
+              product={FLAGSHIP_PRODUCT}
+              onAddToCart={addToCart}
+              isInCart={cartProductIds.has(FLAGSHIP_PRODUCT.id)}
+            />
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-secondary/30" data-testid="section-bundles">
+        <div className="container mx-auto px-4 md:px-8">
+          <AnimateOnScroll animation="fade-up">
+            <div className="text-center mb-12">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Save with Bundles</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">System Bundles</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Curated collections of systems grouped by phase. Get everything you need for each stage of growth at a bundled price.
+              </p>
+            </div>
+          </AnimateOnScroll>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {BUNDLE_PRODUCTS.map((bundle, i) => (
+              <AnimateOnScroll key={bundle.id} animation="fade-up" delay={i * 100}>
+                <BundleCard
+                  product={bundle}
+                  onAddToCart={addToCart}
+                  isInCart={cartProductIds.has(bundle.id)}
+                />
+              </AnimateOnScroll>
+            ))}
           </div>
         </div>
       </section>
@@ -538,15 +772,18 @@ export default function Playbooks() {
             <div className="container mx-auto px-4 md:px-8">
               <AnimateOnScroll animation="fade-up">
                 <div className="relative rounded-2xl overflow-hidden mb-12">
-                  <img src={tier.image} alt={`${tier.label} playbooks`} className="w-full h-48 md:h-64 object-cover" />
+                  <img src={tier.image} alt={`${tier.label} systems`} className="w-full h-48 md:h-64 object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/40 flex items-center">
                     <div className="px-8 md:px-12">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className={`w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center`}>
+                        <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
                           <TierIcon size={20} className="text-white" />
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-white">{tier.label}</h2>
+                        <div>
+                          <h2 className="text-3xl md:text-4xl font-bold text-white">{tier.label}</h2>
+                        </div>
                       </div>
+                      <p className="text-sm font-bold uppercase tracking-wider text-white/60 mb-1">{tier.subtitle}</p>
                       <p className="text-lg text-white/80 max-w-xl">{tier.description}</p>
                     </div>
                   </div>
@@ -573,16 +810,16 @@ export default function Playbooks() {
           <AnimateOnScroll animation="fade-up">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Need something tailored?</h2>
             <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8">
-              Our playbooks are built from real consulting engagements. If you need a customized version
+              Our systems are built from real consulting engagements. If you need a customized version
               or want hands-on implementation support, let's talk.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary transition-all font-bold px-8 h-14 uppercase tracking-wider text-sm" data-testid="link-playbooks-audit">
-                Book a Free Audit
+                Book a Strategy Call
                 <ArrowRight size={18} />
               </Link>
-              <Link href="/services" className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 transition-all font-bold px-8 h-14 uppercase tracking-wider text-sm" data-testid="link-playbooks-services">
-                View Consulting Services
+              <Link href="/solutions" className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 transition-all font-bold px-8 h-14 uppercase tracking-wider text-sm" data-testid="link-playbooks-services">
+                View Our Solutions
               </Link>
             </div>
           </AnimateOnScroll>

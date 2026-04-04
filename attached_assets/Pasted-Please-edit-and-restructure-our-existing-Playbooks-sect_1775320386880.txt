@@ -1,0 +1,151 @@
+Please edit and restructure our existing Playbooks section to align with our new business model. Do not create a completely new section—update what currently exists.
+
+Goal:
+Reposition all playbooks as structured “systems” that support our Growth Infrastructure System (Foundation → Build → Run), instead of standalone or generic resources.
+
+---
+
+## 1. Reorganize existing playbooks into 3 categories
+
+Group all current playbooks into:
+
+Foundation (Design the business)  
+Build (Implement systems and infrastructure)  
+Run (Operate and optimize)  
+
+Remove any flat or unstructured listing of playbooks.
+
+Each category should have a clear heading and short description:
+- Foundation: “Design the structure and systems your business needs to scale”
+- Build: “Implement the people, tools, and growth systems”
+- Run: “Operate, optimize, and scale performance continuously”
+
+---
+
+## 2. Rename playbooks to align with “system” positioning
+
+Update naming across all playbooks:
+
+- Replace “Guide”, “Template”, or “Checklist” with:
+  - “System”
+  - “Blueprint”
+  - “Framework”
+
+Examples:
+- “Hiring Guide” → “Hiring System”
+- “Website Checklist” → “Website Conversion System”
+- “Marketing Guide” → “Funnel & Lead Generation System”
+
+All titles should sound outcome-driven and implementation-focused.
+
+---
+
+## 3. Update descriptions for each playbook
+
+Rewrite descriptions so they:
+- Focus on outcomes (what it helps achieve)
+- Emphasize implementation (not just reading)
+- Position as proven systems
+
+Avoid:
+- “This guide explains…”
+- “This document includes…”
+
+Use:
+- “Build a repeatable hiring system”
+- “Install a conversion-focused website structure”
+- “Implement a performance system across your team”
+
+Keep descriptions short (1–2 lines max).
+
+---
+
+## 4. Add structured “What’s Included” content (light version)
+
+For each playbook, include a short expandable or secondary description listing key contents.
+
+Example format:
+- Templates
+- Frameworks
+- Checklists
+- Implementation steps
+
+Do not overload UI—this can be expandable or shown on click.
+
+---
+
+## 5. Add pricing to all playbooks
+
+Display pricing clearly on each playbook card:
+
+- Standard playbooks: $149 – $299  
+- Premium playbooks: up to $399  
+
+Ensure consistent formatting across all listings.
+
+---
+
+## 6. Introduce bundled playbooks (edit existing or group)
+
+Group relevant existing playbooks into bundles:
+
+Business Foundation Kit — $399  
+(Foundation-related playbooks)
+
+Growth Engine Kit — $599  
+(Marketing, website, CRM playbooks)
+
+Execution & Scaling Kit — $699  
+(Performance, execution, optimization playbooks)
+
+Display bundles as featured or highlighted options.
+
+---
+
+## 7. Add one flagship playbook (feature existing or combine)
+
+Create or designate one primary product:
+
+Growth Infrastructure System — $299–$499
+
+This should represent your full methodology:
+- Foundation + Build + Run
+- High-level frameworks + selected templates
+
+Feature this prominently at the top of the Playbooks section.
+
+---
+
+## 8. Ensure consistency with overall positioning
+
+All playbooks should feel like:
+- Part of a larger system
+- Connected to how we deliver services
+
+Avoid presenting them as:
+- Random downloads
+- Isolated tools
+
+---
+
+## 9. Maintain existing functionality
+
+Do not break:
+- Existing product links
+- Checkout/payment flows
+- SEO URLs (if possible)
+
+Only update:
+- Titles
+- Descriptions
+- Grouping
+- Layout (if needed)
+
+---
+
+## End result
+
+The Playbooks section should clearly communicate:
+
+These are not generic resources.  
+They are structured systems used to design, build, and run scalable businesses, aligned with our overall Growth Infrastructure model.

@@ -23,6 +23,7 @@ import Playbooks from "./pages/Playbooks";
 import Consulting from "./pages/Consulting";
 import Recruiting from "./pages/Recruiting";
 import Marketing from "./pages/Marketing";
+import Solutions from "./pages/Solutions";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -61,7 +62,8 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/services">{() => <Redirect to="/consulting" />}</Route>
+      <Route path="/solutions" component={Solutions} />
+      <Route path="/services">{() => <Redirect to="/solutions" />}</Route>
       <Route path="/approach" component={Approach} />
       <Route path="/contact" component={Contact} />
       <Route path="/legal" component={Legal} />
@@ -73,9 +75,9 @@ function Router() {
       <Route path="/womens-performance-grant" component={WomensPerformanceGrant} />
       <Route path="/free-audit" component={FreeAudit} />
       <Route path="/playbooks" component={Playbooks} />
-      <Route path="/consulting" component={Consulting} />
-      <Route path="/recruiting" component={Recruiting} />
-      <Route path="/marketing" component={Marketing} />
+      <Route path="/consulting">{() => <Redirect to="/solutions" />}</Route>
+      <Route path="/recruiting">{() => <Redirect to="/solutions" />}</Route>
+      <Route path="/marketing">{() => <Redirect to="/solutions" />}</Route>
 
       {/* Auth Routes */}
       <Route path="/portal/login" component={Login} />

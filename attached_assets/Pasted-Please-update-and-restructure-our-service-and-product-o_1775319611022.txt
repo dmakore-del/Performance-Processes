@@ -1,0 +1,193 @@
+Please update and restructure our service and product offerings only (not full website redesign) to align with our new business model.
+
+Goal:
+Replace the current list of disconnected services (recruiting, HR, marketing, websites, etc.) with a unified, structured offer built around a single system:
+
+Growth Infrastructure System
+
+All services should be reorganized into clear, outcome-driven categories instead of standalone offerings.
+
+---
+
+## 1. Remove current fragmented service structure
+
+Remove or hide any sections that present services individually such as:
+- Recruiting
+- HR
+- Marketing
+- Website development
+- Consulting
+
+These should no longer appear as separate primary services.
+
+They will be repositioned as components inside a larger system.
+
+---
+
+## 2. Introduce new core offering structure
+
+Create a new services/products structure based on 3 phases:
+
+### Phase 1: Foundation  
+Purpose: Design the business for scale
+
+Include:
+- Business audit
+- Org structure design
+- Role definition
+- KPI and performance system design
+- Process mapping
+- Playbook creation
+- Marketing strategy and customer journey
+
+Display:
+- Timeframe: 2–4 weeks  
+- Pricing: $5,000 – $15,000  
+
+---
+
+### Phase 2: Build  
+Purpose: Implement people, systems, and growth infrastructure
+
+Include:
+
+People & Operations
+- Recruiting and headhunting
+- HR system setup
+- Performance management implementation
+
+Marketing & Website Infrastructure
+- Website strategy, design, and development
+- Landing pages
+- Funnel design
+- Marketing system setup
+- CRM and lead tracking
+- Analytics and dashboards
+
+Display:
+- Timeframe: 6–12 weeks  
+- Pricing: $15,000 – $50,000+  
+
+---
+
+### Phase 3: Run  
+Purpose: Ongoing execution, optimization, and scaling
+
+Include:
+- KPI tracking and reporting
+- Weekly/monthly performance reviews
+- Ongoing recruiting support
+- Process optimization
+- Marketing optimization
+- Funnel improvements
+- Website optimization
+- Strategic advisory
+
+Display:
+- Timeframe: Ongoing (minimum 3–6 months)  
+- Pricing: $4,000 – $12,000/month  
+
+---
+
+## 3. Add Playbooks as product layer
+
+Create or restructure a Playbooks offering section.
+
+Include:
+- Hiring playbooks
+- Performance system playbooks
+- Marketing playbooks
+- Operations/SOP playbooks
+
+Display pricing:
+- $49 – $999 depending on product or bundle
+
+These should be presented as:
+- Practical tools
+- Templates
+- Execution guides
+
+---
+
+## 4. Add flagship packaged offer
+
+Create a highlighted offering:
+
+“90-Day Growth Infrastructure Build”
+
+Description:
+A structured engagement combining Foundation + Build phases into one accelerated implementation.
+
+Include:
+- Strategy
+- System design
+- Recruiting priorities
+- Website and marketing setup
+- Operational systems
+
+Display:
+- Timeframe: ~90 days  
+- Pricing: $20,000 – $50,000  
+
+---
+
+## 5. Reframe existing services into system components
+
+Important:
+Do NOT delete underlying capabilities, but rename/reposition them.
+
+Use this mapping:
+
+- Recruiting → Talent Acquisition System  
+- HR → People & Performance System  
+- Marketing → Demand Generation System  
+- Website building → Conversion System  
+- Playbooks → Execution Systems  
+
+These should appear within phases, not as standalone offerings.
+
+---
+
+## 6. Update service descriptions to be outcome-driven
+
+All services/products should be described in terms of outcomes, not tasks.
+
+Avoid:
+- “We build websites”
+- “We offer marketing services”
+- “We do recruiting”
+
+Use:
+- “We install systems that attract and convert customers”
+- “We build the team structure required to scale”
+- “We implement performance systems that improve execution”
+
+---
+
+## 7. Ensure consistency across all service-related sections
+
+Anywhere services are referenced (services page, homepage sections, product listings), ensure:
+
+- Only the 3-phase model is shown
+- All offerings are grouped under the Growth Infrastructure System
+- No standalone service categories remain
+
+---
+
+## 8. Maintain flexibility for internal delivery
+
+This restructure is for presentation only.
+
+Internally:
+- We can still deliver individual services if needed
+- But externally, everything should appear as part of the unified system
+
+---
+
+## End result
+
+The updated services/products section should clearly communicate:
+
+We do not sell individual services.
+
+We design, build, and run the systems businesses need to scale — combining recruiting, HR, marketing, website infrastructure, and playbooks into one integrated model.

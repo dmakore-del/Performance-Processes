@@ -49,37 +49,31 @@ export default function Home() {
   const systemComponents = [
     {
       icon: <Users size={22} />,
-      title: "Recruiting & Headhunting",
-      desc: "Find and place the right people in the right roles to drive growth.",
-      href: "/recruiting",
-    },
-    {
-      icon: <Settings size={22} />,
-      title: "HR Systems & Support",
-      desc: "Build the people infrastructure that keeps your team aligned and performing.",
-      href: "/recruiting",
+      title: "Talent Acquisition System",
+      desc: "We build the team structure required to scale, finding and placing the right people.",
+      href: "/solutions",
     },
     {
       icon: <Target size={22} />,
-      title: "Performance & Process Design",
-      desc: "Define KPIs, accountability structures, and operating rhythms that scale.",
-      href: "/consulting",
+      title: "People & Performance System",
+      desc: "We implement performance systems that improve execution and accountability.",
+      href: "/solutions",
     },
     {
       icon: <BarChart3 size={22} />,
-      title: "Marketing Execution",
-      desc: "Strategy, content, and campaigns that generate leads and build authority.",
-      href: "/marketing",
+      title: "Demand Generation System",
+      desc: "We install systems that attract and convert customers through strategy and campaigns.",
+      href: "/solutions",
     },
     {
       icon: <Globe size={22} />,
-      title: "Website & Digital Presence",
-      desc: "Professional websites and digital assets that convert visitors into clients.",
-      href: "/marketing",
+      title: "Conversion System",
+      desc: "We design digital infrastructure that turns visitors into leads and leads into clients.",
+      href: "/solutions",
     },
     {
       icon: <BookOpen size={22} />,
-      title: "Operational Playbooks",
+      title: "Execution Systems",
       desc: "Practical tools, templates, and frameworks built from real execution.",
       href: "/playbooks",
     },
@@ -473,52 +467,47 @@ export default function Home() {
           <GradientOrb className="w-72 h-72 bg-accent/5 -bottom-32 right-20" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Solutions</p>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Growth Infrastructure System</p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                Your growth, our infrastructure
+                Three phases to scalable growth
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Each capability is part of one integrated system. Explore the areas where we install the infrastructure your business needs.
+                We don't sell individual services. We design, build, and run the systems your business needs to scale, delivered through a structured 3-phase model.
               </p>
             </AnimateOnScroll>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[
                 {
-                  image: handsPartnershipImg,
-                  title: "Human Resources",
-                  desc: "From talent acquisition and headhunting to HR systems, people strategy, and leadership development, we build the team infrastructure that drives growth.",
-                  href: "/recruiting",
+                  image: communityTownhallImg,
+                  title: "Phase 1: Foundation",
+                  desc: "We audit your business, design roles and structure, map processes, set KPIs, and build the blueprint for scalable growth.",
+                  label: "$5,000 to $15,000",
                 },
                 {
-                  image: communityCollaborationImg,
-                  title: "Management Consulting",
-                  desc: "Strategic advisory, operational systems, performance frameworks, and executive coaching to help your organization scale with clarity and confidence.",
-                  href: "/consulting",
+                  image: communityWorkspaceImg,
+                  title: "Phase 2: Build",
+                  desc: "We recruit key hires, implement HR and operating systems, build your website and marketing infrastructure, and activate your growth engine.",
+                  label: "$15,000 to $50,000+",
                 },
                 {
-                  image: empoweredOwnerImg,
-                  title: "Marketing & Websites",
-                  desc: "Professional websites, content marketing, brand identity, and digital campaigns that generate leads and build authority in your market.",
-                  href: "/marketing",
-                },
-                {
-                  image: growthSeedlingImg,
-                  title: "Playbooks & Tools",
-                  desc: "Practical, proven templates, frameworks, and toolkits built from real execution, designed to help you build better systems at your own pace.",
-                  href: "/playbooks",
+                  image: milestoneImg,
+                  title: "Phase 3: Run",
+                  desc: "Ongoing optimization, performance tracking, recruiting support, process refinement, and strategic advisory to keep your systems scaling.",
+                  label: "$4,000 to $12,000/mo",
                 },
               ].map((s, i) => (
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
-                  <Link href={s.href} className="block h-full group" data-testid={`link-solution-${i}`}>
+                  <Link href="/solutions" className="block h-full group" data-testid={`link-solution-${i}`}>
                     <div className="relative rounded-2xl overflow-hidden h-full min-h-[320px] shadow-lg" data-testid={`solution-card-${i}`}>
                       <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/10 group-hover:from-primary/95 transition-all duration-500" />
                       <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+                        <p className="text-xs font-bold uppercase tracking-widest text-accent mb-2">{s.label}</p>
                         <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">{s.title}</h3>
                         <p className="text-white/70 text-sm leading-relaxed mb-4">{s.desc}</p>
                         <span className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-transform">
-                          Explore <ArrowRight size={14} className="ml-2" />
+                          Learn more <ArrowRight size={14} className="ml-2" />
                         </span>
                       </div>
                     </div>
@@ -534,7 +523,7 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <AnimateOnScroll animation="fade-left">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Playbooks</p>
+                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Execution Systems</p>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
                   Playbooks built from real execution
                 </h2>
@@ -566,10 +555,10 @@ export default function Home() {
               <AnimateOnScroll animation="fade-right" delay={200}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
-                    { icon: <Briefcase size={20} />, title: "Foundations Playbook", desc: "Core business systems, roles, and process templates for companies in their early stage." },
-                    { icon: <Settings size={20} />, title: "Operations Playbook", desc: "KPIs, accountability structures, and operating rhythms for scaling teams." },
-                    { icon: <Users size={20} />, title: "People & HR Playbook", desc: "Hiring guides, onboarding frameworks, and performance review templates." },
-                    { icon: <Rocket size={20} />, title: "Growth Playbook", desc: "Marketing plans, sales frameworks, and lead generation strategies." },
+                    { icon: <Users size={20} />, title: "Hiring Playbooks", desc: "Job descriptions, interview scorecards, onboarding checklists, and candidate evaluation rubrics." },
+                    { icon: <Target size={20} />, title: "Performance Playbooks", desc: "KPI libraries, review cycle templates, feedback frameworks, and calibration guides." },
+                    { icon: <Briefcase size={20} />, title: "Operations & SOP Playbooks", desc: "SOP templates, process mapping guides, accountability trackers, and quality frameworks." },
+                    { icon: <Rocket size={20} />, title: "Marketing Playbooks", desc: "Marketing plans, content strategies, funnel blueprints, and lead generation frameworks." },
                   ].map((pb, i) => (
                     <Link href="/playbooks" key={i} className="block group" data-testid={`link-playbook-card-${i}`}>
                       <div className="bg-white rounded-2xl border border-border p-6 hover:shadow-xl hover:border-accent/20 transition-all duration-300 h-full">
@@ -663,7 +652,7 @@ export default function Home() {
                       <Calendar size={16} />
                       Book a Strategy Call
                     </a>
-                    <Link href="/consulting" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-cta-solutions">
+                    <Link href="/solutions" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-cta-solutions">
                       Explore Solutions
                       <ArrowRight size={16} />
                     </Link>

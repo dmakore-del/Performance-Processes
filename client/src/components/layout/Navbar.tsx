@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, Search, ChevronDown, UserCircle, Calendar } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { Menu, X, ChevronDown, UserCircle, Calendar } from "lucide-react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/hooks/use-language";
 import logoImg from "@/assets/logo.png";
@@ -9,29 +9,8 @@ const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@perf
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [location] = useLocation();
   const { language, setLanguage, t } = useLanguage();
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setSolutionsOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const solutionLinks = [
-    { label: language === "en" ? "Management Consulting" : "Consultation en gestion", href: "/consulting", desc: language === "en" ? "Strategy, operations & growth" : "Stratégie, opérations et croissance" },
-    { label: language === "en" ? "Human Resources" : "Ressources humaines", href: "/recruiting", desc: language === "en" ? "HR strategy, recruiting & talent" : "Stratégie RH, recrutement et talents" },
-    { label: language === "en" ? "Marketing & Websites" : "Marketing et sites Web", href: "/marketing", desc: language === "en" ? "Digital presence & brand building" : "Présence numérique et développement de marque" },
-    { label: "Playbooks", href: "/playbooks", desc: language === "en" ? "Templates, tools & frameworks" : "Modèles, outils et cadres" },
-  ];
-
-  const isSolutionsActive = ["/consulting", "/recruiting", "/marketing", "/playbooks", "/services"].includes(location);
 
   return (
     <header className="w-full bg-white z-[60] sticky top-0 shadow-sm">
@@ -41,15 +20,15 @@ export function Navbar() {
           <Link href="/careers" className="hover:text-accent transition-colors cursor-pointer">Careers</Link>
           <div className="w-[1px] h-3 bg-gray-600"></div>
           <div className="flex gap-2">
-            <button 
-              onClick={() => setLanguage("en")} 
+            <button
+              onClick={() => setLanguage("en")}
               className={cn("hover:text-accent transition-colors", language === "en" ? "text-accent underline" : "")}
             >
               EN
             </button>
             <span>|</span>
-            <button 
-              onClick={() => setLanguage("fr")} 
+            <button
+              onClick={() => setLanguage("fr")}
               className={cn("hover:text-accent transition-colors", language === "fr" ? "text-accent underline" : "")}
             >
               FR
@@ -81,42 +60,15 @@ export function Navbar() {
               {language === "en" ? "How It Works" : "Comment ça marche"}
           </a>
 
-          <div className="relative" ref={dropdownRef}>
-            <button
-              onClick={() => setSolutionsOpen(!solutionsOpen)}
-              onMouseEnter={() => setSolutionsOpen(true)}
+          <Link href="/solutions"
               className={cn(
-                "text-[14px] font-bold text-primary hover:text-accent transition-all px-4 py-2 rounded-full flex items-center gap-1",
-                isSolutionsActive ? "bg-secondary text-accent" : "hover:bg-secondary"
+                "text-[14px] font-bold text-primary hover:text-accent transition-all px-4 py-2 rounded-full",
+                location === "/solutions" ? "bg-secondary text-accent" : "hover:bg-secondary"
               )}
               data-testid="link-nav-solutions"
             >
               {language === "en" ? "Solutions" : "Solutions"}
-              <ChevronDown size={14} className={cn("transition-transform", solutionsOpen ? "rotate-180" : "")} />
-            </button>
-            {solutionsOpen && (
-              <div 
-                className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[360px] bg-white rounded-2xl shadow-xl border border-border/50 p-3 z-50"
-                onMouseLeave={() => setSolutionsOpen(false)}
-              >
-                {solutionLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={cn(
-                      "flex flex-col gap-0.5 px-4 py-3 rounded-xl transition-all",
-                      location === link.href ? "bg-accent/5 text-accent" : "hover:bg-secondary"
-                    )}
-                    onClick={() => setSolutionsOpen(false)}
-                    data-testid={`link-nav-${link.href.replace(/\//g, '')}`}
-                  >
-                    <span className="text-sm font-bold">{link.label}</span>
-                    <span className="text-xs text-muted-foreground">{link.desc}</span>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+          </Link>
 
           <Link href="/playbooks"
               className={cn(
@@ -196,24 +148,29 @@ export function Navbar() {
                 <ChevronDown size={24} className="-rotate-90" />
             </a>
 
-            <div className="border-b border-border pb-2">
-              <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3 px-1">
+            <Link href="/solutions"
+                className={cn(
+                  "text-xl font-bold py-4 border-b border-border flex justify-between items-center",
+                  location === "/solutions" ? "text-accent border-accent" : "text-primary"
+                )}
+                onClick={() => setIsMobileMenuOpen(false)}
+                data-testid="link-mobile-nav-solutions"
+              >
                 {language === "en" ? "Solutions" : "Solutions"}
-              </div>
-              {solutionLinks.map((link) => (
-                <Link key={link.href} href={link.href}
-                    className={cn(
-                      "text-lg font-bold py-3 px-1 flex justify-between items-center",
-                      location === link.href ? "text-accent" : "text-primary"
-                    )}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    data-testid={`link-mobile-nav-${link.href.replace(/\//g, '')}`}
-                  >
-                    {link.label}
-                    <ChevronDown size={20} className="-rotate-90" />
-                </Link>
-              ))}
-            </div>
+                <ChevronDown size={24} className="-rotate-90" />
+            </Link>
+
+            <Link href="/playbooks"
+                className={cn(
+                  "text-xl font-bold py-4 border-b border-border flex justify-between items-center",
+                  location === "/playbooks" ? "text-accent border-accent" : "text-primary"
+                )}
+                onClick={() => setIsMobileMenuOpen(false)}
+                data-testid="link-mobile-nav-playbooks"
+              >
+                Playbooks
+                <ChevronDown size={24} className="-rotate-90" />
+            </Link>
 
             <Link href="/about"
                 className={cn(

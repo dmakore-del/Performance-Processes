@@ -9,28 +9,25 @@ import {
   Clock,
   DollarSign,
   Users,
-  Settings,
   Target,
-  BarChart3,
   Globe,
   BookOpen,
   Rocket,
   Layers,
-  TrendingUp,
   Zap,
-  Search,
   Briefcase,
-  LayoutDashboard,
-  LineChart,
   Megaphone,
-  FileText,
   ArrowDown,
+  Building2,
+  Heart,
+  UserCheck,
+  Wrench,
+  ChevronRight,
 } from "lucide-react";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
 
 import communityCollaborationImg from "@assets/generated/community-collaboration.png";
-import handsPartnershipImg from "@assets/generated/hands-together-partnership.png";
 import communityWorkspaceImg from "@assets/generated/community-workspace.png";
 import communityTownhallImg from "@assets/generated/community-townhall.png";
 import milestoneImg from "@assets/generated/milestone-celebration.png";
@@ -44,18 +41,18 @@ export default function Solutions() {
   const { language } = useLanguage();
 
   const systemComponents = [
-    { old: "Recruiting", new: "Talent Acquisition System", icon: <Users size={20} />, desc: "We build the team structure required to scale, finding and placing the right people in the right roles." },
-    { old: "HR", new: "People & Performance System", icon: <Target size={20} />, desc: "We implement performance systems that improve execution, from onboarding to reviews to accountability." },
-    { old: "Marketing", new: "Demand Generation System", icon: <Megaphone size={20} />, desc: "We install systems that attract and convert customers through strategy, content, and campaigns." },
-    { old: "Website building", new: "Conversion System", icon: <Globe size={20} />, desc: "We design and build digital infrastructure that turns visitors into leads and leads into clients." },
-    { old: "Playbooks", new: "Execution Systems", icon: <BookOpen size={20} />, desc: "Practical tools, templates, and frameworks that codify your operations for repeatable success." },
+    { name: "Talent Acquisition System", icon: <Users size={20} />, desc: "Build the team structure required to scale, finding and placing the right people in the right roles." },
+    { name: "People & Performance System", icon: <Target size={20} />, desc: "Performance systems that improve execution, from onboarding to reviews to accountability." },
+    { name: "Demand Generation System", icon: <Megaphone size={20} />, desc: "Systems that attract and convert customers through strategy, content, and campaigns." },
+    { name: "Conversion System", icon: <Globe size={20} />, desc: "Digital infrastructure that turns visitors into leads and leads into clients." },
+    { name: "Execution Systems", icon: <BookOpen size={20} />, desc: "Practical tools, templates, and frameworks that codify your operations for repeatable success." },
   ];
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
       <SEOHead
         title="Growth Infrastructure System | Performance Processes"
-        description="We design, build, and run the systems businesses need to scale. Our Growth Infrastructure System combines talent acquisition, people operations, marketing, digital infrastructure, and playbooks into one integrated model."
+        description="One system, multiple access levels. From self-guided playbooks to guided implementation to full system builds. We design, build, and run the systems businesses need to scale."
         path="/solutions"
       />
       <Navbar />
@@ -73,18 +70,18 @@ export default function Solutions() {
             <div className="max-w-3xl">
               <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6 animate-fade-in-up">Growth Infrastructure System</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.15s" }} data-testid="text-solutions-hero-title">
-                We design, build, and run the systems your <span className="text-accent">business needs to scale.</span>
+                One system. <span className="text-accent">Multiple ways in.</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-2xl animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-                We don't sell individual services. We combine recruiting, HR, marketing, website infrastructure, and playbooks into one integrated model, so your business grows with structure, not chaos.
+                Whether you're a solo professional, a growing small business, or a scaling organization, our Growth Infrastructure System meets you where you are, with the level of support you need.
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.45s" }}>
-                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-solutions-hero-book">
-                  <Calendar size={16} />
-                  Book a Strategy Call
-                </a>
-                <a href="#phases" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-solutions-hero-phases">
-                  See the 3 Phases
+                <Link href="/playbooks" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-hero-playbooks">
+                  <BookOpen size={16} />
+                  Start with a Playbook
+                </Link>
+                <a href="#ways-to-work" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-solutions-hero-tiers">
+                  See All Options
                   <ArrowDown size={16} />
                 </a>
               </div>
@@ -102,7 +99,7 @@ export default function Solutions() {
                 Five integrated systems, one growth engine
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Everything your business needs to scale, integrated and delivered as one unified system, not a menu of disconnected services.
+                Everything your business needs to scale, integrated and delivered as one unified system across every tier of engagement.
               </p>
             </AnimateOnScroll>
 
@@ -115,9 +112,7 @@ export default function Solutions() {
                       <div className="w-11 h-11 rounded-xl bg-accent/10 text-accent flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
                         {item.icon}
                       </div>
-                      <div>
-                        <h3 className="text-base font-bold text-primary group-hover:text-accent transition-colors">{item.new}</h3>
-                      </div>
+                      <h3 className="text-base font-bold text-primary group-hover:text-accent transition-colors">{item.name}</h3>
                     </div>
                     <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
                   </div>
@@ -127,7 +122,261 @@ export default function Solutions() {
                 <div className="relative p-7 rounded-2xl border-2 border-dashed border-accent/30 bg-accent/5 flex flex-col items-center justify-center text-center h-full group hover:border-accent/50 transition-all" data-testid="system-component-cta">
                   <Layers size={28} className="text-accent mb-3" />
                   <p className="text-sm font-bold text-primary mb-1">All Systems Combined</p>
-                  <p className="text-xs text-muted-foreground">Delivered through our 3-phase engagement model below</p>
+                  <p className="text-xs text-muted-foreground">Available across every tier, from playbooks to full builds</p>
+                </div>
+              </AnimateOnScroll>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-[#F8FAFC] relative overflow-hidden" data-testid="section-value-ladder">
+          <div className="container mx-auto px-4 md:px-8">
+            <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-16">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Your Growth Path</p>
+              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">
+                Start where you are. Scale from there.
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Every tier uses the same proven system. Choose the level of support that fits your stage, and upgrade as you grow.
+              </p>
+            </AnimateOnScroll>
+
+            <div className="max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-0 relative">
+                <div className="hidden md:block absolute top-1/2 left-[17%] right-[17%] h-[2px] bg-gradient-to-r from-blue-400 via-accent to-primary z-0" />
+
+                {[
+                  { label: "Start", tier: "Playbooks", price: "$149 – $999", color: "bg-blue-500", ring: "ring-blue-200" },
+                  { label: "Grow", tier: "Guided Implementation", price: "$2,000 – $10,000", color: "bg-accent", ring: "ring-pink-200" },
+                  { label: "Scale", tier: "Full System Build", price: "$5,000 – $50,000+", color: "bg-primary", ring: "ring-slate-200" },
+                ].map((step, i) => (
+                  <AnimateOnScroll key={i} animation="fade-up" delay={i * 150}>
+                    <div className="flex flex-col items-center relative z-10 py-6">
+                      <div className={`w-16 h-16 rounded-full ${step.color} text-white flex items-center justify-center text-lg font-extrabold shadow-lg ring-4 ${step.ring} mb-4`}>
+                        {i + 1}
+                      </div>
+                      <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-1">{step.label}</p>
+                      <p className="text-lg font-bold text-primary mb-1">{step.tier}</p>
+                      <p className="text-sm text-muted-foreground font-medium">{step.price}</p>
+                    </div>
+                  </AnimateOnScroll>
+                ))}
+              </div>
+
+              <AnimateOnScroll className="text-center mt-8">
+                <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                  <span>Self-paced</span>
+                  <ChevronRight size={14} />
+                  <span>2 to 8 weeks</span>
+                  <ChevronRight size={14} />
+                  <span>Ongoing partnership</span>
+                </div>
+              </AnimateOnScroll>
+            </div>
+          </div>
+        </section>
+
+        <section id="ways-to-work" className="py-28 bg-white relative overflow-hidden" data-testid="section-ways-to-work">
+          <FloatingShape className="w-24 h-24 top-20 -left-8" variant="ring" />
+          <FloatingShape className="w-10 h-10 top-40 right-20" variant="dot" />
+          <div className="container mx-auto px-4 md:px-8">
+            <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Ways to Work With Us</p>
+              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
+                Choose the right level for your business
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                One system, three ways to access it. From self-guided playbooks to full-scale implementation, every tier delivers the same proven methodology.
+              </p>
+            </AnimateOnScroll>
+
+            <div className="space-y-16 max-w-6xl mx-auto">
+
+              <AnimateOnScroll animation="fade-up">
+                <div className="bg-white rounded-3xl border border-border shadow-lg overflow-hidden" data-testid="tier-playbooks">
+                  <div className="grid grid-cols-1 lg:grid-cols-5">
+                    <div className="lg:col-span-2 relative">
+                      <div className="h-full min-h-[280px] bg-gradient-to-br from-blue-500 to-blue-600 p-8 lg:p-10 flex flex-col justify-center">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
+                          <BookOpen size={12} />
+                          Tier 1: Entry Level
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Playbooks</h3>
+                        <p className="text-white/80 leading-relaxed mb-4">Self-guided systems to implement structure, hiring, marketing, and execution on your own.</p>
+                        <div className="flex flex-wrap gap-4">
+                          <div className="flex items-center gap-2 text-sm text-white/70">
+                            <DollarSign size={14} className="text-white" />
+                            <span className="font-bold text-white">$149 to $999</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm text-white/70">
+                            <Clock size={14} className="text-white" />
+                            <span className="font-bold text-white">Self-paced</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="lg:col-span-3 p-8 lg:p-10">
+                      <div className="mb-6">
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-2">Best for</p>
+                        <p className="text-sm text-muted-foreground">Professionals, consultants, coaches, solo operators, early-stage small businesses, and budget-conscious nonprofits</p>
+                      </div>
+                      <div className="mb-6">
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">What's included</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          {["Templates and frameworks", "SOP structures", "KPI systems", "Funnel and website structures", "Hiring systems", "Implementation guides"].map((item, j) => (
+                            <div key={j} className="flex items-start gap-2">
+                              <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
+                              <span className="text-sm text-muted-foreground">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="mb-6">
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">Example systems</p>
+                        <div className="flex flex-wrap gap-3">
+                          {[
+                            { name: "Hiring System", price: "$199" },
+                            { name: "Performance Management System", price: "$279" },
+                            { name: "Operations Blueprint", price: "$199" },
+                          ].map((ex, j) => (
+                            <div key={j} className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-4 py-2 text-sm">
+                              <span className="font-semibold text-primary">{ex.name}</span>
+                              <span className="text-blue-600 font-bold">{ex.price}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <Link href="/playbooks" className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-playbooks">
+                        <BookOpen size={16} />
+                        Start with a Playbook
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </AnimateOnScroll>
+
+              <AnimateOnScroll animation="fade-up" delay={150}>
+                <div className="bg-white rounded-3xl border-2 border-accent/30 shadow-xl overflow-hidden relative" data-testid="tier-guided">
+                  <div className="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-4 py-1.5 rounded-bl-xl">Most Flexible</div>
+                  <div className="grid grid-cols-1 lg:grid-cols-5">
+                    <div className="lg:col-span-2 relative">
+                      <div className="h-full min-h-[280px] bg-gradient-to-br from-accent to-pink-600 p-8 lg:p-10 flex flex-col justify-center">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
+                          <Wrench size={12} />
+                          Tier 2: Mid-Tier
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Guided Implementation</h3>
+                        <p className="text-white/80 leading-relaxed mb-4">Hands-on support to install key systems without a full-scale engagement. We work alongside you to get it right.</p>
+                        <div className="flex flex-wrap gap-4">
+                          <div className="flex items-center gap-2 text-sm text-white/70">
+                            <DollarSign size={14} className="text-white" />
+                            <span className="font-bold text-white">$2,000 to $10,000</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm text-white/70">
+                            <Clock size={14} className="text-white" />
+                            <span className="font-bold text-white">2 to 8 weeks</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="lg:col-span-3 p-8 lg:p-10">
+                      <div className="mb-6">
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-2">Best for</p>
+                        <p className="text-sm text-muted-foreground">Small businesses ($500K to $5M), funded or scaling nonprofits, and professionals ready to invest in structured implementation</p>
+                      </div>
+                      <div className="mb-6">
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">What's included (modular)</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          {["Foundation sprint (org structure, KPIs)", "Hiring system setup", "Website conversion improvements", "Funnel and CRM setup", "Basic playbook creation", "Process fixes and optimization"].map((item, j) => (
+                            <div key={j} className="flex items-start gap-2">
+                              <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
+                              <span className="text-sm text-muted-foreground">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="mb-6">
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">Example packages</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                          {[
+                            { name: "Foundation Sprint", desc: "Org structure + KPI system", price: "$3K to $6K", time: "2 to 4 weeks" },
+                            { name: "Growth Engine Sprint", desc: "Website + funnel + CRM", price: "$5K to $10K", time: "4 to 8 weeks" },
+                            { name: "Hiring System Setup", desc: "Hiring process + scorecards + onboarding", price: "$2K to $5K", time: "2 to 4 weeks" },
+                          ].map((pkg, j) => (
+                            <div key={j} className="bg-pink-50 border border-pink-100 rounded-xl p-4">
+                              <h4 className="text-sm font-bold text-primary mb-1">{pkg.name}</h4>
+                              <p className="text-xs text-muted-foreground mb-2">{pkg.desc}</p>
+                              <p className="text-sm font-bold text-accent">{pkg.price}</p>
+                              <p className="text-xs text-muted-foreground">{pkg.time}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-primary h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-guided">
+                        <Calendar size={16} />
+                        Explore Guided Implementation
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </AnimateOnScroll>
+
+              <AnimateOnScroll animation="fade-up" delay={300}>
+                <div className="bg-white rounded-3xl border border-border shadow-lg overflow-hidden" data-testid="tier-full-build">
+                  <div className="grid grid-cols-1 lg:grid-cols-5">
+                    <div className="lg:col-span-2 relative">
+                      <div className="h-full min-h-[280px] bg-gradient-to-br from-primary to-blue-900 p-8 lg:p-10 flex flex-col justify-center">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
+                          <Rocket size={12} />
+                          Tier 3: Premium
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Full System Build</h3>
+                        <p className="text-white/80 leading-relaxed mb-4">Complete design, build, and ongoing operation of your business systems. We become your infrastructure partner.</p>
+                        <div className="flex flex-wrap gap-4">
+                          <div className="flex items-center gap-2 text-sm text-white/70">
+                            <DollarSign size={14} className="text-white" />
+                            <span className="font-bold text-white">$5,000 to $50,000+</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm text-white/70">
+                            <Clock size={14} className="text-white" />
+                            <span className="font-bold text-white">2 weeks to ongoing</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="lg:col-span-3 p-8 lg:p-10">
+                      <div className="mb-6">
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-2">Best for</p>
+                        <p className="text-sm text-muted-foreground">Growing businesses ($1M+), larger nonprofits, and established teams ready for comprehensive infrastructure</p>
+                      </div>
+                      <div className="mb-6">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                            <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Phase 1: Foundation</p>
+                            <p className="text-sm text-muted-foreground mb-3">Org structure, KPI systems, process design, strategy and roadmap</p>
+                            <p className="text-sm font-bold text-primary">$5,000 to $15,000</p>
+                            <p className="text-xs text-muted-foreground">2 to 4 weeks</p>
+                          </div>
+                          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                            <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Phase 2: Build</p>
+                            <p className="text-sm text-muted-foreground mb-3">Recruiting, HR systems, website, marketing funnel, CRM, playbooks</p>
+                            <p className="text-sm font-bold text-primary">$15,000 to $50,000+</p>
+                            <p className="text-xs text-muted-foreground">6 to 12 weeks</p>
+                          </div>
+                          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                            <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Phase 3: Run</p>
+                            <p className="text-sm text-muted-foreground mb-3">KPI tracking, execution support, marketing optimization, process refinement</p>
+                            <p className="text-sm font-bold text-primary">$4,000 to $12,000/mo</p>
+                            <p className="text-xs text-muted-foreground">Ongoing</p>
+                          </div>
+                        </div>
+                      </div>
+                      <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white hover:bg-accent h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-full-build">
+                        <Calendar size={16} />
+                        Book a Strategy Call
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </AnimateOnScroll>
             </div>
@@ -139,12 +388,12 @@ export default function Solutions() {
           <FloatingShape className="w-10 h-10 top-40 right-20" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">How We Deliver</p>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Full System Build: How We Deliver</p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
                 Three phases to scalable growth
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Every engagement follows a structured path: design, implement, optimize. Each phase builds on the last to create infrastructure that compounds.
+                Every full engagement follows a structured path: design, implement, optimize. Each phase builds on the last to create infrastructure that compounds.
               </p>
             </AnimateOnScroll>
 
@@ -211,8 +460,8 @@ export default function Solutions() {
                         <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">People & Operations</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {[
-                            "Recruiting and headhunting",
-                            "HR system setup",
+                            "Talent acquisition and placement",
+                            "People & performance system setup",
                             "Performance management implementation",
                           ].map((item, j) => (
                             <div key={j} className="flex items-start gap-2.5">
@@ -224,12 +473,12 @@ export default function Solutions() {
                       </div>
 
                       <div className="mb-8">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">Marketing & Website Infrastructure</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">Demand Generation & Conversion</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {[
-                            "Website strategy, design, and development",
-                            "Landing pages and funnel design",
-                            "Marketing system setup",
+                            "Conversion system design and development",
+                            "Landing pages and funnel architecture",
+                            "Demand generation system setup",
                             "CRM and lead tracking",
                             "Analytics and dashboards",
                           ].map((item, j) => (
@@ -280,11 +529,11 @@ export default function Solutions() {
                         {[
                           "KPI tracking and reporting",
                           "Weekly and monthly performance reviews",
-                          "Ongoing recruiting support",
-                          "Process optimization",
-                          "Marketing optimization",
-                          "Funnel improvements",
-                          "Website optimization",
+                          "Ongoing talent acquisition support",
+                          "Process and operations optimization",
+                          "Demand generation optimization",
+                          "Funnel and conversion improvements",
+                          "Digital infrastructure optimization",
                           "Strategic advisory",
                         ].map((item, j) => (
                           <div key={j} className="flex items-start gap-2.5">
@@ -382,58 +631,99 @@ export default function Solutions() {
           </div>
         </section>
 
-        <section className="py-28 bg-white relative overflow-hidden" data-testid="section-playbooks-products">
-          <GeometricAccent className="top-10 -left-10 text-primary" />
-          <GradientOrb className="w-72 h-72 bg-accent/5 -bottom-32 right-20" />
+        <section className="py-28 bg-white relative overflow-hidden" data-testid="section-who-this-is-for">
+          <GeometricAccent className="top-20 -right-10 text-primary" />
           <div className="container mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <AnimateOnScroll animation="fade-left">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Execution Systems</p>
-                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                  Playbooks built from real execution
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  Every playbook we sell was built from real client engagements. These are the same tools and frameworks we use inside our Growth Infrastructure System, now available as standalone products.
-                </p>
-                <div className="space-y-4 mb-10">
-                  {[
-                    "Practical tools, templates, and execution guides",
-                    "Built from proven consulting methodology",
-                    "Part of our integrated growth system",
-                    "Priced from $49 to $999",
-                  ].map((text, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <CheckCircle2 size={16} className="text-accent shrink-0" />
-                      <span className="text-muted-foreground font-medium">{text}</span>
-                    </div>
-                  ))}
-                </div>
-                <Link href="/playbooks" className="inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white hover:bg-accent h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-lg" data-testid="link-browse-playbooks">
-                  <BookOpen size={16} />
-                  Browse Playbooks
-                </Link>
-              </AnimateOnScroll>
+            <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-16">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Find Your Fit</p>
+              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">
+                Who this is for
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                We serve multiple audiences through one unified system. Here's where you fit and the best way to start.
+              </p>
+            </AnimateOnScroll>
 
-              <AnimateOnScroll animation="fade-right" delay={200}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {[
-                    { icon: <Users size={20} />, title: "Hiring Playbooks", desc: "Job descriptions, interview scorecards, onboarding checklists, and candidate evaluation rubrics." },
-                    { icon: <Target size={20} />, title: "Performance System Playbooks", desc: "KPI libraries, review cycle templates, feedback frameworks, and calibration guides." },
-                    { icon: <Megaphone size={20} />, title: "Marketing Playbooks", desc: "Marketing plans, content strategies, funnel blueprints, and lead generation frameworks." },
-                    { icon: <Settings size={20} />, title: "Operations & SOP Playbooks", desc: "SOP templates, process mapping guides, accountability trackers, and quality frameworks." },
-                  ].map((pb, i) => (
-                    <Link href="/playbooks" key={i} className="block group" data-testid={`link-playbook-category-${i}`}>
-                      <div className="bg-[#F8FAFC] rounded-2xl border border-border p-6 hover:shadow-xl hover:border-accent/20 transition-all duration-300 h-full">
-                        <div className="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                          {pb.icon}
-                        </div>
-                        <h4 className="text-sm font-bold text-primary mb-2 group-hover:text-accent transition-colors">{pb.title}</h4>
-                        <p className="text-xs text-muted-foreground leading-relaxed">{pb.desc}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {[
+                {
+                  icon: <UserCheck size={24} />,
+                  audience: "Professionals",
+                  desc: "Consultants, coaches, solo operators looking to build structured systems for their practice.",
+                  bestFit: "Playbooks or Guided Implementation",
+                  investment: "$149 to $10,000",
+                  cta: "Start with a Playbook",
+                  ctaLink: "/playbooks",
+                  color: "from-blue-500 to-blue-600",
+                },
+                {
+                  icon: <Briefcase size={24} />,
+                  audience: "Small Businesses",
+                  desc: "Early to mid-stage companies ($500K to $5M) ready to install repeatable systems for growth.",
+                  bestFit: "Guided Implementation or Full System",
+                  investment: "$2,000 to $50,000+",
+                  cta: "Explore Guided Implementation",
+                  ctaLink: BOOKINGS_URL,
+                  color: "from-accent to-pink-600",
+                  isExternal: true,
+                },
+                {
+                  icon: <Heart size={24} />,
+                  audience: "Nonprofits",
+                  desc: "Mission-driven organizations that need structure, hiring systems, and operational clarity without enterprise budgets.",
+                  bestFit: "Playbooks or Guided Implementation",
+                  investment: "$149 to $10,000",
+                  cta: "Start with a Playbook",
+                  ctaLink: "/playbooks",
+                  color: "from-green-500 to-green-600",
+                },
+                {
+                  icon: <Building2 size={24} />,
+                  audience: "Growing Organizations",
+                  desc: "Established businesses ($1M+) and larger nonprofits ready for comprehensive infrastructure design and implementation.",
+                  bestFit: "Full System Build",
+                  investment: "$5,000 to $50,000+",
+                  cta: "Book a Strategy Call",
+                  ctaLink: BOOKINGS_URL,
+                  color: "from-primary to-blue-900",
+                  isExternal: true,
+                },
+              ].map((item, i) => (
+                <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
+                  <div className="bg-white rounded-2xl border border-border shadow-sm hover:shadow-xl hover:border-accent/20 transition-all duration-300 h-full flex flex-col" data-testid={`audience-card-${i}`}>
+                    <div className={`p-6 bg-gradient-to-br ${item.color} rounded-t-2xl`}>
+                      <div className="w-12 h-12 rounded-xl bg-white/20 text-white flex items-center justify-center mb-4">
+                        {item.icon}
                       </div>
-                    </Link>
-                  ))}
-                </div>
-              </AnimateOnScroll>
+                      <h3 className="text-xl font-bold text-white">{item.audience}</h3>
+                    </div>
+                    <div className="p-6 flex flex-col flex-1">
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-4">{item.desc}</p>
+                      <div className="mb-3">
+                        <p className="text-xs font-bold uppercase tracking-wider text-primary/60 mb-1">Best fit</p>
+                        <p className="text-sm font-semibold text-primary">{item.bestFit}</p>
+                      </div>
+                      <div className="mb-6">
+                        <p className="text-xs font-bold uppercase tracking-wider text-primary/60 mb-1">Expected investment</p>
+                        <p className="text-sm font-semibold text-accent">{item.investment}</p>
+                      </div>
+                      <div className="mt-auto">
+                        {item.isExternal ? (
+                          <a href={item.ctaLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-accent hover:text-primary transition-colors" data-testid={`link-audience-cta-${i}`}>
+                            {item.cta}
+                            <ArrowRight size={14} />
+                          </a>
+                        ) : (
+                          <Link href={item.ctaLink} className="inline-flex items-center gap-2 text-sm font-bold text-accent hover:text-primary transition-colors" data-testid={`link-audience-cta-${i}`}>
+                            {item.cta}
+                            <ArrowRight size={14} />
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </AnimateOnScroll>
+              ))}
             </div>
           </div>
         </section>
@@ -452,17 +742,17 @@ export default function Solutions() {
                     Ready to build the infrastructure your business needs?
                   </h2>
                   <p className="text-lg text-white/70 mb-12">
-                    Whether you need the full Growth Infrastructure System or want to start with a focused phase, the first step is a strategy conversation. Let's figure out what your business needs.
+                    Whether you're starting with a playbook, exploring guided implementation, or ready for a full system build, the next step is simple.
                   </p>
                   <div className="flex flex-wrap gap-4">
+                    <Link href="/playbooks" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-playbooks">
+                      <BookOpen size={16} />
+                      Start with a Playbook
+                    </Link>
                     <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-solutions-cta-book">
                       <Calendar size={16} />
                       Book a Strategy Call
                     </a>
-                    <Link href="/playbooks" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-solutions-cta-playbooks">
-                      Browse Playbooks
-                      <ArrowRight size={16} />
-                    </Link>
                   </div>
                 </div>
               </div>

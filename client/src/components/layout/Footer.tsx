@@ -129,9 +129,10 @@ export function Footer() {
             <div className="flex flex-col gap-6">
               <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{language === "en" ? "Solutions" : "Solutions"}</h3>
               <ul className="flex flex-col gap-3.5 text-sm font-medium text-muted-foreground">
-                <li><Link href="/solutions" className="hover:text-accent transition-colors">Growth Infrastructure System</Link></li>
-                <li><Link href="/solutions#phases" className="hover:text-accent transition-colors">Foundation, Build & Run</Link></li>
-                <li><Link href="/playbooks" className="hover:text-accent transition-colors">Playbooks & Tools</Link></li>
+                <li><Link href="/playbooks" className="hover:text-accent transition-colors">Playbooks</Link></li>
+                <li><Link href="/solutions#ways-to-work" className="hover:text-accent transition-colors">Guided Implementation</Link></li>
+                <li><Link href="/solutions#phases" className="hover:text-accent transition-colors">Full System Build</Link></li>
+                <li><Link href="/solutions" className="hover:text-accent transition-colors">All Solutions</Link></li>
               </ul>
             </div>
 

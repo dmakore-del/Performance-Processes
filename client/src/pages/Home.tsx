@@ -467,12 +467,12 @@ export default function Home() {
           <GradientOrb className="w-72 h-72 bg-accent/5 -bottom-32 right-20" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Growth Infrastructure System</p>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Ways to Work With Us</p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                Three phases to scalable growth
+                One system. Multiple ways in.
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We don't sell individual services. We design, build, and run the systems your business needs to scale, delivered through a structured 3-phase model.
+                Whether you're a solo professional, a growing business, or a scaling organization, our Growth Infrastructure System meets you where you are.
               </p>
             </AnimateOnScroll>
 
@@ -480,21 +480,24 @@ export default function Home() {
               {[
                 {
                   image: communityTownhallImg,
-                  title: "Phase 1: Foundation",
-                  desc: "We audit your business, design roles and structure, map processes, set KPIs, and build the blueprint for scalable growth.",
-                  label: "$5,000 to $15,000",
+                  title: "Playbooks",
+                  desc: "Self-guided systems to implement structure, hiring, marketing, and execution at your own pace.",
+                  label: "$149 to $999",
+                  cta: "Start with a Playbook",
                 },
                 {
                   image: communityWorkspaceImg,
-                  title: "Phase 2: Build",
-                  desc: "We recruit key hires, implement HR and operating systems, build your website and marketing infrastructure, and activate your growth engine.",
-                  label: "$15,000 to $50,000+",
+                  title: "Guided Implementation",
+                  desc: "Hands-on support to install key systems without a full-scale engagement. We work alongside you.",
+                  label: "$2,000 to $10,000",
+                  cta: "Explore Guided Implementation",
                 },
                 {
                   image: milestoneImg,
-                  title: "Phase 3: Run",
-                  desc: "Ongoing optimization, performance tracking, recruiting support, process refinement, and strategic advisory to keep your systems scaling.",
-                  label: "$4,000 to $12,000/mo",
+                  title: "Full System Build",
+                  desc: "Complete design, build, and ongoing operation of your business systems through our 3-phase model.",
+                  label: "$5,000 to $50,000+",
+                  cta: "Book a Strategy Call",
                 },
               ].map((s, i) => (
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
@@ -507,7 +510,7 @@ export default function Home() {
                         <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">{s.title}</h3>
                         <p className="text-white/70 text-sm leading-relaxed mb-4">{s.desc}</p>
                         <span className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-transform">
-                          Learn more <ArrowRight size={14} className="ml-2" />
+                          {s.cta} <ArrowRight size={14} className="ml-2" />
                         </span>
                       </div>
                     </div>

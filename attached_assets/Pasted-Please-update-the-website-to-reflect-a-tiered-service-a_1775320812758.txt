@@ -1,0 +1,298 @@
+Please update the website to reflect a tiered service and product structure that supports multiple client segments (professionals, small businesses, nonprofits, and larger organizations) while maintaining one unified system.
+
+This is a restructuring of services, pricing, and segmentation only.
+
+---
+
+# 1. Core Structure (Do Not Change Concept)
+
+All offerings must sit under one system:
+
+Growth Infrastructure System
+
+Do NOT create separate service lines for each audience.
+
+Instead, implement:
+👉 One system  
+👉 Multiple access levels  
+👉 Clear pricing + segmentation  
+
+---
+
+# 2. Add Clear Segmentation + Value Ladder
+
+Create a section titled:
+
+“Ways to Work With Us”
+
+This must clearly show 3 tiers, each with:
+- Target audience
+- Use case
+- Pricing
+- Timeframe
+- What’s included
+
+---
+
+# 🧱 TIER 1: PLAYBOOKS (ENTRY LEVEL)
+
+### Audience:
+- Professionals (consultants, coaches, solo operators)
+- Small businesses (early stage)
+- Nonprofits (budget-conscious teams)
+
+### Positioning:
+Self-guided systems to implement structure, hiring, marketing, and execution.
+
+### Pricing:
+- Individual: $149 – $299  
+- Bundles: $399 – $999  
+
+### Timeframe:
+Self-paced
+
+---
+
+### What’s Included:
+- Templates
+- Frameworks
+- SOP structures
+- KPI systems
+- Funnel and website structures
+- Hiring systems
+
+---
+
+### Examples to show:
+- Hiring System — $249  
+- Website Conversion System — $299  
+- KPI System — $199  
+
+---
+
+# ⚙️ TIER 2: GUIDED IMPLEMENTATION (MID-TIER — NEW)
+
+### Audience:
+- Small businesses ($500K–$5M)
+- Nonprofits (funded or scaling)
+- Professionals ready to invest
+
+### Positioning:
+Hands-on support to install key systems without full-scale engagement.
+
+---
+
+### Pricing:
+$2,000 – $10,000
+
+### Timeframe:
+2 – 8 weeks
+
+---
+
+### What’s Included (modular depending on need):
+- Foundation sprint (org structure, KPIs)
+- Hiring system setup
+- Website conversion improvements
+- Funnel setup
+- CRM setup
+- Basic playbook creation
+- Process fixes
+
+---
+
+### Example packaged offers (display on site):
+
+Foundation Sprint
+- Org structure + KPI system  
+- Price: $3K – $6K  
+- Timeframe: 2–4 weeks  
+
+Growth Engine Sprint
+- Website + funnel + CRM  
+- Price: $5K – $10K  
+- Timeframe: 4–8 weeks  
+
+Hiring System Setup
+- Hiring process + scorecards + onboarding  
+- Price: $2K – $5K  
+- Timeframe: 2–4 weeks  
+
+---
+
+# 🚀 TIER 3: FULL SYSTEM BUILD (PREMIUM)
+
+### Audience:
+- Growing businesses ($1M+)  
+- Larger nonprofits  
+- Established teams  
+
+---
+
+### Positioning:
+Complete design, build, and ongoing operation of business systems.
+
+---
+
+### Pricing:
+
+Foundation:  
+$5,000 – $15,000  
+Timeframe: 2–4 weeks  
+
+Build:  
+$15,000 – $50,000+  
+Timeframe: 6–12 weeks  
+
+Run:  
+$4,000 – $12,000/month  
+Timeframe: ongoing  
+
+---
+
+### What’s Included:
+
+Foundation:
+- Org structure
+- KPI systems
+- Process design
+- Strategy + roadmap
+
+Build:
+- Recruiting & HR systems
+- Website + conversion system
+- Marketing funnel
+- CRM + tracking
+- Playbooks
+
+Run:
+- KPI tracking
+- Weekly execution support
+- Marketing optimization
+- Hiring support
+- Process refinement
+
+---
+
+# 3. Update Services Page Structure
+
+Replace any flat service list with:
+
+## Foundation  
+## Build  
+## Run  
+
+Each section must:
+- Show what’s included
+- Show pricing range
+- Show timeframe
+- Link to appropriate tier (Guided vs Full)
+
+---
+
+# 4. Reframe All Services as Systems
+
+Replace commodity language with system-based naming:
+
+- Recruiting → Talent Acquisition System  
+- HR → People & Performance System  
+- Marketing → Demand Generation System  
+- Website → Conversion System  
+
+These should appear inside tiers, not standalone.
+
+---
+
+# 5. Add “Who This Is For” Section (MANDATORY)
+
+Create a section that clearly maps audiences to tiers:
+
+---
+
+### Professionals
+Best fit:
+Playbooks or Guided Implementation  
+
+---
+
+### Small Businesses
+Best fit:
+Guided Implementation or Full System  
+
+---
+
+### Nonprofits
+Best fit:
+Playbooks or Guided Implementation  
+
+---
+
+### Growing Organizations
+Best fit:
+Full System Build  
+
+---
+
+This section must clearly connect:
+👉 audience → best entry point → expected investment level  
+
+---
+
+# 6. Add Visual Value Ladder
+
+Create a simple visual or section:
+
+Start → Scale Path
+
+Playbooks → Guided Implementation → Full System Build  
+
+Include pricing ranges under each.
+
+---
+
+# 7. Update CTAs Across Site
+
+Use segmented CTAs:
+
+- “Start with a Playbook”  
+- “Explore Guided Implementation”  
+- “Book a Strategy Call”  
+
+---
+
+# 8. Preserve Existing Infrastructure
+
+Do NOT break:
+- URLs
+- SEO structure
+- Checkout/payment
+- Forms
+
+Only update:
+- Copy
+- Structure
+- Pricing display
+- Grouping
+
+---
+
+# 9. End Result
+
+The website must clearly communicate:
+
+We serve multiple audiences, but through one unified system.
+
+Visitors should immediately understand:
+- Where they fit
+- What they need
+- What it costs
+- What the next step is
+
+---
+
+If anything is unclear during implementation, prioritize clarity of:
+1. Segmentation
+2. Pricing visibility
+3. Tiered structure
+
+These are the most important changes.

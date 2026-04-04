@@ -1,0 +1,151 @@
+Please update our website to reposition the business from a general service provider into a clear, outcome-focused growth systems company.
+
+Goal:
+The website should no longer present us as a loose collection of services. It should position us as a company that helps businesses scale by building and running their people, process, and growth infrastructure.
+
+Core positioning:
+Use this message consistently across the site:
+“We build and run the systems that help businesses scale.”
+Supporting version:
+“From hiring to execution, we install the people, processes, and growth systems companies need to grow.”
+
+What needs to change:
+
+1. Homepage messaging
+Replace vague or fragmented messaging with a clear headline and subheadline.
+
+Recommended hero headline:
+“We build and run the systems that help your business scale.”
+
+Recommended subheadline:
+“From recruiting and HR to marketing, websites, and operational playbooks, we install the infrastructure growing companies need to scale with confidence.”
+
+Add one primary CTA button:
+“Book a Strategy Call”
+
+Add one secondary CTA:
+“See How It Works”
+
+2. Reorganize service presentation
+Do not present our business as a list of unrelated services.
+Instead, group everything under one flagship offer.
+
+Main offer section title:
+“Our Growth Infrastructure System”
+
+This section should explain that our work includes:
+- Recruiting and headhunting
+- HR systems and support
+- Performance management and process design
+- Marketing support
+- Website building
+- Operational playbooks
+
+But these should appear as components of one system, not separate disconnected offerings.
+
+3. Add a “How It Works” section
+Create a 3-step section with these phases:
+
+Phase 1: Foundation
+- Define roles
+- Build team structure
+- Set up processes
+- Create playbooks
+- Clarify KPIs
+
+Phase 2: Build
+- Recruit key hires
+- Implement HR and operating systems
+- Support marketing execution
+- Build or improve website assets
+
+Phase 3: Run
+- Ongoing optimization
+- Performance tracking
+- Hiring support
+- Process refinement
+- Strategic support
+
+4. Add a before/after transformation section
+Create a section showing the change clients experience.
+
+Before:
+- Disorganized growth
+- Hiring gaps
+- No clear systems
+- Inconsistent execution
+- Weak accountability
+
+After:
+- Clear team structure
+- Better hiring
+- Defined processes
+- Stronger execution
+- Scalable growth systems
+
+5. Simplify navigation
+Update main navigation so it reflects the new positioning.
+
+Suggested nav:
+- Home
+- How It Works
+- Solutions
+- Playbooks
+- About
+- Contact
+
+If needed, “Solutions” can contain the underlying capabilities, but the main pages should still reinforce one unified offer.
+
+6. Create or update a flagship offer section
+Add a section that explains we are not just consultants or recruiters. We help companies build and operate the systems they need to grow.
+
+Suggested section title:
+“More than services. A system for scale.”
+
+Suggested body direction:
+Explain that most firms offer one piece of the puzzle, but we integrate hiring, HR, marketing support, web presence, and playbooks into one execution system.
+
+7. Add a Playbooks section
+Since we sell playbooks, give them a clearer role on the site.
+
+This section should:
+- Present playbooks as practical tools and templates
+- Support lead generation and product sales
+- Show they are part of our methodology
+
+Suggested heading:
+“Playbooks built from real execution”
+
+Include space for individual playbook cards with title, short description, and CTA.
+
+8. Improve clarity of target client
+Where possible, update copy so it speaks to growing businesses that need structure, hiring, execution, and scalable systems.
+Avoid generic language like “we help everyone.”
+Use more direct language aimed at businesses that are growing and need infrastructure.
+
+9. Visual direction
+The site should feel more like a strategic operating partner than a generic agency.
+Please use:
+- Clean layout
+- Strong section hierarchy
+- Fewer scattered service blocks
+- More outcome-driven copy
+- Simple icons or visual blocks for the 3-phase system
+
+10. Technical/content implementation notes
+- Update homepage copy first
+- Rework service pages so they support the unified positioning
+- Keep existing SEO value where possible, but rewrite titles and headings for clarity
+- Make sure mobile layout remains clean and CTA buttons stay prominent
+- Preserve fast load speed and existing forms unless improvement is needed
+
+Priority order:
+1. Homepage hero and messaging
+2. Unified offer section
+3. How It Works section
+4. Before/After section
+5. Navigation cleanup
+6. Playbooks section
+7. Supporting page revisions
+
+Please build this in a way that makes the website feel focused, premium, and outcome-driven rather than like a list of unrelated services.

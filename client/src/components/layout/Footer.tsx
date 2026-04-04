@@ -127,7 +127,7 @@ export function Footer() {
             </div>
 
             <div className="flex flex-col gap-6">
-              <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{t("footer.expertise")}</h3>
+              <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{language === "en" ? "Solutions" : "Solutions"}</h3>
               <ul className="flex flex-col gap-3.5 text-sm font-medium text-muted-foreground">
                 <li><Link href="/consulting" className="hover:text-accent transition-colors">Management Consulting</Link></li>
                 <li><Link href="/recruiting" className="hover:text-accent transition-colors">Human Resources</Link></li>

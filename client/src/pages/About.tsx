@@ -184,9 +184,11 @@ export default function About() {
                   </p>
                   <p>
                     With academic training in Psychology and
-                    Human Resource Management and a deep
+                    Human Resource Management, and currently
+                    pursuing a Masters of Science in Management
+                    Practice at York University, Danai brings a deep
                     commitment to equity, access, and sustainable
-                    impact, Danai founded Performance Processes
+                    impact. She founded Performance Processes
                     to help organizations of all sizes build the
                     management systems that drive lasting performance.
                   </p>
@@ -323,10 +325,12 @@ export default function About() {
                     to management excellence.
                   </p>
                   <p>
-                    With a strong background in relationship development
-                    and strategic advisory, Sean specializes in identifying
-                    opportunities to help clients across all service tiers
-                    streamline operations and improve performance outcomes.
+                    With degrees in Computer Science and the
+                    Creative Arts, and a strong background in
+                    relationship development and strategic advisory,
+                    Sean specializes in identifying opportunities to
+                    help clients across all service tiers streamline
+                    operations and improve performance outcomes.
                   </p>
                   <p className="font-medium text-primary italic border-l-4 border-accent pl-6 py-2 bg-gradient-to-r from-[#F8FAFC] to-transparent rounded-r-lg">
                     Passionate about connecting clients with the right

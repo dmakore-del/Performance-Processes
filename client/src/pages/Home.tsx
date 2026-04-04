@@ -430,9 +430,9 @@ export default function Home() {
                   <p className="text-4xl md:text-5xl font-extrabold text-white mb-2">97%</p>
                   <p className="text-white/50 text-sm">Feel more confident</p>
                 </div>
-                <div data-testid="stat-clients">
-                  <p className="text-4xl md:text-5xl font-extrabold text-accent mb-2">100+</p>
-                  <p className="text-white/50 text-sm">Clients served</p>
+                <div data-testid="stat-industries">
+                  <p className="text-4xl md:text-5xl font-extrabold text-accent mb-2">6+</p>
+                  <p className="text-white/50 text-sm">Industries served</p>
                 </div>
                 <div data-testid="stat-impact">
                   <p className="text-4xl md:text-5xl font-extrabold text-white mb-2">∞</p>

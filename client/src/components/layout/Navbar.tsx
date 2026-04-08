@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown, UserCircle, Calendar, BookOpen, GraduationCap, ClipboardCheck, Layers, ArrowRight, Users, Lightbulb, Newspaper, FileText, HeartHandshake, Phone, Compass } from "lucide-react";
+import { Menu, X, ChevronDown, UserCircle, Calendar } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/hooks/use-language";
@@ -10,8 +10,6 @@ const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@perf
 interface NavDropdownItem {
   label: string;
   href: string;
-  icon: React.ReactNode;
-  description: string;
   isExternal?: boolean;
 }
 
@@ -85,22 +83,13 @@ function DesktopDropdown({ item, isActive }: { item: NavItem; isActive: boolean 
 
       {isOpen && (
         <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
-          <div className="bg-white rounded-xl shadow-2xl border border-gray-100 py-2 min-w-[320px] animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="bg-white rounded-xl shadow-2xl border border-gray-100 py-2 min-w-[220px] animate-in fade-in slide-in-from-top-2 duration-200">
             {item.children.map((child) => {
               const content = (
-                <div className="flex items-start gap-3 px-4 py-3 hover:bg-secondary/60 transition-colors group cursor-pointer">
-                  <div className="mt-0.5 text-accent group-hover:text-primary transition-colors shrink-0">
-                    {child.icon}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-bold text-primary group-hover:text-accent transition-colors flex items-center gap-1.5">
-                      {child.label}
-                      {child.isExternal && <ArrowRight size={12} className="opacity-50" />}
-                    </div>
-                    <div className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
-                      {child.description}
-                    </div>
-                  </div>
+                <div className="px-5 py-2.5 hover:bg-secondary/60 transition-colors cursor-pointer">
+                  <span className="text-sm font-semibold text-primary hover:text-accent transition-colors">
+                    {child.label}
+                  </span>
                 </div>
               );
 
@@ -171,15 +160,11 @@ function MobileAccordion({ item, location, onNavigate }: { item: NavItem; locati
       </button>
 
       {isOpen && (
-        <div className="pb-4 pl-2 flex flex-col gap-1 animate-in fade-in slide-in-from-top-1 duration-200">
+        <div className="pb-4 pl-4 flex flex-col gap-0 animate-in fade-in slide-in-from-top-1 duration-200">
           {item.children.map((child) => {
             const content = (
-              <div className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-secondary/60 transition-colors">
-                <div className="text-accent shrink-0">{child.icon}</div>
-                <div>
-                  <div className="text-base font-bold text-primary">{child.label}</div>
-                  <div className="text-xs text-muted-foreground">{child.description}</div>
-                </div>
+              <div className="px-3 py-3 rounded-lg hover:bg-secondary/60 transition-colors">
+                <span className="text-base font-semibold text-primary">{child.label}</span>
               </div>
             );
 
@@ -228,89 +213,28 @@ export function Navbar() {
     {
       label: language === "en" ? "Solutions" : "Solutions",
       children: [
-        {
-          label: language === "en" ? "Solutions Overview" : "Aperçu des solutions",
-          href: "/solutions",
-          icon: <Layers size={18} />,
-          description: language === "en" ? "Our Growth Infrastructure System and value ladder" : "Notre système d'infrastructure de croissance",
-        },
-        {
-          label: "Playbooks",
-          href: "/playbooks",
-          icon: <BookOpen size={18} />,
-          description: language === "en" ? "Self-paced system frameworks you can implement today" : "Cadres de systèmes auto-guidés",
-        },
-        {
-          label: language === "en" ? "Training Programs" : "Programmes de formation",
-          href: "/training",
-          icon: <GraduationCap size={18} />,
-          description: language === "en" ? "Structured learning for team implementation" : "Apprentissage structuré pour la mise en œuvre",
-        },
-        {
-          label: language === "en" ? "Growth Assessment" : "Évaluation de croissance",
-          href: "/assessment",
-          icon: <ClipboardCheck size={18} />,
-          description: language === "en" ? "Diagnose gaps in your growth infrastructure" : "Diagnostiquer les lacunes de votre infrastructure",
-        },
+        { label: language === "en" ? "Solutions Overview" : "Aperçu des solutions", href: "/solutions" },
+        { label: "Playbooks", href: "/playbooks" },
+        { label: language === "en" ? "Training Programs" : "Programmes de formation", href: "/training" },
+        { label: language === "en" ? "Growth Assessment" : "Évaluation de croissance", href: "/assessment" },
       ],
     },
     {
       label: t("nav.about"),
       children: [
-        {
-          label: language === "en" ? "About Us" : "À propos de nous",
-          href: "/about",
-          icon: <Users size={18} />,
-          description: language === "en" ? "Our story, team, and mission" : "Notre histoire, équipe et mission",
-        },
-        {
-          label: language === "en" ? "Our Approach" : "Notre approche",
-          href: "/approach",
-          icon: <Compass size={18} />,
-          description: language === "en" ? "How we build systems that drive results" : "Comment nous construisons des systèmes",
-        },
-        {
-          label: language === "en" ? "Insights" : "Perspectives",
-          href: "/insights",
-          icon: <Lightbulb size={18} />,
-          description: language === "en" ? "Articles, frameworks, and thinking" : "Articles, cadres et réflexions",
-        },
-        {
-          label: language === "en" ? "News" : "Nouvelles",
-          href: "/news",
-          icon: <Newspaper size={18} />,
-          description: language === "en" ? "Latest industry news and updates" : "Dernières nouvelles de l'industrie",
-        },
+        { label: language === "en" ? "About Us" : "À propos de nous", href: "/about" },
+        { label: language === "en" ? "Our Approach" : "Notre approche", href: "/approach" },
+        { label: language === "en" ? "Insights" : "Perspectives", href: "/insights" },
+        { label: language === "en" ? "News" : "Nouvelles", href: "/news" },
       ],
     },
     {
       label: language === "en" ? "Engage" : "Engager",
       children: [
-        {
-          label: t("nav.contact"),
-          href: "/contact",
-          icon: <Phone size={18} />,
-          description: language === "en" ? "Get in touch with our team" : "Contactez notre équipe",
-        },
-        {
-          label: language === "en" ? "Free Growth Audit" : "Audit de croissance gratuit",
-          href: "/free-audit",
-          icon: <FileText size={18} />,
-          description: language === "en" ? "Get a complimentary systems assessment" : "Obtenez une évaluation complémentaire",
-        },
-        {
-          label: language === "en" ? "Women's Performance Grant" : "Bourse de performance féminine",
-          href: "/womens-performance-grant",
-          icon: <HeartHandshake size={18} />,
-          description: language === "en" ? "Pro-bono consulting for women-led businesses" : "Conseil pro bono pour entreprises dirigées par des femmes",
-        },
-        {
-          label: language === "en" ? "Book a Strategy Call" : "Réserver un appel stratégique",
-          href: BOOKINGS_URL,
-          icon: <Calendar size={18} />,
-          description: language === "en" ? "Schedule a free consultation" : "Planifier une consultation gratuite",
-          isExternal: true,
-        },
+        { label: t("nav.contact"), href: "/contact" },
+        { label: language === "en" ? "Free Growth Audit" : "Audit de croissance gratuit", href: "/free-audit" },
+        { label: language === "en" ? "Women's Performance Grant" : "Bourse de performance féminine", href: "/womens-performance-grant" },
+        { label: language === "en" ? "Book a Strategy Call" : "Réserver un appel stratégique", href: BOOKINGS_URL, isExternal: true },
       ],
     },
   ];
@@ -363,8 +287,7 @@ export function Navbar() {
           <Link href="/portal" className="p-2 hover:bg-secondary rounded-full transition-colors hidden md:block" data-testid="link-portal-signin">
             <UserCircle size={20} className="text-primary" />
           </Link>
-          <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-primary transition-all font-bold px-6 h-11 uppercase tracking-wider text-xs" data-testid="link-book-call-nav">
-              <Calendar size={15} />
+          <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-primary transition-all font-bold px-6 h-11 uppercase tracking-wider text-xs" data-testid="link-book-call-nav">
               {language === "en" ? "Book a Strategy Call" : "Réserver un appel"}
           </a>
           <button
@@ -412,8 +335,7 @@ export function Navbar() {
               <button onClick={() => {setLanguage("fr"); setIsMobileMenuOpen(false);}} className={cn("font-bold", language === "fr" ? "text-accent underline" : "text-primary")}>FR</button>
             </div>
 
-            <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-3 rounded-full bg-accent text-white py-5 text-lg font-bold uppercase tracking-widest mt-4 shadow-lg shadow-accent/20" onClick={() => setIsMobileMenuOpen(false)} data-testid="link-book-call-mobile">
-                <Calendar size={20} />
+            <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center rounded-full bg-accent text-white py-5 text-lg font-bold uppercase tracking-widest mt-4 shadow-lg shadow-accent/20" onClick={() => setIsMobileMenuOpen(false)} data-testid="link-book-call-mobile">
                 {language === "en" ? "Book a Strategy Call" : "Réserver un appel stratégique"}
             </a>
           </div>

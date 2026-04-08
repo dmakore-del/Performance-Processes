@@ -4,26 +4,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/components/ui/animate-on-scroll";
 import {
   ArrowRight,
-  CheckCircle2,
-  Calendar,
-  Clock,
-  DollarSign,
-  Users,
-  Target,
-  Globe,
-  BookOpen,
-  Rocket,
-  Layers,
-  Zap,
-  Briefcase,
-  Megaphone,
   ArrowDown,
-  Building2,
-  Heart,
-  UserCheck,
-  Wrench,
-  ChevronRight,
-  GraduationCap,
 } from "lucide-react";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
@@ -42,11 +23,11 @@ export default function Solutions() {
   const { language } = useLanguage();
 
   const systemComponents = [
-    { name: "Talent Acquisition System", icon: <Users size={20} />, desc: "Build the team structure required to scale, finding and placing the right people in the right roles." },
-    { name: "People & Performance System", icon: <Target size={20} />, desc: "Performance systems that improve execution, from onboarding to reviews to accountability." },
-    { name: "Demand Generation System", icon: <Megaphone size={20} />, desc: "Systems that attract and convert customers through strategy, content, and campaigns." },
-    { name: "Conversion System", icon: <Globe size={20} />, desc: "Digital infrastructure that turns visitors into leads and leads into clients." },
-    { name: "Execution Systems", icon: <BookOpen size={20} />, desc: "Practical tools, templates, and frameworks that codify your operations for repeatable success." },
+    { name: "Talent Acquisition System", desc: "Build the team structure required to scale, finding and placing the right people in the right roles." },
+    { name: "People & Performance System", desc: "Performance systems that improve execution, from onboarding to reviews to accountability." },
+    { name: "Demand Generation System", desc: "Systems that attract and convert customers through strategy, content, and campaigns." },
+    { name: "Conversion System", desc: "Digital infrastructure that turns visitors into leads and leads into clients." },
+    { name: "Execution Systems", desc: "Practical tools, templates, and frameworks that codify your operations for repeatable success." },
   ];
 
   return (
@@ -78,7 +59,7 @@ export default function Solutions() {
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.45s" }}>
                 <Link href="/playbooks" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-hero-playbooks">
-                  <BookOpen size={16} />
+
                   Start with a Playbook
                 </Link>
                 <a href="#ways-to-work" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-solutions-hero-tiers">
@@ -109,19 +90,13 @@ export default function Solutions() {
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 80}>
                   <div className="relative p-7 rounded-2xl border border-border bg-white hover:shadow-xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 h-full group" data-testid={`system-component-${i}`}>
                     <div className="absolute top-0 left-0 w-1 h-full bg-accent/0 group-hover:bg-accent transition-all duration-300 rounded-l-2xl" />
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-11 h-11 rounded-xl bg-accent/10 text-accent flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        {item.icon}
-                      </div>
-                      <h3 className="text-base font-bold text-primary group-hover:text-accent transition-colors">{item.name}</h3>
-                    </div>
+                    <h3 className="text-base font-bold text-primary mb-2 group-hover:text-accent transition-colors">{item.name}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
                   </div>
                 </AnimateOnScroll>
               ))}
               <AnimateOnScroll animation="fade-up" delay={5 * 80}>
                 <div className="relative p-7 rounded-2xl border-2 border-dashed border-accent/30 bg-accent/5 flex flex-col items-center justify-center text-center h-full group hover:border-accent/50 transition-all" data-testid="system-component-cta">
-                  <Layers size={28} className="text-accent mb-3" />
                   <p className="text-sm font-bold text-primary mb-1">All Systems Combined</p>
                   <p className="text-xs text-muted-foreground">Available across every tier, from playbooks to full builds</p>
                 </div>
@@ -168,11 +143,11 @@ export default function Solutions() {
               <AnimateOnScroll className="text-center mt-8">
                 <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
                   <span>Self-paced</span>
-                  <ChevronRight size={14} />
+                  <span className="text-accent/40">→</span>
                   <span>Structured training</span>
-                  <ChevronRight size={14} />
+                  <span className="text-accent/40">→</span>
                   <span>Hands-on support</span>
-                  <ChevronRight size={14} />
+                  <span className="text-accent/40">→</span>
                   <span>Ongoing partnership</span>
                 </div>
               </AnimateOnScroll>
@@ -202,18 +177,18 @@ export default function Solutions() {
                     <div className="lg:col-span-2 relative">
                       <div className="h-full min-h-[280px] bg-gradient-to-br from-blue-500 to-blue-600 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
-                          <BookOpen size={12} />
+
                           Tier 1: Entry Level
                         </div>
                         <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Playbooks</h3>
                         <p className="text-white/80 leading-relaxed mb-4">Self-guided systems to implement structure, hiring, marketing, and execution on your own.</p>
                         <div className="flex flex-wrap gap-4">
                           <div className="flex items-center gap-2 text-sm text-white/70">
-                            <DollarSign size={14} className="text-white" />
+
                             <span className="font-bold text-white">$149 to $999</span>
                           </div>
                           <div className="flex items-center gap-2 text-sm text-white/70">
-                            <Clock size={14} className="text-white" />
+
                             <span className="font-bold text-white">Self-paced</span>
                           </div>
                         </div>
@@ -229,7 +204,7 @@ export default function Solutions() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                           {["Templates and frameworks", "SOP structures", "KPI systems", "Funnel and website structures", "Hiring systems", "Implementation guides"].map((item, j) => (
                             <div key={j} className="flex items-start gap-2">
-                              <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                               <span className="text-sm text-muted-foreground">{item}</span>
                             </div>
                           ))}
@@ -251,7 +226,7 @@ export default function Solutions() {
                         </div>
                       </div>
                       <Link href="/playbooks" className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-playbooks">
-                        <BookOpen size={16} />
+
                         Start with a Playbook
                       </Link>
                     </div>
@@ -265,18 +240,18 @@ export default function Solutions() {
                     <div className="lg:col-span-2 relative">
                       <div className="h-full min-h-[280px] bg-gradient-to-br from-purple-500 to-purple-700 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
-                          <GraduationCap size={12} />
+
                           Tier 2: Training
                         </div>
                         <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Training Programs</h3>
                         <p className="text-white/80 leading-relaxed mb-4">Practical training programs that help leaders and teams implement real systems for growth, execution, and performance.</p>
                         <div className="flex flex-wrap gap-4">
                           <div className="flex items-center gap-2 text-sm text-white/70">
-                            <DollarSign size={14} className="text-white" />
+
                             <span className="font-bold text-white">$99 to $10,000</span>
                           </div>
                           <div className="flex items-center gap-2 text-sm text-white/70">
-                            <Clock size={14} className="text-white" />
+
                             <span className="font-bold text-white">1 session to 8 weeks</span>
                           </div>
                         </div>
@@ -292,7 +267,7 @@ export default function Solutions() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                           {["Live virtual training sessions", "Cohort-based implementation programs", "Team workshops (in-person or virtual)", "Templates and implementation tools", "System-specific curriculum", "Post-training action plans"].map((item, j) => (
                             <div key={j} className="flex items-start gap-2">
-                              <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                               <span className="text-sm text-muted-foreground">{item}</span>
                             </div>
                           ))}
@@ -314,7 +289,7 @@ export default function Solutions() {
                         </div>
                       </div>
                       <Link href="/training" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-500 text-white hover:bg-purple-600 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-training">
-                        <GraduationCap size={16} />
+
                         Explore Training Programs
                       </Link>
                     </div>
@@ -329,18 +304,18 @@ export default function Solutions() {
                     <div className="lg:col-span-2 relative">
                       <div className="h-full min-h-[280px] bg-gradient-to-br from-accent to-pink-600 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
-                          <Wrench size={12} />
+
                           Tier 3: Mid-Tier
                         </div>
                         <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Guided Implementation</h3>
                         <p className="text-white/80 leading-relaxed mb-4">Hands-on support to install key systems without a full-scale engagement. We work alongside you to get it right.</p>
                         <div className="flex flex-wrap gap-4">
                           <div className="flex items-center gap-2 text-sm text-white/70">
-                            <DollarSign size={14} className="text-white" />
+
                             <span className="font-bold text-white">$2,000 to $10,000</span>
                           </div>
                           <div className="flex items-center gap-2 text-sm text-white/70">
-                            <Clock size={14} className="text-white" />
+
                             <span className="font-bold text-white">2 to 8 weeks</span>
                           </div>
                         </div>
@@ -356,7 +331,7 @@ export default function Solutions() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                           {["Foundation sprint (org structure, KPIs)", "Hiring system setup", "Website conversion improvements", "Funnel and CRM setup", "Basic playbook creation", "Process fixes and optimization"].map((item, j) => (
                             <div key={j} className="flex items-start gap-2">
-                              <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                               <span className="text-sm text-muted-foreground">{item}</span>
                             </div>
                           ))}
@@ -380,7 +355,7 @@ export default function Solutions() {
                         </div>
                       </div>
                       <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-primary h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-guided">
-                        <Calendar size={16} />
+
                         Explore Guided Implementation
                       </a>
                     </div>
@@ -394,18 +369,18 @@ export default function Solutions() {
                     <div className="lg:col-span-2 relative">
                       <div className="h-full min-h-[280px] bg-gradient-to-br from-primary to-blue-900 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
-                          <Rocket size={12} />
+
                           Tier 4: Scale
                         </div>
                         <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Full System Build</h3>
                         <p className="text-white/80 leading-relaxed mb-4">Complete design, build, and ongoing operation of your business systems. We become your infrastructure partner.</p>
                         <div className="flex flex-wrap gap-4">
                           <div className="flex items-center gap-2 text-sm text-white/70">
-                            <DollarSign size={14} className="text-white" />
+
                             <span className="font-bold text-white">$5,000 to $50,000+</span>
                           </div>
                           <div className="flex items-center gap-2 text-sm text-white/70">
-                            <Clock size={14} className="text-white" />
+
                             <span className="font-bold text-white">2 weeks to ongoing</span>
                           </div>
                         </div>
@@ -439,7 +414,7 @@ export default function Solutions() {
                         </div>
                       </div>
                       <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white hover:bg-accent h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-full-build">
-                        <Calendar size={16} />
+
                         Book a Strategy Call
                       </a>
                     </div>
@@ -492,7 +467,7 @@ export default function Solutions() {
                           "Marketing strategy and customer journey",
                         ].map((item, j) => (
                           <div key={j} className="flex items-start gap-2.5">
-                            <CheckCircle2 size={15} className="text-accent shrink-0 mt-0.5" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                             <span className="text-sm text-muted-foreground font-medium">{item}</span>
                           </div>
                         ))}
@@ -500,11 +475,11 @@ export default function Solutions() {
 
                       <div className="flex flex-wrap gap-4 pt-4 border-t border-border">
                         <div className="flex items-center gap-2 text-sm">
-                          <Clock size={14} className="text-accent" />
+
                           <span className="font-semibold text-primary">2 to 4 weeks</span>
                         </div>
                         <div className="flex items-center gap-2 text-sm">
-                          <DollarSign size={14} className="text-accent" />
+
                           <span className="font-semibold text-primary">$5,000 to $15,000</span>
                         </div>
                       </div>
@@ -532,7 +507,7 @@ export default function Solutions() {
                             "Performance management implementation",
                           ].map((item, j) => (
                             <div key={j} className="flex items-start gap-2.5">
-                              <CheckCircle2 size={15} className="text-accent shrink-0 mt-0.5" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                               <span className="text-sm text-muted-foreground font-medium">{item}</span>
                             </div>
                           ))}
@@ -550,7 +525,7 @@ export default function Solutions() {
                             "Analytics and dashboards",
                           ].map((item, j) => (
                             <div key={j} className="flex items-start gap-2.5">
-                              <CheckCircle2 size={15} className="text-accent shrink-0 mt-0.5" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                               <span className="text-sm text-muted-foreground font-medium">{item}</span>
                             </div>
                           ))}
@@ -559,11 +534,11 @@ export default function Solutions() {
 
                       <div className="flex flex-wrap gap-4 pt-4 border-t border-border">
                         <div className="flex items-center gap-2 text-sm">
-                          <Clock size={14} className="text-accent" />
+
                           <span className="font-semibold text-primary">6 to 12 weeks</span>
                         </div>
                         <div className="flex items-center gap-2 text-sm">
-                          <DollarSign size={14} className="text-accent" />
+
                           <span className="font-semibold text-primary">$15,000 to $50,000+</span>
                         </div>
                       </div>
@@ -604,7 +579,7 @@ export default function Solutions() {
                           "Strategic advisory",
                         ].map((item, j) => (
                           <div key={j} className="flex items-start gap-2.5">
-                            <CheckCircle2 size={15} className="text-accent shrink-0 mt-0.5" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                             <span className="text-sm text-muted-foreground font-medium">{item}</span>
                           </div>
                         ))}
@@ -612,11 +587,11 @@ export default function Solutions() {
 
                       <div className="flex flex-wrap gap-4 pt-4 border-t border-border">
                         <div className="flex items-center gap-2 text-sm">
-                          <Clock size={14} className="text-accent" />
+
                           <span className="font-semibold text-primary">Ongoing (minimum 3 to 6 months)</span>
                         </div>
                         <div className="flex items-center gap-2 text-sm">
-                          <DollarSign size={14} className="text-accent" />
+
                           <span className="font-semibold text-primary">$4,000 to $12,000/month</span>
                         </div>
                       </div>
@@ -639,7 +614,7 @@ export default function Solutions() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <AnimateOnScroll animation="fade-left">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-6">
-                  <Zap size={14} />
+
                   Flagship Offer
                 </div>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
@@ -658,7 +633,7 @@ export default function Solutions() {
                     "Performance tracking and KPI frameworks",
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3">
-                      <CheckCircle2 size={16} className="text-accent shrink-0" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                       <span className="text-white/80 font-medium">{item}</span>
                     </div>
                   ))}
@@ -666,17 +641,17 @@ export default function Solutions() {
 
                 <div className="flex flex-wrap gap-6 mb-10 pb-8 border-b border-white/10">
                   <div className="flex items-center gap-2">
-                    <Clock size={16} className="text-accent" />
+
                     <span className="text-white font-bold">~90 days</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <DollarSign size={16} className="text-accent" />
+
                     <span className="text-white font-bold">$20,000 to $50,000</span>
                   </div>
                 </div>
 
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-flagship-book">
-                  <Calendar size={16} />
+
                   Book a Strategy Call
                 </a>
               </AnimateOnScroll>
@@ -714,7 +689,6 @@ export default function Solutions() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {[
                 {
-                  icon: <UserCheck size={24} />,
                   audience: "Professionals",
                   desc: "Consultants, coaches, solo operators looking to build structured systems for their practice.",
                   bestFit: "Playbooks, Training, or Guided Implementation",
@@ -724,7 +698,6 @@ export default function Solutions() {
                   color: "from-blue-500 to-blue-600",
                 },
                 {
-                  icon: <Briefcase size={24} />,
                   audience: "Small Businesses",
                   desc: "Early to mid-stage companies ($500K to $5M) ready to install repeatable systems for growth.",
                   bestFit: "Training, Guided Implementation, or Full System",
@@ -734,7 +707,6 @@ export default function Solutions() {
                   color: "from-accent to-pink-600",
                 },
                 {
-                  icon: <Heart size={24} />,
                   audience: "Nonprofits",
                   desc: "Mission-driven organizations that need structure, hiring systems, and operational clarity without enterprise budgets.",
                   bestFit: "Playbooks, Training, or Guided Implementation",
@@ -744,7 +716,6 @@ export default function Solutions() {
                   color: "from-green-500 to-green-600",
                 },
                 {
-                  icon: <Building2 size={24} />,
                   audience: "Growing Organizations",
                   desc: "Established businesses ($1M+) and larger nonprofits ready for comprehensive infrastructure design and implementation.",
                   bestFit: "Training Workshops, Guided Implementation, or Full System Build",
@@ -758,9 +729,6 @@ export default function Solutions() {
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
                   <div className="bg-white rounded-2xl border border-border shadow-sm hover:shadow-xl hover:border-accent/20 transition-all duration-300 h-full flex flex-col" data-testid={`audience-card-${i}`}>
                     <div className={`p-6 bg-gradient-to-br ${item.color} rounded-t-2xl`}>
-                      <div className="w-12 h-12 rounded-xl bg-white/20 text-white flex items-center justify-center mb-4">
-                        {item.icon}
-                      </div>
                       <h3 className="text-xl font-bold text-white">{item.audience}</h3>
                     </div>
                     <div className="p-6 flex flex-col flex-1">
@@ -812,15 +780,15 @@ export default function Solutions() {
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <Link href="/playbooks" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-playbooks">
-                      <BookOpen size={16} />
+    
                       Start with a Playbook
                     </Link>
                     <Link href="/training" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-500 text-white hover:bg-purple-600 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-training">
-                      <GraduationCap size={16} />
+
                       Explore Training
                     </Link>
                     <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-solutions-cta-book">
-                      <Calendar size={16} />
+    
                       Book a Strategy Call
                     </a>
                   </div>

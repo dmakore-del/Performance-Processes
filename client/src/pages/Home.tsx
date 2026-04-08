@@ -2,23 +2,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import {
   ArrowRight,
-  CheckCircle2,
-  Calendar,
-  Tag,
-  ChevronRight,
-  TrendingUp,
-  Target,
-  ClipboardCheck,
-  Zap,
-  Users,
-  BarChart3,
-  Settings,
-  Layers,
-  Rocket,
-  Search,
-  Briefcase,
-  Globe,
-  BookOpen,
   ArrowDown,
   X as XIcon,
 } from "lucide-react";
@@ -48,31 +31,26 @@ export default function Home() {
 
   const systemComponents = [
     {
-      icon: <Users size={22} />,
       title: "Talent Acquisition System",
       desc: "We build the team structure required to scale, finding and placing the right people.",
       href: "/solutions",
     },
     {
-      icon: <Target size={22} />,
       title: "People & Performance System",
       desc: "We implement performance systems that improve execution and accountability.",
       href: "/solutions",
     },
     {
-      icon: <BarChart3 size={22} />,
       title: "Demand Generation System",
       desc: "We install systems that attract and convert customers through strategy and campaigns.",
       href: "/solutions",
     },
     {
-      icon: <Globe size={22} />,
       title: "Conversion System",
       desc: "We design digital infrastructure that turns visitors into leads and leads into clients.",
       href: "/solutions",
     },
     {
-      icon: <BookOpen size={22} />,
       title: "Execution Systems",
       desc: "Practical tools, templates, and frameworks built from real execution.",
       href: "/playbooks",
@@ -196,7 +174,6 @@ export default function Home() {
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105"
                   data-testid="link-hero-book"
                 >
-                  <Calendar size={16} />
                   Book a Strategy Call
                 </a>
                 <a
@@ -221,16 +198,10 @@ export default function Home() {
               </span>
               <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
                 <div className="flex items-center gap-2 text-primary/70 hover:text-primary transition-colors" data-testid="logo-nextup">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <TrendingUp size={16} className="text-primary" />
-                  </div>
                   <span className="text-sm font-bold tracking-wide">NextUp Canada</span>
                 </div>
                 <div className="w-px h-6 bg-border hidden md:block"></div>
                 <div className="flex items-center gap-2 text-primary/70 hover:text-primary transition-colors" data-testid="logo-truenorth">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Target size={16} className="text-primary" />
-                  </div>
                   <span className="text-sm font-bold tracking-wide">TrueNorth Property & Facilities</span>
                 </div>
               </div>
@@ -263,12 +234,7 @@ export default function Home() {
                   <FloatingShape className="w-20 h-20 -top-5 -right-5 z-[-1]" variant="square" />
                   <FloatingShape className="w-12 h-12 -bottom-3 right-10 z-[-1]" variant="ring" />
                   <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-5 border border-border max-w-[220px] hidden md:block animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
-                        <Layers size={20} className="text-accent" />
-                      </div>
-                      <p className="text-sm font-bold text-primary">One System</p>
-                    </div>
+                    <p className="text-sm font-bold text-primary mb-1">One System</p>
                     <p className="text-xs text-muted-foreground">People, processes, and growth, integrated into one infrastructure</p>
                   </div>
                 </div>
@@ -286,15 +252,10 @@ export default function Home() {
               {systemComponents.map((item, i) => (
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 80}>
                   <Link href={item.href} className="block h-full group" data-testid={`link-system-${i}`}>
-                    <div className="relative flex gap-5 p-7 rounded-2xl border border-border bg-white hover:shadow-xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 overflow-hidden h-full" data-testid={`system-card-${i}`}>
+                    <div className="relative p-7 rounded-2xl border border-border bg-white hover:shadow-xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 overflow-hidden h-full" data-testid={`system-card-${i}`}>
                       <div className="absolute top-0 left-0 w-1 h-full bg-accent/0 group-hover:bg-accent transition-all duration-300" />
-                      <div className="w-11 h-11 rounded-xl bg-accent/10 text-accent flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        {item.icon}
-                      </div>
-                      <div>
-                        <h4 className="text-base font-bold text-primary mb-1.5 group-hover:text-accent transition-colors">{item.title}</h4>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                      </div>
+                      <h4 className="text-base font-bold text-primary mb-1.5 group-hover:text-accent transition-colors">{item.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
                     </div>
                   </Link>
                 </AnimateOnScroll>
@@ -335,7 +296,7 @@ export default function Home() {
                     <ul className="space-y-3 px-1">
                       {phase.items.map((item, j) => (
                         <li key={j} className="flex items-start gap-3">
-                          <CheckCircle2 size={16} className="text-accent shrink-0 mt-0.5" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                           <span className="text-sm text-muted-foreground font-medium">{item}</span>
                         </li>
                       ))}
@@ -353,7 +314,6 @@ export default function Home() {
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105"
                 data-testid="link-how-it-works-cta"
               >
-                <Calendar size={16} />
                 Book a Strategy Call
               </a>
             </AnimateOnScroll>
@@ -401,15 +361,12 @@ export default function Home() {
               <AnimateOnScroll animation="fade-right" delay={200}>
                 <div className="bg-accent/10 backdrop-blur-sm rounded-2xl border border-accent/20 p-8" data-testid="card-after">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
-                      <CheckCircle2 size={20} className="text-accent" />
-                    </div>
                     <h3 className="text-xl font-bold text-white">After</h3>
                   </div>
                   <ul className="space-y-4">
                     {afterItems.map((item, i) => (
                       <li key={i} className="flex items-center gap-3" data-testid={`after-item-${i}`}>
-                        <CheckCircle2 size={14} className="text-accent shrink-0" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                         <span className="text-white/90 font-medium">{item}</span>
                       </li>
                     ))}
@@ -456,7 +413,6 @@ export default function Home() {
               className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105"
               data-testid="link-mid-cta-book"
             >
-              <ClipboardCheck size={16} />
               Book a Strategy Call
             </a>
           </div>
@@ -552,7 +508,7 @@ export default function Home() {
                     "Part of our integrated growth system",
                   ].map((text, i) => (
                     <div key={i} className="flex items-center gap-3">
-                      <CheckCircle2 size={16} className="text-accent shrink-0" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                       <span className="text-muted-foreground font-medium">{text}</span>
                     </div>
                   ))}
@@ -562,23 +518,19 @@ export default function Home() {
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white hover:bg-accent h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-lg"
                   data-testid="link-explore-playbooks"
                 >
-                  <BookOpen size={16} />
                   Browse Playbooks
                 </Link>
               </AnimateOnScroll>
               <AnimateOnScroll animation="fade-right" delay={200}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
-                    { icon: <Users size={20} />, title: "Hiring Playbooks", desc: "Job descriptions, interview scorecards, onboarding checklists, and candidate evaluation rubrics." },
-                    { icon: <Target size={20} />, title: "Performance Playbooks", desc: "KPI libraries, review cycle templates, feedback frameworks, and calibration guides." },
-                    { icon: <Briefcase size={20} />, title: "Operations & SOP Playbooks", desc: "SOP templates, process mapping guides, accountability trackers, and quality frameworks." },
-                    { icon: <Rocket size={20} />, title: "Marketing Playbooks", desc: "Marketing plans, content strategies, funnel blueprints, and lead generation frameworks." },
+                    { title: "Hiring Playbooks", desc: "Job descriptions, interview scorecards, onboarding checklists, and candidate evaluation rubrics." },
+                    { title: "Performance Playbooks", desc: "KPI libraries, review cycle templates, feedback frameworks, and calibration guides." },
+                    { title: "Operations & SOP Playbooks", desc: "SOP templates, process mapping guides, accountability trackers, and quality frameworks." },
+                    { title: "Marketing Playbooks", desc: "Marketing plans, content strategies, funnel blueprints, and lead generation frameworks." },
                   ].map((pb, i) => (
                     <Link href="/playbooks" key={i} className="block group" data-testid={`link-playbook-card-${i}`}>
                       <div className="bg-white rounded-2xl border border-border p-6 hover:shadow-xl hover:border-accent/20 transition-all duration-300 h-full">
-                        <div className="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                          {pb.icon}
-                        </div>
                         <h4 className="text-sm font-bold text-primary mb-2 group-hover:text-accent transition-colors">{pb.title}</h4>
                         <p className="text-xs text-muted-foreground leading-relaxed">{pb.desc}</p>
                       </div>
@@ -618,11 +570,11 @@ export default function Home() {
                       </div>
                       <div className="p-8 flex flex-col flex-grow">
                         <div className="flex items-center gap-3 mb-4">
-                          <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest">
-                            <Tag size={10} /> {insight.category}
+                          <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest">
+                            {insight.category}
                           </span>
-                          <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                            <Calendar size={10} /> {insight.date}
+                          <span className="text-xs text-muted-foreground">
+                            {insight.date}
                           </span>
                         </div>
                         <h3 className="text-lg font-bold text-primary mb-4 group-hover:text-accent transition-colors line-clamp-2">{insight.title}</h3>
@@ -663,7 +615,6 @@ export default function Home() {
                       className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105"
                       data-testid="link-cta-book"
                     >
-                      <Calendar size={16} />
                       Book a Strategy Call
                     </a>
                     <Link href="/solutions" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-cta-solutions">

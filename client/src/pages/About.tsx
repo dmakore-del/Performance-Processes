@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
-import { CheckCircle2, TrendingUp, Users, Target, Quote, Shield, Lightbulb, Handshake, Star, Award, Heart, BookOpen, GraduationCap, Globe, Clock, Milestone, Rocket, Building, ArrowRight, Calendar, Briefcase, BarChart3, Building2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import founderImage from "@/assets/founder.png";
 import seanImage from "@/assets/ChatGPT_Image_Feb_20,_2026,_04_07_16_PM_1771621735605.png";
 import collaborationImg from "@assets/generated/collaboration.png";
@@ -18,47 +18,41 @@ export default function About() {
   const { t } = useLanguage();
 
   const timelineItems = [
-    { year: "2023", title: "Performance Processes Founded", description: "Danai Makore launches Performance Processes with a vision to help organizations align strategy with measurable performance.", icon: <Rocket className="text-accent" size={20} /> },
-    { year: "2024", title: "Service Portfolio Launch", description: "Launching a comprehensive suite of consulting and recruiting services spanning strategic planning, talent acquisition, performance management, and governance advisory.", icon: <Building className="text-accent" size={20} /> },
-    { year: "2024–2025", title: "Building Multi-Industry Expertise", description: "Targeting engagements across government, nonprofit, healthcare, financial services, and technology sectors.", icon: <Globe className="text-accent" size={20} /> },
-    { year: "2025", title: "National Expansion", description: "Growing our footprint beyond Toronto to serve organizations across Canada with deepening regional expertise.", icon: <Target className="text-accent" size={20} /> },
-    { year: "2026", title: "Core Team Assembled", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory.", icon: <Users className="text-accent" size={20} /> },
-    { year: "2026+", title: "Scaling Impact", description: "Establishing Performance Processes as a leading Canadian consultancy with international reach.", icon: <Milestone className="text-accent" size={20} /> },
+    { year: "2023", title: "Performance Processes Founded", description: "Danai Makore launches Performance Processes with a vision to help organizations align strategy with measurable performance." },
+    { year: "2024", title: "Service Portfolio Launch", description: "Launching a comprehensive suite of consulting and recruiting services spanning strategic planning, talent acquisition, performance management, and governance advisory." },
+    { year: "2024–2025", title: "Building Multi-Industry Expertise", description: "Targeting engagements across government, nonprofit, healthcare, financial services, and technology sectors." },
+    { year: "2025", title: "National Expansion", description: "Growing our footprint beyond Toronto to serve organizations across Canada with deepening regional expertise." },
+    { year: "2026", title: "Core Team Assembled", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory." },
+    { year: "2026+", title: "Scaling Impact", description: "Establishing Performance Processes as a leading Canadian consultancy with international reach." },
   ];
 
   const values = [
     {
-      icon: <Shield className="text-accent" size={28} />,
       title: "Integrity",
       description: "We operate with unwavering honesty and transparency.",
       practice: "Every recommendation is grounded in what's truly best for our clients, not what generates the most revenue.",
     },
     {
-      icon: <Star className="text-accent" size={28} />,
       title: "Excellence",
       description: "We pursue the highest standards in everything we do.",
       practice: "From research and analysis to the clarity of our deliverables, we hold ourselves to the same bar we set for clients.",
     },
     {
-      icon: <Handshake className="text-accent" size={28} />,
       title: "Collaboration",
       description: "We work alongside our clients, not above them.",
       practice: "We combine our expertise with your organizational knowledge to create strategies that genuinely fit your context.",
     },
     {
-      icon: <Lightbulb className="text-accent" size={28} />,
       title: "Innovation",
       description: "We continuously evolve our methodologies.",
       practice: "Embracing new frameworks, technologies, and approaches to keep our clients ahead of the curve.",
     },
     {
-      icon: <TrendingUp className="text-accent" size={28} />,
       title: "Impact",
       description: "Every engagement must produce measurable results.",
       practice: "We track outcomes with clear KPIs and success metrics, because sustainable change requires proof.",
     },
     {
-      icon: <Award className="text-accent" size={28} />,
       title: "Accountability",
       description: "We hold ourselves to the same standards we set.",
       practice: "We track our commitments, take ownership of results, and course-correct when needed.",
@@ -66,12 +60,12 @@ export default function About() {
   ];
 
   const industries = [
-    { icon: <Building2 size={22} />, name: "Enterprise Organizations" },
-    { icon: <Rocket size={22} />, name: "Small & Growing Businesses" },
-    { icon: <Briefcase size={22} />, name: "Professional Development" },
-    { icon: <Globe size={22} />, name: "Government & Public Sector" },
-    { icon: <Heart size={22} />, name: "Nonprofit Institutions" },
-    { icon: <GraduationCap size={22} />, name: "Healthcare & Education" },
+    { name: "Enterprise Organizations" },
+    { name: "Small & Growing Businesses" },
+    { name: "Professional Development" },
+    { name: "Government & Public Sector" },
+    { name: "Nonprofit Institutions" },
+    { name: "Healthcare & Education" },
   ];
 
   const credentials = [
@@ -115,7 +109,6 @@ export default function About() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="button-hero-book">
-                    <Calendar size={18} className="mr-2" />
                     Book a Discovery Call
                 </a>
                 <Link href="/consulting" className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-hero-services">
@@ -132,9 +125,7 @@ export default function About() {
               {industries.map((ind, i) => (
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 80}>
                   <div className="flex flex-col items-center gap-3 p-5 rounded-2xl bg-[#F8FAFC] border border-border/50 hover:border-accent/30 hover:shadow-sm transition-all hover:scale-105 duration-300" data-testid={`industry-${i}`}>
-                    <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
-                      {ind.icon}
-                    </div>
+                    <div className="w-2 h-2 rounded-full bg-accent" />
                     <span className="text-xs font-bold text-primary text-center leading-tight">{ind.name}</span>
                   </div>
                 </AnimateOnScroll>
@@ -157,7 +148,7 @@ export default function About() {
                   data-testid="img-founder"
                 />
                 <div className="absolute -bottom-8 -right-8 bg-white p-8 rounded-2xl shadow-xl border border-border hidden md:block max-w-[280px]">
-                  <Quote className="text-accent mb-4" size={32} fill="currentColor" fillOpacity={0.1} />
+                  <span className="text-accent text-4xl font-serif mb-4 block leading-none">"</span>
                   <p className="text-primary font-bold italic text-lg leading-tight mb-2">
                     "To help people build organizations
                     that truly change lives."
@@ -246,14 +237,13 @@ export default function About() {
             </AnimateOnScroll>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
                 {[
-                  { label: "Founded", val: "2023", icon: <Target className="text-accent" /> },
-                  { label: "Expert Consultants", val: "3+", icon: <Users className="text-accent" /> },
-                  { label: "Service Categories", val: "6+", icon: <CheckCircle2 className="text-accent" /> },
-                  { label: "Industries Served", val: "8+", icon: <TrendingUp className="text-accent" /> }
+                  { label: "Founded", val: "2023" },
+                  { label: "Expert Consultants", val: "3+" },
+                  { label: "Service Categories", val: "6+" },
+                  { label: "Industries Served", val: "8+" }
                 ].map((s, i) => (
                   <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
                     <div className="bg-white p-8 rounded-2xl border border-border shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300" data-testid={`stat-card-${i}`}>
-                      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4 mx-auto">{s.icon}</div>
                       <div className="text-4xl font-black text-primary mb-2">{s.val}</div>
                       <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">{s.label}</div>
                     </div>
@@ -277,7 +267,6 @@ export default function About() {
               </div>
               <div className="shrink-0">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="button-mission-cta">
-                    <Calendar size={16} className="mr-2" />
                     Book a Discovery Call
                 </a>
               </div>
@@ -379,9 +368,6 @@ export default function About() {
               {values.map((value, i) => (
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
                   <div className="bg-gradient-to-br from-white via-white to-accent/5 p-8 rounded-2xl border border-border hover:border-accent/30 hover:shadow-lg transition-all group hover:scale-[1.02] duration-300 h-full" data-testid={`value-card-${i}`}>
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center mb-6 group-hover:from-accent/20 group-hover:to-accent/10 transition-colors group-hover:scale-110 duration-300">
-                      {value.icon}
-                    </div>
                     <h3 className="text-xl font-heading font-extrabold text-primary mb-2">{value.title}</h3>
                     <p className="text-muted-foreground leading-relaxed mb-4">{value.description}</p>
                     <div className="pt-4 border-t border-border/60">
@@ -411,17 +397,15 @@ export default function About() {
                   </p>
                   <div className="space-y-5">
                     {[
-                      { icon: <Heart className="text-accent" size={20} />, title: "People-Centered Approach", desc: "We prioritize the human element, sustainable change requires buy-in, trust, and genuine connection." },
-                      { icon: <Target className="text-accent" size={20} />, title: "Measurable Outcomes", desc: "Every project includes clear KPIs and success metrics. We track, measure, and report on impact." },
-                      { icon: <Globe className="text-accent" size={20} />, title: "Cross-Industry Expertise", desc: "Diverse experience across sectors allows us to apply proven best practices from multiple industries." },
-                      { icon: <Handshake className="text-accent" size={20} />, title: "End-to-End Partnership", desc: "From discovery through implementation and beyond, we stay engaged to ensure real-world results." },
-                      { icon: <Lightbulb className="text-accent" size={20} />, title: "Tailored Solutions", desc: "No cookie-cutter frameworks. Every engagement is custom-designed for your specific challenges." },
-                      { icon: <GraduationCap className="text-accent" size={20} />, title: "Knowledge Transfer", desc: "We build internal capacity so your team sustains improvements long after our engagement ends." },
+                      { title: "People-Centered Approach", desc: "We prioritize the human element, sustainable change requires buy-in, trust, and genuine connection." },
+                      { title: "Measurable Outcomes", desc: "Every project includes clear KPIs and success metrics. We track, measure, and report on impact." },
+                      { title: "Cross-Industry Expertise", desc: "Diverse experience across sectors allows us to apply proven best practices from multiple industries." },
+                      { title: "End-to-End Partnership", desc: "From discovery through implementation and beyond, we stay engaged to ensure real-world results." },
+                      { title: "Tailored Solutions", desc: "No cookie-cutter frameworks. Every engagement is custom-designed for your specific challenges." },
+                      { title: "Knowledge Transfer", desc: "We build internal capacity so your team sustains improvements long after our engagement ends." },
                     ].map((adv, i) => (
                       <div key={i} className="flex items-start gap-4 group" data-testid={`advantage-${i}`}>
-                        <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-accent/20 transition-colors">
-                          {adv.icon}
-                        </div>
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-2.5" />
                         <div>
                           <h4 className="text-base font-bold text-primary mb-1">{adv.title}</h4>
                           <p className="text-sm text-muted-foreground leading-relaxed">{adv.desc}</p>
@@ -443,11 +427,9 @@ export default function About() {
                       <div className="flex items-center gap-4">
                         <div className="flex gap-2">
                           <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full">
-                            <Clock className="text-accent" size={14} />
                             <span className="text-xs font-bold text-primary">Long-Term Focus</span>
                           </div>
                           <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full">
-                            <Shield className="text-accent" size={14} />
                             <span className="text-xs font-bold text-primary">Trust-Based</span>
                           </div>
                         </div>
@@ -483,7 +465,7 @@ export default function About() {
                 <div className={`relative flex items-start mb-14 last:mb-0 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`} data-testid={`timeline-item-${i}`}>
                   <div className="hidden md:block md:w-1/2"></div>
                   <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white border-2 border-accent flex items-center justify-center z-10 shadow-md">
-                    {item.icon}
+                    <div className="w-3 h-3 rounded-full bg-accent" />
                   </div>
                   <div className={`ml-16 md:ml-0 md:w-1/2 ${i % 2 === 0 ? 'md:pl-12' : 'md:pr-12'}`}>
                     <div className="bg-white p-7 rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow">
@@ -520,12 +502,12 @@ export default function About() {
                 </div>
                 <div className="mt-8 space-y-4">
                   {[
-                    { icon: <Heart size={18} />, text: "Pro-bono consulting for emerging nonprofits and social enterprises" },
-                    { icon: <GraduationCap size={18} />, text: "Mentorship programs connecting aspiring consultants with experienced leaders" },
-                    { icon: <Users size={18} />, text: "Community workshops on leadership and organizational development" },
+                    { text: "Pro-bono consulting for emerging nonprofits and social enterprises" },
+                    { text: "Mentorship programs connecting aspiring consultants with experienced leaders" },
+                    { text: "Community workshops on leadership and organizational development" },
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 text-accent mt-0.5">{item.icon}</div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-2.5" />
                       <p className="text-muted-foreground leading-relaxed">{item.text}</p>
                     </div>
                   ))}
@@ -602,7 +584,6 @@ export default function About() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-14 text-lg font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:shadow-2xl hover:scale-105 w-full sm:w-auto" data-testid="button-final-cta">
-                    <Calendar size={20} className="mr-2" />
                     Book a Discovery Call
                 </a>
                 <Link href="/contact" className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-16 px-12 text-lg font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-contact-cta">

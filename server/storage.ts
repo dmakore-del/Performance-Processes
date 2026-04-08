@@ -14,10 +14,11 @@ import {
   type PerformanceKpi, type InsertPerformanceKpi,
   type Lead, type InsertLead,
   type GrantApplication, type InsertGrantApplication,
+  type AssessmentSubmission, type InsertAssessment,
   users, contactSubmissions, jobApplications,
   engagements, milestones, documents, actionItems,
   meetings, messages, resources, invoices, contracts, performanceKpis, leads,
-  grantApplications
+  grantApplications, assessmentSubmissions
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, asc, and, or } from "drizzle-orm";
@@ -92,6 +93,9 @@ export interface IStorage {
   createGrantApplication(data: InsertGrantApplication): Promise<GrantApplication>;
   getGrantApplications(): Promise<GrantApplication[]>;
   updateGrantApplicationStatus(id: number, status: string): Promise<GrantApplication>;
+
+  createAssessmentSubmission(data: InsertAssessment): Promise<AssessmentSubmission>;
+  getAssessmentSubmissions(): Promise<AssessmentSubmission[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -369,6 +373,15 @@ export class DatabaseStorage implements IStorage {
     const [app] = await db.update(grantApplications).set({ status }).where(eq(grantApplications.id, id)).returning();
     if (!app) throw new Error("Grant application not found");
     return app;
+  }
+
+  async createAssessmentSubmission(data: InsertAssessment): Promise<AssessmentSubmission> {
+    const [submission] = await db.insert(assessmentSubmissions).values(data).returning();
+    return submission;
+  }
+
+  async getAssessmentSubmissions(): Promise<AssessmentSubmission[]> {
+    return db.select().from(assessmentSubmissions).orderBy(desc(assessmentSubmissions.createdAt));
   }
 }
 

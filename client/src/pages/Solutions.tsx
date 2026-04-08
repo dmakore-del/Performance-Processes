@@ -23,6 +23,7 @@ import {
   UserCheck,
   Wrench,
   ChevronRight,
+  GraduationCap,
 } from "lucide-react";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
@@ -141,22 +142,23 @@ export default function Solutions() {
               </p>
             </AnimateOnScroll>
 
-            <div className="max-w-5xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-0 relative">
-                <div className="hidden md:block absolute top-1/2 left-[17%] right-[17%] h-[2px] bg-gradient-to-r from-blue-400 via-accent to-primary z-0" />
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-0 relative">
+                <div className="hidden md:block absolute top-1/2 left-[12%] right-[12%] h-[2px] bg-gradient-to-r from-blue-400 via-purple-400 via-accent to-primary z-0" />
 
                 {[
-                  { label: "Start", tier: "Playbooks", price: "$149 – $999", color: "bg-blue-500", ring: "ring-blue-200" },
-                  { label: "Grow", tier: "Guided Implementation", price: "$2,000 – $10,000", color: "bg-accent", ring: "ring-pink-200" },
-                  { label: "Scale", tier: "Full System Build", price: "$5,000 – $50,000+", color: "bg-primary", ring: "ring-slate-200" },
+                  { label: "Start", tier: "Playbooks", price: "$149 to $999", color: "bg-blue-500", ring: "ring-blue-200" },
+                  { label: "Learn", tier: "Training Programs", price: "$99 to $10,000", color: "bg-purple-500", ring: "ring-purple-200" },
+                  { label: "Grow", tier: "Guided Implementation", price: "$2,000 to $10,000", color: "bg-accent", ring: "ring-pink-200" },
+                  { label: "Scale", tier: "Full System Build", price: "$5,000 to $50,000+", color: "bg-primary", ring: "ring-slate-200" },
                 ].map((step, i) => (
-                  <AnimateOnScroll key={i} animation="fade-up" delay={i * 150}>
+                  <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
                     <div className="flex flex-col items-center relative z-10 py-6">
-                      <div className={`w-16 h-16 rounded-full ${step.color} text-white flex items-center justify-center text-lg font-extrabold shadow-lg ring-4 ${step.ring} mb-4`}>
+                      <div className={`w-14 h-14 rounded-full ${step.color} text-white flex items-center justify-center text-base font-extrabold shadow-lg ring-4 ${step.ring} mb-3`}>
                         {i + 1}
                       </div>
                       <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-1">{step.label}</p>
-                      <p className="text-lg font-bold text-primary mb-1">{step.tier}</p>
+                      <p className="text-base font-bold text-primary mb-1">{step.tier}</p>
                       <p className="text-sm text-muted-foreground font-medium">{step.price}</p>
                     </div>
                   </AnimateOnScroll>
@@ -167,7 +169,9 @@ export default function Solutions() {
                 <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
                   <span>Self-paced</span>
                   <ChevronRight size={14} />
-                  <span>2 to 8 weeks</span>
+                  <span>Structured training</span>
+                  <ChevronRight size={14} />
+                  <span>Hands-on support</span>
                   <ChevronRight size={14} />
                   <span>Ongoing partnership</span>
                 </div>
@@ -186,7 +190,7 @@ export default function Solutions() {
                 Choose the right level for your business
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                One system, three ways to access it. From self-guided playbooks to full-scale implementation, every tier delivers the same proven methodology.
+                One system, four ways to access it. From self-guided playbooks to structured training to full-scale implementation, every tier delivers the same proven methodology.
               </p>
             </AnimateOnScroll>
 
@@ -255,7 +259,70 @@ export default function Solutions() {
                 </div>
               </AnimateOnScroll>
 
-              <AnimateOnScroll animation="fade-up" delay={150}>
+              <AnimateOnScroll animation="fade-up" delay={100}>
+                <div className="bg-white rounded-3xl border border-border shadow-lg overflow-hidden" data-testid="tier-training">
+                  <div className="grid grid-cols-1 lg:grid-cols-5">
+                    <div className="lg:col-span-2 relative">
+                      <div className="h-full min-h-[280px] bg-gradient-to-br from-purple-500 to-purple-700 p-8 lg:p-10 flex flex-col justify-center">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
+                          <GraduationCap size={12} />
+                          Tier 2: Training
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Training Programs</h3>
+                        <p className="text-white/80 leading-relaxed mb-4">Practical training programs that help leaders and teams implement real systems for growth, execution, and performance.</p>
+                        <div className="flex flex-wrap gap-4">
+                          <div className="flex items-center gap-2 text-sm text-white/70">
+                            <DollarSign size={14} className="text-white" />
+                            <span className="font-bold text-white">$99 to $10,000</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm text-white/70">
+                            <Clock size={14} className="text-white" />
+                            <span className="font-bold text-white">1 session to 8 weeks</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="lg:col-span-3 p-8 lg:p-10">
+                      <div className="mb-6">
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-2">Best for</p>
+                        <p className="text-sm text-muted-foreground">Small businesses, nonprofits, professionals, small teams, and founder-led organizations looking for guided learning with practical application</p>
+                      </div>
+                      <div className="mb-6">
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">What's included</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          {["Live virtual training sessions", "Cohort-based implementation programs", "Team workshops (in-person or virtual)", "Templates and implementation tools", "System-specific curriculum", "Post-training action plans"].map((item, j) => (
+                            <div key={j} className="flex items-start gap-2">
+                              <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
+                              <span className="text-sm text-muted-foreground">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="mb-6">
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">Example programs</p>
+                        <div className="flex flex-wrap gap-3">
+                          {[
+                            { name: "Business System Foundations", price: "$199+" },
+                            { name: "Hiring & Team Systems", price: "$299+" },
+                            { name: "Growth Systems Training", price: "$299+" },
+                          ].map((ex, j) => (
+                            <div key={j} className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 rounded-full px-4 py-2 text-sm">
+                              <span className="font-semibold text-primary">{ex.name}</span>
+                              <span className="text-purple-600 font-bold">{ex.price}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <Link href="/training" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-500 text-white hover:bg-purple-600 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-training">
+                        <GraduationCap size={16} />
+                        Explore Training Programs
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </AnimateOnScroll>
+
+              <AnimateOnScroll animation="fade-up" delay={200}>
                 <div className="bg-white rounded-3xl border-2 border-accent/30 shadow-xl overflow-hidden relative" data-testid="tier-guided">
                   <div className="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-4 py-1.5 rounded-bl-xl">Most Flexible</div>
                   <div className="grid grid-cols-1 lg:grid-cols-5">
@@ -263,7 +330,7 @@ export default function Solutions() {
                       <div className="h-full min-h-[280px] bg-gradient-to-br from-accent to-pink-600 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
                           <Wrench size={12} />
-                          Tier 2: Mid-Tier
+                          Tier 3: Mid-Tier
                         </div>
                         <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Guided Implementation</h3>
                         <p className="text-white/80 leading-relaxed mb-4">Hands-on support to install key systems without a full-scale engagement. We work alongside you to get it right.</p>
@@ -328,7 +395,7 @@ export default function Solutions() {
                       <div className="h-full min-h-[280px] bg-gradient-to-br from-primary to-blue-900 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
                           <Rocket size={12} />
-                          Tier 3: Scale
+                          Tier 4: Scale
                         </div>
                         <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Full System Build</h3>
                         <p className="text-white/80 leading-relaxed mb-4">Complete design, build, and ongoing operation of your business systems. We become your infrastructure partner.</p>
@@ -650,8 +717,8 @@ export default function Solutions() {
                   icon: <UserCheck size={24} />,
                   audience: "Professionals",
                   desc: "Consultants, coaches, solo operators looking to build structured systems for their practice.",
-                  bestFit: "Playbooks or Guided Implementation",
-                  investment: "$149 to $10,000",
+                  bestFit: "Playbooks, Training, or Guided Implementation",
+                  investment: "$99 to $10,000",
                   cta: "Start with a Playbook",
                   ctaLink: "/playbooks",
                   color: "from-blue-500 to-blue-600",
@@ -660,29 +727,28 @@ export default function Solutions() {
                   icon: <Briefcase size={24} />,
                   audience: "Small Businesses",
                   desc: "Early to mid-stage companies ($500K to $5M) ready to install repeatable systems for growth.",
-                  bestFit: "Guided Implementation or Full System",
-                  investment: "$2,000 to $50,000+",
-                  cta: "Explore Guided Implementation",
-                  ctaLink: BOOKINGS_URL,
+                  bestFit: "Training, Guided Implementation, or Full System",
+                  investment: "$99 to $50,000+",
+                  cta: "Explore Training Programs",
+                  ctaLink: "/training",
                   color: "from-accent to-pink-600",
-                  isExternal: true,
                 },
                 {
                   icon: <Heart size={24} />,
                   audience: "Nonprofits",
                   desc: "Mission-driven organizations that need structure, hiring systems, and operational clarity without enterprise budgets.",
-                  bestFit: "Playbooks or Guided Implementation",
-                  investment: "$149 to $10,000",
-                  cta: "Start with a Playbook",
-                  ctaLink: "/playbooks",
+                  bestFit: "Playbooks, Training, or Guided Implementation",
+                  investment: "$99 to $10,000",
+                  cta: "Explore Training Programs",
+                  ctaLink: "/training",
                   color: "from-green-500 to-green-600",
                 },
                 {
                   icon: <Building2 size={24} />,
                   audience: "Growing Organizations",
                   desc: "Established businesses ($1M+) and larger nonprofits ready for comprehensive infrastructure design and implementation.",
-                  bestFit: "Full System Build",
-                  investment: "$5,000 to $50,000+",
+                  bestFit: "Training Workshops, Guided Implementation, or Full System Build",
+                  investment: "$2,000 to $50,000+",
                   cta: "Book a Strategy Call",
                   ctaLink: BOOKINGS_URL,
                   color: "from-primary to-blue-900",
@@ -742,12 +808,16 @@ export default function Solutions() {
                     Ready to build the infrastructure your business needs?
                   </h2>
                   <p className="text-lg text-white/70 mb-12">
-                    Whether you're starting with a playbook, exploring guided implementation, or ready for a full system build, the next step is simple.
+                    Whether you're starting with a playbook, joining a training program, exploring guided implementation, or ready for a full system build, the next step is simple.
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <Link href="/playbooks" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-playbooks">
                       <BookOpen size={16} />
                       Start with a Playbook
+                    </Link>
+                    <Link href="/training" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-500 text-white hover:bg-purple-600 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-training">
+                      <GraduationCap size={16} />
+                      Explore Training
                     </Link>
                     <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-solutions-cta-book">
                       <Calendar size={16} />

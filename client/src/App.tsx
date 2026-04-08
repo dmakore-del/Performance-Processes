@@ -19,6 +19,8 @@ import News from "./pages/News";
 import Insights from "./pages/Insights";
 import WomensPerformanceGrant from "./pages/WomensPerformanceGrant";
 import FreeAudit from "./pages/FreeAudit";
+import Assessment from "./pages/Assessment";
+import Training from "./pages/Training";
 import Playbooks from "./pages/Playbooks";
 import Consulting from "./pages/Consulting";
 import Recruiting from "./pages/Recruiting";
@@ -75,6 +77,8 @@ function Router() {
       <Route path="/womens-performance-grant" component={WomensPerformanceGrant} />
       <Route path="/free-audit" component={FreeAudit} />
       <Route path="/playbooks" component={Playbooks} />
+      <Route path="/assessment" component={Assessment} />
+      <Route path="/training" component={Training} />
       <Route path="/consulting">{() => <Redirect to="/solutions" />}</Route>
       <Route path="/recruiting">{() => <Redirect to="/solutions" />}</Route>
       <Route path="/marketing">{() => <Redirect to="/solutions" />}</Route>

@@ -93,15 +93,8 @@ All portal pages use live API data via custom hooks (`usePortalEngagement`, `use
 - **Engagement switcher**: Staff and admin see a client selector in the sidebar to switch between assigned engagements; state managed via `EngagementProvider` (React Context in `use-portal.ts`)
 - The `usePortalEngagement` hook supports selecting a specific engagement; defaults to first engagement if none selected
 
-### Service Tiers (Services Page)
-Services are organized into 4 tabs with tabbed navigation:
-1. **Enterprise**: Discovery & Assessment, Strategy & Alignment, Systems & Implementation, Executive Advisory, Business Registration, Website & Digital Presence (all with Stripe payment)
-2. **Small Business**: Small Business Growth System ($500–$1,500/mo), Business Foundations Package ($2,500–$5,000) — contact/booking-based
-3. **Professional**: Personal Performance Coaching ($100–$500/mo) — contact/booking-based
-4. **Self-Serve**: Performance Planner ($49–$99), 90-Day Performance Program ($297–$997), Performance Systems Toolkit ($49–$199) — contact/booking-based
-- Includes "The Performance Process Method" framework section (Define → Build → Track → Improve)
-- Includes "Performance Processes Collective" community section ($49–$99/mo)
-- Enterprise tiers use Stripe checkout; all other tiers use "Book a Call" linking to MS Bookings
+### Solutions & Value Ladder
+4-tier value ladder: Playbooks (Tier 1, self-paced frameworks via Stripe) → Training Programs (Tier 2, structured learning $99–$10,000) → Guided Implementation (Tier 3, consultant-led sprints) → Full System Build (Tier 4, end-to-end engagement). Routes redirect: /consulting, /recruiting, /marketing, /services all → /solutions.
 
 ### SEO
 - **Per-page SEO**: `client/src/components/SEOHead.tsx` component dynamically sets `<title>`, `<meta description>`, `<canonical>`, Open Graph, and Twitter Card tags per page
@@ -133,4 +126,14 @@ Services are organized into 4 tabs with tabbed navigation:
 - **Email (SMTP)**: Nodemailer with Microsoft 365/Outlook SMTP for receipt emails
 - **PDFKit**: Branded receipt PDF generation and playbook content PDF delivery
 - **Playbook Delivery**: `server/playbookDelivery.ts` — generates branded playbook content PDFs (cover page, table of contents, sections with tips/action items, CTA page) and sends delivery email with PDF attachments on purchase. Triggered by `checkout.session.completed` webhook when `session.metadata.source === 'playbooks'`. Uses product metadata (`category: 'playbook'`) for robust detection. Separate deduplication from receipt emails to allow independent retry on failure.
+- **Assessment PDF**: `server/assessmentPdfGenerator.ts` — generates branded Growth Infrastructure Assessment results PDFs with score breakdowns and recommendations
+- **Assessment Emails**: `server/assessmentEmails.ts` — sends confirmation to user and PDF report to admin on assessment completion
 - **FAQ Chatbot**: Client-side keyword-matching chatbot rendered globally
+
+### Public Pages
+- **Home** (`/`): Marketing homepage with hero, system components, phases, transformation, ways to work with us (4 tiers: Playbooks, Training, Guided Implementation, Full System Build), playbooks, insights, CTA
+- **Solutions** (`/solutions`): Growth Infrastructure System overview with 5 system components, 4-tier value ladder, 4 "Ways to Work With Us" tier cards (Playbooks, Training Programs, Guided Implementation, Full System Build), 3-phase delivery detail, flagship offer, audience segmentation
+- **Playbooks** (`/playbooks`): Purchasable system frameworks with Stripe checkout, flagship editions, bundles, and training cross-sell
+- **Training** (`/training`): System implementation training programs page with Foundation/Build/Run categories, 5 featured programs, audience segmentation, format options, and value ladder positioning
+- **Assessment** (`/assessment`): Growth Infrastructure Assessment with 19 multi-step questions across Foundation/Build/Run categories, scoring logic, email capture, results page with CTA mapping, lead storage, admin PDF notification
+- **About** (`/about`), **Approach** (`/approach`), **Contact** (`/contact`), **Careers** (`/careers`), **News** (`/news`), **Insights** (`/insights`), **Free Audit** (`/free-audit`), **Women's Performance Grant** (`/womens-performance-grant`), **Legal** (`/legal`), **Accessibility** (`/accessibility`), **Sitemap** (`/sitemap`)

@@ -1,0 +1,320 @@
+Please create and add a new lead generation tool to the website called the **Growth Infrastructure Assessment**.
+
+The purpose of this feature is to help potential clients assess the strength of their business systems, capture qualified leads, and guide visitors toward the right next step based on their results.
+
+This should be implemented as an interactive assessment on the website, with scoring logic, a results page, and automated email delivery of results.
+
+Overall objective
+
+The assessment should position Performance Processes as a systems-focused growth partner. It should diagnose gaps across structure, execution, and performance, then recommend the most appropriate offer path:
+
+* Playbooks
+* Guided Implementation
+* Full System Build
+
+This should function as both a lead magnet and a qualification tool.
+
+Feature name
+
+Growth Infrastructure Assessment
+
+Suggested supporting line:
+“Assess the systems, structure, and performance gaps limiting your growth.”
+
+1. Core feature requirements
+
+Please create a multi-step assessment that:
+
+* Presents a series of structured questions
+* Allows users to complete the assessment directly on the website
+* Calculates a score based on their answers
+* Shows an immediate results summary on screen after completion
+* Captures the user’s name and email before revealing full results or at the final step before submission
+* Sends their results to their email automatically
+* Recommends the best next step based on score and responses
+
+The assessment should feel polished, professional, and aligned with the existing site design.
+
+2. Assessment structure
+
+Please structure the assessment into 3 categories aligned with our business model:
+
+A. Foundation
+This section should assess:
+
+* clarity of business direction
+* role definition
+* org structure
+* leadership alignment
+* KPI setup
+
+B. Build
+This section should assess:
+
+* process documentation
+* hiring systems
+* onboarding
+* website effectiveness
+* marketing funnel / lead generation systems
+* CRM or lead tracking
+
+C. Run
+This section should assess:
+
+* accountability systems
+* KPI review rhythm
+* execution consistency
+* performance monitoring
+* optimization and continuous improvement
+
+Please use approximately 15 to 24 total questions, ideally 5 to 8 questions per category.
+
+3. Question format
+
+Use simple, easy-to-answer formats such as:
+
+* multiple choice
+* scaled responses
+* yes / somewhat / no
+
+Recommended answer scoring format:
+
+* Strong / Yes / Fully in place = highest score
+* Somewhat / Partially in place = mid score
+* No / Not in place = low score
+
+Each answer should contribute to an overall assessment score.
+
+4. Scoring logic
+
+Create scoring logic that generates:
+
+* an overall score
+* optional category scores for Foundation, Build, and Run
+
+Suggested score bands:
+
+0 to 40:
+Needs Structure
+The business likely lacks the core systems needed for consistent execution and growth.
+
+41 to 70:
+Developing Systems
+Some systems are in place, but there are meaningful gaps limiting consistency and scale.
+
+71 to 100:
+Growth Ready
+The organization has a strong foundation and working systems, but can still optimize and strengthen performance.
+
+Please make these score bands editable in the code or admin settings if possible.
+
+5. Results page
+
+After submission, display an on-screen results page that includes:
+
+* overall score
+* score label
+* short interpretation paragraph
+* category breakdown if available
+* key gap summary
+* recommended next step
+
+Recommended next steps should map to our offers:
+
+For lower scores:
+Recommend Playbooks or Guided Implementation
+
+For mid-range scores:
+Recommend Guided Implementation
+
+For more advanced or high-complexity situations:
+Recommend Full System Build
+
+The results page should also include a strong CTA such as:
+
+* Book a Strategy Call
+* Explore Playbooks
+* Learn About Guided Implementation
+
+6. Email capture and delivery
+
+The user should be required to enter:
+
+* first name
+* email address
+  Optional:
+* organization name
+* organization type
+* role/title
+
+Preferred flow:
+Let the user complete the assessment first, then request their details before revealing full results. This usually improves completion rate.
+
+Once submitted:
+
+* send the user an automated email letting them know their results will be sent in 2-5 business days
+* send a pdf copy of each completed assessment to [contact@performanceprocesses.com](mailto:contact@performanceprocesses.com)
+* include a short interpretation of results and recommended next steps with the pdf copy sent to [contact@performanceprocesse.com](mailto:contact@performanceprocesse.com) for each completed assessment
+
+Also send or store the lead details internally so we can follow up.
+
+7. Lead handling and integrations
+
+Please ensure all submitted leads are captured and available for follow-up.
+
+At minimum:
+
+* store entries in website backend or form system
+* send notification email to our business email
+
+If possible, also prepare the system so it can connect to a CRM later.
+
+Each lead record should include:
+
+* name
+* email
+* optional organization fields
+* total score
+* category scores
+* date submitted
+* recommended offer path
+
+8. UX and design requirements
+
+The assessment should feel clean, premium, and easy to complete.
+
+Please include:
+
+* progress indicator or progress bar
+* one question or one section at a time
+* mobile-friendly layout
+* clear buttons for next and previous
+* minimal friction
+* consistent branding with the website
+
+The experience should feel more like a professional business diagnostic than a generic quiz.
+
+9. Suggested page structure
+
+Please create a dedicated landing page for the assessment.
+
+Suggested structure:
+
+Hero section
+Headline:
+Growth Infrastructure Assessment
+
+Subheadline:
+Assess the systems, structure, and performance gaps limiting your growth.
+
+Short supporting copy:
+Identify what is working, where the gaps are, and what your next step should be.
+
+Primary CTA:
+Start Assessment
+
+Below the hero, include a short section:
+What this assessment covers
+
+* Foundation
+* Build
+* Run
+
+Then the interactive assessment experience begins.
+
+10. Result messaging direction
+
+Please use professional, outcome-focused messaging.
+
+Examples:
+
+Needs Structure
+Your organization may be operating without the systems needed for consistent execution. Clarifying structure, process, and accountability should be the first priority.
+
+Developing Systems
+You have some important systems in place, but there are still gaps affecting consistency, efficiency, and growth. Focused implementation can strengthen execution.
+
+Growth Ready
+You have a solid base for growth, with systems already in place. The next opportunity is to optimize performance, alignment, and long-term scalability.
+
+11. Follow-up CTA mapping
+
+Please map results to recommended actions:
+
+Needs Structure
+Primary CTA:
+Explore Playbooks
+Secondary CTA:
+Book a Strategy Call
+
+Developing Systems
+Primary CTA:
+Explore Guided Implementation
+Secondary CTA:
+Book a Strategy Call
+
+Growth Ready
+Primary CTA:
+Book a Strategy Call
+Secondary CTA:
+Learn About Full System Build
+
+12. Content management and editability
+
+Please build this so the following can be updated easily without rebuilding the feature:
+
+* questions
+* answer choices
+* score weights
+* score bands
+* result descriptions
+* CTA links
+* notification email address
+
+If possible, make these editable through the CMS or a simple configuration file.
+
+13. Technical considerations
+
+Please ensure:
+
+* page loads quickly
+* form submission is secure
+* spam protection is in place
+* emails are delivered reliably
+* mobile responsiveness is maintained
+* tracking can be added for conversions
+
+If possible, add event tracking for:
+
+* assessment start
+* assessment completion
+* email submission
+* CTA clicks on results page
+
+14. Success criteria
+
+The finished feature should:
+
+* attract and qualify leads
+* give visitors useful insight
+* collect lead information
+* send results automatically
+* direct users toward the right offer
+* feel integrated into the current website experience
+
+15. Implementation priority
+
+Please complete in this order:
+
+1. Assessment landing page
+2. Question flow and scoring logic
+3. Email capture
+4. Results page
+5. Automated email delivery
+6. Lead notification/storage
+7. CTA mapping
+8. Tracking setup
+
+End result
+
+The final result should be a polished Growth Infrastructure Assessment that works as a lead magnet, diagnostic tool, and conversion pathway for visitors who may be a fit for our playbooks, guided implementation, or full system support.

@@ -130,6 +130,7 @@ export function Footer() {
               <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{language === "en" ? "Solutions" : "Solutions"}</h3>
               <ul className="flex flex-col gap-3.5 text-sm font-medium text-muted-foreground">
                 <li><Link href="/playbooks" className="hover:text-accent transition-colors">Playbooks</Link></li>
+                <li><Link href="/training" className="hover:text-accent transition-colors">Training Programs</Link></li>
                 <li><Link href="/solutions#ways-to-work" className="hover:text-accent transition-colors">Guided Implementation</Link></li>
                 <li><Link href="/solutions#phases" className="hover:text-accent transition-colors">Full System Build</Link></li>
                 <li><Link href="/solutions" className="hover:text-accent transition-colors">All Solutions</Link></li>
@@ -145,6 +146,7 @@ export function Footer() {
                 <li><Link href="/careers" className="hover:text-accent transition-colors cursor-pointer">Careers</Link></li>
                 <li><Link href="/insights" className="hover:text-accent transition-colors cursor-pointer">Insights</Link></li>
                 <li><Link href="/free-audit" className="hover:text-accent transition-colors cursor-pointer text-accent font-bold">{language === "en" ? "Free Audit" : "Audit gratuit"}</Link></li>
+                <li><Link href="/assessment" className="hover:text-accent transition-colors cursor-pointer">Growth Assessment</Link></li>
                 <li><Link href="/portal" className="hover:text-accent transition-colors cursor-pointer">Client Portal</Link></li>
               </ul>
             </div>

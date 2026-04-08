@@ -1,0 +1,324 @@
+Please add **Training Programs** to the website as a new offering category that supports our existing business model.
+
+Important:
+Training Programs should **not** be presented as a separate business line or as generic training services. They should be positioned as an extension of our Growth Infrastructure System and framed as practical implementation training that helps individuals and teams apply real systems inside their organizations.
+
+Overall objective
+
+The purpose of adding Training Programs is to create an additional access point for clients who want support but may not yet be ready for a larger consulting engagement. This offering should appeal especially to:
+
+* small businesses
+* nonprofits
+* professionals
+* teams that want implementation support in a more structured or scalable format
+
+Training should sit between Playbooks and higher-touch services such as Guided Implementation and Full System Build.
+
+Core positioning
+
+Please position Training Programs as:
+**System Implementation Training**
+
+Suggested positioning language:
+“We do not offer generic business training. We provide practical training programs that help leaders and teams implement real systems for growth, execution, and performance.”
+
+Suggested supporting message:
+“Our training programs help organizations strengthen structure, improve execution, and build the systems required for sustainable growth.”
+
+1. Add Training Programs as a new offer layer
+
+Please add Training Programs to the site as a visible offer category within our overall value ladder.
+
+The value ladder should now be presented as:
+
+* Playbooks
+* Training Programs
+* Guided Implementation
+* Full System Build
+
+Training Programs should be shown as a mid-level option for people who want more support than self-guided resources but less complexity than full consulting.
+
+2. Add Training Programs to “Ways to Work With Us”
+
+Wherever the site currently explains how clients can work with us, please update that structure to include Training Programs.
+
+Suggested format:
+
+Playbooks
+Self-guided systems and tools
+
+Training Programs
+Practical training to help teams implement key systems
+
+Guided Implementation
+Hands-on support for focused system setup
+
+Full System Build
+Comprehensive design, build, and optimization support
+
+For Training Programs, include:
+
+* target audience
+* format
+* pricing range
+* timeframe
+* expected outcomes
+
+Recommended details:
+Audience:
+
+* small businesses
+* nonprofits
+* professionals
+* small teams
+* founder-led organizations
+
+Format:
+
+* live virtual training
+* cohort-based training
+* team workshops
+* optional hybrid format with templates and implementation tools
+
+Suggested pricing:
+
+* individual training: $99 to $499
+* cohort-based programs: $500 to $2,500
+* team training: $2,000 to $10,000
+
+Suggested timeframe:
+
+* short workshop: 1 session or 1 day
+* implementation training: 2 to 6 weeks
+* cohort-based program: 4 to 8 weeks
+
+Suggested outcomes:
+
+* improved structure
+* stronger execution
+* better team alignment
+* practical implementation of systems
+* clearer accountability and performance tracking
+
+3. Position training inside the existing business model
+
+Training Programs should not look random or disconnected.
+
+Please connect training directly to our Foundation, Build, and Run structure.
+
+Suggested framing:
+
+Foundation Training
+Training on business structure, role clarity, KPI design, and planning systems
+
+Build Training
+Training on hiring systems, onboarding, website conversion, funnel setup, CRM use, and process implementation
+
+Run Training
+Training on KPI review rhythms, accountability, execution management, performance systems, and optimization practices
+
+This can be shown as either:
+
+* one section with 3 training categories
+  or
+* one general Training Programs section with examples grouped by Foundation, Build, and Run
+
+4. Add specific training program examples
+
+Please add sample or featured training offers to the site.
+
+Suggested initial programs:
+
+Business System Foundations
+Focus:
+structure, roles, KPI systems, process basics
+Audience:
+professionals, small businesses, nonprofits
+Suggested pricing:
+$199 to $999 depending on format
+Suggested timeframe:
+self-paced, workshop, or 2 to 4 week live format
+
+Hiring and Team Systems Training
+Focus:
+role design, hiring process, candidate evaluation, onboarding, accountability
+Audience:
+small businesses, nonprofits, growing teams
+Suggested pricing:
+$299 to $2,500 depending on format
+Suggested timeframe:
+1 session to 4 weeks
+
+Execution and Performance Systems Training
+Focus:
+weekly execution rhythm, KPI review, accountability, reporting, performance management
+Audience:
+small businesses, nonprofits, leadership teams
+Suggested pricing:
+$299 to $2,500 depending on format
+Suggested timeframe:
+2 to 6 weeks
+
+Growth Systems Training
+Focus:
+website conversion, funnel structure, lead management, CRM basics, marketing execution systems
+Audience:
+professionals, small businesses, founder-led teams
+Suggested pricing:
+$299 to $2,500 depending on format
+Suggested timeframe:
+2 to 6 weeks
+
+Team Implementation Workshops
+Focus:
+custom live training for organizations that want team-wide rollout of systems
+Audience:
+nonprofits, small businesses, organizations with teams
+Suggested pricing:
+$2,000 to $10,000
+Suggested timeframe:
+single workshop, half day, full day, or short multi-session engagement
+
+5. Reframe training language throughout the site
+
+Please do not use broad or generic phrases such as:
+
+* leadership training
+* business training
+* corporate training
+* professional development services
+
+Instead use system-focused language such as:
+
+* system implementation training
+* practical training for growth systems
+* team training for execution and performance
+* implementation workshops
+* training programs that help teams apply real systems
+
+The messaging should reinforce that our training is about applying proven systems, not learning abstract theory.
+
+6. Add training to service and conversion pathways
+
+Please connect Training Programs to the rest of the site so visitors can clearly understand where they fit.
+
+Examples:
+
+* from Playbooks page, link to Training Programs for people who want guided learning
+* from Guided Implementation pages, mention Training Programs as a lighter alternative
+* from Assessment results, use Training Programs as a recommended next step for leads who are not yet ready for full consulting
+* in CTAs, offer Training Programs as a next step for visitors who want implementation help without a full engagement
+
+Suggested CTA language:
+
+* Explore Training Programs
+* Join a Training Program
+* Learn More About System Training
+* Find the Right Training for Your Team
+
+7. Add audience segmentation for training
+
+Please ensure the training offering is clearly shown as relevant to different audiences.
+
+Suggested segmentation:
+
+Professionals
+Best fit:
+Business System Foundations, Growth Systems Training
+
+Small Businesses
+Best fit:
+Hiring and Team Systems Training, Execution and Performance Systems Training, Growth Systems Training
+
+Nonprofits
+Best fit:
+Business System Foundations, Hiring and Team Systems Training, Team Implementation Workshops
+
+Growing Teams and Organizations
+Best fit:
+Execution and Performance Systems Training, Team Implementation Workshops, Guided Implementation, Full System Build
+
+This should help visitors quickly see whether training is right for them.
+
+8. Add pricing and timeframe visibility
+
+Please display pricing and delivery format clearly for Training Programs.
+
+At minimum, include:
+
+* whether the program is self-paced, live, cohort-based, or workshop-based
+* price range
+* expected duration
+
+These should be presented professionally and clearly, similar to the other offers on the site.
+
+9. Update navigation and page structure if needed
+
+If appropriate, update the site structure so Training Programs can be discovered easily.
+
+Possible options:
+
+* include Training Programs under Solutions
+* include Training Programs as part of the Ways to Work With Us section
+* add a dedicated Training Programs section or page if needed
+
+Do not let the site become cluttered or fragmented. Training should feel integrated, not bolted on.
+
+10. Update messaging in relevant sections
+
+Please revise any service-related copy where needed so Training Programs are presented as a strategic part of our offer ladder.
+
+The site should clearly communicate:
+
+* Playbooks are for self-guided implementation
+* Training Programs are for guided learning and team application
+* Guided Implementation is for focused hands-on support
+* Full System Build is for comprehensive support
+
+11. Visual and UX direction
+
+The Training Programs section should feel consistent with the rest of the site.
+
+Please use:
+
+* clean cards or structured blocks
+* clear titles and brief descriptions
+* visible pricing and format details
+* simple, action-oriented CTAs
+
+It should feel practical and premium, not like a generic course marketplace.
+
+12. Technical and content notes
+
+Please preserve:
+
+* existing URLs where practical
+* SEO structure where practical
+* internal consistency with current offers
+
+Only add or revise what is necessary to properly introduce Training Programs into the site structure.
+
+13. Success criteria
+
+The finished implementation should make it clear that:
+
+* Training is now part of our offer ecosystem
+* It is designed for practical system implementation
+* It is relevant to nonprofits, small businesses, professionals, and teams
+* It fills the gap between Playbooks and higher-ticket consulting
+* It supports lead generation, segmentation, and conversion
+
+Implementation priority
+
+Please implement in this order:
+
+1. Add Training Programs to the Ways to Work With Us structure
+2. Add Training Programs to the value ladder
+3. Add training section or page content
+4. Add sample program listings with pricing and timeframe
+5. Connect training to relevant CTAs and service pathways
+6. Update related copy across service and offer sections
+
+End result
+
+The final site should present Training Programs as a structured, system-focused offering that helps clients implement real business systems through practical learning, workshops, and guided training. This should strengthen the overall offer ladder without diluting our positioning.

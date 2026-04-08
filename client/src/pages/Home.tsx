@@ -476,7 +476,7 @@ export default function Home() {
               </p>
             </AnimateOnScroll>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {[
                 {
                   image: communityTownhallImg,
@@ -484,31 +484,42 @@ export default function Home() {
                   desc: "Self-guided systems to implement structure, hiring, marketing, and execution at your own pace.",
                   label: "$149 to $999",
                   cta: "Start with a Playbook",
+                  href: "/playbooks",
+                },
+                {
+                  image: communityCollaborationImg,
+                  title: "Training Programs",
+                  desc: "Practical training to help leaders and teams implement real systems for growth and execution.",
+                  label: "$99 to $10,000",
+                  cta: "Explore Training",
+                  href: "/training",
                 },
                 {
                   image: communityWorkspaceImg,
                   title: "Guided Implementation",
-                  desc: "Hands-on support to install key systems without a full-scale engagement. We work alongside you.",
+                  desc: "Hands-on support to install key systems without a full-scale engagement.",
                   label: "$2,000 to $10,000",
                   cta: "Explore Guided Implementation",
+                  href: "/solutions",
                 },
                 {
                   image: milestoneImg,
                   title: "Full System Build",
-                  desc: "Complete design, build, and ongoing operation of your business systems through our 3-phase model.",
+                  desc: "Complete design, build, and ongoing operation of your business systems.",
                   label: "$5,000 to $50,000+",
                   cta: "Book a Strategy Call",
+                  href: "/solutions",
                 },
               ].map((s, i) => (
-                <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
-                  <Link href="/solutions" className="block h-full group" data-testid={`link-solution-${i}`}>
-                    <div className="relative rounded-2xl overflow-hidden h-full min-h-[320px] shadow-lg" data-testid={`solution-card-${i}`}>
+                <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
+                  <Link href={s.href} className="block h-full group" data-testid={`link-solution-${i}`}>
+                    <div className="relative rounded-2xl overflow-hidden h-full min-h-[300px] shadow-lg" data-testid={`solution-card-${i}`}>
                       <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/10 group-hover:from-primary/95 transition-all duration-500" />
-                      <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+                      <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
                         <p className="text-xs font-bold uppercase tracking-widest text-accent mb-2">{s.label}</p>
-                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">{s.title}</h3>
-                        <p className="text-white/70 text-sm leading-relaxed mb-4">{s.desc}</p>
+                        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-accent transition-colors">{s.title}</h3>
+                        <p className="text-white/70 text-xs leading-relaxed mb-3">{s.desc}</p>
                         <span className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-transform">
                           {s.cta} <ArrowRight size={14} className="ml-2" />
                         </span>

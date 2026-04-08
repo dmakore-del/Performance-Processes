@@ -384,3 +384,28 @@ export const scheduledEmails = pgTable("scheduled_emails", {
 });
 
 export type ScheduledEmail = typeof scheduledEmails.$inferSelect;
+
+export const assessmentSubmissions = pgTable("assessment_submissions", {
+  id: serial("id").primaryKey(),
+  firstName: text("first_name").notNull(),
+  email: text("email").notNull(),
+  organizationName: text("organization_name"),
+  organizationType: text("organization_type"),
+  roleTitle: text("role_title"),
+  totalScore: integer("total_score").notNull(),
+  foundationScore: integer("foundation_score").notNull(),
+  buildScore: integer("build_score").notNull(),
+  runScore: integer("run_score").notNull(),
+  scoreLabel: text("score_label").notNull(),
+  recommendedPath: text("recommended_path").notNull(),
+  answers: text("answers").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertAssessmentSchema = createInsertSchema(assessmentSubmissions).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type AssessmentSubmission = typeof assessmentSubmissions.$inferSelect;
+export type InsertAssessment = z.infer<typeof insertAssessmentSchema>;

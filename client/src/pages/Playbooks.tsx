@@ -848,6 +848,24 @@ export default function Playbooks() {
         );
       })}
 
+      <section className="py-16 bg-purple-50 border-t border-purple-100">
+        <div className="container mx-auto px-4 md:px-8">
+          <AnimateOnScroll animation="fade-up">
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-purple-600 mb-4">Want Guided Learning?</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">Training Programs for Team Implementation</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+                If you want structured training to help your team implement these systems together, explore our live virtual, cohort-based, and workshop training programs.
+              </p>
+              <Link href="/training" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-600 text-white hover:bg-purple-700 transition-all font-bold px-8 h-12 uppercase tracking-wider text-sm" data-testid="link-playbooks-training">
+                Explore Training Programs
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       <section className="py-20 md:py-24 bg-gradient-to-br from-primary via-primary to-blue-900 text-white">
         <div className="container mx-auto px-4 md:px-8 text-center">
           <AnimateOnScroll animation="fade-up">

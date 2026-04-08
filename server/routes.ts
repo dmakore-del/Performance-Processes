@@ -1213,5 +1213,99 @@ export async function registerRoutes(
     }
   });
 
+  app.post("/api/assessment", async (req, res) => {
+    try {
+      const { firstName, email, organizationName, organizationType, roleTitle,
+        totalScore, foundationScore, buildScore, runScore, scoreLabel, recommendedPath, answers } = req.body;
+      if (!firstName || !email || typeof email !== 'string' || typeof firstName !== 'string') {
+        return res.status(400).json({ message: "Name and email are required" });
+      }
+      const trimmedEmail = email.toLowerCase().trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+        return res.status(400).json({ message: "Please provide a valid email address" });
+      }
+      if (typeof totalScore !== 'number' || typeof foundationScore !== 'number' ||
+          typeof buildScore !== 'number' || typeof runScore !== 'number') {
+        return res.status(400).json({ message: "Score data is required" });
+      }
+
+      const submission = await storage.createAssessmentSubmission({
+        firstName: firstName.trim(),
+        email: trimmedEmail,
+        organizationName: organizationName?.trim() || null,
+        organizationType: organizationType?.trim() || null,
+        roleTitle: roleTitle?.trim() || null,
+        totalScore,
+        foundationScore,
+        buildScore,
+        runScore,
+        scoreLabel: scoreLabel || 'Unknown',
+        recommendedPath: recommendedPath || 'playbooks',
+        answers: typeof answers === 'string' ? answers : JSON.stringify(answers || {}),
+      });
+
+      await db.execute(sql`
+        INSERT INTO leads (company_name, contact_name, contact_email, source, status, service_interest, notes)
+        VALUES (
+          ${organizationName?.trim() || 'Not provided'},
+          ${firstName.trim()},
+          ${trimmedEmail},
+          'growth-assessment',
+          'new',
+          ${recommendedPath === 'full-build' ? 'Full System Build' : recommendedPath === 'guided' ? 'Guided Implementation' : 'Playbooks'},
+          ${'Score: ' + totalScore + '/100 (' + scoreLabel + ') | Foundation: ' + foundationScore + ' | Build: ' + buildScore + ' | Run: ' + runScore + (roleTitle ? ' | Role: ' + roleTitle : '') + (organizationType ? ' | Type: ' + organizationType : '')}
+        )
+      `);
+
+      const { generateAssessmentPDF } = await import('./assessmentPdfGenerator');
+      const pdfBuffer = await generateAssessmentPDF({
+        firstName: firstName.trim(),
+        email: trimmedEmail,
+        organizationName: organizationName?.trim(),
+        organizationType: organizationType?.trim(),
+        roleTitle: roleTitle?.trim(),
+        totalScore,
+        foundationScore,
+        buildScore,
+        runScore,
+        scoreLabel,
+        recommendedPath,
+        submittedAt: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+      });
+
+      const { notifyContactForm } = await import('./emailNotifications');
+      notifyContactForm({
+        name: firstName.trim(),
+        email: trimmedEmail,
+        message: `New Growth Infrastructure Assessment completed:\n\nScore: ${totalScore}/100 (${scoreLabel})\nFoundation: ${foundationScore}% | Build: ${buildScore}% | Run: ${runScore}%\nRecommended Path: ${recommendedPath}\nOrganization: ${organizationName || 'Not provided'}\nType: ${organizationType || 'Not specified'}\nRole: ${roleTitle || 'Not specified'}\n\nPDF report attached separately.`
+      }).catch(err => console.error("Assessment admin notification failed:", err));
+
+      try {
+        const { sendAssessmentConfirmation, sendAssessmentAdminPdf } = await import('./assessmentEmails');
+        sendAssessmentConfirmation(trimmedEmail, firstName.trim(), totalScore, scoreLabel)
+          .catch(err => console.error("Assessment confirmation email failed:", err));
+        sendAssessmentAdminPdf(firstName.trim(), trimmedEmail, totalScore, scoreLabel, recommendedPath, pdfBuffer)
+          .catch(err => console.error("Assessment admin PDF email failed:", err));
+      } catch (err) {
+        console.error("Assessment email module error:", err);
+      }
+
+      return res.status(201).json({ message: "Assessment submitted successfully", success: true, id: submission.id });
+    } catch (error) {
+      console.error("Assessment submission error:", error);
+      return res.status(500).json({ message: "Failed to process assessment" });
+    }
+  });
+
+  app.get("/api/admin/assessments", requireAdmin, async (_req, res) => {
+    try {
+      const submissions = await storage.getAssessmentSubmissions();
+      res.json(submissions);
+    } catch (error) {
+      console.error("Error fetching assessments:", error);
+      res.status(500).json({ message: "Failed to fetch assessments" });
+    }
+  });
+
   return httpServer;
 }

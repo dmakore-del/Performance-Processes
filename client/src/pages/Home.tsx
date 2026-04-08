@@ -146,18 +146,19 @@ export default function Home() {
 
         <section className="relative min-h-[700px] lg:min-h-[800px] flex items-center overflow-hidden bg-primary" data-testid="section-hero">
           <div className="absolute inset-0 z-0">
-            <img src={communityNetworkImg} alt="" className="w-full h-full object-cover opacity-20 animate-ken-burns" />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/98 to-primary/70" />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+              poster={communityNetworkImg}
+            >
+              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-primary/75" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary/50" />
           </div>
-          <div className="absolute bottom-0 right-0 w-1/2 h-full hidden lg:block z-[1]">
-            <img src={communityCollaborationImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/60 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
-          </div>
-          <GradientOrb className="w-96 h-96 bg-accent/10 -top-20 -right-20 z-[2]" />
-          <FloatingShape className="w-16 h-16 top-[20%] right-[10%] z-[3]" variant="ring" />
-          <FloatingShape className="w-8 h-8 bottom-[30%] right-[35%] z-[3]" variant="dot" />
-          <GeometricAccent className="bottom-[15%] right-[5%] text-white z-[2]" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-2xl lg:max-w-[55%]">
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.2s" }} data-testid="text-hero-title">

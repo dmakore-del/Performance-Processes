@@ -88,10 +88,10 @@ export default function WomensPerformanceGrant() {
   ];
 
   const timeline = [
-    { label: "Recipients", value: "3 women" },
+    { label: "Recipients per Cohort", value: "3 women" },
     { label: "Program Duration", value: "3 months" },
-    { label: "Application Deadline", value: "March 31" },
-    { label: "Recipients Announced", value: "Early April" },
+    { label: "Applications", value: "Open year-round" },
+    { label: "Cohorts", value: "Quarterly intake" },
   ];
 
   return (
@@ -116,7 +116,7 @@ export default function WomensPerformanceGrant() {
                 </div>
               </div>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                In recognition of International Women's Month, Performance Processes is launching a Women's Performance Grant to support women who are building businesses, advancing their careers, or leading teams. The grant will provide professional coaching and performance systems support to help recipients turn their goals into measurable results.
+                Performance Processes is committed to an ongoing Women's Performance Grant initiative, supporting women who are building businesses, advancing their careers, or leading teams year-round. The grant provides professional coaching and performance systems support to help recipients turn their goals into measurable results.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -215,7 +215,7 @@ export default function WomensPerformanceGrant() {
               <div className="text-center mb-10">
                 <h2 className="text-3xl font-heading font-extrabold text-primary mb-4">Grant Application</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Complete the form below to apply for the Women's Performance Grant. Only 3 recipients will be selected. Take your time to provide thoughtful responses, your answers help us understand your goals and how this program can best support you.
+                  Complete the form below to apply for the Women's Performance Grant. Three recipients are selected each quarter. Take your time to provide thoughtful responses, your answers help us understand your goals and how this program can best support you.
                 </p>
               </div>
 
@@ -224,7 +224,7 @@ export default function WomensPerformanceGrant() {
                   <CheckCircle2 className="text-green-500 mx-auto mb-4" size={48} />
                   <h3 className="text-xl font-bold text-primary mb-2">Application Submitted!</h3>
                   <p className="text-muted-foreground">
-                    Thank you for applying to the Women's Performance Grant. We'll review your application and contact you by early April.
+                    Thank you for applying to the Women's Performance Grant. We'll review your application and be in touch regarding the next quarterly cohort.
                   </p>
                 </div>
               ) : (
@@ -551,7 +551,7 @@ export default function WomensPerformanceGrant() {
 
                   <div className="bg-accent/5 border border-accent/20 rounded-2xl p-6">
                     <p className="text-sm text-primary leading-relaxed">
-                      By submitting this application, you confirm that the information provided is accurate and that you are available to commit to the full 3-month program if selected. Only 3 recipients will be chosen, and all applicants will be notified of the outcome by early April.
+                      By submitting this application, you confirm that the information provided is accurate and that you are available to commit to the full 3-month program if selected. Three recipients are chosen each quarter, and all applicants will be notified of the outcome.
                     </p>
                   </div>
 
@@ -569,7 +569,7 @@ export default function WomensPerformanceGrant() {
                   </Button>
 
                   <p className="text-xs text-center text-muted-foreground">
-                    Application deadline: March 31. Recipients will be announced in early April.
+                    Applications are accepted on a rolling basis. Recipients are selected quarterly.
                   </p>
                 </form>
               )}

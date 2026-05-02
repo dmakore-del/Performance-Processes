@@ -2,9 +2,11 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { AnimateOnScroll, FloatingShape, GradientOrb } from "@/components/ui/animate-on-scroll";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { Link } from "wouter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -16,6 +18,10 @@ interface Offer {
   cta?: string;
   ctaHref?: string;
   featured?: boolean;
+  stripeName?: string;
+  stripeNameSecondary?: string;
+  stripeSecondaryLabel?: string;
+  stripePrimaryLabel?: string;
 }
 
 interface Category {
@@ -35,6 +41,7 @@ const categories: Category[] = [
     offers: [
       {
         name: "Starter Website Package",
+        stripeName: "Starter Website Package",
         price: "$1,500",
         bestFor: "Professionals, startups, and small businesses needing a simple online presence.",
         includes: [
@@ -49,6 +56,7 @@ const categories: Category[] = [
       },
       {
         name: "Business Website Package",
+        stripeName: "Business Website Package",
         price: "$2,500",
         bestFor: "Small businesses that need a stronger website to explain services and generate leads.",
         includes: [
@@ -65,6 +73,7 @@ const categories: Category[] = [
       },
       {
         name: "Website Conversion Package",
+        stripeName: "Website Conversion Package",
         price: "$3,500",
         bestFor: "Businesses that need a website designed to convert visitors into leads.",
         includes: [
@@ -89,6 +98,7 @@ const categories: Category[] = [
     offers: [
       {
         name: "Marketing Starter Package",
+        stripeName: "Marketing Starter Package",
         price: "$1,500",
         bestFor: "Small businesses that need structure and clarity around their marketing.",
         includes: [
@@ -102,6 +112,7 @@ const categories: Category[] = [
       },
       {
         name: "Social Media Setup Package",
+        stripeName: "Social Media Setup Package",
         price: "$1,200",
         bestFor: "Businesses that need a professional social media foundation.",
         includes: [
@@ -115,6 +126,7 @@ const categories: Category[] = [
       },
       {
         name: "Campaign Setup Package",
+        stripeName: "Campaign Setup Package",
         price: "$2,500",
         bestFor: "Businesses preparing to launch a campaign or promote an offer.",
         includes: [
@@ -129,6 +141,7 @@ const categories: Category[] = [
       },
       {
         name: "Growth Engine Package",
+        stripeName: "Growth Engine Package",
         price: "$5,000",
         bestFor: "Small businesses that need a complete basic lead generation setup.",
         includes: [
@@ -152,6 +165,7 @@ const categories: Category[] = [
     offers: [
       {
         name: "CRM Starter Setup",
+        stripeName: "CRM Starter Setup",
         price: "$1,500",
         bestFor: "Businesses that need to organize and track leads.",
         includes: [
@@ -165,6 +179,7 @@ const categories: Category[] = [
       },
       {
         name: "Lead Tracking & Follow-Up System",
+        stripeName: "Lead Tracking & Follow-Up System",
         price: "$2,500",
         bestFor: "Businesses that need a more structured sales follow-up process.",
         includes: [
@@ -187,6 +202,7 @@ const categories: Category[] = [
     offers: [
       {
         name: "Business System Audit",
+        stripeName: "Business System Audit",
         price: "$750",
         bestFor: "Small businesses that need clarity on what is not working.",
         includes: [
@@ -199,6 +215,7 @@ const categories: Category[] = [
       },
       {
         name: "Foundation Sprint",
+        stripeName: "Foundation Sprint",
         price: "$3,500",
         bestFor: "Businesses that need structure before scaling.",
         includes: [
@@ -235,6 +252,10 @@ const categories: Category[] = [
     offers: [
       {
         name: "Business System Foundations Training",
+        stripeName: "Business System Foundations Training (Individual)",
+        stripePrimaryLabel: "Buy Individual Seat",
+        stripeNameSecondary: "Business System Foundations Training (Team)",
+        stripeSecondaryLabel: "Buy Team License",
         price: "$499 / person · $2,000 / team",
         bestFor: "Teams new to structured business systems.",
         includes: [
@@ -245,6 +266,10 @@ const categories: Category[] = [
       },
       {
         name: "Website & Marketing Training",
+        stripeName: "Website & Marketing Training (Individual)",
+        stripePrimaryLabel: "Buy Individual Seat",
+        stripeNameSecondary: "Website & Marketing Training (Team)",
+        stripeSecondaryLabel: "Buy Team License",
         price: "$499 / person · $2,500 / team",
         bestFor: "Teams responsible for website, content, and lead generation.",
         includes: [
@@ -256,6 +281,10 @@ const categories: Category[] = [
       },
       {
         name: "Execution & Performance Training",
+        stripeName: "Execution & Performance Training (Individual)",
+        stripePrimaryLabel: "Buy Individual Seat",
+        stripeNameSecondary: "Execution & Performance Training (Team)",
+        stripeSecondaryLabel: "Buy Team License",
         price: "$499 / person · $2,500 / team",
         bestFor: "Teams that need accountability rhythms and execution discipline.",
         includes: [
@@ -287,6 +316,8 @@ const categories: Category[] = [
     offers: [
       {
         name: "Monthly Marketing Support",
+        stripeName: "Monthly Marketing Support",
+        stripePrimaryLabel: "Subscribe",
         price: "$1,500 / month",
         bestFor: "Businesses that need consistent marketing planning and execution support.",
         includes: [
@@ -299,6 +330,8 @@ const categories: Category[] = [
       },
       {
         name: "Monthly Growth Support",
+        stripeName: "Monthly Growth Support",
+        stripePrimaryLabel: "Subscribe",
         price: "$2,500 / month",
         bestFor: "Businesses that want marketing and broader growth oversight.",
         includes: [
@@ -312,6 +345,8 @@ const categories: Category[] = [
       },
       {
         name: "Growth Partner Retainer",
+        stripeName: "Growth Partner Retainer",
+        stripePrimaryLabel: "Subscribe",
         price: "$4,000 / month",
         bestFor: "Businesses that want a full growth partner across systems and execution.",
         includes: [
@@ -329,6 +364,7 @@ const categories: Category[] = [
 
 interface Bundle {
   name: string;
+  stripeName: string;
   price: string;
   desc: string;
   includes: string[];
@@ -338,6 +374,7 @@ interface Bundle {
 const bundles: Bundle[] = [
   {
     name: "Launch Package",
+    stripeName: "Launch Package (Bundle)",
     price: "$3,000",
     desc: "Get online and visible quickly with a clean website and social presence.",
     includes: [
@@ -348,6 +385,7 @@ const bundles: Bundle[] = [
   },
   {
     name: "Growth Starter Package",
+    stripeName: "Growth Starter Package (Bundle)",
     price: "$5,000",
     desc: "A stronger foundation: website, marketing structure, and lead organization.",
     includes: [
@@ -359,6 +397,7 @@ const bundles: Bundle[] = [
   },
   {
     name: "Growth Engine Package",
+    stripeName: "Growth Engine Package (Bundle)",
     price: "$7,500",
     desc: "A complete lead generation engine: website, campaign, and follow-up system.",
     includes: [
@@ -369,6 +408,7 @@ const bundles: Bundle[] = [
   },
   {
     name: "Scale Support Package",
+    stripeName: "Scale Support Package (Bundle)",
     price: "$10,000",
     desc: "Operational structure plus a full lead generation engine and implementation support.",
     includes: [
@@ -379,15 +419,92 @@ const bundles: Bundle[] = [
   },
 ];
 
-function OfferCard({ offer }: { offer: Offer }) {
-  const cta = offer.cta || "Request This Package";
-  const ctaHref = offer.ctaHref || "/contact";
-  const isExternal = ctaHref.startsWith("http");
-  const ctaClass =
-    "mt-6 inline-flex items-center justify-center gap-2 rounded-full h-11 px-6 text-xs font-bold uppercase tracking-wider transition-all duration-300 " +
-    (offer.featured
-      ? "bg-accent text-white hover:bg-primary"
-      : "border border-primary/20 text-primary hover:border-accent hover:text-accent");
+interface ProductRow {
+  product_name: string;
+  price_id: string;
+}
+
+async function startCheckout(priceId: string, serviceName: string): Promise<string | null> {
+  try {
+    const res = await fetch("/api/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ priceId, serviceName, returnPage: "/pricing" }),
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.url || null;
+  } catch {
+    return null;
+  }
+}
+
+function OfferCard({
+  offer,
+  priceMap,
+}: {
+  offer: Offer;
+  priceMap: Map<string, string>;
+}) {
+  const { toast } = useToast();
+  const [loadingKey, setLoadingKey] = useState<string | null>(null);
+  const slug = offer.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+  const primaryPriceId = offer.stripeName ? priceMap.get(offer.stripeName) : undefined;
+  const secondaryPriceId = offer.stripeNameSecondary ? priceMap.get(offer.stripeNameSecondary) : undefined;
+
+  const handleBuy = async (priceId: string, name: string, key: string) => {
+    setLoadingKey(key);
+    const url = await startCheckout(priceId, name);
+    if (url) {
+      window.location.href = url;
+    } else {
+      setLoadingKey(null);
+      toast({
+        title: "Checkout unavailable",
+        description: "We couldn't start checkout. Please try again or book a strategy call.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const baseBtn =
+    "mt-3 inline-flex items-center justify-center gap-2 rounded-full h-11 px-6 text-xs font-bold uppercase tracking-wider transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed";
+  const primaryClass =
+    baseBtn + " " + (offer.featured ? "bg-accent text-white hover:bg-primary" : "bg-primary text-white hover:bg-accent");
+  const secondaryClass =
+    baseBtn + " border border-primary/20 text-primary hover:border-accent hover:text-accent";
+
+  const renderFallback = () => {
+    const cta = offer.cta || "Request This Package";
+    const ctaHref = offer.ctaHref || "/contact";
+    const isExternal = ctaHref.startsWith("http");
+    const fallbackClass =
+      "mt-3 inline-flex items-center justify-center gap-2 rounded-full h-11 px-6 text-xs font-bold uppercase tracking-wider transition-all duration-300 " +
+      (offer.featured
+        ? "bg-accent text-white hover:bg-primary"
+        : "border border-primary/20 text-primary hover:border-accent hover:text-accent");
+    if (isExternal) {
+      return (
+        <a
+          href={ctaHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={fallbackClass}
+          data-testid={`button-cta-${slug}`}
+        >
+          {cta}
+          <ArrowRight size={14} />
+        </a>
+      );
+    }
+    return (
+      <Link href={ctaHref} className={fallbackClass} data-testid={`button-cta-${slug}`}>
+        {cta}
+        <ArrowRight size={14} />
+      </Link>
+    );
+  };
 
   return (
     <div
@@ -397,7 +514,7 @@ function OfferCard({ offer }: { offer: Offer }) {
           ? "border-accent/40 shadow-lg shadow-accent/5 hover:shadow-xl hover:shadow-accent/10"
           : "border-border hover:shadow-md hover:border-accent/30")
       }
-      data-testid={`pricing-card-${offer.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+      data-testid={`pricing-card-${slug}`}
     >
       {offer.featured && (
         <div className="absolute -top-3 left-7 px-3 py-1 rounded-full bg-accent text-white text-[10px] font-black uppercase tracking-widest">
@@ -407,7 +524,7 @@ function OfferCard({ offer }: { offer: Offer }) {
       <h3 className="text-lg font-heading font-extrabold text-primary mb-2">{offer.name}</h3>
       <div className="text-2xl font-black text-accent mb-3">{offer.price}</div>
       <p className="text-sm text-muted-foreground italic mb-5 leading-relaxed">{offer.bestFor}</p>
-      <div className="flex-1">
+      <div className="flex-1 mb-3">
         <p className="text-[10px] font-black uppercase tracking-widest text-primary/60 mb-3">Includes</p>
         <ul className="space-y-2">
           {offer.includes.map((item, i) => (
@@ -418,24 +535,155 @@ function OfferCard({ offer }: { offer: Offer }) {
           ))}
         </ul>
       </div>
-      {isExternal ? (
-        <a
-          href={ctaHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={ctaClass}
-          data-testid={`button-cta-${offer.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+
+      <div className="flex flex-col gap-2">
+        {primaryPriceId ? (
+          <button
+            onClick={() => handleBuy(primaryPriceId, offer.stripeName!, "primary")}
+            disabled={loadingKey !== null}
+            className={primaryClass}
+            data-testid={`button-buy-${slug}`}
+          >
+            {loadingKey === "primary" ? (
+              <Loader2 size={14} className="animate-spin" />
+            ) : (
+              <>
+                {offer.stripePrimaryLabel || "Buy Now"}
+                <ArrowRight size={14} />
+              </>
+            )}
+          </button>
+        ) : (
+          renderFallback()
+        )}
+
+        {secondaryPriceId && (
+          <button
+            onClick={() => handleBuy(secondaryPriceId, offer.stripeNameSecondary!, "secondary")}
+            disabled={loadingKey !== null}
+            className={secondaryClass}
+            data-testid={`button-buy-secondary-${slug}`}
+          >
+            {loadingKey === "secondary" ? (
+              <Loader2 size={14} className="animate-spin" />
+            ) : (
+              <>
+                {offer.stripeSecondaryLabel || "Buy Team Option"}
+                <ArrowRight size={14} />
+              </>
+            )}
+          </button>
+        )}
+
+        {primaryPriceId && (
+          <a
+            href={BOOKINGS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-center text-[11px] font-bold uppercase tracking-wider text-primary/60 hover:text-accent transition-colors mt-1"
+            data-testid={`link-talk-${slug}`}
+          >
+            Or book a strategy call
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function BundleCard({
+  bundle,
+  priceMap,
+}: {
+  bundle: Bundle;
+  priceMap: Map<string, string>;
+}) {
+  const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
+  const slug = bundle.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const priceId = priceMap.get(bundle.stripeName);
+
+  const handleBuy = async () => {
+    if (!priceId) return;
+    setLoading(true);
+    const url = await startCheckout(priceId, bundle.stripeName);
+    if (url) {
+      window.location.href = url;
+    } else {
+      setLoading(false);
+      toast({
+        title: "Checkout unavailable",
+        description: "We couldn't start checkout. Please try again or book a strategy call.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const buttonBase =
+    "mt-6 inline-flex items-center justify-center gap-2 rounded-full h-11 px-6 text-xs font-bold uppercase tracking-wider transition-all duration-300 disabled:opacity-60";
+  const buttonClass =
+    buttonBase +
+    " " +
+    (bundle.highlight
+      ? "bg-accent text-white hover:bg-white hover:text-primary"
+      : "bg-primary text-white hover:bg-accent");
+
+  return (
+    <div
+      className={
+        "relative flex flex-col h-full rounded-2xl p-7 transition-all duration-300 " +
+        (bundle.highlight
+          ? "bg-primary text-white shadow-xl shadow-primary/20 hover:scale-[1.02]"
+          : "bg-[#F8FAFC] border border-border hover:shadow-md hover:border-accent/30")
+      }
+      data-testid={`bundle-card-${slug}`}
+    >
+      {bundle.highlight && (
+        <div className="absolute -top-3 left-7 px-3 py-1 rounded-full bg-accent text-white text-[10px] font-black uppercase tracking-widest">
+          Most Popular
+        </div>
+      )}
+      <h3 className={"text-lg font-heading font-extrabold mb-2 " + (bundle.highlight ? "text-white" : "text-primary")}>
+        {bundle.name}
+      </h3>
+      <div className="text-3xl font-black mb-3 text-accent">{bundle.price}</div>
+      <p className={"text-sm mb-5 leading-relaxed " + (bundle.highlight ? "text-white/75" : "text-muted-foreground")}>
+        {bundle.desc}
+      </p>
+      <ul className="space-y-2 flex-1">
+        {bundle.includes.map((item, i) => (
+          <li
+            key={i}
+            className={"flex items-start gap-2 text-sm " + (bundle.highlight ? "text-white/85" : "text-primary/80")}
+          >
+            <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-2" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+      {priceId ? (
+        <button
+          onClick={handleBuy}
+          disabled={loading}
+          className={buttonClass}
+          data-testid={`button-bundle-buy-${slug}`}
         >
-          {cta}
-          <ArrowRight size={14} />
-        </a>
+          {loading ? (
+            <Loader2 size={14} className="animate-spin" />
+          ) : (
+            <>
+              Buy Bundle
+              <ArrowRight size={14} />
+            </>
+          )}
+        </button>
       ) : (
         <Link
-          href={ctaHref}
-          className={ctaClass}
-          data-testid={`button-cta-${offer.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+          href="/contact"
+          className={buttonClass}
+          data-testid={`button-bundle-cta-${slug}`}
         >
-          {cta}
+          Request This Package
           <ArrowRight size={14} />
         </Link>
       )}
@@ -445,6 +693,36 @@ function OfferCard({ offer }: { offer: Offer }) {
 
 export default function Pricing() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
+  const { toast } = useToast();
+
+  const { data: productsResponse } = useQuery<{ data: ProductRow[] }>({
+    queryKey: ["/api/products"],
+  });
+
+  const priceMap = new Map<string, string>();
+  (productsResponse?.data || []).forEach((p) => {
+    if (p.product_name && p.price_id && !priceMap.has(p.product_name)) {
+      priceMap.set(p.product_name, p.price_id);
+    }
+  });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const payment = params.get("payment");
+    if (payment === "success") {
+      toast({
+        title: "Payment received",
+        description: "Thank you! We've emailed your receipt and will reach out to schedule kickoff.",
+      });
+      window.history.replaceState({}, "", "/pricing");
+    } else if (payment === "cancelled") {
+      toast({
+        title: "Checkout cancelled",
+        description: "No charge was made. You can pick back up any time.",
+      });
+      window.history.replaceState({}, "", "/pricing");
+    }
+  }, [toast]);
 
   const visibleCategories =
     activeCategory === "all" ? categories : categories.filter((c) => c.id === activeCategory);
@@ -511,52 +789,7 @@ export default function Pricing() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
               {bundles.map((b, i) => (
                 <AnimateOnScroll key={b.name} animation="fade-up" delay={i * 80}>
-                  <div
-                    className={
-                      "relative flex flex-col h-full rounded-2xl p-7 transition-all duration-300 " +
-                      (b.highlight
-                        ? "bg-primary text-white shadow-xl shadow-primary/20 hover:scale-[1.02]"
-                        : "bg-[#F8FAFC] border border-border hover:shadow-md hover:border-accent/30")
-                    }
-                    data-testid={`bundle-card-${b.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-                  >
-                    {b.highlight && (
-                      <div className="absolute -top-3 left-7 px-3 py-1 rounded-full bg-accent text-white text-[10px] font-black uppercase tracking-widest">
-                        Most Popular
-                      </div>
-                    )}
-                    <h3 className={"text-lg font-heading font-extrabold mb-2 " + (b.highlight ? "text-white" : "text-primary")}>
-                      {b.name}
-                    </h3>
-                    <div className={"text-3xl font-black mb-3 " + (b.highlight ? "text-accent" : "text-accent")}>{b.price}</div>
-                    <p className={"text-sm mb-5 leading-relaxed " + (b.highlight ? "text-white/75" : "text-muted-foreground")}>
-                      {b.desc}
-                    </p>
-                    <ul className="space-y-2 flex-1">
-                      {b.includes.map((item, idx) => (
-                        <li
-                          key={idx}
-                          className={"flex items-start gap-2 text-sm " + (b.highlight ? "text-white/85" : "text-primary/80")}
-                        >
-                          <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-2" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link
-                      href="/contact"
-                      className={
-                        "mt-6 inline-flex items-center justify-center gap-2 rounded-full h-11 px-6 text-xs font-bold uppercase tracking-wider transition-all duration-300 " +
-                        (b.highlight
-                          ? "bg-accent text-white hover:bg-white hover:text-primary"
-                          : "border border-primary/20 text-primary hover:border-accent hover:text-accent")
-                      }
-                      data-testid={`button-bundle-cta-${b.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-                    >
-                      Request This Package
-                      <ArrowRight size={14} />
-                    </Link>
-                  </div>
+                  <BundleCard bundle={b} priceMap={priceMap} />
                 </AnimateOnScroll>
               ))}
             </div>
@@ -617,7 +850,7 @@ export default function Pricing() {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {cat.offers.map((offer, i) => (
                       <AnimateOnScroll key={offer.name} animation="fade-up" delay={i * 80}>
-                        <OfferCard offer={offer} />
+                        <OfferCard offer={offer} priceMap={priceMap} />
                       </AnimateOnScroll>
                     ))}
                   </div>

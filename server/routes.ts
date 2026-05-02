@@ -271,8 +271,8 @@ export async function registerRoutes(
         return res.status(400).json({ message: "Price ID is required" });
       }
 
-      const allowedReturnPages = ["/consulting", "/recruiting", "/playbooks", "/services", "/marketing", "/solutions"];
-      const returnPage = allowedReturnPages.includes(req.body.returnPage) ? req.body.returnPage : "/consulting";
+      const allowedReturnPages = ["/consulting", "/recruiting", "/playbooks", "/services", "/marketing", "/solutions", "/pricing"];
+      const returnPage = allowedReturnPages.includes(req.body.returnPage) ? req.body.returnPage : "/pricing";
 
       const stripe = await getUncachableStripeClient();
 
@@ -284,7 +284,6 @@ export async function registerRoutes(
         : `${req.protocol}://${req.get('host')}`;
 
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
         line_items: [{ price: priceId, quantity: 1 }],
         mode: isRecurring ? 'subscription' : 'payment',
         success_url: `${baseUrl}${returnPage}?payment=success`,
@@ -343,7 +342,6 @@ export async function registerRoutes(
       }));
 
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
         line_items,
         mode: 'payment',
         success_url: `${baseUrl}/playbooks?payment=success`,
@@ -405,7 +403,6 @@ export async function registerRoutes(
         : `${req.protocol}://${req.get('host')}`;
 
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
         line_items: [{
           price_data: {
             currency: 'cad',

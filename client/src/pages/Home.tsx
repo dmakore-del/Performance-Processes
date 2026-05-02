@@ -162,28 +162,28 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-2xl lg:max-w-[55%]">
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.2s" }} data-testid="text-hero-title">
-                We build and run the systems that help your <span className="text-accent">business scale.</span>
+                Websites, marketing systems, and business support for <span className="text-accent">small and emerging businesses.</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-xl animate-fade-in-up" style={{ animationDelay: "0.35s" }} data-testid="text-hero-subtitle">
-                From recruiting and HR to marketing, websites, and operational playbooks, we install the infrastructure growing companies need to scale with confidence.
+                We help professionals, nonprofits, startups, and small businesses build the online presence, marketing structure, and systems they need to grow.
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+                <Link
+                  href="/pricing"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105"
+                  data-testid="link-hero-pricing"
+                >
+                  View Services and Pricing
+                  <ArrowRight size={16} />
+                </Link>
                 <a
                   href={BOOKINGS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300"
                   data-testid="link-hero-book"
                 >
                   Book a Strategy Call
-                </a>
-                <a
-                  href="#how-it-works"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300"
-                  data-testid="link-hero-how"
-                >
-                  See How It Works
-                  <ArrowDown size={16} />
                 </a>
               </div>
             </div>

@@ -127,13 +127,17 @@ export function Footer() {
             </div>
 
             <div className="flex flex-col gap-6">
-              <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{language === "en" ? "Solutions" : "Solutions"}</h3>
+              <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{language === "en" ? "Services" : "Services"}</h3>
               <ul className="flex flex-col gap-3.5 text-sm font-medium text-muted-foreground">
+                <li><Link href="/pricing" className="hover:text-accent transition-colors font-bold text-accent">Services & Pricing</Link></li>
+                <li><Link href="/pricing#websites" className="hover:text-accent transition-colors">Website Services</Link></li>
+                <li><Link href="/pricing#marketing" className="hover:text-accent transition-colors">Marketing Services</Link></li>
+                <li><Link href="/pricing#crm" className="hover:text-accent transition-colors">CRM & Lead Tracking</Link></li>
+                <li><Link href="/pricing#training" className="hover:text-accent transition-colors">Training & Implementation</Link></li>
+                <li><Link href="/pricing#ongoing" className="hover:text-accent transition-colors">Ongoing Support</Link></li>
                 <li><Link href="/playbooks" className="hover:text-accent transition-colors">Playbooks</Link></li>
                 <li><Link href="/training" className="hover:text-accent transition-colors">Training Programs</Link></li>
-                <li><Link href="/solutions#ways-to-work" className="hover:text-accent transition-colors">Guided Implementation</Link></li>
-                <li><Link href="/solutions#phases" className="hover:text-accent transition-colors">Full System Build</Link></li>
-                <li><Link href="/solutions" className="hover:text-accent transition-colors">All Solutions</Link></li>
+                <li><Link href="/solutions" className="hover:text-accent transition-colors">Solutions Framework</Link></li>
               </ul>
             </div>
 

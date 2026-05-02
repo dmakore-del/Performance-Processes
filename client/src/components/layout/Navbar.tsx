@@ -211,9 +211,25 @@ export function Navbar() {
       href: "/",
     },
     {
-      label: language === "en" ? "Solutions" : "Solutions",
+      label: language === "en" ? "Services" : "Services",
       children: [
-        { label: language === "en" ? "Solutions Overview" : "Aperçu des solutions", href: "/solutions" },
+        { label: language === "en" ? "All Services & Pricing" : "Services et tarifs", href: "/pricing" },
+        { label: language === "en" ? "Website Services" : "Sites web", href: "/pricing#websites" },
+        { label: language === "en" ? "Marketing Services" : "Marketing", href: "/pricing#marketing" },
+        { label: language === "en" ? "CRM & Lead Tracking" : "CRM et suivi des leads", href: "/pricing#crm" },
+        { label: language === "en" ? "Business Systems" : "Systèmes d'affaires", href: "/pricing#systems" },
+        { label: language === "en" ? "Training & Implementation" : "Formation et mise en œuvre", href: "/pricing#training" },
+        { label: language === "en" ? "Ongoing Support" : "Support continu", href: "/pricing#ongoing" },
+      ],
+    },
+    {
+      label: language === "en" ? "Pricing" : "Tarifs",
+      href: "/pricing",
+    },
+    {
+      label: language === "en" ? "Resources" : "Ressources",
+      children: [
+        { label: language === "en" ? "Solutions Framework" : "Cadre de solutions", href: "/solutions" },
         { label: "Playbooks", href: "/playbooks" },
         { label: language === "en" ? "Training Programs" : "Programmes de formation", href: "/training" },
         { label: language === "en" ? "Growth Assessment" : "Évaluation de croissance", href: "/assessment" },

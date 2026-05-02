@@ -1,0 +1,431 @@
+Please update the website to make our products and services more tangible, easier to understand, and clearly priced.
+
+The current positioning is too abstract for some visitors. We need to keep the broader “growth infrastructure” idea, but present it through clear, practical, productized services with set prices.
+
+Main objective:
+Visitors should immediately understand what we sell, what is included, how much it costs, and what the next step is.
+
+Positioning direction:
+Performance Processes helps small and emerging businesses build the websites, marketing systems, and business infrastructure they need to grow.
+
+Please make the website simpler, more product-focused, and price-transparent.
+
+1. Update main service structure
+
+Replace vague service descriptions with clear productized offers.
+
+Use the following primary categories:
+
+Website Services
+Marketing Services
+CRM and Lead Tracking
+Business Systems and Playbooks
+Training and Implementation Support
+Ongoing Growth Support
+
+Do not remove the Growth Infrastructure System language completely, but use it as supporting positioning, not the main thing visitors see first.
+
+2. Add clear productized services with prices
+
+Please add or update the services section to include the following offers.
+
+Website Services
+
+Starter Website Package
+Price: $1,500
+Best for: professionals, startups, small businesses needing a simple online presence
+Includes:
+
+* up to 5 pages
+* mobile responsive design
+* contact form
+* basic on-page SEO
+* homepage copy support
+* social media links
+* basic launch support
+
+Business Website Package
+Price: $2,500
+Best for: small businesses that need a stronger website to explain services and generate leads
+Includes:
+
+* up to 8 pages
+* mobile responsive design
+* service pages
+* contact/lead form
+* basic SEO setup
+* Google Business Profile link integration
+* analytics setup
+* basic website copy support
+
+Website Conversion Package
+Price: $3,500
+Best for: businesses that need a website designed to convert visitors into leads
+Includes:
+
+* up to 10 pages
+* landing page
+* lead capture form
+* conversion-focused page structure
+* call-to-action strategy
+* basic SEO setup
+* analytics setup
+* website copy support
+* launch support
+
+Marketing Services
+
+Marketing Starter Package
+Price: $1,500
+Best for: small businesses that need structure and clarity around their marketing
+Includes:
+
+* marketing audit
+* offer positioning review
+* target audience clarification
+* basic content direction
+* 30-day marketing action plan
+* recommended channels and next steps
+
+Social Media Setup Package
+Price: $1,200
+Best for: businesses that need a professional social media foundation
+Includes:
+
+* profile review and optimization
+* bio/about copy
+* branded content direction
+* content pillars
+* 10 starter post ideas
+* basic posting plan
+
+Campaign Setup Package
+Price: $2,500
+Best for: businesses preparing to launch a campaign or promote an offer
+Includes:
+
+* campaign strategy
+* audience definition
+* campaign messaging
+* landing page recommendation
+* email or DM outreach copy
+* 30-day campaign plan
+* KPI tracking recommendations
+
+Growth Engine Package
+Price: $5,000
+Best for: small businesses that need a complete basic lead generation setup
+Includes:
+
+* marketing strategy
+* landing page or funnel structure
+* lead capture setup
+* basic CRM or lead tracking setup
+* campaign messaging
+* 30-day execution plan
+* analytics and tracking setup
+
+CRM and Lead Tracking
+
+CRM Starter Setup
+Price: $1,500
+Best for: businesses that need to organize and track leads
+Includes:
+
+* basic CRM setup
+* pipeline stages
+* contact fields
+* lead source tracking
+* follow-up reminders
+* simple reporting setup
+
+Lead Tracking and Follow-Up System
+Price: $2,500
+Best for: businesses that need a more structured sales follow-up process
+Includes:
+
+* CRM setup
+* lead pipeline
+* follow-up workflow
+* email response templates
+* simple automation recommendations
+* reporting dashboard
+
+Business Systems and Playbooks
+
+Business System Audit
+Price: $750
+Best for: small businesses that need clarity on what is not working
+Includes:
+
+* review of current structure
+* review of website, marketing, process, and execution gaps
+* summary report
+* priority recommendations
+* suggested next steps
+
+Foundation Sprint
+Price: $3,500
+Best for: businesses that need structure before scaling
+Includes:
+
+* role clarity
+* basic org structure
+* KPI recommendations
+* process gap review
+* 90-day action plan
+
+Playbooks
+Price range: $149 to $299 each
+Bundle price range: $399 to $999
+Include:
+
+* hiring playbooks
+* website conversion playbooks
+* marketing playbooks
+* KPI and performance playbooks
+* SOP and process playbooks
+
+Training and Implementation Support
+
+Business System Foundations Training
+Price: $499 per person or $2,000 per team
+Includes:
+
+* structure, roles, KPIs, and process basics
+* practical worksheets
+* implementation steps
+
+Website and Marketing Training
+Price: $499 per person or $2,500 per team
+Includes:
+
+* website conversion basics
+* funnel structure
+* lead generation basics
+* content and campaign planning
+
+Execution and Performance Training
+Price: $499 per person or $2,500 per team
+Includes:
+
+* KPI tracking
+* accountability rhythms
+* weekly execution systems
+* performance review basics
+
+Team Implementation Workshop
+Price: $3,500 to $7,500
+Includes:
+
+* custom live workshop
+* team training
+* practical implementation support
+* templates and action plan
+
+Ongoing Growth Support
+
+Monthly Marketing Support
+Price: $1,500 per month
+Includes:
+
+* monthly marketing planning
+* content direction
+* campaign support
+* basic reporting
+* optimization recommendations
+
+Monthly Growth Support
+Price: $2,500 per month
+Includes:
+
+* marketing support
+* website improvement recommendations
+* lead tracking review
+* KPI review
+* monthly strategy call
+
+Growth Partner Retainer
+Price: $4,000 per month
+Includes:
+
+* marketing support
+* CRM and lead tracking review
+* website optimization support
+* KPI and performance review
+* process improvement support
+* monthly strategy and execution support
+
+3. Add bundled offers
+
+Please create a section titled:
+
+Popular Packages
+
+Include these bundles:
+
+Launch Package
+Price: $3,000
+Includes:
+
+* Starter Website Package
+* Social Media Setup Package
+* basic launch support
+
+Growth Starter Package
+Price: $5,000
+Includes:
+
+* Business Website Package
+* Marketing Starter Package
+* CRM Starter Setup
+
+Growth Engine Package
+Price: $7,500
+Includes:
+
+* Website Conversion Package
+* Campaign Setup Package
+* Lead Tracking and Follow-Up System
+
+Scale Support Package
+Price: $10,000
+Includes:
+
+* Foundation Sprint
+* Growth Engine Package components
+* 30-day implementation support
+
+4. Update homepage messaging
+
+The homepage should become clearer and more direct.
+
+Suggested hero headline:
+Websites, marketing systems, and business support for small and emerging businesses.
+
+Suggested subheadline:
+We help professionals, nonprofits, startups, and small businesses build the online presence, marketing structure, and systems they need to grow.
+
+Primary CTA:
+View Services and Pricing
+
+Secondary CTA:
+Book a Strategy Call
+
+5. Add a pricing page or pricing section
+
+Please create a clear pricing section or dedicated pricing page.
+
+The pricing page should include:
+
+* Website Services
+* Marketing Services
+* CRM and Lead Tracking
+* Business Systems and Playbooks
+* Training Programs
+* Ongoing Support
+* Popular Packages
+
+Each offer should show:
+
+* offer name
+* price
+* best-fit customer
+* what is included
+* CTA button
+
+Suggested CTA buttons:
+
+* Book a Strategy Call
+* Get Started
+* Request This Package
+
+6. Keep Growth Infrastructure System as the strategic framework
+
+The site should still explain that these products are part of a broader system.
+
+Suggested copy:
+Our services are designed to work together as growth infrastructure. Whether you start with a website, a marketing package, a CRM setup, or a business system audit, each offer is built to help your business attract leads, convert customers, and operate with more structure.
+
+7. Update navigation if needed
+
+Suggested navigation:
+
+* Home
+* Services
+* Pricing
+* Playbooks
+* Training
+* Assessment
+* About
+* Contact
+
+If dropdown navigation is used, Services can include:
+
+* Website Services
+* Marketing Services
+* CRM and Lead Tracking
+* Business Systems
+* Ongoing Support
+
+8. Update CTAs across the site
+
+Replace vague CTAs with specific ones.
+
+Use:
+
+* View Services and Pricing
+* Book a Strategy Call
+* Start with a Website
+* Explore Marketing Support
+* Take the Growth Infrastructure Assessment
+* View Playbooks
+
+Avoid:
+
+* Learn More
+* Discover Solutions
+* Transform Your Business
+
+9. Design and UX direction
+
+The site should feel simple, clear, and practical.
+
+Please use:
+
+* pricing cards
+* package comparison cards
+* clean sections
+* clear headings
+* short descriptions
+* visible CTA buttons
+* mobile-friendly layout
+
+Avoid making the site feel overly corporate or abstract.
+
+10. Preserve existing infrastructure
+
+Please preserve:
+
+* existing SEO value where possible
+* existing forms
+* existing checkout or payment links if any
+* existing URLs where practical
+* current branding
+
+Only update the structure, copy, service presentation, pricing visibility, and navigation where needed.
+
+11. Success criteria
+
+The updated site should make it clear within 10 seconds:
+
+* we serve small and emerging businesses
+* we build websites
+* we provide marketing support
+* we set up CRM and lead tracking
+* we offer business systems, playbooks, training, and ongoing support
+* prices are clear
+* visitors know what to do next
+
+End result:
+The website should present Performance Processes as a practical growth support firm for small and emerging businesses, with clear services, transparent pricing, and simple next steps.

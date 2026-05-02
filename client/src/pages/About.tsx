@@ -19,11 +19,11 @@ export default function About() {
 
   const timelineItems = [
     { year: "2023", title: "Performance Processes Founded", description: "Danai Makore launches Performance Processes with a vision to help organizations align strategy with measurable performance." },
-    { year: "2024", title: "Service Portfolio Launch", description: "Launching a comprehensive suite of consulting and recruiting services spanning strategic planning, talent acquisition, performance management, and governance advisory." },
-    { year: "2024–2025", title: "Building Multi-Industry Expertise", description: "Targeting engagements across government, nonprofit, healthcare, financial services, and technology sectors." },
-    { year: "2025", title: "National Expansion", description: "Growing our footprint beyond Toronto to serve organizations across Canada with deepening regional expertise." },
+    { year: "2024", title: "Service Portfolio Launch", description: "Launching foundational services in strategy, performance management, and operational support for a range of organizations." },
+    { year: "2024–2025", title: "Building Multi-Sector Experience", description: "Working with founders, nonprofits, and small businesses across Canada to design systems that drive growth." },
+    { year: "2025", title: "Productized Services for Small Businesses", description: "Reorienting around productized website, marketing, CRM, training, and systems support for small and emerging businesses." },
     { year: "2026", title: "Core Team Assembled", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory." },
-    { year: "2026+", title: "Scaling Impact", description: "Establishing Performance Processes as a leading Canadian consultancy with international reach." },
+    { year: "2026+", title: "NextUp Canada Partnership", description: "Partnering with NextUp Canada to make our productized services accessible to youth-owned businesses across the country." },
   ];
 
   const values = [

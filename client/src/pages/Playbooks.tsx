@@ -875,8 +875,8 @@ export default function Playbooks() {
               or want hands-on implementation support, let's talk.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/free-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary transition-all font-bold px-8 h-14 uppercase tracking-wider text-sm" data-testid="link-playbooks-audit">
-                Book a Strategy Call
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary transition-all font-bold px-8 h-14 uppercase tracking-wider text-sm" data-testid="link-playbooks-contact">
+                Get in Touch
                 <ArrowRight size={18} />
               </Link>
               <Link href="/solutions" className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 transition-all font-bold px-8 h-14 uppercase tracking-wider text-sm" data-testid="link-playbooks-services">

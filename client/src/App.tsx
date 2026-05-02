@@ -17,8 +17,7 @@ import Accessibility from "./pages/Accessibility";
 import Careers from "./pages/Careers";
 import News from "./pages/News";
 import Insights from "./pages/Insights";
-import WomensPerformanceGrant from "./pages/WomensPerformanceGrant";
-import FreeAudit from "./pages/FreeAudit";
+import NextUpPartnership from "./pages/NextUpPartnership";
 import Assessment from "./pages/Assessment";
 import Training from "./pages/Training";
 import Playbooks from "./pages/Playbooks";
@@ -26,7 +25,7 @@ import Consulting from "./pages/Consulting";
 import Recruiting from "./pages/Recruiting";
 import Marketing from "./pages/Marketing";
 import Solutions from "./pages/Solutions";
-import Pricing from "./pages/Pricing";
+import Services from "./pages/Services";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -66,8 +65,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/solutions" component={Solutions} />
-      <Route path="/pricing" component={Pricing} />
-      <Route path="/services">{() => <Redirect to="/pricing" />}</Route>
+      <Route path="/services" component={Services} />
       <Route path="/approach" component={Approach} />
       <Route path="/contact" component={Contact} />
       <Route path="/legal" component={Legal} />
@@ -76,14 +74,16 @@ function Router() {
       <Route path="/careers" component={Careers} />
       <Route path="/news" component={News} />
       <Route path="/insights" component={Insights} />
-      <Route path="/womens-performance-grant" component={WomensPerformanceGrant} />
-      <Route path="/free-audit" component={FreeAudit} />
+      <Route path="/nextup-partnership" component={NextUpPartnership} />
       <Route path="/playbooks" component={Playbooks} />
       <Route path="/assessment" component={Assessment} />
       <Route path="/training" component={Training} />
       <Route path="/consulting">{() => <Redirect to="/solutions" />}</Route>
       <Route path="/recruiting">{() => <Redirect to="/solutions" />}</Route>
       <Route path="/marketing">{() => <Redirect to="/solutions" />}</Route>
+      <Route path="/pricing">{() => <Redirect to="/services" />}</Route>
+      <Route path="/free-audit">{() => <Redirect to="/contact" />}</Route>
+      <Route path="/womens-performance-grant">{() => <Redirect to="/nextup-partnership" />}</Route>
 
       {/* Auth Routes */}
       <Route path="/portal/login" component={Login} />

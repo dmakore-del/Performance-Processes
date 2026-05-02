@@ -1924,7 +1924,7 @@ export default function Services() {
           </div>
         </section>
 
-        <section className="py-28 bg-[#F8FAFC]" data-testid="section-womens-grant">
+        <section className="py-28 bg-[#F8FAFC]" data-testid="section-nextup">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="bg-gradient-to-br from-accent/5 via-white to-accent/10 rounded-3xl border-2 border-accent/20 overflow-hidden shadow-lg">
@@ -1935,19 +1935,19 @@ export default function Services() {
                     </div>
                     <div>
                       <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-primary">
-                        {language === "en" ? "Women's Performance Grant" : "Bourse de performance pour les femmes"}
+                        {language === "en" ? "NextUp Canada Partnership" : "Partenariat NextUp Canada"}
                       </h2>
                     </div>
                   </div>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-3xl">
                     {language === "en"
-                      ? "We're offering 3 women-owned businesses a fully funded 3-month consulting engagement. If you're a woman founder building something meaningful, we want to support your growth."
-                      : "Nous offrons à 3 entreprises dirigées par des femmes un engagement de conseil de 3 mois entièrement financé."}
+                      ? "We've partnered with NextUp Canada to support youth-owned businesses. Canadian founders aged 18–29 connected to NextUp receive 40% off our productized services — websites, marketing, CRM, training, and ongoing support."
+                      : "Nous nous sommes associés à NextUp Canada pour soutenir les entreprises appartenant à des jeunes. Les fondateurs canadiens de 18 à 29 ans connectés à NextUp reçoivent 40 % de rabais sur nos services."}
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                     {(language === "en"
-                      ? [{ label: "Recipients", value: "3 businesses" }, { label: "Program length", value: "3 months" }, { label: "Deadline", value: "March 31" }]
-                      : [{ label: "Récipiendaires", value: "3 entreprises" }, { label: "Durée du programme", value: "3 mois" }, { label: "Date limite", value: "31 mars" }]
+                      ? [{ label: "Discount", value: "40% off" }, { label: "Eligible Founders", value: "Ages 18–29" }, { label: "Coverage", value: "Canada-wide" }]
+                      : [{ label: "Rabais", value: "40 % de rabais" }, { label: "Fondateurs éligibles", value: "18 à 29 ans" }, { label: "Couverture", value: "Pancanadien" }]
                     ).map((item, i) => (
                       <div key={i} className="bg-white rounded-2xl p-4 text-center border border-accent/10">
                         <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">{item.label}</div>
@@ -1955,9 +1955,9 @@ export default function Services() {
                       </div>
                     ))}
                   </div>
-                  <Link href="/womens-performance-grant">
-                    <Button className="rounded-full bg-accent text-white hover:bg-primary h-12 px-8 font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:scale-105" data-testid="button-grant-apply">
-                      {language === "en" ? "Learn More & Apply" : "En savoir plus et postuler"} <ArrowRight size={16} className="ml-2" />
+                  <Link href="/nextup-partnership">
+                    <Button className="rounded-full bg-accent text-white hover:bg-primary h-12 px-8 font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:scale-105" data-testid="button-nextup-learn">
+                      {language === "en" ? "Learn More" : "En savoir plus"} <ArrowRight size={16} className="ml-2" />
                     </Button>
                   </Link>
                 </div>

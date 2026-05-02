@@ -193,28 +193,6 @@ export async function sendContactConfirmation(recipientEmail: string, recipientN
   await sendEmail(recipientEmail, 'Thank you for contacting Performance Processes', html);
 }
 
-export async function sendGrantConfirmation(recipientEmail: string, recipientName: string, focusArea: string): Promise<void> {
-  const firstName = recipientName.split(' ')[0];
-  const html = emailWrapper(`
-    <h2 style="color: #1e3a5f; font-size: 20px; margin: 0 0 16px;">Women's Performance Grant — Application Received</h2>
-    <p style="color: #333; font-size: 14px; line-height: 1.7;">Hi ${firstName},</p>
-    <p style="color: #555; font-size: 14px; line-height: 1.7;">Thank you for applying to the Women's Performance Grant program. We've received your application and are excited to learn about your focus on <strong>${focusArea}</strong>.</p>
-    <p style="color: #555; font-size: 14px; line-height: 1.7;">Here's what happens next:</p>
-    <div style="background: #f8f9fa; border-radius: 8px; padding: 20px; margin: 16px 0;">
-      <p style="color: #333; font-size: 14px; margin: 0 0 8px;"><strong>1. Application Review</strong></p>
-      <p style="color: #555; font-size: 13px; line-height: 1.6; margin: 0 0 16px;">Our team will carefully review your application within 5–7 business days.</p>
-      <p style="color: #333; font-size: 14px; margin: 0 0 8px;"><strong>2. Shortlist Notification</strong></p>
-      <p style="color: #555; font-size: 13px; line-height: 1.6; margin: 0 0 16px;">If your application is shortlisted, we'll reach out to schedule a brief conversation.</p>
-      <p style="color: #333; font-size: 14px; margin: 0 0 8px;"><strong>3. Final Decision</strong></p>
-      <p style="color: #555; font-size: 13px; line-height: 1.6; margin: 0;">All applicants will be notified of the outcome regardless of the decision.</p>
-    </div>
-    <p style="color: #555; font-size: 14px; line-height: 1.7;">We're committed to supporting women who are building businesses, advancing careers, and leading teams. Your ambition and commitment are exactly what this program is designed for.</p>
-    <p style="color: #555; font-size: 14px; line-height: 1.7;">If you have any questions in the meantime, don't hesitate to reply to this email.</p>
-  `);
-
-  await sendEmail(recipientEmail, "Women's Performance Grant — Application Received", html);
-}
-
 export async function sendJobApplicationConfirmation(recipientEmail: string, firstName: string, lastName: string, position: string): Promise<void> {
   const html = emailWrapper(`
     <h2 style="color: #1e3a5f; font-size: 20px; margin: 0 0 16px;">Application Received — ${position}</h2>
@@ -242,8 +220,8 @@ export async function sendSubscriberWelcome(recipientEmail: string): Promise<voi
         <li>Case studies from real consulting engagements</li>
       </ul>
     </div>
-    <p style="color: #555; font-size: 14px; line-height: 1.7;">If you'd like to take the next step and identify specific areas for improvement, we offer a <strong>free Process & People Management Audit</strong>:</p>
-    ${ctaButton('Get Your Free Audit', 'https://www.performanceprocesses.com/free-audit')}
+    <p style="color: #555; font-size: 14px; line-height: 1.7;">When you're ready to discuss how we can support your business directly, book a complimentary strategy call:</p>
+    ${ctaButton('Book a Strategy Call', BOOKINGS_URL)}
     <p style="color: #555; font-size: 14px; line-height: 1.7;">We're glad to have you with us.</p>
   `);
 

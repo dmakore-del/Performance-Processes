@@ -85,11 +85,11 @@ const FAQ_DATA = [
   },
   {
     keywords: ["business registration", "register", "incorporate", "incorporation", "start a business", "new business", "register a company"],
-    answer: "Yes! We offer Business Registration services starting at $3,500. Our packages cover everything from basic incorporation and name search to full setup with governance documents, shareholder agreements, and compliance frameworks. Visit our Services page for details."
+    answer: "Yes! We offer support for new and emerging businesses, including foundational systems, branding, websites, and marketing setup. Visit our Services page for details, or book a discovery call to discuss what you need."
   },
   {
     keywords: ["price", "cost", "pricing", "how much", "fee", "rate", "payment", "pay"],
-    answer: "We have options for every budget: Personal Coaching from $100/mo, Small Business Growth from $500/mo, Self-Serve tools from $49, and Enterprise consulting from $750. Business Registration starts at $3,500, and Website & Digital Presence from $1,200. Visit our Services page for full package details."
+    answer: "We offer productized services with transparent pricing: Websites from $1,500, Marketing packages from $1,200, CRM setup from $1,500, Business System Audits from $750, Training from $499/seat, and monthly support retainers from $1,500/mo. Visit our Services page for full package details. Young Canadian founders connected to NextUp Canada get 40% off — see our NextUp Partnership page."
   },
   {
     keywords: ["contact", "email", "phone", "reach"],

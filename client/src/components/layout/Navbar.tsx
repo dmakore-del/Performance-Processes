@@ -213,22 +213,7 @@ export function Navbar() {
     {
       label: language === "en" ? "Services" : "Services",
       children: [
-        { label: language === "en" ? "All Services & Pricing" : "Services et tarifs", href: "/pricing" },
-        { label: language === "en" ? "Website Services" : "Sites web", href: "/pricing#websites" },
-        { label: language === "en" ? "Marketing Services" : "Marketing", href: "/pricing#marketing" },
-        { label: language === "en" ? "CRM & Lead Tracking" : "CRM et suivi des leads", href: "/pricing#crm" },
-        { label: language === "en" ? "Business Systems" : "Systèmes d'affaires", href: "/pricing#systems" },
-        { label: language === "en" ? "Training & Implementation" : "Formation et mise en œuvre", href: "/pricing#training" },
-        { label: language === "en" ? "Ongoing Support" : "Support continu", href: "/pricing#ongoing" },
-      ],
-    },
-    {
-      label: language === "en" ? "Pricing" : "Tarifs",
-      href: "/pricing",
-    },
-    {
-      label: language === "en" ? "Resources" : "Ressources",
-      children: [
+        { label: language === "en" ? "All Services" : "Tous les services", href: "/services" },
         { label: language === "en" ? "Solutions Framework" : "Cadre de solutions", href: "/solutions" },
         { label: "Playbooks", href: "/playbooks" },
         { label: language === "en" ? "Training Programs" : "Programmes de formation", href: "/training" },
@@ -248,8 +233,7 @@ export function Navbar() {
       label: language === "en" ? "Engage" : "Engager",
       children: [
         { label: t("nav.contact"), href: "/contact" },
-        { label: language === "en" ? "Free Growth Audit" : "Audit de croissance gratuit", href: "/free-audit" },
-        { label: language === "en" ? "Women's Performance Grant" : "Bourse de performance féminine", href: "/womens-performance-grant" },
+        { label: language === "en" ? "NextUp Youth Partnership" : "Partenariat jeunesse NextUp", href: "/nextup-partnership" },
         { label: language === "en" ? "Book a Strategy Call" : "Réserver un appel stratégique", href: BOOKINGS_URL, isExternal: true },
       ],
     },

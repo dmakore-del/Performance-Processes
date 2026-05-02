@@ -293,7 +293,7 @@ export function generatePlaybookPDF(productName: string, customerName: string): 
         60, doc.y, { width: doc.page.width - 120, align: 'center' }
       );
       doc.moveDown(2);
-      doc.fontSize(12).fillColor(pink).text('Book a Free Audit', 60, doc.y, { width: doc.page.width - 120, align: 'center', link: 'https://www.performanceprocesses.com/free-audit' });
+      doc.fontSize(12).fillColor(pink).text('Book a Strategy Call', 60, doc.y, { width: doc.page.width - 120, align: 'center', link: 'https://www.performanceprocesses.com/contact' });
       doc.moveDown(1);
       doc.fontSize(11).fillColor('#ffffff').opacity(0.7).text('www.performanceprocesses.com', 60, doc.y, { width: doc.page.width - 120, align: 'center' });
       doc.text('contact@performanceprocesses.com', { align: 'center' });
@@ -352,7 +352,7 @@ export async function sendPlaybookDeliveryEmail(options: PlaybookDeliveryOptions
         <div style="background: #fdf2f8; border-radius: 8px; padding: 20px; margin: 20px 0;">
           <p style="font-weight: bold; color: #1e3a5f; margin: 0 0 8px;">Need hands-on support?</p>
           <p style="color: #555; margin: 0 0 12px; font-size: 14px;">Our consulting team can help you implement these frameworks with your organization.</p>
-          <a href="https://www.performanceprocesses.com/free-audit" style="display: inline-block; background: #ec4899; color: #ffffff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13px;">Book a Free Audit</a>
+          <a href="https://www.performanceprocesses.com/contact" style="display: inline-block; background: #ec4899; color: #ffffff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13px;">Book a Strategy Call</a>
         </div>
         <p style="color: #555; line-height: 1.6;">If you have any questions, reply to this email or reach out at <a href="mailto:contact@performanceprocesses.com" style="color: #1e3a5f;">contact@performanceprocesses.com</a>.</p>
         <p style="color: #333; margin-top: 25px;">Best regards,<br><strong>Danai Makore</strong><br><span style="color: #666; font-size: 13px;">Founder & Principal Consultant</span></p>

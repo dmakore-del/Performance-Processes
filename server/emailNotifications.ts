@@ -65,11 +65,8 @@ function row(label: string, value: string): string {
 }
 
 export async function notifyContactForm(data: { name: string; email: string; message: string }) {
-  const isGrant = data.message.includes('[WOMEN\'S PERFORMANCE GRANT APPLICATION]');
-  const subject = isGrant
-    ? `New Grant Application — ${data.name}`
-    : `New Contact Form Submission — ${data.name}`;
-  const title = isGrant ? 'Grant Application Received' : 'Contact Form Submission';
+  const subject = `New Contact Form Submission — ${data.name}`;
+  const title = 'Contact Form Submission';
 
   const messageHtml = data.message.replace(/\n/g, '<br>');
   const content = `

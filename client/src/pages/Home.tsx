@@ -169,11 +169,11 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
                 <Link
-                  href="/pricing"
+                  href="/services"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105"
-                  data-testid="link-hero-pricing"
+                  data-testid="link-hero-services"
                 >
-                  View Services and Pricing
+                  Browse Our Services
                   <ArrowRight size={16} />
                 </Link>
                 <a

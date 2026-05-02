@@ -36,14 +36,29 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://performanceprocesses.com/free-audit</loc>
+    <loc>https://performanceprocesses.com/solutions</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://performanceprocesses.com/playbooks</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://performanceprocesses.com/womens-performance-grant</loc>
+    <loc>https://performanceprocesses.com/training</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://performanceprocesses.com/assessment</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://performanceprocesses.com/nextup-partnership</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://performanceprocesses.com/news</loc>

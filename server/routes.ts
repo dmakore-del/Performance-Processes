@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema, insertEngagementSchema, insertMilestoneSchema, insertDocumentSchema, insertActionItemSchema, insertMeetingSchema, insertMessageSchema, insertResourceSchema, insertInvoiceSchema, insertContractSchema, insertPerformanceKpiSchema, insertGrantApplicationSchema } from "@shared/schema";
+import { insertContactSchema, insertEngagementSchema, insertMilestoneSchema, insertDocumentSchema, insertActionItemSchema, insertMeetingSchema, insertMessageSchema, insertResourceSchema, insertInvoiceSchema, insertContractSchema, insertPerformanceKpiSchema } from "@shared/schema";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
@@ -271,8 +271,8 @@ export async function registerRoutes(
         return res.status(400).json({ message: "Price ID is required" });
       }
 
-      const allowedReturnPages = ["/consulting", "/recruiting", "/playbooks", "/services", "/marketing", "/solutions", "/pricing"];
-      const returnPage = allowedReturnPages.includes(req.body.returnPage) ? req.body.returnPage : "/pricing";
+      const allowedReturnPages = ["/consulting", "/recruiting", "/playbooks", "/services", "/marketing", "/solutions"];
+      const returnPage = allowedReturnPages.includes(req.body.returnPage) ? req.body.returnPage : "/services";
 
       const stripe = await getUncachableStripeClient();
 
@@ -543,64 +543,6 @@ export async function registerRoutes(
     } catch (error) {
       console.error("Admin applications error:", error);
       res.status(500).json({ message: "Failed to fetch job applications" });
-    }
-  });
-
-  app.post("/api/grant-applications", async (req, res) => {
-    try {
-      const parsed = insertGrantApplicationSchema.safeParse(req.body);
-      if (!parsed.success) {
-        return res.status(400).json({ message: "Invalid application data", errors: parsed.error.errors });
-      }
-      const application = await storage.createGrantApplication(parsed.data);
-
-      try {
-        const { notifyContactForm } = await import('./emailNotifications');
-        await notifyContactForm({
-          name: parsed.data.fullName,
-          email: parsed.data.email,
-          message: `[WOMEN'S PERFORMANCE GRANT APPLICATION]\n\nFocus Area: ${parsed.data.focusArea}\nOccupation: ${parsed.data.occupation}\nIndustry: ${parsed.data.industry}\nCity: ${parsed.data.city}, ${parsed.data.province}\nYears Experience: ${parsed.data.yearsExperience}\nGoals: ${parsed.data.goals}\nChallenges: ${parsed.data.challenges}\n\nLog in to the admin portal to review the full application.`
-        });
-      } catch (emailErr) {
-        console.error("Grant notification email failed:", emailErr);
-      }
-
-      try {
-        const { sendGrantConfirmation } = await import('./leadNurtureEmails');
-        await sendGrantConfirmation(parsed.data.email, parsed.data.fullName, parsed.data.focusArea);
-      } catch (confirmErr) {
-        console.error("Grant confirmation email failed:", confirmErr);
-      }
-
-      res.status(201).json(application);
-    } catch (error) {
-      console.error("Grant application error:", error);
-      res.status(500).json({ message: "Failed to submit grant application" });
-    }
-  });
-
-  app.get("/api/admin/grant-applications", requireAdmin, async (_req, res) => {
-    try {
-      const applications = await storage.getGrantApplications();
-      res.json(applications);
-    } catch (error) {
-      console.error("Admin grant applications error:", error);
-      res.status(500).json({ message: "Failed to fetch grant applications" });
-    }
-  });
-
-  app.patch("/api/admin/grant-applications/:id/status", requireAdmin, async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      const { status } = req.body;
-      if (!status || !["new", "reviewing", "shortlisted", "accepted", "declined"].includes(status)) {
-        return res.status(400).json({ message: "Invalid status" });
-      }
-      const application = await storage.updateGrantApplicationStatus(id, status);
-      res.json(application);
-    } catch (error) {
-      console.error("Grant status update error:", error);
-      res.status(500).json({ message: "Failed to update grant application status" });
     }
   });
 

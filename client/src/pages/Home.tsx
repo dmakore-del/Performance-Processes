@@ -1,117 +1,123 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import {
-  ArrowRight,
-  ArrowDown,
-  X as XIcon,
-} from "lucide-react";
+import { ArrowRight, ArrowDown, X as XIcon } from "lucide-react";
 import { Link } from "wouter";
-import { useState, useEffect, useRef } from "react";
-import { useLanguage } from "@/hooks/use-language";
-import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/components/ui/animate-on-scroll";
+import { AnimateOnScroll, FloatingShape, GradientOrb } from "@/components/ui/animate-on-scroll";
 import { SEOHead } from "@/components/SEOHead";
 
 import communityCollaborationImg from "@assets/generated/community-collaboration.png";
 import handsPartnershipImg from "@assets/generated/hands-together-partnership.png";
 import communityWorkspaceImg from "@assets/generated/community-workspace.png";
-import mentorshipConnectionImg from "@assets/generated/mentorship-connection.png";
 import communityNetworkImg from "@assets/generated/community-network-abstract.png";
-import empoweredOwnerImg from "@assets/generated/empowered-business-owner.png";
 import communityTownhallImg from "@assets/generated/community-townhall.png";
 import milestoneImg from "@assets/generated/milestone-celebration.png";
-import growthSeedlingImg from "@assets/generated/growth-seedling.png";
 import teamMovingForwardImg from "@assets/generated/team-moving-forward.png";
-import heroAbstractImg from "@assets/generated/hero-abstract-new.png";
-import geoPatternImg from "@assets/generated/geo-pattern-new.png";
+import cityAerialImg from "@assets/generated/city-aerial-new.png";
+import processFlowImg from "@assets/generated/process-flow-abstract.png";
 
-const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+const BOOKINGS_URL =
+  "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+
+const ROTATING_WORDS = ["build.", "launch.", "scale.", "grow.", "build."];
+
+const MARQUEE_ITEMS = [
+  "Websites",
+  "Marketing Systems",
+  "CRM",
+  "Hiring & HR",
+  "Playbooks",
+  "Brand & Content",
+  "Operations",
+  "Growth Infrastructure",
+];
+
+const CAPABILITIES = [
+  {
+    label: "01 — Web",
+    title: "Websites that earn attention.",
+    desc: "Editorial design, fast performance, and conversion-ready architecture for professionals, nonprofits, and growing brands.",
+    image: cityAerialImg,
+    href: "/services#cat-website",
+  },
+  {
+    label: "02 — Marketing",
+    title: "Demand systems, not random posts.",
+    desc: "Brand, content, paid, and lifecycle marketing built into a system that compounds.",
+    image: communityCollaborationImg,
+    href: "/services#cat-marketing",
+  },
+  {
+    label: "03 — CRM & Operations",
+    title: "Infrastructure that runs the business.",
+    desc: "CRM, automation, SOPs, and operating cadence that turn chaos into a clear scoreboard.",
+    image: processFlowImg,
+    href: "/services#cat-crm",
+  },
+  {
+    label: "04 — Talent & Training",
+    title: "Hiring, onboarding, performance.",
+    desc: "From job descriptions to KPI scorecards, install the people systems your scale-up needs.",
+    image: communityTownhallImg,
+    href: "/services#cat-training",
+  },
+];
+
+const PHASES = [
+  {
+    step: "01",
+    label: "Foundation",
+    image: communityTownhallImg,
+    items: [
+      "Define roles and responsibilities",
+      "Build team structure",
+      "Set up core processes",
+      "Create operational playbooks",
+      "Clarify KPIs and targets",
+    ],
+  },
+  {
+    step: "02",
+    label: "Build",
+    image: communityWorkspaceImg,
+    items: [
+      "Recruit key hires",
+      "Implement HR and operating systems",
+      "Support marketing execution",
+      "Build or improve website assets",
+      "Activate growth infrastructure",
+    ],
+  },
+  {
+    step: "03",
+    label: "Run",
+    image: milestoneImg,
+    items: [
+      "Ongoing optimization",
+      "Performance tracking",
+      "Hiring support as you scale",
+      "Process refinement",
+      "Strategic advisory and support",
+    ],
+  },
+];
+
+const BEFORE_ITEMS = [
+  "Disorganized growth",
+  "Hiring gaps and misaligned roles",
+  "No clear systems or processes",
+  "Inconsistent execution",
+  "Weak accountability",
+];
+
+const AFTER_ITEMS = [
+  "Clear team structure",
+  "Better hiring, faster onboarding",
+  "Defined processes and playbooks",
+  "Stronger, more consistent execution",
+  "Scalable growth systems",
+];
 
 export default function Home() {
-  const { t, language } = useLanguage();
-
-  const systemComponents = [
-    {
-      title: "Talent Acquisition System",
-      desc: "We build the team structure required to scale, finding and placing the right people.",
-      href: "/solutions",
-    },
-    {
-      title: "People & Performance System",
-      desc: "We implement performance systems that improve execution and accountability.",
-      href: "/solutions",
-    },
-    {
-      title: "Demand Generation System",
-      desc: "We install systems that attract and convert customers through strategy and campaigns.",
-      href: "/solutions",
-    },
-    {
-      title: "Conversion System",
-      desc: "We design digital infrastructure that turns visitors into leads and leads into clients.",
-      href: "/solutions",
-    },
-    {
-      title: "Execution Systems",
-      desc: "Practical tools, templates, and frameworks built from real execution.",
-      href: "/playbooks",
-    },
-  ];
-
-  const phases = [
-    {
-      step: "01",
-      label: "Foundation",
-      image: communityTownhallImg,
-      items: [
-        "Define roles and responsibilities",
-        "Build team structure",
-        "Set up core processes",
-        "Create operational playbooks",
-        "Clarify KPIs and targets",
-      ],
-    },
-    {
-      step: "02",
-      label: "Build",
-      image: communityWorkspaceImg,
-      items: [
-        "Recruit key hires",
-        "Implement HR and operating systems",
-        "Support marketing execution",
-        "Build or improve website assets",
-        "Activate growth infrastructure",
-      ],
-    },
-    {
-      step: "03",
-      label: "Run",
-      image: milestoneImg,
-      items: [
-        "Ongoing optimization",
-        "Performance tracking",
-        "Hiring support as you scale",
-        "Process refinement",
-        "Strategic advisory and support",
-      ],
-    },
-  ];
-
-  const beforeItems = [
-    "Disorganized growth",
-    "Hiring gaps and misaligned roles",
-    "No clear systems or processes",
-    "Inconsistent execution",
-    "Weak accountability",
-  ];
-
-  const afterItems = [
-    "Clear team structure",
-    "Better hiring, faster onboarding",
-    "Defined processes and playbooks",
-    "Stronger, more consistent execution",
-    "Scalable growth systems",
-  ];
-
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
       <SEOHead
@@ -122,8 +128,13 @@ export default function Home() {
       <Navbar />
 
       <main className="flex-grow">
-
-        <section className="relative min-h-[700px] lg:min-h-[800px] flex items-center overflow-hidden bg-primary" data-testid="section-hero">
+        {/* ————————————————————————————————————————————————————————————
+            HERO — full-bleed cinematic video, editorial type, rotating verb
+        —————————————————————————————————————————————————————————————— */}
+        <section
+          className="relative min-h-[100svh] flex flex-col justify-end overflow-hidden bg-primary"
+          data-testid="section-hero"
+        >
           <div className="absolute inset-0 z-0">
             <video
               autoPlay
@@ -135,107 +146,270 @@ export default function Home() {
             >
               <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-primary/75" />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary/50" />
+            {/* Cinematic gradient — dark at top + bottom for legibility, video shines in middle */}
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/85 via-primary/40 to-primary/95" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(236,72,153,0.18),transparent_55%)]" />
+            <div className="grain-overlay" />
           </div>
-          <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
-            <div className="max-w-2xl lg:max-w-[55%]">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.2s" }} data-testid="text-hero-title">
-                Websites, marketing systems, and business support for <span className="text-accent">small and emerging businesses.</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-xl animate-fade-in-up" style={{ animationDelay: "0.35s" }} data-testid="text-hero-subtitle">
-                We help professionals, nonprofits, startups, and small businesses build the online presence, marketing structure, and systems they need to grow.
+
+          {/* Top meta row */}
+          <div className="absolute top-24 md:top-28 left-0 right-0 z-10 pointer-events-none">
+            <div className="container mx-auto px-4 md:px-8 flex items-center justify-between text-white/60 text-[10px] md:text-[11px] uppercase tracking-[0.3em] font-bold">
+              <span data-testid="text-hero-meta-location">Barrie · Ontario · Canada</span>
+              <span className="hidden md:inline-flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-accent animate-pulse-soft" />
+                <span data-testid="text-hero-meta-status">Now booking — 2026 engagements</span>
+              </span>
+            </div>
+          </div>
+
+          {/* Headline block */}
+          <div className="container mx-auto px-4 md:px-8 pt-44 md:pt-48 pb-16 md:pb-24 relative z-10">
+            <p
+              className="text-[11px] md:text-xs font-black uppercase tracking-[0.4em] text-accent mb-6 md:mb-8 animate-fade-in-up"
+              style={{ animationDelay: "0.1s" }}
+              data-testid="text-hero-eyebrow"
+            >
+              A growth infrastructure studio
+            </p>
+
+            <h1
+              className="text-display text-white text-[12vw] md:text-[8vw] lg:text-[6.8vw] xl:text-[6.5rem] mb-10 max-w-[1400px]"
+              data-testid="text-hero-title"
+            >
+              <span className="line-clip">
+                <span className="animate-line-rise" style={{ animationDelay: "0.2s" }}>
+                  We help businesses
+                </span>
+              </span>
+              <span className="line-clip">
+                <span className="animate-line-rise" style={{ animationDelay: "0.35s" }}>
+                  <span className="text-display-italic text-accent">scale</span>{" "}
+                  <span className="text-white/90">with the systems they </span>
+                </span>
+              </span>
+              <span className="line-clip">
+                <span className="animate-line-rise inline-flex items-baseline gap-3" style={{ animationDelay: "0.5s" }}>
+                  <span className="text-white/90">need to</span>
+                  <span
+                    className="relative inline-block overflow-hidden align-baseline"
+                    style={{ height: "0.95em", lineHeight: "0.95em" }}
+                    aria-hidden="true"
+                  >
+                    <span className="block animate-word-rotate text-accent">
+                      {ROTATING_WORDS.map((w, i) => (
+                        <span key={i} className="block" style={{ height: "0.95em", lineHeight: "0.95em" }}>
+                          {w}
+                        </span>
+                      ))}
+                    </span>
+                  </span>
+                  <span className="sr-only">build, launch, scale, grow.</span>
+                </span>
+              </span>
+            </h1>
+
+            <div
+              className="flex flex-col md:flex-row md:items-end justify-between gap-8 max-w-6xl animate-fade-in-up"
+              style={{ animationDelay: "0.7s" }}
+            >
+              <p
+                className="text-lg md:text-xl text-white/70 leading-relaxed max-w-xl"
+                data-testid="text-hero-subtitle"
+              >
+                Websites, marketing, CRM, hiring, and operating systems — installed as one growth infrastructure for professionals, nonprofits, and small businesses.
               </p>
-              <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+              <div className="flex flex-wrap gap-3 shrink-0">
                 <Link
                   href="/pricing"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30"
                   data-testid="link-hero-services"
                 >
-                  View Services and Pricing
+                  See services & pricing
                   <ArrowRight size={16} />
                 </Link>
                 <a
                   href={BOOKINGS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 text-white hover:bg-white/10 h-14 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300"
                   data-testid="link-hero-book"
                 >
-                  Book a Strategy Call
+                  Book a strategy call
                 </a>
               </div>
             </div>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
+
+          {/* Bottom rule + scroll cue */}
+          <div className="relative z-10 border-t border-white/15">
+            <div className="container mx-auto px-4 md:px-8 py-5 flex items-center justify-between text-white/60 text-[11px] uppercase tracking-[0.3em] font-bold">
+              <span className="inline-flex items-center gap-3">
+                <ArrowDown size={14} className="animate-float" />
+                Scroll
+              </span>
+              <span data-testid="text-hero-meta-since" className="hidden md:inline">
+                Performance Processes — est. infrastructure for scale
+              </span>
+            </div>
+          </div>
         </section>
 
-        <section className="py-8 bg-white border-b" data-testid="section-trusted-by">
+        {/* ————————————————————————————————————————————————————————————
+            MARQUEE TICKER — capability strip
+        —————————————————————————————————————————————————————————————— */}
+        <section className="bg-primary border-y border-white/10 py-6 overflow-hidden" data-testid="section-marquee">
+          <div className="flex animate-marquee-slow whitespace-nowrap text-white">
+            {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
+              <span
+                key={i}
+                className="text-2xl md:text-4xl font-heading font-extrabold tracking-tight marquee-dot inline-flex items-center"
+                data-testid={`marquee-item-${i}`}
+              >
+                {i % 3 === 1 ? <span className="text-display-italic text-accent">{item}</span> : item}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        {/* ————————————————————————————————————————————————————————————
+            TRUSTED BY — minimal clean strip
+        —————————————————————————————————————————————————————————————— */}
+        <section className="py-10 bg-white border-b" data-testid="section-trusted-by">
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/60 shrink-0">
-                Trusted By
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground/60 shrink-0">
+                Trusted by
               </span>
               <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
-                <div className="flex items-center gap-2 text-primary/70 hover:text-primary transition-colors" data-testid="logo-nextup">
-                  <span className="text-sm font-bold tracking-wide">NextUp Canada</span>
-                </div>
-                <div className="w-px h-6 bg-border hidden md:block"></div>
-                <div className="flex items-center gap-2 text-primary/70 hover:text-primary transition-colors" data-testid="logo-truenorth">
-                  <span className="text-sm font-bold tracking-wide">TrueNorth Property & Facilities</span>
-                </div>
+                <span className="text-sm font-bold tracking-wide text-primary/70" data-testid="logo-nextup">
+                  NextUp Canada
+                </span>
+                <span className="hidden md:block w-px h-6 bg-border" />
+                <span className="text-sm font-bold tracking-wide text-primary/70" data-testid="logo-truenorth">
+                  TrueNorth Property &amp; Facilities
+                </span>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-28 bg-white relative overflow-hidden" data-testid="section-unified-offer">
-          <GeometricAccent className="top-20 -right-10 text-primary" />
-          <GradientOrb className="w-80 h-80 bg-accent/5 -bottom-40 -left-40" />
-          <div className="container mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-              <AnimateOnScroll animation="fade-left">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Our Approach</p>
-                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                  More than services. A system for scale.
+        {/* ————————————————————————————————————————————————————————————
+            MANIFESTO — oversized editorial type on white
+        —————————————————————————————————————————————————————————————— */}
+        <section className="relative py-32 md:py-44 bg-white overflow-hidden" data-testid="section-manifesto">
+          <GradientOrb className="w-[40rem] h-[40rem] bg-accent/5 -top-40 -right-40" />
+          <GradientOrb className="w-[28rem] h-[28rem] bg-primary/5 -bottom-32 -left-20" />
+          <div className="container mx-auto px-4 md:px-8 relative">
+            <AnimateOnScroll>
+              <p className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-10" data-testid="text-manifesto-eyebrow">
+                Our point of view
+              </p>
+            </AnimateOnScroll>
+            <AnimateOnScroll delay={120}>
+              <h2
+                className="text-display text-primary text-[10vw] md:text-[7vw] lg:text-[5.6vw] xl:text-[5.5rem] max-w-[1400px]"
+                data-testid="text-manifesto-headline"
+              >
+                Most firms sell hours.{" "}
+                <span className="text-display-italic text-accent">We install</span> infrastructure that compounds — long after the engagement ends.
+              </h2>
+            </AnimateOnScroll>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-20 max-w-6xl">
+              {[
+                {
+                  k: "One system",
+                  v: "People, marketing, web, CRM, and ops — integrated, not stitched together.",
+                },
+                {
+                  k: "Built to run",
+                  v: "We don't just advise. We design, build, and operate the systems with you.",
+                },
+                {
+                  k: "Compounds over time",
+                  v: "Every engagement leaves behind playbooks, pipelines, and infrastructure you keep.",
+                },
+              ].map((p, i) => (
+                <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
+                  <div data-testid={`manifesto-pillar-${i}`}>
+                    <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-3">{p.k}</p>
+                    <p className="text-lg text-muted-foreground leading-relaxed">{p.v}</p>
+                  </div>
+                </AnimateOnScroll>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ————————————————————————————————————————————————————————————
+            CAPABILITIES — asymmetric image-dominant grid
+        —————————————————————————————————————————————————————————————— */}
+        <section className="relative py-28 bg-[#0A1430] overflow-hidden" data-testid="section-capabilities">
+          <div className="grain-overlay" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(236,72,153,0.12),transparent_55%)]" />
+
+          <div className="container mx-auto px-4 md:px-8 relative">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+              <AnimateOnScroll>
+                <p className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-6">Capabilities</p>
+                <h2 className="text-display text-white text-5xl md:text-6xl lg:text-7xl max-w-3xl">
+                  Four practices.{" "}
+                  <span className="text-display-italic text-accent">One</span> integrated growth engine.
                 </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Most firms offer one piece of the puzzle. We integrate hiring, HR, marketing support, web presence, and playbooks into one execution system designed to help your business grow.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  When you work with Performance Processes, you're not hiring a firm for a project. You're installing growth infrastructure that compounds over time.
-                </p>
               </AnimateOnScroll>
-              <AnimateOnScroll animation="fade-right" delay={200}>
-                <div className="relative">
-                  <div className="rounded-3xl overflow-hidden shadow-2xl shadow-primary/10">
-                    <img src={teamMovingForwardImg} alt="Building growth infrastructure" className="w-full h-auto aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  <FloatingShape className="w-20 h-20 -top-5 -right-5 z-[-1]" variant="square" />
-                  <FloatingShape className="w-12 h-12 -bottom-3 right-10 z-[-1]" variant="ring" />
-                  <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-5 border border-border max-w-[220px] hidden md:block animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-                    <p className="text-sm font-bold text-primary mb-1">One System</p>
-                    <p className="text-xs text-muted-foreground">People, processes, and growth, integrated into one infrastructure</p>
-                  </div>
-                </div>
+              <AnimateOnScroll delay={150}>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-2 text-white hover:text-accent transition-colors text-sm font-bold uppercase tracking-[0.2em] group"
+                  data-testid="link-capabilities-all"
+                >
+                  All capabilities
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
               </AnimateOnScroll>
             </div>
 
-            <AnimateOnScroll className="text-center mb-14">
-              <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-4">Our Growth Infrastructure System</h3>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                Everything your business needs to scale, delivered as one integrated system.
-              </p>
-            </AnimateOnScroll>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {CAPABILITIES.map((c, i) => (
+                <AnimateOnScroll
+                  key={i}
+                  animation="fade-up"
+                  delay={i * 120}
+                  className={i % 3 === 0 ? "md:row-span-1" : ""}
+                >
+                  <Link href={c.href} className="block group" data-testid={`link-capability-${i}`}>
+                    <div
+                      className={`relative overflow-hidden rounded-3xl ${
+                        i === 0 || i === 3 ? "aspect-[16/11]" : "aspect-[16/10]"
+                      }`}
+                      data-testid={`capability-card-${i}`}
+                    >
+                      <img
+                        src={c.image}
+                        alt={c.title}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent" />
+                      <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors duration-500" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {systemComponents.map((item, i) => (
-                <AnimateOnScroll key={i} animation="fade-up" delay={i * 80}>
-                  <Link href={item.href} className="block h-full group" data-testid={`link-system-${i}`}>
-                    <div className="relative p-7 rounded-2xl border border-border bg-white hover:shadow-xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 overflow-hidden h-full" data-testid={`system-card-${i}`}>
-                      <div className="absolute top-0 left-0 w-1 h-full bg-accent/0 group-hover:bg-accent transition-all duration-300" />
-                      <h4 className="text-base font-bold text-primary mb-1.5 group-hover:text-accent transition-colors">{item.title}</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                      <div className="absolute top-6 left-6 right-6 flex items-center justify-between">
+                        <span className="text-[11px] font-black uppercase tracking-[0.3em] text-accent">
+                          {c.label}
+                        </span>
+                        <span className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white group-hover:bg-accent group-hover:border-accent transition-all">
+                          <ArrowRight size={16} />
+                        </span>
+                      </div>
+
+                      <div className="absolute bottom-6 left-6 right-6 md:right-12">
+                        <h3 className="text-display text-white text-3xl md:text-4xl lg:text-5xl mb-3">
+                          {c.title}
+                        </h3>
+                        <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-md opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500">
+                          {c.desc}
+                        </p>
+                      </div>
                     </div>
                   </Link>
                 </AnimateOnScroll>
@@ -244,43 +418,162 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="how-it-works" className="py-28 bg-[#F8FAFC] relative overflow-hidden" data-testid="section-how-it-works">
-          <FloatingShape className="w-24 h-24 top-20 -left-8" variant="ring" />
-          <FloatingShape className="w-10 h-10 top-40 right-20" variant="dot" />
+        {/* ————————————————————————————————————————————————————————————
+            STATS — editorial big numerals
+        —————————————————————————————————————————————————————————————— */}
+        <section className="relative py-28 bg-white overflow-hidden" data-testid="section-stats">
           <div className="container mx-auto px-4 md:px-8">
-            <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">How It Works</p>
-              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                Three phases to scalable growth
+            <AnimateOnScroll className="max-w-3xl mb-16">
+              <p className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-6">By the numbers</p>
+              <h2 className="text-display text-primary text-4xl md:text-5xl lg:text-6xl">
+                The difference you{" "}
+                <span className="text-display-italic text-accent">feel</span> when systems do the work.
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                We don't just advise. We build and run the infrastructure your business needs, one phase at a time.
-              </p>
             </AnimateOnScroll>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto relative">
-              <div className="hidden lg:block absolute top-[140px] left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent z-0" />
-              {phases.map((phase, i) => (
-                <AnimateOnScroll key={i} animation="fade-up" delay={i * 150}>
-                  <div className="relative z-10 group" data-testid={`phase-${i}`}>
-                    <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden mb-6 shadow-lg">
-                      <img src={phase.image} alt={phase.label} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-primary/10" />
-                      <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-accent flex items-center justify-center text-white text-sm font-black shadow-lg shadow-accent/30">
-                        {phase.step}
-                      </div>
-                      <div className="absolute bottom-4 left-4">
-                        <p className="text-white text-xl font-bold">Phase {i + 1}: {phase.label}</p>
-                      </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-6 border-t border-border pt-14">
+              {[
+                { n: "97%", l: "Of clients feel more confident in their operations" },
+                { n: "6+", l: "Industries served across Canada" },
+                { n: "3", l: "Phases — Foundation, Build, Run" },
+                { n: "∞", l: "Lasting infrastructure that compounds" },
+              ].map((s, i) => (
+                <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
+                  <div data-testid={`stat-${i}`}>
+                    <p className="text-display text-primary text-6xl md:text-7xl lg:text-8xl mb-4">
+                      {s.n}
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed max-w-[200px]">{s.l}</p>
+                  </div>
+                </AnimateOnScroll>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ————————————————————————————————————————————————————————————
+            BEFORE / AFTER — kept content, refreshed visual
+        —————————————————————————————————————————————————————————————— */}
+        <section className="py-28 bg-primary relative overflow-hidden" data-testid="section-transformation">
+          <div className="absolute inset-0">
+            <img src={handsPartnershipImg} alt="" className="w-full h-full object-cover opacity-15 animate-ken-burns" />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/80 to-primary/95" />
+          </div>
+          <div className="grain-overlay" />
+          <FloatingShape className="w-16 h-16 top-20 right-[15%]" variant="ring" />
+          <FloatingShape className="w-8 h-8 bottom-32 left-[10%]" variant="dot" />
+
+          <div className="container mx-auto px-4 md:px-8 relative z-10">
+            <AnimateOnScroll className="max-w-3xl mb-16">
+              <p className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-6">The transformation</p>
+              <h2 className="text-display text-white text-4xl md:text-5xl lg:text-6xl">
+                From scattered to{" "}
+                <span className="text-display-italic text-accent">scalable</span>.
+              </h2>
+            </AnimateOnScroll>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <AnimateOnScroll animation="fade-left">
+                <div className="bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 p-10" data-testid="card-before">
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center">
+                      <XIcon size={20} className="text-red-400" />
                     </div>
-                    <ul className="space-y-3 px-1">
-                      {phase.items.map((item, j) => (
-                        <li key={j} className="flex items-start gap-3">
-                          <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
-                          <span className="text-sm text-muted-foreground font-medium">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <h3 className="text-2xl font-heading font-extrabold text-white">Before</h3>
+                  </div>
+                  <ul className="space-y-4">
+                    {BEFORE_ITEMS.map((item, i) => (
+                      <li key={i} className="flex items-center gap-3 text-lg" data-testid={`before-item-${i}`}>
+                        <div className="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
+                        <span className="text-white/70 font-medium">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimateOnScroll>
+
+              <AnimateOnScroll animation="fade-right" delay={150}>
+                <div className="bg-accent/15 backdrop-blur-sm rounded-3xl border border-accent/30 p-10" data-testid="card-after">
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
+                      <ArrowRight size={20} className="text-white" />
+                    </div>
+                    <h3 className="text-2xl font-heading font-extrabold text-white">After</h3>
+                  </div>
+                  <ul className="space-y-4">
+                    {AFTER_ITEMS.map((item, i) => (
+                      <li key={i} className="flex items-center gap-3 text-lg" data-testid={`after-item-${i}`}>
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                        <span className="text-white/95 font-medium">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimateOnScroll>
+            </div>
+          </div>
+        </section>
+
+        {/* ————————————————————————————————————————————————————————————
+            PROCESS — oversized step numerals + image-led
+        —————————————————————————————————————————————————————————————— */}
+        <section
+          id="how-it-works"
+          className="py-28 bg-[#F8FAFC] relative overflow-hidden"
+          data-testid="section-how-it-works"
+        >
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+              <AnimateOnScroll className="max-w-3xl">
+                <p className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-6">Process</p>
+                <h2 className="text-display text-primary text-4xl md:text-5xl lg:text-6xl">
+                  Three phases to{" "}
+                  <span className="text-display-italic text-accent">scalable</span> growth.
+                </h2>
+              </AnimateOnScroll>
+              <AnimateOnScroll delay={120}>
+                <p className="text-muted-foreground text-base max-w-md md:text-right">
+                  We don't just advise. We build and run the infrastructure your business needs, one phase at a time.
+                </p>
+              </AnimateOnScroll>
+            </div>
+
+            <div className="space-y-6">
+              {PHASES.map((phase, i) => (
+                <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
+                  <div
+                    className="group grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-white rounded-3xl p-6 lg:p-8 border border-border hover:border-accent/30 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
+                    data-testid={`phase-${i}`}
+                  >
+                    <div className="lg:col-span-2">
+                      <p className="text-display numeral-outline text-primary text-7xl lg:text-8xl group-hover:text-accent group-hover:[--tw-text-opacity:1] transition-colors">
+                        {phase.step}
+                      </p>
+                    </div>
+                    <div className="lg:col-span-4 relative aspect-[16/10] rounded-2xl overflow-hidden">
+                      <img
+                        src={phase.image}
+                        alt={phase.label}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
+                      <p className="absolute bottom-4 left-5 text-white text-sm font-black uppercase tracking-[0.25em]">
+                        {phase.label}
+                      </p>
+                    </div>
+                    <div className="lg:col-span-6">
+                      <h3 className="text-display text-primary text-3xl lg:text-4xl mb-5">
+                        {phase.label}
+                      </h3>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+                        {phase.items.map((item, j) => (
+                          <li key={j} className="flex items-start gap-3">
+                            <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-2" />
+                            <span className="text-sm text-muted-foreground font-medium">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </AnimateOnScroll>
               ))}
@@ -291,271 +584,130 @@ export default function Home() {
                 href={BOOKINGS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white hover:bg-accent h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl"
                 data-testid="link-how-it-works-cta"
               >
-                Book a Strategy Call
+                Book a strategy call
+                <ArrowRight size={16} />
               </a>
             </AnimateOnScroll>
           </div>
         </section>
 
-        <section className="py-28 bg-primary relative overflow-hidden" data-testid="section-transformation">
-          <div className="absolute inset-0">
-            <img src={handsPartnershipImg} alt="" className="w-full h-full object-cover opacity-10 animate-ken-burns" />
-          </div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(236,72,153,0.12),transparent_60%)]" />
-          <FloatingShape className="w-16 h-16 top-20 right-[15%]" variant="ring" />
-          <FloatingShape className="w-8 h-8 bottom-32 left-[10%]" variant="dot" />
-          <div className="container mx-auto px-4 md:px-8 relative z-10">
-            <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-16">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">The Transformation</p>
-              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6">
-                The difference you'll feel
-              </h2>
-              <p className="text-lg text-white/60 leading-relaxed">
-                Our clients don't just get better systems. They get clarity, confidence, and the infrastructure to grow without the chaos.
-              </p>
-            </AnimateOnScroll>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <AnimateOnScroll animation="fade-left">
-                <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8" data-testid="card-before">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center">
-                      <XIcon size={20} className="text-red-400" />
-                    </div>
-                    <h3 className="text-xl font-bold text-white">Before</h3>
-                  </div>
-                  <ul className="space-y-4">
-                    {beforeItems.map((item, i) => (
-                      <li key={i} className="flex items-center gap-3" data-testid={`before-item-${i}`}>
-                        <div className="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
-                        <span className="text-white/70 font-medium">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </AnimateOnScroll>
-
-              <AnimateOnScroll animation="fade-right" delay={200}>
-                <div className="bg-accent/10 backdrop-blur-sm rounded-2xl border border-accent/20 p-8" data-testid="card-after">
-                  <div className="flex items-center gap-3 mb-6">
-                    <h3 className="text-xl font-bold text-white">After</h3>
-                  </div>
-                  <ul className="space-y-4">
-                    {afterItems.map((item, i) => (
-                      <li key={i} className="flex items-center gap-3" data-testid={`after-item-${i}`}>
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                        <span className="text-white/90 font-medium">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </AnimateOnScroll>
-            </div>
-
-            <AnimateOnScroll className="mt-16">
-              <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto text-center">
-                <div data-testid="stat-confidence">
-                  <p className="text-4xl md:text-5xl font-extrabold text-white mb-2">97%</p>
-                  <p className="text-white/50 text-sm">Feel more confident</p>
-                </div>
-                <div data-testid="stat-industries">
-                  <p className="text-4xl md:text-5xl font-extrabold text-accent mb-2">6+</p>
-                  <p className="text-white/50 text-sm">Industries served</p>
-                </div>
-                <div data-testid="stat-impact">
-                  <p className="text-4xl md:text-5xl font-extrabold text-white mb-2">∞</p>
-                  <p className="text-white/50 text-sm">Lasting impact</p>
-                </div>
-              </div>
-            </AnimateOnScroll>
-          </div>
-        </section>
-
-        <section className="relative py-24 overflow-hidden" data-testid="section-mid-cta">
-          <div className="absolute inset-0">
-            <img src={communityWorkspaceImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
-            <div className="absolute inset-0 bg-primary/85" />
-          </div>
-          <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
-            <h3 className="text-2xl md:text-4xl font-heading font-extrabold text-white mb-4">
-              Wondering if this is right for your business?
-            </h3>
-            <p className="text-white/60 mb-10 max-w-xl mx-auto text-lg">
-              Let's have an honest conversation about where you are, where you want to go, and whether our growth infrastructure can get you there.
-            </p>
-            <a
-              href={BOOKINGS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105"
-              data-testid="link-mid-cta-book"
-            >
-              Book a Strategy Call
-            </a>
-          </div>
-        </section>
-
-        <section className="py-28 bg-white relative overflow-hidden" data-testid="section-solutions">
-          <FloatingShape className="w-20 h-20 top-32 right-10" variant="ring" />
-          <GradientOrb className="w-72 h-72 bg-accent/5 -bottom-32 right-20" />
-          <div className="container mx-auto px-4 md:px-8">
-            <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Ways to Work With Us</p>
-              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                One system. Multiple ways in.
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Whether you're a solo professional, a growing business, or a scaling organization, our Growth Infrastructure System meets you where you are.
-              </p>
-            </AnimateOnScroll>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {[
-                {
-                  image: communityTownhallImg,
-                  title: "Playbooks",
-                  desc: "Self-guided systems to implement structure, hiring, marketing, and execution at your own pace.",
-                  label: "$149 to $999",
-                  cta: "Start with a Playbook",
-                  href: "/playbooks",
-                },
-                {
-                  image: communityCollaborationImg,
-                  title: "Training Programs",
-                  desc: "Practical training to help leaders and teams implement real systems for growth and execution.",
-                  label: "$99 to $10,000",
-                  cta: "Explore Training",
-                  href: "/training",
-                },
-                {
-                  image: communityWorkspaceImg,
-                  title: "Guided Implementation",
-                  desc: "Hands-on support to install key systems without a full-scale engagement.",
-                  label: "$2,000 to $10,000",
-                  cta: "Explore Guided Implementation",
-                  href: "/solutions",
-                },
-                {
-                  image: milestoneImg,
-                  title: "Full System Build",
-                  desc: "Complete design, build, and ongoing operation of your business systems.",
-                  label: "$5,000 to $50,000+",
-                  cta: "Book a Strategy Call",
-                  href: "/solutions",
-                },
-              ].map((s, i) => (
-                <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
-                  <Link href={s.href} className="block h-full group" data-testid={`link-solution-${i}`}>
-                    <div className="relative rounded-2xl overflow-hidden h-full min-h-[300px] shadow-lg" data-testid={`solution-card-${i}`}>
-                      <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/10 group-hover:from-primary/95 transition-all duration-500" />
-                      <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                        <p className="text-xs font-bold uppercase tracking-widest text-accent mb-2">{s.label}</p>
-                        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-accent transition-colors">{s.title}</h3>
-                        <p className="text-white/70 text-xs leading-relaxed mb-3">{s.desc}</p>
-                        <span className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-transform">
-                          {s.cta} <ArrowRight size={14} className="ml-2" />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </AnimateOnScroll>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-28 bg-[#F8FAFC] relative overflow-hidden" data-testid="section-playbooks">
-          <GeometricAccent className="top-10 -left-10 text-primary" />
+        {/* ————————————————————————————————————————————————————————————
+            UNIFIED OFFER — one system message
+        —————————————————————————————————————————————————————————————— */}
+        <section className="py-28 bg-white relative overflow-hidden" data-testid="section-unified-offer">
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <AnimateOnScroll animation="fade-left">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Execution Systems</p>
-                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                  Playbooks built from real execution
+                <p className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-6">Our approach</p>
+                <h2 className="text-display text-primary text-4xl md:text-5xl lg:text-6xl mb-8">
+                  More than services.{" "}
+                  <span className="text-display-italic text-accent">A system</span> for scale.
                 </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  Every playbook we sell was built from real client work. These are the same tools, templates, and frameworks we use inside our engagements, now available for teams that want to build better systems on their own.
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  Most firms offer one piece of the puzzle. We integrate hiring, HR, marketing support, web presence, and playbooks into one execution system designed to help your business grow.
                 </p>
-                <div className="space-y-4 mb-10">
-                  {[
-                    "Proven templates and frameworks",
-                    "Built from proven consulting methodology",
-                    "Supports lead generation and team enablement",
-                    "Part of our integrated growth system",
-                  ].map((text, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                      <span className="text-muted-foreground font-medium">{text}</span>
-                    </div>
-                  ))}
-                </div>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-10">
+                  When you work with Performance Processes, you're not hiring a firm for a project. You're installing growth infrastructure that compounds over time.
+                </p>
                 <Link
-                  href="/playbooks"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white hover:bg-accent h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-lg"
-                  data-testid="link-explore-playbooks"
+                  href="/services"
+                  className="inline-flex items-center gap-2 text-primary hover:text-accent transition-colors text-sm font-bold uppercase tracking-[0.2em] group"
+                  data-testid="link-explore-system"
                 >
-                  Browse Playbooks
+                  Explore the system
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
               </AnimateOnScroll>
+
               <AnimateOnScroll animation="fade-right" delay={200}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {[
-                    { title: "Hiring Playbooks", desc: "Job descriptions, interview scorecards, onboarding checklists, and candidate evaluation rubrics." },
-                    { title: "Performance Playbooks", desc: "KPI libraries, review cycle templates, feedback frameworks, and calibration guides." },
-                    { title: "Operations & SOP Playbooks", desc: "SOP templates, process mapping guides, accountability trackers, and quality frameworks." },
-                    { title: "Marketing Playbooks", desc: "Marketing plans, content strategies, funnel blueprints, and lead generation frameworks." },
-                  ].map((pb, i) => (
-                    <Link href="/playbooks" key={i} className="block group" data-testid={`link-playbook-card-${i}`}>
-                      <div className="bg-white rounded-2xl border border-border p-6 hover:shadow-xl hover:border-accent/20 transition-all duration-300 h-full">
-                        <h4 className="text-sm font-bold text-primary mb-2 group-hover:text-accent transition-colors">{pb.title}</h4>
-                        <p className="text-xs text-muted-foreground leading-relaxed">{pb.desc}</p>
-                      </div>
-                    </Link>
-                  ))}
+                <div className="relative">
+                  <div className="rounded-3xl overflow-hidden shadow-2xl shadow-primary/20 aspect-[4/3]">
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover"
+                      poster={teamMovingForwardImg}
+                    >
+                      <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  <FloatingShape className="w-20 h-20 -top-5 -right-5" variant="square" />
+                  <FloatingShape className="w-12 h-12 -bottom-3 right-10" variant="ring" />
+                  <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-5 border border-border max-w-[240px] hidden md:block">
+                    <p className="text-xs font-black uppercase tracking-[0.25em] text-accent mb-2">One System</p>
+                    <p className="text-sm text-primary font-medium leading-snug">
+                      People, process, and growth — integrated into one infrastructure.
+                    </p>
+                  </div>
                 </div>
               </AnimateOnScroll>
             </div>
           </div>
         </section>
 
-        <section className="py-28 bg-[#F8FAFC] border-t" data-testid="section-cta">
-          <div className="container mx-auto px-4 md:px-8">
-            <AnimateOnScroll animation="fade-scale">
-              <div className="relative rounded-[2rem] overflow-hidden max-w-5xl mx-auto">
-                <div className="absolute inset-0">
-                  <img src={communityCollaborationImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
-                </div>
-                <FloatingShape className="w-14 h-14 top-10 right-10 z-[5]" variant="ring" />
-                <div className="relative z-10 p-12 lg:p-20 max-w-2xl">
-                  <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
-                    Ready to build the systems your business needs to scale?
-                  </h2>
-                  <p className="text-lg text-white/70 mb-12">
-                    Whether you need people, process, or growth infrastructure, the first step is a conversation. Let's figure out what your business needs and build it together.
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                    <a
-                      href={BOOKINGS_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105"
-                      data-testid="link-cta-book"
-                    >
-                      Book a Strategy Call
-                    </a>
-                    <Link href="/solutions" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-cta-solutions">
-                      Explore Solutions
-                      <ArrowRight size={16} />
-                    </Link>
-                  </div>
-                </div>
+        {/* ————————————————————————————————————————————————————————————
+            CLOSING CTA — full-bleed editorial
+        —————————————————————————————————————————————————————————————— */}
+        <section className="relative bg-primary overflow-hidden" data-testid="section-cta">
+          <div className="absolute inset-0">
+            <img
+              src={communityCollaborationImg}
+              alt=""
+              className="w-full h-full object-cover opacity-30 animate-ken-burns"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/85 to-primary/40" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(236,72,153,0.2),transparent_55%)]" />
+          </div>
+          <div className="grain-overlay" />
+
+          <div className="container mx-auto px-4 md:px-8 relative z-10 py-32 md:py-40">
+            <AnimateOnScroll>
+              <p className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-8" data-testid="text-cta-eyebrow">
+                Let's build something
+              </p>
+            </AnimateOnScroll>
+            <AnimateOnScroll delay={120}>
+              <h2
+                className="text-display text-white text-[12vw] md:text-[8vw] lg:text-[6.5vw] xl:text-[7rem] mb-12 max-w-[1300px]"
+                data-testid="text-cta-headline"
+              >
+                Ready to install the{" "}
+                <span className="text-display-italic text-accent">infrastructure</span> your business needs to scale?
+              </h2>
+            </AnimateOnScroll>
+            <AnimateOnScroll delay={250}>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href={BOOKINGS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-12 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105"
+                  data-testid="link-cta-book"
+                >
+                  Book a strategy call
+                  <ArrowRight size={18} />
+                </a>
+                <Link
+                  href="/pricing"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-16 px-12 font-bold text-sm uppercase tracking-wider transition-all duration-300"
+                  data-testid="link-cta-pricing"
+                >
+                  See services & pricing
+                </Link>
               </div>
             </AnimateOnScroll>
+          </div>
+
+          <div className="relative z-10 border-t border-white/15">
+            <div className="container mx-auto px-4 md:px-8 py-5 flex items-center justify-between text-white/60 text-[11px] uppercase tracking-[0.3em] font-bold">
+              <span>Performance Processes</span>
+              <span className="hidden md:inline">Barrie · Ontario · Canada</span>
+            </div>
           </div>
         </section>
       </main>

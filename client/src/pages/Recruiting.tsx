@@ -939,10 +939,7 @@ export default function Recruiting() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
               {resultStats.map((stat, i) => (
                 <div key={i} className="text-center" data-testid={`recruiting-stat-result-${i}`}>
-                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                    {stat.icon}
-                  </div>
-                  <div className="text-2xl font-extrabold text-primary mb-1">{stat.value}</div>
+                  <div className="text-3xl font-extrabold text-primary mb-1">{stat.value}</div>
                   <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
                 </div>
               ))}
@@ -1042,15 +1039,8 @@ export default function Recruiting() {
             </div>
 
             <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-3xl border border-border/50 p-8 md:p-10 mb-10">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center">
-                  {currentTier.icon}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-primary">{currentTier.label}</h3>
-                  <p className="text-muted-foreground text-sm mt-1">{currentTier.tagline}</p>
-                </div>
-              </div>
+              <h3 className="text-2xl font-bold text-primary">{currentTier.label}</h3>
+              <p className="text-muted-foreground text-sm mt-1">{currentTier.tagline}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1121,10 +1111,7 @@ export default function Recruiting() {
             {selectedService && (
               <>
                 <DialogHeader>
-                  <div className="flex items-center gap-4 mb-3">
-                    <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center">
-                      {selectedService.icon}
-                    </div>
+                  <div className="mb-3">
                     <div>
                       <DialogTitle className="text-2xl font-heading font-extrabold text-primary">{selectedService.title}</DialogTitle>
                       <div className="flex items-center gap-3 mt-1">

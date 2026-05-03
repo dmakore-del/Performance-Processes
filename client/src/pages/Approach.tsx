@@ -11,7 +11,6 @@ import {
   Rocket,
   TrendingUp,
   ArrowRight,
-  ArrowDown,
   CheckCircle2,
   Clock,
   ChevronDown,
@@ -442,13 +441,7 @@ export default function Approach() {
 
                     {i < steps.length - 1 && (
                       <div className="flex justify-center py-2">
-                        <div className="flex flex-col items-center text-accent">
-                          <div className="w-px h-4 bg-gradient-to-b from-accent/30 to-accent/15" />
-                          <div className="w-7 h-7 rounded-full bg-accent/10 flex items-center justify-center">
-                            <ArrowDown className="w-3.5 h-3.5 text-accent" />
-                          </div>
-                          <div className="w-px h-4 bg-gradient-to-b from-accent/15 to-accent/5" />
-                        </div>
+                        <div className="w-px h-10 bg-gradient-to-b from-accent/30 to-accent/5" />
                       </div>
                     )}
                   </div>

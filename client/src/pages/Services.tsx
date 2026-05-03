@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from "react";
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -6,33 +6,13 @@ import { SEOHead } from "@/components/SEOHead";
 import { PageHero } from "@/components/layout/PageHero";
 import { OfferCard } from "@/components/OfferCard";
 import { Button } from "@/components/ui/button";
-import {
-  ArrowRight,
-  Globe,
-  Megaphone,
-  Database,
-  Settings,
-  RefreshCw,
-  Package,
-  Calendar,
-  CreditCard,
-  Heart,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { OFFERS, CATEGORY_META, type OfferCategory } from "@shared/offers";
 import { useToast } from "@/hooks/use-toast";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
 const CATEGORY_ORDER: OfferCategory[] = ["website", "marketing", "crm", "systems", "support"];
-
-const CATEGORY_ICONS: Record<OfferCategory, ReactNode> = {
-  website: <Globe className="text-accent" size={28} />,
-  marketing: <Megaphone className="text-accent" size={28} />,
-  crm: <Database className="text-accent" size={28} />,
-  systems: <Settings className="text-accent" size={28} />,
-  support: <RefreshCw className="text-accent" size={28} />,
-  bundle: <Package className="text-accent" size={28} />,
-};
 
 export default function Services() {
   const { toast } = useToast();
@@ -73,21 +53,19 @@ export default function Services() {
                 <a
                   key={cat}
                   href={`#cat-${cat}`}
-                  className="group p-4 rounded-2xl border border-border bg-white hover:border-accent hover:shadow-md transition-all flex flex-col items-center text-center gap-2"
+                  className="group px-4 py-5 rounded-2xl border border-border bg-white hover:border-accent hover:shadow-md transition-all text-center"
                   data-testid={`link-category-${cat}`}
                 >
-                  {CATEGORY_ICONS[cat]}
-                  <span className="text-xs font-bold text-primary group-hover:text-accent transition-colors leading-tight">
+                  <span className="text-sm font-bold text-primary group-hover:text-accent transition-colors leading-tight">
                     {CATEGORY_META[cat].label}
                   </span>
                 </a>
               ))}
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-8 text-xs text-muted-foreground">
-              <CreditCard size={14} className="text-accent" />
-              <span className="font-semibold">Every service can be paid for online.</span>
-              <span>We accept credit card, debit, and PayPal via secure Stripe checkout.</span>
-            </div>
+            <p className="text-center mt-8 text-xs text-muted-foreground">
+              <span className="font-semibold">Every service can be paid for online.</span>{" "}
+              We accept credit card, debit, and PayPal via secure Stripe checkout.
+            </p>
           </div>
         </section>
 
@@ -126,12 +104,7 @@ export default function Services() {
             >
               <div className="container mx-auto px-4 md:px-8">
                 <div className="max-w-3xl mb-12 flex flex-col gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                      {CATEGORY_ICONS[cat]}
-                    </div>
-                    <p className="text-xs font-black uppercase tracking-[0.3em] text-accent">Category {idx + 1}</p>
-                  </div>
+                  <p className="text-xs font-black uppercase tracking-[0.3em] text-accent">Category {idx + 1}</p>
                   <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary">
                     {meta.label}
                   </h2>
@@ -177,14 +150,9 @@ export default function Services() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto bg-gradient-to-br from-accent/5 via-white to-accent/10 rounded-3xl border-2 border-accent/20 overflow-hidden shadow-lg">
               <div className="p-10 md:p-14">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center">
-                    <Heart className="text-accent" size={26} />
-                  </div>
-                  <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-primary">
-                    NextUp Canada Partnership
-                  </h2>
-                </div>
+                <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-6">
+                  NextUp Canada Partnership
+                </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-3xl">
                   Canadian founders aged 18 to 29 connected to NextUp Canada receive 40% off every productized service on this page.
                 </p>
@@ -210,7 +178,6 @@ export default function Services() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                   <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider w-full sm:w-auto" data-testid="button-book-strategy-call">
-                    <Calendar size={16} className="mr-2" />
                     Book a Strategy Call
                   </Button>
                 </a>

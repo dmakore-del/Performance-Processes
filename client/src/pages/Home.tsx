@@ -423,12 +423,7 @@ export default function Home() {
 
               <AnimateOnScroll animation="fade-right" delay={150}>
                 <div className="bg-accent/15 backdrop-blur-sm rounded-3xl border border-accent/30 p-10" data-testid="card-after">
-                  <div className="flex items-center gap-3 mb-8">
-                    <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
-                      <ArrowRight size={20} className="text-white" />
-                    </div>
-                    <h3 className="text-2xl font-heading font-extrabold text-white">After</h3>
-                  </div>
+                  <h3 className="text-2xl font-heading font-extrabold text-white mb-8">After</h3>
                   <ul className="space-y-4">
                     {AFTER_ITEMS.map((item, i) => (
                       <li key={i} className="flex items-center gap-3 text-lg" data-testid={`after-item-${i}`}>

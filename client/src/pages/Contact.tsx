@@ -2,7 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin, Send, CheckCircle, Loader2, Clock, Briefcase, Users, HelpCircle, MessageSquare, ArrowRight, Shield, Award, Star, ChevronDown } from "lucide-react";
+import { Send, CheckCircle, Loader2, Briefcase, Users, HelpCircle, MessageSquare, ArrowRight, Shield, Award, Star, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { PageHero } from "@/components/layout/PageHero";
 import { useState } from "react";
@@ -165,9 +165,6 @@ export default function Contact() {
                   className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl p-8 border border-border/60 hover:border-accent/30 hover:shadow-xl transition-all duration-300 group"
                   data-testid={`card-why-reach-out-${index}`}
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center text-accent mb-6 group-hover:from-accent/25 group-hover:to-accent/10 transition-all duration-300">
-                    <card.icon size={28} />
-                  </div>
                   <h3 className="text-lg font-bold text-primary mb-3">{card.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{card.description}</p>
                 </div>
@@ -184,43 +181,23 @@ export default function Contact() {
                   {language === "en" ? "Contact Information" : "Coordonnées"}
                 </h2>
                 <div className="space-y-10">
-                  <div className="flex gap-6 items-start group">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center text-accent flex-shrink-0 group-hover:from-accent/25 group-hover:to-accent/10 transition-all duration-300">
-                      <Mail size={24} />
-                    </div>
-                    <div>
-                      <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">Email Us</h4>
-                      <p className="text-xl font-bold text-primary">contact@performanceprocesses.com</p>
-                    </div>
+                  <div>
+                    <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">Email Us</h4>
+                    <p className="text-xl font-bold text-primary">contact@performanceprocesses.com</p>
                   </div>
-                  <div className="flex gap-6 items-start group">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center text-accent flex-shrink-0 group-hover:from-accent/25 group-hover:to-accent/10 transition-all duration-300">
-                      <Phone size={24} />
-                    </div>
-                    <div>
-                      <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">Call Us</h4>
-                      <p className="text-xl font-bold text-primary">+1 (905) 823-1324</p>
-                    </div>
+                  <div>
+                    <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">Call Us</h4>
+                    <p className="text-xl font-bold text-primary">+1 (905) 823-1324</p>
                   </div>
-                  <div className="flex gap-6 items-start group">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center text-accent flex-shrink-0 group-hover:from-accent/25 group-hover:to-accent/10 transition-all duration-300">
-                      <MapPin size={24} />
-                    </div>
-                    <div>
-                      <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">Our Office</h4>
-                      <p className="text-xl font-bold text-primary">Toronto, Ontario</p>
-                    </div>
+                  <div>
+                    <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">Our Office</h4>
+                    <p className="text-xl font-bold text-primary">Toronto, Ontario</p>
                   </div>
-                  <div className="flex gap-6 items-start group" data-testid="info-office-hours">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center text-accent flex-shrink-0 group-hover:from-accent/25 group-hover:to-accent/10 transition-all duration-300">
-                      <Clock size={24} />
-                    </div>
-                    <div>
-                      <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">Office Hours</h4>
-                      <p className="text-lg font-bold text-primary">Monday , Friday</p>
-                      <p className="text-muted-foreground text-sm mt-1">9:00 AM , 6:00 PM EST</p>
-                      <p className="text-muted-foreground text-sm mt-1">Weekend & evening appointments available by request</p>
-                    </div>
+                  <div data-testid="info-office-hours">
+                    <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">Office Hours</h4>
+                    <p className="text-lg font-bold text-primary">Monday , Friday</p>
+                    <p className="text-muted-foreground text-sm mt-1">9:00 AM , 6:00 PM EST</p>
+                    <p className="text-muted-foreground text-sm mt-1">Weekend & evening appointments available by request</p>
                   </div>
                 </div>
 

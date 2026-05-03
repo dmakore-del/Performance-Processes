@@ -14,12 +14,12 @@ const whyReachOutCards = [
   {
     icon: Briefcase,
     title: "New Engagement",
-    description: "Exploring consulting services for your organization? Let's discuss your goals and how we can help you achieve measurable results.",
+    description: "Looking to install a website, CRM, marketing engine, or full growth infrastructure? Let's scope it together.",
   },
   {
     icon: Users,
     title: "Existing Client Support",
-    description: "Already working with us? Reach out for project updates, additional support, or to discuss expanding your engagement.",
+    description: "Already working with us? Reach out for project updates, training requests, or to expand your monthly support.",
   },
   {
     icon: MessageSquare,
@@ -29,34 +29,38 @@ const whyReachOutCards = [
   {
     icon: HelpCircle,
     title: "General Questions",
-    description: "Have questions about our services, methodology, or team? We're happy to provide information with no obligation.",
+    description: "Have questions about our services, scope, pricing, or process? We're happy to help with no obligation.",
   },
 ];
 
 const faqItems = [
   {
-    question: "What does a typical engagement look like?",
-    answer: "Every engagement begins with a complimentary Discovery Call where we learn about your organization's goals and challenges. From there, we develop a customized proposal outlining scope, timeline, and investment. Engagements typically range from 3 to 12 months depending on complexity.",
+    question: "Which services do you offer?",
+    answer: "Six integrated practices: Websites, Marketing, CRM & Lead Tracking, Business Systems, Training & Implementation, and Ongoing Support. Buy any one as a standalone productized offer, or combine several into a bundle that installs your full growth infrastructure end-to-end.",
+  },
+  {
+    question: "How does a new engagement start?",
+    answer: "Every engagement begins with a complimentary Discovery Call where we learn about your business, your goals, and what you already have in place. From there, we recommend a productized offer or bundle with clear scope, timeline, and price — usually within a few business days.",
   },
   {
     question: "How quickly will I receive a response?",
-    answer: "We respond to all inquiries within 24 business hours. For urgent matters, we recommend calling our office directly. Our team monitors communications throughout business hours to ensure timely responses.",
+    answer: "We respond to all inquiries within 24 business hours. For urgent matters you can email or call directly during business hours.",
   },
   {
-    question: "Is there a cost for the initial consultation?",
-    answer: "No. Your first Discovery Call is completely complimentary. We use this time to understand your needs and determine if there's a good fit before any commitment is made.",
+    question: "Is the Discovery Call really free?",
+    answer: "Yes. The Discovery Call is complimentary — no commitment. We use it to understand your situation and recommend the right starting point, even if that turns out to be 'not us'.",
   },
   {
-    question: "What information should I prepare before reaching out?",
-    answer: "It's helpful to have a general idea of your organizational challenges, goals, and timeline. However, you don't need to have everything figured out, that's what we're here for. A brief description of your situation is a great starting point.",
+    question: "What should I prepare before reaching out?",
+    answer: "A short note about your business, what you're trying to grow, and what you already have in place (website, CRM, marketing tools) is plenty. You don't need a brief — that's what the Discovery Call is for.",
   },
   {
-    question: "Do you work with organizations outside of Toronto?",
-    answer: "Absolutely. While our office is based in Toronto, we work with clients across Canada and internationally. We offer both in-person and virtual engagement options to accommodate organizations of all locations.",
+    question: "Do you work with clients outside of Ontario?",
+    answer: "Yes. We're based in Ontario but work with clients across Canada. Most of our work runs remotely with structured weekly check-ins, and we travel for workshops or training when it makes sense.",
   },
   {
-    question: "What industries do you specialize in?",
-    answer: "We work across multiple sectors including government, nonprofit, healthcare, financial services, technology, education, and manufacturing. Our frameworks are adaptable to any industry context.",
+    question: "Who do you typically work with?",
+    answer: "Professionals, nonprofits, and small-to-mid-sized businesses — including professional services, trades and local businesses, health and wellness practices, coaches, creators, and growing nonprofits.",
   },
 ];
 
@@ -106,7 +110,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-      <SEOHead title="Contact Us, Book a Consultation" description="Get in touch with Performance Processes. Schedule a consultation, request a proposal, or learn how our management consulting services can help your organization achieve measurable results." path="/contact" />
+      <SEOHead title="Contact Us, Book a Discovery Call" description="Get in touch with Performance Processes. Book a free Discovery Call to scope a website, CRM, marketing engine, or full growth-infrastructure build for your business." path="/contact" />
       <Navbar />
       <main className="flex-grow">
         <PageHero 
@@ -123,7 +127,7 @@ export default function Contact() {
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
                   <Shield size={18} className="text-accent" />
                 </div>
-                <span className="font-bold text-sm uppercase tracking-wider">Results-Driven Consulting</span>
+                <span className="font-bold text-sm uppercase tracking-wider">Growth Infrastructure Studio</span>
               </div>
               <div className="hidden md:block w-px h-8 bg-white/15" />
               <div className="flex items-center gap-3">

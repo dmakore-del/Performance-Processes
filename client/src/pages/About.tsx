@@ -18,12 +18,12 @@ export default function About() {
   const { t } = useLanguage();
 
   const timelineItems = [
-    { year: "2023", title: "Performance Processes Founded", description: "Danai Makore launches Performance Processes with a vision to help organizations align strategy with measurable performance." },
-    { year: "2024", title: "Service Portfolio Launch", description: "Launching foundational services in strategy, performance management, and operational support for a range of organizations." },
-    { year: "2024,2025", title: "Building Multi-Sector Experience", description: "Working with founders, nonprofits, and small businesses across Canada to design systems that drive growth." },
-    { year: "2025", title: "Productized Services for Small Businesses", description: "Reorienting around productized website, marketing, CRM, training, and systems support for small and emerging businesses." },
+    { year: "2023", title: "Performance Processes Founded", description: "Danai Makore launches Performance Processes with a vision to help small businesses install the systems they need to grow with confidence." },
+    { year: "2024", title: "Service Portfolio Launch", description: "Launching foundational services across websites, marketing, and business systems for professionals and emerging businesses." },
+    { year: "2024–2025", title: "Building Multi-Sector Experience", description: "Working with founders, nonprofits, and small businesses across Canada to design and operate growth infrastructure." },
+    { year: "2025", title: "Productized Growth Infrastructure", description: "Reorienting around six productized practices: Web, Marketing, CRM, Business Systems, Training, and Ongoing Support — installed as one integrated system." },
     { year: "2026", title: "Core Team Assembled", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory." },
-    { year: "2026+", title: "NextUp Canada Partnership", description: "Partnering with NextUp Canada to make our productized services accessible to youth-owned businesses across the country." },
+    { year: "2026+", title: "NextUp Canada Partnership", description: "Partnering with NextUp Canada to make our productized growth infrastructure accessible to youth-owned businesses across the country." },
   ];
 
   const values = [
@@ -60,25 +60,25 @@ export default function About() {
   ];
 
   const industries = [
-    { name: "Enterprise Organizations" },
+    { name: "Professional Services" },
     { name: "Small & Growing Businesses" },
-    { name: "Professional Development" },
-    { name: "Government & Public Sector" },
-    { name: "Nonprofit Institutions" },
-    { name: "Healthcare & Education" },
+    { name: "Nonprofits & Social Enterprises" },
+    { name: "Trades & Local Services" },
+    { name: "Health, Wellness & Coaching" },
+    { name: "Creators & Personal Brands" },
   ];
 
   const credentials = [
     { label: "Psychology", detail: "Academic Training" },
     { label: "HR Management", detail: "Academic Training" },
-    { label: "Enterprise Advisory", detail: "Sector Expertise" },
-    { label: "Small Business Development", detail: "Sector Expertise" },
-    { label: "Professional Coaching", detail: "Service Area" },
+    { label: "Small Business Systems", detail: "Sector Expertise" },
+    { label: "Marketing & CRM", detail: "Sector Expertise" },
+    { label: "Training & Coaching", detail: "Service Area" },
   ];
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-      <SEOHead title="About Us, Our Story & Mission" description="Learn about Performance Processes, a Toronto management consulting and recruiting firm founded by Danai Makore in 2023. We help organizations build systems, find the right talent, and achieve measurable performance." path="/about" />
+      <SEOHead title="About Us, Our Story & Mission" description="Performance Processes is a growth infrastructure studio founded by Danai Makore in 2023. We install websites, marketing, CRM, business systems, training, and ongoing support as one integrated system for professionals, nonprofits, and small businesses." path="/about" />
       <Navbar />
       <main className="flex-grow">
 
@@ -102,16 +102,16 @@ export default function About() {
                 Who We Are
               </p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.2s" }} data-testid="text-hero-title">
-                Built by consultants who <span className="text-accent">understand your challenges</span>
+                A growth infrastructure studio for <span className="text-accent">businesses ready to scale</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl animate-fade-in-up" style={{ animationDelay: "0.35s" }} data-testid="text-hero-subtitle">
-                Performance Processes was founded on a simple belief: organizations deserve partners who stay until the work is done, whether that means building better systems through consulting or finding the right people through recruiting.
+                Performance Processes was founded on a simple belief: small businesses, nonprofits, and growing teams deserve partners who don't just advise — they design, build, and run the systems that move the business forward.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="button-hero-book">
                     Book a Discovery Call
                 </a>
-                <Link href="/consulting" className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-hero-services">
+                <Link href="/services" className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-hero-services">
                     Explore Our Services <ArrowRight size={18} className="ml-2" />
                 </Link>
               </div>
@@ -164,14 +164,14 @@ export default function About() {
                   Danai <span className="text-accent italic">Makore</span>
                 </h2>
                 <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-8">
-                  Principal Consultant & Founder
+                  Founder & Principal
                 </p>
                 <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-[640px]">
                   <p>
-                    Danai Makore is a management consultant,
-                    strategist, and organizational leader whose
-                    work spans enterprise advisory, small business
-                    development, and professional coaching.
+                    Danai Makore is a builder, strategist, and
+                    operator whose work spans website design,
+                    marketing, CRM, and business systems for
+                    professionals, nonprofits, and growing businesses.
                   </p>
                   <p>
                     With academic training in Psychology and
@@ -180,15 +180,15 @@ export default function About() {
                     Practice at York University, Danai brings a deep
                     commitment to equity, access, and sustainable
                     impact. She founded Performance Processes
-                    to help organizations of all sizes build the
-                    management systems that drive lasting performance.
+                    to install the growth infrastructure small
+                    businesses need to scale with confidence.
                   </p>
                   <p>
                     Her approach blends human insight with
-                    practical management frameworks, guiding
-                    enterprises through operational transformation,
-                    helping small businesses build scalable systems,
-                    and coaching professionals toward career growth.
+                    practical execution — designing the website,
+                    setting up the CRM, launching the marketing,
+                    and training the team that will run it all
+                    long after the engagement ends.
                   </p>
                 </div>
 
@@ -223,24 +223,23 @@ export default function About() {
                 Our Philosophy
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-primary mb-8 leading-tight">
-                Consulting & recruiting for<br />
-                <span className="text-accent italic">every stage of growth</span>
+                One growth system for<br />
+                <span className="text-accent italic">every stage of business</span>
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-16">
-                Whether you're an enterprise seeking operational
-                transformation, a company looking to hire top talent,
-                a small business building scalable systems, or a
-                professional investing in your career, we deliver
-                the management frameworks, recruiting expertise,
-                and accountability structures that produce measurable results.
+                Whether you're a professional building your first website,
+                a nonprofit launching a campaign, or a small business
+                installing CRM, training, and ongoing support — we
+                integrate the six practices most firms sell separately
+                into one execution system designed for measurable growth.
               </p>
             </AnimateOnScroll>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
                 {[
                   { label: "Founded", val: "2023" },
-                  { label: "Expert Consultants", val: "3+" },
-                  { label: "Service Categories", val: "6+" },
-                  { label: "Industries Served", val: "8+" }
+                  { label: "Service Practices", val: "6" },
+                  { label: "Productized Offers", val: "20+" },
+                  { label: "Industries Served", val: "6+" }
                 ].map((s, i) => (
                   <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
                     <div className="bg-white p-8 rounded-2xl border border-border shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300" data-testid={`stat-card-${i}`}>
@@ -259,10 +258,10 @@ export default function About() {
             <div className="max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-12">
               <div className="flex-1">
                 <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-6 leading-tight">
-                  "To help enterprises scale, small businesses grow, and professionals lead, through management consulting and recruiting that produce measurable outcomes."
+                  "To install the growth infrastructure professionals, nonprofits, and small businesses need to scale — websites, marketing, CRM, business systems, training, and ongoing support, integrated as one."
                 </h2>
                 <p className="text-lg text-white/70 leading-relaxed">
-                  We deliver management consulting and recruiting services across two core pillars, helping organizations build better systems and find the right people, each built on structured methodology and accountability.
+                  We design, build, and run the systems other firms only advise on — across six integrated practices, delivered as productized engagements with clear scope, timelines, and outcomes.
                 </p>
               </div>
               <div className="shrink-0">
@@ -309,22 +308,22 @@ export default function About() {
                 <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-[600px]">
                   <p>
                     Sean Ogbonnaya leads strategic growth initiatives
-                    and builds lasting partnerships with enterprises,
-                    small businesses, and professionals committed
-                    to management excellence.
+                    and builds lasting partnerships with small
+                    businesses, nonprofits, and professionals
+                    committed to building better systems.
                   </p>
                   <p>
                     With degrees in Computer Science and the
                     Creative Arts, and a strong background in
                     relationship development and strategic advisory,
-                    Sean specializes in identifying opportunities to
-                    help clients across all service tiers streamline
-                    operations and improve performance outcomes.
+                    Sean specializes in helping clients pick the right
+                    starting point — whether that's a new website,
+                    a CRM, or a full growth-infrastructure bundle.
                   </p>
                   <p className="font-medium text-primary italic border-l-4 border-accent pl-6 py-2 bg-gradient-to-r from-[#F8FAFC] to-transparent rounded-r-lg">
-                    Passionate about connecting clients with the right
-                    consulting and recruiting solutions, from enterprise
-                    transformation and talent acquisition to professional coaching.
+                    Passionate about matching clients with the right
+                    productized offer — from a single-practice engagement
+                    to a fully integrated growth-infrastructure build.
                   </p>
                 </div>
 
@@ -393,16 +392,16 @@ export default function About() {
                     What Sets Us <span className="text-accent italic">Apart</span>
                   </h2>
                   <p className="text-lg text-muted-foreground mb-10 max-w-lg leading-relaxed">
-                    We don't believe in one-size-fits-all consulting. Every relationship begins with deep listening, because meaningful change starts with trust.
+                    Most firms sell hours and slide decks. We install infrastructure that compounds — long after the engagement ends.
                   </p>
                   <div className="space-y-5">
                     {[
-                      { title: "People-Centered Approach", desc: "We prioritize the human element, sustainable change requires buy-in, trust, and genuine connection." },
-                      { title: "Measurable Outcomes", desc: "Every project includes clear KPIs and success metrics. We track, measure, and report on impact." },
-                      { title: "Cross-Industry Expertise", desc: "Diverse experience across sectors allows us to apply proven best practices from multiple industries." },
-                      { title: "End-to-End Partnership", desc: "From discovery through implementation and beyond, we stay engaged to ensure real-world results." },
-                      { title: "Tailored Solutions", desc: "No cookie-cutter frameworks. Every engagement is custom-designed for your specific challenges." },
-                      { title: "Knowledge Transfer", desc: "We build internal capacity so your team sustains improvements long after our engagement ends." },
+                      { title: "One Integrated System", desc: "Web, marketing, CRM, business systems, training, and ongoing support — built to work together, not stitched after the fact." },
+                      { title: "Productized Engagements", desc: "Clear scope, fixed pricing, defined timelines. You always know what you're getting and when." },
+                      { title: "We Build, We Don't Just Advise", desc: "We design, build, and operate the systems alongside your team — not just hand over recommendations." },
+                      { title: "Built to Run Without Us", desc: "Every engagement leaves behind documented playbooks, dashboards, and trained operators you keep." },
+                      { title: "Right-Sized for Small Business", desc: "Frameworks adapted for professionals, nonprofits, and growing teams — not bloated overhead built for someone else." },
+                      { title: "Ongoing Support When You Need It", desc: "Optional monthly retainers keep your marketing, CRM, and systems running and improving over time." },
                     ].map((adv, i) => (
                       <div key={i} className="flex items-start gap-4 group" data-testid={`advantage-${i}`}>
                         <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-2.5" />
@@ -580,7 +579,7 @@ export default function About() {
                 Let's build something <span className="text-accent">meaningful</span> together
               </h2>
               <p className="text-xl text-white/70 mb-12 leading-relaxed max-w-2xl mx-auto">
-                Whether you need strategic clarity, operational systems, or leadership development, we're ready to partner with you.
+                Whether you need a new website, a CRM you'll actually use, or a full growth infrastructure installed end-to-end — we're ready to partner with you.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-14 text-lg font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:shadow-2xl hover:scale-105 w-full sm:w-auto" data-testid="button-final-cta">

@@ -48,133 +48,129 @@ export default function Approach() {
     {
       num: "01",
       icon: Search,
-      title: language === "en" ? "Discovery & Assessment" : "Découverte et évaluation",
+      title: language === "en" ? "Discover" : "Découvrir",
       desc: language === "en"
-        ? "We start by understanding your unique challenges and auditing your current performance systems to identify gaps."
-        : "Nous commençons par comprendre vos défis uniques et par auditer vos systèmes de performance actuels pour identifier les lacunes.",
-      duration: "2,4 weeks",
+        ? "We start by understanding your business, audience, and growth goals — and audit the systems you already have in place."
+        : "Nous commençons par comprendre votre entreprise, votre audience et vos objectifs de croissance — et nous auditons les systèmes déjà en place.",
+      duration: "1–2 weeks",
       color: "from-blue-500/15 to-blue-600/5",
       accentColor: "text-blue-600",
       bgAccent: "bg-blue-600",
       borderAccent: "border-blue-500/20",
       details: [
-        "Every successful engagement begins with a deep understanding of where your organization stands today. Our Discovery & Assessment phase goes far beyond surface-level analysis, we immerse ourselves in your organizational culture, strategic objectives, operational processes, and leadership dynamics to build a comprehensive picture of your current state.",
-        "During this phase, we conduct extensive stakeholder interviews across all levels of the organization, from senior leadership to front-line teams. These conversations reveal not only the formal structures and processes in place but also the informal dynamics, unspoken challenges, and latent opportunities that data alone cannot capture.",
-        "We also perform a thorough audit of your existing performance management systems, governance frameworks, and strategic planning processes. This includes reviewing documentation, analyzing performance data, benchmarking against industry standards, and identifying both systemic gaps and quick-win opportunities.",
-        "The output of this phase is a detailed Assessment Report that provides a clear, honest picture of your organization's strengths, weaknesses, and priority areas for improvement, serving as the foundation for everything that follows.",
+        "Every engagement starts with a clear-eyed look at where your business is today. We learn how you sell, who you sell to, what's working, and where the friction lives — across your website, marketing, CRM, and back-office systems.",
+        "We talk to you, your team, and where useful, your customers. We review your current site, marketing channels, CRM (if any), and the day-to-day processes that keep the business running.",
+        "The output of Discover is a short, honest map of your current state and a prioritized list of what to install first to unlock the biggest wins.",
       ],
       activities: [
-        "Stakeholder interviews and focus groups",
-        "Organizational culture and climate assessment",
-        "Performance system and governance audit",
-        "Data collection and benchmarking analysis",
-        "Gap analysis and opportunity identification",
-        "Comprehensive Assessment Report delivery",
+        "Founder & team interviews",
+        "Website, brand, and marketing audit",
+        "CRM and lead-flow review",
+        "Business systems and SOP review",
+        "Audience and offer clarity check",
+        "Prioritized roadmap and quote",
       ],
       outcomes: [
-        "Clear understanding of organizational strengths and gaps",
-        "Prioritized list of improvement opportunities",
-        "Stakeholder alignment on current-state challenges",
-        "Data-driven foundation for strategic planning",
+        "Clear picture of what's working and what isn't",
+        "Prioritized list of growth-infrastructure gaps",
+        "Right-sized scope and budget recommendation",
+        "A confident starting point — no guesswork",
       ],
     },
     {
       num: "02",
       icon: Target,
-      title: language === "en" ? "Strategic Alignment" : "Alignement stratégique",
+      title: language === "en" ? "Design & Plan" : "Conception et planification",
       desc: language === "en"
-        ? "We work with your leadership team to clarify strategic direction and ensure it's communicated effectively throughout the organization."
-        : "Nous travaillons avec votre équipe de direction pour clarifier l'orientation stratégique et veiller à ce qu'elle soit communiquée efficacement dans toute l'organisation.",
-      duration: "3,6 weeks",
+        ? "We design the website, marketing engine, CRM workflows, and operating playbooks your business will run on."
+        : "Nous concevons le site web, le moteur marketing, les flux CRM et les manuels d'exploitation sur lesquels votre entreprise fonctionnera.",
+      duration: "2–4 weeks",
       color: "from-emerald-500/15 to-emerald-600/5",
       accentColor: "text-emerald-600",
       bgAccent: "bg-emerald-600",
       borderAccent: "border-emerald-500/20",
       details: [
-        "With a clear picture of your current state, we move into Strategic Alignment, the most critical phase for setting the trajectory of your transformation. This is where vision meets actionable planning, and where leadership teams come together around a unified strategic direction.",
-        "We facilitate structured strategic planning workshops with your leadership team, using proven frameworks to clarify your mission, refine your vision, and define measurable strategic objectives. These sessions are designed to surface diverse perspectives, build consensus, and create genuine buy-in from the people who will drive change.",
-        "A key part of this phase is developing your Strategic Communication Plan, ensuring that your refined strategic direction doesn't stay confined to the boardroom. We help you cascade strategy throughout the organization so that every team and individual understands how their work connects to broader organizational goals.",
-        "We also work with you to design your performance measurement framework during this phase, identifying the Key Performance Indicators (KPIs) that will track progress and ensure accountability at every level of the organization.",
+        "With the picture clear, we design the system. That means site architecture and key page layouts, the marketing channels and campaigns we'll launch with, the CRM pipeline that will track every lead, and the SOPs your team will actually use.",
+        "We work in tight cycles with you — quick approvals, no surprises. You see structure and copy before anything is built so the heavy build phase moves fast.",
+        "By the end of Design & Plan you have a documented blueprint: what's being built, by when, by whom, and what success looks like.",
       ],
       activities: [
-        "Leadership strategic planning workshops",
-        "Mission, vision, and values refinement",
-        "Strategic objective setting and prioritization",
-        "KPI framework design and alignment",
-        "Strategic communication planning",
-        "Change readiness assessment",
+        "Sitemap, wireframes, and brand direction",
+        "Marketing campaign and content plan",
+        "CRM pipeline and lead-flow design",
+        "SOPs and operating playbooks drafted",
+        "KPI and reporting framework agreed",
+        "Implementation roadmap signed off",
       ],
       outcomes: [
-        "Unified strategic direction with leadership buy-in",
-        "Clearly defined and measurable strategic objectives",
-        "KPI framework aligned to organizational goals",
-        "Communication plan for organization-wide alignment",
+        "Approved blueprint for the full system",
+        "Clear KPIs and definition of done",
+        "Aligned timeline across every workstream",
+        "Confidence before a single thing is built",
       ],
     },
     {
       num: "03",
       icon: Rocket,
-      title: language === "en" ? "Implementation & Training" : "Mise en œuvre et formation",
+      title: language === "en" ? "Build & Install" : "Construire et installer",
       desc: language === "en"
-        ? "Our experts provide hands-on support to implement new systems and strengthen leadership capabilities."
-        : "Nos experts fournissent un soutien concret pour mettre en œuvre de nouveaux systèmes et renforcer les capacités de leadership.",
-      duration: "4,12 weeks",
+        ? "We build the website, set up the CRM, launch the marketing engine, and train your team to run it."
+        : "Nous construisons le site web, configurons le CRM, lançons le moteur marketing et formons votre équipe à l'exploiter.",
+      duration: "4–12 weeks",
       color: "from-amber-500/15 to-amber-600/5",
       accentColor: "text-amber-600",
       bgAccent: "bg-amber-600",
       borderAccent: "border-amber-500/20",
       details: [
-        "Implementation is where strategy becomes reality. During this phase, we work shoulder-to-shoulder with your teams to put new systems, processes, and practices into action. Unlike firms that hand over a report and walk away, we stay deeply involved to ensure successful execution.",
-        "We begin by developing a detailed Implementation Roadmap with clear milestones, responsibilities, and timelines. This roadmap is designed to be realistic and achievable, balancing the urgency for improvement with the practical realities of organizational capacity and change management.",
-        "A major focus of this phase is building internal capability through targeted training and coaching programs. We deliver customized workshops on leadership development, performance management, strategic communication, and other areas identified during the assessment. Our goal is always to build your team's skills so that improvements are sustainable long after our engagement ends.",
-        "Throughout implementation, we maintain close communication with your leadership team, providing regular progress updates, flagging risks early, and adapting our approach as needed. This agile, collaborative style ensures that implementation stays on track and delivers the intended results.",
+        "This is where the system goes from blueprint to live infrastructure. We build the website, configure the CRM, set up email and social channels, and write the playbooks your team will follow.",
+        "We don't disappear and reappear with a finished product. You see progress weekly, and we train your team alongside the build so they own the system the moment it goes live.",
+        "Build & Install ends with a launch — site live, CRM tracking real leads, first campaigns out, team trained, documentation handed over.",
       ],
       activities: [
-        "Detailed implementation roadmap development",
-        "System and process rollout support",
-        "Leadership development workshops and coaching",
-        "Performance management training programs",
-        "Change management and communication support",
-        "Regular progress reviews and course corrections",
+        "Website design, build, and launch",
+        "CRM setup and lead automation",
+        "Marketing channels and first campaigns",
+        "SOPs and playbooks finalized",
+        "Team training sessions and walkthroughs",
+        "Launch checklist and go-live support",
       ],
       outcomes: [
-        "New systems and processes successfully deployed",
-        "Enhanced leadership capabilities across the organization",
-        "Internal capacity built for sustainable improvement",
-        "Documented progress against implementation milestones",
+        "Live website, CRM, and marketing engine",
+        "Team trained to run the day-to-day",
+        "Documented playbooks you keep forever",
+        "Real leads flowing through a real pipeline",
       ],
     },
     {
       num: "04",
       icon: TrendingUp,
-      title: language === "en" ? "Monitoring & Optimization" : "Suivi et optimisation",
+      title: language === "en" ? "Run & Optimize" : "Exploiter et optimiser",
       desc: language === "en"
-        ? "We establish continuous feedback loops and performance metrics to ensure long-term, sustainable impact."
-        : "Nous établissons des boucles de rétroaction continue et des indicateurs de performance pour garantir un impact durable à long terme.",
-      duration: "Ongoing",
+        ? "Optional ongoing support keeps your marketing, CRM, and systems running and improving — month after month."
+        : "Un soutien continu optionnel maintient votre marketing, votre CRM et vos systèmes opérationnels et en amélioration — mois après mois.",
+      duration: "Optional, monthly",
       color: "from-violet-500/15 to-violet-600/5",
       accentColor: "text-violet-600",
       bgAccent: "bg-violet-600",
       borderAccent: "border-violet-500/20",
       details: [
-        "Sustainable performance improvement requires ongoing attention and refinement. Our Monitoring & Optimization phase ensures that the changes implemented in previous phases take root, deliver measurable results, and continue to evolve as your organization grows.",
-        "We establish robust performance monitoring systems that give you real-time visibility into how your organization is performing against its strategic objectives. This includes setting up dashboards, reporting cadences, and feedback mechanisms that keep leadership informed and enable data-driven decision-making.",
-        "Regular review sessions are a cornerstone of this phase. We work with your team to analyze performance data, celebrate successes, diagnose underperformance, and identify emerging opportunities. These sessions foster a culture of continuous improvement and ensure that strategic plans remain dynamic and responsive to changing conditions.",
-        "As your organization matures in its performance practices, we help you move from reactive problem-solving to proactive optimization. This includes advanced techniques like predictive analytics, scenario planning, and capability forecasting, ensuring your organization is always prepared for what's next.",
+        "A great launch is the start, not the finish. Many clients keep us on a monthly retainer to run their marketing, manage the CRM, optimize the website, and refine the playbooks as the business grows.",
+        "We track the KPIs we agreed in Design & Plan, share a monthly performance summary, and adjust the system based on real data — not guesses.",
+        "When something new comes up — a new offer, a new market, a new hire — we already know your system and can move fast. If you'd rather run it in-house, we hand off cleanly and stay available for ad-hoc support.",
       ],
       activities: [
-        "Performance dashboard setup and configuration",
-        "Regular performance review facilitation",
-        "Data analysis and trend identification",
-        "Process optimization recommendations",
-        "Continuous improvement coaching",
-        "Long-term strategic refresh sessions",
+        "Monthly marketing execution",
+        "CRM management and lead nurture",
+        "Website updates and conversion tweaks",
+        "Performance reporting and reviews",
+        "New campaigns, content, and SOP updates",
+        "Quarterly strategy refresh sessions",
       ],
       outcomes: [
-        "Real-time performance visibility for leadership",
-        "Culture of continuous improvement embedded",
-        "Measurable ROI on consulting engagement",
-        "Organization positioned for sustained growth",
+        "A growth engine that keeps producing",
+        "Clear monthly visibility on what's working",
+        "Compounding improvements over time",
+        "Optional, no long-term lock-in",
       ],
     },
   ];
@@ -182,84 +178,88 @@ export default function Approach() {
   const toolsAndFrameworks = [
     {
       image: balancedScorecardImg,
-      title: "Balanced Scorecard",
-      desc: "Translate strategy into measurable objectives across financial, customer, process, and learning perspectives for holistic performance tracking.",
+      title: "Website & Brand System",
+      desc: "Editorial design, fast performance, conversion-ready architecture, and a brand system your site, social, and sales materials all share.",
     },
     {
       image: swotAnalysisImg,
-      title: "SWOT Analysis",
-      desc: "Systematically evaluate organizational strengths, weaknesses, opportunities, and threats to inform strategic decision-making.",
+      title: "Marketing Engine",
+      desc: "Email, social, and campaign infrastructure designed to fill the top of your pipeline and turn attention into qualified leads.",
     },
     {
       image: kpiFrameworksImg,
-      title: "KPI Frameworks",
-      desc: "Design and implement Key Performance Indicator systems that align individual and team performance with strategic objectives.",
+      title: "CRM & Lead Tracking",
+      desc: "A right-sized CRM your team will actually use — pipelines, automations, and reporting so no lead falls through the cracks.",
     },
     {
       image: processMappingImg,
-      title: "Process Mapping",
-      desc: "Visualize and optimize organizational workflows to eliminate inefficiencies, reduce waste, and improve service delivery.",
+      title: "SOPs & Operating Playbooks",
+      desc: "Documented playbooks for sales, marketing, and operations — so your business runs the same way whether or not you're in the room.",
     },
     {
       image: stakeholderAnalysisImg,
-      title: "Stakeholder Analysis",
-      desc: "Identify, prioritize, and engage key stakeholders to build support for change initiatives and ensure inclusive decision-making.",
+      title: "Training & Implementation",
+      desc: "Workshops and one-on-one coaching so your team learns the system as it's built — and owns it the moment it goes live.",
     },
     {
       image: changeManagementImg,
-      title: "Change Management Models",
-      desc: "Apply proven change frameworks to guide organizations through transitions, minimize resistance, and accelerate adoption of new practices.",
+      title: "Foundation Sprints",
+      desc: "Short, focused engagements to define structure, roles, KPIs, and the basics that hold a small business together.",
     },
     {
       image: performanceDashboardsImg,
       title: "Performance Dashboards",
-      desc: "Create visual, real-time performance monitoring tools that give leadership instant insight into organizational health and progress.",
+      desc: "Simple, monthly dashboards that show how the website, marketing, and CRM are performing against the KPIs we set together.",
     },
     {
       image: leadershipCompetencyImg,
-      title: "Leadership Competency Models",
-      desc: "Define and develop the leadership capabilities needed to drive organizational performance and build a strong leadership pipeline.",
+      title: "Ongoing Support Retainers",
+      desc: "Optional monthly retainers — marketing execution, CRM management, content, and continuous optimization, with no long-term lock-in.",
     },
   ];
 
   const faqItems = [
     {
+      question: "Which services do you actually offer?",
+      answer: "Six integrated practices: Websites, Marketing, CRM & Lead Tracking, Business Systems, Training & Implementation, and Ongoing Support. You can buy any one as a standalone productized engagement, or combine several into a bundle that installs your full growth infrastructure end-to-end.",
+    },
+    {
       question: "How long does a typical engagement last?",
-      answer: "Engagement length varies depending on scope and organizational complexity. A focused project (e.g., strategic planning facilitation) may take 4,8 weeks, while a comprehensive performance transformation can span 6,12 months. During our initial Discovery phase, we'll provide a detailed timeline tailored to your specific needs and objectives.",
+      answer: "It depends on the scope. A standalone website usually runs 4–8 weeks. A CRM setup is typically 2–4 weeks. A full growth-infrastructure bundle (web + marketing + CRM + systems + training) usually runs 8–12 weeks from kickoff to launch. Ongoing support retainers are monthly and continue as long as they're useful.",
     },
     {
-      question: "What size of organization do you work with?",
-      answer: "We work with organizations of all sizes, from growing startups with 20+ employees to large enterprises and government agencies with thousands of staff. Our methodology is scalable and adaptable, the core principles remain the same, but we customize our approach, tools, and level of engagement to match your organization's size, complexity, and maturity.",
+      question: "Who do you work with?",
+      answer: "Professionals, nonprofits, and small-to-mid-sized businesses across Canada. Common fits include professional services, trades and local services, health and wellness practices, coaches and consultants, creators and personal brands, and growing nonprofits.",
     },
     {
-      question: "How do you measure the ROI of your consulting services?",
-      answer: "We establish clear, measurable KPIs at the start of every engagement, aligned to your strategic objectives. These may include financial metrics (revenue growth, cost reduction), operational metrics (efficiency gains, cycle time), people metrics (engagement scores, retention rates), and strategic metrics (goal achievement, market position). We track these throughout the engagement and provide a comprehensive impact report at its conclusion.",
+      question: "Do you offer fixed pricing?",
+      answer: "Yes. Almost everything we do is productized — a clearly defined scope, deliverables, timeline, and price you see before you commit. Bundles and ongoing retainers are also fixed-fee. The only thing we quote case-by-case is highly custom work that doesn't fit an existing offer.",
     },
     {
-      question: "What makes your approach different from other consulting firms?",
-      answer: "Three things set us apart: First, we don't just deliver recommendations, we stay to implement them alongside your team. Second, our focus on building internal capability means your organization becomes self-sufficient, not dependent on consultants. Third, our methodology is grounded in real-world experience across multiple sectors, not academic theory alone. We measure our success by your results, not by the volume of our deliverables.",
+      question: "What makes your approach different?",
+      answer: "Three things. First, we install one integrated system — web, marketing, CRM, systems, training, and support — instead of selling each piece separately. Second, we build and run it with you, not just hand over slide decks. Third, every engagement leaves behind documented playbooks and trained operators so the system runs without us.",
     },
     {
-      question: "Do you offer virtual or remote engagements?",
-      answer: "Yes. While we believe in the value of in-person collaboration for key workshops and planning sessions, much of our work can be conducted effectively through virtual channels. We offer fully remote, hybrid, and on-site engagement models. Many clients find that a hybrid approach, with in-person sessions for strategic milestones and virtual check-ins for ongoing support, delivers the best results.",
+      question: "Do you work remote or in-person?",
+      answer: "Most of our work runs remotely with structured weekly check-ins, which keeps timelines tight and budgets predictable. For workshops, training, and key strategy sessions, we travel where it matters. Hybrid is the most common setup.",
     },
     {
-      question: "What happens after the engagement ends?",
-      answer: "Our goal is to leave your organization stronger and more capable than when we started. Before concluding an engagement, we ensure all systems, processes, and training materials are fully documented and handed over. We also offer optional ongoing retainer arrangements for clients who want continued advisory support, quarterly strategy reviews, or access to our team for ad-hoc consulting needs.",
+      question: "What happens after launch?",
+      answer: "You keep everything we built — the website, the CRM configuration, the SOPs, the brand assets, the playbooks. From there you can run the system in-house, hand it off to your team, or keep us on as a monthly retainer to execute marketing, manage the CRM, and keep optimizing.",
     },
     {
-      question: "How involved does our leadership team need to be?",
-      answer: "Leadership involvement is critical to the success of any performance improvement initiative. We typically ask for active participation from senior leaders during key workshops, strategic planning sessions, and decision points. Day-to-day involvement can be managed through a designated project sponsor or steering committee. We design our engagement model to respect your leadership team's time while ensuring they remain connected to the process.",
+      question: "How much of our team's time do you need?",
+      answer: "Less than most firms. We design productized engagements to minimize the meetings tax — typically a weekly 30–45 minute working session, plus async approvals for design and copy. The exception is training, where we deliberately want your team in the room.",
     },
     {
-      question: "Can you work alongside our existing consultants or internal teams?",
-      answer: "Absolutely. We frequently collaborate with internal strategy teams, HR departments, IT groups, and other consulting firms. Our collaborative approach means we integrate seamlessly with your existing resources, complementing rather than duplicating efforts. We're focused on outcomes, not territory, and we're happy to work in whatever configuration delivers the best results for your organization.",
+      question: "Can you work alongside our existing tools or partners?",
+      answer: "Yes. We meet you where you are. If you already have a CRM, an agency, or in-house marketing, we plug into what's working and replace only what isn't. We're focused on outcomes, not territory.",
     },
   ];
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-      <SEOHead title="Our Approach, Structured Consulting Methodology" description="Discover how Performance Processes delivers results through a structured 4-phase consulting methodology: Discovery, Strategy Design, Implementation, and Performance Review. Built for measurable outcomes." path="/approach" />
+      <SEOHead title="Our Approach, How We Install Growth Infrastructure" description="A structured four-phase method for installing growth infrastructure: Discover, Design & Plan, Build & Install, and Run & Optimize. Productized scope, fixed timelines, measurable outcomes." path="/approach" />
       <Navbar />
       <main className="flex-grow">
 
@@ -284,15 +284,15 @@ export default function Approach() {
               </p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.2s" }} data-testid="text-hero-title">
                 {language === "en" ? (
-                  <>A collaborative, <span className="text-accent italic">results-focused</span> approach</>
+                  <>How we install <span className="text-accent italic">growth infrastructure</span></>
                 ) : (
-                  <>Une approche collaborative, <span className="text-accent italic">axée sur les résultats</span></>
+                  <>Comment nous installons <span className="text-accent italic">l'infrastructure de croissance</span></>
                 )}
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl animate-fade-in-up" style={{ animationDelay: "0.35s" }} data-testid="text-hero-subtitle">
                 {language === "en"
-                  ? "Our methodology is designed to drive sustainable improvements across operations, people management, and organizational performance."
-                  : "Notre méthodologie est conçue pour favoriser des améliorations durables dans les opérations, la gestion des personnes et la performance organisationnelle."}
+                  ? "A clear four-phase method for designing, building, and running the websites, marketing, CRM, and business systems your team will use every day."
+                  : "Une méthode claire en quatre phases pour concevoir, construire et faire fonctionner les sites web, le marketing, le CRM et les systèmes d'affaires que votre équipe utilisera chaque jour."}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="link-hero-book">
@@ -315,18 +315,18 @@ export default function Approach() {
             <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
               <AnimateOnScroll animation="fade-left">
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-8 italic" data-testid="text-methodology-title">
-                  Built on Experience, Driven by Results
+                  Built to Build, Not Just Advise
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Our approach to performance consulting isn't based on textbook theory, it's forged from years of hands-on experience working with organizations across the public, private, and nonprofit sectors. We've seen what works, what doesn't, and what makes the difference between a strategy that sits on a shelf and one that transforms an organization.
+                  Most firms hand over a strategy and walk away. We do the opposite — we install the website, set up the CRM, launch the marketing, write the playbooks, and train the team that will run it all.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  At the heart of our methodology is a simple belief: <strong className="text-primary">sustainable improvement comes from building internal capability, not creating dependency on external consultants.</strong> Every tool we introduce, every process we design, and every skill we teach is intended to strengthen your organization's ability to perform at its best, long after our engagement ends.
+                  At the heart of our method is a simple belief: <strong className="text-primary">growth comes from systems people actually use, not slide decks they nod at.</strong> Every page we design, every CRM pipeline we configure, and every playbook we write is built so your team owns and runs it the day it ships.
                 </p>
               </AnimateOnScroll>
               <AnimateOnScroll animation="fade-right" delay={200}>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  Our four-phase approach provides a clear, structured path from assessment to optimization, while remaining flexible enough to adapt to the unique needs, pace, and culture of your organization.
+                  Our four-phase approach is the same whether you're buying one offer or installing the full growth infrastructure — Discover, Design & Plan, Build & Install, then Run & Optimize. Productized scope, fixed timelines, real outcomes.
                 </p>
                 <div className="relative">
                   <img
@@ -464,10 +464,10 @@ export default function Approach() {
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center mb-20">
               <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-6" data-testid="text-tools-title">
-                Tools & Frameworks We Use
+                What We Build For You
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                We leverage proven methodologies and industry-standard frameworks to deliver consistent, measurable results across every engagement.
+                Eight building blocks across our six practices. Mix and match into a single offer — or stack them into a full growth-infrastructure bundle.
               </p>
             </AnimateOnScroll>
 
@@ -499,10 +499,10 @@ export default function Approach() {
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-20">
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-6" data-testid="text-faq-title">
-                  What to Expect
+                  Frequently Asked Questions
                 </h2>
                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                  Common questions about our engagement process, methodology, and what it's like to work with Performance Processes.
+                  Common questions about our services, scope, pricing, and what it's like to work with Performance Processes.
                 </p>
               </div>
 
@@ -545,13 +545,13 @@ export default function Approach() {
               </AnimateOnScroll>
               <AnimateOnScroll animation="fade-right" delay={200} className="order-1 md:order-2">
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-white italic mb-8" data-testid="text-cta-title">
-                  Ready to Begin Your Transformation?
+                  Ready to install your growth infrastructure?
                 </h2>
                 <p className="text-lg text-white/70 leading-relaxed mb-6">
-                  Every high-performing organization started with a single decision, the decision to invest in their people, processes, and performance. Whether you're looking to refine your strategic direction, strengthen your leadership team, or build a culture of accountability and results, we're here to help.
+                  Whether you need a single piece — a new website, a CRM, a marketing engine — or the full system installed end-to-end, we'll scope it clearly, build it cleanly, and train your team to run it.
                 </p>
                 <p className="text-lg text-white/70 leading-relaxed mb-10">
-                  Book a complimentary discovery call to discuss your organization's challenges and explore how our methodology can deliver measurable, sustainable results.
+                  Book a complimentary discovery call to talk through where your business is today and what to install first.
                 </p>
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="link-cta-consultation">
                     <Calendar size={18} />

@@ -104,7 +104,6 @@ export default function Services() {
             >
               <div className="container mx-auto px-4 md:px-8">
                 <div className="max-w-3xl mb-12 flex flex-col gap-3">
-                  <p className="text-xs font-black uppercase tracking-[0.3em] text-accent">Category {idx + 1}</p>
                   <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary">
                     {meta.label}
                   </h2>

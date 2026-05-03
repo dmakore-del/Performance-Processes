@@ -3,7 +3,6 @@ export type OfferCategory =
   | "marketing"
   | "crm"
   | "systems"
-  | "training"
   | "support"
   | "bundle";
 
@@ -229,96 +228,6 @@ export const OFFERS: Offer[] = [
     highlight: true,
   },
   {
-    id: "playbooks",
-    name: "Playbooks",
-    description: "Plug-and-play system frameworks: hiring, conversion, marketing, KPIs, SOPs.",
-    price: 0,
-    priceLabel: "$149 to $299 each, bundles $399 to $999",
-    bestFor: "Teams that want ready-to-use frameworks they can implement themselves.",
-    includes: [
-      "Hiring playbooks",
-      "Website conversion playbooks",
-      "Marketing playbooks",
-      "KPI and performance playbooks",
-      "SOP and process playbooks",
-    ],
-    category: "systems",
-    isRange: true,
-    ctaHref: "/contact",
-  },
-
-  {
-    id: "training-foundations",
-    name: "Business System Foundations Training",
-    description: "Structure, roles, KPIs, and process basics that hold a business together.",
-    price: 49900,
-    priceLabel: "$499 / person",
-    perTeamPrice: 200000,
-    perTeamLabel: "$2,000 / team",
-    bestFor: "Teams that want a shared baseline for how the business should run.",
-    includes: [
-      "Structure, roles, KPIs, and process basics",
-      "Practical worksheets",
-      "Implementation steps",
-    ],
-    category: "training",
-    isPerPerson: true,
-  },
-  {
-    id: "training-marketing",
-    name: "Website and Marketing Training",
-    description: "Conversion, funnel structure, lead generation, and content basics.",
-    price: 49900,
-    priceLabel: "$499 / person",
-    perTeamPrice: 250000,
-    perTeamLabel: "$2,500 / team",
-    bestFor: "Teams that want to upskill on web and marketing fundamentals.",
-    includes: [
-      "Website conversion basics",
-      "Funnel structure",
-      "Lead generation basics",
-      "Content and campaign planning",
-    ],
-    category: "training",
-    isPerPerson: true,
-  },
-  {
-    id: "training-execution",
-    name: "Execution and Performance Training",
-    description: "KPI tracking, accountability, and weekly execution rhythms.",
-    price: 49900,
-    priceLabel: "$499 / person",
-    perTeamPrice: 250000,
-    perTeamLabel: "$2,500 / team",
-    bestFor: "Leaders building accountability and consistent execution.",
-    includes: [
-      "KPI tracking",
-      "Accountability rhythms",
-      "Weekly execution systems",
-      "Performance review basics",
-    ],
-    category: "training",
-    isPerPerson: true,
-  },
-  {
-    id: "team-implementation-workshop",
-    name: "Team Implementation Workshop",
-    description: "Custom live workshop with practical implementation support.",
-    price: 0,
-    priceLabel: "$3,500 to $7,500",
-    bestFor: "Teams that want a custom live workshop tailored to their priorities.",
-    includes: [
-      "Custom live workshop",
-      "Team training",
-      "Practical implementation support",
-      "Templates and action plan",
-    ],
-    category: "training",
-    isRange: true,
-    ctaHref: "/contact",
-  },
-
-  {
     id: "monthly-marketing",
     name: "Monthly Marketing Support",
     description: "Ongoing marketing planning, campaigns, and reporting.",
@@ -448,24 +357,19 @@ export const CATEGORY_META: Record<OfferCategory, { label: string; description: 
     order: 3,
   },
   systems: {
-    label: "Business Systems and Playbooks",
+    label: "Business Systems",
     description: "Audits, frameworks, and structure for how your business runs.",
     order: 4,
-  },
-  training: {
-    label: "Training and Implementation Support",
-    description: "Train your team to run the systems behind growth.",
-    order: 5,
   },
   support: {
     label: "Ongoing Growth Support",
     description: "Monthly retainers to keep growth, marketing, and systems on track.",
-    order: 6,
+    order: 5,
   },
   bundle: {
     label: "Popular Packages",
     description: "Pre-built bundles that combine our most-requested services.",
-    order: 7,
+    order: 6,
   },
 };
 

@@ -108,6 +108,19 @@ function DesktopDropdown({ item, isActive }: { item: NavItem; isActive: boolean 
                 );
               }
 
+              if (child.href.includes("#")) {
+                return (
+                  <a
+                    key={child.href}
+                    href={child.href}
+                    onClick={() => setIsOpen(false)}
+                    data-testid={`link-dropdown-${child.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  >
+                    {content}
+                  </a>
+                );
+              }
+
               return (
                 <Link
                   key={child.href}
@@ -183,6 +196,19 @@ function MobileAccordion({ item, location, onNavigate }: { item: NavItem; locati
               );
             }
 
+            if (child.href.includes("#")) {
+              return (
+                <a
+                  key={child.href}
+                  href={child.href}
+                  onClick={onNavigate}
+                  data-testid={`link-mobile-dropdown-${child.label.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  {content}
+                </a>
+              );
+            }
+
             return (
               <Link
                 key={child.href}
@@ -218,7 +244,6 @@ export function Navbar() {
         { label: language === "en" ? "Marketing Services" : "Services marketing", href: "/services#cat-marketing" },
         { label: language === "en" ? "CRM and Lead Tracking" : "CRM et suivi des prospects", href: "/services#cat-crm" },
         { label: language === "en" ? "Business Systems" : "Systèmes d'affaires", href: "/services#cat-systems" },
-        { label: language === "en" ? "Training & Implementation" : "Formation et mise en œuvre", href: "/services#cat-training" },
         { label: language === "en" ? "Ongoing Support" : "Soutien continu", href: "/services#cat-support" },
       ],
     },

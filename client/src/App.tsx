@@ -72,7 +72,7 @@ function Router() {
       <Route path="/nextup-partnership" component={NextUpPartnership} />
       <Route path="/playbooks">{() => <Redirect to="/services" />}</Route>
       <Route path="/assessment">{() => <Redirect to="/contact" />}</Route>
-      <Route path="/training">{() => <Redirect to="/services#cat-training" />}</Route>
+      <Route path="/training">{() => <Redirect to="/services" />}</Route>
       <Route path="/consulting">{() => <Redirect to="/solutions" />}</Route>
       <Route path="/recruiting">{() => <Redirect to="/solutions" />}</Route>
       <Route path="/marketing">{() => <Redirect to="/solutions" />}</Route>

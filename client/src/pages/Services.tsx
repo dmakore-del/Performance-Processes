@@ -12,7 +12,6 @@ import {
   Megaphone,
   Database,
   Settings,
-  GraduationCap,
   RefreshCw,
   Package,
   Calendar,
@@ -24,14 +23,13 @@ import { useToast } from "@/hooks/use-toast";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
-const CATEGORY_ORDER: OfferCategory[] = ["website", "marketing", "crm", "systems", "training", "support"];
+const CATEGORY_ORDER: OfferCategory[] = ["website", "marketing", "crm", "systems", "support"];
 
 const CATEGORY_ICONS: Record<OfferCategory, ReactNode> = {
   website: <Globe className="text-accent" size={28} />,
   marketing: <Megaphone className="text-accent" size={28} />,
   crm: <Database className="text-accent" size={28} />,
   systems: <Settings className="text-accent" size={28} />,
-  training: <GraduationCap className="text-accent" size={28} />,
   support: <RefreshCw className="text-accent" size={28} />,
   bundle: <Package className="text-accent" size={28} />,
 };
@@ -57,7 +55,7 @@ export default function Services() {
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <SEOHead
         title="Services and Pricing | Performance Processes"
-        description="Productized websites, marketing, CRM, business systems, training, and ongoing growth support for small and emerging businesses. Clear prices, secure checkout."
+        description="Productized websites, marketing, CRM, business systems, and ongoing growth support for small and emerging businesses. Clear prices, secure checkout."
         path="/services"
       />
       <Navbar />

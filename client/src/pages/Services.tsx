@@ -12,7 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
-const CATEGORY_ORDER: OfferCategory[] = ["website", "marketing", "crm", "systems", "support"];
+const CATEGORY_ORDER: OfferCategory[] = ["website", "marketing", "crm", "systems", "hr-recruiting", "support"];
 
 export default function Services() {
   const { toast } = useToast();
@@ -48,7 +48,7 @@ export default function Services() {
 
         <section className="py-12 bg-white border-b">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 [&>*:nth-child(7)]:lg:col-start-2">
               {CATEGORY_ORDER.map((cat) => (
                 <a
                   key={cat}

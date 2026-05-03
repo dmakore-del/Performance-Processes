@@ -3,6 +3,7 @@ export type OfferCategory =
   | "marketing"
   | "crm"
   | "systems"
+  | "hr-recruiting"
   | "support"
   | "bundle";
 
@@ -228,6 +229,93 @@ export const OFFERS: Offer[] = [
     highlight: true,
   },
   {
+    id: "hiring-strategy",
+    name: "Hiring Strategy and Job Description Package",
+    description: "Clear role definitions and a structured hiring plan before you start interviewing.",
+    price: 150000,
+    priceLabel: "$1,500",
+    bestFor: "Small businesses preparing to hire who need clarity on roles, responsibilities, and the right candidate profile.",
+    includes: [
+      "Role intake and discovery session",
+      "Job description writing (up to 2 roles)",
+      "Candidate scorecard and interview rubric",
+      "Compensation benchmarking guidance",
+      "Recommended hiring channels",
+      "30-day hiring plan",
+    ],
+    category: "hr-recruiting",
+  },
+  {
+    id: "talent-sourcing-screening",
+    name: "Talent Sourcing and Screening",
+    description: "We source, screen, and shortlist candidates so you only meet the qualified ones.",
+    price: 250000,
+    priceLabel: "$2,500",
+    bestFor: "Businesses that need help filling a single role without taking on the full sourcing workload.",
+    includes: [
+      "Sourcing across LinkedIn and relevant channels",
+      "Candidate outreach and pre-screening",
+      "Shortlist of qualified candidates",
+      "Phone screen summaries",
+      "Interview scheduling support",
+      "30-day sourcing window per role",
+    ],
+    category: "hr-recruiting",
+    highlight: true,
+  },
+  {
+    id: "recruitment-setup",
+    name: "Recruitment Setup Package",
+    description: "Build a repeatable hiring system you can run yourself for every future role.",
+    price: 350000,
+    priceLabel: "$3,500",
+    bestFor: "Growing businesses that hire regularly and want a structured, repeatable recruitment process.",
+    includes: [
+      "Applicant tracking workflow setup",
+      "Standardized interview process and rubrics",
+      "Hiring manager intake template",
+      "Offer letter and onboarding templates",
+      "Hiring playbook documentation",
+      "Team training session",
+    ],
+    category: "hr-recruiting",
+  },
+  {
+    id: "hr-foundations",
+    name: "HR Foundations Package",
+    description: "The core HR documentation and onboarding structure every small business needs.",
+    price: 200000,
+    priceLabel: "$2,000",
+    bestFor: "Small businesses without dedicated HR who need core policies, onboarding, and compliance basics in place.",
+    includes: [
+      "Employee handbook (core policies)",
+      "Onboarding checklist and welcome kit",
+      "Offer letter and employment templates",
+      "Performance review framework",
+      "Termination and offboarding process",
+      "Compliance review (Canadian employment standards)",
+    ],
+    category: "hr-recruiting",
+  },
+  {
+    id: "interview-coaching",
+    name: "Interview and Career Readiness Coaching",
+    description: "One-on-one coaching to help professionals interview with confidence.",
+    price: 75000,
+    priceLabel: "$750",
+    bestFor: "Professionals preparing for interviews, promotions, or career transitions.",
+    includes: [
+      "Resume and LinkedIn review",
+      "Personal narrative and positioning",
+      "Two mock interview sessions",
+      "Behavioural and situational interview prep",
+      "Salary negotiation coaching",
+      "Follow-up and feedback document",
+    ],
+    category: "hr-recruiting",
+  },
+
+  {
     id: "monthly-marketing",
     name: "Monthly Marketing Support",
     description: "Ongoing marketing planning, campaigns, and reporting.",
@@ -361,15 +449,20 @@ export const CATEGORY_META: Record<OfferCategory, { label: string; description: 
     description: "Audits, frameworks, and structure for how your business runs.",
     order: 4,
   },
+  "hr-recruiting": {
+    label: "HR and Recruiting",
+    description: "Hiring strategy, sourcing, HR foundations, and career coaching for growing businesses.",
+    order: 5,
+  },
   support: {
     label: "Ongoing Growth Support",
     description: "Monthly retainers to keep growth, marketing, and systems on track.",
-    order: 5,
+    order: 6,
   },
   bundle: {
     label: "Popular Packages",
     description: "Pre-built bundles that combine our most-requested services.",
-    order: 6,
+    order: 7,
   },
 };
 

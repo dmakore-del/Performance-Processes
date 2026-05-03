@@ -138,6 +138,7 @@ export function Footer() {
                 <li><a href="/services#cat-marketing" className="hover:text-accent transition-colors">Marketing Services</a></li>
                 <li><a href="/services#cat-crm" className="hover:text-accent transition-colors">CRM and Lead Tracking</a></li>
                 <li><a href="/services#cat-systems" className="hover:text-accent transition-colors">Business Systems</a></li>
+                <li><a href="/services#cat-hr-recruiting" className="hover:text-accent transition-colors">HR and Recruiting</a></li>
                 <li><a href="/services#cat-support" className="hover:text-accent transition-colors">Ongoing Support</a></li>
                 <li><Link href="/nextup-partnership" className="hover:text-accent transition-colors">NextUp Youth Partnership</Link></li>
               </ul>

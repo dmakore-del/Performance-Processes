@@ -244,6 +244,7 @@ export function Navbar() {
         { label: language === "en" ? "Marketing Services" : "Services marketing", href: "/services#cat-marketing" },
         { label: language === "en" ? "CRM and Lead Tracking" : "CRM et suivi des prospects", href: "/services#cat-crm" },
         { label: language === "en" ? "Business Systems" : "Systèmes d'affaires", href: "/services#cat-systems" },
+        { label: language === "en" ? "HR and Recruiting" : "RH et recrutement", href: "/services#cat-hr-recruiting" },
         { label: language === "en" ? "Ongoing Support" : "Soutien continu", href: "/services#cat-support" },
       ],
     },

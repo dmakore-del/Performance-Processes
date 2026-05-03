@@ -46,6 +46,13 @@ const CAPABILITIES = [
     image: communityTownhallImg,
     href: "/services#cat-systems",
   },
+  {
+    label: "05 — HR & Recruiting",
+    title: "The right people, hired the right way.",
+    desc: "Hiring strategy, sourcing, recruitment systems, HR foundations, and career coaching for growing teams.",
+    image: communityWorkspaceImg,
+    href: "/services#cat-hr-recruiting",
+  },
 ];
 
 const PHASES = [

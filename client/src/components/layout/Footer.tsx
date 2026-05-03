@@ -100,6 +100,10 @@ export function Footer() {
                   <span className="text-muted-foreground/30 text-lg">&#x2022;</span>
                   <span className="text-muted-foreground/60 font-heading font-bold text-sm tracking-wide">TrueNorth Property & Facilities</span>
                   <span className="text-muted-foreground/30 text-lg">&#x2022;</span>
+                  <span className="text-muted-foreground/60 font-heading font-bold text-sm tracking-wide">OGB Productions</span>
+                  <span className="text-muted-foreground/30 text-lg">&#x2022;</span>
+                  <span className="text-muted-foreground/60 font-heading font-bold text-sm tracking-wide">Maison Sparkle Living</span>
+                  <span className="text-muted-foreground/30 text-lg">&#x2022;</span>
                 </div>
               ))}
             </div>

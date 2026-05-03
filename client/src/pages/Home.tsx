@@ -223,6 +223,14 @@ export default function Home() {
                 <span className="text-sm font-bold tracking-wide text-primary/70" data-testid="logo-truenorth">
                   TrueNorth Property &amp; Facilities
                 </span>
+                <span className="hidden md:block w-px h-6 bg-border" />
+                <span className="text-sm font-bold tracking-wide text-primary/70" data-testid="logo-ogb-productions">
+                  OGB Productions
+                </span>
+                <span className="hidden md:block w-px h-6 bg-border" />
+                <span className="text-sm font-bold tracking-wide text-primary/70" data-testid="logo-maison-sparkle-living">
+                  Maison Sparkle Living
+                </span>
               </div>
             </div>
           </div>

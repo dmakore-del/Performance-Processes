@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { ArrowRight, ArrowDown, X as XIcon } from "lucide-react";
+import { ArrowRight, X as XIcon } from "lucide-react";
 import { Link } from "wouter";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { SEOHead } from "@/components/SEOHead";
@@ -139,10 +139,6 @@ export default function Home() {
           <div className="absolute top-24 md:top-28 left-0 right-0 z-10 pointer-events-none">
             <div className="container mx-auto px-4 md:px-8 flex items-center justify-between text-white/70 text-[10px] md:text-[11px] uppercase tracking-[0.3em] font-bold">
               <span data-testid="text-hero-meta-studio">A growth infrastructure studio</span>
-              <span className="hidden md:inline-flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-accent animate-pulse-soft" />
-                <span data-testid="text-hero-meta-status">Now booking — 2026 engagements</span>
-              </span>
             </div>
           </div>
 
@@ -204,11 +200,7 @@ export default function Home() {
 
           {/* Bottom rule */}
           <div className="relative z-10 border-t border-white/15">
-            <div className="container mx-auto px-4 md:px-8 py-5 flex items-center justify-between text-white/60 text-[11px] uppercase tracking-[0.3em] font-bold">
-              <span className="inline-flex items-center gap-3">
-                <ArrowDown size={14} className="animate-float" />
-                Scroll
-              </span>
+            <div className="container mx-auto px-4 md:px-8 py-5 flex items-center justify-end text-white/60 text-[11px] uppercase tracking-[0.3em] font-bold">
               <span className="hidden md:inline">Performance Processes</span>
             </div>
           </div>
@@ -561,7 +553,7 @@ export default function Home() {
                     className="w-full h-full object-cover"
                     poster={teamMovingForwardImg}
                   >
-                    <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
+                    <source src="/assets/videos/team-collab.mp4" type="video/mp4" />
                   </video>
                 </div>
               </AnimateOnScroll>
@@ -573,6 +565,19 @@ export default function Home() {
             CLOSING CTA — full-bleed editorial
         —————————————————————————————————————————————————————————————— */}
         <section className="relative bg-primary overflow-hidden" data-testid="section-cta">
+          <div className="absolute inset-0 z-0">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover opacity-60"
+              poster={teamMovingForwardImg}
+            >
+              <source src="/assets/videos/cta-speaker.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/85 via-primary/75 to-primary" />
+          </div>
           <div className="container mx-auto px-4 md:px-8 relative z-10 py-32 md:py-44">
             <AnimateOnScroll>
               <p className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-8" data-testid="text-cta-eyebrow">

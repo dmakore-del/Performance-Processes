@@ -84,8 +84,17 @@ export default function About() {
 
         <section className="relative min-h-[550px] lg:min-h-[700px] flex items-center overflow-hidden bg-primary">
           <div className="absolute inset-0 z-0">
-            <img src={teamStrategyImg} alt="" className="w-full h-full object-cover opacity-25 animate-ken-burns" />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover opacity-40"
+              poster={teamStrategyImg}
+            >
+              <source src="/assets/videos/team-collab.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/60" />
           </div>
           <div className="absolute bottom-0 right-0 w-2/5 h-full hidden lg:block z-[1]">
             <img src={cityAerialImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
@@ -569,7 +578,20 @@ export default function About() {
           </div>
         </section>
 
-        <section className="bg-gradient-to-br from-primary via-primary to-primary/90 py-32 text-white relative overflow-hidden" data-testid="section-final-cta">
+        <section className="bg-primary py-32 text-white relative overflow-hidden" data-testid="section-final-cta">
+          <div className="absolute inset-0 z-0">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover opacity-50"
+              poster={teamStrategyImg}
+            >
+              <source src="/assets/videos/cta-speaker.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-primary/80 to-primary/95" />
+          </div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.05)_0%,transparent_60%)]" />
           <FloatingShape className="w-20 h-20 top-16 left-16 opacity-20" variant="ring" />
           <FloatingShape className="w-12 h-12 bottom-20 right-24 opacity-20" variant="dot" />

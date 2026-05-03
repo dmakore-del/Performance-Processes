@@ -1,0 +1,447 @@
+Please redesign both the **Client Portal** and **Staff Portal** to align with our updated business model, which now focuses on clear, productized services (websites, marketing, CRM, systems) with defined pricing and structured delivery.
+
+The portals should support:
+
+* Simpler service delivery
+* Clear project tracking
+* Product-based workflows (not abstract consulting)
+* Improved communication and accountability
+
+---
+
+# Overall Objective
+
+Both portals should reflect a shift from “custom consulting engagements” to:
+👉 **Clear products, structured delivery, and trackable outcomes**
+
+The experience should feel:
+
+* Simple
+* Organized
+* Action-oriented
+* Easy to understand for small business clients
+
+---
+
+# 1. CLIENT PORTAL REDESIGN
+
+## Core Goal
+
+Give clients a clear, transparent view of:
+
+* What they purchased
+* What is being delivered
+* What’s completed
+* What’s next
+* What they need to do
+
+---
+
+## A. Dashboard (Main View)
+
+The client dashboard should immediately show:
+
+### 1. Active Services / Packages
+
+Display each purchased product as a card:
+
+Example:
+
+* Website Conversion Package – In Progress
+* Marketing Starter Package – Pending
+* CRM Setup – Completed
+
+Each card should include:
+
+* Status (Not Started / In Progress / Completed)
+* Start date
+* Expected completion date
+* Progress bar
+
+---
+
+### 2. Key Milestones
+
+Show current phase:
+
+* Setup
+* Design
+* Build
+* Review
+* Launch
+
+Each milestone should include:
+
+* Status
+* Owner (staff/client)
+* Due date
+
+---
+
+### 3. Next Actions (Very Important)
+
+Clear list of what the client needs to do:
+
+Examples:
+
+* Submit website content
+* Approve homepage design
+* Provide branding assets
+* Review campaign messaging
+
+This should be highly visible.
+
+---
+
+### 4. Messages / Updates
+
+Simple communication thread:
+
+* Updates from team
+* Client replies
+* File attachments
+
+---
+
+## B. Service-Specific Views
+
+Each product should have its own structured page.
+
+---
+
+### Website Projects
+
+Sections:
+
+* Pages list (Home, Services, Contact)
+* Design status
+* Content status
+* Approval checkpoints
+* Launch checklist
+
+---
+
+### Marketing Projects
+
+Sections:
+
+* Campaign plan
+* Content plan
+* Funnel structure
+* KPI targets
+* Performance updates
+
+---
+
+### CRM Setup
+
+Sections:
+
+* Pipeline stages
+* Fields setup
+* Automation setup
+* Testing status
+
+---
+
+### Business System Work
+
+Sections:
+
+* Audit findings
+* Recommendations
+* Implementation steps
+* Completed vs pending
+
+---
+
+## C. Deliverables Section
+
+Central location for:
+
+* Files
+* Links
+* Documents
+* Playbooks
+
+Organized by project.
+
+---
+
+## D. Timeline View
+
+Simple timeline showing:
+
+* Start → milestones → completion
+
+---
+
+## E. Billing / Purchases (Optional but recommended)
+
+Show:
+
+* Purchased packages
+* Payment status
+* Upgrade options
+
+---
+
+## F. Upsell Opportunities
+
+Based on completed services:
+
+Example:
+
+* After website → suggest marketing package
+* After marketing → suggest CRM or retainer
+
+---
+
+# 2. STAFF PORTAL REDESIGN
+
+## Core Goal
+
+Enable team to:
+
+* Deliver productized services efficiently
+* Track multiple small business clients
+* Follow standardized workflows
+
+---
+
+## A. Dashboard
+
+Show:
+
+### 1. Active Clients
+
+List with:
+
+* Name
+* Package purchased
+* Status
+* Deadline
+
+---
+
+### 2. Tasks by Priority
+
+Grouped by:
+
+* Due today
+* This week
+* Overdue
+
+---
+
+### 3. Pipeline Overview
+
+View all projects by stage:
+
+* Not started
+* In progress
+* Waiting on client
+* Review
+* Completed
+
+---
+
+## B. Project Templates (CRITICAL)
+
+Each service must have a predefined workflow.
+
+---
+
+### Website Package Workflow
+
+Steps:
+
+1. Client onboarding
+2. Content collection
+3. Wireframe/design
+4. Build
+5. Review
+6. Revisions
+7. Launch
+
+---
+
+### Marketing Package Workflow
+
+Steps:
+
+1. Audit
+2. Strategy
+3. Content direction
+4. Campaign setup
+5. Launch
+6. Optimization
+
+---
+
+### CRM Setup Workflow
+
+Steps:
+
+1. Requirements
+2. Pipeline setup
+3. Automation setup
+4. Testing
+5. Handoff
+
+---
+
+### System Audit / Foundation Sprint
+
+Steps:
+
+1. Audit
+2. Analysis
+3. Recommendations
+4. Presentation
+5. Follow-up
+
+---
+
+Each step should include:
+
+* Task list
+* Owner
+* Time estimate
+* Deliverables
+
+---
+
+## C. Task Management
+
+Tasks should be:
+
+* Assigned to team members
+* Linked to specific clients and projects
+* Time-bound
+* Status tracked
+
+---
+
+## D. Client Communication View
+
+Team should be able to:
+
+* Respond to messages
+* Upload files
+* Send updates
+* Request approvals
+
+---
+
+## E. Performance Tracking
+
+Track:
+
+* Projects completed
+* Average delivery time
+* Client satisfaction (if possible)
+* Revenue per service
+
+---
+
+## F. Templates & SOP Access
+
+Central library:
+
+* Website templates
+* Marketing frameworks
+* CRM setup guides
+* Playbooks
+
+---
+
+# 3. SHARED FEATURES
+
+---
+
+## A. Standard Status Labels
+
+Use consistent labels:
+
+* Not Started
+* In Progress
+* Waiting on Client
+* Review
+* Completed
+
+---
+
+## B. Automation Opportunities
+
+If possible:
+
+* Auto-create project when service is purchased
+* Assign tasks based on package
+* Send reminders for deadlines
+* Notify team when client action is needed
+
+---
+
+## C. Permissions
+
+Client:
+
+* Can only see their projects
+
+Staff:
+
+* Can see assigned projects
+* Admin sees all
+
+---
+
+# 4. UX AND DESIGN
+
+Both portals should feel:
+
+* Simple and clean
+* Easy to navigate
+* Non-technical for clients
+* Focused on clarity
+
+Use:
+
+* Cards for services
+* Progress bars
+* Checklists
+* Clear buttons
+
+Avoid:
+
+* Overly complex dashboards
+* Consulting-style vague layouts
+* Too many features at once
+
+---
+
+# 5. SUCCESS CRITERIA
+
+Client portal should:
+
+* Make it obvious what’s happening
+* Reduce confusion and back-and-forth
+* Improve response times
+
+Staff portal should:
+
+* Standardize delivery
+* Reduce manual tracking
+* Improve efficiency and consistency
+
+---
+
+# END RESULT
+
+The redesigned portals should reflect a business that delivers:
+👉 Clear products
+👉 Structured workflows
+👉 Transparent progress
+👉 Scalable service delivery
+
+This should support our shift toward serving small and emerging businesses with tangible, clearly defined offerings.

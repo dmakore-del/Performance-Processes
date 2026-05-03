@@ -2,11 +2,10 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ArrowRight, ArrowDown, X as XIcon } from "lucide-react";
 import { Link } from "wouter";
-import { AnimateOnScroll, FloatingShape, GradientOrb } from "@/components/ui/animate-on-scroll";
+import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { SEOHead } from "@/components/SEOHead";
 
 import communityCollaborationImg from "@assets/generated/community-collaboration.png";
-import handsPartnershipImg from "@assets/generated/hands-together-partnership.png";
 import communityWorkspaceImg from "@assets/generated/community-workspace.png";
 import communityNetworkImg from "@assets/generated/community-network-abstract.png";
 import communityTownhallImg from "@assets/generated/community-townhall.png";
@@ -17,17 +16,6 @@ import processFlowImg from "@assets/generated/process-flow-abstract.png";
 
 const BOOKINGS_URL =
   "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
-
-const ROTATING_WORDS = ["build.", "launch.", "scale.", "grow.", "build."];
-
-const MARQUEE_ITEMS = [
-  "Websites",
-  "Marketing",
-  "CRM & Lead Tracking",
-  "Business Systems",
-  "Training & Implementation",
-  "Ongoing Support",
-];
 
 const CAPABILITIES = [
   {
@@ -144,16 +132,13 @@ export default function Home() {
             >
               <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
             </video>
-            {/* Cinematic gradient — dark at top + bottom for legibility, video shines in middle */}
-            <div className="absolute inset-0 bg-gradient-to-b from-primary/85 via-primary/40 to-primary/95" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(236,72,153,0.18),transparent_55%)]" />
-            <div className="grain-overlay" />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/55 to-primary/95" />
           </div>
 
           {/* Top meta row */}
           <div className="absolute top-24 md:top-28 left-0 right-0 z-10 pointer-events-none">
-            <div className="container mx-auto px-4 md:px-8 flex items-center justify-between text-white/60 text-[10px] md:text-[11px] uppercase tracking-[0.3em] font-bold">
-              <span data-testid="text-hero-meta-location">Barrie · Ontario · Canada</span>
+            <div className="container mx-auto px-4 md:px-8 flex items-center justify-between text-white/70 text-[10px] md:text-[11px] uppercase tracking-[0.3em] font-bold">
+              <span data-testid="text-hero-meta-studio">A growth infrastructure studio</span>
               <span className="hidden md:inline-flex items-center gap-3">
                 <span className="w-2 h-2 rounded-full bg-accent animate-pulse-soft" />
                 <span data-testid="text-hero-meta-status">Now booking — 2026 engagements</span>
@@ -162,47 +147,25 @@ export default function Home() {
           </div>
 
           {/* Headline block */}
-          <div className="container mx-auto px-4 md:px-8 pt-44 md:pt-48 pb-16 md:pb-24 relative z-10">
-            <p
-              className="text-[11px] md:text-xs font-black uppercase tracking-[0.4em] text-accent mb-6 md:mb-8 animate-fade-in-up"
-              style={{ animationDelay: "0.1s" }}
-              data-testid="text-hero-eyebrow"
-            >
-              A growth infrastructure studio
-            </p>
-
+          <div className="container mx-auto px-4 md:px-8 pt-44 md:pt-48 pb-20 md:pb-28 relative z-10">
             <h1
-              className="text-display text-white text-[12vw] md:text-[8vw] lg:text-[6.8vw] xl:text-[6.5rem] mb-10 max-w-[1400px]"
+              className="text-display text-white text-[12vw] md:text-[8vw] lg:text-[6.8vw] xl:text-[6.5rem] mb-12 max-w-[1400px]"
               data-testid="text-hero-title"
             >
               <span className="line-clip">
-                <span className="animate-line-rise" style={{ animationDelay: "0.2s" }}>
+                <span className="animate-line-rise" style={{ animationDelay: "0.15s" }}>
                   We help businesses
                 </span>
               </span>
               <span className="line-clip">
-                <span className="animate-line-rise" style={{ animationDelay: "0.35s" }}>
+                <span className="animate-line-rise" style={{ animationDelay: "0.3s" }}>
                   <span className="text-display-italic text-accent">scale</span>{" "}
-                  <span className="text-white/90">with the systems they </span>
+                  <span className="text-white/95">with the systems</span>
                 </span>
               </span>
               <span className="line-clip">
-                <span className="animate-line-rise inline-flex items-baseline gap-3" style={{ animationDelay: "0.5s" }}>
-                  <span className="text-white/90">need to</span>
-                  <span
-                    className="relative inline-block overflow-hidden align-baseline"
-                    style={{ height: "0.95em", lineHeight: "0.95em" }}
-                    aria-hidden="true"
-                  >
-                    <span className="block animate-word-rotate text-accent">
-                      {ROTATING_WORDS.map((w, i) => (
-                        <span key={i} className="block" style={{ height: "0.95em", lineHeight: "0.95em" }}>
-                          {w}
-                        </span>
-                      ))}
-                    </span>
-                  </span>
-                  <span className="sr-only">build, launch, scale, grow.</span>
+                <span className="animate-line-rise" style={{ animationDelay: "0.45s" }}>
+                  <span className="text-white/95">they need to grow.</span>
                 </span>
               </span>
             </h1>
@@ -239,41 +202,22 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Bottom rule + scroll cue */}
+          {/* Bottom rule */}
           <div className="relative z-10 border-t border-white/15">
             <div className="container mx-auto px-4 md:px-8 py-5 flex items-center justify-between text-white/60 text-[11px] uppercase tracking-[0.3em] font-bold">
               <span className="inline-flex items-center gap-3">
                 <ArrowDown size={14} className="animate-float" />
                 Scroll
               </span>
-              <span data-testid="text-hero-meta-since" className="hidden md:inline">
-                Performance Processes — est. infrastructure for scale
-              </span>
+              <span className="hidden md:inline">Performance Processes</span>
             </div>
-          </div>
-        </section>
-
-        {/* ————————————————————————————————————————————————————————————
-            MARQUEE TICKER — capability strip
-        —————————————————————————————————————————————————————————————— */}
-        <section className="bg-primary border-y border-white/10 py-6 overflow-hidden" data-testid="section-marquee">
-          <div className="flex animate-marquee-slow whitespace-nowrap text-white">
-            {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
-              <span
-                key={i}
-                className="text-2xl md:text-4xl font-heading font-extrabold tracking-tight marquee-dot inline-flex items-center"
-                data-testid={`marquee-item-${i}`}
-              >
-                {i % 3 === 1 ? <span className="text-display-italic text-accent">{item}</span> : item}
-              </span>
-            ))}
           </div>
         </section>
 
         {/* ————————————————————————————————————————————————————————————
             TRUSTED BY — minimal clean strip
         —————————————————————————————————————————————————————————————— */}
-        <section className="py-10 bg-white border-b" data-testid="section-trusted-by">
+        <section className="py-12 bg-white border-b border-border/60" data-testid="section-trusted-by">
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
               <span className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground/60 shrink-0">
@@ -296,8 +240,6 @@ export default function Home() {
             MANIFESTO — oversized editorial type on white
         —————————————————————————————————————————————————————————————— */}
         <section className="relative py-32 md:py-44 bg-white overflow-hidden" data-testid="section-manifesto">
-          <GradientOrb className="w-[40rem] h-[40rem] bg-accent/5 -top-40 -right-40" />
-          <GradientOrb className="w-[28rem] h-[28rem] bg-primary/5 -bottom-32 -left-20" />
           <div className="container mx-auto px-4 md:px-8 relative">
             <AnimateOnScroll>
               <p className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-10" data-testid="text-manifesto-eyebrow">
@@ -343,10 +285,7 @@ export default function Home() {
         {/* ————————————————————————————————————————————————————————————
             CAPABILITIES — asymmetric image-dominant grid
         —————————————————————————————————————————————————————————————— */}
-        <section className="relative py-28 bg-[#0A1430] overflow-hidden" data-testid="section-capabilities">
-          <div className="grain-overlay" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(236,72,153,0.12),transparent_55%)]" />
-
+        <section className="relative py-32 md:py-40 bg-[#0A1430] overflow-hidden" data-testid="section-capabilities">
           <div className="container mx-auto px-4 md:px-8 relative">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
               <AnimateOnScroll>
@@ -452,15 +391,7 @@ export default function Home() {
         {/* ————————————————————————————————————————————————————————————
             BEFORE / AFTER — kept content, refreshed visual
         —————————————————————————————————————————————————————————————— */}
-        <section className="py-28 bg-primary relative overflow-hidden" data-testid="section-transformation">
-          <div className="absolute inset-0">
-            <img src={handsPartnershipImg} alt="" className="w-full h-full object-cover opacity-15 animate-ken-burns" />
-            <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/80 to-primary/95" />
-          </div>
-          <div className="grain-overlay" />
-          <FloatingShape className="w-16 h-16 top-20 right-[15%]" variant="ring" />
-          <FloatingShape className="w-8 h-8 bottom-32 left-[10%]" variant="dot" />
-
+        <section className="py-32 md:py-40 bg-primary relative overflow-hidden" data-testid="section-transformation">
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <AnimateOnScroll className="max-w-3xl mb-16">
               <p className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-6">The transformation</p>
@@ -621,27 +552,17 @@ export default function Home() {
               </AnimateOnScroll>
 
               <AnimateOnScroll animation="fade-right" delay={200}>
-                <div className="relative">
-                  <div className="rounded-3xl overflow-hidden shadow-2xl shadow-primary/20 aspect-[4/3]">
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="w-full h-full object-cover"
-                      poster={teamMovingForwardImg}
-                    >
-                      <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
-                    </video>
-                  </div>
-                  <FloatingShape className="w-20 h-20 -top-5 -right-5" variant="square" />
-                  <FloatingShape className="w-12 h-12 -bottom-3 right-10" variant="ring" />
-                  <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-5 border border-border max-w-[240px] hidden md:block">
-                    <p className="text-xs font-black uppercase tracking-[0.25em] text-accent mb-2">One System</p>
-                    <p className="text-sm text-primary font-medium leading-snug">
-                      People, process, and growth — integrated into one infrastructure.
-                    </p>
-                  </div>
+                <div className="rounded-3xl overflow-hidden aspect-[4/3] bg-primary">
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-cover"
+                    poster={teamMovingForwardImg}
+                  >
+                    <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
+                  </video>
                 </div>
               </AnimateOnScroll>
             </div>
@@ -652,18 +573,7 @@ export default function Home() {
             CLOSING CTA — full-bleed editorial
         —————————————————————————————————————————————————————————————— */}
         <section className="relative bg-primary overflow-hidden" data-testid="section-cta">
-          <div className="absolute inset-0">
-            <img
-              src={communityCollaborationImg}
-              alt=""
-              className="w-full h-full object-cover opacity-30 animate-ken-burns"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/85 to-primary/40" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(236,72,153,0.2),transparent_55%)]" />
-          </div>
-          <div className="grain-overlay" />
-
-          <div className="container mx-auto px-4 md:px-8 relative z-10 py-32 md:py-40">
+          <div className="container mx-auto px-4 md:px-8 relative z-10 py-32 md:py-44">
             <AnimateOnScroll>
               <p className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-8" data-testid="text-cta-eyebrow">
                 Let's build something

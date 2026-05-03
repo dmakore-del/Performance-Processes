@@ -163,7 +163,7 @@ export default function Recruiting() {
       services: [
         {
           title: language === "en" ? "Recruitment Process Design" : "Conception du processus de recrutement",
-          investment: "$3,000 – $10,000",
+          investment: "$3,000 , $10,000",
           desc: language === "en"
             ? "Stop hiring on gut feeling. We build you a system that helps you find the right people, faster, and set them up to succeed from day one."
             : "Arrêtez de recruter à l'instinct. Nous construisons un système qui vous aide à trouver les bonnes personnes plus vite et à les préparer au succès dès le premier jour.",
@@ -207,7 +207,7 @@ export default function Recruiting() {
         },
         {
           title: language === "en" ? "Talent Acquisition & Staffing" : "Acquisition de talents et dotation",
-          investment: "$5,000 – $25,000",
+          investment: "$5,000 , $25,000",
           investmentNote: language === "en" ? "(Per placement or retainer model)" : "(Par placement ou mandat)",
           desc: language === "en"
             ? "Let us find the right people for your team. We handle the entire hiring process, sourcing, screening, and placing, so you can focus on what you do best."
@@ -233,9 +233,9 @@ export default function Recruiting() {
             {
               name: language === "en" ? "Multi-Hire" : "Recrutement multiple",
               price: "$12,000",
-              subtitle: language === "en" ? "Recruitment for 2–5 roles with dedicated recruiter and talent pipeline development." : "Recrutement pour 2 à 5 postes avec recruteur dédié.",
+              subtitle: language === "en" ? "Recruitment for 2,5 roles with dedicated recruiter and talent pipeline development." : "Recrutement pour 2 à 5 postes avec recruteur dédié.",
               features: language === "en"
-                ? ["Everything in Single Placement", "Dedicated recruiter assigned", "Recruitment for 2–5 roles", "Talent pipeline development", "Employer brand positioning", "Candidate experience management", "Bi-weekly progress reporting", "60-day placement guarantee"]
+                ? ["Everything in Single Placement", "Dedicated recruiter assigned", "Recruitment for 2,5 roles", "Talent pipeline development", "Employer brand positioning", "Candidate experience management", "Bi-weekly progress reporting", "60-day placement guarantee"]
                 : ["Tout dans Placement unique", "Recruteur dédié", "Recrutement pour 2-5 postes", "Développement du pipeline", "Marque employeur", "Gestion de l'expérience candidat", "Rapports bimensuels", "Garantie de 60 jours"],
               stripeProductName: "Talent Acquisition - Multi-Hire"
             },
@@ -252,8 +252,8 @@ export default function Recruiting() {
         },
         {
           title: language === "en" ? "HR & People Strategy" : "Stratégie RH et gestion des personnes",
-          investment: "$5,000 – $15,000",
-          investmentNote: language === "en" ? "(6–12 week engagement)" : "(Engagement de 6 à 12 semaines)",
+          investment: "$5,000 , $15,000",
+          investmentNote: language === "en" ? "(6,12 week engagement)" : "(Engagement de 6 à 12 semaines)",
           desc: language === "en"
             ? "Your people are the heart of your business. We help you create the systems, policies, and culture that attract great talent and make them want to stay."
             : "Vos gens sont le cœur de votre entreprise. Nous créons les systèmes, politiques et la culture qui attirent les meilleurs talents et les fidélisent.",
@@ -297,7 +297,7 @@ export default function Recruiting() {
         },
         {
           title: language === "en" ? "Leadership & Talent Development" : "Développement du leadership et des talents",
-          investment: "$5,000 – $20,000",
+          investment: "$5,000 , $20,000",
           desc: language === "en"
             ? "Invest in the people who will lead your organization tomorrow. We help you identify, develop, and retain the leaders who will carry your vision forward."
             : "Investissez dans ceux qui dirigeront votre organisation demain. Nous identifions, développons et retenons les leaders qui porteront votre vision.",
@@ -341,7 +341,7 @@ export default function Recruiting() {
         },
         {
           title: language === "en" ? "HR Retainer, Large Corporations" : "Mandat RH, grandes entreprises",
-          investment: "$5,000 – $15,000/mo",
+          investment: "$5,000 , $15,000/mo",
           investmentNote: language === "en" ? "(6-month minimum)" : "(Minimum 6 mois)",
           desc: language === "en"
             ? "Get a dedicated HR strategy partner embedded in your organization. We provide ongoing people operations support, policy management, and strategic workforce planning."
@@ -396,7 +396,7 @@ export default function Recruiting() {
       services: [
         {
           title: language === "en" ? "Recruitment & Hiring Support" : "Soutien au recrutement et à l'embauche",
-          investment: "$1,000 – $3,000",
+          investment: "$1,000 , $3,000",
           desc: language === "en"
             ? "Hiring your first (or next) employee shouldn't feel like guesswork. We give you the tools, templates, and training to hire right the first time."
             : "Embaucher votre premier (ou prochain) employé ne devrait pas être du devin. Nous vous donnons les outils, modèles et la formation pour bien embaucher dès la première fois.",
@@ -412,7 +412,7 @@ export default function Recruiting() {
             {
               name: language === "en" ? "Starter" : "Démarrage",
               price: "$1,000",
-              subtitle: language === "en" ? "Essential hiring tools with job templates and interview framework for 1–3 roles." : "Outils d'embauche essentiels avec modèles pour 1 à 3 rôles.",
+              subtitle: language === "en" ? "Essential hiring tools with job templates and interview framework for 1,3 roles." : "Outils d'embauche essentiels avec modèles pour 1 à 3 rôles.",
               features: language === "en"
                 ? ["Job description templates (up to 3 roles)", "Interview question guide", "Candidate scoring rubric", "Offer letter template", "New hire onboarding checklist"]
                 : ["Modèles de description de poste (3 rôles)", "Guide de questions d'entrevue", "Grille de notation", "Modèle de lettre d'offre", "Liste d'intégration"],
@@ -440,7 +440,7 @@ export default function Recruiting() {
         },
         {
           title: language === "en" ? "Recruiting & Staffing for Small Business" : "Recrutement et dotation pour PME",
-          investment: "$2,000 – $5,000",
+          investment: "$2,000 , $5,000",
           investmentNote: language === "en" ? "(Per hire)" : "(Par embauche)",
           desc: language === "en"
             ? "You need to hire, but you're buried in everything else. Let us handle the recruiting so you can focus on running your business, we'll find the right person for you."
@@ -459,7 +459,7 @@ export default function Recruiting() {
               price: "$2,000",
               subtitle: language === "en" ? "Full recruitment support for one role, sourcing, screening, and interview coordination." : "Recrutement complet pour un poste.",
               features: language === "en"
-                ? ["Job posting creation", "Candidate sourcing", "Resume screening and shortlisting", "Interview scheduling", "Top 3–5 candidate shortlist", "Reference check guidance", "Offer letter review"]
+                ? ["Job posting creation", "Candidate sourcing", "Resume screening and shortlisting", "Interview scheduling", "Top 3,5 candidate shortlist", "Reference check guidance", "Offer letter review"]
                 : ["Création de l'affichage", "Sourcing de candidats", "Présélection des CV", "Planification des entrevues", "Liste de 3 à 5 candidats", "Guide de vérification des références", "Revue de la lettre d'offre"],
               stripeProductName: "SB Recruiting - Single Hire"
             },
@@ -477,7 +477,7 @@ export default function Recruiting() {
               price: "$5,000",
               subtitle: language === "en" ? "Priority recruiting with dedicated support, multiple candidates, and extended placement guarantee." : "Recrutement prioritaire avec soutien dédié et garantie prolongée.",
               features: language === "en"
-                ? ["Everything in Standard", "Priority candidate sourcing", "Expanded candidate pipeline (8–10 candidates)", "Compensation benchmarking", "Dedicated recruiting support", "Hiring manager coaching", "60-day placement guarantee", "2 replacement candidates if needed"]
+                ? ["Everything in Standard", "Priority candidate sourcing", "Expanded candidate pipeline (8,10 candidates)", "Compensation benchmarking", "Dedicated recruiting support", "Hiring manager coaching", "60-day placement guarantee", "2 replacement candidates if needed"]
                 : ["Tout dans Standard", "Sourcing prioritaire", "Pipeline élargi (8-10 candidats)", "Analyse comparative de rémunération", "Support dédié", "Coaching du gestionnaire", "Garantie de 60 jours", "2 remplacements si nécessaire"],
               stripeProductName: "SB Recruiting - Premium"
             }
@@ -485,7 +485,7 @@ export default function Recruiting() {
         },
         {
           title: language === "en" ? "People Operations Setup" : "Mise en place des opérations RH",
-          investment: "$2,000 – $5,000",
+          investment: "$2,000 , $5,000",
           desc: language === "en"
             ? "Your team deserves more than guesswork. We set up the HR essentials, clear policies, smooth onboarding, and fair reviews, so your people feel supported and valued."
             : "Votre équipe mérite mieux que l'improvisation. Nous mettons en place les essentiels RH pour que vos employés se sentent soutenus et valorisés.",
@@ -495,7 +495,7 @@ export default function Recruiting() {
           learnMore: language === "en"
             ? "Most small businesses wing it when it comes to managing people, and it catches up with them. Unclear expectations, no onboarding process, inconsistent reviews, and reactive problem-solving create turnover, low morale, and legal risk.\n\nOur People Operations Setup gives you the essential HR infrastructure every growing business needs: clear policies, a structured onboarding process, a simple performance review system, and team management templates you can actually use. No corporate bloat, just what works."
             : "La plupart des PME improvisent la gestion des personnes. Nous vous donnons les fondations RH essentielles : politiques claires, intégration structurée et système de revue de performance simple.",
-          idealFor: language === "en" ? "Small businesses with 3–25 employees who need professional HR foundations without the overhead of a full HR department." : "PME de 3 à 25 employés qui ont besoin de fondations RH professionnelles.",
+          idealFor: language === "en" ? "Small businesses with 3,25 employees who need professional HR foundations without the overhead of a full HR department." : "PME de 3 à 25 employés qui ont besoin de fondations RH professionnelles.",
           image: peopleOperationsImg,
           pricingTiers: [
             {
@@ -503,7 +503,7 @@ export default function Recruiting() {
               price: "$2,000",
               subtitle: language === "en" ? "Core HR policies and employee handbook for small teams." : "Politiques RH de base et manuel employé pour petites équipes.",
               features: language === "en"
-                ? ["Employee policy handbook", "Core HR policies (5–8 policies)", "Simple onboarding checklist", "Role description templates", "Basic compliance guidance"]
+                ? ["Employee policy handbook", "Core HR policies (5,8 policies)", "Simple onboarding checklist", "Role description templates", "Basic compliance guidance"]
                 : ["Manuel de politiques", "Politiques RH de base (5-8)", "Liste d'intégration", "Modèles de description de rôle", "Guide de conformité de base"],
               stripeProductName: "People Ops - Essentials"
             },
@@ -529,7 +529,7 @@ export default function Recruiting() {
         },
         {
           title: language === "en" ? "HR Retainer, Small Business" : "Mandat RH, petites entreprises",
-          investment: "$500 – $2,000/mo",
+          investment: "$500 , $2,000/mo",
           investmentNote: language === "en" ? "(3-month minimum)" : "(Minimum 3 mois)",
           desc: language === "en"
             ? "You can't afford a full-time HR person, but you need one. Get a dedicated HR partner who handles the people side of your business so you can focus on growth."
@@ -540,7 +540,7 @@ export default function Recruiting() {
           learnMore: language === "en"
             ? "Small businesses rarely have the budget for a dedicated HR professional, but they still face hiring decisions, employee issues, compliance questions, and policy needs. Our HR Retainer for Small Business gives you a dedicated HR partner who handles the people side of your business on an ongoing basis.\n\nThis monthly retainer includes hiring support, employee relations guidance, policy updates, compliance advice, and a resource you can call when people issues arise. It's like having your own HR department without the overhead."
             : "Les petites entreprises ont rarement le budget pour un professionnel RH dédié. Notre mandat RH vous donne un partenaire qui gère le côté humain de votre entreprise.",
-          idealFor: language === "en" ? "Small businesses with 5–50 employees who need ongoing HR support without hiring a full-time HR professional." : "PME de 5 à 50 employés qui ont besoin de soutien RH continu.",
+          idealFor: language === "en" ? "Small businesses with 5,50 employees who need ongoing HR support without hiring a full-time HR professional." : "PME de 5 à 50 employés qui ont besoin de soutien RH continu.",
           image: hrPeopleStrategyImg,
           pricingTiers: [
             {
@@ -584,7 +584,7 @@ export default function Recruiting() {
       services: [
         {
           title: language === "en" ? "Interview & Career Readiness" : "Préparation aux entrevues et à la carrière",
-          investment: "$250 – $750",
+          investment: "$250 , $750",
           desc: language === "en"
             ? "Walk into your next interview with confidence. We help you prepare, tell your story, and show up as the candidate employers remember."
             : "Entrez dans votre prochaine entrevue avec confiance. Nous vous aidons à vous préparer, raconter votre histoire et marquer les esprits.",
@@ -628,7 +628,7 @@ export default function Recruiting() {
         },
         {
           title: language === "en" ? "Career Placement & Job Search Support" : "Placement de carrière et soutien à la recherche d'emploi",
-          investment: "$500 – $2,000",
+          investment: "$500 , $2,000",
           desc: language === "en"
             ? "Job searching alone is exhausting. We put a recruiting professional in your corner, helping you apply, connect, and land the right role faster."
             : "Chercher un emploi seul est épuisant. Nous mettons un professionnel du recrutement à vos côtés, pour vous aider à postuler, réseauter et décrocher le bon poste plus vite.",
@@ -672,7 +672,7 @@ export default function Recruiting() {
         },
         {
           title: language === "en" ? "Leadership & People Management Coaching" : "Coaching en leadership et gestion des personnes",
-          investment: "$200 – $750/mo",
+          investment: "$200 , $750/mo",
           desc: language === "en"
             ? "Becoming a manager is one of the biggest career leaps, and most people get zero training for it. We help you lead with confidence, give feedback that lands, and build a team that trusts you."
             : "Devenir gestionnaire est l'un des plus grands sauts de carrière, et la plupart des gens n'ont aucune formation. Nous vous aidons à diriger avec confiance.",
@@ -719,7 +719,7 @@ export default function Recruiting() {
         },
         {
           title: language === "en" ? "HR Retainer, Non-Profits" : "Mandat RH, organismes à but non lucratif",
-          investment: "$300 – $1,500/mo",
+          investment: "$300 , $1,500/mo",
           investmentNote: language === "en" ? "(3-month minimum)" : "(Minimum 3 mois)",
           desc: language === "en"
             ? "Non-profits have unique people challenges, tight budgets, passionate teams, and complex compliance. We provide affordable, mission-aligned HR support that helps you focus on impact."
@@ -774,7 +774,7 @@ export default function Recruiting() {
       services: [
         {
           title: language === "en" ? "Hiring & People Management Toolkit" : "Boîte à outils d'embauche et de gestion des personnes",
-          investment: "$49 – $199",
+          investment: "$49 , $199",
           desc: language === "en"
             ? "Managing people shouldn't require an HR degree. Get practical, ready-to-use tools for hiring, onboarding, and managing your team, built for real managers, not corporate bureaucracies."
             : "Gérer des personnes ne devrait pas nécessiter un diplôme RH. Obtenez des outils pratiques pour recruter, intégrer et gérer votre équipe, conçus pour de vrais gestionnaires.",
@@ -818,7 +818,7 @@ export default function Recruiting() {
         },
         {
           title: language === "en" ? "Job Search & Career Toolkit" : "Boîte à outils de recherche d'emploi et de carrière",
-          investment: "$29 – $99",
+          investment: "$29 , $99",
           desc: language === "en"
             ? "Job searching without a system is overwhelming. This toolkit gives you everything you need to stay organized, present yourself well, and land interviews faster."
             : "Chercher un emploi sans système est accablant. Cette boîte à outils vous donne tout pour rester organisé, bien vous présenter et décrocher des entrevues plus vite.",
@@ -1035,7 +1035,7 @@ export default function Recruiting() {
                 >
                   {tab.icon}
                   <span>{tab.label}</span>
-                  <span className="hidden sm:inline text-xs opacity-70">— {tab.sublabel}</span>
+                  <span className="hidden sm:inline text-xs opacity-70">, {tab.sublabel}</span>
                   <span className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${activeTab === tab.key ? "bg-white/20 text-white" : "bg-accent/10 text-accent"}`}>{tab.priceRange}</span>
                 </button>
               ))}

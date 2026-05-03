@@ -19,8 +19,6 @@ export default function Sitemap() {
     { label: "Our Approach", href: "/approach" },
     { label: "Contact", href: "/contact" },
     { label: "Careers", href: "/careers" },
-    { label: "Insights", href: "/insights" },
-    { label: "News", href: "/news" },
     { label: "Client Portal", href: "/portal" },
     { label: "Privacy & Terms", href: "/legal" },
     { label: "Accessibility", href: "/accessibility" },
@@ -28,7 +26,7 @@ export default function Sitemap() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-      <SEOHead title="Sitemap" description="Navigate all pages on the Performance Processes website. Find consulting services, insights, career opportunities, and more." path="/sitemap" noindex />
+      <SEOHead title="Sitemap" description="Navigate all pages on the Performance Processes website. Find services, solutions, career opportunities, and more." path="/sitemap" noindex />
       <Navbar />
       <main className="flex-grow">
         <PageHero 

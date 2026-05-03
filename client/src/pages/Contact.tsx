@@ -213,8 +213,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">Office Hours</h4>
-                      <p className="text-lg font-bold text-primary">Monday – Friday</p>
-                      <p className="text-muted-foreground text-sm mt-1">9:00 AM – 6:00 PM EST</p>
+                      <p className="text-lg font-bold text-primary">Monday , Friday</p>
+                      <p className="text-muted-foreground text-sm mt-1">9:00 AM , 6:00 PM EST</p>
                       <p className="text-muted-foreground text-sm mt-1">Weekend & evening appointments available by request</p>
                     </div>
                   </div>

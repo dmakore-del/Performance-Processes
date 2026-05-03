@@ -108,7 +108,7 @@ export default function Meetings() {
     const s = new Date(startStr);
     const e = new Date(endStr);
     const fmt = (d: Date) => d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
-    return `${fmt(s)} – ${fmt(e)}`;
+    return `${fmt(s)} , ${fmt(e)}`;
   };
 
   const getBookingDay = (dateStr: string) => {

@@ -30,7 +30,7 @@ export default function Performance() {
   const isLoading = engLoading || kpisLoading;
   const kpiList = kpis ?? [];
   const health = calculateOverallHealth(kpiList);
-  const period = kpiList.length > 0 ? kpiList[0].period : "—";
+  const period = kpiList.length > 0 ? kpiList[0].period : ",";
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
 
   const categories = Array.from(new Set(kpiList.map(k => k.category).filter(Boolean)));

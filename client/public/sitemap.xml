@@ -21,11 +21,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://performanceprocesses.com/insights</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://performanceprocesses.com/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -59,11 +54,6 @@
     <loc>https://performanceprocesses.com/nextup-partnership</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://performanceprocesses.com/news</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://performanceprocesses.com/legal</loc>

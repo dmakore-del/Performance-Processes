@@ -225,8 +225,6 @@ export function Navbar() {
       children: [
         { label: language === "en" ? "About Us" : "À propos de nous", href: "/about" },
         { label: language === "en" ? "Our Approach" : "Notre approche", href: "/approach" },
-        { label: language === "en" ? "Insights" : "Perspectives", href: "/insights" },
-        { label: language === "en" ? "News" : "Nouvelles", href: "/news" },
       ],
     },
     {

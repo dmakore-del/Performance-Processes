@@ -15,8 +15,6 @@ import Legal from "./pages/Legal";
 import Sitemap from "./pages/Sitemap";
 import Accessibility from "./pages/Accessibility";
 import Careers from "./pages/Careers";
-import News from "./pages/News";
-import Insights from "./pages/Insights";
 import NextUpPartnership from "./pages/NextUpPartnership";
 import Assessment from "./pages/Assessment";
 import Training from "./pages/Training";
@@ -72,8 +70,8 @@ function Router() {
       <Route path="/sitemap" component={Sitemap} />
       <Route path="/accessibility" component={Accessibility} />
       <Route path="/careers" component={Careers} />
-      <Route path="/news" component={News} />
-      <Route path="/insights" component={Insights} />
+      <Route path="/news">{() => <Redirect to="/" />}</Route>
+      <Route path="/insights">{() => <Redirect to="/" />}</Route>
       <Route path="/nextup-partnership" component={NextUpPartnership} />
       <Route path="/playbooks" component={Playbooks} />
       <Route path="/assessment" component={Assessment} />

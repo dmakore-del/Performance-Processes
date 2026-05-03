@@ -358,31 +358,6 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/news", async (_req, res) => {
-    try {
-      const Parser = (await import("rss-parser")).default;
-      const parser = new Parser({
-        customFields: {
-          item: [['media:content', 'media']],
-        },
-      });
-      const feed = await parser.parseURL(
-        "https://news.google.com/rss/search?q=business+consulting+management+strategy&hl=en-CA&gl=CA&ceid=CA:en"
-      );
-      const articles = (feed.items || []).slice(0, 20).map((item: any) => ({
-        title: item.title || "",
-        link: item.link || "",
-        pubDate: item.pubDate || "",
-        source: item.creator || item.source?.name || "",
-        snippet: item.contentSnippet || item.content || "",
-      }));
-      res.json({ articles });
-    } catch (error) {
-      console.error("News fetch error:", error);
-      res.status(500).json({ message: "Failed to fetch news", articles: [] });
-    }
-  });
-
   app.post("/api/sponsor-checkout", async (req, res) => {
     try {
       const { tier } = req.body;

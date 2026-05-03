@@ -153,7 +153,7 @@ export default function Dashboard() {
             </div>
             <div>
               <p className="text-xs text-muted-foreground mb-1">Next Session</p>
-              <p data-testid="text-next-session" className="font-bold text-primary">{engagement.nextSession || "—"}</p>
+              <p data-testid="text-next-session" className="font-bold text-primary">{engagement.nextSession || ","}</p>
             </div>
             <div>
               <p className="text-xs text-muted-foreground mb-1">Outstanding Actions</p>

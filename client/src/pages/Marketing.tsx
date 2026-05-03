@@ -161,7 +161,7 @@ export default function Marketing() {
       services: [
         {
           title: language === "en" ? "Website & Digital Presence" : "Site Web et présence numérique",
-          investment: "$3,000 – $12,000",
+          investment: "$3,000 , $12,000",
           desc: language === "en"
             ? "Your online presence should reflect who you really are. We build websites that tell your story, build trust, and turn visitors into clients who believe in what you do."
             : "Votre présence en ligne doit refléter qui vous êtes vraiment. Nous construisons des sites qui racontent votre histoire et transforment les visiteurs en clients.",
@@ -205,7 +205,7 @@ export default function Marketing() {
         },
         {
           title: language === "en" ? "Content Marketing Strategy" : "Stratégie de marketing de contenu",
-          investment: "$3,000 – $8,000",
+          investment: "$3,000 , $8,000",
           desc: language === "en"
             ? "Great content does more than fill a page, it positions you as a thought leader and drives the right people to your door. We build content strategies that work."
             : "Un excellent contenu fait plus que remplir une page, il vous positionne en leader d'opinion et attire les bonnes personnes vers vous.",
@@ -249,7 +249,7 @@ export default function Marketing() {
         },
         {
           title: language === "en" ? "Brand Identity & Positioning" : "Identité de marque et positionnement",
-          investment: "$4,000 – $10,000",
+          investment: "$4,000 , $10,000",
           desc: language === "en"
             ? "Your brand is more than a logo, it's the feeling people get when they interact with your business. We help you define and express who you are with clarity and consistency."
             : "Votre marque est plus qu'un logo, c'est le sentiment que les gens ressentent lorsqu'ils interagissent avec votre entreprise. Nous vous aidons à vous exprimer avec clarté.",
@@ -300,7 +300,7 @@ export default function Marketing() {
       services: [
         {
           title: language === "en" ? "Website & Digital Presence" : "Site Web et présence numérique",
-          investment: "$1,500 – $5,000",
+          investment: "$1,500 , $5,000",
           desc: language === "en"
             ? "Your website is often the first impression, make it count. We build clean, professional sites that tell your story and help the right clients find you."
             : "Votre site Web est souvent la première impression, faites qu'elle compte. Nous construisons des sites professionnels qui racontent votre histoire.",
@@ -344,7 +344,7 @@ export default function Marketing() {
         },
         {
           title: language === "en" ? "Social Media & Digital Marketing" : "Réseaux sociaux et marketing numérique",
-          investment: "$500 – $2,000/mo",
+          investment: "$500 , $2,000/mo",
           investmentNote: language === "en" ? "(3-month minimum)" : "(Minimum 3 mois)",
           desc: language === "en"
             ? "Stop posting randomly and start building an audience that converts. We create and manage your social media presence so you can focus on running your business."
@@ -392,7 +392,7 @@ export default function Marketing() {
         },
         {
           title: language === "en" ? "Google Business & Local SEO" : "Google Business et SEO local",
-          investment: "$500 – $1,500",
+          investment: "$500 , $1,500",
           desc: language === "en"
             ? "When people in your area search for what you do, you should be the first thing they find. We optimize your local presence so the right clients discover you."
             : "Quand les gens de votre région cherchent ce que vous faites, vous devriez être le premier résultat. Nous optimisons votre présence locale.",
@@ -443,7 +443,7 @@ export default function Marketing() {
       services: [
         {
           title: language === "en" ? "Personal Brand Website" : "Site Web de marque personnelle",
-          investment: "$1,000 – $3,000",
+          investment: "$1,000 , $3,000",
           desc: language === "en"
             ? "Show the world who you are and what you bring. We build personal websites that position you as the expert you are and help opportunities find you."
             : "Montrez au monde qui vous êtes. Nous construisons des sites personnels qui vous positionnent en tant qu'expert et aident les opportunités à vous trouver.",
@@ -487,7 +487,7 @@ export default function Marketing() {
         },
         {
           title: language === "en" ? "LinkedIn & Personal Branding" : "LinkedIn et marque personnelle",
-          investment: "$300 – $1,000",
+          investment: "$300 , $1,000",
           desc: language === "en"
             ? "Your LinkedIn profile is often the first place people check before doing business with you. We help you make that first impression count."
             : "Votre profil LinkedIn est souvent le premier endroit que les gens vérifient. Nous vous aidons à faire bonne impression.",
@@ -702,7 +702,7 @@ export default function Marketing() {
                 >
                   {tab.icon}
                   <span>{tab.label}</span>
-                  <span className="hidden sm:inline text-xs opacity-70">— {tab.sublabel}</span>
+                  <span className="hidden sm:inline text-xs opacity-70">, {tab.sublabel}</span>
                   <span className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${activeTab === tab.key ? "bg-white/20 text-white" : "bg-accent/10 text-accent"}`}>{tab.priceRange}</span>
                 </button>
               ))}

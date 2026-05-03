@@ -52,7 +52,7 @@ export default function Approach() {
       desc: language === "en"
         ? "We start by understanding your unique challenges and auditing your current performance systems to identify gaps."
         : "Nous commençons par comprendre vos défis uniques et par auditer vos systèmes de performance actuels pour identifier les lacunes.",
-      duration: "2–4 weeks",
+      duration: "2,4 weeks",
       color: "from-blue-500/15 to-blue-600/5",
       accentColor: "text-blue-600",
       bgAccent: "bg-blue-600",
@@ -85,7 +85,7 @@ export default function Approach() {
       desc: language === "en"
         ? "We work with your leadership team to clarify strategic direction and ensure it's communicated effectively throughout the organization."
         : "Nous travaillons avec votre équipe de direction pour clarifier l'orientation stratégique et veiller à ce qu'elle soit communiquée efficacement dans toute l'organisation.",
-      duration: "3–6 weeks",
+      duration: "3,6 weeks",
       color: "from-emerald-500/15 to-emerald-600/5",
       accentColor: "text-emerald-600",
       bgAccent: "bg-emerald-600",
@@ -118,7 +118,7 @@ export default function Approach() {
       desc: language === "en"
         ? "Our experts provide hands-on support to implement new systems and strengthen leadership capabilities."
         : "Nos experts fournissent un soutien concret pour mettre en œuvre de nouveaux systèmes et renforcer les capacités de leadership.",
-      duration: "4–12 weeks",
+      duration: "4,12 weeks",
       color: "from-amber-500/15 to-amber-600/5",
       accentColor: "text-amber-600",
       bgAccent: "bg-amber-600",
@@ -225,7 +225,7 @@ export default function Approach() {
   const faqItems = [
     {
       question: "How long does a typical engagement last?",
-      answer: "Engagement length varies depending on scope and organizational complexity. A focused project (e.g., strategic planning facilitation) may take 4–8 weeks, while a comprehensive performance transformation can span 6–12 months. During our initial Discovery phase, we'll provide a detailed timeline tailored to your specific needs and objectives.",
+      answer: "Engagement length varies depending on scope and organizational complexity. A focused project (e.g., strategic planning facilitation) may take 4,8 weeks, while a comprehensive performance transformation can span 6,12 months. During our initial Discovery phase, we'll provide a detailed timeline tailored to your specific needs and objectives.",
     },
     {
       question: "What size of organization do you work with?",

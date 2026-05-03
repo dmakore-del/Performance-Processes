@@ -112,27 +112,6 @@ export default function Home() {
     "Scalable growth systems",
   ];
 
-  const insights = [
-    {
-      title: "Why Growth Feels Hard (And What Actually Helps)",
-      category: "Strategy",
-      date: "January 15, 2026",
-      excerpt: "The biggest challenge in business isn't strategy, it's trying to scale without the right infrastructure. Here's why growing companies need systems, not just ambition.",
-    },
-    {
-      title: "Building Systems That Set You Free",
-      category: "Growth",
-      date: "January 8, 2026",
-      excerpt: "The right systems don't add complexity, they remove it. How our clients went from overwhelmed to in control, and how you can too.",
-    },
-    {
-      title: "Your People Are Your Strategy",
-      category: "Leadership",
-      date: "December 20, 2025",
-      excerpt: "Behind every successful organization is a team that feels valued, heard, and empowered. Here's how to build that culture from the inside out.",
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
       <SEOHead
@@ -539,55 +518,6 @@ export default function Home() {
                   ))}
                 </div>
               </AnimateOnScroll>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-28 bg-white relative overflow-hidden" data-testid="section-insights">
-          <GeometricAccent className="top-10 right-20 text-primary" />
-          <div className="container mx-auto px-4 md:px-8">
-            <AnimateOnScroll className="flex flex-col md:flex-row md:items-end md:justify-between mb-20">
-              <div>
-                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-2">
-                  Latest Insights
-                </h2>
-              </div>
-              <Link href="/insights" className="inline-flex items-center gap-2 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all mt-6 md:mt-0 group" data-testid="link-view-all-insights">
-                View all insights
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </AnimateOnScroll>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {insights.map((insight, i) => (
-                <AnimateOnScroll key={i} animation="fade-up" delay={i * 150}>
-                  <Link href="/insights" className="block h-full" data-testid={`link-insight-${i}`}>
-                    <div className="bg-white rounded-2xl border border-border hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300 cursor-pointer group h-full flex flex-col overflow-hidden" data-testid={`insight-card-${i}`}>
-                      <div className="h-48 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10 flex items-center justify-center relative overflow-hidden">
-                        <div className="absolute inset-0 opacity-30">
-                          <img src={geoPatternImg} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                        </div>
-                        <span className="relative z-10 text-5xl font-extrabold text-primary/10 group-hover:text-accent/20 transition-colors">{String(i + 1).padStart(2, '0')}</span>
-                      </div>
-                      <div className="p-8 flex flex-col flex-grow">
-                        <div className="flex items-center gap-3 mb-4">
-                          <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest">
-                            {insight.category}
-                          </span>
-                          <span className="text-xs text-muted-foreground">
-                            {insight.date}
-                          </span>
-                        </div>
-                        <h3 className="text-lg font-bold text-primary mb-4 group-hover:text-accent transition-colors line-clamp-2">{insight.title}</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed flex-grow line-clamp-3">{insight.excerpt}</p>
-                        <div className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
-                          Read more <ArrowRight size={14} className="ml-2" />
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </AnimateOnScroll>
-              ))}
             </div>
           </div>
         </section>

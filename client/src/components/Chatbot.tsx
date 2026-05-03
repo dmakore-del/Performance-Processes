@@ -13,7 +13,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["services", "what do you offer", "offer", "provide", "help with"],
-    answer: "We offer performance systems for everyone: Enterprise consulting (strategy, systems, executive advisory), Small Business Growth programs ($500–$1,500/mo), Personal Performance Coaching ($100–$500/mo), and Self-Serve tools and programs (from $49). We also handle Business Registration and Website & Digital Presence. Visit our Services page for details."
+    answer: "We offer performance systems for everyone: Enterprise consulting (strategy, systems, executive advisory), Small Business Growth programs ($500,$1,500/mo), Personal Performance Coaching ($100,$500/mo), and Self-Serve tools and programs (from $49). We also handle Business Registration and Website & Digital Presence. Visit our Services page for details."
   },
   {
     keywords: ["different", "unique", "why choose", "stand out", "differentiator"],
@@ -29,7 +29,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["how long", "duration", "timeline", "engagement last", "time"],
-    answer: "Our Strategy & Alignment engagements run 6–12 weeks. Systems & Implementation projects vary by scope. Executive Advisory retainers have a 3-month minimum. Every engagement starts with our Discovery & Assessment phase."
+    answer: "Our Strategy & Alignment engagements run 6,12 weeks. Systems & Implementation projects vary by scope. Executive Advisory retainers have a 3-month minimum. Every engagement starts with our Discovery & Assessment phase."
   },
   {
     keywords: ["customized", "custom", "tailored", "personalized"],
@@ -65,7 +65,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["get started", "start", "begin", "first step", "consultation", "discovery"],
-    answer: "Every engagement begins with our Discovery & Assessment phase ($750–$1,500), where we conduct an organizational intake, needs assessment, and scope definition to build a clear proposal roadmap. Discovery fees can be credited toward your full engagement. You can also book a free consultation through our website."
+    answer: "Every engagement begins with our Discovery & Assessment phase ($750,$1,500), where we conduct an organizational intake, needs assessment, and scope definition to build a clear proposal roadmap. Discovery fees can be credited toward your full engagement. You can also book a free consultation through our website."
   },
   {
     keywords: ["workshop", "one-time", "retreat", "session"],
@@ -89,7 +89,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["price", "cost", "pricing", "how much", "fee", "rate", "payment", "pay"],
-    answer: "We offer productized services with transparent pricing: Websites from $1,500, Marketing packages from $1,200, CRM setup from $1,500, Business System Audits from $750, Training from $499/seat, and monthly support retainers from $1,500/mo. Visit our Services page for full package details. Young Canadian founders connected to NextUp Canada get 40% off — see our NextUp Partnership page."
+    answer: "We offer productized services with transparent pricing: Websites from $1,500, Marketing packages from $1,200, CRM setup from $1,500, Business System Audits from $750, Training from $499/seat, and monthly support retainers from $1,500/mo. Visit our Services page for full package details. Young Canadian founders connected to NextUp Canada get 40% off , see our NextUp Partnership page."
   },
   {
     keywords: ["contact", "email", "phone", "reach"],

@@ -257,7 +257,7 @@ export default function Documents() {
                         </div>
                       </td>
                       <td className="py-4 px-6 text-sm text-muted-foreground" data-testid={`text-document-date-${file.id}`}>
-                        {file.uploadedAt ? new Date(file.uploadedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "—"}
+                        {file.uploadedAt ? new Date(file.uploadedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : ","}
                       </td>
                       <td className="py-4 px-6 text-sm text-muted-foreground" data-testid={`text-document-size-${file.id}`}>{file.size}</td>
                       <td className="py-4 px-6">

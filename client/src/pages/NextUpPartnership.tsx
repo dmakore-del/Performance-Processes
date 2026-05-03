@@ -21,7 +21,7 @@ const BOOKINGS_URL =
 export default function NextUpPartnership() {
   const eligibility = [
     "Canadian-owned business or registered organization",
-    "Founder or majority owner aged 18–29",
+    "Founder or majority owner aged 18,29",
     "Connected to NextUp Canada (member, alumni, or referral)",
     "Ready to invest in growth, systems, or marketing",
   ];
@@ -58,7 +58,7 @@ export default function NextUpPartnership() {
 
   const stats = [
     { label: "Discount", value: "40% off", icon: <Percent size={20} /> },
-    { label: "Eligible Founders", value: "Ages 18–29", icon: <Users size={20} /> },
+    { label: "Eligible Founders", value: "Ages 18,29", icon: <Users size={20} /> },
     { label: "Coverage", value: "Canada-wide", icon: <MapPin size={20} /> },
     { label: "Availability", value: "Year-round", icon: <Calendar size={20} /> },
   ];
@@ -66,7 +66,7 @@ export default function NextUpPartnership() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <SEOHead
-        title="NextUp Canada Partnership — 40% Off for Young Canadian Founders"
+        title="NextUp Canada Partnership , 40% Off for Young Canadian Founders"
         description="Performance Processes partners with NextUp Canada to support youth-owned businesses with a 40% discount on websites, marketing, CRM, training, and ongoing growth support."
         path="/nextup-partnership"
       />

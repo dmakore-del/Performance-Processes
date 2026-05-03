@@ -31,7 +31,6 @@ Preferred communication style: Simple, everyday language.
   - `POST /api/checkout` — creates Stripe checkout session (auto-detects one-time vs subscription)
   - `POST /api/cart-checkout` — creates Stripe checkout session for multi-item playbook cart (validates priceId belongs to playbook category, enforces quantity bounds 1-10)
   - `POST /api/stripe/webhook` — Stripe webhook (registered before express.json() for raw body); sends payment notification to admin via Outlook
-  - `GET /api/news` — fetches live business news from Google News RSS feed (rss-parser)
   - `POST /api/sponsor-checkout` — creates Stripe checkout for pro-bono sponsorship tiers
   - `POST /api/test-receipt` — dev-only: sends a test receipt email
   - Auth routes: `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/auth/me`, `POST /api/auth/2fa/*`
@@ -136,4 +135,4 @@ All portal pages use live API data via custom hooks (`usePortalEngagement`, `use
 - **Playbooks** (`/playbooks`): Purchasable system frameworks with Stripe checkout, flagship editions, bundles, and training cross-sell
 - **Training** (`/training`): System implementation training programs page with Foundation/Build/Run categories, 5 featured programs, audience segmentation, format options, and value ladder positioning
 - **Assessment** (`/assessment`): Growth Infrastructure Assessment with 19 multi-step questions across Foundation/Build/Run categories, scoring logic, email capture, results page with CTA mapping, lead storage, admin PDF notification
-- **About** (`/about`), **Approach** (`/approach`), **Contact** (`/contact`), **Careers** (`/careers`), **News** (`/news`), **Insights** (`/insights`), **Services** (`/services`), **Solutions** (`/solutions`), **Playbooks** (`/playbooks`), **Training** (`/training`), **Assessment** (`/assessment`), **NextUp Partnership** (`/nextup-partnership`), **Legal** (`/legal`), **Accessibility** (`/accessibility`), **Sitemap** (`/sitemap`)
+- **About** (`/about`), **Approach** (`/approach`), **Contact** (`/contact`), **Careers** (`/careers`), **Services** (`/services`), **Solutions** (`/solutions`), **Playbooks** (`/playbooks`), **Training** (`/training`), **Assessment** (`/assessment`), **NextUp Partnership** (`/nextup-partnership`), **Legal** (`/legal`), **Accessibility** (`/accessibility`), **Sitemap** (`/sitemap`)

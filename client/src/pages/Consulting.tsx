@@ -171,7 +171,7 @@ export default function Consulting() {
       services: [
         {
           title: language === "en" ? "Discovery & Assessment" : "Découverte et évaluation",
-          investment: "$750 – $1,500",
+          investment: "$750 , $1,500",
           investmentNote: language === "en" ? "(Mandatory first step, fee can be credited toward full engagement)" : "(Première étape obligatoire, les frais peuvent être crédités vers un engagement complet)",
           desc: language === "en"
             ? "Before we propose anything, we listen. The Discovery Phase is about truly understanding your organization, your people, your goals, and what success means to you."
@@ -207,16 +207,16 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "Strategy & Alignment" : "Stratégie et alignement",
-          investment: "$5,000 – $15,000",
-          investmentNote: language === "en" ? "(6–12 week engagement)" : "(Engagement de 6 à 12 semaines)",
+          investment: "$5,000 , $15,000",
+          investmentNote: language === "en" ? "(6,12 week engagement)" : "(Engagement de 6 à 12 semaines)",
           desc: language === "en"
             ? "Get your whole team rowing in the same direction. We help you clarify your vision, align your leadership, and create a roadmap everyone believes in."
             : "Faites avancer toute votre équipe dans la même direction. Nous clarifions votre vision et créons une feuille de route à laquelle tous adhèrent.",
           benefits: language === "en"
-            ? ["Strategic planning & vision refinement", "KPI & success metric design", "Leadership alignment workshops", "1–3 year strategic roadmap"]
+            ? ["Strategic planning & vision refinement", "KPI & success metric design", "Leadership alignment workshops", "1,3 year strategic roadmap"]
             : ["Planification stratégique", "Conception de KPI", "Ateliers d'alignement", "Feuille de route stratégique"],
           learnMore: language === "en"
-            ? "Rather than selling hours, we sell outcomes. Our Strategic Engagement model is designed for organizations that need focused, time-bound support to address critical strategic challenges.\n\nThis model covers strategic planning, performance framework design, organizational alignment, and leadership development, all delivered within a structured 6–12 week timeline with clear milestones and deliverables."
+            ? "Rather than selling hours, we sell outcomes. Our Strategic Engagement model is designed for organizations that need focused, time-bound support to address critical strategic challenges.\n\nThis model covers strategic planning, performance framework design, organizational alignment, and leadership development, all delivered within a structured 6,12 week timeline with clear milestones and deliverables."
             : "Plutôt que de vendre des heures, nous vendons des résultats.",
           idealFor: language === "en" ? "Organizations preparing for growth, restructuring, or transformation that need strategic clarity and alignment." : "Organisations se préparant à la croissance, à la restructuration ou à la transformation.",
           image: strategicPlanningImg,
@@ -252,7 +252,7 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "Systems & Implementation" : "Systèmes et mise en œuvre",
-          investment: "$8,000 – $25,000",
+          investment: "$8,000 , $25,000",
           desc: language === "en"
             ? "Turn your strategy into something your team can actually execute, with systems, structures, and processes that make consistency the default."
             : "Transformez votre stratégie en quelque chose que votre équipe peut exécuter, avec des systèmes et processus qui font de la cohérence la norme.",
@@ -296,7 +296,7 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "Executive Advisory Retainer" : "Mandat de conseil exécutif",
-          investment: "$2,500 – $7,500/mo",
+          investment: "$2,500 , $7,500/mo",
           investmentNote: language === "en" ? "(Monthly retainer, 3-month minimum)" : "(Mandat mensuel, minimum 3 mois)",
           desc: language === "en"
             ? "A trusted strategic partner by your side, monthly guidance, leadership coaching, and someone who understands your business as well as you do."
@@ -344,7 +344,7 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "Business Registration" : "Enregistrement d'entreprise",
-          investment: "$3,500 – $8,500",
+          investment: "$3,500 , $8,500",
           desc: language === "en"
             ? "Starting something new is exciting, and complicated. We handle the legal and administrative setup so you can focus on bringing your vision to life."
             : "Démarrer quelque chose de nouveau est passionnant, et compliqué. Nous gérons la paperasse pour que vous puissiez donner vie à votre vision.",
@@ -388,15 +388,15 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "Process Audit" : "Audit de processus",
-          investment: "$1,000 – $3,000",
+          investment: "$1,000 , $3,000",
           desc: language === "en"
             ? "Something isn't working, but you can't pinpoint exactly what. We help you see clearly, find the friction, and leave with a practical roadmap to fix it."
             : "Quelque chose ne fonctionne pas, mais vous ne savez pas exactement quoi. Nous vous aidons à voir clairement et à repartir avec un plan concret.",
           benefits: language === "en"
-            ? ["Workflow mapping & analysis", "Bottleneck identification", "Automation opportunity assessment", "30–60 day improvement roadmap"]
+            ? ["Workflow mapping & analysis", "Bottleneck identification", "Automation opportunity assessment", "30,60 day improvement roadmap"]
             : ["Cartographie et analyse des flux", "Identification des goulots", "Évaluation des opportunités d'automatisation", "Feuille de route de 30 à 60 jours"],
           learnMore: language === "en"
-            ? "Not sure where to start? The Process Audit is a low-commitment first step that gives your organization immediate clarity on what is working, what is not, and where the biggest improvement opportunities lie.\n\nWe map your existing workflows, identify bottlenecks and redundancies, evaluate automation opportunities, and deliver a practical 30–60 day improvement roadmap you can act on immediately. Most audit clients convert into larger engagements because the findings create urgency and clarity."
+            ? "Not sure where to start? The Process Audit is a low-commitment first step that gives your organization immediate clarity on what is working, what is not, and where the biggest improvement opportunities lie.\n\nWe map your existing workflows, identify bottlenecks and redundancies, evaluate automation opportunities, and deliver a practical 30,60 day improvement roadmap you can act on immediately. Most audit clients convert into larger engagements because the findings create urgency and clarity."
             : "Pas sûr de par où commencer ? L'audit de processus est une première étape accessible qui donne à votre organisation une clarté immédiate sur ce qui fonctionne et ce qui doit être amélioré.",
           idealFor: language === "en" ? "Organizations experiencing operational friction, scaling challenges, or poor process visibility that want a quick, actionable assessment." : "Organisations confrontées à des frictions opérationnelles ou à des défis de mise à l'échelle.",
           image: processAuditImg,
@@ -406,7 +406,7 @@ export default function Consulting() {
               price: "$1,000",
               subtitle: language === "en" ? "Focused audit of 1-2 core workflows with bottleneck analysis and recommendations." : "Audit ciblé de 1 à 2 flux de travail avec analyse et recommandations.",
               features: language === "en"
-                ? ["1–2 core workflow mapping", "Bottleneck identification", "Quick-win recommendations", "Summary findings report", "30-day action plan"]
+                ? ["1,2 core workflow mapping", "Bottleneck identification", "Quick-win recommendations", "Summary findings report", "30-day action plan"]
                 : ["Cartographie de 1-2 flux", "Identification des goulots", "Recommandations rapides", "Rapport de synthèse", "Plan d'action de 30 jours"],
               stripeProductName: "Process Audit - Essentials"
             },
@@ -432,7 +432,7 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "Operational Efficiency Workshop" : "Atelier d'efficacité opérationnelle",
-          investment: "$2,500 – $5,000",
+          investment: "$2,500 , $5,000",
           desc: language === "en"
             ? "Get your leadership team in a room, aligned on what needs to change, and walking out with a concrete plan everyone owns. That's what this workshop delivers."
             : "Réunissez votre équipe de direction, alignez-vous sur ce qui doit changer, et repartez avec un plan concret que tout le monde porte. C'est ce que cet atelier offre.",
@@ -467,7 +467,7 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "Fractional Process Consultant" : "Consultant en processus fractionné",
-          investment: "$3,000 – $10,000/mo",
+          investment: "$3,000 , $10,000/mo",
           investmentNote: language === "en" ? "(Monthly retainer, 3-month minimum)" : "(Mandat mensuel, minimum 3 mois)",
           desc: language === "en"
             ? "Think of it as having a trusted operations partner on your team, someone who rolls up their sleeves, builds real systems, and helps your business run the way you always knew it could."
@@ -522,7 +522,7 @@ export default function Consulting() {
       services: [
         {
           title: language === "en" ? "Small Business Growth System" : "Système de croissance pour petites entreprises",
-          investment: "$500 – $1,500/mo",
+          investment: "$500 , $1,500/mo",
           investmentNote: language === "en" ? "(3-month minimum)" : "(Minimum 3 mois)",
           desc: language === "en"
             ? "You don't have to figure it all out alone. Get a dedicated strategy partner who helps you prioritize, plan, and actually follow through, month after month."
@@ -570,7 +570,7 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "Business Foundations Package" : "Forfait fondations d'entreprise",
-          investment: "$2,500 – $5,000",
+          investment: "$2,500 , $5,000",
           desc: language === "en"
             ? "Starting a business is overwhelming. We help you lay a strong foundation from day one, structure, plans, processes, and a clear 90-day path forward."
             : "Démarrer une entreprise est accablant. Nous vous aidons à poser des fondations solides dès le premier jour, structure, plans et un parcours clair de 90 jours.",
@@ -614,7 +614,7 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "Process Audit" : "Audit de processus",
-          investment: "$500 – $1,500",
+          investment: "$500 , $1,500",
           desc: language === "en"
             ? "You know something's slowing you down, you just can't see exactly where. We map your workflows, spot the friction, and give you a plan to fix it fast."
             : "Vous savez que quelque chose vous ralentit, vous ne voyez juste pas exactement où. Nous cartographions vos flux et vous donnons un plan pour corriger rapidement.",
@@ -632,7 +632,7 @@ export default function Consulting() {
               price: "$500",
               subtitle: language === "en" ? "Focused review of your top 1-2 pain points with actionable recommendations." : "Revue ciblée de vos 1-2 problèmes principaux avec recommandations.",
               features: language === "en"
-                ? ["1–2 workflow review", "Pain point analysis", "Quick-win recommendations", "Summary report", "30-minute debrief call"]
+                ? ["1,2 workflow review", "Pain point analysis", "Quick-win recommendations", "Summary report", "30-minute debrief call"]
                 : ["Revue de 1-2 flux", "Analyse des problèmes", "Recommandations rapides", "Rapport de synthèse", "Appel de débriefing de 30 minutes"],
               stripeProductName: "SB Process Audit - Quick Scan"
             },
@@ -658,7 +658,7 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "Operational Efficiency Workshop" : "Atelier d'efficacité opérationnelle",
-          investment: "$1,500 – $3,000",
+          investment: "$1,500 , $3,000",
           desc: language === "en"
             ? "When your team knows things need to change but can't agree on where to start, this workshop gets everyone on the same page and walking out with a shared plan."
             : "Quand votre équipe sait que les choses doivent changer mais ne s'entend pas sur par où commencer, cet atelier aligne tout le monde sur un plan commun.",
@@ -700,7 +700,7 @@ export default function Consulting() {
       services: [
         {
           title: language === "en" ? "Personal Performance Coaching" : "Coaching de performance personnelle",
-          investment: "$100 – $500/mo",
+          investment: "$100 , $500/mo",
           desc: language === "en"
             ? "You don't need more advice, you need someone in your corner. Our coaching helps you gain clarity, build momentum, and become the professional you know you can be."
             : "Vous n'avez pas besoin de plus de conseils, vous avez besoin de quelqu'un à vos côtés. Notre coaching vous aide à gagner en clarté et devenir le professionnel que vous savez pouvoir être.",
@@ -747,7 +747,7 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "Personal Workflow Audit" : "Audit de flux de travail personnel",
-          investment: "$250 – $750",
+          investment: "$250 , $750",
           desc: language === "en"
             ? "Feeling overwhelmed? We look at how you actually spend your time, find what's stealing your energy, and design a system that works for the way you think."
             : "Vous vous sentez débordé ? Nous examinons comment vous passez votre temps, trouvons ce qui vole votre énergie et concevons un système adapté à votre façon de penser.",
@@ -791,7 +791,7 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "Performance Workshop" : "Atelier de performance",
-          investment: "$500 – $1,500",
+          investment: "$500 , $1,500",
           desc: language === "en"
             ? "Sometimes you need to step back and reset. This workshop helps you get clear on what matters, what's holding you back, and what to do next."
             : "Parfois, vous avez besoin de prendre du recul. Cet atelier vous aide à clarifier ce qui compte, ce qui vous retient et quoi faire ensuite.",
@@ -833,7 +833,7 @@ export default function Consulting() {
       services: [
         {
           title: language === "en" ? "Performance Planner" : "Planificateur de performance",
-          investment: "$49 – $99",
+          investment: "$49 , $99",
           desc: language === "en"
             ? "Your personal roadmap to staying focused, organized, and on track, with planning frameworks and tracking tools that actually fit your life."
             : "Votre feuille de route personnelle pour rester concentré, organisé et sur la bonne voie, avec des outils qui s'adaptent à votre vie.",
@@ -868,7 +868,7 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "90-Day Performance Program" : "Programme de performance de 90 jours",
-          investment: "$297 – $997",
+          investment: "$297 , $997",
           desc: language === "en"
             ? "Ready for real change? This 90-day program gives you the framework, the plan, and the accountability to go from scattered to structured, at your own pace."
             : "Prêt pour un vrai changement ? Ce programme de 90 jours vous donne le cadre, le plan et la responsabilité pour passer du chaos à la structure, à votre rythme.",
@@ -903,7 +903,7 @@ export default function Consulting() {
         },
         {
           title: language === "en" ? "Performance Systems Toolkit" : "Boîte à outils de systèmes de performance",
-          investment: "$49 – $199",
+          investment: "$49 , $199",
           desc: language === "en"
             ? "Don't start from scratch. Grab the same planning, tracking, and accountability tools we use with our consulting clients, ready to use right now."
             : "Ne partez pas de zéro. Utilisez les mêmes outils de planification et de suivi que nous utilisons avec nos clients, prêts à l'emploi dès maintenant.",
@@ -1120,7 +1120,7 @@ export default function Consulting() {
                 >
                   {tab.icon}
                   <span>{tab.label}</span>
-                  <span className="hidden sm:inline text-xs opacity-70">— {tab.sublabel}</span>
+                  <span className="hidden sm:inline text-xs opacity-70">, {tab.sublabel}</span>
                   <span className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${activeTab === tab.key ? "bg-white/20 text-white" : "bg-accent/10 text-accent"}`}>{tab.priceRange}</span>
                 </button>
               ))}
@@ -1225,7 +1225,7 @@ export default function Consulting() {
                         </div>
                         <h3 className="text-2xl font-bold text-white">{language === "en" ? "Performance Processes Collective" : "Collectif Performance Processes"}</h3>
                       </div>
-                      <div className="text-accent font-black text-4xl mb-2">$49 – $99<span className="text-lg font-normal text-white/60">/mo</span></div>
+                      <div className="text-accent font-black text-4xl mb-2">$49 , $99<span className="text-lg font-normal text-white/60">/mo</span></div>
                       <p className="text-white/60 text-sm mb-8">{language === "en" ? "Cancel anytime. No long-term commitment required." : "Annulez à tout moment."}</p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                         {(language === "en"
@@ -1294,12 +1294,12 @@ export default function Consulting() {
                   </div>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-3xl">
                     {language === "en"
-                      ? "We've partnered with NextUp Canada to support youth-owned businesses. Canadian founders aged 18–29 connected to NextUp receive 40% off our productized services — websites, marketing, CRM, training, and ongoing support."
+                      ? "We've partnered with NextUp Canada to support youth-owned businesses. Canadian founders aged 18,29 connected to NextUp receive 40% off our productized services , websites, marketing, CRM, training, and ongoing support."
                       : "Nous nous sommes associés à NextUp Canada pour soutenir les entreprises appartenant à des jeunes. Les fondateurs canadiens de 18 à 29 ans connectés à NextUp reçoivent 40 % de rabais sur nos services."}
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                     {(language === "en"
-                      ? [{ label: "Discount", value: "40% off" }, { label: "Eligible Founders", value: "Ages 18–29" }, { label: "Coverage", value: "Canada-wide" }]
+                      ? [{ label: "Discount", value: "40% off" }, { label: "Eligible Founders", value: "Ages 18,29" }, { label: "Coverage", value: "Canada-wide" }]
                       : [{ label: "Rabais", value: "40 % de rabais" }, { label: "Fondateurs éligibles", value: "18 à 29 ans" }, { label: "Couverture", value: "Pancanadien" }]
                     ).map((item, i) => (
                       <div key={i} className="bg-white rounded-2xl p-4 text-center border border-accent/10">

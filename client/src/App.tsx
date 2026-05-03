@@ -16,15 +16,11 @@ import Sitemap from "./pages/Sitemap";
 import Accessibility from "./pages/Accessibility";
 import Careers from "./pages/Careers";
 import NextUpPartnership from "./pages/NextUpPartnership";
-import Assessment from "./pages/Assessment";
-import Training from "./pages/Training";
-import Playbooks from "./pages/Playbooks";
 import Consulting from "./pages/Consulting";
 import Recruiting from "./pages/Recruiting";
 import Marketing from "./pages/Marketing";
 import Solutions from "./pages/Solutions";
 import Services from "./pages/Services";
-import Pricing from "./pages/Pricing";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -74,13 +70,13 @@ function Router() {
       <Route path="/news">{() => <Redirect to="/" />}</Route>
       <Route path="/insights">{() => <Redirect to="/" />}</Route>
       <Route path="/nextup-partnership" component={NextUpPartnership} />
-      <Route path="/playbooks" component={Playbooks} />
-      <Route path="/assessment" component={Assessment} />
-      <Route path="/training" component={Training} />
+      <Route path="/playbooks">{() => <Redirect to="/services" />}</Route>
+      <Route path="/assessment">{() => <Redirect to="/contact" />}</Route>
+      <Route path="/training">{() => <Redirect to="/services#cat-training" />}</Route>
       <Route path="/consulting">{() => <Redirect to="/solutions" />}</Route>
       <Route path="/recruiting">{() => <Redirect to="/solutions" />}</Route>
       <Route path="/marketing">{() => <Redirect to="/solutions" />}</Route>
-      <Route path="/pricing" component={Pricing} />
+      <Route path="/pricing">{() => <Redirect to="/services" />}</Route>
       <Route path="/free-audit">{() => <Redirect to="/contact" />}</Route>
       <Route path="/womens-performance-grant">{() => <Redirect to="/nextup-partnership" />}</Route>
 

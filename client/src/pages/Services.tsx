@@ -216,9 +216,9 @@ export default function Services() {
                     Book a Strategy Call
                   </Button>
                 </a>
-                <Link href="/pricing">
-                  <Button variant="outline" className="rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider w-full sm:w-auto" data-testid="button-view-pricing">
-                    View Pricing
+                <Link href="/contact">
+                  <Button variant="outline" className="rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider w-full sm:w-auto" data-testid="button-contact">
+                    Contact Us
                     <ArrowRight size={14} className="ml-2" />
                   </Button>
                 </Link>

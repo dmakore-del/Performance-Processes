@@ -218,24 +218,9 @@ export function Navbar() {
         { label: language === "en" ? "Marketing Services" : "Services marketing", href: "/services#cat-marketing" },
         { label: language === "en" ? "CRM and Lead Tracking" : "CRM et suivi des prospects", href: "/services#cat-crm" },
         { label: language === "en" ? "Business Systems" : "Systèmes d'affaires", href: "/services#cat-systems" },
+        { label: language === "en" ? "Training & Implementation" : "Formation et mise en œuvre", href: "/services#cat-training" },
         { label: language === "en" ? "Ongoing Support" : "Soutien continu", href: "/services#cat-support" },
       ],
-    },
-    {
-      label: language === "en" ? "Pricing" : "Tarifs",
-      href: "/pricing",
-    },
-    {
-      label: "Playbooks",
-      href: "/playbooks",
-    },
-    {
-      label: language === "en" ? "Training" : "Formation",
-      href: "/training",
-    },
-    {
-      label: language === "en" ? "Assessment" : "Évaluation",
-      href: "/assessment",
     },
     {
       label: t("nav.about"),

@@ -58,9 +58,9 @@ export default function Solutions() {
                 Whether you're a solo professional, a growing small business, or a scaling organization, our Growth Infrastructure System meets you where you are, with the level of support you need.
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.45s" }}>
-                <Link href="/playbooks" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-hero-playbooks">
+                <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-hero-services">
 
-                  Start with a Playbook
+                  Explore Our Services
                 </Link>
                 <a href="#ways-to-work" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-solutions-hero-tiers">
                   See All Options
@@ -225,9 +225,9 @@ export default function Solutions() {
                           ))}
                         </div>
                       </div>
-                      <Link href="/playbooks" className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-playbooks">
+                      <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-playbooks">
 
-                        Start with a Playbook
+                        Request a Playbook
                       </Link>
                     </div>
                   </div>
@@ -288,9 +288,9 @@ export default function Solutions() {
                           ))}
                         </div>
                       </div>
-                      <Link href="/training" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-500 text-white hover:bg-purple-600 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-training">
+                      <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-500 text-white hover:bg-purple-600 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-training">
 
-                        Explore Training Programs
+                        Inquire About Training
                       </Link>
                     </div>
                   </div>
@@ -693,8 +693,8 @@ export default function Solutions() {
                   desc: "Consultants, coaches, solo operators looking to build structured systems for their practice.",
                   bestFit: "Playbooks, Training, or Guided Implementation",
                   investment: "$99 to $10,000",
-                  cta: "Start with a Playbook",
-                  ctaLink: "/playbooks",
+                  cta: "Explore Our Services",
+                  ctaLink: "/services",
                   color: "from-blue-500 to-blue-600",
                 },
                 {
@@ -702,8 +702,8 @@ export default function Solutions() {
                   desc: "Early to mid-stage companies ($500K to $5M) ready to install repeatable systems for growth.",
                   bestFit: "Training, Guided Implementation, or Full System",
                   investment: "$99 to $50,000+",
-                  cta: "Explore Training Programs",
-                  ctaLink: "/training",
+                  cta: "Explore Our Services",
+                  ctaLink: "/services",
                   color: "from-accent to-pink-600",
                 },
                 {
@@ -711,8 +711,8 @@ export default function Solutions() {
                   desc: "Mission-driven organizations that need structure, hiring systems, and operational clarity without enterprise budgets.",
                   bestFit: "Playbooks, Training, or Guided Implementation",
                   investment: "$99 to $10,000",
-                  cta: "Explore Training Programs",
-                  ctaLink: "/training",
+                  cta: "Request a Quote",
+                  ctaLink: "/contact",
                   color: "from-green-500 to-green-600",
                 },
                 {
@@ -779,13 +779,13 @@ export default function Solutions() {
                     Whether you're starting with a playbook, joining a training program, exploring guided implementation, or ready for a full system build, the next step is simple.
                   </p>
                   <div className="flex flex-wrap gap-4">
-                    <Link href="/playbooks" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-playbooks">
+                    <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-services">
     
-                      Start with a Playbook
+                      Explore Our Services
                     </Link>
-                    <Link href="/training" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-500 text-white hover:bg-purple-600 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-training">
+                    <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-500 text-white hover:bg-purple-600 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-contact">
 
-                      Explore Training
+                      Request a Quote
                     </Link>
                     <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-solutions-cta-book">
     

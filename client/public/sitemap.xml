@@ -16,11 +16,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://performanceprocesses.com/pricing</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://performanceprocesses.com/approach</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -39,21 +34,6 @@
     <loc>https://performanceprocesses.com/solutions</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://performanceprocesses.com/playbooks</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://performanceprocesses.com/training</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://performanceprocesses.com/assessment</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://performanceprocesses.com/nextup-partnership</loc>

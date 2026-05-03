@@ -130,14 +130,12 @@ export function Footer() {
               <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{language === "en" ? "Services" : "Services"}</h3>
               <ul className="flex flex-col gap-3.5 text-sm font-medium text-muted-foreground">
                 <li><Link href="/services" className="hover:text-accent transition-colors font-bold text-accent">All Services</Link></li>
-                <li><Link href="/pricing" className="hover:text-accent transition-colors">Pricing</Link></li>
                 <li><Link href="/services#cat-website" className="hover:text-accent transition-colors">Website Services</Link></li>
                 <li><Link href="/services#cat-marketing" className="hover:text-accent transition-colors">Marketing Services</Link></li>
                 <li><Link href="/services#cat-crm" className="hover:text-accent transition-colors">CRM and Lead Tracking</Link></li>
+                <li><Link href="/services#cat-systems" className="hover:text-accent transition-colors">Business Systems</Link></li>
+                <li><Link href="/services#cat-training" className="hover:text-accent transition-colors">Training & Implementation</Link></li>
                 <li><Link href="/services#cat-support" className="hover:text-accent transition-colors">Ongoing Support</Link></li>
-                <li><Link href="/playbooks" className="hover:text-accent transition-colors">Playbooks</Link></li>
-                <li><Link href="/training" className="hover:text-accent transition-colors">Training Programs</Link></li>
-                <li><Link href="/assessment" className="hover:text-accent transition-colors">Growth Assessment</Link></li>
                 <li><Link href="/nextup-partnership" className="hover:text-accent transition-colors">NextUp Youth Partnership</Link></li>
               </ul>
             </div>

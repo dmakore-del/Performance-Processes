@@ -244,7 +244,7 @@ export const OFFERS: Offer[] = [
     ],
     category: "systems",
     isRange: true,
-    ctaHref: "/playbooks",
+    ctaHref: "/contact",
   },
 
   {

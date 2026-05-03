@@ -22,13 +22,11 @@ const ROTATING_WORDS = ["build.", "launch.", "scale.", "grow.", "build."];
 
 const MARQUEE_ITEMS = [
   "Websites",
-  "Marketing Systems",
-  "CRM",
-  "Hiring & HR",
-  "Playbooks",
-  "Brand & Content",
-  "Operations",
-  "Growth Infrastructure",
+  "Marketing",
+  "CRM & Lead Tracking",
+  "Business Systems",
+  "Training & Implementation",
+  "Ongoing Support",
 ];
 
 const CAPABILITIES = [
@@ -47,18 +45,18 @@ const CAPABILITIES = [
     href: "/services#cat-marketing",
   },
   {
-    label: "03 — CRM & Operations",
-    title: "Infrastructure that runs the business.",
-    desc: "CRM, automation, SOPs, and operating cadence that turn chaos into a clear scoreboard.",
+    label: "03 — CRM & Lead Tracking",
+    title: "Every lead, accounted for.",
+    desc: "CRM setup, pipeline tracking, and structured follow-up so nothing falls through the cracks.",
     image: processFlowImg,
     href: "/services#cat-crm",
   },
   {
-    label: "04 — Talent & Training",
-    title: "Hiring, onboarding, performance.",
-    desc: "From job descriptions to KPI scorecards, install the people systems your scale-up needs.",
+    label: "04 — Business Systems",
+    title: "The operating system underneath.",
+    desc: "Audits, KPI tracking, SOPs, and operating rhythms — plus training and ongoing support to keep it running.",
     image: communityTownhallImg,
-    href: "/services#cat-training",
+    href: "/services#cat-systems",
   },
 ];
 
@@ -217,15 +215,15 @@ export default function Home() {
                 className="text-lg md:text-xl text-white/70 leading-relaxed max-w-xl"
                 data-testid="text-hero-subtitle"
               >
-                Websites, marketing, CRM, hiring, and operating systems — installed as one growth infrastructure for professionals, nonprofits, and small businesses.
+                Websites, marketing, CRM, business systems, training, and ongoing support — installed as one growth infrastructure for professionals, nonprofits, and small businesses.
               </p>
               <div className="flex flex-wrap gap-3 shrink-0">
                 <Link
-                  href="/pricing"
+                  href="/services"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30"
                   data-testid="link-hero-services"
                 >
-                  See services & pricing
+                  Explore our services
                   <ArrowRight size={16} />
                 </Link>
                 <a
@@ -693,11 +691,11 @@ export default function Home() {
                   <ArrowRight size={18} />
                 </a>
                 <Link
-                  href="/pricing"
+                  href="/services"
                   className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-16 px-12 font-bold text-sm uppercase tracking-wider transition-all duration-300"
-                  data-testid="link-cta-pricing"
+                  data-testid="link-cta-services"
                 >
-                  See services & pricing
+                  Explore our services
                 </Link>
               </div>
             </AnimateOnScroll>

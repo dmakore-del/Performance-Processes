@@ -142,7 +142,7 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
               className="w-full rounded-full h-11 font-bold text-xs uppercase tracking-widest bg-primary text-white hover:bg-accent"
               data-testid={`button-explore-${offer.id}`}
             >
-              {offer.ctaHref === "/playbooks" ? "Browse Playbooks" : "Request Quote"}
+              {offer.ctaHref === "/contact" ? "Request Quote" : "Request Quote"}
               <ArrowRight size={14} className="ml-2" />
             </Button>
           </Link>

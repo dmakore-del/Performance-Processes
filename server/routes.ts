@@ -271,7 +271,7 @@ export async function registerRoutes(
         return res.status(400).json({ message: "Price ID is required" });
       }
 
-      const allowedReturnPages = ["/consulting", "/recruiting", "/playbooks", "/services", "/marketing", "/solutions"];
+      const allowedReturnPages = ["/consulting", "/recruiting", "/playbooks", "/services", "/marketing", "/solutions", "/pricing"];
       const returnPage = allowedReturnPages.includes(req.body.returnPage) ? req.body.returnPage : "/services";
 
       const stripe = await getUncachableStripeClient();
@@ -354,6 +354,77 @@ export async function registerRoutes(
       res.json({ url: session.url });
     } catch (error) {
       console.error("Cart checkout error:", error);
+      res.status(500).json({ message: "Failed to create checkout session" });
+    }
+  });
+
+  app.post("/api/instant-checkout", async (req, res) => {
+    try {
+      const { OFFERS: OFFER_CATALOG } = await import("@shared/offers");
+      const { offerId, mode, returnPage } = req.body || {};
+
+      if (!offerId || typeof offerId !== "string") {
+        return res.status(400).json({ message: "offerId is required" });
+      }
+
+      const offer = OFFER_CATALOG.find((o) => o.id === offerId);
+      if (!offer) {
+        return res.status(404).json({ message: "Offer not found" });
+      }
+
+      if (offer.isRange || offer.price <= 0) {
+        return res.status(400).json({ message: "This offer requires a custom quote." });
+      }
+
+      const useTeam = mode === "team" && offer.perTeamPrice && offer.perTeamPrice > 0;
+      const unitAmount = useTeam ? offer.perTeamPrice! : offer.price;
+      const displayName = useTeam ? `${offer.name} (Team)` : offer.name;
+
+      const allowedReturnPages = ["/services", "/pricing", "/playbooks", "/solutions"];
+      const safeReturn = allowedReturnPages.includes(returnPage) ? returnPage : "/services";
+
+      const trustedDomain = process.env.REPLIT_DOMAINS?.split(",")[0]?.trim();
+      let baseUrl: string;
+      if (trustedDomain) {
+        baseUrl = `https://${trustedDomain}`;
+      } else if (process.env.NODE_ENV !== "production") {
+        baseUrl = `${req.protocol}://${req.get("host")}`;
+      } else {
+        console.error("Instant checkout refused: REPLIT_DOMAINS is not configured in production");
+        return res.status(500).json({ message: "Checkout is temporarily unavailable. Please try again shortly." });
+      }
+
+      const stripe = await getUncachableStripeClient();
+
+      const session = await stripe.checkout.sessions.create({
+        line_items: [
+          {
+            price_data: {
+              currency: "cad",
+              product_data: {
+                name: displayName,
+                description: offer.description,
+              },
+              unit_amount: unitAmount,
+              ...(offer.isMonthly ? { recurring: { interval: "month" as const } } : {}),
+            },
+            quantity: 1,
+          },
+        ],
+        mode: offer.isMonthly ? "subscription" : "payment",
+        success_url: `${baseUrl}${safeReturn}?payment=success`,
+        cancel_url: `${baseUrl}${safeReturn}?payment=cancelled`,
+        metadata: {
+          offerId: offer.id,
+          offerName: offer.name,
+          mode: useTeam ? "team" : "standard",
+          category: offer.category,
+        },
+      });
+
+      res.json({ url: session.url });
+    } catch (error: any) {
+      console.error("Instant checkout error:", error?.message || error);
       res.status(500).json({ message: "Failed to create checkout session" });
     }
   });
@@ -923,7 +994,6 @@ export async function registerRoutes(
       const amountCents = invoice.amountCents || Math.round(parseFloat(invoice.amount.replace(/[^0-9.]/g, "")) * 100);
 
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
         line_items: [{
           price_data: {
             currency: "cad",

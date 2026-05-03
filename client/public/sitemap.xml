@@ -16,6 +16,11 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://performanceprocesses.com/pricing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://performanceprocesses.com/approach</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

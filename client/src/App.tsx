@@ -24,6 +24,7 @@ import Recruiting from "./pages/Recruiting";
 import Marketing from "./pages/Marketing";
 import Solutions from "./pages/Solutions";
 import Services from "./pages/Services";
+import Pricing from "./pages/Pricing";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -79,7 +80,7 @@ function Router() {
       <Route path="/consulting">{() => <Redirect to="/solutions" />}</Route>
       <Route path="/recruiting">{() => <Redirect to="/solutions" />}</Route>
       <Route path="/marketing">{() => <Redirect to="/solutions" />}</Route>
-      <Route path="/pricing">{() => <Redirect to="/services" />}</Route>
+      <Route path="/pricing" component={Pricing} />
       <Route path="/free-audit">{() => <Redirect to="/contact" />}</Route>
       <Route path="/womens-performance-grant">{() => <Redirect to="/nextup-partnership" />}</Route>
 

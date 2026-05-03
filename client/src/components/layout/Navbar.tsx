@@ -214,11 +214,28 @@ export function Navbar() {
       label: language === "en" ? "Services" : "Services",
       children: [
         { label: language === "en" ? "All Services" : "Tous les services", href: "/services" },
-        { label: language === "en" ? "Solutions Framework" : "Cadre de solutions", href: "/solutions" },
-        { label: "Playbooks", href: "/playbooks" },
-        { label: language === "en" ? "Training Programs" : "Programmes de formation", href: "/training" },
-        { label: language === "en" ? "Growth Assessment" : "Évaluation de croissance", href: "/assessment" },
+        { label: language === "en" ? "Website Services" : "Services web", href: "/services#cat-website" },
+        { label: language === "en" ? "Marketing Services" : "Services marketing", href: "/services#cat-marketing" },
+        { label: language === "en" ? "CRM and Lead Tracking" : "CRM et suivi des prospects", href: "/services#cat-crm" },
+        { label: language === "en" ? "Business Systems" : "Systèmes d'affaires", href: "/services#cat-systems" },
+        { label: language === "en" ? "Ongoing Support" : "Soutien continu", href: "/services#cat-support" },
       ],
+    },
+    {
+      label: language === "en" ? "Pricing" : "Tarifs",
+      href: "/pricing",
+    },
+    {
+      label: "Playbooks",
+      href: "/playbooks",
+    },
+    {
+      label: language === "en" ? "Training" : "Formation",
+      href: "/training",
+    },
+    {
+      label: language === "en" ? "Assessment" : "Évaluation",
+      href: "/assessment",
     },
     {
       label: t("nav.about"),

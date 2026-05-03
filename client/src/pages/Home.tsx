@@ -31,28 +31,33 @@ export default function Home() {
 
   const systemComponents = [
     {
-      title: "Talent Acquisition System",
-      desc: "We build the team structure required to scale, finding and placing the right people.",
-      href: "/solutions",
+      title: "Websites & Digital Presence",
+      desc: "Professional websites that build trust and turn visitors into clients. From $1,500.",
+      href: "/services",
     },
     {
-      title: "People & Performance System",
-      desc: "We implement performance systems that improve execution and accountability.",
-      href: "/solutions",
+      title: "Brand Identity",
+      desc: "Logos, visual identity, and brand systems that make small businesses look credible from day one.",
+      href: "/services",
     },
     {
-      title: "Demand Generation System",
-      desc: "We install systems that attract and convert customers through strategy and campaigns.",
-      href: "/solutions",
+      title: "Marketing Systems",
+      desc: "Marketing strategy, content, and campaigns that bring in steady leads without the guesswork.",
+      href: "/services",
     },
     {
-      title: "Conversion System",
-      desc: "We design digital infrastructure that turns visitors into leads and leads into clients.",
-      href: "/solutions",
+      title: "Process & Operations",
+      desc: "Simple operating systems, SOPs, and workflows so your business runs smoothly as it grows.",
+      href: "/services",
     },
     {
-      title: "Execution Systems",
-      desc: "Practical tools, templates, and frameworks built from real execution.",
+      title: "Custom Software",
+      desc: "Lightweight tools, dashboards, and web applications tailored to how your business actually works.",
+      href: "/services",
+    },
+    {
+      title: "Playbooks & Templates",
+      desc: "Self-serve guides and templates for owners who want to do it themselves with proven frameworks.",
       href: "/playbooks",
     },
   ];
@@ -60,14 +65,14 @@ export default function Home() {
   const phases = [
     {
       step: "01",
-      label: "Foundation",
+      label: "Discover",
       image: communityTownhallImg,
       items: [
-        "Define roles and responsibilities",
-        "Build team structure",
-        "Set up core processes",
-        "Create operational playbooks",
-        "Clarify KPIs and targets",
+        "Free intro strategy call",
+        "Understand your goals and audience",
+        "Audit your current presence",
+        "Recommend the right package",
+        "Clear quote and timeline",
       ],
     },
     {
@@ -75,41 +80,41 @@ export default function Home() {
       label: "Build",
       image: communityWorkspaceImg,
       items: [
-        "Recruit key hires",
-        "Implement HR and operating systems",
-        "Support marketing execution",
-        "Build or improve website assets",
-        "Activate growth infrastructure",
+        "Brand, website, or marketing build",
+        "Set up tools and tracking",
+        "Document processes and SOPs",
+        "Launch campaigns or content",
+        "Train you and your team",
       ],
     },
     {
       step: "03",
-      label: "Run",
+      label: "Grow",
       image: milestoneImg,
       items: [
-        "Ongoing optimization",
-        "Performance tracking",
-        "Hiring support as you scale",
-        "Process refinement",
-        "Strategic advisory and support",
+        "Ongoing marketing or retainer support",
+        "Iterate based on real results",
+        "Add new pages, features, or campaigns",
+        "Refine systems as you scale",
+        "Advisory whenever you need it",
       ],
     },
   ];
 
   const beforeItems = [
-    "Disorganized growth",
-    "Hiring gaps and misaligned roles",
-    "No clear systems or processes",
-    "Inconsistent execution",
-    "Weak accountability",
+    "Outdated or DIY website",
+    "No clear brand or messaging",
+    "Marketing that feels random",
+    "Manual, scattered processes",
+    "Spending too much time in the weeds",
   ];
 
   const afterItems = [
-    "Clear team structure",
-    "Better hiring, faster onboarding",
-    "Defined processes and playbooks",
-    "Stronger, more consistent execution",
-    "Scalable growth systems",
+    "Professional website you're proud of",
+    "Clear brand and consistent messaging",
+    "Marketing that brings in steady leads",
+    "Documented processes and tools",
+    "More time to actually run the business",
   ];
 
   const insights = [
@@ -136,8 +141,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
       <SEOHead
-        title="Performance Processes | We Build and Run the Systems That Help Businesses Scale"
-        description="From recruiting and HR to marketing, websites, and operational playbooks, Performance Processes installs the infrastructure growing companies need to scale with confidence."
+        title="Performance Processes | Websites, Marketing & Business Support for Small and Emerging Businesses"
+        description="Productized websites, brand identity, marketing systems, and operations support for professionals, nonprofits, startups, and small businesses. Transparent pricing, fast turnarounds."
         path="/"
       />
       <Navbar />
@@ -218,34 +223,34 @@ export default function Home() {
               <AnimateOnScroll animation="fade-left">
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Our Approach</p>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                  More than services. A system for scale.
+                  Productized services built for small businesses.
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Most firms offer one piece of the puzzle. We integrate hiring, HR, marketing support, web presence, and playbooks into one execution system designed to help your business grow.
+                  Most agencies are built for big budgets and long timelines. We package what small and emerging businesses actually need — websites, brand, marketing, and operations — at clear prices with realistic turnarounds.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  When you work with Performance Processes, you're not hiring a firm for a project. You're installing growth infrastructure that compounds over time.
+                  Pick a package, get on a quick call, and we'll get to work. No bloated retainers, no surprise invoices, no jargon.
                 </p>
               </AnimateOnScroll>
               <AnimateOnScroll animation="fade-right" delay={200}>
                 <div className="relative">
                   <div className="rounded-3xl overflow-hidden shadow-2xl shadow-primary/10">
-                    <img src={teamMovingForwardImg} alt="Building growth infrastructure" className="w-full h-auto aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700" />
+                    <img src={teamMovingForwardImg} alt="Productized services for small businesses" className="w-full h-auto aspect-[4/3] object-cover hover:scale-105 transition-transform duration-700" />
                   </div>
                   <FloatingShape className="w-20 h-20 -top-5 -right-5 z-[-1]" variant="square" />
                   <FloatingShape className="w-12 h-12 -bottom-3 right-10 z-[-1]" variant="ring" />
                   <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-5 border border-border max-w-[220px] hidden md:block animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-                    <p className="text-sm font-bold text-primary mb-1">One System</p>
-                    <p className="text-xs text-muted-foreground">People, processes, and growth, integrated into one infrastructure</p>
+                    <p className="text-sm font-bold text-primary mb-1">Clear Packages</p>
+                    <p className="text-xs text-muted-foreground">Transparent pricing, fixed scope, real turnaround times.</p>
                   </div>
                 </div>
               </AnimateOnScroll>
             </div>
 
             <AnimateOnScroll className="text-center mb-14">
-              <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-4">Our Growth Infrastructure System</h3>
+              <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-4">What We Help With</h3>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                Everything your business needs to scale, delivered as one integrated system.
+                Six service areas, all sized and priced for small and emerging businesses.
               </p>
             </AnimateOnScroll>
 
@@ -272,10 +277,10 @@ export default function Home() {
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">How It Works</p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                Three phases to scalable growth
+                A simple way to work together
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We don't just advise. We build and run the infrastructure your business needs, one phase at a time.
+                From a free strategy call to a launched website or marketing system, here's how it goes.
               </p>
             </AnimateOnScroll>
 
@@ -335,7 +340,7 @@ export default function Home() {
                 The difference you'll feel
               </h2>
               <p className="text-lg text-white/60 leading-relaxed">
-                Our clients don't just get better systems. They get clarity, confidence, and the infrastructure to grow without the chaos.
+                A polished brand, a website that actually works, and marketing you don't have to babysit — without enterprise-level bills.
               </p>
             </AnimateOnScroll>
 
@@ -402,10 +407,10 @@ export default function Home() {
           </div>
           <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
             <h3 className="text-2xl md:text-4xl font-heading font-extrabold text-white mb-4">
-              Wondering if this is right for your business?
+              Not sure which service is right for you?
             </h3>
             <p className="text-white/60 mb-10 max-w-xl mx-auto text-lg">
-              Let's have an honest conversation about where you are, where you want to go, and whether our growth infrastructure can get you there.
+              Hop on a free 30-minute strategy call. We'll talk through where you are, what you actually need, and which package (if any) makes sense.
             </p>
             <a
               href={BOOKINGS_URL}
@@ -426,10 +431,10 @@ export default function Home() {
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Ways to Work With Us</p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                One system. Multiple ways in.
+                Different budgets. Different starting points.
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Whether you're a solo professional, a growing business, or a scaling organization, our Growth Infrastructure System meets you where you are.
+                Whether you want done-for-you, do-it-yourself, or something in between, there's a way in that fits your stage and budget.
               </p>
             </AnimateOnScroll>
 
@@ -438,34 +443,34 @@ export default function Home() {
                 {
                   image: communityTownhallImg,
                   title: "Playbooks",
-                  desc: "Self-guided systems to implement structure, hiring, marketing, and execution at your own pace.",
-                  label: "$149 to $999",
-                  cta: "Start with a Playbook",
+                  desc: "Self-serve templates and guides for owners who want to do the work themselves.",
+                  label: "From $149",
+                  cta: "Browse Playbooks",
                   href: "/playbooks",
                 },
                 {
                   image: communityCollaborationImg,
-                  title: "Training Programs",
-                  desc: "Practical training to help leaders and teams implement real systems for growth and execution.",
-                  label: "$99 to $10,000",
+                  title: "Training",
+                  desc: "Workshops and short programs to upskill you or your team on the basics that matter most.",
+                  label: "From $99",
                   cta: "Explore Training",
                   href: "/training",
                 },
                 {
                   image: communityWorkspaceImg,
-                  title: "Guided Implementation",
-                  desc: "Hands-on support to install key systems without a full-scale engagement.",
-                  label: "$2,000 to $10,000",
-                  cta: "Explore Guided Implementation",
-                  href: "/solutions",
+                  title: "Service Packages",
+                  desc: "Done-for-you websites, brand, marketing, and operations builds with fixed pricing.",
+                  label: "From $1,500",
+                  cta: "Browse Services",
+                  href: "/services",
                 },
                 {
                   image: milestoneImg,
-                  title: "Full System Build",
-                  desc: "Complete design, build, and ongoing operation of your business systems.",
-                  label: "$5,000 to $50,000+",
-                  cta: "Book a Strategy Call",
-                  href: "/solutions",
+                  title: "NextUp Partnership",
+                  desc: "40% off our service packages for Canadian founders aged 18–29 through NextUp Canada.",
+                  label: "Youth-owned businesses",
+                  cta: "Check Eligibility",
+                  href: "/nextup-partnership",
                 },
               ].map((s, i) => (
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
@@ -494,19 +499,19 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <AnimateOnScroll animation="fade-left">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Execution Systems</p>
+                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">DIY Playbooks</p>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                  Playbooks built from real execution
+                  Playbooks built from real client work
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  Every playbook we sell was built from real client work. These are the same tools, templates, and frameworks we use inside our engagements, now available for teams that want to build better systems on their own.
+                  Not ready to hire us yet? Start with a playbook. Each one is a no-fluff guide we built from delivering the same work for our clients — now packaged so you can do it yourself at a fraction of the cost.
                 </p>
                 <div className="space-y-4 mb-10">
                   {[
-                    "Proven templates and frameworks",
-                    "Built from proven consulting methodology",
-                    "Supports lead generation and team enablement",
-                    "Part of our integrated growth system",
+                    "Step-by-step templates and checklists",
+                    "Written for non-technical small business owners",
+                    "Covers websites, brand, marketing, and ops",
+                    "Lifetime access to updates",
                   ].map((text, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
@@ -525,10 +530,10 @@ export default function Home() {
               <AnimateOnScroll animation="fade-right" delay={200}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
-                    { title: "Hiring Playbooks", desc: "Job descriptions, interview scorecards, onboarding checklists, and candidate evaluation rubrics." },
-                    { title: "Performance Playbooks", desc: "KPI libraries, review cycle templates, feedback frameworks, and calibration guides." },
-                    { title: "Operations & SOP Playbooks", desc: "SOP templates, process mapping guides, accountability trackers, and quality frameworks." },
-                    { title: "Marketing Playbooks", desc: "Marketing plans, content strategies, funnel blueprints, and lead generation frameworks." },
+                    { title: "Website Playbooks", desc: "Site planning templates, copy frameworks, launch checklists, and conversion guides for small business sites." },
+                    { title: "Brand Playbooks", desc: "Naming exercises, brand voice guides, logo briefs, and visual identity worksheets." },
+                    { title: "Marketing Playbooks", desc: "Content plans, social media calendars, email funnels, and lead generation templates." },
+                    { title: "Operations Playbooks", desc: "SOP templates, simple process maps, hiring checklists, and tools to keep your business organized." },
                   ].map((pb, i) => (
                     <Link href="/playbooks" key={i} className="block group" data-testid={`link-playbook-card-${i}`}>
                       <div className="bg-white rounded-2xl border border-border p-6 hover:shadow-xl hover:border-accent/20 transition-all duration-300 h-full">
@@ -603,10 +608,10 @@ export default function Home() {
                 <FloatingShape className="w-14 h-14 top-10 right-10 z-[5]" variant="ring" />
                 <div className="relative z-10 p-12 lg:p-20 max-w-2xl">
                   <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
-                    Ready to build the systems your business needs to scale?
+                    Ready to give your business a real foundation?
                   </h2>
                   <p className="text-lg text-white/70 mb-12">
-                    Whether you need people, process, or growth infrastructure, the first step is a conversation. Let's figure out what your business needs and build it together.
+                    Whether it's a new website, a fresh brand, or marketing that finally works, we'll help you pick the right starting point. The first conversation is free.
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <a
@@ -618,8 +623,8 @@ export default function Home() {
                     >
                       Book a Strategy Call
                     </a>
-                    <Link href="/solutions" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-cta-solutions">
-                      Explore Solutions
+                    <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-cta-solutions">
+                      Browse Services
                       <ArrowRight size={16} />
                     </Link>
                   </div>

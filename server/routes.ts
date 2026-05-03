@@ -361,7 +361,7 @@ export async function registerRoutes(
   app.post("/api/instant-checkout", async (req, res) => {
     try {
       const { OFFERS: OFFER_CATALOG } = await import("@shared/offers");
-      const { offerId, mode, returnPage } = req.body || {};
+      const { offerId, mode, returnPage, promoCode } = req.body || {};
 
       if (!offerId || typeof offerId !== "string") {
         return res.status(400).json({ message: "offerId is required" });
@@ -377,8 +377,26 @@ export async function registerRoutes(
       }
 
       const useTeam = mode === "team" && offer.perTeamPrice && offer.perTeamPrice > 0;
-      const unitAmount = useTeam ? offer.perTeamPrice! : offer.price;
-      const displayName = useTeam ? `${offer.name} (Team)` : offer.name;
+      const baseAmount = useTeam ? offer.perTeamPrice! : offer.price;
+
+      const NEXTUP_CODE = "NEXTPROCESSES";
+      const NEXTUP_DISCOUNT_PCT = 40;
+      const normalizedCode = typeof promoCode === "string" ? promoCode.trim().toUpperCase() : "";
+      let appliedCode: string | null = null;
+      let unitAmount = baseAmount;
+      let displayName = useTeam ? `${offer.name} (Team)` : offer.name;
+
+      if (normalizedCode) {
+        if (normalizedCode !== NEXTUP_CODE) {
+          return res.status(400).json({ message: "Invalid discount code." });
+        }
+        if (offer.category !== "website") {
+          return res.status(400).json({ message: "The NEXTPROCESSES code applies to website services only." });
+        }
+        unitAmount = Math.round(baseAmount * (100 - NEXTUP_DISCOUNT_PCT) / 100);
+        displayName = `${displayName} , NextUp 40% off`;
+        appliedCode = NEXTUP_CODE;
+      }
 
       const allowedReturnPages = ["/services", "/pricing", "/playbooks", "/solutions"];
       const safeReturn = allowedReturnPages.includes(returnPage) ? returnPage : "/services";
@@ -419,6 +437,7 @@ export async function registerRoutes(
           offerName: offer.name,
           mode: useTeam ? "team" : "standard",
           category: offer.category,
+          promoCode: appliedCode || "",
         },
       });
 

@@ -152,8 +152,11 @@ export default function Services() {
                 <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-6">
                   NextUp Canada Partnership
                 </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-3xl">
-                  Canadian founders aged 18 to 29 connected to NextUp Canada receive 40% off every productized service on this page.
+                <p className="text-lg text-muted-foreground leading-relaxed mb-4 max-w-3xl">
+                  Canadian founders aged 18 to 29 approved by NextUp Canada receive 40% off our website services. Apply on NextUp Canada's website to receive your discount code, then enter it at checkout on any website package.
+                </p>
+                <p className="text-sm text-muted-foreground mb-8 max-w-3xl">
+                  Code: <span className="font-mono font-bold text-primary">NEXTPROCESSES</span> &middot; Applies to website services only.
                 </p>
                 <Link href="/nextup-partnership">
                   <Button className="rounded-full bg-accent text-white hover:bg-primary h-12 px-8 font-bold uppercase tracking-wider text-sm">

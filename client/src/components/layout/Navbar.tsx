@@ -275,7 +275,7 @@ export function Navbar() {
 
   return (
     <header className="w-full bg-white z-[60] sticky top-0 shadow-sm">
-      <div className="bg-[#1a1a1a] text-white py-2 hidden lg:block">
+      <div className="bg-primary text-white py-2 hidden lg:block">
         <div className="container mx-auto px-4 md:px-8 flex justify-end items-center gap-6 text-[11px] font-bold uppercase tracking-wider">
           <Link href="/portal" className="hover:text-accent transition-colors cursor-pointer">Client Portal</Link>
           <Link href="/careers" className="hover:text-accent transition-colors cursor-pointer">Careers</Link>

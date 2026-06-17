@@ -124,7 +124,7 @@ export default function Solutions() {
                 {[
                   { label: "Start", tier: "Playbooks", price: "$149 to $999", color: "bg-blue-500", ring: "ring-blue-200" },
                   { label: "Learn", tier: "Training Programs", price: "$99 to $10,000", color: "bg-purple-500", ring: "ring-purple-200" },
-                  { label: "Grow", tier: "Guided Implementation", price: "$2,000 to $10,000", color: "bg-accent", ring: "ring-pink-200" },
+                  { label: "Grow", tier: "Guided Implementation", price: "$2,000 to $10,000", color: "bg-accent", ring: "ring-blue-200" },
                   { label: "Scale", tier: "Full System Build", price: "$5,000 to $50,000+", color: "bg-primary", ring: "ring-slate-200" },
                 ].map((step, i) => (
                   <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
@@ -302,7 +302,7 @@ export default function Solutions() {
                   <div className="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-4 py-1.5 rounded-bl-xl">Most Flexible</div>
                   <div className="grid grid-cols-1 lg:grid-cols-5">
                     <div className="lg:col-span-2 relative">
-                      <div className="h-full min-h-[280px] bg-gradient-to-br from-accent to-pink-600 p-8 lg:p-10 flex flex-col justify-center">
+                      <div className="h-full min-h-[280px] bg-gradient-to-br from-accent to-blue-700 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
 
                           Tier 3: Mid-Tier
@@ -345,7 +345,7 @@ export default function Solutions() {
                             { name: "Growth Engine Sprint", desc: "Website + funnel + CRM", price: "$5K to $10K", time: "4 to 8 weeks" },
                             { name: "Hiring System Setup", desc: "Hiring process + scorecards + onboarding", price: "$2K to $5K", time: "2 to 4 weeks" },
                           ].map((pkg, j) => (
-                            <div key={j} className="bg-pink-50 border border-pink-100 rounded-xl p-4">
+                            <div key={j} className="bg-blue-50 border border-blue-100 rounded-xl p-4">
                               <h4 className="text-sm font-bold text-primary mb-1">{pkg.name}</h4>
                               <p className="text-xs text-muted-foreground mb-2">{pkg.desc}</p>
                               <p className="text-sm font-bold text-accent">{pkg.price}</p>
@@ -607,7 +607,7 @@ export default function Solutions() {
           <div className="absolute inset-0">
             <img src={teamMovingForwardImg} alt="" className="w-full h-full object-cover opacity-10 animate-ken-burns" />
           </div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(236,72,153,0.15),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(42,110,240,0.16),transparent_60%)]" />
           <FloatingShape className="w-16 h-16 top-20 right-[15%]" variant="ring" />
           <FloatingShape className="w-8 h-8 bottom-32 left-[10%]" variant="dot" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
@@ -704,7 +704,7 @@ export default function Solutions() {
                   investment: "$99 to $50,000+",
                   cta: "Explore Our Services",
                   ctaLink: "/services",
-                  color: "from-accent to-pink-600",
+                  color: "from-accent to-blue-700",
                 },
                 {
                   audience: "Nonprofits",

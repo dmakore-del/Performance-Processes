@@ -762,7 +762,7 @@ export default function Marketing() {
         </section>
 
         <section className="py-20 bg-gradient-to-r from-primary to-primary/90 relative overflow-hidden" data-testid="marketing-section-mid-cta">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(236,72,153,0.08)_0%,transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(42,110,240,0.08)_0%,transparent_60%)]" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-6 leading-tight">

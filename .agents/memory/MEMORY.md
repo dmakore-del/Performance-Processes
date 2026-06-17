@@ -1,0 +1,1 @@
+- [Brand palette & pink→blue migration](brand-palette.md) — token-driven navy+blue in index.css; stray pinks hide in rgba glows, pink-* classes, and the hero video (masked via mix-blend duotone).

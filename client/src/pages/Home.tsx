@@ -139,7 +139,9 @@ export default function Home() {
             >
               <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/55 to-primary/95" />
+            <div className="absolute inset-0 bg-primary mix-blend-color" />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/60 to-primary/95" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,hsl(var(--accent)/0.18),transparent_55%)]" />
           </div>
 
           {/* Top meta row */}

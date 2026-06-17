@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "T7YH0CjlKms-pZvJG-RSg"
+uri = "file://client/src/assets/generated/hero-bgis.png"
+type = "image"
+title = "generated_image"

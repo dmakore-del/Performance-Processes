@@ -34,7 +34,7 @@
 }
 
 :root {
-  --radius: 0.5rem;
+  --radius: 0.125rem;
 
   /* Brand palette from logo: deep navy + vivid azure blue */
   --background: 210 33% 99%;
@@ -82,10 +82,10 @@
 
 @layer utilities {
   .bdc-card {
-    @apply bg-white border border-border rounded-xl p-8 transition-all hover:shadow-lg hover:border-accent/20;
+    @apply bg-white border border-border rounded-sm p-8 transition-all hover:border-accent/40;
   }
   .bdc-btn-primary {
-    @apply bg-primary text-white hover:bg-accent transition-colors rounded-full px-8 py-4 font-bold text-sm uppercase tracking-wide inline-flex items-center gap-2;
+    @apply bg-primary text-white hover:bg-accent transition-colors rounded-none px-8 py-4 font-bold text-sm uppercase tracking-wide inline-flex items-center gap-2;
   }
 }
 

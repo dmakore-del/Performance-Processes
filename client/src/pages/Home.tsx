@@ -7,7 +7,7 @@ import { SEOHead } from "@/components/SEOHead";
 
 import communityCollaborationImg from "@assets/generated/community-collaboration.png";
 import communityWorkspaceImg from "@assets/generated/community-workspace.png";
-import communityNetworkImg from "@assets/generated/community-network-abstract.png";
+import heroBgisImg from "@/assets/generated/hero-bgis.png";
 import communityTownhallImg from "@assets/generated/community-townhall.png";
 import milestoneImg from "@assets/generated/milestone-celebration.png";
 import teamMovingForwardImg from "@assets/generated/team-moving-forward.png";
@@ -122,73 +122,72 @@ export default function Home() {
 
       <main className="flex-grow">
         {/* ————————————————————————————————————————————————————————————
-            HERO — full-bleed cinematic video, editorial type, rotating verb
+            HERO — BGIS-style: full-bleed photographic still, navy gradient,
+            restrained heading, pipe-bullet callout links
         —————————————————————————————————————————————————————————————— */}
         <section
-          className="relative min-h-[100svh] flex flex-col justify-end overflow-hidden bg-primary"
+          className="relative min-h-[92svh] flex items-center overflow-hidden bg-primary"
           data-testid="section-hero"
         >
           <div className="absolute inset-0 z-0">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
+            <img
+              src={heroBgisImg}
+              alt=""
               className="w-full h-full object-cover"
-              poster={communityNetworkImg}
-            >
-              <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-primary mix-blend-color" />
-            <div className="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/60 to-primary/95" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,hsl(var(--accent)/0.18),transparent_55%)]" />
-          </div>
-
-          {/* Top meta row */}
-          <div className="absolute top-24 md:top-28 left-0 right-0 z-10 pointer-events-none">
-            <div className="container mx-auto px-4 md:px-8 flex items-center justify-between text-white/70 text-[10px] md:text-[11px] uppercase tracking-[0.3em] font-bold">
-              <span data-testid="text-hero-meta-studio">A growth infrastructure studio</span>
-            </div>
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/75 to-primary/35" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-primary/30" />
           </div>
 
           {/* Headline block */}
-          <div className="container mx-auto px-4 md:px-8 pt-44 md:pt-48 pb-20 md:pb-28 relative z-10">
-            <h1
-              className="text-display text-white text-[12vw] md:text-[8vw] lg:text-[6.8vw] xl:text-[6.5rem] mb-12 max-w-[1400px]"
-              data-testid="text-hero-title"
-            >
-              <span className="line-clip">
-                <span className="animate-line-rise" style={{ animationDelay: "0.15s" }}>
-                  We help businesses
-                </span>
-              </span>
-              <span className="line-clip">
-                <span className="animate-line-rise" style={{ animationDelay: "0.3s" }}>
-                  <span className="text-display-italic text-accent">scale</span>{" "}
-                  <span className="text-white/95">with the systems</span>
-                </span>
-              </span>
-              <span className="line-clip">
-                <span className="animate-line-rise" style={{ animationDelay: "0.45s" }}>
-                  <span className="text-white/95">they need to grow.</span>
-                </span>
-              </span>
-            </h1>
-
-            <div
-              className="flex flex-col md:flex-row md:items-end justify-between gap-8 max-w-6xl animate-fade-in-up"
-              style={{ animationDelay: "0.7s" }}
-            >
+          <div className="container mx-auto px-4 md:px-8 pt-32 pb-20 relative z-10">
+            <div className="max-w-4xl animate-fade-in-up">
               <p
-                className="text-lg md:text-xl text-white/70 leading-relaxed max-w-xl"
+                className="text-[11px] md:text-xs uppercase tracking-[0.35em] text-white/70 font-semibold mb-8"
+                data-testid="text-hero-eyebrow"
+              >
+                A growth infrastructure studio
+              </p>
+              <h1
+                className="font-heading font-semibold text-white leading-[1.05] tracking-tight text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] mb-8 max-w-3xl"
+                data-testid="text-hero-title"
+              >
+                Systems that help businesses scale with confidence.
+              </h1>
+              <p
+                className="text-base md:text-lg text-white/75 leading-relaxed max-w-2xl mb-10"
                 data-testid="text-hero-subtitle"
               >
-                Websites, marketing, CRM, business systems, training, and ongoing support — installed as one growth infrastructure for professionals, nonprofits, and small businesses.
+                Performance Processes builds and runs the websites, marketing, CRM, and operating systems that growing companies, nonprofits, and small businesses need to grow — installed as one integrated infrastructure.
               </p>
-              <div className="flex flex-wrap gap-3 shrink-0">
+
+              {/* Pipe-bullet callouts */}
+              <div className="flex flex-col gap-3 mb-12 border-l-2 border-accent/70 pl-5">
+                {[
+                  { label: "Websites, marketing, CRM & operating systems", href: "/services" },
+                  { label: "Three phases — Foundation, Build, Run", href: "/approach" },
+                  { label: "Serving professionals & small businesses across Canada", href: "/about" },
+                ].map((c, i) => (
+                  <Link
+                    key={c.href}
+                    href={c.href}
+                    className="group inline-flex items-center gap-2 text-white/85 hover:text-white text-sm md:text-[15px] font-medium italic transition-colors"
+                    data-testid={`link-hero-callout-${i}`}
+                  >
+                    <span className="text-accent font-bold not-italic">|</span>
+                    {c.label}
+                    <ArrowRight
+                      size={14}
+                      className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all"
+                    />
+                  </Link>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-3">
                 <Link
                   href="/services"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30"
+                  className="inline-flex items-center justify-center gap-2 bg-accent text-white hover:bg-white hover:text-primary h-14 px-8 font-bold text-xs uppercase tracking-[0.15em] transition-all duration-300"
                   data-testid="link-hero-services"
                 >
                   Explore our services
@@ -198,19 +197,12 @@ export default function Home() {
                   href={BOOKINGS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 text-white hover:bg-white/10 h-14 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-2 border border-white/40 text-white hover:bg-white hover:text-primary h-14 px-8 font-bold text-xs uppercase tracking-[0.15em] transition-all duration-300"
                   data-testid="link-hero-book"
                 >
                   Book a strategy call
                 </a>
               </div>
-            </div>
-          </div>
-
-          {/* Bottom rule */}
-          <div className="relative z-10 border-t border-white/15">
-            <div className="container mx-auto px-4 md:px-8 py-5 flex items-center justify-end text-white/60 text-[11px] uppercase tracking-[0.3em] font-bold">
-              <span className="hidden md:inline">Performance Processes</span>
             </div>
           </div>
         </section>
@@ -326,7 +318,7 @@ export default function Home() {
                 >
                   <Link href={c.href} className="block group" data-testid={`link-capability-${i}`}>
                     <div
-                      className={`relative overflow-hidden rounded-3xl ${
+                      className={`relative overflow-hidden rounded-none ${
                         i === 0 || i === 3 ? "aspect-[16/11]" : "aspect-[16/10]"
                       }`}
                       data-testid={`capability-card-${i}`}
@@ -412,9 +404,9 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <AnimateOnScroll animation="fade-left">
-                <div className="bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 p-10" data-testid="card-before">
+                <div className="bg-white/5 backdrop-blur-sm rounded-none border border-white/10 p-10" data-testid="card-before">
                   <div className="flex items-center gap-3 mb-8">
-                    <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-none bg-red-500/20 flex items-center justify-center">
                       <XIcon size={20} className="text-red-400" />
                     </div>
                     <h3 className="text-2xl font-heading font-extrabold text-white">Before</h3>
@@ -431,7 +423,7 @@ export default function Home() {
               </AnimateOnScroll>
 
               <AnimateOnScroll animation="fade-right" delay={150}>
-                <div className="bg-accent/15 backdrop-blur-sm rounded-3xl border border-accent/30 p-10" data-testid="card-after">
+                <div className="bg-accent/15 backdrop-blur-sm rounded-none border border-accent/30 p-10" data-testid="card-after">
                   <h3 className="text-2xl font-heading font-extrabold text-white mb-8">After</h3>
                   <ul className="space-y-4">
                     {AFTER_ITEMS.map((item, i) => (
@@ -475,7 +467,7 @@ export default function Home() {
               {PHASES.map((phase, i) => (
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
                   <div
-                    className="group grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-white rounded-3xl p-6 lg:p-8 border border-border hover:border-accent/30 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
+                    className="group grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-white rounded-none p-6 lg:p-8 border border-border hover:border-accent/40 transition-all duration-500"
                     data-testid={`phase-${i}`}
                   >
                     <div className="lg:col-span-2">
@@ -483,7 +475,7 @@ export default function Home() {
                         {phase.step}
                       </p>
                     </div>
-                    <div className="lg:col-span-4 relative aspect-[16/10] rounded-2xl overflow-hidden">
+                    <div className="lg:col-span-4 relative aspect-[16/10] rounded-none overflow-hidden">
                       <img
                         src={phase.image}
                         alt={phase.label}
@@ -517,7 +509,7 @@ export default function Home() {
                 href={BOOKINGS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white hover:bg-accent h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl"
+                className="inline-flex items-center justify-center gap-2 bg-primary text-white hover:bg-accent h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300"
                 data-testid="link-how-it-works-cta"
               >
                 Book a strategy call
@@ -556,7 +548,7 @@ export default function Home() {
               </AnimateOnScroll>
 
               <AnimateOnScroll animation="fade-right" delay={200}>
-                <div className="rounded-3xl overflow-hidden aspect-[4/3] bg-primary">
+                <div className="rounded-none overflow-hidden aspect-[4/3] bg-primary">
                   <video
                     autoPlay
                     muted
@@ -611,7 +603,7 @@ export default function Home() {
                   href={BOOKINGS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-12 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105"
+                  className="inline-flex items-center justify-center gap-2 bg-accent text-white hover:bg-white hover:text-primary h-16 px-12 font-bold text-sm uppercase tracking-wider transition-all duration-300"
                   data-testid="link-cta-book"
                 >
                   Book a strategy call
@@ -619,7 +611,7 @@ export default function Home() {
                 </a>
                 <Link
                   href="/services"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-16 px-12 font-bold text-sm uppercase tracking-wider transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-2 border border-white/40 text-white hover:bg-white/10 h-16 px-12 font-bold text-sm uppercase tracking-wider transition-all duration-300"
                   data-testid="link-cta-services"
                 >
                   Explore our services

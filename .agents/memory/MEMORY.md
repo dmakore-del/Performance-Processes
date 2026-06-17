@@ -1,1 +1,1 @@
-- [Brand palette & pink→blue migration](brand-palette.md) — token-driven navy+blue in index.css; stray pinks hide in rgba glows, pink-* classes, and the hero video (masked via mix-blend duotone).
+- [Brand palette & pink→blue migration](brand-palette.md) — token-driven navy+blue in index.css; stray pinks hide in rgba glows & pink-* classes; June 2026 BGIS redesign = flat/square surfaces + photographic still hero (old pink video now unused on Home).

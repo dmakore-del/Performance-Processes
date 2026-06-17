@@ -52,8 +52,8 @@ function DesktopDropdown({ item, isActive }: { item: NavItem; isActive: boolean 
       <Link
         href={item.href || "/"}
         className={cn(
-          "text-[14px] font-bold text-primary hover:text-accent transition-all px-4 py-2 rounded-full",
-          isActive ? "bg-secondary text-accent" : "hover:bg-secondary"
+          "text-[13px] font-semibold uppercase tracking-wider text-primary hover:text-accent transition-colors px-3 py-2",
+          isActive ? "text-accent" : ""
         )}
         data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
       >
@@ -71,8 +71,8 @@ function DesktopDropdown({ item, isActive }: { item: NavItem; isActive: boolean 
     >
       <button
         className={cn(
-          "text-[14px] font-bold text-primary hover:text-accent transition-all px-4 py-2 rounded-full flex items-center gap-1",
-          isActive ? "bg-secondary text-accent" : "hover:bg-secondary"
+          "text-[13px] font-semibold uppercase tracking-wider text-primary hover:text-accent transition-colors px-3 py-2 flex items-center gap-1",
+          isActive ? "text-accent" : ""
         )}
         onClick={() => setIsOpen(!isOpen)}
         data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
@@ -83,7 +83,7 @@ function DesktopDropdown({ item, isActive }: { item: NavItem; isActive: boolean 
 
       {isOpen && (
         <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
-          <div className="bg-white rounded-xl shadow-2xl border border-gray-100 py-2 min-w-[220px] animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="bg-white rounded-none shadow-xl border border-gray-100 py-2 min-w-[230px] animate-in fade-in slide-in-from-top-2 duration-200">
             {item.children.map((child) => {
               const content = (
                 <div className="px-5 py-2.5 hover:bg-secondary/60 transition-colors cursor-pointer">
@@ -313,7 +313,7 @@ export function Navbar() {
           <Link href="/portal" className="p-2 hover:bg-secondary rounded-full transition-colors hidden md:block" data-testid="link-portal-signin">
             <UserCircle size={20} className="text-primary" />
           </Link>
-          <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-primary transition-all font-bold px-6 h-11 uppercase tracking-wider text-xs" data-testid="link-book-call-nav">
+          <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center justify-center rounded-none bg-accent text-white hover:bg-primary transition-all font-bold px-6 h-11 uppercase tracking-wider text-xs" data-testid="link-book-call-nav">
               {language === "en" ? "Book a Strategy Call" : "Réserver un appel"}
           </a>
           <button
@@ -361,7 +361,7 @@ export function Navbar() {
               <button onClick={() => {setLanguage("fr"); setIsMobileMenuOpen(false);}} className={cn("font-bold", language === "fr" ? "text-accent underline" : "text-primary")}>FR</button>
             </div>
 
-            <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center rounded-full bg-accent text-white py-5 text-lg font-bold uppercase tracking-widest mt-4 shadow-lg shadow-accent/20" onClick={() => setIsMobileMenuOpen(false)} data-testid="link-book-call-mobile">
+            <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center rounded-none bg-accent text-white py-5 text-lg font-bold uppercase tracking-widest mt-4" onClick={() => setIsMobileMenuOpen(false)} data-testid="link-book-call-mobile">
                 {language === "en" ? "Book a Strategy Call" : "Réserver un appel stratégique"}
             </a>
           </div>

@@ -86,9 +86,9 @@ export const OFFERS: Offer[] = [
   {
     id: "ongoing-performance-support",
     name: "Ongoing Performance Support",
-    description: "A monthly partner to keep your systems running, measured, and improving.",
+    description: "A monthly partner to keep your systems running, measured, and improving. Pricing is assessed on a case-by-case basis.",
     price: 75000,
-    priceLabel: "$750 / month",
+    priceLabel: "Custom",
     bestFor: "Businesses that want continuous support across systems, marketing, and performance.",
     includes: [
       "Monthly strategy and planning call",
@@ -100,6 +100,8 @@ export const OFFERS: Offer[] = [
     ],
     category: "packages",
     isMonthly: true,
+    isRange: true,
+    ctaHref: "/contact",
   },
 
   {
@@ -392,9 +394,9 @@ export const OFFERS: Offer[] = [
   {
     id: "monthly-marketing",
     name: "Monthly Marketing Support",
-    description: "Ongoing marketing planning, campaigns, and reporting.",
+    description: "Ongoing marketing planning, campaigns, and reporting. Pricing is assessed on a case-by-case basis.",
     price: 150000,
-    priceLabel: "$1,500 / month",
+    priceLabel: "Custom",
     bestFor: "Businesses that need a marketing partner without hiring in-house.",
     includes: [
       "Monthly marketing planning",
@@ -405,13 +407,15 @@ export const OFFERS: Offer[] = [
     ],
     category: "support",
     isMonthly: true,
+    isRange: true,
+    ctaHref: "/contact",
   },
   {
     id: "monthly-growth",
     name: "Monthly Growth Support",
-    description: "Marketing, website, lead tracking, and KPI support every month.",
+    description: "Marketing, website, lead tracking, and KPI support every month. Pricing is assessed on a case-by-case basis.",
     price: 250000,
-    priceLabel: "$2,500 / month",
+    priceLabel: "Custom",
     bestFor: "Businesses that need broader monthly growth support.",
     includes: [
       "Marketing support",
@@ -423,13 +427,15 @@ export const OFFERS: Offer[] = [
     category: "support",
     isMonthly: true,
     highlight: true,
+    isRange: true,
+    ctaHref: "/contact",
   },
   {
     id: "growth-partner-retainer",
     name: "Growth Partner Retainer",
-    description: "Full ongoing support across marketing, CRM, website, KPIs, and process.",
+    description: "Full ongoing support across marketing, CRM, website, KPIs, and process. Pricing is assessed on a case-by-case basis.",
     price: 400000,
-    priceLabel: "$4,000 / month",
+    priceLabel: "Custom",
     bestFor: "Businesses that want an embedded growth partner.",
     includes: [
       "Marketing support",
@@ -441,6 +447,8 @@ export const OFFERS: Offer[] = [
     ],
     category: "support",
     isMonthly: true,
+    isRange: true,
+    ctaHref: "/contact",
   },
 
   {

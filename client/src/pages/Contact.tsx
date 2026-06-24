@@ -190,6 +190,12 @@ export default function Contact() {
                     <p className="text-xl font-bold text-primary">+1 (905) 823-1324</p>
                   </div>
                   <div>
+                    <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">WhatsApp</h4>
+                    <a href="https://wa.me/14374254844" target="_blank" rel="noopener noreferrer" className="text-xl font-bold text-primary hover:text-accent transition-colors" data-testid="link-whatsapp-contact">
+                      +1 (437) 425-4844
+                    </a>
+                  </div>
+                  <div>
                     <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">Our Office</h4>
                     <p className="text-xl font-bold text-primary">Toronto, Ontario</p>
                   </div>

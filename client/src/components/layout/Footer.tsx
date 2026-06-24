@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { ArrowRight, Mail, BookOpen, Loader2 } from "lucide-react";
-import { Linkedin, Instagram } from "lucide-react";
+import { Linkedin, Instagram, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -161,6 +161,10 @@ export function Footer() {
               <div className="flex flex-col gap-3.5 text-sm font-medium text-muted-foreground">
                 <p>contact@performanceprocesses.com</p>
                 <p>+1 (905) 823-1324</p>
+                <a href="https://wa.me/14374254844" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition-colors" data-testid="link-whatsapp">
+                  <MessageCircle size={16} />
+                  <span>WhatsApp: +1 (437) 425-4844</span>
+                </a>
                 <p>Toronto, Ontario</p>
               </div>
             </div>

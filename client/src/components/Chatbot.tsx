@@ -88,7 +88,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["price", "cost", "pricing", "how much", "fee", "rate", "payment", "pay"],
-    answer: "We offer productized services with transparent pricing: Websites from $1,500, Marketing packages from $1,200, CRM setup from $1,500, Business System Audits from $750, Training from $499/seat, and monthly support retainers from $1,500/mo. Visit our Services page for full package details. Young Canadian founders connected to NextUp Canada get 40% off , see our NextUp Partnership page."
+    answer: "We offer productized services with transparent pricing: Websites from $1,500, Marketing packages from $1,200, CRM setup from $1,500, Business System Audits from $750, Training from $499/seat, and monthly support retainers from $1,500/mo. Visit our Services page for full package details. Anyone currently enrolled in a NextUp Foundation for Canadian Youth program, or who has donated $500+ to the foundation in the past year, gets 40% off our website services , see our NextUp Partnership page."
   },
   {
     keywords: ["contact", "email", "phone", "reach"],

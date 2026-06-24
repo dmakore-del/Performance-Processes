@@ -9,10 +9,9 @@ const PROMO_CODE = "NEXTPROCESSES";
 
 export default function NextUpPartnership() {
   const eligibility = [
+    "Currently enrolled in one of the NextUp Foundation for Canadian Youth's programs, and/or",
+    "Donated $500 or more to the NextUp Foundation for Canadian Youth in the past year",
     "Canadian-owned business or registered organization",
-    "Founder or majority owner aged 18 to 29",
-    "Approved by NextUp Canada through their application process",
-    "Ready to invest in a new website",
   ];
 
   const discountApplies = [
@@ -24,26 +23,26 @@ export default function NextUpPartnership() {
   const howItWorks = [
     {
       step: "01",
-      title: "Apply on NextUp Canada's website",
+      title: "Confirm you qualify",
       description:
-        "Visit nextupcan.ca and submit your application. Anyone aged 18 to 29 who meets NextUp's eligibility criteria can apply, no membership required.",
+        "You're eligible if you're currently enrolled in a NextUp Foundation for Canadian Youth program, and/or you've donated $500 or more to the foundation in the past year.",
     },
     {
       step: "02",
-      title: "Receive your discount code from NextUp",
+      title: "We verify your eligibility",
       description:
-        "Once NextUp approves your application, they will issue you the discount code that unlocks 40% off our website services.",
+        "Performance Processes and the NextUp Foundation for Canadian Youth coordinate to confirm your enrollment or donation. Reach out and we'll handle the verification with NextUp directly.",
     },
     {
       step: "03",
-      title: "Apply the code at checkout",
-      description: `Enter the code ${PROMO_CODE} on any website package on our Services page. The 40% discount is applied instantly at checkout.`,
+      title: "Apply your discount at checkout",
+      description: `Once verified, enter the code ${PROMO_CODE} on any website package on our Services page. The 40% discount is applied instantly at checkout.`,
     },
   ];
 
   const stats = [
     { label: "Discount", value: "40% off" },
-    { label: "Eligible Founders", value: "Ages 18 to 29" },
+    { label: "Eligible", value: "Members & donors" },
     { label: "Applies to", value: "Website services" },
     { label: "Coverage", value: "Canada-wide" },
   ];
@@ -51,8 +50,8 @@ export default function NextUpPartnership() {
   return (
     <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead
-        title="NextUp Canada Partnership , 40% Off Website Services for Young Canadian Founders"
-        description="Performance Processes partners with NextUp Canada to support youth-owned businesses with a 40% discount on our website services. Apply on NextUp's website to receive your discount code."
+        title="NextUp Foundation for Canadian Youth Partnership , 40% Off Website Services"
+        description="Performance Processes partners with the NextUp Foundation for Canadian Youth to offer 40% off website services for anyone enrolled in a NextUp program, or who has donated $500 or more to the foundation in the past year. Verification is coordinated by Performance Processes and NextUp."
         path="/nextup-partnership"
       />
       <Navbar />
@@ -60,10 +59,10 @@ export default function NextUpPartnership() {
         <PageHero
           title={
             <>
-              <span className="text-accent">NextUp</span> Canada Partnership
+              <span className="text-accent">NextUp</span> Foundation Partnership
             </>
           }
-          subtitle="40% off our website services for Canadian founders aged 18 to 29 approved through NextUp Canada."
+          subtitle="40% off our website services for anyone enrolled in a NextUp Foundation for Canadian Youth program, or who has donated $500 or more to the foundation in the past year."
         />
 
         <section className="py-16 bg-white" data-testid="section-stats">
@@ -92,11 +91,12 @@ export default function NextUpPartnership() {
                 Why we partner with NextUp
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                NextUp Canada champions young Canadian entrepreneurs through community,
-                programming, and resources that help them launch and grow real businesses.
-                Performance Processes shares that mission. Through this partnership, every
-                NextUp-approved founder under 30 gets 40% off our website services, the same
-                websites we deliver to enterprise clients.
+                The NextUp Foundation for Canadian Youth champions young Canadian
+                entrepreneurs through community, programming, and resources that help them
+                launch and grow real businesses. Performance Processes shares that mission.
+                Through this partnership, anyone currently enrolled in a NextUp program, or
+                who has donated $500 or more to the foundation in the past year, gets 40% off
+                our website services, the same websites we deliver to enterprise clients.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                 The goal is simple: remove cost as a barrier so the next generation of
@@ -110,7 +110,7 @@ export default function NextUpPartnership() {
                 className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent hover:text-primary transition-colors"
                 data-testid="link-nextup-external"
               >
-                Apply on NextUp Canada
+                Get involved with NextUp
               </a>
             </div>
           </div>
@@ -130,8 +130,9 @@ export default function NextUpPartnership() {
                   ))}
                 </ul>
                 <p className="text-xs text-muted-foreground mt-5 leading-relaxed">
-                  NextUp Canada has no formal membership. Anyone meeting the eligibility
-                  criteria can apply directly on their website.
+                  Verification is coordinated by Performance Processes and the NextUp
+                  Foundation for Canadian Youth. Contact us and we'll confirm your
+                  eligibility directly with NextUp.
                 </p>
               </div>
 
@@ -192,20 +193,20 @@ export default function NextUpPartnership() {
               Ready to claim your NextUp discount?
             </h2>
             <p className="text-lg text-white/75 max-w-2xl mx-auto mb-10">
-              Start by applying on NextUp Canada. Once approved, use code{" "}
+              If you're enrolled in a NextUp Foundation for Canadian Youth program, or have
+              donated $500 or more in the past year, contact us to verify your eligibility.
+              Once confirmed, use code{" "}
               <span className="font-bold text-accent">{PROMO_CODE}</span> at checkout to
               receive 40% off any website package.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href={NEXTUP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary transition-all font-bold px-8 h-14 uppercase tracking-wider text-sm"
-                data-testid="button-apply-nextup"
+                data-testid="button-verify-eligibility"
               >
-                Apply on NextUp Canada
-              </a>
+                Contact Us to Verify
+              </Link>
               <Link
                 href="/services"
                 className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 transition-all font-bold px-8 h-14 uppercase tracking-wider text-sm"

@@ -173,10 +173,10 @@ export default function Services() {
               <div className="p-10 md:p-14 border-l-2 border-accent">
                 <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">Partnership</p>
                 <h2 className="text-display text-3xl md:text-4xl text-primary mb-6">
-                  NextUp Canada Partnership
+                  NextUp Foundation for Canadian Youth Partnership
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-4 max-w-3xl font-light">
-                  Canadian founders aged 18 to 29 approved by NextUp Canada receive 40% off our website services. Apply on NextUp Canada's website to receive your discount code, then enter it at checkout on any website package.
+                  Anyone currently enrolled in a NextUp Foundation for Canadian Youth program, or who has donated $500 or more to the foundation in the past year, receives 40% off our website services. Verification is coordinated by Performance Processes and the NextUp Foundation. Once confirmed, enter your code at checkout on any website package.
                 </p>
                 <p className="text-sm text-muted-foreground mb-8 max-w-3xl font-light">
                   Code: <span className="font-mono text-primary">NEXTPROCESSES</span> &middot; Applies to website services only.

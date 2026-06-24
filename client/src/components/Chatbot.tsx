@@ -92,7 +92,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["contact", "email", "phone", "reach"],
-    answer: "You can reach us at contact@performanceprocesses.com or call +1 (905) 823-1324. We'd love to hear from you!"
+    answer: "You can reach us at contact@performanceprocesses.com or call +1 (437) 425-4844. We'd love to hear from you!"
   },
   {
     keywords: ["hello", "hi", "hey", "good morning", "good afternoon"],

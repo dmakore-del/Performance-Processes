@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import torontoSkyline from "@assets/generated/toronto-skyline.png";
+import { WhatsAppIcon, LinkedInIcon, InstagramIcon } from "@/components/icons/SocialIcons";
 
 const whyReachOutCards = [
   {
@@ -163,15 +164,16 @@ export default function Contact() {
                 <div className="space-y-10">
                   <div>
                     <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">Email Us</h4>
-                    <p className="text-xl font-bold text-primary">contact@performanceprocesses.com</p>
+                    <a href="mailto:contact@performanceprocesses.com" className="text-xl font-bold text-primary hover:text-accent transition-colors" data-testid="link-email-contact">contact@performanceprocesses.com</a>
                   </div>
                   <div>
                     <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">Call Us</h4>
-                    <p className="text-xl font-bold text-primary">+1 (905) 823-1324</p>
+                    <a href="tel:+14374254844" className="text-xl font-bold text-primary hover:text-accent transition-colors" data-testid="link-phone-contact">+1 (437) 425-4844</a>
                   </div>
                   <div>
                     <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-2">WhatsApp</h4>
-                    <a href="https://wa.me/14374254844" target="_blank" rel="noopener noreferrer" className="text-xl font-bold text-primary hover:text-accent transition-colors" data-testid="link-whatsapp-contact">
+                    <a href="https://wa.me/14374254844" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xl font-bold text-primary hover:text-accent transition-colors" data-testid="link-whatsapp-contact">
+                      <WhatsAppIcon className="h-5 w-5" />
                       +1 (437) 425-4844
                     </a>
                   </div>
@@ -184,6 +186,20 @@ export default function Contact() {
                     <p className="text-lg font-bold text-primary">Monday , Friday</p>
                     <p className="text-muted-foreground text-sm mt-1">9:00 AM , 6:00 PM EST</p>
                     <p className="text-muted-foreground text-sm mt-1">Weekend & evening appointments available by request</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs uppercase font-bold text-muted-foreground tracking-widest mb-4">Follow Us</h4>
+                    <div className="flex items-center gap-5">
+                      <a href="https://wa.me/14374254844" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="text-primary hover:text-accent transition-colors" data-testid="link-whatsapp-social">
+                        <WhatsAppIcon className="h-6 w-6" />
+                      </a>
+                      <a href="https://www.linkedin.com/company/performance-processes/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-primary hover:text-accent transition-colors" data-testid="link-linkedin-social">
+                        <LinkedInIcon className="h-6 w-6" />
+                      </a>
+                      <a href="https://www.instagram.com/performanceprocesses" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-primary hover:text-accent transition-colors" data-testid="link-instagram-social">
+                        <InstagramIcon className="h-6 w-6" />
+                      </a>
+                    </div>
                   </div>
                 </div>
 

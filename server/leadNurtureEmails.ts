@@ -39,7 +39,7 @@ function emailWrapper(content: string): string {
       <div style="background: #f0f0f0; padding: 15px; text-align: center; font-size: 11px; color: #999;">
         <p style="margin: 0;">Performance Processes | Management Consulting</p>
         <p style="margin: 4px 0 0;"><a href="https://www.performanceprocesses.com" style="color: #1e3a5f; text-decoration: none;">www.performanceprocesses.com</a> | <a href="mailto:contact@performanceprocesses.com" style="color: #1e3a5f; text-decoration: none;">contact@performanceprocesses.com</a></p>
-        <p style="margin: 4px 0 0;">+1 (905) 823-1324</p>
+        <p style="margin: 4px 0 0;">+1 (437) 425-4844</p>
       </div>
     </div>
   `;

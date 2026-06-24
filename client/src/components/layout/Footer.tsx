@@ -5,6 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import logoImg from "@/assets/logo.png";
+import { WhatsAppIcon, LinkedInIcon, InstagramIcon } from "@/components/icons/SocialIcons";
 
 function LeadMagnetSection() {
   const [email, setEmail] = useState("");
@@ -92,12 +93,15 @@ export function Footer() {
               <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
                 {t("footer.description")}
               </p>
-              <div className="flex items-center gap-5">
-                <a href="https://www.linkedin.com/company/performance-processes/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors" data-testid="link-linkedin">
-                  <span>LinkedIn</span>
+              <div className="flex items-center gap-4">
+                <a href="https://wa.me/14374254844" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="text-muted-foreground hover:text-accent transition-colors" data-testid="link-whatsapp">
+                  <WhatsAppIcon className="h-5 w-5" />
                 </a>
-                <a href="https://www.instagram.com/performanceprocesses" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors" data-testid="link-instagram">
-                  <span>Instagram</span>
+                <a href="https://www.linkedin.com/company/performance-processes/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-accent transition-colors" data-testid="link-linkedin">
+                  <LinkedInIcon className="h-5 w-5" />
+                </a>
+                <a href="https://www.instagram.com/performanceprocesses" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground hover:text-accent transition-colors" data-testid="link-instagram">
+                  <InstagramIcon className="h-5 w-5" />
                 </a>
               </div>
             </div>
@@ -131,10 +135,11 @@ export function Footer() {
             <div className="flex flex-col gap-6">
               <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{t("footer.contact")}</h3>
               <div className="flex flex-col gap-3.5 text-sm font-medium text-muted-foreground">
-                <p>contact@performanceprocesses.com</p>
-                <p>+1 (905) 823-1324</p>
-                <a href="https://wa.me/14374254844" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition-colors" data-testid="link-whatsapp">
-                  <span>WhatsApp: +1 (437) 425-4844</span>
+                <a href="mailto:contact@performanceprocesses.com" className="hover:text-accent transition-colors" data-testid="link-email">contact@performanceprocesses.com</a>
+                <a href="tel:+14374254844" className="hover:text-accent transition-colors" data-testid="link-phone">+1 (437) 425-4844</a>
+                <a href="https://wa.me/14374254844" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition-colors" data-testid="link-whatsapp-text">
+                  <WhatsAppIcon className="h-4 w-4" />
+                  <span>WhatsApp</span>
                 </a>
                 <p>Toronto, Ontario</p>
               </div>

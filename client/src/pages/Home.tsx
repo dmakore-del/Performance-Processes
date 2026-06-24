@@ -6,7 +6,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { OfferCard } from "@/components/OfferCard";
 import { getOffersByCategory } from "@shared/offers";
 
-import heroColorImg from "@assets/generated/hero-color.png";
+import heroVideoPoster from "@assets/generated/hero-video-poster.png";
 import cityAerialImg from "@assets/generated/city-aerial-new.png";
 import teamCollabImg from "@assets/generated/team-collab-color.png";
 import workspaceImg from "@assets/generated/workspace-color.png";
@@ -85,18 +85,26 @@ export default function Home() {
 
       <main className="flex-grow">
         {/* ——————————————————————————————————————————————————————————
-            HERO, full-bleed colour photo, delicate serif headline
+            HERO, full-bleed colour video, delicate serif headline
         ———————————————————————————————————————————————————————————— */}
         <section
           className="relative min-h-[90svh] flex items-center overflow-hidden bg-primary"
           data-testid="section-hero"
         >
           <div className="absolute inset-0 z-0">
-            <img
-              src={heroColorImg}
-              alt="A diverse team collaborating in a bright modern office"
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster={heroVideoPoster}
               className="w-full h-full object-cover"
-            />
+              data-testid="video-hero"
+              {...{ "webkit-playsinline": "true" } as any}
+            >
+              <source src="/assets/videos/hero-team.mp4" type="video/mp4" />
+            </video>
             <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/55 to-primary/25" />
           </div>
 

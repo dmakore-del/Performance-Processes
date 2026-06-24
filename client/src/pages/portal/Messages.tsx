@@ -113,7 +113,7 @@ export default function Messages() {
       case "admin":
         return "bg-red-100 text-red-700";
       case "staff":
-        return "bg-blue-100 text-blue-700";
+        return "bg-zinc-100 text-zinc-900";
       default:
         return "bg-gray-100 text-gray-700";
     }
@@ -209,7 +209,7 @@ export default function Messages() {
 
           <div className="flex-1 flex flex-col">
             {!selectedRecipientId ? (
-              <div className="flex-1 flex items-center justify-center bg-[#F8FAFC]">
+              <div className="flex-1 flex items-center justify-center bg-[#FAFAFA]">
                 <div className="text-center" data-testid="text-select-conversation">
                   <MessageSquare className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                   <p className="text-muted-foreground text-sm font-medium">Select a conversation</p>
@@ -248,7 +248,7 @@ export default function Messages() {
                   </div>
                 </div>
 
-                <div className="flex-1 p-6 overflow-y-auto bg-[#F8FAFC] space-y-6" data-testid="container-messages">
+                <div className="flex-1 p-6 overflow-y-auto bg-[#FAFAFA] space-y-6" data-testid="container-messages">
                   {filteredMessages.length === 0 && (
                     <div className="flex items-center justify-center h-full">
                       <p className="text-muted-foreground text-sm" data-testid="text-no-messages">No messages yet. Start the conversation!</p>

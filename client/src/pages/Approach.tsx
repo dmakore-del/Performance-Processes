@@ -52,10 +52,10 @@ export default function Approach() {
         ? "We start by understanding your business, audience, and growth goals — and audit the systems you already have in place."
         : "Nous commençons par comprendre votre entreprise, votre audience et vos objectifs de croissance — et nous auditons les systèmes déjà en place.",
       duration: "1–2 weeks",
-      color: "from-blue-500/15 to-blue-600/5",
-      accentColor: "text-blue-600",
-      bgAccent: "bg-blue-600",
-      borderAccent: "border-blue-500/20",
+      color: "from-zinc-700/15 to-zinc-800/5",
+      accentColor: "text-zinc-800",
+      bgAccent: "bg-zinc-800",
+      borderAccent: "border-zinc-700/20",
       details: [
         "Every engagement starts with a clear-eyed look at where your business is today. We learn how you sell, who you sell to, what's working, and where the friction lives — across your website, marketing, CRM, and back-office systems.",
         "We talk to you, your team, and where useful, your customers. We review your current site, marketing channels, CRM (if any), and the day-to-day processes that keep the business running.",
@@ -257,7 +257,7 @@ export default function Approach() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead title="Our Approach, How We Install Growth Infrastructure" description="A structured four-phase method for installing growth infrastructure: Discover, Design & Plan, Build & Install, and Run & Optimize. Productized scope, fixed timelines, measurable outcomes." path="/approach" />
       <Navbar />
       <main className="flex-grow">
@@ -346,7 +346,7 @@ export default function Approach() {
           </div>
         </section>
 
-        <section className="py-32 bg-gradient-to-b from-[#F8FAFC] to-white relative overflow-hidden" data-testid="section-approach-steps">
+        <section className="py-32 bg-gradient-to-b from-[#FAFAFA] to-white relative overflow-hidden" data-testid="section-approach-steps">
           <FloatingShape className="w-20 h-20 top-24 -left-6" variant="ring" />
           <FloatingShape className="w-10 h-10 top-40 right-20" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
@@ -487,7 +487,7 @@ export default function Approach() {
           </div>
         </section>
 
-        <section className="py-32 bg-gradient-to-b from-[#F8FAFC] to-white" data-testid="section-faq">
+        <section className="py-32 bg-gradient-to-b from-[#FAFAFA] to-white" data-testid="section-faq">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-20">

@@ -5,7 +5,7 @@ import { PageHero } from "@/components/layout/PageHero";
 
 export default function Accessibility() {
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead title="Accessibility Statement" description="Performance Processes is committed to digital accessibility. Learn about our accessibility practices and how we ensure our website is usable for everyone." path="/accessibility" />
       <Navbar />
       <main className="flex-grow">

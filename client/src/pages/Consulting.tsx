@@ -135,7 +135,7 @@ export default function Consulting() {
       desc: language === "en" ? "We start by understanding your world, your goals, your challenges, and what matters most to you and your people." : "Nous commençons par comprendre votre réalité, vos objectifs, vos défis et ce qui compte le plus pour vous.",
       outcomes: language === "en" ? ["Deep-dive discovery", "Understanding your vision", "People & culture review", "Stakeholder conversations"] : ["Découverte approfondie", "Comprendre votre vision", "Revue des personnes et de la culture", "Conversations avec les parties prenantes"],
       icon: <Search className="text-accent" size={28} />,
-      color: "from-blue-500/10 to-blue-600/5",
+      color: "from-zinc-700/10 to-zinc-800/5",
     },
     {
       step: "02",
@@ -159,7 +159,7 @@ export default function Consulting() {
       desc: language === "en" ? "We celebrate your wins, learn from what's working, and keep evolving with you as your needs change." : "Nous célébrons vos réussites, apprenons de ce qui fonctionne et continuons à évoluer avec vous.",
       outcomes: language === "en" ? ["Visible progress", "Regular check-ins", "Evolving support", "Lasting momentum"] : ["Progrès visibles", "Points de contact réguliers", "Soutien évolutif", "Élan durable"],
       icon: <BarChart3 className="text-accent" size={28} />,
-      color: "from-purple-500/10 to-purple-600/5",
+      color: "from-zinc-700/10 to-zinc-800/5",
     },
   ];
 
@@ -966,7 +966,7 @@ export default function Consulting() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead title="Management Consulting, Strategy, Operations, People & Performance" description="Expert management consulting services for enterprises, small businesses, and professionals. From strategic planning and systems implementation to leadership development and operational excellence." path="/consulting" />
       <Navbar />
       <main className="flex-grow">
@@ -1092,7 +1092,7 @@ export default function Consulting() {
           </div>
         </section>
 
-        <section id="consulting-services-section" className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white" data-testid="consulting-section-services">
+        <section id="consulting-services-section" className="py-28 bg-gradient-to-b from-[#FAFAFA] to-white" data-testid="consulting-section-services">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
@@ -1180,7 +1180,7 @@ export default function Consulting() {
         </section>
 
         <section className="py-20 bg-gradient-to-r from-primary to-primary/90 relative overflow-hidden" data-testid="consulting-section-mid-cta">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(42,110,240,0.08)_0%,transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(214,30,110,0.08)_0%,transparent_60%)]" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-6 leading-tight">
@@ -1277,7 +1277,7 @@ export default function Consulting() {
           </div>
         </section>
 
-        <section className="py-28 bg-[#F8FAFC]" data-testid="consulting-section-nextup">
+        <section className="py-28 bg-[#FAFAFA]" data-testid="consulting-section-nextup">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="bg-gradient-to-br from-accent/5 via-white to-accent/10 rounded-3xl border-2 border-accent/20 overflow-hidden shadow-lg">

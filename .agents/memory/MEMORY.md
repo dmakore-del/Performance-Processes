@@ -1,1 +1,1 @@
-- [Brand palette & pink→blue migration](brand-palette.md) — token-driven navy+blue in index.css; stray pinks hide in rgba glows & pink-* classes; June 2026 BGIS redesign = flat/square surfaces + photographic still hero (old pink video now unused on Home).
+- [Brand palette & color migrations](brand-palette.md) — current = black & white + restrained pink accent (token-driven in index.css, pink logo restored); media grayscaled so pink is the only color; recoloring gotchas: rgba glows, blue/purple/slate/indigo literal classes, hardcoded cool hex.

@@ -143,7 +143,7 @@ const AFTER_ITEMS = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans overflow-x-hidden">
       <SEOHead
         title="Performance Processes | We Build and Run the Systems That Help Businesses Scale"
         description="From recruiting and HR to marketing, websites, and operational playbooks, Performance Processes installs the infrastructure growing companies need to scale with confidence."
@@ -164,7 +164,7 @@ export default function Home() {
             <img
               src={heroBgisImg}
               alt=""
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover grayscale"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/75 to-primary/35" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-primary/30" />
@@ -317,7 +317,7 @@ export default function Home() {
         {/* ————————————————————————————————————————————————————————————
             HEADLINE PACKAGES — 4 productized systems, buyable
         —————————————————————————————————————————————————————————————— */}
-        <section className="relative py-28 md:py-36 bg-[#F8FAFC] border-y border-border/60" data-testid="section-packages">
+        <section className="relative py-28 md:py-36 bg-[#FAFAFA] border-y border-border/60" data-testid="section-packages">
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14">
               <AnimateOnScroll className="max-w-3xl">
@@ -374,7 +374,7 @@ export default function Home() {
                 return (
                   <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
                     <div
-                      className="group h-full bg-[#F8FAFC] border border-border hover:border-accent/40 p-8 transition-all duration-500"
+                      className="group h-full bg-[#FAFAFA] border border-border hover:border-accent/40 p-8 transition-all duration-500"
                       data-testid={`how-we-help-step-${i}`}
                     >
                       <div className="flex items-center justify-between mb-6">
@@ -438,7 +438,7 @@ export default function Home() {
                       <img
                         src={c.image}
                         alt={c.title}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+                        className="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-1000 ease-out"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent" />
                       <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors duration-500" />
@@ -556,7 +556,7 @@ export default function Home() {
         —————————————————————————————————————————————————————————————— */}
         <section
           id="how-it-works"
-          className="py-28 bg-[#F8FAFC] relative overflow-hidden"
+          className="py-28 bg-[#FAFAFA] relative overflow-hidden"
           data-testid="section-how-it-works"
         >
           <div className="container mx-auto px-4 md:px-8">
@@ -591,7 +591,7 @@ export default function Home() {
                       <img
                         src={phase.image}
                         alt={phase.label}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
                       <p className="absolute bottom-4 left-5 text-white text-sm font-black uppercase tracking-[0.25em]">

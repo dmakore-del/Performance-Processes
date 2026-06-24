@@ -288,7 +288,7 @@ export default function Billing() {
                           </div>
                         )}
                         {inv.status !== 'paid' && isStaffOrAdmin && (
-                          <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md border bg-blue-50 text-blue-600 border-blue-200">
+                          <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md border bg-zinc-100 text-zinc-800 border-zinc-200">
                             <Send size={10} className="inline mr-1" />Sent
                           </span>
                         )}
@@ -495,9 +495,9 @@ export default function Billing() {
                 />
               </div>
             </div>
-            <div className="bg-blue-50 p-3 rounded-xl border border-blue-200 flex items-start gap-3">
-              <Send size={16} className="text-blue-600 mt-0.5 flex-shrink-0" />
-              <p className="text-xs text-blue-700">This invoice will be visible to the client immediately in their portal. They can pay using the Pay Now button.</p>
+            <div className="bg-zinc-100 p-3 rounded-xl border border-zinc-200 flex items-start gap-3">
+              <Send size={16} className="text-zinc-800 mt-0.5 flex-shrink-0" />
+              <p className="text-xs text-zinc-900">This invoice will be visible to the client immediately in their portal. They can pay using the Pay Now button.</p>
             </div>
             <div className="flex justify-end">
               <Button

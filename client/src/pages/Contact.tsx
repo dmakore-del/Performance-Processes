@@ -109,7 +109,7 @@ export default function Contact() {
   });
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead title="Contact Us, Book a Discovery Call" description="Get in touch with Performance Processes. Book a free Discovery Call to scope a website, CRM, marketing engine, or full growth-infrastructure build for your business." path="/contact" />
       <Navbar />
       <main className="flex-grow">
@@ -162,7 +162,7 @@ export default function Contact() {
               {whyReachOutCards.map((card, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl p-8 border border-border/60 hover:border-accent/30 hover:shadow-xl transition-all duration-300 group"
+                  className="bg-gradient-to-br from-[#FAFAFA] to-white rounded-2xl p-8 border border-border/60 hover:border-accent/30 hover:shadow-xl transition-all duration-300 group"
                   data-testid={`card-why-reach-out-${index}`}
                 >
                   <h3 className="text-lg font-bold text-primary mb-3">{card.title}</h3>
@@ -173,7 +173,7 @@ export default function Contact() {
           </div>
         </section>
 
-        <section className="py-28 bg-[#F8FAFC]">
+        <section className="py-28 bg-[#FAFAFA]">
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
               <div>
@@ -213,7 +213,7 @@ export default function Contact() {
                     alt="Toronto skyline"
                     className="w-full h-52 object-cover"
                   />
-                  <div className="p-8 bg-gradient-to-br from-white to-[#F8FAFC]">
+                  <div className="p-8 bg-gradient-to-br from-white to-[#FAFAFA]">
                     <h4 className="font-bold text-primary text-lg mb-3">Based in Toronto, Serving Globally</h4>
                     <p className="text-muted-foreground text-sm leading-relaxed">
                       Our headquarters is located in the heart of Toronto, Ontario, Canada's business capital. We serve clients across Canada and internationally through both in-person and virtual engagements.
@@ -269,7 +269,7 @@ export default function Contact() {
                             {language === "en" ? "Name" : "Nom"}
                           </label>
                           <input 
-                            className="w-full bg-[#F8FAFC] border border-border/60 rounded-xl px-6 py-4 outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 font-medium transition-all duration-200" 
+                            className="w-full bg-[#FAFAFA] border border-border/60 rounded-xl px-6 py-4 outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 font-medium transition-all duration-200" 
                             placeholder={language === "en" ? "Your name" : "Votre nom"}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
@@ -281,7 +281,7 @@ export default function Contact() {
                           <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">Email</label>
                           <input 
                             type="email"
-                            className="w-full bg-[#F8FAFC] border border-border/60 rounded-xl px-6 py-4 outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 font-medium transition-all duration-200" 
+                            className="w-full bg-[#FAFAFA] border border-border/60 rounded-xl px-6 py-4 outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 font-medium transition-all duration-200" 
                             placeholder="your@email.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -295,7 +295,7 @@ export default function Contact() {
                           {language === "en" ? "How can we help?" : "Comment pouvons-nous vous aider ?"}
                         </label>
                         <textarea 
-                          className="w-full bg-[#F8FAFC] border border-border/60 rounded-xl px-6 py-4 outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 font-medium h-40 resize-none transition-all duration-200" 
+                          className="w-full bg-[#FAFAFA] border border-border/60 rounded-xl px-6 py-4 outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 font-medium h-40 resize-none transition-all duration-200" 
                           placeholder={language === "en" ? "Tell us about your project..." : "Parlez-nous de votre projet..."}
                           value={message}
                           onChange={(e) => setMessage(e.target.value)}
@@ -347,7 +347,7 @@ export default function Contact() {
                       <ArrowRight size={16} className="text-accent/40 absolute -right-2 -top-[7px]" />
                     </div>
                   )}
-                  <div className="bg-gradient-to-br from-[#F8FAFC] to-white rounded-2xl p-6 border border-border/60">
+                  <div className="bg-gradient-to-br from-[#FAFAFA] to-white rounded-2xl p-6 border border-border/60">
                     <h3 className="text-lg font-bold text-primary mb-3">{item.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
                   </div>
@@ -357,7 +357,7 @@ export default function Contact() {
           </div>
         </section>
 
-        <section className="py-24 bg-gradient-to-b from-[#F8FAFC] to-white" data-testid="section-faq">
+        <section className="py-24 bg-gradient-to-b from-[#FAFAFA] to-white" data-testid="section-faq">
           <div className="container mx-auto px-4 md:px-8 max-w-4xl">
             <div className="text-center mb-20">
               <span className="text-accent font-bold uppercase tracking-widest text-xs">Common Questions</span>

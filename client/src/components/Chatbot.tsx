@@ -252,7 +252,7 @@ export function Chatbot() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={language === "en" ? "Type your question..." : "Tapez votre question..."}
-                className="flex-1 bg-[#F8FAFC] border border-border rounded-full px-4 py-2.5 text-sm outline-none focus:border-accent"
+                className="flex-1 bg-[#FAFAFA] border border-border rounded-full px-4 py-2.5 text-sm outline-none focus:border-accent"
                 data-testid="input-chatbot"
               />
               <button

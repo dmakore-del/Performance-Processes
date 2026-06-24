@@ -262,7 +262,7 @@ export default function Actions() {
                             "text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md border",
                             action.priority === 'high' ? "bg-red-50 text-red-600 border-red-200" :
                             action.priority === 'medium' ? "bg-orange-50 text-orange-600 border-orange-200" :
-                            "bg-blue-50 text-blue-600 border-blue-200"
+                            "bg-zinc-100 text-zinc-800 border-zinc-200"
                           )} data-testid={`badge-priority-${action.id}`}>
                             {action.priority}
                           </span>

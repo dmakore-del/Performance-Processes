@@ -50,7 +50,7 @@ export default function NextUpPartnership() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead
         title="NextUp Canada Partnership , 40% Off Website Services for Young Canadian Founders"
         description="Performance Processes partners with NextUp Canada to support youth-owned businesses with a 40% discount on our website services. Apply on NextUp's website to receive your discount code."
@@ -73,7 +73,7 @@ export default function NextUpPartnership() {
               {stats.map((s, i) => (
                 <div
                   key={i}
-                  className="bg-[#F8FAFC] rounded-2xl p-6 text-center border border-border"
+                  className="bg-[#FAFAFA] rounded-2xl p-6 text-center border border-border"
                   data-testid={`stat-${i}`}
                 >
                   <div className="text-2xl font-extrabold text-primary mb-1">{s.value}</div>
@@ -121,7 +121,7 @@ export default function NextUpPartnership() {
         <section className="py-20 bg-white" data-testid="section-eligibility">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div className="bg-[#F8FAFC] rounded-2xl p-8 border border-border" data-testid="card-eligibility">
+              <div className="bg-[#FAFAFA] rounded-2xl p-8 border border-border" data-testid="card-eligibility">
                 <h3 className="text-xl font-bold text-primary mb-5">Who qualifies</h3>
                 <ul className="space-y-3">
                   {eligibility.map((item, i) => (
@@ -137,7 +137,7 @@ export default function NextUpPartnership() {
                 </p>
               </div>
 
-              <div className="bg-[#F8FAFC] rounded-2xl p-8 border border-border" data-testid="card-coverage">
+              <div className="bg-[#FAFAFA] rounded-2xl p-8 border border-border" data-testid="card-coverage">
                 <h3 className="text-xl font-bold text-primary mb-5">What the 40% applies to</h3>
                 <ul className="space-y-3">
                   {discountApplies.map((item, i) => (

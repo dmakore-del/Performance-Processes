@@ -1,16 +1,18 @@
 ---
-name: Brand palette & pink→blue migration
-description: How the navy+blue brand palette is wired and where stray colors hide
+name: Brand palette & color migrations
+description: How the brand palette is wired and where stray colors hide when recoloring
 ---
 
-# Brand palette (navy + blue, from logo)
+# Brand palette (currently: black & white + restrained pink accent)
 
-The palette is **token-driven** in `client/src/index.css` `:root`: `--primary` (logo navy), `--accent` (logo blue `218 85% 54%`), `--ring`, plus background/border/muted. Changing `--accent` recolors almost the whole site because components use `bg-accent`/`text-accent`/`hover:bg-accent`.
+The palette is **token-driven** in `client/src/index.css` `:root`: `--primary` (near-black `0 0% 9%`), `--background` white, `--foreground` near-black, `--accent` (logo pink `336 72% 48%`), `--ring`, plus secondary/muted/border grays. Changing `--accent` recolors almost every accent usage because components use `bg-accent`/`text-accent`/`hover:bg-accent` (~589 usages).
 
-**Why:** The site was rebranded off an old navy+**pink** palette. The single highest-impact lever is the `--accent` token.
+**Why:** The brand has flip-flopped: original navy+**pink** → migrated to navy+**azure blue** → (June 2026) reverted to **black & white with pink accent**, with the original **pink logo** restored at `client/src/assets/logo.png`. The single highest-impact lever is the `--accent` token plus `--primary`/`--background`/`--foreground`.
 
-**How to apply — where tokens DON'T reach (check these when changing brand color):**
-- Hardcoded `rgba(...)` radial-gradient glows in page files (`Home`, `Solutions`, `About`, `Consulting`, `Marketing`, `Recruiting`) and `components/layout/PortalLayout.tsx`. The old pink appeared as **two different** values: `rgba(236,72,153,...)` AND `rgba(236,72,121,...)` — grep for `236,7` not just one. Blue equivalent used: `rgba(42,110,240,...)`.
-- Tailwind literal classes like `pink-50/100/600`, `ring-pink-200` → use `blue-*`.
-- Baked-in media: the old hero background video had **pink network nodes burned in**; the homepage hero now uses a generated navy still (`client/src/assets/generated/hero-bgis.png`). The warm-toned clips (`hero-bg.mp4`, `hero-background.mp4`, `team-collab.mp4`, `cta-speaker.mp4`) were **deleted** in June 2026. The only videos left in `client/public/assets/videos/` are generated navy/azure abstract loops: `systems-network.mp4` (glowing node network — used in Home unified-offer 4/3 + About hero) and `navy-particles.mp4` (blue particle streaks — used in Home + About closing CTA backgrounds). To add new video, generate navy/azure abstract clips, not warm footage.
-- Accent-on-white contrast is ~4.58:1 (passes AA normal text but with little margin) — keep accent text bold/large.
+**How to apply — where tokens DON'T reach (check these whenever changing brand color):**
+- Hardcoded `rgba(...)` radial-gradient glows in page files (`Home`, `Solutions`, `About`, `Consulting`, `Marketing`, `Recruiting`) and `components/layout/PortalLayout.tsx`. Historic values to grep for: old pink `rgba(236,72,153,...)` AND `rgba(236,72,121,...)` (two variants — grep `236,7`); azure `rgba(42,110,240,...)`; current pink glow `rgba(214,30,110,...)`.
+- Tailwind **literal** color classes bypass tokens entirely. The azure era used `blue-*` and some `purple-*` (50/100/200/400/500/600/700/900) across portal pages + Solutions value-ladder gradients; these were bulk-converted to neutral `zinc-*` (kept B&W) via a `perl -pi` shade map. When recoloring, grep `(blue|purple|pink)-[0-9]` and `zinc-[0-9]` and decide neutral-vs-accent per spot — do NOT blanket-convert to pink or pink becomes too prominent.
+- **To keep the site reading truly black-and-white:** all `<video>` are grayscaled via a global base-layer rule (`video { filter: grayscale(1); }`), and prominent hero/section `<img>` carry a `grayscale` class (Home hero/capability/phase imgs, About hero img). The hero still is `client/src/assets/generated/hero-bgis.png` (a navy skyline) — it only reads B&W because of that grayscale class. The two background videos (`systems-network.mp4`, `navy-particles.mp4`) are navy/azure source but appear monochrome via the global rule.
+- **Keep pink restrained:** the request was "pink accent that isn't too prominent." Pink should appear only via the `--accent` token usages (active nav, primary CTA, one highlighted heading word per section, hovers, faint glows). Do not give pink to large filled surfaces or portal status badges — those stay black/gray.
+- Accent-on-white contrast for pink `336 72% 48%` is ~4.7:1 (passes AA for normal text, thin margin) — keep accent text bold/large.
+- The favicon (`client/public/favicon.png`) is a leftover "PP" monogram, not yet matched to the pink logo.

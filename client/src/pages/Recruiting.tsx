@@ -127,7 +127,7 @@ export default function Recruiting() {
       desc: language === "en" ? "We start by deeply understanding your hiring needs, the role, the culture, and the kind of person who will truly thrive in your organization." : "Nous commençons par comprendre vos besoins en recrutement, le rôle, la culture et le type de personne qui s'épanouira dans votre organisation.",
       outcomes: language === "en" ? ["Role and culture analysis", "Hiring needs assessment", "Ideal candidate profiling", "Timeline and process planning"] : ["Analyse du rôle et de la culture", "Évaluation des besoins", "Profil du candidat idéal", "Planification du processus"],
       icon: <Search className="text-accent" size={28} />,
-      color: "from-blue-500/10 to-blue-600/5",
+      color: "from-zinc-700/10 to-zinc-800/5",
     },
     {
       step: "02",
@@ -151,7 +151,7 @@ export default function Recruiting() {
       desc: language === "en" ? "We don't just fill a seat, we help you make the right hire, negotiate the offer, and set your new team member up for success from day one." : "Nous ne remplissons pas simplement un poste, nous vous aidons à faire le bon choix, négocier l'offre et préparer votre nouveau collaborateur au succès.",
       outcomes: language === "en" ? ["Offer negotiation support", "Onboarding guidance", "Placement guarantee", "Post-hire follow-up"] : ["Soutien à la négociation", "Accompagnement à l'intégration", "Garantie de placement", "Suivi post-embauche"],
       icon: <BarChart3 className="text-accent" size={28} />,
-      color: "from-purple-500/10 to-purple-600/5",
+      color: "from-zinc-700/10 to-zinc-800/5",
     },
   ];
 
@@ -881,7 +881,7 @@ export default function Recruiting() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead title="Human Resources, Recruiting, Talent Development & People Strategy" description="From talent acquisition and HR strategy to leadership development, people operations, and career coaching, we help you build, manage, and grow the teams that power your success." path="/recruiting" />
       <Navbar />
       <main className="flex-grow">
@@ -1004,7 +1004,7 @@ export default function Recruiting() {
           </div>
         </section>
 
-        <section id="recruiting-services-section" className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white" data-testid="recruiting-section-services">
+        <section id="recruiting-services-section" className="py-28 bg-gradient-to-b from-[#FAFAFA] to-white" data-testid="recruiting-section-services">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
@@ -1085,7 +1085,7 @@ export default function Recruiting() {
         </section>
 
         <section className="py-20 bg-gradient-to-r from-primary to-primary/90 relative overflow-hidden" data-testid="recruiting-section-mid-cta">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(42,110,240,0.08)_0%,transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(214,30,110,0.08)_0%,transparent_60%)]" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-6 leading-tight">

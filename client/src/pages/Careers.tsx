@@ -76,7 +76,7 @@ export default function Careers() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead title="Careers, Join Our Team" description="Explore career opportunities at Performance Processes. We're looking for talented consultants, strategists, and leaders who want to make a meaningful impact on organizations." path="/careers" />
       <Navbar />
       <main className="flex-grow">
@@ -114,7 +114,7 @@ export default function Careers() {
           </div>
         </section>
 
-        <section className="py-20 bg-[#F8FAFC]" data-testid="section-benefits">
+        <section className="py-20 bg-[#FAFAFA]" data-testid="section-benefits">
           <div className="container mx-auto px-4 md:px-8 max-w-6xl">
             <div className="text-center mb-14">
               <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">
@@ -463,7 +463,7 @@ export default function Careers() {
                       First Name <span className="text-red-500">*</span>
                     </label>
                     <input
-                      className="w-full bg-[#F8FAFC] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
+                      className="w-full bg-[#FAFAFA] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
                       placeholder="First name"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
@@ -476,7 +476,7 @@ export default function Careers() {
                       Last Name <span className="text-red-500">*</span>
                     </label>
                     <input
-                      className="w-full bg-[#F8FAFC] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
+                      className="w-full bg-[#FAFAFA] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
                       placeholder="Last name"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
@@ -493,7 +493,7 @@ export default function Careers() {
                     </label>
                     <input
                       type="email"
-                      className="w-full bg-[#F8FAFC] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
+                      className="w-full bg-[#FAFAFA] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
                       placeholder="your@email.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -507,7 +507,7 @@ export default function Careers() {
                     </label>
                     <input
                       type="tel"
-                      className="w-full bg-[#F8FAFC] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
+                      className="w-full bg-[#FAFAFA] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
                       placeholder="+1 (555) 123-4567"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
@@ -522,7 +522,7 @@ export default function Careers() {
                     LinkedIn Profile
                   </label>
                   <input
-                    className="w-full bg-[#F8FAFC] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
+                    className="w-full bg-[#FAFAFA] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
                     placeholder="https://linkedin.com/in/yourprofile"
                     value={linkedIn}
                     onChange={(e) => setLinkedIn(e.target.value)}
@@ -578,7 +578,7 @@ export default function Careers() {
                     Cover Letter
                   </label>
                   <textarea
-                    className="w-full bg-[#F8FAFC] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm h-32 resize-none"
+                    className="w-full bg-[#FAFAFA] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm h-32 resize-none"
                     placeholder="Tell us why you'd be a great fit..."
                     value={coverLetter}
                     onChange={(e) => setCoverLetter(e.target.value)}

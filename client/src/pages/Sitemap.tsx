@@ -22,7 +22,7 @@ export default function Sitemap() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead title="Sitemap" description="Navigate all pages on the Performance Processes website. Find services, solutions, career opportunities, and more." path="/sitemap" noindex />
       <Navbar />
       <main className="flex-grow">

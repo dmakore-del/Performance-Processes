@@ -125,7 +125,7 @@ export default function Marketing() {
       desc: language === "en" ? "We learn about your brand, your audience, and your goals to build a digital strategy that reflects who you really are." : "Nous découvrons votre marque, votre audience et vos objectifs pour construire une stratégie numérique qui vous reflète.",
       outcomes: language === "en" ? ["Brand & audience analysis", "Competitive landscape review", "Goal definition & alignment", "Strategy roadmap"] : ["Analyse de marque et audience", "Revue concurrentielle", "Définition des objectifs", "Feuille de route stratégique"],
       icon: <Search className="text-accent" size={28} />,
-      color: "from-blue-500/10 to-blue-600/5",
+      color: "from-zinc-700/10 to-zinc-800/5",
     },
     {
       step: "02",
@@ -149,7 +149,7 @@ export default function Marketing() {
       desc: language === "en" ? "We launch, optimize, and support your digital presence so it keeps working for you long after the project is done." : "Nous lançons, optimisons et supportons votre présence numérique pour qu'elle continue à travailler pour vous.",
       outcomes: language === "en" ? ["Launch & quality assurance", "Performance monitoring", "Conversion optimization", "Ongoing support"] : ["Lancement et assurance qualité", "Suivi de performance", "Optimisation de conversion", "Support continu"],
       icon: <TrendingUp className="text-accent" size={28} />,
-      color: "from-purple-500/10 to-purple-600/5",
+      color: "from-zinc-700/10 to-zinc-800/5",
     },
   ];
 
@@ -548,7 +548,7 @@ export default function Marketing() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead title="Marketing & Websites, Digital Presence, Brand Building & Content Strategy" description="Professional website design, content marketing, brand identity, social media management, and digital marketing services for enterprises, small businesses, and professionals." path="/marketing" />
       <Navbar />
       <main className="flex-grow">
@@ -674,7 +674,7 @@ export default function Marketing() {
           </div>
         </section>
 
-        <section id="marketing-services-section" className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white" data-testid="marketing-section-services">
+        <section id="marketing-services-section" className="py-28 bg-gradient-to-b from-[#FAFAFA] to-white" data-testid="marketing-section-services">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6 leading-tight">
@@ -762,7 +762,7 @@ export default function Marketing() {
         </section>
 
         <section className="py-20 bg-gradient-to-r from-primary to-primary/90 relative overflow-hidden" data-testid="marketing-section-mid-cta">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(42,110,240,0.08)_0%,transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(214,30,110,0.08)_0%,transparent_60%)]" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-6 leading-tight">

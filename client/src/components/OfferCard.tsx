@@ -138,7 +138,7 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
 
       <div className="mt-auto space-y-2.5">
         {showBuy && isWebsite && (
-          <div className="rounded-xl bg-[#F8FAFC] border border-border p-3">
+          <div className="rounded-xl bg-[#FAFAFA] border border-border p-3">
             {!showPromo ? (
               <button
                 type="button"

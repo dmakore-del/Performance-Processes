@@ -31,7 +31,7 @@ export default function Solutions() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans overflow-x-hidden">
       <SEOHead
         title="Growth Infrastructure System | Performance Processes"
         description="One system, multiple access levels. From self-guided playbooks to guided implementation to full system builds. We design, build, and run the systems businesses need to scale."
@@ -105,7 +105,7 @@ export default function Solutions() {
           </div>
         </section>
 
-        <section className="py-20 bg-[#F8FAFC] relative overflow-hidden" data-testid="section-value-ladder">
+        <section className="py-20 bg-[#FAFAFA] relative overflow-hidden" data-testid="section-value-ladder">
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-16">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Your Growth Path</p>
@@ -119,13 +119,13 @@ export default function Solutions() {
 
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-0 relative">
-                <div className="hidden md:block absolute top-1/2 left-[12%] right-[12%] h-[2px] bg-gradient-to-r from-blue-400 via-purple-400 via-accent to-primary z-0" />
+                <div className="hidden md:block absolute top-1/2 left-[12%] right-[12%] h-[2px] bg-gradient-to-r from-zinc-500 via-zinc-500 via-accent to-primary z-0" />
 
                 {[
-                  { label: "Start", tier: "Playbooks", price: "$149 to $999", color: "bg-blue-500", ring: "ring-blue-200" },
-                  { label: "Learn", tier: "Training Programs", price: "$99 to $10,000", color: "bg-purple-500", ring: "ring-purple-200" },
-                  { label: "Grow", tier: "Guided Implementation", price: "$2,000 to $10,000", color: "bg-accent", ring: "ring-blue-200" },
-                  { label: "Scale", tier: "Full System Build", price: "$5,000 to $50,000+", color: "bg-primary", ring: "ring-slate-200" },
+                  { label: "Start", tier: "Playbooks", price: "$149 to $999", color: "bg-zinc-700", ring: "ring-zinc-200" },
+                  { label: "Learn", tier: "Training Programs", price: "$99 to $10,000", color: "bg-zinc-700", ring: "ring-zinc-200" },
+                  { label: "Grow", tier: "Guided Implementation", price: "$2,000 to $10,000", color: "bg-accent", ring: "ring-zinc-200" },
+                  { label: "Scale", tier: "Full System Build", price: "$5,000 to $50,000+", color: "bg-primary", ring: "ring-zinc-200" },
                 ].map((step, i) => (
                   <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
                     <div className="flex flex-col items-center relative z-10 py-6">
@@ -175,7 +175,7 @@ export default function Solutions() {
                 <div className="bg-white rounded-3xl border border-border shadow-lg overflow-hidden" data-testid="tier-playbooks">
                   <div className="grid grid-cols-1 lg:grid-cols-5">
                     <div className="lg:col-span-2 relative">
-                      <div className="h-full min-h-[280px] bg-gradient-to-br from-blue-500 to-blue-600 p-8 lg:p-10 flex flex-col justify-center">
+                      <div className="h-full min-h-[280px] bg-gradient-to-br from-zinc-700 to-zinc-800 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
 
                           Tier 1: Entry Level
@@ -218,14 +218,14 @@ export default function Solutions() {
                             { name: "Performance Management System", price: "$279" },
                             { name: "Operations Blueprint", price: "$199" },
                           ].map((ex, j) => (
-                            <div key={j} className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-4 py-2 text-sm">
+                            <div key={j} className="inline-flex items-center gap-2 bg-zinc-100 border border-zinc-100 rounded-full px-4 py-2 text-sm">
                               <span className="font-semibold text-primary">{ex.name}</span>
-                              <span className="text-blue-600 font-bold">{ex.price}</span>
+                              <span className="text-zinc-800 font-bold">{ex.price}</span>
                             </div>
                           ))}
                         </div>
                       </div>
-                      <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-playbooks">
+                      <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-zinc-700 text-white hover:bg-zinc-800 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-playbooks">
 
                         Request a Playbook
                       </Link>
@@ -238,7 +238,7 @@ export default function Solutions() {
                 <div className="bg-white rounded-3xl border border-border shadow-lg overflow-hidden" data-testid="tier-training">
                   <div className="grid grid-cols-1 lg:grid-cols-5">
                     <div className="lg:col-span-2 relative">
-                      <div className="h-full min-h-[280px] bg-gradient-to-br from-purple-500 to-purple-700 p-8 lg:p-10 flex flex-col justify-center">
+                      <div className="h-full min-h-[280px] bg-gradient-to-br from-zinc-700 to-zinc-900 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
 
                           Tier 2: Training
@@ -281,14 +281,14 @@ export default function Solutions() {
                             { name: "Hiring & Team Systems", price: "$299+" },
                             { name: "Growth Systems Training", price: "$299+" },
                           ].map((ex, j) => (
-                            <div key={j} className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 rounded-full px-4 py-2 text-sm">
+                            <div key={j} className="inline-flex items-center gap-2 bg-zinc-100 border border-zinc-100 rounded-full px-4 py-2 text-sm">
                               <span className="font-semibold text-primary">{ex.name}</span>
-                              <span className="text-purple-600 font-bold">{ex.price}</span>
+                              <span className="text-zinc-800 font-bold">{ex.price}</span>
                             </div>
                           ))}
                         </div>
                       </div>
-                      <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-500 text-white hover:bg-purple-600 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-training">
+                      <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-zinc-700 text-white hover:bg-zinc-800 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-training">
 
                         Inquire About Training
                       </Link>
@@ -302,7 +302,7 @@ export default function Solutions() {
                   <div className="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-4 py-1.5 rounded-bl-xl">Most Flexible</div>
                   <div className="grid grid-cols-1 lg:grid-cols-5">
                     <div className="lg:col-span-2 relative">
-                      <div className="h-full min-h-[280px] bg-gradient-to-br from-accent to-blue-700 p-8 lg:p-10 flex flex-col justify-center">
+                      <div className="h-full min-h-[280px] bg-gradient-to-br from-accent to-zinc-900 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
 
                           Tier 3: Mid-Tier
@@ -345,7 +345,7 @@ export default function Solutions() {
                             { name: "Growth Engine Sprint", desc: "Website + funnel + CRM", price: "$5K to $10K", time: "4 to 8 weeks" },
                             { name: "Hiring System Setup", desc: "Hiring process + scorecards + onboarding", price: "$2K to $5K", time: "2 to 4 weeks" },
                           ].map((pkg, j) => (
-                            <div key={j} className="bg-blue-50 border border-blue-100 rounded-xl p-4">
+                            <div key={j} className="bg-zinc-100 border border-zinc-100 rounded-xl p-4">
                               <h4 className="text-sm font-bold text-primary mb-1">{pkg.name}</h4>
                               <p className="text-xs text-muted-foreground mb-2">{pkg.desc}</p>
                               <p className="text-sm font-bold text-accent">{pkg.price}</p>
@@ -367,7 +367,7 @@ export default function Solutions() {
                 <div className="bg-white rounded-3xl border border-border shadow-lg overflow-hidden" data-testid="tier-full-build">
                   <div className="grid grid-cols-1 lg:grid-cols-5">
                     <div className="lg:col-span-2 relative">
-                      <div className="h-full min-h-[280px] bg-gradient-to-br from-primary to-blue-900 p-8 lg:p-10 flex flex-col justify-center">
+                      <div className="h-full min-h-[280px] bg-gradient-to-br from-primary to-zinc-950 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
 
                           Tier 4: Scale
@@ -393,19 +393,19 @@ export default function Solutions() {
                       </div>
                       <div className="mb-6">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                          <div className="bg-zinc-100 rounded-xl p-4 border border-zinc-100">
                             <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Phase 1: Foundation</p>
                             <p className="text-sm text-muted-foreground mb-3">Org structure, KPI systems, process design, strategy and roadmap</p>
                             <p className="text-sm font-bold text-primary">$5,000 to $15,000</p>
                             <p className="text-xs text-muted-foreground">2 to 4 weeks</p>
                           </div>
-                          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                          <div className="bg-zinc-100 rounded-xl p-4 border border-zinc-100">
                             <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Phase 2: Build</p>
                             <p className="text-sm text-muted-foreground mb-3">Recruiting, HR systems, website, marketing funnel, CRM, playbooks</p>
                             <p className="text-sm font-bold text-primary">$15,000 to $50,000+</p>
                             <p className="text-xs text-muted-foreground">6 to 12 weeks</p>
                           </div>
-                          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                          <div className="bg-zinc-100 rounded-xl p-4 border border-zinc-100">
                             <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Phase 3: Run</p>
                             <p className="text-sm text-muted-foreground mb-3">KPI tracking, execution support, marketing optimization, process refinement</p>
                             <p className="text-sm font-bold text-primary">$4,000 to $12,000/mo</p>
@@ -425,7 +425,7 @@ export default function Solutions() {
           </div>
         </section>
 
-        <section id="phases" className="py-28 bg-[#F8FAFC] relative overflow-hidden" data-testid="section-phases">
+        <section id="phases" className="py-28 bg-[#FAFAFA] relative overflow-hidden" data-testid="section-phases">
           <FloatingShape className="w-24 h-24 top-20 -left-8" variant="ring" />
           <FloatingShape className="w-10 h-10 top-40 right-20" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
@@ -607,7 +607,7 @@ export default function Solutions() {
           <div className="absolute inset-0">
             <img src={teamMovingForwardImg} alt="" className="w-full h-full object-cover opacity-10 animate-ken-burns" />
           </div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(42,110,240,0.16),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(214,30,110,0.16),transparent_60%)]" />
           <FloatingShape className="w-16 h-16 top-20 right-[15%]" variant="ring" />
           <FloatingShape className="w-8 h-8 bottom-32 left-[10%]" variant="dot" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
@@ -695,7 +695,7 @@ export default function Solutions() {
                   investment: "$99 to $10,000",
                   cta: "Explore Our Services",
                   ctaLink: "/services",
-                  color: "from-blue-500 to-blue-600",
+                  color: "from-zinc-700 to-zinc-800",
                 },
                 {
                   audience: "Small Businesses",
@@ -704,7 +704,7 @@ export default function Solutions() {
                   investment: "$99 to $50,000+",
                   cta: "Explore Our Services",
                   ctaLink: "/services",
-                  color: "from-accent to-blue-700",
+                  color: "from-accent to-zinc-900",
                 },
                 {
                   audience: "Nonprofits",
@@ -722,7 +722,7 @@ export default function Solutions() {
                   investment: "$2,000 to $50,000+",
                   cta: "Book a Strategy Call",
                   ctaLink: BOOKINGS_URL,
-                  color: "from-primary to-blue-900",
+                  color: "from-primary to-zinc-950",
                   isExternal: true,
                 },
               ].map((item, i) => (
@@ -762,7 +762,7 @@ export default function Solutions() {
           </div>
         </section>
 
-        <section className="py-28 bg-[#F8FAFC] border-t" data-testid="section-solutions-cta">
+        <section className="py-28 bg-[#FAFAFA] border-t" data-testid="section-solutions-cta">
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll animation="fade-scale">
               <div className="relative rounded-[2rem] overflow-hidden max-w-5xl mx-auto">
@@ -783,7 +783,7 @@ export default function Solutions() {
     
                       Explore Our Services
                     </Link>
-                    <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-500 text-white hover:bg-purple-600 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-contact">
+                    <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-zinc-700 text-white hover:bg-zinc-800 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-contact">
 
                       Request a Quote
                     </Link>

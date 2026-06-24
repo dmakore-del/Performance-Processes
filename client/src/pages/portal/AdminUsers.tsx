@@ -290,8 +290,8 @@ export default function AdminUsers() {
                             onClick={() => setRoleDropdownId(roleDropdownId === u.id ? null : u.id)}
                             className={cn(
                               "text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border flex items-center gap-1",
-                              u.role === "admin" ? "bg-purple-50 text-purple-600 border-purple-200" :
-                              u.role === "staff" ? "bg-blue-50 text-blue-600 border-blue-200" :
+                              u.role === "admin" ? "bg-zinc-100 text-zinc-800 border-zinc-200" :
+                              u.role === "staff" ? "bg-zinc-100 text-zinc-800 border-zinc-200" :
                               "bg-secondary text-primary border-border"
                             )}
                           >
@@ -362,7 +362,7 @@ export default function AdminUsers() {
                                 data-testid={`button-activate-${u.id}`}
                                 onClick={() => statusMutation.mutate({ id: u.id, status: "active" })}
                                 disabled={statusMutation.isPending}
-                                className="bg-blue-500 hover:bg-blue-600 text-white text-xs h-8 rounded-lg"
+                                className="bg-zinc-700 hover:bg-zinc-800 text-white text-xs h-8 rounded-lg"
                               >
                                 <UserCheck size={14} className="mr-1" /> Activate
                               </Button>

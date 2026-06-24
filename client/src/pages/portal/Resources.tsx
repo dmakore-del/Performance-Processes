@@ -14,12 +14,12 @@ import type { Resource } from "@shared/schema";
 
 function getResourceIcon(resourceType: string) {
   const t = resourceType.toLowerCase();
-  if (t.includes("pdf") || t.includes("guide")) return <BookOpen size={24} className="text-blue-500" />;
+  if (t.includes("pdf") || t.includes("guide")) return <BookOpen size={24} className="text-zinc-700" />;
   if (t.includes("template")) return <Download size={24} className="text-green-500" />;
-  if (t.includes("toolkit")) return <ExternalLink size={24} className="text-purple-500" />;
+  if (t.includes("toolkit")) return <ExternalLink size={24} className="text-zinc-700" />;
   if (t.includes("checklist")) return <CheckSquare size={24} className="text-orange-500" />;
   if (t.includes("video")) return <PlayCircle size={24} className="text-red-500" />;
-  return <BookOpen size={24} className="text-blue-500" />;
+  return <BookOpen size={24} className="text-zinc-700" />;
 }
 
 export default function Resources() {
@@ -294,7 +294,7 @@ export default function Resources() {
                   <span className="inline-block bg-secondary text-muted-foreground text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-border" data-testid={`badge-resource-type-${res.id}`}>
                     {res.resourceType}
                   </span>
-                  <span className="inline-block bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-blue-200" data-testid={`badge-resource-category-${res.id}`}>
+                  <span className="inline-block bg-zinc-100 text-zinc-800 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-zinc-200" data-testid={`badge-resource-category-${res.id}`}>
                     {res.category}
                   </span>
                   {res.fileUrl && (
@@ -350,7 +350,7 @@ export default function Resources() {
                     <span className="inline-block bg-secondary text-muted-foreground text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-border">
                       {selectedResource.resourceType}
                     </span>
-                    <span className="inline-block bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-blue-200">
+                    <span className="inline-block bg-zinc-100 text-zinc-800 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-zinc-200">
                       {selectedResource.category}
                     </span>
                   </div>

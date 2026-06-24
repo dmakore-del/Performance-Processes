@@ -16,10 +16,10 @@ const SOURCE_OPTIONS = ["website", "referral", "cold outreach", "event", "social
 const SERVICE_OPTIONS = ["Enterprise Advisory", "Small Business Support", "Professional Coaching", "Performance Collective", "Custom Engagement"] as const;
 
 const statusColors: Record<string, string> = {
-  new: "bg-blue-100 text-blue-700",
+  new: "bg-zinc-100 text-zinc-900",
   contacted: "bg-yellow-100 text-yellow-700",
-  qualified: "bg-purple-100 text-purple-700",
-  proposal: "bg-indigo-100 text-indigo-700",
+  qualified: "bg-zinc-100 text-zinc-900",
+  proposal: "bg-zinc-100 text-zinc-900",
   negotiation: "bg-orange-100 text-orange-700",
   won: "bg-green-100 text-green-700",
   lost: "bg-red-100 text-red-700",
@@ -27,7 +27,7 @@ const statusColors: Record<string, string> = {
 
 const priorityColors: Record<string, string> = {
   low: "bg-gray-100 text-gray-600",
-  medium: "bg-blue-100 text-blue-600",
+  medium: "bg-zinc-100 text-zinc-800",
   high: "bg-orange-100 text-orange-700",
   urgent: "bg-red-100 text-red-700",
 };
@@ -217,8 +217,8 @@ export default function Leads() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { label: "Total Leads", value: stats.total, color: "bg-primary/10 text-primary" },
-            { label: "New", value: stats.new, color: "bg-blue-100 text-blue-700" },
-            { label: "In Pipeline", value: stats.qualified, color: "bg-purple-100 text-purple-700" },
+            { label: "New", value: stats.new, color: "bg-zinc-100 text-zinc-900" },
+            { label: "In Pipeline", value: stats.qualified, color: "bg-zinc-100 text-zinc-900" },
             { label: "Won", value: stats.won, color: "bg-green-100 text-green-700" },
           ].map((stat, i) => (
             <div key={i} className="bg-white rounded-xl border border-border p-5" data-testid={`stat-leads-${i}`}>

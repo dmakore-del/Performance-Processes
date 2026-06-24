@@ -57,7 +57,7 @@ const CASE_STUDIES: CaseStudyPlaceholder[] = [
 
 export default function Results() {
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead
         title="Results & Case Studies | Performance Processes"
         description="Real outcomes from the systems we build for small and emerging businesses. Case studies and client results from Performance Processes."
@@ -84,7 +84,7 @@ export default function Results() {
         </section>
 
         {/* Case study placeholders */}
-        <section className="py-20 bg-[#F8FAFC]" data-testid="section-case-studies">
+        <section className="py-20 bg-[#FAFAFA]" data-testid="section-case-studies">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mb-12">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-3">Case Studies</p>
@@ -146,7 +146,7 @@ export default function Results() {
               {[0, 1, 2].map((i) => (
                 <div
                   key={i}
-                  className="flex flex-col h-full rounded-2xl border border-dashed border-border bg-[#F8FAFC] p-8"
+                  className="flex flex-col h-full rounded-2xl border border-dashed border-border bg-[#FAFAFA] p-8"
                   data-testid={`card-testimonial-placeholder-${i}`}
                 >
                   <Quote size={28} className="text-accent/30 mb-4" />

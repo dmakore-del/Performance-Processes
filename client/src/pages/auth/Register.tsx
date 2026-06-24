@@ -86,8 +86,8 @@ export default function Register() {
               Your staff account has been created and is pending administrator approval. 
               You will receive access once approved.
             </p>
-            <div className="bg-blue-50 p-4 rounded-xl border border-blue-200 text-left">
-              <p className="text-xs text-blue-700">
+            <div className="bg-zinc-100 p-4 rounded-xl border border-zinc-200 text-left">
+              <p className="text-xs text-zinc-900">
                 <span className="font-bold block mb-1">What happens next?</span>
                 An administrator will review and approve your account. This typically happens within 1 business day.
               </p>

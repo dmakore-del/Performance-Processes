@@ -72,7 +72,7 @@ export default function Documents() {
       case 'xlsx':
       case 'xls': return <FileSpreadsheet className="text-green-500" size={24} />;
       case 'docx':
-      case 'doc': return <FileIcon className="text-blue-500" size={24} />;
+      case 'doc': return <FileIcon className="text-zinc-700" size={24} />;
       case 'pptx':
       case 'ppt': return <FileIcon className="text-orange-500" size={24} />;
       default: return <FileText className="text-gray-500" size={24} />;

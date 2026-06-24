@@ -7,7 +7,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC]">
+      <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA]">
         <Loader2 className="animate-spin text-accent" size={40} />
       </div>
     );
@@ -19,7 +19,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   if (user?.status === "pending_approval") {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC] p-4">
+      <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA] p-4">
         <div className="max-w-md w-full text-center">
           <div className="w-20 h-20 bg-orange-50 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-orange-200">
             <Clock size={40} className="text-orange-500" />
@@ -46,7 +46,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   if (user?.status === "suspended") {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC] p-4">
+      <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA] p-4">
         <div className="max-w-md w-full text-center">
           <div className="w-20 h-20 bg-red-50 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-red-200">
             <ShieldAlert size={40} className="text-red-500" />

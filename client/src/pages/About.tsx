@@ -77,7 +77,7 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead title="About Us, Our Story & Mission" description="Performance Processes is a growth infrastructure studio founded by Danai Makore in 2023. We install websites, marketing, CRM, business systems, training, and ongoing support as one integrated system for professionals, nonprofits, and small businesses." path="/about" />
       <Navbar />
       <main className="flex-grow">
@@ -97,7 +97,7 @@ export default function About() {
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/60" />
           </div>
           <div className="absolute bottom-0 right-0 w-2/5 h-full hidden lg:block z-[1]">
-            <img src={cityAerialImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
+            <img src={cityAerialImg} alt="" className="w-full h-full object-cover grayscale animate-ken-burns" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/50 to-transparent" />
           </div>
           <GradientOrb className="w-80 h-80 bg-accent/10 -top-20 -right-20 z-[2]" />
@@ -133,7 +133,7 @@ export default function About() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {industries.map((ind, i) => (
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 80}>
-                  <div className="flex flex-col items-center gap-3 p-5 rounded-2xl bg-[#F8FAFC] border border-border/50 hover:border-accent/30 hover:shadow-sm transition-all hover:scale-105 duration-300" data-testid={`industry-${i}`}>
+                  <div className="flex flex-col items-center gap-3 p-5 rounded-2xl bg-[#FAFAFA] border border-border/50 hover:border-accent/30 hover:shadow-sm transition-all hover:scale-105 duration-300" data-testid={`industry-${i}`}>
                     <div className="w-2 h-2 rounded-full bg-accent" />
                     <span className="text-xs font-bold text-primary text-center leading-tight">{ind.name}</span>
                   </div>
@@ -203,7 +203,7 @@ export default function About() {
 
                 <div className="mt-8 flex flex-wrap gap-3">
                   {credentials.map((c, i) => (
-                    <div key={i} className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-br from-[#F8FAFC] to-white rounded-xl border border-border shadow-sm" data-testid={`credential-${i}`}>
+                    <div key={i} className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-br from-[#FAFAFA] to-white rounded-xl border border-border shadow-sm" data-testid={`credential-${i}`}>
                       <div className="w-2 h-2 rounded-full bg-accent"></div>
                       <span className="text-xs font-bold text-primary">{c.label}</span>
                     </div>
@@ -223,7 +223,7 @@ export default function About() {
           </div>
         </section>
 
-        <section className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white border-b relative overflow-hidden" data-testid="section-philosophy">
+        <section className="py-28 bg-gradient-to-b from-[#FAFAFA] to-white border-b relative overflow-hidden" data-testid="section-philosophy">
           <FloatingShape className="w-20 h-20 top-16 -left-6" variant="ring" />
           <FloatingShape className="w-10 h-10 bottom-20 right-16" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
@@ -262,7 +262,7 @@ export default function About() {
         </section>
 
         <section className="py-20 bg-gradient-to-r from-primary to-primary/90 relative overflow-hidden" data-testid="section-mission-cta">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(42,110,240,0.08)_0%,transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(214,30,110,0.08)_0%,transparent_60%)]" />
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-12">
               <div className="flex-1">
@@ -329,7 +329,7 @@ export default function About() {
                     starting point — whether that's a new website,
                     a CRM, or a full growth-infrastructure bundle.
                   </p>
-                  <p className="font-medium text-primary italic border-l-4 border-accent pl-6 py-2 bg-gradient-to-r from-[#F8FAFC] to-transparent rounded-r-lg">
+                  <p className="font-medium text-primary italic border-l-4 border-accent pl-6 py-2 bg-gradient-to-r from-[#FAFAFA] to-transparent rounded-r-lg">
                     Passionate about matching clients with the right
                     productized offer — from a single-practice engagement
                     to a fully integrated growth-infrastructure build.
@@ -341,11 +341,11 @@ export default function About() {
                       Schedule Consultation
                   </a>
                   <div className="flex flex-wrap gap-3">
-                    <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-[#F8FAFC] to-white rounded-xl border border-border">
+                    <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-[#FAFAFA] to-white rounded-xl border border-border">
                       <div className="w-2 h-2 rounded-full bg-accent"></div>
                       <span className="text-xs font-bold uppercase tracking-widest text-primary">Relationship Development</span>
                     </div>
-                    <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-[#F8FAFC] to-white rounded-xl border border-border">
+                    <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-[#FAFAFA] to-white rounded-xl border border-border">
                       <div className="w-2 h-2 rounded-full bg-accent"></div>
                       <span className="text-xs font-bold uppercase tracking-widest text-primary">Strategic Advisory</span>
                     </div>
@@ -356,7 +356,7 @@ export default function About() {
           </div>
         </section>
 
-        <section className="py-28 bg-gradient-to-b from-[#F8FAFC] to-white border-b relative overflow-hidden" data-testid="section-values">
+        <section className="py-28 bg-gradient-to-b from-[#FAFAFA] to-white border-b relative overflow-hidden" data-testid="section-values">
           <GeometricAccent className="-left-10 top-32 text-primary" />
           <FloatingShape className="w-12 h-12 bottom-20 right-16" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
@@ -450,7 +450,7 @@ export default function About() {
           </div>
         </section>
 
-        <section className="py-28 bg-[#F8FAFC] border-b relative overflow-hidden" data-testid="section-timeline">
+        <section className="py-28 bg-[#FAFAFA] border-b relative overflow-hidden" data-testid="section-timeline">
           <FloatingShape className="w-14 h-14 top-20 right-10" variant="ring" />
           <GradientOrb className="w-64 h-64 bg-primary/3 -bottom-32 -left-32" />
           <div className="container mx-auto px-4 md:px-8">

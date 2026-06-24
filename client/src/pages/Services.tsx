@@ -33,7 +33,7 @@ export default function Services() {
   const bundles = OFFERS.filter((o) => o.category === "bundle");
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead
         title="Services and Pricing | Performance Processes"
         description="Productized websites, marketing, CRM, business systems, and ongoing growth support for small and emerging businesses. Clear prices, secure checkout."
@@ -121,7 +121,7 @@ export default function Services() {
             <section
               key={cat}
               id={`cat-${cat}`}
-              className={`py-20 ${isAlt ? "bg-white" : "bg-[#F8FAFC]"}`}
+              className={`py-20 ${isAlt ? "bg-white" : "bg-[#FAFAFA]"}`}
               data-testid={`section-${cat}`}
             >
               <div className="container mx-auto px-4 md:px-8">
@@ -167,7 +167,7 @@ export default function Services() {
           </div>
         </section>
 
-        <section className="py-20 bg-[#F8FAFC]" data-testid="section-nextup">
+        <section className="py-20 bg-[#FAFAFA]" data-testid="section-nextup">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto bg-gradient-to-br from-accent/5 via-white to-accent/10 rounded-3xl border-2 border-accent/20 overflow-hidden shadow-lg">
               <div className="p-10 md:p-14">

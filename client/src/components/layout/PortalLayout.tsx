@@ -111,7 +111,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
         aria-hidden="true"
         style={{
           backgroundImage:
-            "radial-gradient(900px 600px at 80% -10%, rgba(42,110,240,0.08), transparent 60%), radial-gradient(700px 500px at -10% 110%, rgba(15,23,42,0.07), transparent 60%)",
+            "radial-gradient(900px 600px at 80% -10%, rgba(214,30,110,0.08), transparent 60%), radial-gradient(700px 500px at -10% 110%, rgba(15,23,42,0.07), transparent 60%)",
         }}
       />
 
@@ -123,7 +123,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           aria-hidden="true"
           style={{
             backgroundImage:
-              "radial-gradient(600px 400px at 100% 0%, rgba(42,110,240,0.18), transparent 60%), radial-gradient(500px 350px at 0% 100%, rgba(255,255,255,0.05), transparent 70%)",
+              "radial-gradient(600px 400px at 100% 0%, rgba(214,30,110,0.18), transparent 60%), radial-gradient(500px 350px at 0% 100%, rgba(255,255,255,0.05), transparent 70%)",
           }}
         />
         {/* Right edge hairline */}

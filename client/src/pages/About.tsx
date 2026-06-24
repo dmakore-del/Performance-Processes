@@ -92,7 +92,7 @@ export default function About() {
               className="w-full h-full object-cover opacity-40"
               poster={teamStrategyImg}
             >
-              <source src="/assets/videos/team-collab.mp4" type="video/mp4" />
+              <source src="/assets/videos/systems-network.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/60" />
           </div>
@@ -588,7 +588,7 @@ export default function About() {
               className="w-full h-full object-cover opacity-50"
               poster={teamStrategyImg}
             >
-              <source src="/assets/videos/cta-speaker.mp4" type="video/mp4" />
+              <source src="/assets/videos/navy-particles.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-primary/80 to-primary/95" />
           </div>

@@ -669,7 +669,7 @@ export default function Home() {
                     className="w-full h-full object-cover"
                     poster={teamMovingForwardImg}
                   >
-                    <source src="/assets/videos/team-collab.mp4" type="video/mp4" />
+                    <source src="/assets/videos/systems-network.mp4" type="video/mp4" />
                   </video>
                 </div>
               </AnimateOnScroll>
@@ -690,7 +690,7 @@ export default function Home() {
               className="w-full h-full object-cover opacity-60"
               poster={teamMovingForwardImg}
             >
-              <source src="/assets/videos/cta-speaker.mp4" type="video/mp4" />
+              <source src="/assets/videos/navy-particles.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-gradient-to-b from-primary/85 via-primary/75 to-primary" />
           </div>

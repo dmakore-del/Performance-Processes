@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Link } from "wouter";
@@ -74,6 +75,32 @@ const PROCESS = [
 const PACKAGES = getOffersByCategory("packages");
 
 export default function Home() {
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = heroVideoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute("muted", "");
+    const tryPlay = () => {
+      const p = v.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    };
+    tryPlay();
+    v.addEventListener("loadeddata", tryPlay);
+    v.addEventListener("canplay", tryPlay);
+    const onInteract = () => tryPlay();
+    window.addEventListener("pointerdown", onInteract, { once: true });
+    window.addEventListener("touchstart", onInteract, { once: true });
+    window.addEventListener("scroll", onInteract, { once: true });
+    return () => {
+      v.removeEventListener("loadeddata", tryPlay);
+      v.removeEventListener("canplay", tryPlay);
+      window.removeEventListener("pointerdown", onInteract);
+      window.removeEventListener("touchstart", onInteract);
+      window.removeEventListener("scroll", onInteract);
+    };
+  }, []);
   return (
     <div className="min-h-screen bg-background flex flex-col font-sans overflow-x-hidden">
       <SEOHead
@@ -101,14 +128,7 @@ export default function Home() {
               poster={heroVideoPoster}
               className="no-grayscale w-full h-full object-cover"
               data-testid="video-hero"
-              ref={(el) => {
-                if (!el) return;
-                el.muted = true;
-                el.defaultMuted = true;
-                el.setAttribute("muted", "");
-                const p = el.play();
-                if (p && typeof p.catch === "function") p.catch(() => {});
-              }}
+              ref={heroVideoRef}
               {...{ "webkit-playsinline": "true" } as any}
             >
               <source src="/assets/videos/hero-strategy-v2.mp4" type="video/mp4" />

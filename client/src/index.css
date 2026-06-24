@@ -50,8 +50,8 @@
   --primary: 0 0% 9%;
   --primary-foreground: 0 0% 100%;
   
-  /* Logo pink — used sparingly as an accent */
-  --accent: 336 72% 48%;
+  /* Soft blush pink — used sparingly as an accent */
+  --accent: 345 58% 62%;
   --accent-foreground: 0 0% 100%;
   
   --secondary: 0 0% 96%;
@@ -65,7 +65,7 @@
 
   --border: 0 0% 90%;
   --input: 0 0% 90%;
-  --ring: 336 72% 48%;
+  --ring: 345 58% 62%;
 }
 
 @layer base {

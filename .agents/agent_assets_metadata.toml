@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "T7YH0CjlKms-pZvJG-RSg"
@@ -90,3 +89,9 @@ id = "iKF3VPVBWf7eHIKBmWMmZ"
 uri = "file://attached_assets/generated/training.png"
 type = "image"
 title = "generated_image"
+
+[[outputs]]
+id = "tAlymL4V5dZt-m1gR0HVZ"
+uri = "file://attached_assets/stock_images/workspace1.jpg"
+type = "image"
+title = "modern office workspace with laptop on desk"

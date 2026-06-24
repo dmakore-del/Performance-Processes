@@ -43,7 +43,6 @@ import Leads from "./pages/portal/Leads";
 import { LanguageProvider } from "./hooks/use-language";
 import { EngagementProvider } from "./hooks/use-portal";
 import { Chatbot } from "./components/Chatbot";
-import { ScrollToTopButton } from "./components/ScrollToTopButton";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -139,7 +138,6 @@ function App() {
           <TooltipProvider>
             <Toaster />
             <Router />
-            <ScrollToTopButton />
             <Chatbot />
           </TooltipProvider>
         </EngagementProvider>

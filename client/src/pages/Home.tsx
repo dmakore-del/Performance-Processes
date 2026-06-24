@@ -9,7 +9,7 @@ import { getOffersByCategory } from "@shared/offers";
 import heroVideoPoster from "@assets/generated/hero-video-poster.png";
 import cityAerialImg from "@assets/generated/city-aerial-new.png";
 import teamCollabImg from "@assets/generated/team-collab-color.png";
-import workspaceImg from "@assets/generated/workspace-color.png";
+import workspaceImg from "@assets/stock_images/workspace1.jpg";
 import teamMovingForwardImg from "@assets/generated/team-moving-forward.png";
 
 const BOOKINGS_URL =
@@ -99,11 +99,11 @@ export default function Home() {
               playsInline
               preload="auto"
               poster={heroVideoPoster}
-              className="w-full h-full object-cover"
+              className="no-grayscale w-full h-full object-cover"
               data-testid="video-hero"
               {...{ "webkit-playsinline": "true" } as any}
             >
-              <source src="/assets/videos/hero-team.mp4" type="video/mp4" />
+              <source src="/assets/videos/hero-strategy.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/55 to-primary/25" />
           </div>

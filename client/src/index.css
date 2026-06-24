@@ -295,6 +295,6 @@
    grayscale. The pink brand logo (alt="Performance Processes") is excluded,
    and any element opting out can add the .no-grayscale class. */
 img:not([alt="Performance Processes"]):not(.no-grayscale),
-video {
+video:not(.no-grayscale) {
   filter: grayscale(100%);
 }

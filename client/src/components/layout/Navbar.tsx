@@ -294,7 +294,7 @@ export function Navbar() {
 
       <div className="container mx-auto px-4 md:px-6 lg:px-10 flex h-20 lg:h-[88px] items-center justify-between">
         <Link href="/" className="flex items-center shrink-0 mr-auto" data-testid="link-logo">
-            <img src={logoImg} alt="Performance Processes" className="h-[52px] lg:h-[60px] w-auto" />
+            <img src={logoImg} alt="Performance Processes" className="no-grayscale h-[52px] lg:h-[60px] w-auto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
@@ -324,7 +324,7 @@ export function Navbar() {
         <div className="lg:hidden fixed inset-0 top-0 bg-white z-[100] flex flex-col animate-in fade-in slide-in-from-right duration-300">
           <div className="p-4 flex justify-between items-center border-b h-20">
              <div className="flex items-center">
-               <img src={logoImg} alt="Performance Processes" className="h-12 w-auto" />
+               <img src={logoImg} alt="Performance Processes" className="no-grayscale h-12 w-auto" />
              </div>
              <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:bg-secondary rounded-full transition-colors text-2xl leading-none" aria-label="Close menu"><span aria-hidden="true">&times;</span></button>
           </div>

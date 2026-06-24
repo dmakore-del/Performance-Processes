@@ -290,3 +290,11 @@
   margin: 0 2.5rem;
   vertical-align: middle;
 }
+
+/* Elegant black & white cohesion: all content imagery + videos render in
+   grayscale. The pink brand logo (alt="Performance Processes") is excluded,
+   and any element opting out can add the .no-grayscale class. */
+img:not([alt="Performance Processes"]):not(.no-grayscale),
+video {
+  filter: grayscale(100%);
+}

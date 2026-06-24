@@ -87,7 +87,7 @@ export function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-16 gap-y-16 mb-20">
             <div className="flex flex-col gap-6">
               <Link href="/" className="flex items-center" data-testid="link-logo">
-                  <img src={logoImg} alt="Performance Processes" className="h-14 w-auto" />
+                  <img src={logoImg} alt="Performance Processes" className="no-grayscale h-14 w-auto" />
               </Link>
               <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
                 {t("footer.description")}

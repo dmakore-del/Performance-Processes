@@ -16,15 +16,6 @@ const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@perf
 export default function About() {
   const { t } = useLanguage();
 
-  const timelineItems = [
-    { year: "2023", title: "Performance Processes Founded", description: "Danai Makore launches Performance Processes with a vision to help small businesses install the systems they need to grow with confidence." },
-    { year: "2024", title: "Service Portfolio Launch", description: "Launching foundational services across websites, marketing, and business systems for professionals and emerging businesses." },
-    { year: "2024–2025", title: "Building Multi-Sector Experience", description: "Working with founders, nonprofits, and small businesses across Canada to design and operate growth infrastructure." },
-    { year: "2025", title: "Productized Growth Infrastructure", description: "Reorienting around six productized practices: Web, Marketing, CRM, Business Systems, Training, and Ongoing Support, installed as one integrated system." },
-    { year: "2026", title: "Core Team Assembled", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory." },
-    { year: "2026+", title: "NextUp Canada Partnership", description: "Partnering with NextUp Canada to make our productized growth infrastructure accessible to youth-owned businesses across the country." },
-  ];
-
   const values = [
     {
       title: "Integrity",
@@ -56,15 +47,6 @@ export default function About() {
       description: "We hold ourselves to the same standards we set.",
       practice: "We track our commitments, take ownership of results, and course-correct when needed.",
     },
-  ];
-
-  const industries = [
-    { name: "Professional Services" },
-    { name: "Small & Growing Businesses" },
-    { name: "Nonprofits & Social Enterprises" },
-    { name: "Trades & Local Services" },
-    { name: "Health, Wellness & Coaching" },
-    { name: "Creators & Personal Brands" },
   ];
 
   const credentials = [
@@ -125,21 +107,6 @@ export default function About() {
                     Explore Our Services
                 </Link>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 bg-white border-b" data-testid="section-trust-strip">
-          <div className="container mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {industries.map((ind, i) => (
-                <AnimateOnScroll key={i} animation="fade-up" delay={i * 80}>
-                  <div className="flex flex-col items-center gap-3 p-5 rounded-2xl bg-[#FAFAFA] border border-border/50 hover:border-accent/30 hover:shadow-sm transition-all hover:scale-105 duration-300" data-testid={`industry-${i}`}>
-                    <div className="w-2 h-2 rounded-full bg-accent" />
-                    <span className="text-xs font-bold text-primary text-center leading-tight">{ind.name}</span>
-                  </div>
-                </AnimateOnScroll>
-              ))}
             </div>
           </div>
         </section>
@@ -244,42 +211,6 @@ export default function About() {
                 into one execution system designed for measurable growth.
               </p>
             </AnimateOnScroll>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-                {[
-                  { label: "Founded", val: "2023" },
-                  { label: "Service Practices", val: "6" },
-                  { label: "Productized Offers", val: "20+" },
-                  { label: "Industries Served", val: "6+" }
-                ].map((s, i) => (
-                  <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
-                    <div className="bg-white p-8 rounded-2xl border border-border shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300" data-testid={`stat-card-${i}`}>
-                      <div className="text-4xl font-black text-primary mb-2">{s.val}</div>
-                      <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">{s.label}</div>
-                    </div>
-                  </AnimateOnScroll>
-                ))}
-              </div>
-          </div>
-        </section>
-
-        <section className="py-20 bg-gradient-to-r from-primary to-primary/90 relative overflow-hidden" data-testid="section-mission-cta">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(214,30,110,0.08)_0%,transparent_60%)]" />
-          <div className="container mx-auto px-4 md:px-8 relative z-10">
-            <div className="max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-12">
-              <div className="flex-1">
-                <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-6 leading-tight">
-                  "To install the growth infrastructure professionals, nonprofits, and small businesses need to scale, websites, marketing, CRM, business systems, training, and ongoing support, integrated as one."
-                </h2>
-                <p className="text-lg text-white/70 leading-relaxed">
-                  We design, build, and run the systems other firms only advise on, across six integrated practices, delivered as productized engagements with clear scope, timelines, and outcomes.
-                </p>
-              </div>
-              <div className="shrink-0">
-                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="button-mission-cta">
-                    Book a Discovery Call
-                </a>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -378,10 +309,7 @@ export default function About() {
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
                   <div className="bg-gradient-to-br from-white via-white to-accent/5 p-8 rounded-2xl border border-border hover:border-accent/30 hover:shadow-lg transition-all group hover:scale-[1.02] duration-300 h-full" data-testid={`value-card-${i}`}>
                     <h3 className="text-xl font-heading font-extrabold text-primary mb-2">{value.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed mb-4">{value.description}</p>
-                    <div className="pt-4 border-t border-border/60">
-                      <p className="text-sm text-primary/70 leading-relaxed italic">{value.practice}</p>
-                    </div>
+                    <p className="text-muted-foreground leading-relaxed">{value.description}</p>
                   </div>
                 </AnimateOnScroll>
               ))}
@@ -447,45 +375,6 @@ export default function About() {
                   </div>
                 </AnimateOnScroll>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-28 bg-[#FAFAFA] border-b relative overflow-hidden" data-testid="section-timeline">
-          <FloatingShape className="w-14 h-14 top-20 right-10" variant="ring" />
-          <GradientOrb className="w-64 h-64 bg-primary/3 -bottom-32 -left-32" />
-          <div className="container mx-auto px-4 md:px-8">
-            <AnimateOnScroll className="text-center mb-16">
-              <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
-                Our Journey
-              </div>
-              <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                Our Story & <span className="text-accent italic">Milestones</span>
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                From a bold vision to a growing consultancy, here's
-                how Performance Processes has evolved.
-              </p>
-            </AnimateOnScroll>
-            <div className="relative max-w-4xl mx-auto">
-              <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-accent/20 -translate-x-1/2"></div>
-              {timelineItems.map((item, i) => (
-                <AnimateOnScroll key={i} animation={i % 2 === 0 ? "fade-left" : "fade-right"} delay={i * 150}>
-                <div className={`relative flex items-start mb-14 last:mb-0 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`} data-testid={`timeline-item-${i}`}>
-                  <div className="hidden md:block md:w-1/2"></div>
-                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white border-2 border-accent flex items-center justify-center z-10 shadow-md">
-                    <div className="w-3 h-3 rounded-full bg-accent" />
-                  </div>
-                  <div className={`ml-16 md:ml-0 md:w-1/2 ${i % 2 === 0 ? 'md:pl-12' : 'md:pr-12'}`}>
-                    <div className="bg-white p-7 rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow">
-                      <div className="text-xs font-bold uppercase tracking-widest text-accent mb-2">{item.year}</div>
-                      <h3 className="text-xl font-heading font-extrabold text-primary mb-3">{item.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed">{item.description}</p>
-                    </div>
-                  </div>
-                </div>
-                </AnimateOnScroll>
-              ))}
             </div>
           </div>
         </section>

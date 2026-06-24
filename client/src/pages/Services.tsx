@@ -46,6 +46,29 @@ export default function Services() {
           subtitle="Start with one of our four headline packages, or browse the full catalog of websites, marketing, CRM, business systems, and ongoing support, clear prices, secure checkout."
         />
 
+        <section className="py-12 bg-secondary/40 border-b border-border">
+          <div className="container mx-auto px-4 md:px-8">
+            <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground text-center">Jump to a Category</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-border border border-border [&>*:nth-child(7)]:lg:col-start-2">
+              {CATEGORY_ORDER.map((cat) => (
+                <a
+                  key={cat}
+                  href={`#cat-${cat}`}
+                  className="group px-4 py-6 bg-background hover:bg-primary transition-colors text-center"
+                  data-testid={`link-category-${cat}`}
+                >
+                  <span className="text-xs uppercase tracking-[0.12em] text-primary group-hover:text-white transition-colors leading-tight">
+                    {CATEGORY_META[cat].label}
+                  </span>
+                </a>
+              ))}
+            </div>
+            <p className="text-center mt-8 text-xs text-muted-foreground font-light">
+              Every service can be paid for online, credit card, debit, and PayPal via secure Stripe checkout.
+            </p>
+          </div>
+        </section>
+
         {packages.length > 0 && (
           <section id="cat-packages" className="py-24 bg-background border-b border-border" data-testid="section-packages">
             <div className="container mx-auto px-4 md:px-8">
@@ -66,28 +89,6 @@ export default function Services() {
             </div>
           </section>
         )}
-
-        <section className="py-12 bg-secondary/40 border-b border-border">
-          <div className="container mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-border border border-border [&>*:nth-child(7)]:lg:col-start-2">
-              {CATEGORY_ORDER.map((cat) => (
-                <a
-                  key={cat}
-                  href={`#cat-${cat}`}
-                  className="group px-4 py-6 bg-background hover:bg-primary transition-colors text-center"
-                  data-testid={`link-category-${cat}`}
-                >
-                  <span className="text-xs uppercase tracking-[0.12em] text-primary group-hover:text-white transition-colors leading-tight">
-                    {CATEGORY_META[cat].label}
-                  </span>
-                </a>
-              ))}
-            </div>
-            <p className="text-center mt-8 text-xs text-muted-foreground font-light">
-              Every service can be paid for online, credit card, debit, and PayPal via secure Stripe checkout.
-            </p>
-          </div>
-        </section>
 
         {bundles.length > 0 && (
           <section id="cat-bundle" className="py-24 bg-primary text-white" data-testid="section-bundles">

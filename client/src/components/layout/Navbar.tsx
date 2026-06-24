@@ -237,30 +237,25 @@ export function Navbar() {
       href: "/",
     },
     {
-      label: language === "en" ? "Services" : "Services",
+      label: language === "en" ? "Solutions" : "Solutions",
       children: [
-        { label: language === "en" ? "All Services" : "Tous les services", href: "/services" },
-        { label: language === "en" ? "Website Services" : "Services web", href: "/services#cat-website" },
-        { label: language === "en" ? "Marketing Services" : "Services marketing", href: "/services#cat-marketing" },
-        { label: language === "en" ? "CRM and Lead Tracking" : "CRM et suivi des prospects", href: "/services#cat-crm" },
-        { label: language === "en" ? "Business Systems" : "Systèmes d'affaires", href: "/services#cat-systems" },
-        { label: language === "en" ? "HR and Recruiting" : "RH et recrutement", href: "/services#cat-hr-recruiting" },
-        { label: language === "en" ? "Ongoing Support" : "Soutien continu", href: "/services#cat-support" },
+        { label: language === "en" ? "All Packages & Services" : "Tous les forfaits et services", href: "/services" },
+        { label: language === "en" ? "Growth Systems" : "Systèmes de croissance", href: "/services#cat-marketing" },
+        { label: language === "en" ? "Operations Systems" : "Systèmes d'exploitation", href: "/services#cat-systems" },
+        { label: language === "en" ? "Team Systems" : "Systèmes d'équipe", href: "/services#cat-hr-recruiting" },
       ],
+    },
+    {
+      label: language === "en" ? "Results" : "Résultats",
+      href: "/results",
     },
     {
       label: t("nav.about"),
       children: [
         { label: language === "en" ? "About Us" : "À propos de nous", href: "/about" },
         { label: language === "en" ? "Our Approach" : "Notre approche", href: "/approach" },
-      ],
-    },
-    {
-      label: language === "en" ? "Engage" : "Engager",
-      children: [
         { label: t("nav.contact"), href: "/contact" },
         { label: language === "en" ? "NextUp Youth Partnership" : "Partenariat jeunesse NextUp", href: "/nextup-partnership" },
-        { label: language === "en" ? "Book a Strategy Call" : "Réserver un appel stratégique", href: BOOKINGS_URL, isExternal: true },
       ],
     },
   ];

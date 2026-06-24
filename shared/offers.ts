@@ -1,4 +1,5 @@
 export type OfferCategory =
+  | "packages"
   | "website"
   | "marketing"
   | "crm"
@@ -28,6 +29,79 @@ export interface Offer {
 }
 
 export const OFFERS: Offer[] = [
+  {
+    id: "growth-system",
+    name: "Growth System",
+    description: "A complete system to attract, capture, and convert more leads — built and installed for you.",
+    price: 250000,
+    priceLabel: "$2,500",
+    bestFor: "Small businesses that need a reliable engine for generating and converting leads.",
+    includes: [
+      "Conversion-focused website or landing page structure",
+      "Marketing strategy and offer positioning",
+      "CRM and lead tracking setup",
+      "Lead capture and follow-up workflow",
+      "Campaign messaging and content direction",
+      "Analytics and KPI tracking setup",
+      "30-day execution plan",
+    ],
+    category: "packages",
+    highlight: true,
+  },
+  {
+    id: "operations-system",
+    name: "Operations System",
+    description: "Document, streamline, and automate how your business runs day to day.",
+    price: 500000,
+    priceLabel: "$5,000",
+    bestFor: "Businesses that need structure, SOPs, and systems in place before they scale.",
+    includes: [
+      "Full business and process audit",
+      "Org structure and role clarity",
+      "Standard operating procedures and playbooks",
+      "KPI dashboard and reporting setup",
+      "Workflow automation recommendations",
+      "Tool and systems integration plan",
+      "90-day implementation roadmap",
+    ],
+    category: "packages",
+  },
+  {
+    id: "team-performance-system",
+    name: "Team Performance System",
+    description: "Hire the right people and build the structure to manage performance with confidence.",
+    price: 350000,
+    priceLabel: "$3,500",
+    bestFor: "Growing teams that need hiring systems and a clear performance structure.",
+    includes: [
+      "Hiring strategy and job descriptions",
+      "Recruitment and interview workflow",
+      "Candidate scorecards and onboarding plan",
+      "Performance review framework",
+      "Role clarity and accountability map",
+      "Team KPIs and check-in cadence",
+    ],
+    category: "packages",
+  },
+  {
+    id: "ongoing-performance-support",
+    name: "Ongoing Performance Support",
+    description: "A monthly partner to keep your systems running, measured, and improving.",
+    price: 75000,
+    priceLabel: "$750 / month",
+    bestFor: "Businesses that want continuous support across systems, marketing, and performance.",
+    includes: [
+      "Monthly strategy and planning call",
+      "KPI and performance review",
+      "Marketing and systems optimization",
+      "Process refinement and recommendations",
+      "Priority support between calls",
+      "Quarterly roadmap updates",
+    ],
+    category: "packages",
+    isMonthly: true,
+  },
+
   {
     id: "starter-website",
     name: "Starter Website Package",
@@ -429,6 +503,11 @@ export const OFFERS: Offer[] = [
 ];
 
 export const CATEGORY_META: Record<OfferCategory, { label: string; description: string; order: number }> = {
+  packages: {
+    label: "Headline Packages",
+    description: "Four productized systems that solve a complete business outcome — buy online and we get started.",
+    order: 0,
+  },
   website: {
     label: "Website Services",
     description: "Websites that work, from a simple presence to a conversion engine.",

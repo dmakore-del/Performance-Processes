@@ -133,13 +133,13 @@ export function Footer() {
             <div className="flex flex-col gap-6">
               <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{language === "en" ? "Services" : "Services"}</h3>
               <ul className="flex flex-col gap-3.5 text-sm font-medium text-muted-foreground">
-                <li><Link href="/services" className="hover:text-accent transition-colors font-bold text-accent">All Services</Link></li>
+                <li><a href="/services#cat-packages" className="hover:text-accent transition-colors font-bold text-accent">Headline Packages</a></li>
+                <li><a href="/services#cat-marketing" className="hover:text-accent transition-colors">Growth Systems</a></li>
+                <li><a href="/services#cat-systems" className="hover:text-accent transition-colors">Operations Systems</a></li>
+                <li><a href="/services#cat-hr-recruiting" className="hover:text-accent transition-colors">Team Systems</a></li>
                 <li><a href="/services#cat-website" className="hover:text-accent transition-colors">Website Services</a></li>
-                <li><a href="/services#cat-marketing" className="hover:text-accent transition-colors">Marketing Services</a></li>
-                <li><a href="/services#cat-crm" className="hover:text-accent transition-colors">CRM and Lead Tracking</a></li>
-                <li><a href="/services#cat-systems" className="hover:text-accent transition-colors">Business Systems</a></li>
-                <li><a href="/services#cat-hr-recruiting" className="hover:text-accent transition-colors">HR and Recruiting</a></li>
-                <li><a href="/services#cat-support" className="hover:text-accent transition-colors">Ongoing Support</a></li>
+                <li><Link href="/services" className="hover:text-accent transition-colors">All Packages & Services</Link></li>
+                <li><Link href="/results" className="hover:text-accent transition-colors">Results & Case Studies</Link></li>
                 <li><Link href="/nextup-partnership" className="hover:text-accent transition-colors">NextUp Youth Partnership</Link></li>
               </ul>
             </div>

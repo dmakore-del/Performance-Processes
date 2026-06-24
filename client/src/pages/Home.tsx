@@ -1,9 +1,11 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { ArrowRight, X as XIcon } from "lucide-react";
+import { ArrowRight, X as XIcon, Search, Hammer, Zap, LineChart } from "lucide-react";
 import { Link } from "wouter";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { SEOHead } from "@/components/SEOHead";
+import { OfferCard } from "@/components/OfferCard";
+import { getOffersByCategory } from "@shared/offers";
 
 import communityCollaborationImg from "@assets/generated/community-collaboration.png";
 import communityWorkspaceImg from "@assets/generated/community-workspace.png";
@@ -94,6 +96,35 @@ const PHASES = [
   },
 ];
 
+const HOW_WE_HELP = [
+  {
+    icon: Search,
+    step: "01",
+    title: "Assess",
+    desc: "We audit where you are today — your systems, gaps, and biggest opportunities — and map the path forward.",
+  },
+  {
+    icon: Hammer,
+    step: "02",
+    title: "Build",
+    desc: "We design and build the systems you need: websites, marketing, CRM, hiring, SOPs, and KPIs.",
+  },
+  {
+    icon: Zap,
+    step: "03",
+    title: "Implement & Automate",
+    desc: "We install the systems into your day-to-day, automate the busywork, and train your team to run them.",
+  },
+  {
+    icon: LineChart,
+    step: "04",
+    title: "Measure & Improve",
+    desc: "We track performance against clear KPIs and keep refining so the systems compound over time.",
+  },
+];
+
+const PACKAGES = getOffersByCategory("packages");
+
 const BEFORE_ITEMS = [
   "Disorganized growth",
   "Hiring gaps and misaligned roles",
@@ -152,13 +183,13 @@ export default function Home() {
                 className="font-heading font-semibold text-white leading-[1.05] tracking-tight text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] mb-8 max-w-3xl"
                 data-testid="text-hero-title"
               >
-                Systems that help businesses scale with confidence.
+                We Help Small Businesses Build Systems That Scale.
               </h1>
               <p
                 className="text-base md:text-lg text-white/75 leading-relaxed max-w-2xl mb-10"
                 data-testid="text-hero-subtitle"
               >
-                Performance Processes builds and runs the websites, marketing, CRM, and operating systems that growing companies, nonprofits, and small businesses need to grow — installed as one integrated infrastructure.
+                We build and install the growth, operations, and team systems small businesses need to grow with less chaos — productized packages you can buy today, plus the hands-on support to make them stick.
               </p>
 
               {/* Pipe-bullet callouts */}
@@ -279,6 +310,87 @@ export default function Home() {
                   </div>
                 </AnimateOnScroll>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ————————————————————————————————————————————————————————————
+            HEADLINE PACKAGES — 4 productized systems, buyable
+        —————————————————————————————————————————————————————————————— */}
+        <section className="relative py-28 md:py-36 bg-[#F8FAFC] border-y border-border/60" data-testid="section-packages">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14">
+              <AnimateOnScroll className="max-w-3xl">
+                <p className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-6">Headline Packages</p>
+                <h2 className="text-display text-primary text-4xl md:text-5xl lg:text-6xl">
+                  Buy a complete{" "}
+                  <span className="text-display-italic text-accent">system</span>, not just hours.
+                </h2>
+              </AnimateOnScroll>
+              <AnimateOnScroll delay={120}>
+                <p className="text-muted-foreground text-base max-w-md md:text-right">
+                  Four productized packages that each solve a full business outcome. Pay online by card, debit, or PayPal — and we get started.
+                </p>
+              </AnimateOnScroll>
+            </div>
+
+            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+              {PACKAGES.map((offer, i) => (
+                <AnimateOnScroll key={offer.id} animation="fade-up" delay={i * 90}>
+                  <OfferCard offer={offer} returnPage="/services" />
+                </AnimateOnScroll>
+              ))}
+            </div>
+
+            <AnimateOnScroll className="text-center mt-14">
+              <Link
+                href="/services"
+                className="inline-flex items-center justify-center gap-2 border border-primary/30 text-primary hover:bg-primary hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300"
+                data-testid="link-packages-all"
+              >
+                See the full catalog
+                <ArrowRight size={16} />
+              </Link>
+            </AnimateOnScroll>
+          </div>
+        </section>
+
+        {/* ————————————————————————————————————————————————————————————
+            HOW WE HELP — 4-step methodology
+        —————————————————————————————————————————————————————————————— */}
+        <section className="relative py-28 md:py-36 bg-white" data-testid="section-how-we-help">
+          <div className="container mx-auto px-4 md:px-8">
+            <AnimateOnScroll className="max-w-3xl mb-16">
+              <p className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-6">How we help</p>
+              <h2 className="text-display text-primary text-4xl md:text-5xl lg:text-6xl">
+                A clear path from{" "}
+                <span className="text-display-italic text-accent">chaos</span> to systems.
+              </h2>
+            </AnimateOnScroll>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {HOW_WE_HELP.map((s, i) => {
+                const Icon = s.icon;
+                return (
+                  <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
+                    <div
+                      className="group h-full bg-[#F8FAFC] border border-border hover:border-accent/40 p-8 transition-all duration-500"
+                      data-testid={`how-we-help-step-${i}`}
+                    >
+                      <div className="flex items-center justify-between mb-6">
+                        <span className="w-12 h-12 flex items-center justify-center bg-primary text-white group-hover:bg-accent transition-colors">
+                          <Icon size={20} />
+                        </span>
+                        <span className="text-display numeral-outline text-primary/30 text-4xl">
+                          {s.step}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-heading font-extrabold text-primary mb-3">{s.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                    </div>
+                  </AnimateOnScroll>
+                );
+              })}
             </div>
           </div>
         </section>

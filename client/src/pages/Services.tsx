@@ -29,6 +29,7 @@ export default function Services() {
     }
   }, []);
 
+  const packages = OFFERS.filter((o) => o.category === "packages");
   const bundles = OFFERS.filter((o) => o.category === "bundle");
 
   return (
@@ -42,9 +43,30 @@ export default function Services() {
 
       <main className="flex-grow">
         <PageHero
-          title={<>Productized services. <span className="text-accent">Clear prices.</span></>}
-          subtitle="We help professionals, nonprofits, startups, and small businesses build the websites, marketing systems, and business support they need to grow."
+          title={<>Buy a complete <span className="text-accent">system.</span></>}
+          subtitle="Start with one of our four headline packages, or browse the full catalog of websites, marketing, CRM, business systems, and ongoing support — clear prices, secure checkout."
         />
+
+        {packages.length > 0 && (
+          <section id="cat-packages" className="py-20 bg-white border-b" data-testid="section-packages">
+            <div className="container mx-auto px-4 md:px-8">
+              <div className="max-w-3xl mb-12">
+                <p className="text-xs font-black uppercase tracking-[0.3em] mb-3 text-accent">Headline Packages</p>
+                <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-3">
+                  Four systems, four complete outcomes.
+                </h2>
+                <p className="text-base md:text-lg text-muted-foreground">
+                  Each package solves a full business problem and installs infrastructure you keep. The detailed à-la-carte catalog is below.
+                </p>
+              </div>
+              <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                {packages.map((offer) => (
+                  <OfferCard key={offer.id} offer={offer} returnPage="/services" />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="py-12 bg-white border-b">
           <div className="container mx-auto px-4 md:px-8">

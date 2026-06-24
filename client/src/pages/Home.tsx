@@ -101,9 +101,17 @@ export default function Home() {
               poster={heroVideoPoster}
               className="no-grayscale w-full h-full object-cover"
               data-testid="video-hero"
+              ref={(el) => {
+                if (!el) return;
+                el.muted = true;
+                el.defaultMuted = true;
+                el.setAttribute("muted", "");
+                const p = el.play();
+                if (p && typeof p.catch === "function") p.catch(() => {});
+              }}
               {...{ "webkit-playsinline": "true" } as any}
             >
-              <source src="/assets/videos/hero-strategy.mp4" type="video/mp4" />
+              <source src="/assets/videos/hero-strategy-v2.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/55 to-primary/25" />
           </div>

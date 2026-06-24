@@ -8,49 +8,61 @@ import { Link } from "wouter";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
-interface CaseStudyPlaceholder {
+interface CaseStudy {
   industry: string;
+  client: string;
+  title: string;
   system: string;
   challenge: string;
-  metrics: { label: string }[];
+  solution: string;
+  results: string[];
+  impact: string;
 }
 
-const CASE_STUDIES: CaseStudyPlaceholder[] = [
+const CASE_STUDY: CaseStudy = {
+  industry: "Property & Facilities",
+  client: "TrueNorth Property & Facilities",
+  title: "Transforming Operations Through Custom Business Systems",
+  system: "Operations System",
+  challenge:
+    "As the organization expanded its property management and facilities services, manual processes and disconnected systems were creating inefficiencies in employee management, client communications, and operational reporting. Leadership needed a centralized platform to improve visibility, accountability, and service delivery.",
+  solution:
+    "Performance Processes designed and developed a custom Client Portal and Human Resource Management (HRM) system tailored to the organization's workflows. The solution centralized employee records, automated administrative processes, streamlined client interactions, and provided management with real-time operational insights.",
+  results: [
+    "Improved efficiency through automation of key HR and administrative processes.",
+    "Enhanced client experience with centralized access to service information and communications.",
+    "Increased visibility into workforce and operational performance.",
+    "Reduced reliance on spreadsheets and manual reporting.",
+    "Established a scalable technology foundation to support future growth.",
+  ],
+  impact:
+    "The organization now operates with greater efficiency, improved information accessibility, and stronger operational control, allowing leadership to focus on strategic growth rather than administrative overhead.",
+};
+
+interface Testimonial {
+  quote: string;
+  author: string;
+  org: string;
+}
+
+const TESTIMONIALS: Testimonial[] = [
   {
-    industry: "Property & Facilities",
-    system: "Operations System",
-    challenge: "Documenting workflows and building the SOPs and KPI tracking needed to run consistently across a growing team.",
-    metrics: [
-      { label: "Result coming soon" },
-      { label: "Result coming soon" },
-    ],
+    quote:
+      "Performance Processes played a key role in helping us bring our digital vision to life. Their team developed a modern, user-friendly website that effectively communicates our mission and engages youth, donors, and community partners. Throughout the project, they demonstrated professionalism, responsiveness, and a deep understanding of our organizational needs. The end result exceeded our expectations and has significantly strengthened our online presence. We highly recommend Performance Processes to any organization seeking reliable and results-driven web development services.",
+    author: "Leadership Team",
+    org: "NextUp Foundation for Canadian Youth",
   },
   {
-    industry: "Production & Media",
-    system: "Growth System",
-    challenge: "Installing a website, CRM, and follow-up workflow so no inbound lead falls through the cracks.",
-    metrics: [
-      { label: "Result coming soon" },
-      { label: "Result coming soon" },
-    ],
+    quote:
+      "Performance Processes partnered with us to design and develop both our Client Portal and Human Resource Management (HRM) systems. Their ability to understand our operational requirements and translate them into practical, efficient digital solutions was exceptional. The systems they delivered have streamlined workflows, improved information accessibility, and enhanced overall organizational efficiency. Their commitment to quality, communication, and continuous improvement made them a trusted technology partner throughout the project.",
+    author: "Management Team",
+    org: "TrueNorth Property & Facilities",
   },
   {
-    industry: "Home Services",
-    system: "Team Performance System",
-    challenge: "Building hiring systems, onboarding, and a performance structure to support a scaling team.",
-    metrics: [
-      { label: "Result coming soon" },
-      { label: "Result coming soon" },
-    ],
-  },
-  {
-    industry: "Nonprofit",
-    system: "Ongoing Performance Support",
-    challenge: "Providing continuous strategy, KPI review, and optimization to keep systems improving month over month.",
-    metrics: [
-      { label: "Result coming soon" },
-      { label: "Result coming soon" },
-    ],
+    quote:
+      "Working with Performance Processes on our process mapping initiative provided tremendous value to our organization. They helped us clearly document, analyze, and optimize our key operational processes, giving us greater visibility into how work flows across the business. Their structured approach uncovered opportunities for efficiency, consistency, and improved client service. The resulting process framework has become an important foundation for our ongoing growth and operational excellence.",
+    author: "Leadership Team",
+    org: "Ubuntu Immigration",
   },
 ];
 
@@ -67,98 +79,129 @@ export default function Results() {
       <main className="flex-grow">
         <PageHero
           title={<>Results that <span className="text-accent">compound.</span></>}
-          subtitle="Real outcomes from the systems we build and run for small and emerging businesses. We publish only authentic client results, these case studies are being prepared with our partners."
+          subtitle="Real outcomes from the systems we build and run for small and emerging businesses, in the words of the partners we work with."
         />
 
-        {/* Notice banner, clearly labelled placeholders */}
-        <section className="py-6 bg-accent/10 border-b border-accent/20" data-testid="section-results-notice">
-          <div className="container mx-auto px-4 md:px-8">
-            <div className="flex items-center justify-center gap-3 text-center">
-              <p className="text-sm font-semibold text-primary">
-                Case studies coming soon, we publish only verified, authentic client results.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Case study placeholders */}
+        {/* Featured case study */}
         <section className="py-20 bg-[#FAFAFA]" data-testid="section-case-studies">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mb-12">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-3">Case Studies</p>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-3">Case Study</p>
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-3">
                 The systems behind the outcomes
               </h2>
               <p className="text-base md:text-lg text-muted-foreground">
-                Each engagement leaves behind infrastructure our clients keep. Detailed results from these projects will be published here as they are finalized with our partners.
+                Each engagement leaves behind infrastructure our clients keep. Here is one example of the work in action.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {CASE_STUDIES.map((cs, i) => (
-                <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
-                  <div
-                    className="relative flex flex-col h-full rounded-2xl border border-border bg-white p-8"
-                    data-testid={`card-case-study-${i}`}
+            <AnimateOnScroll animation="fade-up">
+              <article
+                className="rounded-2xl border border-border bg-white overflow-hidden"
+                data-testid="card-case-study-truenorth"
+              >
+                <div className="p-8 md:p-12 border-b border-border">
+                  <p className="text-[11px] font-black uppercase tracking-[0.25em] text-accent mb-3">
+                    {CASE_STUDY.industry}
+                  </p>
+                  <h3
+                    className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-3"
+                    data-testid="text-case-title"
                   >
-                    <span className="absolute top-6 right-6 text-[10px] font-black uppercase tracking-[0.2em] bg-secondary text-muted-foreground px-3 py-1 rounded-full">
-                      Coming soon
-                    </span>
-                    <p className="text-[11px] font-black uppercase tracking-[0.25em] text-accent mb-2">
-                      {cs.industry}
-                    </p>
-                    <h3 className="text-xl font-extrabold text-primary mb-1.5" data-testid={`text-case-system-${i}`}>
-                      {cs.system}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-6">{cs.challenge}</p>
+                    {CASE_STUDY.title}
+                  </h3>
+                  <p className="text-sm font-semibold text-muted-foreground" data-testid="text-case-client">
+                    {CASE_STUDY.client}
+                    <span className="mx-2 text-border">·</span>
+                    <span className="text-accent">{CASE_STUDY.system}</span>
+                  </p>
+                </div>
 
-                    <div className="mt-auto grid grid-cols-2 gap-4 border-t border-border pt-6">
-                      {cs.metrics.map((m, j) => (
-                        <div key={j} data-testid={`metric-case-${i}-${j}`}>
-                          <div className="text-2xl font-black text-primary/20">·</div>
-                          <p className="text-xs text-muted-foreground mt-1">{m.label}</p>
-                        </div>
-                      ))}
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                  <div className="p-8 md:p-12 md:border-r border-b md:border-b-0 border-border">
+                    <p className="text-[11px] font-black uppercase tracking-[0.25em] text-primary/40 mb-3">
+                      Challenge
+                    </p>
+                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed" data-testid="text-case-challenge">
+                      {CASE_STUDY.challenge}
+                    </p>
                   </div>
-                </AnimateOnScroll>
-              ))}
-            </div>
+                  <div className="p-8 md:p-12 border-b border-border">
+                    <p className="text-[11px] font-black uppercase tracking-[0.25em] text-primary/40 mb-3">
+                      Solution
+                    </p>
+                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed" data-testid="text-case-solution">
+                      {CASE_STUDY.solution}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-8 md:p-12 border-b border-border">
+                  <p className="text-[11px] font-black uppercase tracking-[0.25em] text-primary/40 mb-6">
+                    Results
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+                    {CASE_STUDY.results.map((r, i) => (
+                      <div
+                        key={i}
+                        className="flex gap-3 border-t border-border pt-4"
+                        data-testid={`text-case-result-${i}`}
+                      >
+                        <span className="text-accent font-black leading-none" aria-hidden="true">·</span>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{r}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="p-8 md:p-12 bg-primary text-white">
+                  <p className="text-[11px] font-black uppercase tracking-[0.25em] text-accent mb-3">
+                    Impact
+                  </p>
+                  <p className="text-base md:text-lg leading-relaxed text-white/90" data-testid="text-case-impact">
+                    {CASE_STUDY.impact}
+                  </p>
+                </div>
+              </article>
+            </AnimateOnScroll>
           </div>
         </section>
 
-        {/* Testimonials placeholder */}
+        {/* Testimonials */}
         <section className="py-20 bg-white border-t" data-testid="section-testimonials">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-3">In Their Words</p>
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-3">
-                Client stories, in progress
+                What our partners say
               </h2>
               <p className="text-base md:text-lg text-muted-foreground">
-                We're gathering quotes and results directly from the businesses we work with. Verified testimonials will appear here.
+                Verified words from the organizations we have partnered with.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  className="flex flex-col h-full rounded-2xl border border-dashed border-border bg-[#FAFAFA] p-8"
-                  data-testid={`card-testimonial-placeholder-${i}`}
-                >
-                  <span aria-hidden="true" className="text-4xl font-serif text-accent/30 leading-none mb-4 block">&ldquo;</span>
-                  <p className="text-sm text-muted-foreground/70 italic leading-relaxed mb-6">
-                    "A verified client testimonial will be published here once confirmed with our partner."
-                  </p>
-                  <div className="mt-auto flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-border" />
-                    <div>
-                      <div className="h-3 w-24 bg-border rounded mb-1.5" />
-                      <div className="h-2.5 w-16 bg-border/60 rounded" />
-                    </div>
-                  </div>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {TESTIMONIALS.map((t, i) => (
+                <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
+                  <figure
+                    className="flex flex-col h-full rounded-2xl border border-border bg-[#FAFAFA] p-8"
+                    data-testid={`card-testimonial-${i}`}
+                  >
+                    <span aria-hidden="true" className="text-4xl font-serif text-accent/40 leading-none mb-4 block">
+                      &ldquo;
+                    </span>
+                    <blockquote className="text-sm text-muted-foreground leading-relaxed mb-6 flex-grow" data-testid={`text-testimonial-quote-${i}`}>
+                      {t.quote}
+                    </blockquote>
+                    <figcaption className="mt-auto border-t border-border pt-5">
+                      <div className="w-8 h-px bg-accent mb-3" />
+                      <p className="text-sm font-bold text-primary" data-testid={`text-testimonial-org-${i}`}>
+                        {t.org}
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-0.5" data-testid={`text-testimonial-author-${i}`}>{t.author}</p>
+                    </figcaption>
+                  </figure>
+                </AnimateOnScroll>
               ))}
             </div>
           </div>

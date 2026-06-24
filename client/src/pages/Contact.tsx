@@ -35,7 +35,7 @@ const faqItems = [
   },
   {
     question: "How does a new engagement start?",
-    answer: "Every engagement begins with a complimentary Discovery Call where we learn about your business, your goals, and what you already have in place. From there, we recommend a productized offer or bundle with clear scope, timeline, and price — usually within a few business days.",
+    answer: "Every engagement begins with a complimentary Discovery Call where we learn about your business, your goals, and what you already have in place. From there, we recommend a productized offer or bundle with clear scope, timeline, and price, usually within a few business days.",
   },
   {
     question: "How quickly will I receive a response?",
@@ -43,11 +43,11 @@ const faqItems = [
   },
   {
     question: "Is the Discovery Call really free?",
-    answer: "Yes. The Discovery Call is complimentary — no commitment. We use it to understand your situation and recommend the right starting point, even if that turns out to be 'not us'.",
+    answer: "Yes. The Discovery Call is complimentary, no commitment. We use it to understand your situation and recommend the right starting point, even if that turns out to be 'not us'.",
   },
   {
     question: "What should I prepare before reaching out?",
-    answer: "A short note about your business, what you're trying to grow, and what you already have in place (website, CRM, marketing tools) is plenty. You don't need a brief — that's what the Discovery Call is for.",
+    answer: "A short note about your business, what you're trying to grow, and what you already have in place (website, CRM, marketing tools) is plenty. You don't need a brief, that's what the Discovery Call is for.",
   },
   {
     question: "Do you work with clients outside of Ontario?",
@@ -55,7 +55,7 @@ const faqItems = [
   },
   {
     question: "Who do you typically work with?",
-    answer: "Professionals, nonprofits, and small-to-mid-sized businesses — including professional services, trades and local businesses, health and wellness practices, coaches, creators, and growing nonprofits.",
+    answer: "Professionals, nonprofits, and small-to-mid-sized businesses, including professional services, trades and local businesses, health and wellness practices, coaches, creators, and growing nonprofits.",
   },
 ];
 

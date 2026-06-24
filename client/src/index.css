@@ -30,7 +30,7 @@
   --color-ring: hsl(var(--ring));
 
   --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-heading: 'Cormorant Garamond', serif;
 }
 
 :root {
@@ -76,7 +76,7 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold tracking-tight;
+    @apply font-heading font-medium tracking-tight;
   }
   /* Black & white aesthetic: background media reads monochrome so pink stays the only accent color */
   video {
@@ -209,17 +209,17 @@
 .stagger-5 { transition-delay: 0.5s; }
 .stagger-6 { transition-delay: 0.6s; }
 
-/* Editorial display type — Omnicom-style oversized headlines */
+/* Editorial display type — delicate high-end serif headlines */
 .text-display {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 0.92;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.02;
 }
 .text-display-italic {
   font-style: italic;
-  font-weight: 800;
-  letter-spacing: -0.045em;
+  font-weight: 400;
+  letter-spacing: 0;
 }
 
 /* Rotating word vertical marquee */

@@ -222,7 +222,7 @@ export default function Careers() {
                   "Maintain a pipeline of qualified leads"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="text-accent flex-shrink-0 mt-1 leading-none">—</span>
+                    <span className="text-accent flex-shrink-0 mt-1 leading-none">·</span>
                     <span className="text-muted-foreground">{item}</span>
                   </li>
                 ))}
@@ -240,7 +240,7 @@ export default function Careers() {
                   "High level of professionalism and integrity"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="text-accent flex-shrink-0 mt-1 leading-none">—</span>
+                    <span className="text-accent flex-shrink-0 mt-1 leading-none">·</span>
                     <span className="text-muted-foreground">{item}</span>
                   </li>
                 ))}
@@ -264,7 +264,7 @@ export default function Careers() {
                   "Opportunity to align with a performance-focused consulting brand"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="text-accent flex-shrink-0 mt-1 leading-none">—</span>
+                    <span className="text-accent flex-shrink-0 mt-1 leading-none">·</span>
                     <span className="text-muted-foreground">{item}</span>
                   </li>
                 ))}

@@ -65,27 +65,27 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
 
   return (
     <div
-      className={`relative flex flex-col h-full rounded-2xl border-2 bg-white p-7 transition-all hover:shadow-xl ${
-        offer.highlight ? "border-accent shadow-lg shadow-accent/10" : "border-border hover:border-accent/30"
+      className={`relative flex flex-col h-full rounded-none border bg-white p-7 transition-colors ${
+        offer.highlight ? "border-accent" : "border-border hover:border-primary/40"
       }`}
       data-testid={`offer-card-${offer.id}`}
     >
       {offer.highlight && (
-        <span className="absolute -top-3 left-6 text-[10px] font-black uppercase tracking-[0.2em] bg-accent text-white px-3 py-1 rounded-full">
+        <span className="absolute top-0 right-0 text-[10px] uppercase tracking-[0.2em] bg-accent text-white px-3 py-1.5">
           Most Popular
         </span>
       )}
 
-      <div className="mb-4">
-        <h3 className="text-xl font-extrabold text-primary mb-1.5" data-testid={`text-offer-name-${offer.id}`}>
+      <div className="mb-5">
+        <h3 className="text-display text-2xl text-primary mb-2" data-testid={`text-offer-name-${offer.id}`}>
           {offer.name}
         </h3>
-        <p className="text-sm text-muted-foreground leading-relaxed">{offer.description}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed font-light">{offer.description}</p>
       </div>
 
-      <div className="mb-5">
+      <div className="mb-6">
         <div className="flex items-baseline gap-3">
-          <div className="text-3xl font-black text-accent" data-testid={`text-offer-price-${offer.id}`}>
+          <div className="text-display text-4xl text-primary" data-testid={`text-offer-price-${offer.id}`}>
             {activePrice}
           </div>
           {discountActive && (
@@ -95,16 +95,16 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
           )}
         </div>
         {discountActive && (
-          <div className="text-[11px] font-bold uppercase tracking-wider text-accent mt-1">
+          <div className="text-[11px] uppercase tracking-wider text-primary mt-1.5">
             NextUp 40% off applied
           </div>
         )}
         {offer.isPerPerson && offer.perTeamLabel && (
-          <div className="mt-3 inline-flex items-center rounded-full bg-secondary p-1 text-xs font-bold">
+          <div className="mt-4 inline-flex items-center border border-border text-xs">
             <button
               type="button"
               onClick={() => setMode("standard")}
-              className={`px-3 py-1 rounded-full transition-colors ${mode === "standard" ? "bg-primary text-white" : "text-primary hover:text-accent"}`}
+              className={`px-3 py-1.5 transition-colors ${mode === "standard" ? "bg-primary text-white" : "text-primary hover:text-accent"}`}
               data-testid={`button-mode-standard-${offer.id}`}
             >
               Per Person
@@ -112,7 +112,7 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
             <button
               type="button"
               onClick={() => setMode("team")}
-              className={`px-3 py-1 rounded-full transition-colors ${mode === "team" ? "bg-primary text-white" : "text-primary hover:text-accent"}`}
+              className={`px-3 py-1.5 transition-colors ${mode === "team" ? "bg-primary text-white" : "text-primary hover:text-accent"}`}
               data-testid={`button-mode-team-${offer.id}`}
             >
               Team
@@ -122,14 +122,14 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
       </div>
 
       <div className="mb-5">
-        <div className="text-[11px] font-black uppercase tracking-[0.2em] text-muted-foreground mb-1.5">Best for</div>
-        <p className="text-sm text-primary leading-relaxed">{offer.bestFor}</p>
+        <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Best for</div>
+        <p className="text-sm text-primary leading-relaxed font-light">{offer.bestFor}</p>
       </div>
 
       <ul className="space-y-2.5 mb-7">
         {offer.includes.map((item, i) => (
-          <li key={i} className="flex items-start gap-2.5 text-sm text-primary">
-            <span aria-hidden="true" className="text-accent shrink-0 leading-relaxed">&mdash;</span>
+          <li key={i} className="flex items-start gap-2.5 text-sm text-primary font-light">
+            <span aria-hidden="true" className="text-accent shrink-0 leading-relaxed">·</span>
             <span>{item}</span>
           </li>
         ))}
@@ -137,7 +137,7 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
 
       <div className="mt-auto space-y-2.5">
         {showBuy && isWebsite && (
-          <div className="rounded-xl bg-[#FAFAFA] border border-border p-3">
+          <div className="rounded-none bg-secondary/50 border border-border p-3">
             {!showPromo ? (
               <button
                 type="button"
@@ -176,7 +176,7 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
                   <p className="text-[11px] text-destructive font-medium">Code not recognized.</p>
                 )}
                 {discountActive && (
-                  <p className="text-[11px] text-accent font-bold">40% NextUp discount will apply at checkout.</p>
+                  <p className="text-[11px] text-primary font-semibold">40% NextUp discount will apply at checkout.</p>
                 )}
               </div>
             )}
@@ -187,29 +187,25 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
             <Button
               onClick={handleBuy}
               disabled={busy}
-              className={`w-full rounded-full h-11 font-bold text-xs uppercase tracking-widest transition-all ${
+              className={`w-full rounded-none h-12 font-semibold text-xs uppercase tracking-[0.2em] transition-colors ${
                 offer.highlight ? "bg-accent text-white hover:bg-primary" : "bg-primary text-white hover:bg-accent"
               }`}
               data-testid={`button-buy-${offer.id}`}
             >
               {busy ? "Processing..." : offer.isMonthly ? "Subscribe Now" : "Get Started"}
             </Button>
-            <div className="flex items-center justify-center gap-1.5">
+            <div className="flex items-center justify-center gap-2 pt-0.5">
               <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Pay with</span>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-gray-100 text-[10px] font-semibold text-gray-700">
-                Card
-              </span>
-              <span className="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-semibold text-gray-700">Debit</span>
-              <span className="px-2 py-0.5 rounded bg-[#FFC43926] text-[10px] font-semibold text-[#003087]">PayPal</span>
+              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Card · Debit · PayPal</span>
             </div>
           </>
         ) : offer.ctaHref ? (
           <Link href={offer.ctaHref}>
             <Button
-              className="w-full rounded-full h-11 font-bold text-xs uppercase tracking-widest bg-primary text-white hover:bg-accent"
+              className="w-full rounded-none h-12 font-semibold text-xs uppercase tracking-[0.2em] bg-primary text-white hover:bg-accent"
               data-testid={`button-explore-${offer.id}`}
             >
-              {offer.ctaHref === "/contact" ? "Request Quote" : "Request Quote"}
+              Request Quote
             </Button>
           </Link>
         ) : null}

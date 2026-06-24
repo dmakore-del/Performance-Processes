@@ -1063,7 +1063,7 @@ export default function Consulting() {
                       <ul className="space-y-2">
                         {step.outcomes.map((outcome, oi) => (
                           <li key={oi} className="flex items-center gap-2 text-sm text-primary/80">
-                            <span aria-hidden="true" className="text-accent shrink-0">—</span>
+                            <span aria-hidden="true" className="text-accent shrink-0">·</span>
                             <span>{outcome}</span>
                           </li>
                         ))}
@@ -1158,7 +1158,7 @@ export default function Consulting() {
                       <ul className="space-y-2.5 mb-6">
                         {s.benefits.slice(0, 4).map((b: string, bi: number) => (
                           <li key={bi} className="flex items-start gap-2.5 text-sm text-primary/80">
-                            <span aria-hidden="true" className="text-accent shrink-0">—</span>
+                            <span aria-hidden="true" className="text-accent shrink-0">·</span>
                             <span>{b}</span>
                           </li>
                         ))}
@@ -1226,7 +1226,7 @@ export default function Consulting() {
                           : ["Appel stratégique de groupe mensuel", "Jumelage de partenaires", "Bibliothèque de modèles et outils", "Sessions de formation et ateliers", "Accès communauté privée", "Ressources réservées aux membres"]
                         ).map((item, i) => (
                           <div key={i} className="flex items-center gap-2.5 text-sm text-white/90">
-                            <span aria-hidden="true" className="text-accent shrink-0">—</span>
+                            <span aria-hidden="true" className="text-accent shrink-0">·</span>
                             <span>{item}</span>
                           </div>
                         ))}
@@ -1340,7 +1340,7 @@ export default function Consulting() {
                   <ul className="space-y-2 mb-6">
                     {tier.features.map((f, fi) => (
                       <li key={fi} className="flex items-center gap-2 text-sm">
-                        <span aria-hidden="true" className="text-accent shrink-0">—</span>
+                        <span aria-hidden="true" className="text-accent shrink-0">·</span>
                         <span>{f}</span>
                       </li>
                     ))}
@@ -1421,7 +1421,7 @@ export default function Consulting() {
                           <ul className="space-y-2 mb-6">
                             {tier.features.map((f: string, fi: number) => (
                               <li key={fi} className="flex items-start gap-2 text-sm text-primary">
-                                <span aria-hidden="true" className="text-accent shrink-0">—</span>
+                                <span aria-hidden="true" className="text-accent shrink-0">·</span>
                                 <span>{f}</span>
                               </li>
                             ))}

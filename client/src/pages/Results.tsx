@@ -67,15 +67,15 @@ export default function Results() {
       <main className="flex-grow">
         <PageHero
           title={<>Results that <span className="text-accent">compound.</span></>}
-          subtitle="Real outcomes from the systems we build and run for small and emerging businesses. We publish only authentic client results — these case studies are being prepared with our partners."
+          subtitle="Real outcomes from the systems we build and run for small and emerging businesses. We publish only authentic client results, these case studies are being prepared with our partners."
         />
 
-        {/* Notice banner — clearly labelled placeholders */}
+        {/* Notice banner, clearly labelled placeholders */}
         <section className="py-6 bg-accent/10 border-b border-accent/20" data-testid="section-results-notice">
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex items-center justify-center gap-3 text-center">
               <p className="text-sm font-semibold text-primary">
-                Case studies coming soon — we publish only verified, authentic client results.
+                Case studies coming soon, we publish only verified, authentic client results.
               </p>
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function Results() {
                     <div className="mt-auto grid grid-cols-2 gap-4 border-t border-border pt-6">
                       {cs.metrics.map((m, j) => (
                         <div key={j} data-testid={`metric-case-${i}-${j}`}>
-                          <div className="text-2xl font-black text-primary/20">—</div>
+                          <div className="text-2xl font-black text-primary/20">·</div>
                           <p className="text-xs text-muted-foreground mt-1">{m.label}</p>
                         </div>
                       ))}

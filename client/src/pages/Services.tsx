@@ -32,7 +32,7 @@ export default function Services() {
   const bundles = OFFERS.filter((o) => o.category === "bundle");
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <SEOHead
         title="Services and Pricing | Performance Processes"
         description="Productized websites, marketing, CRM, business systems, and ongoing growth support for small and emerging businesses. Clear prices, secure checkout."
@@ -42,19 +42,19 @@ export default function Services() {
 
       <main className="flex-grow">
         <PageHero
-          title={<>Buy a complete <span className="text-accent">system.</span></>}
-          subtitle="Start with one of our four headline packages, or browse the full catalog of websites, marketing, CRM, business systems, and ongoing support — clear prices, secure checkout."
+          title={<>Buy a complete <span className="text-display-italic text-accent">system</span>.</>}
+          subtitle="Start with one of our four headline packages, or browse the full catalog of websites, marketing, CRM, business systems, and ongoing support, clear prices, secure checkout."
         />
 
         {packages.length > 0 && (
-          <section id="cat-packages" className="py-20 bg-white border-b" data-testid="section-packages">
+          <section id="cat-packages" className="py-24 bg-background border-b border-border" data-testid="section-packages">
             <div className="container mx-auto px-4 md:px-8">
-              <div className="max-w-3xl mb-12">
-                <p className="text-xs font-black uppercase tracking-[0.3em] mb-3 text-accent">Headline Packages</p>
-                <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-3">
+              <div className="max-w-3xl mb-14">
+                <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">Headline Packages</p>
+                <h2 className="text-display text-4xl md:text-5xl text-primary mb-5">
                   Four systems, four complete outcomes.
                 </h2>
-                <p className="text-base md:text-lg text-muted-foreground">
+                <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed">
                   Each package solves a full business problem and installs infrastructure you keep. The detailed à-la-carte catalog is below.
                 </p>
               </div>
@@ -67,38 +67,37 @@ export default function Services() {
           </section>
         )}
 
-        <section className="py-12 bg-white border-b">
+        <section className="py-12 bg-secondary/40 border-b border-border">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 [&>*:nth-child(7)]:lg:col-start-2">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-border border border-border [&>*:nth-child(7)]:lg:col-start-2">
               {CATEGORY_ORDER.map((cat) => (
                 <a
                   key={cat}
                   href={`#cat-${cat}`}
-                  className="group px-4 py-5 rounded-2xl border border-border bg-white hover:border-accent hover:shadow-md transition-all text-center"
+                  className="group px-4 py-6 bg-background hover:bg-primary transition-colors text-center"
                   data-testid={`link-category-${cat}`}
                 >
-                  <span className="text-sm font-bold text-primary group-hover:text-accent transition-colors leading-tight">
+                  <span className="text-xs uppercase tracking-[0.12em] text-primary group-hover:text-white transition-colors leading-tight">
                     {CATEGORY_META[cat].label}
                   </span>
                 </a>
               ))}
             </div>
-            <p className="text-center mt-8 text-xs text-muted-foreground">
-              <span className="font-semibold">Every service can be paid for online.</span>{" "}
-              We accept credit card, debit, and PayPal via secure Stripe checkout.
+            <p className="text-center mt-8 text-xs text-muted-foreground font-light">
+              Every service can be paid for online, credit card, debit, and PayPal via secure Stripe checkout.
             </p>
           </div>
         </section>
 
         {bundles.length > 0 && (
-          <section id="cat-bundle" className="py-20 bg-primary text-white" data-testid="section-bundles">
+          <section id="cat-bundle" className="py-24 bg-primary text-white" data-testid="section-bundles">
             <div className="container mx-auto px-4 md:px-8">
-              <div className="max-w-3xl mb-12">
-                <p className="text-xs font-black uppercase tracking-[0.3em] mb-3 text-accent">Popular Packages</p>
-                <h2 className="text-3xl md:text-4xl font-heading font-extrabold mb-3 text-white">
+              <div className="max-w-3xl mb-14">
+                <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-white/50">Popular Packages</p>
+                <h2 className="text-display text-4xl md:text-5xl mb-5 text-white">
                   Pre-built bundles, ready to launch.
                 </h2>
-                <p className="text-base md:text-lg text-white/70">
+                <p className="text-base md:text-lg text-white/70 font-light leading-relaxed">
                   The fastest way to get a complete setup. Each bundle combines our most-requested services at a packaged price.
                 </p>
               </div>
@@ -120,15 +119,16 @@ export default function Services() {
             <section
               key={cat}
               id={`cat-${cat}`}
-              className={`py-20 ${isAlt ? "bg-white" : "bg-[#FAFAFA]"}`}
+              className={`py-24 ${isAlt ? "bg-background" : "bg-secondary/40"}`}
               data-testid={`section-${cat}`}
             >
               <div className="container mx-auto px-4 md:px-8">
-                <div className="max-w-3xl mb-12 flex flex-col gap-3">
-                  <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary">
+                <div className="max-w-3xl mb-14 flex flex-col gap-4">
+                  <p className="text-[11px] uppercase tracking-[0.4em] text-muted-foreground">{`0${idx + 1}`}</p>
+                  <h2 className="text-display text-4xl md:text-5xl text-primary">
                     {meta.label}
                   </h2>
-                  <p className="text-base md:text-lg text-muted-foreground">
+                  <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed">
                     {meta.description}
                   </p>
                 </div>
@@ -150,14 +150,14 @@ export default function Services() {
           );
         })}
 
-        <section className="py-20 bg-white border-t" data-testid="section-framework">
+        <section className="py-24 bg-background border-t border-border" data-testid="section-framework">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <p className="text-xs font-black uppercase tracking-[0.3em] mb-3 text-accent">Strategic Framework</p>
-              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">
+              <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">Strategic Framework</p>
+              <h2 className="text-display text-4xl md:text-5xl text-primary mb-7">
                 Our services are growth infrastructure.
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-lg text-muted-foreground leading-relaxed font-light">
                 Whether you start with a website, a marketing package, a CRM setup, or a business system audit,
                 each offer is built to work together as one growth infrastructure, helping your business attract
                 leads, convert customers, and operate with more structure.
@@ -166,21 +166,22 @@ export default function Services() {
           </div>
         </section>
 
-        <section className="py-20 bg-[#FAFAFA]" data-testid="section-nextup">
+        <section className="py-24 bg-secondary/40" data-testid="section-nextup">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="max-w-4xl mx-auto bg-gradient-to-br from-accent/5 via-white to-accent/10 rounded-3xl border-2 border-accent/20 overflow-hidden shadow-lg">
-              <div className="p-10 md:p-14">
-                <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-6">
+            <div className="max-w-4xl mx-auto bg-background border border-border">
+              <div className="p-10 md:p-14 border-l-2 border-accent">
+                <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">Partnership</p>
+                <h2 className="text-display text-3xl md:text-4xl text-primary mb-6">
                   NextUp Canada Partnership
                 </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-4 max-w-3xl">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-4 max-w-3xl font-light">
                   Canadian founders aged 18 to 29 approved by NextUp Canada receive 40% off our website services. Apply on NextUp Canada's website to receive your discount code, then enter it at checkout on any website package.
                 </p>
-                <p className="text-sm text-muted-foreground mb-8 max-w-3xl">
-                  Code: <span className="font-mono font-bold text-primary">NEXTPROCESSES</span> &middot; Applies to website services only.
+                <p className="text-sm text-muted-foreground mb-8 max-w-3xl font-light">
+                  Code: <span className="font-mono text-primary">NEXTPROCESSES</span> &middot; Applies to website services only.
                 </p>
                 <Link href="/nextup-partnership">
-                  <Button className="rounded-full bg-accent text-white hover:bg-primary h-12 px-8 font-bold uppercase tracking-wider text-sm">
+                  <Button className="rounded-none bg-primary text-white hover:bg-accent h-12 px-8 font-semibold uppercase tracking-[0.2em] text-xs">
                     Learn More
                   </Button>
                 </Link>

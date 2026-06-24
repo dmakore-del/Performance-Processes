@@ -36,15 +36,15 @@ export default function Approach() {
       num: "01",
       title: language === "en" ? "Discover" : "Découvrir",
       desc: language === "en"
-        ? "We start by understanding your business, audience, and growth goals — and audit the systems you already have in place."
-        : "Nous commençons par comprendre votre entreprise, votre audience et vos objectifs de croissance — et nous auditons les systèmes déjà en place.",
+        ? "We start by understanding your business, audience, and growth goals, and audit the systems you already have in place."
+        : "Nous commençons par comprendre votre entreprise, votre audience et vos objectifs de croissance, et nous auditons les systèmes déjà en place.",
       duration: "1–2 weeks",
       color: "from-zinc-700/15 to-zinc-800/5",
       accentColor: "text-zinc-800",
       bgAccent: "bg-zinc-800",
       borderAccent: "border-zinc-700/20",
       details: [
-        "Every engagement starts with a clear-eyed look at where your business is today. We learn how you sell, who you sell to, what's working, and where the friction lives — across your website, marketing, CRM, and back-office systems.",
+        "Every engagement starts with a clear-eyed look at where your business is today. We learn how you sell, who you sell to, what's working, and where the friction lives, across your website, marketing, CRM, and back-office systems.",
         "We talk to you, your team, and where useful, your customers. We review your current site, marketing channels, CRM (if any), and the day-to-day processes that keep the business running.",
         "The output of Discover is a short, honest map of your current state and a prioritized list of what to install first to unlock the biggest wins.",
       ],
@@ -60,7 +60,7 @@ export default function Approach() {
         "Clear picture of what's working and what isn't",
         "Prioritized list of growth-infrastructure gaps",
         "Right-sized scope and budget recommendation",
-        "A confident starting point — no guesswork",
+        "A confident starting point, no guesswork",
       ],
     },
     {
@@ -76,7 +76,7 @@ export default function Approach() {
       borderAccent: "border-emerald-500/20",
       details: [
         "With the picture clear, we design the system. That means site architecture and key page layouts, the marketing channels and campaigns we'll launch with, the CRM pipeline that will track every lead, and the SOPs your team will actually use.",
-        "We work in tight cycles with you — quick approvals, no surprises. You see structure and copy before anything is built so the heavy build phase moves fast.",
+        "We work in tight cycles with you, quick approvals, no surprises. You see structure and copy before anything is built so the heavy build phase moves fast.",
         "By the end of Design & Plan you have a documented blueprint: what's being built, by when, by whom, and what success looks like.",
       ],
       activities: [
@@ -108,7 +108,7 @@ export default function Approach() {
       details: [
         "This is where the system goes from blueprint to live infrastructure. We build the website, configure the CRM, set up email and social channels, and write the playbooks your team will follow.",
         "We don't disappear and reappear with a finished product. You see progress weekly, and we train your team alongside the build so they own the system the moment it goes live.",
-        "Build & Install ends with a launch — site live, CRM tracking real leads, first campaigns out, team trained, documentation handed over.",
+        "Build & Install ends with a launch, site live, CRM tracking real leads, first campaigns out, team trained, documentation handed over.",
       ],
       activities: [
         "Website design, build, and launch",
@@ -129,8 +129,8 @@ export default function Approach() {
       num: "04",
       title: language === "en" ? "Run & Optimize" : "Exploiter et optimiser",
       desc: language === "en"
-        ? "Optional ongoing support keeps your marketing, CRM, and systems running and improving — month after month."
-        : "Un soutien continu optionnel maintient votre marketing, votre CRM et vos systèmes opérationnels et en amélioration — mois après mois.",
+        ? "Optional ongoing support keeps your marketing, CRM, and systems running and improving, month after month."
+        : "Un soutien continu optionnel maintient votre marketing, votre CRM et vos systèmes opérationnels et en amélioration, mois après mois.",
       duration: "Optional, monthly",
       color: "from-violet-500/15 to-violet-600/5",
       accentColor: "text-violet-600",
@@ -138,8 +138,8 @@ export default function Approach() {
       borderAccent: "border-violet-500/20",
       details: [
         "A great launch is the start, not the finish. Many clients keep us on a monthly retainer to run their marketing, manage the CRM, optimize the website, and refine the playbooks as the business grows.",
-        "We track the KPIs we agreed in Design & Plan, share a monthly performance summary, and adjust the system based on real data — not guesses.",
-        "When something new comes up — a new offer, a new market, a new hire — we already know your system and can move fast. If you'd rather run it in-house, we hand off cleanly and stay available for ad-hoc support.",
+        "We track the KPIs we agreed in Design & Plan, share a monthly performance summary, and adjust the system based on real data, not guesses.",
+        "When something new comes up, a new offer, a new market, a new hire, we already know your system and can move fast. If you'd rather run it in-house, we hand off cleanly and stay available for ad-hoc support.",
       ],
       activities: [
         "Monthly marketing execution",
@@ -172,17 +172,17 @@ export default function Approach() {
     {
       image: kpiFrameworksImg,
       title: "CRM & Lead Tracking",
-      desc: "A right-sized CRM your team will actually use — pipelines, automations, and reporting so no lead falls through the cracks.",
+      desc: "A right-sized CRM your team will actually use, pipelines, automations, and reporting so no lead falls through the cracks.",
     },
     {
       image: processMappingImg,
       title: "SOPs & Operating Playbooks",
-      desc: "Documented playbooks for sales, marketing, and operations — so your business runs the same way whether or not you're in the room.",
+      desc: "Documented playbooks for sales, marketing, and operations, so your business runs the same way whether or not you're in the room.",
     },
     {
       image: stakeholderAnalysisImg,
       title: "Training & Implementation",
-      desc: "Workshops and one-on-one coaching so your team learns the system as it's built — and owns it the moment it goes live.",
+      desc: "Workshops and one-on-one coaching so your team learns the system as it's built, and owns it the moment it goes live.",
     },
     {
       image: changeManagementImg,
@@ -197,7 +197,7 @@ export default function Approach() {
     {
       image: leadershipCompetencyImg,
       title: "Ongoing Support Retainers",
-      desc: "Optional monthly retainers — marketing execution, CRM management, content, and continuous optimization, with no long-term lock-in.",
+      desc: "Optional monthly retainers, marketing execution, CRM management, content, and continuous optimization, with no long-term lock-in.",
     },
   ];
 
@@ -216,11 +216,11 @@ export default function Approach() {
     },
     {
       question: "Do you offer fixed pricing?",
-      answer: "Yes. Almost everything we do is productized — a clearly defined scope, deliverables, timeline, and price you see before you commit. Bundles and ongoing retainers are also fixed-fee. The only thing we quote case-by-case is highly custom work that doesn't fit an existing offer.",
+      answer: "Yes. Almost everything we do is productized, a clearly defined scope, deliverables, timeline, and price you see before you commit. Bundles and ongoing retainers are also fixed-fee. The only thing we quote case-by-case is highly custom work that doesn't fit an existing offer.",
     },
     {
       question: "What makes your approach different?",
-      answer: "Three things. First, we install one integrated system — web, marketing, CRM, systems, training, and support — instead of selling each piece separately. Second, we build and run it with you, not just hand over slide decks. Third, every engagement leaves behind documented playbooks and trained operators so the system runs without us.",
+      answer: "Three things. First, we install one integrated system, web, marketing, CRM, systems, training, and support, instead of selling each piece separately. Second, we build and run it with you, not just hand over slide decks. Third, every engagement leaves behind documented playbooks and trained operators so the system runs without us.",
     },
     {
       question: "Do you work remote or in-person?",
@@ -228,11 +228,11 @@ export default function Approach() {
     },
     {
       question: "What happens after launch?",
-      answer: "You keep everything we built — the website, the CRM configuration, the SOPs, the brand assets, the playbooks. From there you can run the system in-house, hand it off to your team, or keep us on as a monthly retainer to execute marketing, manage the CRM, and keep optimizing.",
+      answer: "You keep everything we built, the website, the CRM configuration, the SOPs, the brand assets, the playbooks. From there you can run the system in-house, hand it off to your team, or keep us on as a monthly retainer to execute marketing, manage the CRM, and keep optimizing.",
     },
     {
       question: "How much of our team's time do you need?",
-      answer: "Less than most firms. We design productized engagements to minimize the meetings tax — typically a weekly 30–45 minute working session, plus async approvals for design and copy. The exception is training, where we deliberately want your team in the room.",
+      answer: "Less than most firms. We design productized engagements to minimize the meetings tax, typically a weekly 30–45 minute working session, plus async approvals for design and copy. The exception is training, where we deliberately want your team in the room.",
     },
     {
       question: "Can you work alongside our existing tools or partners?",
@@ -299,7 +299,7 @@ export default function Approach() {
                   Built to Build, Not Just Advise
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Most firms hand over a strategy and walk away. We do the opposite — we install the website, set up the CRM, launch the marketing, write the playbooks, and train the team that will run it all.
+                  Most firms hand over a strategy and walk away. We do the opposite, we install the website, set up the CRM, launch the marketing, write the playbooks, and train the team that will run it all.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                   At the heart of our method is a simple belief: <strong className="text-primary">growth comes from systems people actually use, not slide decks they nod at.</strong> Every page we design, every CRM pipeline we configure, and every playbook we write is built so your team owns and runs it the day it ships.
@@ -307,7 +307,7 @@ export default function Approach() {
               </AnimateOnScroll>
               <AnimateOnScroll animation="fade-right" delay={200}>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  Our four-phase approach is the same whether you're buying one offer or installing the full growth infrastructure — Discover, Design & Plan, Build & Install, then Run & Optimize. Productized scope, fixed timelines, real outcomes.
+                  Our four-phase approach is the same whether you're buying one offer or installing the full growth infrastructure, Discover, Design & Plan, Build & Install, then Run & Optimize. Productized scope, fixed timelines, real outcomes.
                 </p>
                 <div className="relative">
                   <img
@@ -390,7 +390,7 @@ export default function Approach() {
                                   <ul className="space-y-3">
                                     {step.activities.map((activity, j) => (
                                       <li key={j} className="flex items-start gap-3 text-muted-foreground">
-                                        <span aria-hidden="true" className="text-accent flex-shrink-0">—</span>
+                                        <span aria-hidden="true" className="text-accent flex-shrink-0">·</span>
                                         <span>{activity}</span>
                                       </li>
                                     ))}
@@ -437,7 +437,7 @@ export default function Approach() {
                 What We Build For You
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Eight building blocks across our six practices. Mix and match into a single offer — or stack them into a full growth-infrastructure bundle.
+                Eight building blocks across our six practices. Mix and match into a single offer, or stack them into a full growth-infrastructure bundle.
               </p>
             </AnimateOnScroll>
 
@@ -518,7 +518,7 @@ export default function Approach() {
                   Ready to install your growth infrastructure?
                 </h2>
                 <p className="text-lg text-white/70 leading-relaxed mb-6">
-                  Whether you need a single piece — a new website, a CRM, a marketing engine — or the full system installed end-to-end, we'll scope it clearly, build it cleanly, and train your team to run it.
+                  Whether you need a single piece, a new website, a CRM, a marketing engine, or the full system installed end-to-end, we'll scope it clearly, build it cleanly, and train your team to run it.
                 </p>
                 <p className="text-lg text-white/70 leading-relaxed mb-10">
                   Book a complimentary discovery call to talk through where your business is today and what to install first.

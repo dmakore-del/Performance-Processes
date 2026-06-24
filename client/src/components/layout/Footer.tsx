@@ -41,7 +41,7 @@ function LeadMagnetSection() {
     <section className="bg-gradient-to-br from-primary via-primary to-primary/90 py-16 md:py-20" data-testid="section-lead-magnet">
       <div className="container mx-auto px-4 md:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-accent mb-6">Newsletter</div>
+          <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-6">Newsletter</div>
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
             Subscribe to Leadership Insights
           </h2>
@@ -82,28 +82,7 @@ export function Footer() {
   return (
     <>
       <LeadMagnetSection />
-      <footer className="bg-white pt-0 pb-12 border-t border-border">
-        <div className="bg-primary/5 py-5 overflow-hidden mb-20">
-          <div className="mb-3 text-center">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground/50">Our Partners</span>
-          </div>
-          <div className="relative">
-            <div className="flex animate-marquee whitespace-nowrap">
-              {[...Array(10)].map((_, i) => (
-                <div key={i} className="flex items-center gap-16 mx-8">
-                  <span className="text-muted-foreground/60 font-heading font-bold text-sm tracking-wide">NextUp Canada</span>
-                  <span className="text-muted-foreground/30 text-lg">&#x2022;</span>
-                  <span className="text-muted-foreground/60 font-heading font-bold text-sm tracking-wide">TrueNorth Property & Facilities</span>
-                  <span className="text-muted-foreground/30 text-lg">&#x2022;</span>
-                  <span className="text-muted-foreground/60 font-heading font-bold text-sm tracking-wide">OGB Productions</span>
-                  <span className="text-muted-foreground/30 text-lg">&#x2022;</span>
-                  <span className="text-muted-foreground/60 font-heading font-bold text-sm tracking-wide">Maison Sparkle Living</span>
-                  <span className="text-muted-foreground/30 text-lg">&#x2022;</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <footer className="bg-white pt-20 pb-12 border-t border-border">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-16 gap-y-16 mb-20">
             <div className="flex flex-col gap-6">
@@ -126,7 +105,7 @@ export function Footer() {
             <div className="flex flex-col gap-6">
               <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">{language === "en" ? "Services" : "Services"}</h3>
               <ul className="flex flex-col gap-3.5 text-sm font-medium text-muted-foreground">
-                <li><a href="/services#cat-packages" className="hover:text-accent transition-colors font-bold text-accent">Headline Packages</a></li>
+                <li><a href="/services#cat-packages" className="hover:text-accent transition-colors font-semibold text-primary">Headline Packages</a></li>
                 <li><a href="/services#cat-marketing" className="hover:text-accent transition-colors">Growth Systems</a></li>
                 <li><a href="/services#cat-systems" className="hover:text-accent transition-colors">Operations Systems</a></li>
                 <li><a href="/services#cat-hr-recruiting" className="hover:text-accent transition-colors">Team Systems</a></li>
@@ -144,7 +123,7 @@ export function Footer() {
                 <li><Link href="/approach" className="hover:text-accent transition-colors cursor-pointer">{t("nav.approach")}</Link></li>
                 <li><Link href="/contact" className="hover:text-accent transition-colors cursor-pointer">{t("nav.contact")}</Link></li>
                 <li><Link href="/careers" className="hover:text-accent transition-colors cursor-pointer">Careers</Link></li>
-                <li><Link href="/nextup-partnership" className="hover:text-accent transition-colors cursor-pointer text-accent font-bold">{language === "en" ? "NextUp Partnership" : "Partenariat NextUp"}</Link></li>
+                <li><Link href="/nextup-partnership" className="hover:text-accent transition-colors cursor-pointer text-primary font-semibold">{language === "en" ? "NextUp Partnership" : "Partenariat NextUp"}</Link></li>
                 <li><Link href="/portal" className="hover:text-accent transition-colors cursor-pointer">Client Portal</Link></li>
               </ul>
             </div>

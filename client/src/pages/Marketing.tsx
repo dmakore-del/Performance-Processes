@@ -645,7 +645,7 @@ export default function Marketing() {
                       <ul className="space-y-2">
                         {step.outcomes.map((outcome, oi) => (
                           <li key={oi} className="flex items-center gap-2 text-sm text-primary/80">
-                            <span aria-hidden="true" className="text-accent shrink-0">—</span>
+                            <span aria-hidden="true" className="text-accent shrink-0">·</span>
                             <span>{outcome}</span>
                           </li>
                         ))}
@@ -740,7 +740,7 @@ export default function Marketing() {
                       <ul className="space-y-2.5 mb-6">
                         {s.benefits.slice(0, 4).map((b: string, bi: number) => (
                           <li key={bi} className="flex items-start gap-2.5 text-sm text-primary/80">
-                            <span aria-hidden="true" className="text-accent shrink-0">—</span>
+                            <span aria-hidden="true" className="text-accent shrink-0">·</span>
                             <span>{b}</span>
                           </li>
                         ))}
@@ -829,7 +829,7 @@ export default function Marketing() {
                           <ul className="space-y-2 mb-6">
                             {tier.features.map((f: string, fi: number) => (
                               <li key={fi} className="flex items-start gap-2 text-sm text-primary">
-                                <span aria-hidden="true" className="text-accent shrink-0">—</span>
+                                <span aria-hidden="true" className="text-accent shrink-0">·</span>
                                 <span>{f}</span>
                               </li>
                             ))}

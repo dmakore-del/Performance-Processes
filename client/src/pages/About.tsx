@@ -20,7 +20,7 @@ export default function About() {
     { year: "2023", title: "Performance Processes Founded", description: "Danai Makore launches Performance Processes with a vision to help small businesses install the systems they need to grow with confidence." },
     { year: "2024", title: "Service Portfolio Launch", description: "Launching foundational services across websites, marketing, and business systems for professionals and emerging businesses." },
     { year: "2024–2025", title: "Building Multi-Sector Experience", description: "Working with founders, nonprofits, and small businesses across Canada to design and operate growth infrastructure." },
-    { year: "2025", title: "Productized Growth Infrastructure", description: "Reorienting around six productized practices: Web, Marketing, CRM, Business Systems, Training, and Ongoing Support — installed as one integrated system." },
+    { year: "2025", title: "Productized Growth Infrastructure", description: "Reorienting around six productized practices: Web, Marketing, CRM, Business Systems, Training, and Ongoing Support, installed as one integrated system." },
     { year: "2026", title: "Core Team Assembled", description: "Sean Ogbonnaya joins as Director of Business Development, bringing expertise in relationship development and strategic advisory." },
     { year: "2026+", title: "NextUp Canada Partnership", description: "Partnering with NextUp Canada to make our productized growth infrastructure accessible to youth-owned businesses across the country." },
   ];
@@ -115,7 +115,7 @@ export default function About() {
                 A growth infrastructure studio for <span className="text-accent">businesses ready to scale</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl animate-fade-in-up" style={{ animationDelay: "0.35s" }} data-testid="text-hero-subtitle">
-                Performance Processes was founded on a simple belief: small businesses, nonprofits, and growing teams deserve partners who don't just advise — they design, build, and run the systems that move the business forward.
+                Performance Processes was founded on a simple belief: small businesses, nonprofits, and growing teams deserve partners who don't just advise, they design, build, and run the systems that move the business forward.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="button-hero-book">
@@ -195,7 +195,7 @@ export default function About() {
                   </p>
                   <p>
                     Her approach blends human insight with
-                    practical execution — designing the website,
+                    practical execution, designing the website,
                     setting up the CRM, launching the marketing,
                     and training the team that will run it all
                     long after the engagement ends.
@@ -239,7 +239,7 @@ export default function About() {
               <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-16">
                 Whether you're a professional building your first website,
                 a nonprofit launching a campaign, or a small business
-                installing CRM, training, and ongoing support — we
+                installing CRM, training, and ongoing support, we
                 integrate the six practices most firms sell separately
                 into one execution system designed for measurable growth.
               </p>
@@ -268,10 +268,10 @@ export default function About() {
             <div className="max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-12">
               <div className="flex-1">
                 <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-6 leading-tight">
-                  "To install the growth infrastructure professionals, nonprofits, and small businesses need to scale — websites, marketing, CRM, business systems, training, and ongoing support, integrated as one."
+                  "To install the growth infrastructure professionals, nonprofits, and small businesses need to scale, websites, marketing, CRM, business systems, training, and ongoing support, integrated as one."
                 </h2>
                 <p className="text-lg text-white/70 leading-relaxed">
-                  We design, build, and run the systems other firms only advise on — across six integrated practices, delivered as productized engagements with clear scope, timelines, and outcomes.
+                  We design, build, and run the systems other firms only advise on, across six integrated practices, delivered as productized engagements with clear scope, timelines, and outcomes.
                 </p>
               </div>
               <div className="shrink-0">
@@ -327,12 +327,12 @@ export default function About() {
                     Creative Arts, and a strong background in
                     relationship development and strategic advisory,
                     Sean specializes in helping clients pick the right
-                    starting point — whether that's a new website,
+                    starting point, whether that's a new website,
                     a CRM, or a full growth-infrastructure bundle.
                   </p>
                   <p className="font-medium text-primary italic border-l-4 border-accent pl-6 py-2 bg-gradient-to-r from-[#FAFAFA] to-transparent rounded-r-lg">
                     Passionate about matching clients with the right
-                    productized offer — from a single-practice engagement
+                    productized offer, from a single-practice engagement
                     to a fully integrated growth-infrastructure build.
                   </p>
                 </div>
@@ -402,15 +402,15 @@ export default function About() {
                     What Sets Us <span className="text-accent italic">Apart</span>
                   </h2>
                   <p className="text-lg text-muted-foreground mb-10 max-w-lg leading-relaxed">
-                    Most firms sell hours and slide decks. We install infrastructure that compounds — long after the engagement ends.
+                    Most firms sell hours and slide decks. We install infrastructure that compounds, long after the engagement ends.
                   </p>
                   <div className="space-y-5">
                     {[
-                      { title: "One Integrated System", desc: "Web, marketing, CRM, business systems, training, and ongoing support — built to work together, not stitched after the fact." },
+                      { title: "One Integrated System", desc: "Web, marketing, CRM, business systems, training, and ongoing support, built to work together, not stitched after the fact." },
                       { title: "Productized Engagements", desc: "Clear scope, fixed pricing, defined timelines. You always know what you're getting and when." },
-                      { title: "We Build, We Don't Just Advise", desc: "We design, build, and operate the systems alongside your team — not just hand over recommendations." },
+                      { title: "We Build, We Don't Just Advise", desc: "We design, build, and operate the systems alongside your team, not just hand over recommendations." },
                       { title: "Built to Run Without Us", desc: "Every engagement leaves behind documented playbooks, dashboards, and trained operators you keep." },
-                      { title: "Right-Sized for Small Business", desc: "Frameworks adapted for professionals, nonprofits, and growing teams — not bloated overhead built for someone else." },
+                      { title: "Right-Sized for Small Business", desc: "Frameworks adapted for professionals, nonprofits, and growing teams, not bloated overhead built for someone else." },
                       { title: "Ongoing Support When You Need It", desc: "Optional monthly retainers keep your marketing, CRM, and systems running and improving over time." },
                     ].map((adv, i) => (
                       <div key={i} className="flex items-start gap-4 group" data-testid={`advantage-${i}`}>
@@ -604,7 +604,7 @@ export default function About() {
                 Let's build something <span className="text-accent">meaningful</span> together
               </h2>
               <p className="text-xl text-white/70 mb-12 leading-relaxed max-w-2xl mx-auto">
-                Whether you need a new website, a CRM you'll actually use, or a full growth infrastructure installed end-to-end — we're ready to partner with you.
+                Whether you need a new website, a CRM you'll actually use, or a full growth infrastructure installed end-to-end, we're ready to partner with you.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-14 text-lg font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:shadow-2xl hover:scale-105 w-full sm:w-auto" data-testid="button-final-cta">

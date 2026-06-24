@@ -98,7 +98,7 @@ export default function About() {
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/60" />
           </div>
           <div className="absolute bottom-0 right-0 w-2/5 h-full hidden lg:block z-[1]">
-            <img src={cityAerialImg} alt="" className="w-full h-full object-cover grayscale animate-ken-burns" />
+            <img src={cityAerialImg} alt="" className="w-full h-full object-cover animate-ken-burns" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/50 to-transparent" />
           </div>
           <GradientOrb className="w-80 h-80 bg-accent/10 -top-20 -right-20 z-[2]" />

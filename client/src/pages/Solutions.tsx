@@ -46,12 +46,11 @@ export default function Solutions() {
           <FloatingShape className="w-16 h-16 top-[20%] right-[10%] z-[3]" variant="ring" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-32 relative z-10">
             <div className="max-w-3xl">
-              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6 animate-fade-in-up">Growth Infrastructure System</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.15s" }} data-testid="text-solutions-hero-title">
                 One system. <span className="text-accent">Multiple ways in.</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-2xl animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-                Whether you're a solo professional, a growing small business, or a scaling organization, our Growth Infrastructure System meets you where you are, with the level of support you need.
+                Whether you're a solo professional, a growing small business, or a scaling organization, we meet you where you are, with the level of support you need.
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.45s" }}>
                 <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-hero-services">

@@ -35,13 +35,13 @@ title = "generated_image"
 id = "yZPFnVbyYmAZ5uil5m0l-"
 uri = "file://attached_assets/generated/team-moving-forward.png"
 type = "image"
-title = "generated_image"
+title = "diverse team moving forward"
 
 [[generated]]
 id = "m128ctyYqY0_yswZmWO0l"
 uri = "file://attached_assets/generated/city-aerial-new.png"
 type = "image"
-title = "generated_image"
+title = "colourful modern architecture"
 
 [[generated]]
 id = "Cobfnrhl7lJ7suEeDEwHt"
@@ -60,3 +60,21 @@ id = "JOITbfe5LQZf8N50BLJFu"
 uri = "file://attached_assets/generated/collaboration.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "XzVaoIZ8GH0ocJUf8psio"
+uri = "file://attached_assets/generated/hero-color.png"
+type = "image"
+title = "hero diverse team office"
+
+[[generated]]
+id = "goHBvCUFir6BKtFbouRP0"
+uri = "file://attached_assets/generated/team-collab-color.png"
+type = "image"
+title = "diverse professionals collaborating"
+
+[[generated]]
+id = "6oV8FyRjYqH4MpFaqTXV_"
+uri = "file://attached_assets/generated/workspace-color.png"
+type = "image"
+title = "entrepreneur sunlit workspace"

@@ -6,8 +6,10 @@ import { SEOHead } from "@/components/SEOHead";
 import { OfferCard } from "@/components/OfferCard";
 import { getOffersByCategory } from "@shared/offers";
 
-import heroBgisImg from "@/assets/generated/hero-bgis.png";
+import heroColorImg from "@assets/generated/hero-color.png";
 import cityAerialImg from "@assets/generated/city-aerial-new.png";
+import teamCollabImg from "@assets/generated/team-collab-color.png";
+import workspaceImg from "@assets/generated/workspace-color.png";
 import teamMovingForwardImg from "@assets/generated/team-moving-forward.png";
 
 const BOOKINGS_URL =
@@ -83,36 +85,23 @@ export default function Home() {
 
       <main className="flex-grow">
         {/* ——————————————————————————————————————————————————————————
-            HERO, full-bleed grayscale video, delicate serif headline
+            HERO, full-bleed colour photo, delicate serif headline
         ———————————————————————————————————————————————————————————— */}
         <section
           className="relative min-h-[90svh] flex items-center overflow-hidden bg-primary"
           data-testid="section-hero"
         >
           <div className="absolute inset-0 z-0">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              poster={heroBgisImg}
-              {...{ "webkit-playsinline": "true" } as any}
+            <img
+              src={heroColorImg}
+              alt="A diverse team collaborating in a bright modern office"
               className="w-full h-full object-cover"
-            >
-              <source src="/assets/videos/hero-atrium.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40" />
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/55 to-primary/25" />
           </div>
 
           <div className="container mx-auto px-6 md:px-8 pt-32 pb-24 relative z-10">
             <div className="max-w-3xl animate-fade-in-up">
-              <p
-                className="text-[11px] uppercase tracking-[0.4em] text-white/60 mb-10"
-                data-testid="text-hero-eyebrow"
-              >
-                Growth Infrastructure Studio
-              </p>
               <h1
                 className="text-display text-white text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.02] mb-8"
                 data-testid="text-hero-title"
@@ -229,6 +218,13 @@ export default function Home() {
                 >
                   View all services <span aria-hidden="true">→</span>
                 </Link>
+                <div className="mt-12 aspect-[4/3] overflow-hidden">
+                  <img
+                    src={teamCollabImg}
+                    alt="Two professionals discussing ideas in a bright workspace"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </AnimateOnScroll>
 
               <div className="lg:col-span-8">
@@ -265,15 +261,15 @@ export default function Home() {
         </section>
 
         {/* ——————————————————————————————————————————————————————————
-            IMAGE BAND, full-bleed grayscale
+            IMAGE BAND, full-bleed
         ———————————————————————————————————————————————————————————— */}
         <section className="relative h-[42vh] md:h-[60vh] overflow-hidden bg-primary" data-testid="section-image-band">
           <img
             src={cityAerialImg}
             alt="Modern architecture"
-            className="absolute inset-0 w-full h-full object-cover grayscale"
+            className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-primary/30" />
+          <div className="absolute inset-0 bg-primary/15" />
         </section>
 
         {/* ——————————————————————————————————————————————————————————
@@ -281,7 +277,7 @@ export default function Home() {
         ———————————————————————————————————————————————————————————— */}
         <section className="py-24 md:py-32 bg-background" data-testid="section-packages">
           <div className="container mx-auto px-6 md:px-8">
-            <div className="max-w-3xl mb-16">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-16">
               <AnimateOnScroll>
                 <p className="text-[11px] uppercase tracking-[0.4em] text-muted-foreground mb-8">
                   Headline packages
@@ -295,6 +291,15 @@ export default function Home() {
                   Four productized packages, each solving a full business outcome.
                   Pay online by card, debit, or PayPal, and we get started.
                 </p>
+              </AnimateOnScroll>
+              <AnimateOnScroll delay={100}>
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={workspaceImg}
+                    alt="An entrepreneur working in a sunlit modern office"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </AnimateOnScroll>
             </div>
 

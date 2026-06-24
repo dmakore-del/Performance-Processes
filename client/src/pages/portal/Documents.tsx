@@ -1,5 +1,5 @@
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { FileText, Download, FileSpreadsheet, FileIcon, FolderOpen, Upload, Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -67,16 +67,17 @@ export default function Documents() {
   };
 
   const getIcon = (type: string) => {
-    switch (type.toLowerCase()) {
-      case 'pdf': return <FileText className="text-red-500" size={24} />;
-      case 'xlsx':
-      case 'xls': return <FileSpreadsheet className="text-green-500" size={24} />;
-      case 'docx':
-      case 'doc': return <FileIcon className="text-zinc-700" size={24} />;
-      case 'pptx':
-      case 'ppt': return <FileIcon className="text-orange-500" size={24} />;
-      default: return <FileText className="text-gray-500" size={24} />;
-    }
+    const t = type.toLowerCase();
+    const color =
+      t === 'pdf' ? "text-red-500 border-red-200" :
+      t === 'xlsx' || t === 'xls' ? "text-green-500 border-green-200" :
+      t === 'pptx' || t === 'ppt' ? "text-orange-500 border-orange-200" :
+      "text-zinc-700 border-zinc-200";
+    return (
+      <span className={cn("text-[9px] font-black uppercase tracking-wider border rounded px-2 py-1", color)}>
+        {t.slice(0, 4) || "File"}
+      </span>
+    );
   };
 
   const folders = documents
@@ -96,7 +97,7 @@ export default function Documents() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="documents-loading">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">Loading</span>
         </div>
       </PortalLayout>
     );
@@ -107,7 +108,6 @@ export default function Documents() {
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="documents-empty-state">
           <div className="text-center space-y-4">
-            <FileText className="h-12 w-12 text-muted-foreground mx-auto" />
             <h2 className="text-xl font-bold text-primary" data-testid="text-no-engagement">No active engagement</h2>
             <p className="text-muted-foreground" data-testid="text-no-engagement-desc">Your consultant will set up your engagement shortly.</p>
           </div>
@@ -131,7 +131,6 @@ export default function Documents() {
             onClick={() => setUploadOpen(true)}
             data-testid="button-upload-document"
           >
-            <Upload className="mr-2 h-4 w-4" />
             Upload Document
           </Button>
         </div>
@@ -180,14 +179,7 @@ export default function Documents() {
                 className="w-full"
                 data-testid="button-submit-upload"
               >
-                {uploadMutation.isPending ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Uploading...
-                  </>
-                ) : (
-                  "Upload"
-                )}
+                {uploadMutation.isPending ? "Uploading..." : "Upload"}
               </Button>
             </div>
           </DialogContent>
@@ -206,7 +198,6 @@ export default function Documents() {
                 data-testid={`card-folder-${i}`}
               >
                 <div className="flex items-center gap-3">
-                  <FolderOpen className="text-accent group-hover:fill-accent/10 transition-colors" size={28} />
                   <div className="flex-1 min-w-0">
                     <p className="font-bold text-primary text-sm truncate" data-testid={`text-folder-name-${i}`}>{folder.name}</p>
                     <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mt-1" data-testid={`text-folder-count-${i}`}>{folder.count} Files</p>
@@ -270,7 +261,7 @@ export default function Documents() {
                             onClick={() => handleDownload(file)}
                             data-testid={`button-download-${file.id}`}
                           >
-                            <Download size={18} />
+                            <span className="text-xs font-bold uppercase tracking-wider">Download</span>
                           </button>
                         </div>
                       </td>

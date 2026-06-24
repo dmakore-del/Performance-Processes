@@ -4,7 +4,6 @@ import { useLogin } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff, Loader2, ArrowLeft } from "lucide-react";
 import logoImg from "@/assets/logo.png";
 
 export default function Login() {
@@ -40,12 +39,14 @@ export default function Login() {
         muted
         loop
         playsInline
+        preload="auto"
+        {...{ "webkit-playsinline": "true" } as any}
         className="absolute inset-0 w-full h-full object-cover"
         data-testid="bg-video"
       >
         <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-[#0A1628]/80 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
 
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
@@ -87,9 +88,9 @@ export default function Login() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold uppercase tracking-wider text-muted-foreground hover:text-primary"
                 >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  {showPassword ? "Hide" : "Show"}
                 </button>
               </div>
             </div>
@@ -106,7 +107,6 @@ export default function Login() {
               disabled={loginMutation.isPending}
               className="w-full h-12 rounded-xl bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-sm"
             >
-              {loginMutation.isPending ? <Loader2 className="animate-spin mr-2" size={18} /> : null}
               Sign In
             </Button>
 
@@ -133,8 +133,8 @@ export default function Login() {
 
         <div className="text-center mt-4">
           <Link href="/">
-            <span className="text-xs text-white/50 hover:text-white cursor-pointer flex items-center justify-center gap-1">
-              <ArrowLeft size={12} /> Back to website
+            <span className="text-xs text-white/50 hover:text-white cursor-pointer">
+              ← Back to website
             </span>
           </Link>
         </div>

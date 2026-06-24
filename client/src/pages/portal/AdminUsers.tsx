@@ -1,7 +1,6 @@
 import { PortalLayout } from "@/components/layout/PortalLayout";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import { Loader2, CheckCircle2, Clock, ShieldAlert, Users, Shield, UserCheck, UserX, ChevronDown, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -99,7 +98,7 @@ export default function AdminUsers() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <Loader2 className="animate-spin text-accent" size={40} />
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse">Loading</span>
         </div>
       </PortalLayout>
     );
@@ -116,7 +115,7 @@ export default function AdminUsers() {
           <Dialog open={createEngagementOpen} onOpenChange={setCreateEngagementOpen}>
             <DialogTrigger asChild>
               <Button data-testid="button-create-engagement" className="bg-accent hover:bg-accent/90 text-white rounded-xl">
-                <Plus size={16} className="mr-2" /> Create Engagement
+                Create Engagement
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px]">
@@ -217,8 +216,7 @@ export default function AdminUsers() {
                   disabled={engagementMutation.isPending}
                   className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl"
                 >
-                  {engagementMutation.isPending ? <Loader2 className="animate-spin mr-2" size={16} /> : null}
-                  Create Engagement
+                  {engagementMutation.isPending ? "Creating..." : "Create Engagement"}
                 </Button>
               </form>
             </DialogContent>
@@ -253,7 +251,6 @@ export default function AdminUsers() {
 
           {filteredUsers.length === 0 ? (
             <div className="p-12 text-center">
-              <Users size={48} className="text-muted-foreground/30 mx-auto mb-4" />
               <p className="text-muted-foreground">No users found in this category.</p>
             </div>
           ) : (
@@ -295,7 +292,7 @@ export default function AdminUsers() {
                               "bg-secondary text-primary border-border"
                             )}
                           >
-                            {u.role} <ChevronDown size={10} />
+                            {u.role} <span className="text-[8px]">▾</span>
                           </button>
                           {roleDropdownId === u.id && (
                             <div className="absolute top-full left-6 z-50 mt-1 bg-white rounded-xl border border-border shadow-lg p-1 min-w-[120px]">
@@ -323,7 +320,7 @@ export default function AdminUsers() {
                         </td>
                         <td className="py-4 px-6">
                           {u.twoFactorEnabled ? (
-                            <Shield size={16} className="text-green-500" />
+                            <span className="text-xs font-bold text-green-500 uppercase tracking-wider">On</span>
                           ) : (
                             <span className="text-xs text-muted-foreground">Off</span>
                           )}
@@ -341,7 +338,7 @@ export default function AdminUsers() {
                                 disabled={statusMutation.isPending}
                                 className="bg-green-500 hover:bg-green-600 text-white text-xs h-8 rounded-lg"
                               >
-                                <UserCheck size={14} className="mr-1" /> Approve
+                                Approve
                               </Button>
                             )}
                             {u.status === "active" && u.role !== "admin" && (
@@ -353,7 +350,7 @@ export default function AdminUsers() {
                                 disabled={statusMutation.isPending}
                                 className="text-red-500 border-red-200 hover:bg-red-50 text-xs h-8 rounded-lg"
                               >
-                                <UserX size={14} className="mr-1" /> Suspend
+                                Suspend
                               </Button>
                             )}
                             {u.status === "suspended" && (
@@ -364,7 +361,7 @@ export default function AdminUsers() {
                                 disabled={statusMutation.isPending}
                                 className="bg-zinc-700 hover:bg-zinc-800 text-white text-xs h-8 rounded-lg"
                               >
-                                <UserCheck size={14} className="mr-1" /> Activate
+                                Activate
                               </Button>
                             )}
                           </div>

@@ -1,6 +1,5 @@
 import { useAuth } from "@/hooks/use-auth";
 import { Redirect } from "wouter";
-import { Loader2, Clock, ShieldAlert } from "lucide-react";
 
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoading, isAuthenticated } = useAuth();
@@ -8,7 +7,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA]">
-        <Loader2 className="animate-spin text-accent" size={40} />
+        <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse">Loading</span>
       </div>
     );
   }
@@ -22,7 +21,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
       <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA] p-4">
         <div className="max-w-md w-full text-center">
           <div className="w-20 h-20 bg-orange-50 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-orange-200">
-            <Clock size={40} className="text-orange-500" />
+            <span className="text-xs font-black uppercase tracking-[0.18em] text-orange-500">Pending</span>
           </div>
           <h1 data-testid="text-pending-title" className="text-2xl font-heading font-extrabold text-primary mb-3">Account Pending Approval</h1>
           <p className="text-muted-foreground mb-6">
@@ -49,7 +48,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
       <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA] p-4">
         <div className="max-w-md w-full text-center">
           <div className="w-20 h-20 bg-red-50 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-red-200">
-            <ShieldAlert size={40} className="text-red-500" />
+            <span className="text-xs font-black uppercase tracking-[0.18em] text-red-500">Suspended</span>
           </div>
           <h1 data-testid="text-suspended-title" className="text-2xl font-heading font-extrabold text-primary mb-3">Account Suspended</h1>
           <p className="text-muted-foreground mb-6">

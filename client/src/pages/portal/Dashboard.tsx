@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { CheckCircle2, Clock, AlertCircle, FileText, ArrowRight, Loader2, Briefcase, Pencil } from "lucide-react";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
 import { useAuth } from "@/hooks/use-auth";
 import { Link } from "wouter";
@@ -51,7 +50,7 @@ export default function Dashboard() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <Loader2 className="animate-spin text-accent" size={40} />
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse">Loading</span>
         </div>
       </PortalLayout>
     );
@@ -62,8 +61,8 @@ export default function Dashboard() {
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
           <div data-testid="text-no-engagement" className="bg-white p-10 rounded-3xl border border-border shadow-sm text-center max-w-md">
-            <div className="w-16 h-16 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mx-auto mb-6">
-              {isStaffOrAdmin ? <Briefcase size={32} /> : <AlertCircle size={32} />}
+            <div className="w-16 h-16 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mx-auto mb-6 font-black text-xl">
+              {isStaffOrAdmin ? "C" : "!"}
             </div>
             <h2 className="text-xl font-bold text-primary mb-3">
               {isStaffOrAdmin ? "No Assigned Clients" : "No Active Engagement"}
@@ -112,8 +111,8 @@ export default function Dashboard() {
             {isStaffOrAdmin && (
               <Button
                 variant="outline"
-                size="icon"
-                className="rounded-full h-10 w-10"
+                size="sm"
+                className="rounded-full h-10 px-5 text-xs font-bold uppercase tracking-wider"
                 onClick={() => {
                   setStatusForm({
                     status: engagement.status,
@@ -124,7 +123,7 @@ export default function Dashboard() {
                 }}
                 data-testid="button-edit-status"
               >
-                <Pencil size={16} />
+                Edit
               </Button>
             )}
           </div>
@@ -164,23 +163,17 @@ export default function Dashboard() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white p-6 rounded-3xl border border-border shadow-sm flex flex-col justify-between">
-            <div className="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-4">
-              <CheckCircle2 size={24} />
-            </div>
+            <div className="w-12 h-1 rounded-full bg-accent mb-4" />
             <h3 data-testid="text-completion-percent" className="text-3xl font-black text-primary mb-1">{engagement.completionPercent}%</h3>
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Overall Completion</p>
           </div>
           <div className="bg-white p-6 rounded-3xl border border-border shadow-sm flex flex-col justify-between">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
-              <Clock size={24} />
-            </div>
+            <div className="w-12 h-1 rounded-full bg-primary mb-4" />
             <h3 data-testid="text-upcoming-milestones" className="text-3xl font-black text-primary mb-1">{pendingMilestones.length}</h3>
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Upcoming Milestones</p>
           </div>
           <div className="bg-white p-6 rounded-3xl border border-border shadow-sm flex flex-col justify-between">
-            <div className="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center mb-4">
-              <AlertCircle size={24} />
-            </div>
+            <div className="w-12 h-1 rounded-full bg-orange-500 mb-4" />
             <h3 data-testid="text-overdue-count" className="text-3xl font-black text-primary mb-1">{overdueActions.length}</h3>
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Overdue Items</p>
           </div>
@@ -193,11 +186,11 @@ export default function Dashboard() {
               {milestones?.slice(0, 6).map((ms) => (
                 <div key={ms.id} className="flex items-center gap-4">
                   {ms.status === "completed" ? (
-                    <CheckCircle2 size={18} className="text-green-500 flex-shrink-0" />
+                    <div className="w-[14px] h-[14px] rounded-full bg-green-500 flex-shrink-0" />
                   ) : ms.status === "in-progress" ? (
-                    <Clock size={18} className="text-accent flex-shrink-0 animate-pulse" />
+                    <div className="w-[14px] h-[14px] rounded-full bg-accent flex-shrink-0 animate-pulse" />
                   ) : (
-                    <div className="w-[18px] h-[18px] rounded-full border-2 border-muted-foreground/30 flex-shrink-0" />
+                    <div className="w-[14px] h-[14px] rounded-full border-2 border-muted-foreground/30 flex-shrink-0" />
                   )}
                   <div className="flex-1 min-w-0">
                     <p className={`font-bold text-sm ${ms.status === "completed" ? "text-muted-foreground line-through" : "text-primary"}`}>{ms.title}</p>
@@ -208,7 +201,7 @@ export default function Dashboard() {
             </div>
             <Link href="/portal/roadmap">
               <button data-testid="link-view-roadmap" className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors">
-                View full roadmap <ArrowRight size={16} className="ml-2" />
+                View full roadmap <span className="ml-2">→</span>
               </button>
             </Link>
           </div>
@@ -239,7 +232,7 @@ export default function Dashboard() {
             </div>
             <Link href="/portal/meetings">
               <button data-testid="link-view-calendar" className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors">
-                View full calendar <ArrowRight size={16} className="ml-2" />
+                View full calendar <span className="ml-2">→</span>
               </button>
             </Link>
           </div>
@@ -251,7 +244,7 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 relative z-10">
             {recentDocs.map((doc) => (
               <div key={doc.id} className="flex items-center gap-4 bg-white/10 hover:bg-white/20 p-4 rounded-2xl transition-colors border border-white/10 cursor-pointer">
-                <FileText size={24} className="text-accent" />
+                <span className="text-[9px] font-black uppercase tracking-wider text-accent border border-accent/40 rounded px-2 py-1">Doc</span>
                 <div>
                   <p className="font-bold text-sm line-clamp-1">{doc.name}</p>
                   <p className="text-[10px] uppercase tracking-widest opacity-70 mt-1">{doc.size}</p>
@@ -261,7 +254,7 @@ export default function Dashboard() {
           </div>
           <Link href="/portal/documents">
             <button data-testid="link-view-documents" className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-accent hover:text-white transition-colors relative z-10">
-              View all documents <ArrowRight size={16} className="ml-2" />
+              View all documents <span className="ml-2">→</span>
             </button>
           </Link>
         </div>

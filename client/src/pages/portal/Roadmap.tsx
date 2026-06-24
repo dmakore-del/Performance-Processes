@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { CheckCircle2, Circle, Clock, Loader2, Plus, Trash2, Pencil } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
 import { useAuth } from "@/hooks/use-auth";
@@ -90,7 +89,7 @@ export default function Roadmap() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="roadmap-loading">
-          <Loader2 className="h-8 w-8 animate-spin text-accent" />
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse">Loading</span>
         </div>
       </PortalLayout>
     );
@@ -116,7 +115,6 @@ export default function Roadmap() {
               className="bg-accent text-white hover:bg-primary gap-2"
               data-testid="button-add-milestone"
             >
-              <Plus size={16} />
               Add Milestone
             </Button>
           )}
@@ -130,9 +128,9 @@ export default function Roadmap() {
                 <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground mt-2" data-testid="text-engagement-phase">Current Phase: {engagement?.currentPhase}</p>
               </div>
               <div className="flex items-center gap-6 text-sm font-bold">
-                <div className="flex items-center gap-2"><CheckCircle2 size={16} className="text-green-500" /> Completed</div>
-                <div className="flex items-center gap-2"><Clock size={16} className="text-accent" /> In Progress</div>
-                <div className="flex items-center gap-2"><Circle size={16} className="text-muted-foreground" /> Pending</div>
+                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-green-500" /> Completed</div>
+                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-accent" /> In Progress</div>
+                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full border-2 border-muted-foreground" /> Pending</div>
               </div>
             </div>
             
@@ -160,9 +158,7 @@ export default function Roadmap() {
                     phase.status === 'in-progress' ? "bg-accent/10 border-accent/20 text-accent" :
                     "bg-secondary border-border text-muted-foreground"
                   )}>
-                    {phase.status === 'completed' ? <CheckCircle2 size={24} /> : 
-                     phase.status === 'in-progress' ? <Clock size={24} /> : 
-                     <span className="font-black text-lg">{i + 1}</span>}
+                    <span className="font-black text-lg">{i + 1}</span>
                   </div>
                   <div className="flex-1 pt-2">
                     <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-6">
@@ -180,15 +176,15 @@ export default function Roadmap() {
                                 data-testid={`button-toggle-status-${item.id}`}
                                 title="Click to change status"
                               >
-                                {item.status === 'completed' ? <CheckCircle2 size={20} className="text-green-500" /> :
-                                 item.status === 'in-progress' ? <Clock size={20} className="text-accent animate-pulse" /> :
-                                 <Circle size={20} className="text-muted-foreground/50" />}
+                                {item.status === 'completed' ? <span className="w-4 h-4 rounded-full bg-green-500 block" /> :
+                                 item.status === 'in-progress' ? <span className="w-4 h-4 rounded-full bg-accent block animate-pulse" /> :
+                                 <span className="w-4 h-4 rounded-full border-2 border-muted-foreground/50 block" />}
                               </button>
                             ) : (
                               <>
-                                {item.status === 'completed' ? <CheckCircle2 size={20} className="text-green-500" /> :
-                                 item.status === 'in-progress' ? <Clock size={20} className="text-accent animate-pulse" /> :
-                                 <Circle size={20} className="text-muted-foreground/50" />}
+                                {item.status === 'completed' ? <span className="w-4 h-4 rounded-full bg-green-500 block" /> :
+                                 item.status === 'in-progress' ? <span className="w-4 h-4 rounded-full bg-accent block animate-pulse" /> :
+                                 <span className="w-4 h-4 rounded-full border-2 border-muted-foreground/50 block" />}
                               </>
                             )}
                             <span className={cn("font-medium", item.status === 'completed' ? "text-primary line-through opacity-70" : "text-primary")} data-testid={`text-milestone-title-${item.id}`}>{item.title}</span>
@@ -216,7 +212,7 @@ export default function Roadmap() {
                                 className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-primary"
                                 data-testid={`button-edit-milestone-${item.id}`}
                               >
-                                <Pencil size={14} />
+                                <span className="text-[10px] font-bold uppercase tracking-wider">Edit</span>
                               </button>
                             )}
                           </div>

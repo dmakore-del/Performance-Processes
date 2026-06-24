@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { TrendingUp, Target, Loader2, Plus, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
 import { useAuth } from "@/hooks/use-auth";
@@ -81,7 +80,7 @@ export default function Performance() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="performance-loading">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">Loading</span>
         </div>
       </PortalLayout>
     );
@@ -92,7 +91,6 @@ export default function Performance() {
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="performance-empty">
           <div className="text-center space-y-4">
-            <Target className="h-12 w-12 text-muted-foreground mx-auto" />
             <h2 className="text-xl font-bold text-primary">No Active Engagement</h2>
             <p className="text-muted-foreground">Your consultant will set up your engagement shortly.</p>
           </div>
@@ -114,7 +112,6 @@ export default function Performance() {
               <Dialog open={createOpen} onOpenChange={setCreateOpen}>
                 <DialogTrigger asChild>
                   <Button data-testid="button-add-kpi">
-                    <Plus className="h-4 w-4 mr-2" />
                     Add KPI
                   </Button>
                 </DialogTrigger>
@@ -159,8 +156,7 @@ export default function Performance() {
                       <Input id="kpi-category" data-testid="input-kpi-category" value={formData.category} onChange={e => setFormData(f => ({ ...f, category: e.target.value }))} placeholder="e.g. Financial" />
                     </div>
                     <Button className="w-full" data-testid="button-submit-kpi" onClick={handleCreate} disabled={createMutation.isPending || !formData.name}>
-                      {createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
-                      Create KPI
+                      {createMutation.isPending ? "Creating..." : "Create KPI"}
                     </Button>
                   </div>
                 </DialogContent>
@@ -176,7 +172,6 @@ export default function Performance() {
           <div className="bg-primary text-white p-6 rounded-3xl shadow-lg relative overflow-hidden" data-testid="card-overall-health">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
             <div className="relative z-10">
-              <Target className="text-accent mb-4" size={32} />
               <p className="text-xs font-bold uppercase tracking-widest text-white/70 mb-1">Overall Health</p>
               <h3 className="text-4xl font-black" data-testid="text-overall-health">{health.label}</h3>
             </div>
@@ -251,7 +246,6 @@ export default function Performance() {
                           variance >= 0 ? "text-green-500" : "text-red-500"
                         )} data-testid={`text-kpi-variance-${kpi.id}`}>
                           {variance > 0 ? "+" : ""}{variance}%
-                          <TrendingUp size={14} className={cn(variance < 0 && "rotate-180")} />
                         </span>
                       </td>
                       <td className="py-5 px-6">
@@ -266,8 +260,8 @@ export default function Performance() {
                       </td>
                       {isStaffOrAdmin && (
                         <td className="py-5 px-6">
-                          <Button variant="ghost" size="icon" className="opacity-0 group-hover:opacity-100 transition-opacity text-red-500 hover:text-red-700 hover:bg-red-50" data-testid={`button-delete-kpi-${kpi.id}`} onClick={() => deleteMutation.mutate(kpi.id)} disabled={deleteMutation.isPending}>
-                            <Trash2 className="h-4 w-4" />
+                          <Button variant="ghost" size="sm" className="opacity-0 group-hover:opacity-100 transition-opacity text-red-500 hover:text-red-700 hover:bg-red-50 text-xs font-bold uppercase tracking-wider" data-testid={`button-delete-kpi-${kpi.id}`} onClick={() => deleteMutation.mutate(kpi.id)} disabled={deleteMutation.isPending}>
+                            Delete
                           </Button>
                         </td>
                       )}

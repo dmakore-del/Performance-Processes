@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { ArrowRight, X as XIcon, Search, Hammer, Zap, LineChart } from "lucide-react";
 import { Link } from "wouter";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { SEOHead } from "@/components/SEOHead";
@@ -98,25 +97,21 @@ const PHASES = [
 
 const HOW_WE_HELP = [
   {
-    icon: Search,
     step: "01",
     title: "Assess",
     desc: "We audit where you are today — your systems, gaps, and biggest opportunities — and map the path forward.",
   },
   {
-    icon: Hammer,
     step: "02",
     title: "Build",
     desc: "We design and build the systems you need: websites, marketing, CRM, hiring, SOPs, and KPIs.",
   },
   {
-    icon: Zap,
     step: "03",
     title: "Implement & Automate",
     desc: "We install the systems into your day-to-day, automate the busywork, and train your team to run them.",
   },
   {
-    icon: LineChart,
     step: "04",
     title: "Measure & Improve",
     desc: "We track performance against clear KPIs and keep refining so the systems compound over time.",
@@ -161,11 +156,18 @@ export default function Home() {
           data-testid="section-hero"
         >
           <div className="absolute inset-0 z-0">
-            <img
-              src={heroBgisImg}
-              alt=""
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster={heroBgisImg}
+              {...{ "webkit-playsinline": "true" } as any}
               className="w-full h-full object-cover grayscale"
-            />
+            >
+              <source src="/assets/videos/hero-atrium.mp4" type="video/mp4" />
+            </video>
             <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/75 to-primary/35" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-primary/30" />
           </div>
@@ -207,10 +209,6 @@ export default function Home() {
                   >
                     <span className="text-accent font-bold not-italic">|</span>
                     {c.label}
-                    <ArrowRight
-                      size={14}
-                      className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all"
-                    />
                   </Link>
                 ))}
               </div>
@@ -222,7 +220,6 @@ export default function Home() {
                   data-testid="link-hero-services"
                 >
                   Explore our services
-                  <ArrowRight size={16} />
                 </Link>
                 <a
                   href={BOOKINGS_URL}
@@ -349,7 +346,6 @@ export default function Home() {
                 data-testid="link-packages-all"
               >
                 See the full catalog
-                <ArrowRight size={16} />
               </Link>
             </AnimateOnScroll>
           </div>
@@ -370,7 +366,6 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {HOW_WE_HELP.map((s, i) => {
-                const Icon = s.icon;
                 return (
                   <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
                     <div
@@ -378,9 +373,6 @@ export default function Home() {
                       data-testid={`how-we-help-step-${i}`}
                     >
                       <div className="flex items-center justify-between mb-6">
-                        <span className="w-12 h-12 flex items-center justify-center bg-primary text-white group-hover:bg-accent transition-colors">
-                          <Icon size={20} />
-                        </span>
                         <span className="text-display numeral-outline text-primary/30 text-4xl">
                           {s.step}
                         </span>
@@ -415,7 +407,6 @@ export default function Home() {
                   data-testid="link-capabilities-all"
                 >
                   All capabilities
-                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
               </AnimateOnScroll>
             </div>
@@ -447,9 +438,7 @@ export default function Home() {
                         <span className="text-[11px] font-black uppercase tracking-[0.3em] text-accent">
                           {c.label}
                         </span>
-                        <span className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white group-hover:bg-accent group-hover:border-accent transition-all">
-                          <ArrowRight size={16} />
-                        </span>
+                        <span className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white text-lg leading-none group-hover:bg-accent group-hover:border-accent transition-all" aria-hidden="true">&rsaquo;</span>
                       </div>
 
                       <div className="absolute bottom-6 left-6 right-6 md:right-12">
@@ -518,9 +507,6 @@ export default function Home() {
               <AnimateOnScroll animation="fade-left">
                 <div className="bg-white/5 backdrop-blur-sm rounded-none border border-white/10 p-10" data-testid="card-before">
                   <div className="flex items-center gap-3 mb-8">
-                    <div className="w-10 h-10 rounded-none bg-red-500/20 flex items-center justify-center">
-                      <XIcon size={20} className="text-red-400" />
-                    </div>
                     <h3 className="text-2xl font-heading font-extrabold text-white">Before</h3>
                   </div>
                   <ul className="space-y-4">
@@ -625,7 +611,6 @@ export default function Home() {
                 data-testid="link-how-it-works-cta"
               >
                 Book a strategy call
-                <ArrowRight size={16} />
               </a>
             </AnimateOnScroll>
           </div>
@@ -655,7 +640,6 @@ export default function Home() {
                   data-testid="link-explore-system"
                 >
                   Explore the system
-                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
               </AnimateOnScroll>
 
@@ -666,10 +650,12 @@ export default function Home() {
                     muted
                     loop
                     playsInline
+                    preload="auto"
+                    {...{ "webkit-playsinline": "true" } as any}
                     className="w-full h-full object-cover"
                     poster={teamMovingForwardImg}
                   >
-                    <source src="/assets/videos/systems-network.mp4" type="video/mp4" />
+                    <source src="/assets/videos/team-collab.mp4" type="video/mp4" />
                   </video>
                 </div>
               </AnimateOnScroll>
@@ -687,6 +673,8 @@ export default function Home() {
               muted
               loop
               playsInline
+              preload="auto"
+              {...{ "webkit-playsinline": "true" } as any}
               className="w-full h-full object-cover opacity-60"
               poster={teamMovingForwardImg}
             >
@@ -719,7 +707,6 @@ export default function Home() {
                   data-testid="link-cta-book"
                 >
                   Book a strategy call
-                  <ArrowRight size={18} />
                 </a>
                 <Link
                   href="/services"

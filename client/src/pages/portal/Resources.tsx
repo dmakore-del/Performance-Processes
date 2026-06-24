@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { BookOpen, PlayCircle, Download, ExternalLink, CheckSquare, Loader2, Plus, FileText, Upload, Send } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -12,14 +12,14 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import type { Resource } from "@shared/schema";
 
-function getResourceIcon(resourceType: string) {
+function getResourceLabel(resourceType: string) {
   const t = resourceType.toLowerCase();
-  if (t.includes("pdf") || t.includes("guide")) return <BookOpen size={24} className="text-zinc-700" />;
-  if (t.includes("template")) return <Download size={24} className="text-green-500" />;
-  if (t.includes("toolkit")) return <ExternalLink size={24} className="text-zinc-700" />;
-  if (t.includes("checklist")) return <CheckSquare size={24} className="text-orange-500" />;
-  if (t.includes("video")) return <PlayCircle size={24} className="text-red-500" />;
-  return <BookOpen size={24} className="text-zinc-700" />;
+  if (t.includes("pdf") || t.includes("guide")) return { label: "Guide", color: "text-zinc-700 border-zinc-200" };
+  if (t.includes("template")) return { label: "Tmpl", color: "text-green-600 border-green-200" };
+  if (t.includes("toolkit")) return { label: "Kit", color: "text-zinc-700 border-zinc-200" };
+  if (t.includes("checklist")) return { label: "List", color: "text-orange-600 border-orange-200" };
+  if (t.includes("video")) return { label: "Video", color: "text-red-600 border-red-200" };
+  return { label: "Guide", color: "text-zinc-700 border-zinc-200" };
 }
 
 export default function Resources() {
@@ -117,7 +117,7 @@ export default function Resources() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="loading-resources">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">Loading</span>
         </div>
       </PortalLayout>
     );
@@ -135,7 +135,6 @@ export default function Resources() {
             <Dialog open={createOpen} onOpenChange={setCreateOpen}>
               <DialogTrigger asChild>
                 <Button data-testid="button-add-resource" className="gap-2">
-                  <Plus size={16} />
                   Add Resource
                 </Button>
               </DialogTrigger>
@@ -223,12 +222,10 @@ export default function Resources() {
                         onClick={() => fileInputRef.current?.click()}
                         data-testid="button-choose-file"
                       >
-                        <Upload size={16} />
                         {selectedFile ? "Change File" : "Choose File"}
                       </Button>
                       {selectedFile && (
                         <span className="text-sm text-muted-foreground flex items-center gap-1">
-                          <FileText size={14} />
                           {selectedFile.name}
                         </span>
                       )}
@@ -245,7 +242,6 @@ export default function Resources() {
                     />
                   </div>
                   <Button type="submit" data-testid="button-submit-resource" disabled={createMutation.isPending} className="w-full">
-                    {createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
                     {createMutation.isPending ? "Creating..." : "Create Resource"}
                   </Button>
                 </form>
@@ -284,7 +280,7 @@ export default function Resources() {
             >
               <div>
                 <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-4 border border-border">
-                  {getResourceIcon(res.resourceType)}
+                  {(() => { const r = getResourceLabel(res.resourceType); return <span className={cn("text-[10px] font-black uppercase tracking-wider", r.color.split(" ")[0])}>{r.label}</span>; })()}
                 </div>
                 <h3 className="font-bold text-primary text-lg leading-tight mb-2 group-hover:text-accent transition-colors" data-testid={`text-resource-title-${res.id}`}>{res.title}</h3>
                 {res.description && (
@@ -299,7 +295,7 @@ export default function Resources() {
                   </span>
                   {res.fileUrl && (
                     <span className="inline-block bg-green-50 text-green-600 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-green-200">
-                      <FileText size={10} className="inline mr-1" />PDF
+                      PDF
                     </span>
                   )}
                 </div>
@@ -358,7 +354,6 @@ export default function Resources() {
                     {selectedResource.fileUrl && (
                       <Button asChild data-testid="button-download-resource">
                         <a href={selectedResource.fileUrl} target="_blank" rel="noopener noreferrer" className="gap-2">
-                          <Download size={16} />
                           Download PDF
                         </a>
                       </Button>
@@ -366,7 +361,6 @@ export default function Resources() {
                     {selectedResource.accessUrl && (
                       <Button variant="outline" asChild data-testid="button-access-resource">
                         <a href={selectedResource.accessUrl} target="_blank" rel="noopener noreferrer" className="gap-2">
-                          <ExternalLink size={16} />
                           Open Link
                         </a>
                       </Button>
@@ -457,7 +451,6 @@ export default function Resources() {
               disabled={requestMutation.isPending}
               className="w-full bg-accent text-white hover:bg-primary gap-2"
             >
-              <Send size={16} />
               {requestMutation.isPending ? "Sending..." : "Send Request"}
             </Button>
           </form>

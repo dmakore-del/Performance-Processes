@@ -2,7 +2,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Users, Target, Settings, BarChart3, CreditCard, Loader2, RefreshCw, Search, Briefcase, Rocket, UserCheck, Calendar, Package, ArrowDown, Phone, Globe, Palette, TrendingUp, Megaphone } from "lucide-react";
 import { Link } from "wouter";
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -124,7 +123,7 @@ export default function Marketing() {
       title: language === "en" ? "Discover" : "Découvrir",
       desc: language === "en" ? "We learn about your brand, your audience, and your goals to build a digital strategy that reflects who you really are." : "Nous découvrons votre marque, votre audience et vos objectifs pour construire une stratégie numérique qui vous reflète.",
       outcomes: language === "en" ? ["Brand & audience analysis", "Competitive landscape review", "Goal definition & alignment", "Strategy roadmap"] : ["Analyse de marque et audience", "Revue concurrentielle", "Définition des objectifs", "Feuille de route stratégique"],
-      icon: <Search className="text-accent" size={28} />,
+      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">01</span>,
       color: "from-zinc-700/10 to-zinc-800/5",
     },
     {
@@ -132,7 +131,7 @@ export default function Marketing() {
       title: language === "en" ? "Design" : "Concevoir",
       desc: language === "en" ? "We craft your visual identity and digital assets with intention, every pixel and word designed to build trust and attract the right people." : "Nous créons votre identité visuelle et vos actifs numériques avec intention, chaque élément conçu pour bâtir la confiance.",
       outcomes: language === "en" ? ["Visual identity creation", "Website wireframing", "Content strategy", "User experience design"] : ["Création d'identité visuelle", "Maquettes de site", "Stratégie de contenu", "Design UX"],
-      icon: <Palette className="text-accent" size={28} />,
+      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">02</span>,
       color: "from-accent/10 to-accent/5",
     },
     {
@@ -140,7 +139,7 @@ export default function Marketing() {
       title: language === "en" ? "Build" : "Construire",
       desc: language === "en" ? "We develop your website and marketing assets with care, ensuring everything works seamlessly across devices and platforms." : "Nous développons votre site Web et vos actifs marketing avec soin, assurant un fonctionnement optimal sur tous les appareils.",
       outcomes: language === "en" ? ["Responsive website development", "SEO implementation", "Content creation", "Analytics integration"] : ["Développement Web responsive", "Implémentation SEO", "Création de contenu", "Intégration analytique"],
-      icon: <Settings className="text-accent" size={28} />,
+      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">03</span>,
       color: "from-emerald-500/10 to-emerald-600/5",
     },
     {
@@ -148,7 +147,7 @@ export default function Marketing() {
       title: language === "en" ? "Grow" : "Croître",
       desc: language === "en" ? "We launch, optimize, and support your digital presence so it keeps working for you long after the project is done." : "Nous lançons, optimisons et supportons votre présence numérique pour qu'elle continue à travailler pour vous.",
       outcomes: language === "en" ? ["Launch & quality assurance", "Performance monitoring", "Conversion optimization", "Ongoing support"] : ["Lancement et assurance qualité", "Suivi de performance", "Optimisation de conversion", "Support continu"],
-      icon: <TrendingUp className="text-accent" size={28} />,
+      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">04</span>,
       color: "from-zinc-700/10 to-zinc-800/5",
     },
   ];
@@ -157,7 +156,7 @@ export default function Marketing() {
     enterprise: {
       label: language === "en" ? "Enterprise" : "Entreprise",
       tagline: language === "en" ? "For organizations that need a professional digital presence and strategic marketing infrastructure" : "Pour les organisations qui ont besoin d'une présence numérique professionnelle et d'une infrastructure marketing stratégique",
-      icon: <Briefcase className="text-accent" size={24} />,
+      icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span>,
       services: [
         {
           title: language === "en" ? "Website & Digital Presence" : "Site Web et présence numérique",
@@ -296,7 +295,7 @@ export default function Marketing() {
     business: {
       label: language === "en" ? "Small Business" : "Petite entreprise",
       tagline: language === "en" ? "For founders and small business owners who need a professional online presence without enterprise pricing" : "Pour les fondateurs et propriétaires de PME qui ont besoin d'une présence en ligne professionnelle sans prix d'entreprise",
-      icon: <Rocket className="text-accent" size={24} />,
+      icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span>,
       services: [
         {
           title: language === "en" ? "Website & Digital Presence" : "Site Web et présence numérique",
@@ -439,7 +438,7 @@ export default function Marketing() {
     professional: {
       label: language === "en" ? "Professional" : "Professionnel",
       tagline: language === "en" ? "For professionals ready to build their personal brand and attract opportunities" : "Pour les professionnels prêts à bâtir leur marque personnelle et attirer les opportunités",
-      icon: <UserCheck className="text-accent" size={24} />,
+      icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span>,
       services: [
         {
           title: language === "en" ? "Personal Brand Website" : "Site Web de marque personnelle",
@@ -534,17 +533,17 @@ export default function Marketing() {
   };
 
   const tabs: { key: typeof activeTab; label: string; sublabel: string; icon: React.ReactNode; priceRange: string }[] = [
-    { key: "enterprise", label: serviceTiers.enterprise.label, sublabel: language === "en" ? "Digital & Brand" : "Numérique et marque", icon: <Briefcase size={18} />, priceRange: "$3,000+" },
-    { key: "business", label: serviceTiers.business.label, sublabel: language === "en" ? "Web & Social" : "Web et social", icon: <Rocket size={18} />, priceRange: "$500+" },
-    { key: "professional", label: serviceTiers.professional.label, sublabel: language === "en" ? "Personal Brand" : "Marque personnelle", icon: <UserCheck size={18} />, priceRange: "$300+" },
+    { key: "enterprise", label: serviceTiers.enterprise.label, sublabel: language === "en" ? "Digital & Brand" : "Numérique et marque", icon: null, priceRange: "$3,000+" },
+    { key: "business", label: serviceTiers.business.label, sublabel: language === "en" ? "Web & Social" : "Web et social", icon: null, priceRange: "$500+" },
+    { key: "professional", label: serviceTiers.professional.label, sublabel: language === "en" ? "Personal Brand" : "Marque personnelle", icon: null, priceRange: "$300+" },
   ];
 
   const currentTier = serviceTiers[activeTab];
 
   const resultStats = [
-    { value: language === "en" ? "Enterprise" : "Entreprise", label: language === "en" ? "Digital & Brand" : "Numérique et marque", icon: <Briefcase size={20} className="text-accent" /> },
-    { value: language === "en" ? "Small Business" : "PME", label: language === "en" ? "Web & Social" : "Web et social", icon: <Rocket size={20} className="text-accent" /> },
-    { value: language === "en" ? "Professional" : "Professionnel", label: language === "en" ? "Personal Brand" : "Marque personnelle", icon: <UserCheck size={20} className="text-accent" /> },
+    { value: language === "en" ? "Enterprise" : "Entreprise", label: language === "en" ? "Digital & Brand" : "Numérique et marque", icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span> },
+    { value: language === "en" ? "Small Business" : "PME", label: language === "en" ? "Web & Social" : "Web et social", icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span> },
+    { value: language === "en" ? "Professional" : "Professionnel", label: language === "en" ? "Personal Brand" : "Marque personnelle", icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span> },
   ];
 
   return (
@@ -583,7 +582,6 @@ export default function Marketing() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                   <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="marketing-button-hero-book">
-                    <Calendar size={18} className="mr-2" />
                     {language === "en" ? "Book a Consultation" : "Réservez une consultation"}
                   </Button>
                 </a>
@@ -594,7 +592,7 @@ export default function Marketing() {
                   data-testid="marketing-button-hero-explore"
                 >
                   {language === "en" ? "Explore Services" : "Explorer les services"}
-                  <ArrowDown size={18} className="ml-2" />
+                  <span aria-hidden="true" className="ml-2">&#9662;</span>
                 </Button>
               </div>
             </div>
@@ -647,7 +645,7 @@ export default function Marketing() {
                       <ul className="space-y-2">
                         {step.outcomes.map((outcome, oi) => (
                           <li key={oi} className="flex items-center gap-2 text-sm text-primary/80">
-                            <CheckCircle2 size={14} className="text-accent shrink-0" />
+                            <span aria-hidden="true" className="text-accent shrink-0">—</span>
                             <span>{outcome}</span>
                           </li>
                         ))}
@@ -655,7 +653,7 @@ export default function Marketing() {
                     </div>
                     {i < methodSteps.length - 1 && (
                       <div className="hidden lg:flex absolute top-1/2 -right-4 -translate-y-1/2 z-10">
-                        <ArrowRight className="text-accent/40" size={24} />
+                        <span aria-hidden="true" className="text-accent/40 text-2xl">&rsaquo;</span>
                       </div>
                     )}
                   </div>
@@ -666,7 +664,6 @@ export default function Marketing() {
             <div className="text-center mt-16">
               <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                 <Button className="rounded-full bg-primary text-white hover:bg-accent h-14 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105" data-testid="marketing-button-methodology-cta">
-                  <Phone size={16} className="mr-2" />
                   {language === "en" ? "Let's Talk About Your Digital Presence" : "Parlons de votre présence numérique"}
                 </Button>
               </a>
@@ -743,7 +740,7 @@ export default function Marketing() {
                       <ul className="space-y-2.5 mb-6">
                         {s.benefits.slice(0, 4).map((b: string, bi: number) => (
                           <li key={bi} className="flex items-start gap-2.5 text-sm text-primary/80">
-                            <CheckCircle2 size={15} className="text-accent shrink-0 mt-0.5" />
+                            <span aria-hidden="true" className="text-accent shrink-0">—</span>
                             <span>{b}</span>
                           </li>
                         ))}
@@ -752,7 +749,7 @@ export default function Marketing() {
                   </div>
                   <div className="p-8 pt-4 mt-auto">
                     <div className="flex items-center text-sm font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-all duration-300">
-                      {language === "en" ? "View pricing & details" : "Voir les prix et détails"} <ArrowRight size={16} className="ml-2" />
+                      {language === "en" ? "View pricing & details" : "Voir les prix et détails"} <span aria-hidden="true" className="ml-2">&rsaquo;</span>
                     </div>
                   </div>
                 </div>
@@ -775,7 +772,6 @@ export default function Marketing() {
               </p>
               <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                 <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-12 text-base font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="marketing-button-mid-cta">
-                  <Calendar size={18} className="mr-2" />
                   {language === "en" ? "Book a Consultation" : "Réservez une consultation"}
                 </Button>
               </a>
@@ -823,7 +819,7 @@ export default function Marketing() {
                             )}
                             {tier.isMonthly && (
                               <span className="text-[10px] font-black uppercase tracking-[0.15em] bg-accent/10 text-accent px-3 py-1 rounded-full flex items-center gap-1">
-                                <RefreshCw size={10} /> {language === "en" ? "Monthly" : "Mensuel"}
+                                {language === "en" ? "Monthly" : "Mensuel"}
                               </span>
                             )}
                           </div>
@@ -833,7 +829,7 @@ export default function Marketing() {
                           <ul className="space-y-2 mb-6">
                             {tier.features.map((f: string, fi: number) => (
                               <li key={fi} className="flex items-start gap-2 text-sm text-primary">
-                                <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
+                                <span aria-hidden="true" className="text-accent shrink-0">—</span>
                                 <span>{f}</span>
                               </li>
                             ))}
@@ -845,9 +841,9 @@ export default function Marketing() {
                             data-testid={`marketing-button-pay-tier-${idx}`}
                           >
                             {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
-                              <><Loader2 size={14} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
+                              <>{language === "en" ? "Processing..." : "Traitement..."}</>
                             ) : (
-                              <><CreditCard size={14} /> {tier.isMonthly
+                              <>{tier.isMonthly
                                 ? (language === "en" ? "Subscribe" : "S'abonner")
                                 : (language === "en" ? "Select & Pay" : "Sélectionner et payer")
                               }</>
@@ -855,7 +851,7 @@ export default function Marketing() {
                           </Button>
                           <div className="flex items-center justify-center gap-2 mt-2">
                             <div className="flex items-center gap-1.5">
-                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-100 text-[9px] font-semibold text-gray-600"><CreditCard size={10} />Card</span>
+                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-100 text-[9px] font-semibold text-gray-600">Card</span>
                               <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-[#FFC43926] text-[9px] font-semibold text-[#003087]">PayPal</span>
                               <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-900 text-[9px] font-semibold text-white"> Pay</span>
                             </div>

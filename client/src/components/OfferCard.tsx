@@ -1,4 +1,3 @@
-import { CheckCircle2, CreditCard, Loader2, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
@@ -130,7 +129,7 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
       <ul className="space-y-2.5 mb-7">
         {offer.includes.map((item, i) => (
           <li key={i} className="flex items-start gap-2.5 text-sm text-primary">
-            <CheckCircle2 size={16} className="text-accent shrink-0 mt-0.5" />
+            <span aria-hidden="true" className="text-accent shrink-0 leading-relaxed">&mdash;</span>
             <span>{item}</span>
           </li>
         ))}
@@ -193,21 +192,11 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
               }`}
               data-testid={`button-buy-${offer.id}`}
             >
-              {busy ? (
-                <>
-                  <Loader2 size={14} className="animate-spin mr-2" /> Processing...
-                </>
-              ) : (
-                <>
-                  <CreditCard size={14} className="mr-2" />
-                  {offer.isMonthly ? "Subscribe Now" : "Get Started"}
-                </>
-              )}
+              {busy ? "Processing..." : offer.isMonthly ? "Subscribe Now" : "Get Started"}
             </Button>
             <div className="flex items-center justify-center gap-1.5">
               <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Pay with</span>
               <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-gray-100 text-[10px] font-semibold text-gray-700">
-                <CreditCard size={10} />
                 Card
               </span>
               <span className="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-semibold text-gray-700">Debit</span>
@@ -221,7 +210,6 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
               data-testid={`button-explore-${offer.id}`}
             >
               {offer.ctaHref === "/contact" ? "Request Quote" : "Request Quote"}
-              <ArrowRight size={14} className="ml-2" />
             </Button>
           </Link>
         ) : null}

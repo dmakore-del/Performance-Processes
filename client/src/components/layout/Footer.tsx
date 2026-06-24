@@ -1,6 +1,4 @@
 import { Link } from "wouter";
-import { ArrowRight, Mail, BookOpen, Loader2 } from "lucide-react";
-import { Linkedin, Instagram, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -43,9 +41,7 @@ function LeadMagnetSection() {
     <section className="bg-gradient-to-br from-primary via-primary to-primary/90 py-16 md:py-20" data-testid="section-lead-magnet">
       <div className="container mx-auto px-4 md:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/10 mb-6">
-            <BookOpen className="w-7 h-7 text-accent" />
-          </div>
+          <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-accent mb-6">Newsletter</div>
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
             Subscribe to Leadership Insights
           </h2>
@@ -54,13 +50,12 @@ function LeadMagnetSection() {
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <div className="relative flex-1">
-              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60" />
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-white text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-full px-4 py-3 rounded-xl bg-white text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent"
                 required
                 data-testid="input-lead-magnet-email"
               />
@@ -71,7 +66,7 @@ function LeadMagnetSection() {
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accent/90 transition-colors shrink-0 disabled:opacity-60"
               data-testid="button-lead-magnet-subscribe"
             >
-              {subscribeMutation.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Subscribe <ArrowRight className="w-4 h-4" /></>}
+              {subscribeMutation.isPending ? "Subscribing..." : "Subscribe"}
             </button>
           </form>
           <p className="text-white/40 text-xs mt-4">No spam. Unsubscribe anytime.</p>
@@ -120,11 +115,9 @@ export function Footer() {
               </p>
               <div className="flex items-center gap-5">
                 <a href="https://www.linkedin.com/company/performance-processes/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors" data-testid="link-linkedin">
-                  <Linkedin size={18} />
                   <span>LinkedIn</span>
                 </a>
                 <a href="https://www.instagram.com/performanceprocesses" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors" data-testid="link-instagram">
-                  <Instagram size={18} />
                   <span>Instagram</span>
                 </a>
               </div>
@@ -162,7 +155,6 @@ export function Footer() {
                 <p>contact@performanceprocesses.com</p>
                 <p>+1 (905) 823-1324</p>
                 <a href="https://wa.me/14374254844" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition-colors" data-testid="link-whatsapp">
-                  <MessageCircle size={16} />
                   <span>WhatsApp: +1 (437) 425-4844</span>
                 </a>
                 <p>Toronto, Ontario</p>

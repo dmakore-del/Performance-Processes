@@ -1,5 +1,4 @@
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { CheckCircle2, Circle, Clock, AlertCircle, Plus, Trash2, Loader2, ClipboardList } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
 import { useMutation } from "@tanstack/react-query";
@@ -105,7 +104,7 @@ export default function Actions() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" data-testid="loading-spinner" />
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse" data-testid="loading-spinner">Loading</span>
         </div>
       </PortalLayout>
     );
@@ -115,7 +114,6 @@ export default function Actions() {
     return (
       <PortalLayout>
         <div className="flex flex-col items-center justify-center min-h-[400px] text-center" data-testid="empty-state-no-engagement">
-          <ClipboardList className="h-16 w-16 text-muted-foreground mb-4" />
           <h2 className="text-xl font-bold text-primary mb-2">No Active Engagement</h2>
           <p className="text-muted-foreground">Your consultant will set up your engagement shortly.</p>
         </div>
@@ -134,8 +132,7 @@ export default function Actions() {
           {canEdit && (
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
-              <Button data-testid="button-new-action" className="gap-2">
-                <Plus size={16} />
+              <Button data-testid="button-new-action">
                 New Action
               </Button>
             </DialogTrigger>
@@ -170,8 +167,7 @@ export default function Actions() {
                   </Select>
                 </div>
                 <Button data-testid="button-submit-action" onClick={handleCreate} disabled={createMutation.isPending || !newTask || !newOwner || !newDueDate} className="w-full">
-                  {createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
-                  Create Action
+                  {createMutation.isPending ? "Creating..." : "Create Action"}
                 </Button>
               </div>
             </DialogContent>
@@ -221,21 +217,30 @@ export default function Actions() {
                           {canEdit ? (
                           <button
                             onClick={() => handleStatusCycle(action)}
-                            className="cursor-pointer hover:scale-110 transition-transform"
+                            className={cn(
+                              "cursor-pointer text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md border transition-colors",
+                              displayStatus === 'completed' ? "bg-green-50 text-green-600 border-green-200" :
+                              displayStatus === 'in-progress' ? "bg-accent/5 text-accent border-accent/20" :
+                              displayStatus === 'overdue' ? "bg-red-50 text-red-600 border-red-200" :
+                              "bg-zinc-100 text-zinc-700 border-zinc-200"
+                            )}
                             data-testid={`button-status-${action.id}`}
                             title="Click to cycle status"
                           >
-                            {displayStatus === 'completed' && <CheckCircle2 size={20} className="text-green-500" />}
-                            {displayStatus === 'in-progress' && <Clock size={20} className="text-accent" />}
-                            {displayStatus === 'pending' && <Circle size={20} className="text-muted-foreground" />}
-                            {displayStatus === 'overdue' && <AlertCircle size={20} className="text-red-500" />}
+                            {displayStatus === 'in-progress' ? 'In Progress' : displayStatus}
                           </button>
                           ) : (
-                          <span data-testid={`status-icon-${action.id}`}>
-                            {displayStatus === 'completed' && <CheckCircle2 size={20} className="text-green-500" />}
-                            {displayStatus === 'in-progress' && <Clock size={20} className="text-accent" />}
-                            {displayStatus === 'pending' && <Circle size={20} className="text-muted-foreground" />}
-                            {displayStatus === 'overdue' && <AlertCircle size={20} className="text-red-500" />}
+                          <span
+                            className={cn(
+                              "text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md border",
+                              displayStatus === 'completed' ? "bg-green-50 text-green-600 border-green-200" :
+                              displayStatus === 'in-progress' ? "bg-accent/5 text-accent border-accent/20" :
+                              displayStatus === 'overdue' ? "bg-red-50 text-red-600 border-red-200" :
+                              "bg-zinc-100 text-zinc-700 border-zinc-200"
+                            )}
+                            data-testid={`status-icon-${action.id}`}
+                          >
+                            {displayStatus === 'in-progress' ? 'In Progress' : displayStatus}
                           </span>
                           )}
                         </td>
@@ -275,7 +280,7 @@ export default function Actions() {
                             data-testid={`button-delete-${action.id}`}
                             title="Delete action"
                           >
-                            <Trash2 size={16} />
+                            <span className="text-xs font-bold uppercase tracking-wider">Delete</span>
                           </button>
                         </td>
                         )}

@@ -4,7 +4,6 @@ import { useForgotPassword, useResetPassword } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Mail, ArrowLeft, Loader2, CheckCircle2, KeyRound } from "lucide-react";
 import logoImg from "@/assets/logo.png";
 
 export default function ForgotPassword() {
@@ -51,9 +50,6 @@ function ForgotPasswordForm() {
         <div className="bg-white rounded-3xl border border-border shadow-sm p-8">
           {sent ? (
             <div className="text-center py-4">
-              <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <CheckCircle2 size={32} className="text-green-500" />
-              </div>
               <h2 className="text-xl font-bold text-primary mb-2">Check Your Email</h2>
               <p className="text-sm text-muted-foreground mb-6">
                 If an account exists with <strong>{email}</strong>, you will receive a password reset link shortly.
@@ -66,9 +62,6 @@ function ForgotPasswordForm() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Mail size={32} className="text-accent" />
-              </div>
 
               <div>
                 <Label htmlFor="email" className="text-sm font-bold text-primary mb-2 block">Email Address</Label>
@@ -96,7 +89,6 @@ function ForgotPasswordForm() {
                 disabled={forgotPassword.isPending}
                 className="w-full h-12 rounded-xl bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-sm"
               >
-                {forgotPassword.isPending ? <Loader2 className="animate-spin mr-2" size={18} /> : null}
                 Send Reset Link
               </Button>
             </form>
@@ -105,8 +97,8 @@ function ForgotPasswordForm() {
 
         <div className="text-center mt-6">
           <Link href="/portal/login">
-            <span className="text-sm text-muted-foreground hover:text-primary cursor-pointer flex items-center justify-center gap-1">
-              <ArrowLeft size={14} /> Back to Sign In
+            <span className="text-sm text-muted-foreground hover:text-primary cursor-pointer">
+              ← Back to Sign In
             </span>
           </Link>
         </div>
@@ -165,9 +157,6 @@ function ResetPasswordForm({ token }: { token: string }) {
         <div className="bg-white rounded-3xl border border-border shadow-sm p-8">
           {success ? (
             <div className="text-center py-4">
-              <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <CheckCircle2 size={32} className="text-green-500" />
-              </div>
               <h2 className="text-xl font-bold text-primary mb-2">Password Reset</h2>
               <p className="text-sm text-muted-foreground mb-6">Your password has been updated successfully.</p>
               <Link href="/portal/login">
@@ -178,9 +167,6 @@ function ResetPasswordForm({ token }: { token: string }) {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <KeyRound size={32} className="text-accent" />
-              </div>
 
               <div>
                 <Label htmlFor="password" className="text-sm font-bold text-primary mb-2 block">New Password</Label>
@@ -223,7 +209,6 @@ function ResetPasswordForm({ token }: { token: string }) {
                 disabled={resetPassword.isPending}
                 className="w-full h-12 rounded-xl bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-sm"
               >
-                {resetPassword.isPending ? <Loader2 className="animate-spin mr-2" size={18} /> : null}
                 Reset Password
               </Button>
             </form>

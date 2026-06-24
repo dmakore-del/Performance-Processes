@@ -4,7 +4,6 @@ import { PortalLayout } from "@/components/layout/PortalLayout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, Mail, Briefcase, ExternalLink } from "lucide-react";
 
 interface ContactSubmission {
   id: number;
@@ -78,11 +77,9 @@ export default function AdminSubmissions() {
         <Tabs defaultValue="contacts" className="w-full">
           <TabsList className="grid w-full grid-cols-2 max-w-lg">
             <TabsTrigger value="contacts" className="flex items-center gap-2" data-testid="tab-contacts">
-              <Mail size={16} />
               Contact ({contacts.length})
             </TabsTrigger>
             <TabsTrigger value="applications" className="flex items-center gap-2" data-testid="tab-applications">
-              <Briefcase size={16} />
               Jobs ({applications.length})
             </TabsTrigger>
           </TabsList>
@@ -91,12 +88,10 @@ export default function AdminSubmissions() {
             <div className="bg-white rounded-2xl border border-border overflow-hidden">
               <div className="p-4 border-b border-border">
                 <div className="relative max-w-sm">
-                  <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     placeholder="Search contacts..."
                     value={contactSearch}
                     onChange={(e) => setContactSearch(e.target.value)}
-                    className="pl-9"
                     data-testid="input-search-contacts"
                   />
                 </div>
@@ -146,12 +141,10 @@ export default function AdminSubmissions() {
             <div className="bg-white rounded-2xl border border-border overflow-hidden">
               <div className="p-4 border-b border-border">
                 <div className="relative max-w-sm">
-                  <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     placeholder="Search applications..."
                     value={appSearch}
                     onChange={(e) => setAppSearch(e.target.value)}
-                    className="pl-9"
                     data-testid="input-search-applications"
                   />
                 </div>
@@ -189,7 +182,7 @@ export default function AdminSubmissions() {
                           <td className="px-4 py-3">
                             {a.linkedIn ? (
                               <a href={a.linkedIn} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline flex items-center gap-1">
-                                <ExternalLink size={14} /> View
+                                View
                               </a>
                             ) : (
                               <span className="text-muted-foreground">,</span>

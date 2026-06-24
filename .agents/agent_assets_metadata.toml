@@ -6,3 +6,57 @@ id = "T7YH0CjlKms-pZvJG-RSg"
 uri = "file://client/src/assets/generated/hero-bgis.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "lX4P01dR7aLmH_gcjGGJJ"
+uri = "file://attached_assets/generated/community-collaboration.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "RyGHJ4s5gBFeoUOTZQayk"
+uri = "file://attached_assets/generated/community-workspace.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "A8QaQ4brRVlbyqsACCtjk"
+uri = "file://attached_assets/generated/community-townhall.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "4OeGvv5MVE-32nqC_Jy79"
+uri = "file://attached_assets/generated/milestone-celebration.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "yZPFnVbyYmAZ5uil5m0l-"
+uri = "file://attached_assets/generated/team-moving-forward.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "m128ctyYqY0_yswZmWO0l"
+uri = "file://attached_assets/generated/city-aerial-new.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "Cobfnrhl7lJ7suEeDEwHt"
+uri = "file://attached_assets/generated/process-flow-abstract.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "ljlqXbpsr_fuXkJuvtEoL"
+uri = "file://attached_assets/generated/team-strategy-new.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "JOITbfe5LQZf8N50BLJFu"
+uri = "file://attached_assets/generated/collaboration.png"
+type = "image"
+title = "generated_image"

@@ -4,7 +4,6 @@ import { useRegister } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff, Loader2, ArrowLeft, Building2, Users, Briefcase } from "lucide-react";
 import logoImg from "@/assets/logo.png";
 
 export default function Register() {
@@ -60,12 +59,14 @@ export default function Register() {
         muted
         loop
         playsInline
+        preload="auto"
+        {...{ "webkit-playsinline": "true" } as any}
         className="absolute inset-0 w-full h-full object-cover"
         data-testid="bg-video"
       >
         <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-[#0A1628]/80 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
     </>
   );
 
@@ -78,9 +79,6 @@ export default function Register() {
             <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-6 cursor-pointer" />
           </Link>
           <div className="bg-white/95 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl p-8">
-            <div className="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-orange-200">
-              <Users size={32} className="text-orange-500" />
-            </div>
             <h1 data-testid="text-pending-title" className="text-2xl font-heading font-extrabold text-primary mb-3">Account Created</h1>
             <p className="text-muted-foreground mb-4">
               Your staff account has been created and is pending administrator approval. 
@@ -131,7 +129,6 @@ export default function Register() {
                       : "border-border hover:border-muted-foreground/30"
                   }`}
                 >
-                  <Briefcase size={20} className={accountType === "client" ? "text-accent mb-2" : "text-muted-foreground mb-2"} />
                   <p className="font-bold text-sm text-primary">Client</p>
                   <p className="text-[10px] text-muted-foreground mt-1">Organization seeking consulting services</p>
                 </button>
@@ -145,7 +142,6 @@ export default function Register() {
                       : "border-border hover:border-muted-foreground/30"
                   }`}
                 >
-                  <Users size={20} className={accountType === "staff" ? "text-accent mb-2" : "text-muted-foreground mb-2"} />
                   <p className="font-bold text-sm text-primary">Staff</p>
                   <p className="text-[10px] text-muted-foreground mt-1">Team member (requires admin approval)</p>
                 </button>
@@ -182,9 +178,7 @@ export default function Register() {
 
             <div>
               <Label htmlFor="companyName" className="text-sm font-bold text-primary mb-2 block">
-                <span className="flex items-center gap-2">
-                  <Building2 size={14} /> {accountType === "staff" ? "Department / Team" : "Organization Name"}
-                </span>
+                {accountType === "staff" ? "Department / Team" : "Organization Name"}
               </Label>
               <Input
                 id="companyName"
@@ -215,9 +209,9 @@ export default function Register() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold uppercase tracking-wider text-muted-foreground hover:text-primary"
                 >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  {showPassword ? "Hide" : "Show"}
                 </button>
               </div>
             </div>
@@ -243,9 +237,8 @@ export default function Register() {
             )}
 
             {accountType === "staff" && (
-              <div className="bg-orange-50 p-3 rounded-xl border border-orange-200 flex items-start gap-3">
-                <Users size={18} className="text-orange-600 mt-0.5 flex-shrink-0" />
-                <p className="text-xs text-orange-700">Staff accounts require administrator approval before access is granted.</p>
+              <div className="bg-zinc-100 p-3 rounded-xl border border-zinc-200">
+                <p className="text-xs text-zinc-700">Staff accounts require administrator approval before access is granted.</p>
               </div>
             )}
 
@@ -255,7 +248,6 @@ export default function Register() {
               disabled={registerMutation.isPending}
               className="w-full h-12 rounded-xl bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-sm"
             >
-              {registerMutation.isPending ? <Loader2 className="animate-spin mr-2" size={18} /> : null}
               {accountType === "staff" ? "Request Staff Access" : "Create Account"}
             </Button>
           </form>
@@ -274,8 +266,8 @@ export default function Register() {
 
         <div className="text-center mt-4">
           <Link href="/">
-            <span className="text-xs text-white/50 hover:text-white cursor-pointer flex items-center justify-center gap-1">
-              <ArrowLeft size={12} /> Back to website
+            <span className="text-xs text-white/50 hover:text-white cursor-pointer">
+              ← Back to website
             </span>
           </Link>
         </div>

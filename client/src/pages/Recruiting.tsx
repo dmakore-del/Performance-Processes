@@ -2,7 +2,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Users, Target, Settings, BarChart3, CreditCard, Loader2, RefreshCw, Search, Briefcase, Rocket, UserCheck, Calendar, Package, Heart, ArrowDown, Phone } from "lucide-react";
 import { Link } from "wouter";
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -126,7 +125,7 @@ export default function Recruiting() {
       title: language === "en" ? "Understand" : "Comprendre",
       desc: language === "en" ? "We start by deeply understanding your hiring needs, the role, the culture, and the kind of person who will truly thrive in your organization." : "Nous commençons par comprendre vos besoins en recrutement, le rôle, la culture et le type de personne qui s'épanouira dans votre organisation.",
       outcomes: language === "en" ? ["Role and culture analysis", "Hiring needs assessment", "Ideal candidate profiling", "Timeline and process planning"] : ["Analyse du rôle et de la culture", "Évaluation des besoins", "Profil du candidat idéal", "Planification du processus"],
-      icon: <Search className="text-accent" size={28} />,
+      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">01</span>,
       color: "from-zinc-700/10 to-zinc-800/5",
     },
     {
@@ -134,7 +133,7 @@ export default function Recruiting() {
       title: language === "en" ? "Source" : "Rechercher",
       desc: language === "en" ? "We tap into our networks, databases, and sourcing strategies to find candidates you won't find on job boards, the hidden talent that makes the difference." : "Nous exploitons nos réseaux et stratégies de sourcing pour trouver des candidats introuvables sur les sites d'emploi.",
       outcomes: language === "en" ? ["Multi-channel sourcing", "Passive candidate outreach", "Network and referral activation", "Diverse talent pipelines"] : ["Sourcing multi-canaux", "Contact de candidats passifs", "Activation du réseau", "Pipelines diversifiés"],
-      icon: <Users className="text-accent" size={28} />,
+      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">02</span>,
       color: "from-accent/10 to-accent/5",
     },
     {
@@ -142,7 +141,7 @@ export default function Recruiting() {
       title: language === "en" ? "Evaluate" : "Évaluer",
       desc: language === "en" ? "Every candidate goes through a structured evaluation, skills, experience, culture fit, and potential, so you only meet the best." : "Chaque candidat passe par une évaluation structurée, compétences, expérience, adéquation culturelle et potentiel.",
       outcomes: language === "en" ? ["Structured screening process", "Skills and competency assessment", "Culture fit evaluation", "Reference verification"] : ["Processus de présélection structuré", "Évaluation des compétences", "Adéquation culturelle", "Vérification des références"],
-      icon: <Target className="text-accent" size={28} />,
+      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">03</span>,
       color: "from-emerald-500/10 to-emerald-600/5",
     },
     {
@@ -150,7 +149,7 @@ export default function Recruiting() {
       title: language === "en" ? "Place" : "Placer",
       desc: language === "en" ? "We don't just fill a seat, we help you make the right hire, negotiate the offer, and set your new team member up for success from day one." : "Nous ne remplissons pas simplement un poste, nous vous aidons à faire le bon choix, négocier l'offre et préparer votre nouveau collaborateur au succès.",
       outcomes: language === "en" ? ["Offer negotiation support", "Onboarding guidance", "Placement guarantee", "Post-hire follow-up"] : ["Soutien à la négociation", "Accompagnement à l'intégration", "Garantie de placement", "Suivi post-embauche"],
-      icon: <BarChart3 className="text-accent" size={28} />,
+      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">04</span>,
       color: "from-zinc-700/10 to-zinc-800/5",
     },
   ];
@@ -159,7 +158,7 @@ export default function Recruiting() {
     enterprise: {
       label: language === "en" ? "Enterprise" : "Entreprise",
       tagline: language === "en" ? "For organizations that need structured HR systems, talent acquisition partnerships, and people strategy" : "Pour les organisations qui ont besoin de systèmes RH structurés, de partenariats d'acquisition de talents et de stratégie humaine",
-      icon: <Briefcase className="text-accent" size={24} />,
+      icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span>,
       services: [
         {
           title: language === "en" ? "Recruitment Process Design" : "Conception du processus de recrutement",
@@ -392,7 +391,7 @@ export default function Recruiting() {
     business: {
       label: language === "en" ? "Small Business" : "Petite entreprise",
       tagline: language === "en" ? "For founders and small business owners who need to hire right, build HR foundations, and manage their people with confidence" : "Pour les fondateurs et propriétaires de PME qui doivent recruter correctement, bâtir des fondations RH et gérer leur équipe avec confiance",
-      icon: <Rocket className="text-accent" size={24} />,
+      icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span>,
       services: [
         {
           title: language === "en" ? "Recruitment & Hiring Support" : "Soutien au recrutement et à l'embauche",
@@ -580,7 +579,7 @@ export default function Recruiting() {
     professional: {
       label: language === "en" ? "Professional" : "Professionnel",
       tagline: language === "en" ? "For professionals ready to lead with confidence, land the right role, and build the career they deserve" : "Pour les professionnels prêts à diriger avec confiance, décrocher le bon poste et bâtir la carrière qu'ils méritent",
-      icon: <UserCheck className="text-accent" size={24} />,
+      icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span>,
       services: [
         {
           title: language === "en" ? "Interview & Career Readiness" : "Préparation aux entrevues et à la carrière",
@@ -770,7 +769,7 @@ export default function Recruiting() {
     "self-serve": {
       label: language === "en" ? "Self-Serve" : "Libre-service",
       tagline: language === "en" ? "Practical hiring and career tools you can start using today, templates, guides, and frameworks for immediate impact" : "Outils pratiques de recrutement et de carrière que vous pouvez utiliser dès aujourd'hui",
-      icon: <Package className="text-accent" size={24} />,
+      icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span>,
       services: [
         {
           title: language === "en" ? "Hiring & People Management Toolkit" : "Boîte à outils d'embauche et de gestion des personnes",
@@ -865,19 +864,19 @@ export default function Recruiting() {
   };
 
   const tabs: { key: typeof activeTab; label: string; sublabel: string; icon: React.ReactNode; priceRange: string }[] = [
-    { key: "enterprise", label: serviceTiers.enterprise.label, sublabel: language === "en" ? "Recruiting & HR Strategy" : "Recrutement et stratégie RH", icon: <Briefcase size={18} />, priceRange: "$3,000+" },
-    { key: "business", label: serviceTiers.business.label, sublabel: language === "en" ? "Hiring & People Ops" : "Embauche et opérations RH", icon: <Rocket size={18} />, priceRange: "$500+" },
-    { key: "professional", label: serviceTiers.professional.label, sublabel: language === "en" ? "Career & Leadership" : "Carrière et leadership", icon: <UserCheck size={18} />, priceRange: "$200+" },
-    { key: "self-serve", label: serviceTiers["self-serve"].label, sublabel: language === "en" ? "HR & Career Tools" : "Outils RH et carrière", icon: <Package size={18} />, priceRange: "$29+" },
+    { key: "enterprise", label: serviceTiers.enterprise.label, sublabel: language === "en" ? "Recruiting & HR Strategy" : "Recrutement et stratégie RH", icon: null, priceRange: "$3,000+" },
+    { key: "business", label: serviceTiers.business.label, sublabel: language === "en" ? "Hiring & People Ops" : "Embauche et opérations RH", icon: null, priceRange: "$500+" },
+    { key: "professional", label: serviceTiers.professional.label, sublabel: language === "en" ? "Career & Leadership" : "Carrière et leadership", icon: null, priceRange: "$200+" },
+    { key: "self-serve", label: serviceTiers["self-serve"].label, sublabel: language === "en" ? "HR & Career Tools" : "Outils RH et carrière", icon: null, priceRange: "$29+" },
   ];
 
   const currentTier = serviceTiers[activeTab];
 
   const resultStats = [
-    { value: language === "en" ? "Enterprise" : "Entreprise", label: language === "en" ? "Recruiting & HR Strategy" : "Recrutement et stratégie RH", icon: <Briefcase size={20} className="text-accent" /> },
-    { value: language === "en" ? "Small Business" : "PME", label: language === "en" ? "Hiring & People Ops" : "Embauche et opérations RH", icon: <Rocket size={20} className="text-accent" /> },
-    { value: language === "en" ? "Professional" : "Professionnel", label: language === "en" ? "Career & Leadership" : "Carrière et leadership", icon: <UserCheck size={20} className="text-accent" /> },
-    { value: language === "en" ? "Self-Serve" : "Libre-service", label: language === "en" ? "HR & Career Tools" : "Outils RH et carrière", icon: <Package size={20} className="text-accent" /> },
+    { value: language === "en" ? "Enterprise" : "Entreprise", label: language === "en" ? "Recruiting & HR Strategy" : "Recrutement et stratégie RH", icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span> },
+    { value: language === "en" ? "Small Business" : "PME", label: language === "en" ? "Hiring & People Ops" : "Embauche et opérations RH", icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span> },
+    { value: language === "en" ? "Professional" : "Professionnel", label: language === "en" ? "Career & Leadership" : "Carrière et leadership", icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span> },
+    { value: language === "en" ? "Self-Serve" : "Libre-service", label: language === "en" ? "HR & Career Tools" : "Outils RH et carrière", icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span> },
   ];
 
   return (
@@ -916,7 +915,6 @@ export default function Recruiting() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                   <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="recruiting-button-hero-book">
-                    <Calendar size={18} className="mr-2" />
                     {language === "en" ? "Book a Consultation" : "Réservez une consultation"}
                   </Button>
                 </a>
@@ -927,7 +925,7 @@ export default function Recruiting() {
                   data-testid="recruiting-button-hero-explore"
                 >
                   {language === "en" ? "Explore Services" : "Explorer les services"}
-                  <ArrowDown size={18} className="ml-2" />
+                  <span aria-hidden="true" className="ml-2">&#9662;</span>
                 </Button>
               </div>
             </div>
@@ -977,7 +975,7 @@ export default function Recruiting() {
                       <ul className="space-y-2">
                         {step.outcomes.map((outcome, oi) => (
                           <li key={oi} className="flex items-center gap-2 text-sm text-primary/80">
-                            <CheckCircle2 size={14} className="text-accent shrink-0" />
+                            <span aria-hidden="true" className="text-accent shrink-0">—</span>
                             <span>{outcome}</span>
                           </li>
                         ))}
@@ -985,7 +983,7 @@ export default function Recruiting() {
                     </div>
                     {i < methodSteps.length - 1 && (
                       <div className="hidden lg:flex absolute top-1/2 -right-4 -translate-y-1/2 z-10">
-                        <ArrowRight className="text-accent/40" size={24} />
+                        <span aria-hidden="true" className="text-accent/40 text-2xl">&rsaquo;</span>
                       </div>
                     )}
                   </div>
@@ -996,7 +994,6 @@ export default function Recruiting() {
             <div className="text-center mt-16">
               <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                 <Button className="rounded-full bg-primary text-white hover:bg-accent h-14 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105" data-testid="recruiting-button-methodology-cta">
-                  <Phone size={16} className="mr-2" />
                   {language === "en" ? "Let's Talk About Your Hiring Needs" : "Parlons de vos besoins en recrutement"}
                 </Button>
               </a>
@@ -1066,7 +1063,7 @@ export default function Recruiting() {
                       <ul className="space-y-2.5 mb-6">
                         {s.benefits.slice(0, 4).map((b: string, bi: number) => (
                           <li key={bi} className="flex items-start gap-2.5 text-sm text-primary/80">
-                            <CheckCircle2 size={15} className="text-accent shrink-0 mt-0.5" />
+                            <span className="text-accent shrink-0 mt-1 leading-none">—</span>
                             <span>{b}</span>
                           </li>
                         ))}
@@ -1075,7 +1072,7 @@ export default function Recruiting() {
                   </div>
                   <div className="p-8 pt-4 mt-auto">
                     <div className="flex items-center text-sm font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-all duration-300">
-                      {language === "en" ? "View pricing & details" : "Voir les prix et détails"} <ArrowRight size={16} className="ml-2" />
+                      {language === "en" ? "View pricing & details" : "Voir les prix et détails"} <span className="ml-2">→</span>
                     </div>
                   </div>
                 </div>
@@ -1098,7 +1095,6 @@ export default function Recruiting() {
               </p>
               <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                 <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-12 text-base font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="recruiting-button-mid-cta">
-                  <Calendar size={18} className="mr-2" />
                   {language === "en" ? "Book a Consultation" : "Réservez une consultation"}
                 </Button>
               </a>
@@ -1143,7 +1139,7 @@ export default function Recruiting() {
                             )}
                             {tier.isMonthly && (
                               <span className="text-[10px] font-black uppercase tracking-[0.15em] bg-accent/10 text-accent px-3 py-1 rounded-full flex items-center gap-1">
-                                <RefreshCw size={10} /> {language === "en" ? "Monthly" : "Mensuel"}
+                                {language === "en" ? "Monthly" : "Mensuel"}
                               </span>
                             )}
                           </div>
@@ -1153,7 +1149,7 @@ export default function Recruiting() {
                           <ul className="space-y-2 mb-6">
                             {tier.features.map((f: string, fi: number) => (
                               <li key={fi} className="flex items-start gap-2 text-sm text-primary">
-                                <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
+                                <span className="text-accent shrink-0 mt-1 leading-none">—</span>
                                 <span>{f}</span>
                               </li>
                             ))}
@@ -1165,9 +1161,9 @@ export default function Recruiting() {
                             data-testid={`recruiting-button-pay-tier-${idx}`}
                           >
                             {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
-                              <><Loader2 size={14} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
+                              <>{language === "en" ? "Processing..." : "Traitement..."}</>
                             ) : (
-                              <><CreditCard size={14} /> {tier.isMonthly
+                              <>{tier.isMonthly
                                 ? (language === "en" ? "Subscribe" : "S'abonner")
                                 : (language === "en" ? "Select & Pay" : "Sélectionner et payer")
                               }</>
@@ -1175,7 +1171,7 @@ export default function Recruiting() {
                           </Button>
                           <div className="flex items-center justify-center gap-2 mt-2">
                             <div className="flex items-center gap-1.5">
-                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-100 text-[9px] font-semibold text-gray-600"><CreditCard size={10} />Card</span>
+                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-100 text-[9px] font-semibold text-gray-600">Card</span>
                               <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-[#FFC43926] text-[9px] font-semibold text-[#003087]">PayPal</span>
                               <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-900 text-[9px] font-semibold text-white"> Pay</span>
                             </div>
@@ -1225,7 +1221,6 @@ export default function Recruiting() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                   <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-14 text-lg font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:shadow-2xl hover:scale-105 w-full sm:w-auto" data-testid="recruiting-button-book-consultation-cta">
-                    <Calendar size={20} className="mr-2" />
                     {language === "en" ? "Book a Free Consultation" : "Réservez une consultation gratuite"}
                   </Button>
                 </a>

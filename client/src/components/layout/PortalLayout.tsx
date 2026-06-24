@@ -1,25 +1,4 @@
 import { Link, useLocation } from "wouter";
-import {
-  LayoutDashboard,
-  Map as MapIcon,
-  Folder,
-  Calendar,
-  CheckSquare,
-  BarChart3,
-  MessageSquare,
-  BookOpen,
-  CreditCard,
-  LogOut,
-  Menu,
-  X,
-  Bell,
-  Users,
-  ChevronDown,
-  Briefcase,
-  Inbox,
-  Target,
-  ArrowUpRight,
-} from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -39,34 +18,34 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
   const isClient = user?.role === "client";
 
   const clientNavItems = [
-    { label: "Dashboard", href: "/portal", icon: <LayoutDashboard size={18} /> },
-    { label: "Roadmap & Milestones", href: "/portal/roadmap", icon: <MapIcon size={18} /> },
-    { label: "Deliverables & Docs", href: "/portal/documents", icon: <Folder size={18} /> },
-    { label: "Meeting Hub", href: "/portal/meetings", icon: <Calendar size={18} /> },
-    { label: "Action Tracker", href: "/portal/actions", icon: <CheckSquare size={18} /> },
-    { label: "Performance", href: "/portal/performance", icon: <BarChart3 size={18} /> },
-    { label: "Messages", href: "/portal/messages", icon: <MessageSquare size={18} /> },
-    { label: "Resource Library", href: "/portal/resources", icon: <BookOpen size={18} /> },
-    { label: "Billing & Contracts", href: "/portal/billing", icon: <CreditCard size={18} /> },
+    { label: "Dashboard", href: "/portal" },
+    { label: "Roadmap & Milestones", href: "/portal/roadmap" },
+    { label: "Deliverables & Docs", href: "/portal/documents" },
+    { label: "Meeting Hub", href: "/portal/meetings" },
+    { label: "Action Tracker", href: "/portal/actions" },
+    { label: "Performance", href: "/portal/performance" },
+    { label: "Messages", href: "/portal/messages" },
+    { label: "Resource Library", href: "/portal/resources" },
+    { label: "Billing & Contracts", href: "/portal/billing" },
   ];
 
   const staffNavItems = [
-    { label: "Dashboard", href: "/portal", icon: <LayoutDashboard size={18} /> },
-    { label: "Milestones", href: "/portal/roadmap", icon: <MapIcon size={18} /> },
-    { label: "Documents", href: "/portal/documents", icon: <Folder size={18} /> },
-    { label: "Meeting Hub", href: "/portal/meetings", icon: <Calendar size={18} /> },
-    { label: "Action Items", href: "/portal/actions", icon: <CheckSquare size={18} /> },
-    { label: "KPIs & Metrics", href: "/portal/performance", icon: <BarChart3 size={18} /> },
-    { label: "Client Messages", href: "/portal/messages", icon: <MessageSquare size={18} /> },
-    { label: "Resources", href: "/portal/resources", icon: <BookOpen size={18} /> },
-    { label: "Billing & Contracts", href: "/portal/billing", icon: <CreditCard size={18} /> },
-    { label: "Leads Tracker", href: "/portal/leads", icon: <Target size={18} /> },
+    { label: "Dashboard", href: "/portal" },
+    { label: "Milestones", href: "/portal/roadmap" },
+    { label: "Documents", href: "/portal/documents" },
+    { label: "Meeting Hub", href: "/portal/meetings" },
+    { label: "Action Items", href: "/portal/actions" },
+    { label: "KPIs & Metrics", href: "/portal/performance" },
+    { label: "Client Messages", href: "/portal/messages" },
+    { label: "Resources", href: "/portal/resources" },
+    { label: "Billing & Contracts", href: "/portal/billing" },
+    { label: "Leads Tracker", href: "/portal/leads" },
   ];
 
   const adminNavItems = [
     ...staffNavItems,
-    { label: "User Management", href: "/portal/admin/users", icon: <Users size={18} /> },
-    { label: "Submissions", href: "/portal/admin/submissions", icon: <Inbox size={18} /> },
+    { label: "User Management", href: "/portal/admin/users" },
+    { label: "Submissions", href: "/portal/admin/submissions" },
   ];
 
   const navItems = user?.role === "admin" ? adminNavItems : isClient ? clientNavItems : staffNavItems;
@@ -155,8 +134,8 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                 )}
                 data-testid="button-engagement-switcher"
               >
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-accent to-accent/70 flex items-center justify-center flex-shrink-0 shadow-lg shadow-accent/20">
-                  <Briefcase size={15} className="text-white" />
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-accent to-accent/70 flex items-center justify-center flex-shrink-0 shadow-lg shadow-accent/20 text-white text-[10px] font-black">
+                  {(engagement?.clientName || "C").charAt(0).toUpperCase()}
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold text-white truncate" data-testid="text-active-client">
@@ -167,7 +146,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                   </p>
                 </div>
                 {hasMultipleEngagements && (
-                  <ChevronDown size={14} className={cn("text-white/50 transition-transform", engagementDropdownOpen && "rotate-180")} />
+                  <span className={cn("text-white/50 transition-transform text-xs", engagementDropdownOpen && "rotate-180")}>▾</span>
                 )}
               </button>
               {engagementDropdownOpen && hasMultipleEngagements && (
@@ -182,8 +161,8 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                       )}
                       data-testid={`button-select-engagement-${eng.id}`}
                     >
-                      <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Briefcase size={14} className="text-primary" />
+                      <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary text-[10px] font-black">
+                        {eng.clientName.charAt(0).toUpperCase()}
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-bold text-primary truncate">{eng.clientName}</p>
@@ -224,14 +203,6 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                       isActive ? "bg-accent opacity-100" : "opacity-0",
                     )}
                   />
-                  <span
-                    className={cn(
-                      "transition-colors",
-                      isActive ? "text-accent" : "text-white/55 group-hover:text-white/85",
-                    )}
-                  >
-                    {item.icon}
-                  </span>
                   <span className="truncate">{item.label}</span>
                 </Link>
               );
@@ -258,7 +229,6 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
             data-testid="button-logout"
             className="mt-2 w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-[0.2em] text-white/65 hover:text-white hover:bg-white/[0.05] transition-colors"
           >
-            <LogOut size={14} />
             Sign out
           </button>
         </div>
@@ -270,17 +240,17 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           <img src={logoImg} alt="Performance Processes" className="h-8 w-auto" />
           <span className="font-heading font-black text-lg tracking-tighter text-white uppercase italic">Portal</span>
         </Link>
-        <div className="flex items-center gap-3">
-          <button className="text-white/85 relative" aria-label="Notifications">
-            <Bell size={22} />
-            <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-accent rounded-full ring-2 ring-primary"></span>
+        <div className="flex items-center gap-4">
+          <button className="text-white/85 relative text-xs font-bold uppercase tracking-[0.18em]" aria-label="Notifications">
+            Alerts
+            <span className="absolute -top-1 -right-2 w-2 h-2 bg-accent rounded-full ring-2 ring-primary"></span>
           </button>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-white"
+            className="text-white text-xs font-bold uppercase tracking-[0.18em]"
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+            {isMobileMenuOpen ? "Close" : "Menu"}
           </button>
         </div>
       </div>
@@ -307,7 +277,9 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                         : "hover:bg-white/[0.04] border border-transparent",
                     )}
                   >
-                    <Briefcase size={16} className="text-accent flex-shrink-0" />
+                    <span className="w-6 h-6 rounded-md bg-accent/20 flex items-center justify-center text-accent text-[10px] font-black flex-shrink-0">
+                      {eng.clientName.charAt(0).toUpperCase()}
+                    </span>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-bold text-white truncate">{eng.clientName}</p>
                       <p className="text-[10px] text-white/55 uppercase tracking-wider">{eng.engagementType}</p>
@@ -330,7 +302,6 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                     isActive ? "bg-white/[0.08] text-white" : "text-white/70 hover:bg-white/[0.04]",
                   )}
                 >
-                  <span className={cn(isActive ? "text-accent" : "text-white/55")}>{item.icon}</span>
                   {item.label}
                 </Link>
               );
@@ -340,7 +311,6 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
               onClick={handleLogout}
               className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-[0.2em] text-white/70 hover:text-white hover:bg-white/[0.05] transition-colors"
             >
-              <LogOut size={16} />
               Sign out
             </button>
           </nav>
@@ -371,19 +341,18 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           </div>
           <div className="flex items-center gap-3">
             <button
-              className="w-11 h-11 rounded-full bg-white border border-border flex items-center justify-center text-primary hover:text-accent hover:border-accent transition-colors relative shadow-sm"
+              className="h-11 px-5 rounded-full bg-white border border-border flex items-center justify-center text-primary hover:text-accent hover:border-accent transition-colors relative shadow-sm text-[11px] font-bold uppercase tracking-[0.18em]"
               aria-label="Notifications"
             >
-              <Bell size={18} />
-              <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-accent rounded-full animate-pulse" />
+              Alerts
+              <span className="absolute top-2 right-2 w-2 h-2 bg-accent rounded-full animate-pulse" />
             </button>
             <Link href="/portal/meetings">
               <Button
-                className="rounded-full bg-primary text-white hover:bg-accent h-11 px-6 font-bold uppercase tracking-[0.18em] text-[11px] shadow-lg shadow-primary/15 transition-all gap-2"
+                className="rounded-full bg-primary text-white hover:bg-accent h-11 px-6 font-bold uppercase tracking-[0.18em] text-[11px] shadow-lg shadow-primary/15 transition-all"
                 data-testid="button-book-meeting"
               >
                 Book meeting
-                <ArrowUpRight size={14} />
               </Button>
             </Link>
           </div>

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { ArrowUp } from "lucide-react";
 
 export function ScrollToTopButton() {
   const [visible, setVisible] = useState(false);
@@ -25,7 +24,7 @@ export function ScrollToTopButton() {
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       }`}
     >
-      <ArrowUp size={20} />
+      <span aria-hidden="true" className="text-lg leading-none">&uarr;</span>
     </button>
   );
 }

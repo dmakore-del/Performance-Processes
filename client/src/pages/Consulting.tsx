@@ -2,7 +2,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Users, Target, Settings, BarChart3, CreditCard, Loader2, RefreshCw, Search, Briefcase, Rocket, UserCheck, Calendar, Package, Heart, ArrowDown, Phone } from "lucide-react";
 import { Link } from "wouter";
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -134,7 +133,7 @@ export default function Consulting() {
       title: language === "en" ? "Listen" : "Écouter",
       desc: language === "en" ? "We start by understanding your world, your goals, your challenges, and what matters most to you and your people." : "Nous commençons par comprendre votre réalité, vos objectifs, vos défis et ce qui compte le plus pour vous.",
       outcomes: language === "en" ? ["Deep-dive discovery", "Understanding your vision", "People & culture review", "Stakeholder conversations"] : ["Découverte approfondie", "Comprendre votre vision", "Revue des personnes et de la culture", "Conversations avec les parties prenantes"],
-      icon: <Search className="text-accent" size={28} />,
+      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">01</span>,
       color: "from-zinc-700/10 to-zinc-800/5",
     },
     {
@@ -142,7 +141,7 @@ export default function Consulting() {
       title: language === "en" ? "Align" : "Aligner",
       desc: language === "en" ? "Together, we define what success looks like for you, and make sure everyone is moving in the same direction." : "Ensemble, nous définissons ce que le succès signifie pour vous, et veillons à ce que tout le monde avance dans la même direction.",
       outcomes: language === "en" ? ["Shared vision & clarity", "Team buy-in", "Clear success picture", "Prioritized goals"] : ["Vision et clarté partagées", "Adhésion de l'équipe", "Image claire du succès", "Objectifs priorisés"],
-      icon: <Target className="text-accent" size={28} />,
+      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">02</span>,
       color: "from-accent/10 to-accent/5",
     },
     {
@@ -150,7 +149,7 @@ export default function Consulting() {
       title: language === "en" ? "Build Together" : "Construire ensemble",
       desc: language === "en" ? "We work alongside you, not from the sidelines, to build the systems, habits, and infrastructure that make progress stick." : "Nous travaillons à vos côtés, pas en retrait, pour bâtir les systèmes et habitudes qui ancrent le progrès.",
       outcomes: language === "en" ? ["Practical systems that work", "People-first processes", "Habits that last", "Real accountability"] : ["Systèmes pratiques qui fonctionnent", "Processus axés sur les personnes", "Habitudes durables", "Responsabilité réelle"],
-      icon: <Settings className="text-accent" size={28} />,
+      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">03</span>,
       color: "from-emerald-500/10 to-emerald-600/5",
     },
     {
@@ -158,7 +157,7 @@ export default function Consulting() {
       title: language === "en" ? "Grow & Evolve" : "Grandir et évoluer",
       desc: language === "en" ? "We celebrate your wins, learn from what's working, and keep evolving with you as your needs change." : "Nous célébrons vos réussites, apprenons de ce qui fonctionne et continuons à évoluer avec vous.",
       outcomes: language === "en" ? ["Visible progress", "Regular check-ins", "Evolving support", "Lasting momentum"] : ["Progrès visibles", "Points de contact réguliers", "Soutien évolutif", "Élan durable"],
-      icon: <BarChart3 className="text-accent" size={28} />,
+      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">04</span>,
       color: "from-zinc-700/10 to-zinc-800/5",
     },
   ];
@@ -167,7 +166,7 @@ export default function Consulting() {
     enterprise: {
       label: language === "en" ? "Enterprise" : "Entreprise",
       tagline: language === "en" ? "For leadership teams ready to build lasting systems and a culture of shared success" : "Pour les équipes de direction prêtes à bâtir des systèmes durables et une culture de réussite partagée",
-      icon: <Briefcase className="text-accent" size={24} />,
+      icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span>,
       services: [
         {
           title: language === "en" ? "Discovery & Assessment" : "Découverte et évaluation",
@@ -518,7 +517,7 @@ export default function Consulting() {
     business: {
       label: language === "en" ? "Small Business" : "Petite entreprise",
       tagline: language === "en" ? "For founders and small business owners who want a real partner in their corner, not just advice from the sidelines" : "Pour les fondateurs et propriétaires de PME qui veulent un vrai partenaire à leurs côtés",
-      icon: <Rocket className="text-accent" size={24} />,
+      icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span>,
       services: [
         {
           title: language === "en" ? "Small Business Growth System" : "Système de croissance pour petites entreprises",
@@ -696,7 +695,7 @@ export default function Consulting() {
     professional: {
       label: language === "en" ? "Professional" : "Professionnel",
       tagline: language === "en" ? "For professionals ready to invest in themselves, build confidence, clarity, and a career you're proud of" : "Pour les professionnels prêts à investir en eux-mêmes, confiance, clarté et une carrière dont vous êtes fier",
-      icon: <UserCheck className="text-accent" size={24} />,
+      icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span>,
       services: [
         {
           title: language === "en" ? "Personal Performance Coaching" : "Coaching de performance personnelle",
@@ -829,7 +828,7 @@ export default function Consulting() {
     "self-serve": {
       label: language === "en" ? "Self-Serve" : "Libre-service",
       tagline: language === "en" ? "Practical tools and programs you can start using today, because growth shouldn't wait" : "Des outils et programmes pratiques que vous pouvez utiliser dès aujourd'hui, parce que la croissance n'attend pas",
-      icon: <Package className="text-accent" size={24} />,
+      icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span>,
       services: [
         {
           title: language === "en" ? "Performance Planner" : "Planificateur de performance",
@@ -950,19 +949,19 @@ export default function Consulting() {
   };
 
   const tabs: { key: typeof activeTab; label: string; sublabel: string; icon: React.ReactNode; priceRange: string }[] = [
-    { key: "enterprise", label: serviceTiers.enterprise.label, sublabel: language === "en" ? "Business Solutions" : "Solutions d'affaires", icon: <Briefcase size={18} />, priceRange: "$750+" },
-    { key: "business", label: serviceTiers.business.label, sublabel: language === "en" ? "Growth & Advisory" : "Croissance et conseil", icon: <Rocket size={18} />, priceRange: "$500/mo+" },
-    { key: "professional", label: serviceTiers.professional.label, sublabel: language === "en" ? "Coaching & Development" : "Coaching et développement", icon: <UserCheck size={18} />, priceRange: "$100/mo+" },
-    { key: "self-serve", label: serviceTiers["self-serve"].label, sublabel: language === "en" ? "Tools & Programs" : "Outils et programmes", icon: <Package size={18} />, priceRange: "$49+" },
+    { key: "enterprise", label: serviceTiers.enterprise.label, sublabel: language === "en" ? "Business Solutions" : "Solutions d'affaires", icon: null, priceRange: "$750+" },
+    { key: "business", label: serviceTiers.business.label, sublabel: language === "en" ? "Growth & Advisory" : "Croissance et conseil", icon: null, priceRange: "$500/mo+" },
+    { key: "professional", label: serviceTiers.professional.label, sublabel: language === "en" ? "Coaching & Development" : "Coaching et développement", icon: null, priceRange: "$100/mo+" },
+    { key: "self-serve", label: serviceTiers["self-serve"].label, sublabel: language === "en" ? "Tools & Programs" : "Outils et programmes", icon: null, priceRange: "$49+" },
   ];
 
   const currentTier = serviceTiers[activeTab];
 
   const resultStats = [
-    { value: language === "en" ? "Enterprise" : "Entreprise", label: language === "en" ? "Business Solutions" : "Solutions d'affaires", icon: <Briefcase size={20} className="text-accent" /> },
-    { value: language === "en" ? "Small Business" : "PME", label: language === "en" ? "Growth & Advisory" : "Croissance et conseil", icon: <Rocket size={20} className="text-accent" /> },
-    { value: language === "en" ? "Professional" : "Professionnel", label: language === "en" ? "Coaching & Development" : "Coaching et développement", icon: <UserCheck size={20} className="text-accent" /> },
-    { value: language === "en" ? "Self-Serve" : "Libre-service", label: language === "en" ? "Tools & Programs" : "Outils et programmes", icon: <Package size={20} className="text-accent" /> },
+    { value: language === "en" ? "Enterprise" : "Entreprise", label: language === "en" ? "Business Solutions" : "Solutions d'affaires", icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span> },
+    { value: language === "en" ? "Small Business" : "PME", label: language === "en" ? "Growth & Advisory" : "Croissance et conseil", icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span> },
+    { value: language === "en" ? "Professional" : "Professionnel", label: language === "en" ? "Coaching & Development" : "Coaching et développement", icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span> },
+    { value: language === "en" ? "Self-Serve" : "Libre-service", label: language === "en" ? "Tools & Programs" : "Outils et programmes", icon: <span aria-hidden="true" className="text-accent text-lg">&rsaquo;</span> },
   ];
 
   return (
@@ -1001,7 +1000,6 @@ export default function Consulting() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                   <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="consulting-button-hero-book">
-                    <Calendar size={18} className="mr-2" />
                     {language === "en" ? "Book a Consultation" : "Réservez une consultation"}
                   </Button>
                 </a>
@@ -1012,7 +1010,7 @@ export default function Consulting() {
                   data-testid="consulting-button-hero-explore"
                 >
                   {language === "en" ? "Explore Services" : "Explorer les services"}
-                  <ArrowDown size={18} className="ml-2" />
+                  <span aria-hidden="true" className="ml-2">&#9662;</span>
                 </Button>
               </div>
             </div>
@@ -1065,7 +1063,7 @@ export default function Consulting() {
                       <ul className="space-y-2">
                         {step.outcomes.map((outcome, oi) => (
                           <li key={oi} className="flex items-center gap-2 text-sm text-primary/80">
-                            <CheckCircle2 size={14} className="text-accent shrink-0" />
+                            <span aria-hidden="true" className="text-accent shrink-0">—</span>
                             <span>{outcome}</span>
                           </li>
                         ))}
@@ -1073,7 +1071,7 @@ export default function Consulting() {
                     </div>
                     {i < methodSteps.length - 1 && (
                       <div className="hidden lg:flex absolute top-1/2 -right-4 -translate-y-1/2 z-10">
-                        <ArrowRight className="text-accent/40" size={24} />
+                        <span aria-hidden="true" className="text-accent/40 text-2xl">&rsaquo;</span>
                       </div>
                     )}
                   </div>
@@ -1084,7 +1082,6 @@ export default function Consulting() {
             <div className="text-center mt-16">
               <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                 <Button className="rounded-full bg-primary text-white hover:bg-accent h-14 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105" data-testid="consulting-button-methodology-cta">
-                  <Phone size={16} className="mr-2" />
                   {language === "en" ? "Let's Talk About Your Journey" : "Parlons de votre parcours"}
                 </Button>
               </a>
@@ -1161,7 +1158,7 @@ export default function Consulting() {
                       <ul className="space-y-2.5 mb-6">
                         {s.benefits.slice(0, 4).map((b: string, bi: number) => (
                           <li key={bi} className="flex items-start gap-2.5 text-sm text-primary/80">
-                            <CheckCircle2 size={15} className="text-accent shrink-0 mt-0.5" />
+                            <span aria-hidden="true" className="text-accent shrink-0">—</span>
                             <span>{b}</span>
                           </li>
                         ))}
@@ -1170,7 +1167,7 @@ export default function Consulting() {
                   </div>
                   <div className="p-8 pt-4 mt-auto">
                     <div className="flex items-center text-sm font-bold uppercase tracking-widest text-accent group-hover:translate-x-2 transition-all duration-300">
-                      {language === "en" ? "View pricing & details" : "Voir les prix et détails"} <ArrowRight size={16} className="ml-2" />
+                      {language === "en" ? "View pricing & details" : "Voir les prix et détails"} <span aria-hidden="true" className="ml-2">&rsaquo;</span>
                     </div>
                   </div>
                 </div>
@@ -1193,7 +1190,6 @@ export default function Consulting() {
               </p>
               <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                 <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-12 text-base font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="consulting-button-mid-cta">
-                  <Calendar size={18} className="mr-2" />
                   {language === "en" ? "Book a Consultation" : "Réservez une consultation"}
                 </Button>
               </a>
@@ -1220,9 +1216,6 @@ export default function Consulting() {
                   <div className="flex flex-col md:flex-row gap-10">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-5">
-                        <div className="w-12 h-12 rounded-2xl bg-accent/20 flex items-center justify-center">
-                          <Users className="text-accent" size={24} />
-                        </div>
                         <h3 className="text-2xl font-bold text-white">{language === "en" ? "Performance Processes Collective" : "Collectif Performance Processes"}</h3>
                       </div>
                       <div className="text-accent font-black text-4xl mb-2">$49 , $99<span className="text-lg font-normal text-white/60">/mo</span></div>
@@ -1233,7 +1226,7 @@ export default function Consulting() {
                           : ["Appel stratégique de groupe mensuel", "Jumelage de partenaires", "Bibliothèque de modèles et outils", "Sessions de formation et ateliers", "Accès communauté privée", "Ressources réservées aux membres"]
                         ).map((item, i) => (
                           <div key={i} className="flex items-center gap-2.5 text-sm text-white/90">
-                            <CheckCircle2 size={15} className="text-accent shrink-0" />
+                            <span aria-hidden="true" className="text-accent shrink-0">—</span>
                             <span>{item}</span>
                           </div>
                         ))}
@@ -1283,9 +1276,6 @@ export default function Consulting() {
               <div className="bg-gradient-to-br from-accent/5 via-white to-accent/10 rounded-3xl border-2 border-accent/20 overflow-hidden shadow-lg">
                 <div className="p-10 md:p-14">
                   <div className="flex items-center gap-4 mb-8">
-                    <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center">
-                      <Heart className="text-accent" size={26} />
-                    </div>
                     <div>
                       <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-primary">
                         {language === "en" ? "NextUp Canada Partnership" : "Partenariat NextUp Canada"}
@@ -1310,7 +1300,7 @@ export default function Consulting() {
                   </div>
                   <Link href="/nextup-partnership">
                     <Button className="rounded-full bg-accent text-white hover:bg-primary h-12 px-8 font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:scale-105" data-testid="consulting-button-nextup">
-                      {language === "en" ? "Learn More" : "En savoir plus"} <ArrowRight size={16} className="ml-2" />
+                      {language === "en" ? "Learn More" : "En savoir plus"} <span aria-hidden="true" className="ml-2">&rsaquo;</span>
                     </Button>
                   </Link>
                 </div>
@@ -1350,7 +1340,7 @@ export default function Consulting() {
                   <ul className="space-y-2 mb-6">
                     {tier.features.map((f, fi) => (
                       <li key={fi} className="flex items-center gap-2 text-sm">
-                        <CheckCircle2 size={14} className="text-accent shrink-0" />
+                        <span aria-hidden="true" className="text-accent shrink-0">—</span>
                         <span>{f}</span>
                       </li>
                     ))}
@@ -1362,15 +1352,15 @@ export default function Consulting() {
                     data-testid={`consulting-button-collective-${idx}`}
                   >
                     {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
-                      <><Loader2 size={14} className="animate-spin mr-2" /> {language === "en" ? "Processing..." : "Traitement..."}</>
+                      <>{language === "en" ? "Processing..." : "Traitement..."}</>
                     ) : (
-                      <><CreditCard size={14} className="mr-2" /> {language === "en" ? "Subscribe" : "S'abonner"}</>
+                      <>{language === "en" ? "Subscribe" : "S'abonner"}</>
                     )}
                   </Button>
                   <div className="flex items-center justify-center gap-2 mt-2">
                     <span className="text-[10px] text-muted-foreground">Accepts</span>
                     <div className="flex items-center gap-1.5">
-                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-100 text-[9px] font-semibold text-gray-600"><CreditCard size={10} />Card</span>
+                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-100 text-[9px] font-semibold text-gray-600">Card</span>
                       <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-[#FFC43926] text-[9px] font-semibold text-[#003087]">PayPal</span>
                       <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-900 text-[9px] font-semibold text-white"> Pay</span>
                     </div>
@@ -1421,7 +1411,7 @@ export default function Consulting() {
                             )}
                             {tier.isMonthly && (
                               <span className="text-[10px] font-black uppercase tracking-[0.15em] bg-accent/10 text-accent px-3 py-1 rounded-full flex items-center gap-1">
-                                <RefreshCw size={10} /> {language === "en" ? "Monthly" : "Mensuel"}
+                                {language === "en" ? "Monthly" : "Mensuel"}
                               </span>
                             )}
                           </div>
@@ -1431,7 +1421,7 @@ export default function Consulting() {
                           <ul className="space-y-2 mb-6">
                             {tier.features.map((f: string, fi: number) => (
                               <li key={fi} className="flex items-start gap-2 text-sm text-primary">
-                                <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
+                                <span aria-hidden="true" className="text-accent shrink-0">—</span>
                                 <span>{f}</span>
                               </li>
                             ))}
@@ -1443,9 +1433,9 @@ export default function Consulting() {
                             data-testid={`consulting-button-pay-tier-${idx}`}
                           >
                             {checkoutMutation.isPending && payingProduct === tier.stripeProductName ? (
-                              <><Loader2 size={14} className="animate-spin" /> {language === "en" ? "Processing..." : "Traitement..."}</>
+                              <>{language === "en" ? "Processing..." : "Traitement..."}</>
                             ) : (
-                              <><CreditCard size={14} /> {tier.isMonthly
+                              <>{tier.isMonthly
                                 ? (language === "en" ? "Subscribe" : "S'abonner")
                                 : (language === "en" ? "Select & Pay" : "Sélectionner et payer")
                               }</>
@@ -1453,7 +1443,7 @@ export default function Consulting() {
                           </Button>
                           <div className="flex items-center justify-center gap-2 mt-2">
                             <div className="flex items-center gap-1.5">
-                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-100 text-[9px] font-semibold text-gray-600"><CreditCard size={10} />Card</span>
+                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-100 text-[9px] font-semibold text-gray-600">Card</span>
                               <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-[#FFC43926] text-[9px] font-semibold text-[#003087]">PayPal</span>
                               <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-gray-900 text-[9px] font-semibold text-white"> Pay</span>
                             </div>
@@ -1503,7 +1493,6 @@ export default function Consulting() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                   <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-16 px-14 text-lg font-bold uppercase tracking-widest transition-all duration-300 shadow-xl shadow-accent/30 hover:shadow-2xl hover:scale-105 w-full sm:w-auto" data-testid="consulting-button-book-consultation-cta">
-                    <Calendar size={20} className="mr-2" />
                     {language === "en" ? "Book a Free Consultation" : "Réservez une consultation gratuite"}
                   </Button>
                 </a>

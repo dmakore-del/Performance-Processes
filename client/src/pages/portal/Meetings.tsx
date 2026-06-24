@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { Calendar as CalendarIcon, FileText, Loader2, Clock, Users, ExternalLink, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
@@ -57,7 +56,7 @@ export default function Meetings() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center py-20" data-testid="meetings-loading">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">Loading</span>
         </div>
       </PortalLayout>
     );
@@ -67,12 +66,11 @@ export default function Meetings() {
     return (
       <PortalLayout>
         <div className="flex flex-col items-center justify-center py-20 text-center" data-testid="meetings-empty-state">
-          <CalendarIcon className="h-12 w-12 text-muted-foreground mb-4" />
           <h2 className="text-xl font-bold text-primary mb-2">No Active Engagement</h2>
           <p className="text-muted-foreground mb-6">Your consultant will set up your engagement shortly.</p>
           <a href={MS_BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
             <Button className="rounded-full bg-accent text-white hover:bg-primary font-bold uppercase tracking-wider text-xs px-6" data-testid="button-schedule-consultation">
-              <CalendarIcon size={16} className="mr-2" /> Schedule a Consultation
+              Schedule a Consultation
             </Button>
           </a>
         </div>
@@ -131,14 +129,14 @@ export default function Meetings() {
           </div>
           <a href={MS_BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
             <Button className="rounded-full bg-accent text-white hover:bg-primary font-bold uppercase tracking-wider text-xs px-6" data-testid="button-schedule-meeting">
-              <CalendarIcon size={16} className="mr-2" /> Schedule a Meeting
+              Schedule a Meeting
             </Button>
           </a>
         </div>
 
         {bookingsLoading && (
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Loader2 className="h-4 w-4 animate-spin" /> Syncing bookings from your calendar...
+            Syncing bookings from your calendar...
           </div>
         )}
 
@@ -168,12 +166,12 @@ export default function Meetings() {
                         <div>
                           <h4 className="text-lg font-bold text-primary" data-testid={`text-booking-title-${booking.id}`}>{booking.title}</h4>
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-                            <CalendarIcon size={14} /> {formatBookingDate(booking.startDateTime)} • {formatBookingTime(booking.startDateTime, booking.endDateTime)}
+                            {formatBookingDate(booking.startDateTime)} • {formatBookingTime(booking.startDateTime, booking.endDateTime)}
                           </div>
                           <div className="flex items-center gap-2 mt-1">
                             {booking.isOnline && (
                               <span className="px-2 py-0.5 rounded-full bg-secondary text-xs font-semibold text-primary" data-testid={`badge-online-${booking.id}`}>
-                                <Globe size={10} className="inline mr-1" />Online
+                                Online
                               </span>
                             )}
                             {booking.location && (
@@ -182,7 +180,7 @@ export default function Meetings() {
                           </div>
                           {booking.attendees.length > 0 && (
                             <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1">
-                              <Users size={12} /> {booking.attendees.map(a => a.name || a.email).join(", ")}
+                              {booking.attendees.map(a => a.name || a.email).join(", ")}
                             </div>
                           )}
                         </div>
@@ -194,7 +192,7 @@ export default function Meetings() {
                         {booking.meetingLink && (
                           <a href={booking.meetingLink} target="_blank" rel="noopener noreferrer" data-testid={`link-join-booking-${booking.id}`}>
                             <Button className="rounded-xl bg-primary text-white hover:bg-accent font-bold text-xs">
-                              <ExternalLink size={14} className="mr-2" /> Join Meeting
+                              Join Meeting
                             </Button>
                           </a>
                         )}
@@ -216,11 +214,11 @@ export default function Meetings() {
                           <div>
                             <h4 className="text-lg font-bold text-primary" data-testid={`text-meeting-title-${meeting.id}`}>{meeting.title}</h4>
                             <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-                              <CalendarIcon size={14} /> {meeting.meetingDate} • {meeting.meetingTime}
+                              {meeting.meetingDate} • {meeting.meetingTime}
                             </div>
                             {meeting.duration && (
                               <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
-                                <Clock size={12} /> {meeting.duration}
+                                {meeting.duration}
                               </div>
                             )}
                           </div>
@@ -270,7 +268,7 @@ export default function Meetings() {
                           onClick={() => openNotes(meeting)}
                           data-testid={`button-view-notes-${meeting.id}`}
                         >
-                          <FileText size={14} /> View Notes & Action Items
+                          View Notes & Action Items
                         </div>
                       ) : (
                         <span className="text-xs text-muted-foreground">No notes available</span>
@@ -340,7 +338,6 @@ export default function Meetings() {
                     <div className="space-y-1">
                       {selectedBooking.attendees.map((a, i) => (
                         <div key={i} className="text-sm text-muted-foreground flex items-center gap-2">
-                          <Users size={12} />
                           <span>{a.name || a.email}</span>
                           {a.status !== "none" && (
                             <span className={`text-xs px-2 py-0.5 rounded-full ${a.status === "accepted" ? "bg-green-100 text-green-700" : a.status === "declined" ? "bg-red-100 text-red-700" : "bg-yellow-100 text-yellow-700"}`}>
@@ -362,7 +359,7 @@ export default function Meetings() {
                   {selectedBooking.meetingLink && (
                     <a href={selectedBooking.meetingLink} target="_blank" rel="noopener noreferrer">
                       <Button className="rounded-xl bg-primary text-white hover:bg-accent font-bold text-xs" data-testid="button-join-from-detail">
-                        <ExternalLink size={14} className="mr-2" /> Join Meeting
+                        Join Meeting
                       </Button>
                     </a>
                   )}

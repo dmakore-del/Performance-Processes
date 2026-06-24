@@ -6,7 +6,6 @@ import { SEOHead } from "@/components/SEOHead";
 import { PageHero } from "@/components/layout/PageHero";
 import { OfferCard } from "@/components/OfferCard";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { OFFERS, CATEGORY_META, type OfferCategory } from "@shared/offers";
 import { useToast } from "@/hooks/use-toast";
 
@@ -182,7 +181,7 @@ export default function Services() {
                 </p>
                 <Link href="/nextup-partnership">
                   <Button className="rounded-full bg-accent text-white hover:bg-primary h-12 px-8 font-bold uppercase tracking-wider text-sm">
-                    Learn More <ArrowRight size={16} className="ml-2" />
+                    Learn More
                   </Button>
                 </Link>
               </div>
@@ -208,7 +207,6 @@ export default function Services() {
                 <Link href="/contact">
                   <Button variant="outline" className="rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider w-full sm:w-auto" data-testid="button-contact">
                     Contact Us
-                    <ArrowRight size={14} className="ml-2" />
                   </Button>
                 </Link>
               </div>

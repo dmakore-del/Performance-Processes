@@ -3,7 +3,6 @@ import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { PageHero } from "@/components/layout/PageHero";
 import { Link } from "wouter";
-import { ArrowRight, ExternalLink } from "lucide-react";
 
 const NEXTUP_URL = "https://nextupcan.ca/get-involved";
 const PROMO_CODE = "NEXTPROCESSES";
@@ -112,7 +111,6 @@ export default function NextUpPartnership() {
                 data-testid="link-nextup-external"
               >
                 Apply on NextUp Canada
-                <ExternalLink size={14} />
               </a>
             </div>
           </div>
@@ -207,7 +205,6 @@ export default function NextUpPartnership() {
                 data-testid="button-apply-nextup"
               >
                 Apply on NextUp Canada
-                <ExternalLink size={16} />
               </a>
               <Link
                 href="/services"
@@ -215,7 +212,6 @@ export default function NextUpPartnership() {
                 data-testid="button-view-services"
               >
                 Browse Website Services
-                <ArrowRight size={16} className="ml-2" />
               </Link>
             </div>
           </div>

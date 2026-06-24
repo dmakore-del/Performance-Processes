@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { Send, User, Loader2, MessageSquare } from "lucide-react";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
 import { useAuth } from "@/hooks/use-auth";
 import { useQuery, useMutation } from "@tanstack/react-query";
@@ -127,7 +126,7 @@ export default function Messages() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center h-64">
-          <Loader2 className="h-8 w-8 animate-spin text-accent" data-testid="spinner-loading" />
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse" data-testid="spinner-loading">Loading</span>
         </div>
       </PortalLayout>
     );
@@ -138,7 +137,6 @@ export default function Messages() {
       <PortalLayout>
         <div className="flex items-center justify-center h-64">
           <div className="text-center" data-testid="empty-state-no-engagement">
-            <MessageSquare className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
             <h2 className="text-xl font-bold text-primary mb-2">No Active Engagement</h2>
             <p className="text-muted-foreground">Your consultant will set up your engagement shortly.</p>
           </div>
@@ -211,7 +209,6 @@ export default function Messages() {
             {!selectedRecipientId ? (
               <div className="flex-1 flex items-center justify-center bg-[#FAFAFA]">
                 <div className="text-center" data-testid="text-select-conversation">
-                  <MessageSquare className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                   <p className="text-muted-foreground text-sm font-medium">Select a conversation</p>
                   <p className="text-muted-foreground text-xs mt-1">Choose a participant from the sidebar to start messaging</p>
                 </div>
@@ -326,10 +323,10 @@ export default function Messages() {
                     <button
                       onClick={handleSend}
                       disabled={!input.trim() || sendMutation.isPending}
-                      className="w-10 h-10 bg-accent text-white rounded-xl flex items-center justify-center hover:bg-primary transition-colors flex-shrink-0 disabled:opacity-50"
+                      className="h-10 px-5 bg-accent text-white rounded-xl flex items-center justify-center hover:bg-primary transition-colors flex-shrink-0 disabled:opacity-50 text-xs font-bold uppercase tracking-wider"
                       data-testid="btn-send-message"
                     >
-                      <Send size={18} />
+                      Send
                     </button>
                   </div>
                 </div>

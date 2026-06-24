@@ -1,5 +1,4 @@
 import { PortalLayout } from "@/components/layout/PortalLayout";
-import { Receipt, FileText, CheckCircle2, Loader2, DollarSign, Plus, Pen, Upload, Download, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
@@ -200,7 +199,7 @@ export default function Billing() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center py-20" data-testid="billing-loading">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">Loading</span>
         </div>
       </PortalLayout>
     );
@@ -210,7 +209,6 @@ export default function Billing() {
     return (
       <PortalLayout>
         <div className="flex flex-col items-center justify-center py-20 text-center" data-testid="billing-empty">
-          <Receipt className="h-12 w-12 text-muted-foreground mb-4" />
           <h2 className="text-xl font-bold text-primary mb-2">No Active Engagement</h2>
           <p className="text-muted-foreground">Your consultant will set up your engagement shortly.</p>
         </div>
@@ -237,7 +235,6 @@ export default function Billing() {
                   onClick={() => setCreateInvoiceOpen(true)}
                   data-testid="button-create-invoice"
                 >
-                  <Plus size={16} className="mr-1" />
                   Create Invoice
                 </Button>
               )}
@@ -248,11 +245,9 @@ export default function Billing() {
                   <div key={inv.id} className="p-6 border-b border-border last:border-0 hover:bg-secondary/20 transition-colors flex flex-col sm:flex-row justify-between sm:items-center gap-4" data-testid={`invoice-row-${inv.id}`}>
                     <div className="flex items-center gap-4">
                       <div className={cn(
-                        "w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0",
-                        inv.status === 'paid' ? "bg-green-50 text-green-500" : "bg-orange-50 text-orange-500"
-                      )}>
-                        <Receipt size={24} />
-                      </div>
+                        "w-1 h-12 rounded-full flex-shrink-0",
+                        inv.status === 'paid' ? "bg-green-500" : "bg-orange-500"
+                      )} />
                       <div>
                         <h4 className="font-bold text-primary" data-testid={`invoice-number-${inv.id}`}>{inv.invoiceNumber}</h4>
                         <p className="text-xs text-muted-foreground mt-1">Issued: {inv.issueDate} • Due: {inv.dueDate}</p>
@@ -277,7 +272,6 @@ export default function Billing() {
                               disabled={payMutation.isPending}
                               data-testid={`button-pay-${inv.id}`}
                             >
-                              <DollarSign size={12} className="mr-1" />
                               {payMutation.isPending ? "Processing..." : "Pay Now"}
                             </Button>
                             <div className="flex items-center gap-1">
@@ -289,7 +283,7 @@ export default function Billing() {
                         )}
                         {inv.status !== 'paid' && isStaffOrAdmin && (
                           <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md border bg-zinc-100 text-zinc-800 border-zinc-200">
-                            <Send size={10} className="inline mr-1" />Sent
+                            Sent
                           </span>
                         )}
                       </div>
@@ -314,7 +308,6 @@ export default function Billing() {
                   onClick={() => setCreateContractOpen(true)}
                   data-testid="button-create-contract"
                 >
-                  <Plus size={16} className="mr-1" />
                   Upload Agreement
                 </Button>
               )}
@@ -324,8 +317,8 @@ export default function Billing() {
                 contracts.map((contract) => (
                   <div key={contract.id} className="p-6 border-b border-border last:border-0 hover:bg-secondary/20 transition-colors flex justify-between items-center gap-4" data-testid={`contract-row-${contract.id}`}>
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-primary flex-shrink-0 border border-border">
-                        <FileText size={20} />
+                      <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-primary flex-shrink-0 border border-border text-[8px] font-black uppercase tracking-wider">
+                        Doc
                       </div>
                       <div>
                         <h4 className="font-bold text-primary text-sm" data-testid={`contract-title-${contract.id}`}>{contract.title}</h4>
@@ -347,13 +340,12 @@ export default function Billing() {
                           data-testid={`button-download-contract-${contract.id}`}
                         >
                           <a href={(contract as any).documentUrl} target="_blank" rel="noopener noreferrer">
-                            <Download size={12} className="mr-1" />
                             View
                           </a>
                         </Button>
                       )}
                       {contract.status === 'signed' ? (
-                        <CheckCircle2 size={20} className="text-green-500" data-testid={`contract-signed-${contract.id}`} />
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-green-600" data-testid={`contract-signed-${contract.id}`}>Signed</span>
                       ) : (
                         <Button
                           className="bg-accent text-white hover:bg-primary text-xs px-4 h-8 rounded-lg"
@@ -363,7 +355,6 @@ export default function Billing() {
                           }}
                           data-testid={`button-sign-${contract.id}`}
                         >
-                          <Pen size={12} className="mr-1" />
                           Sign
                         </Button>
                       )}
@@ -496,7 +487,6 @@ export default function Billing() {
               </div>
             </div>
             <div className="bg-zinc-100 p-3 rounded-xl border border-zinc-200 flex items-start gap-3">
-              <Send size={16} className="text-zinc-800 mt-0.5 flex-shrink-0" />
               <p className="text-xs text-zinc-900">This invoice will be visible to the client immediately in their portal. They can pay using the Pay Now button.</p>
             </div>
             <div className="flex justify-end">
@@ -509,7 +499,6 @@ export default function Billing() {
                 disabled={createInvoiceMutation.isPending}
                 data-testid="button-submit-invoice"
               >
-                <Send size={14} />
                 {createInvoiceMutation.isPending ? "Sending..." : "Create & Send Invoice"}
               </Button>
             </div>
@@ -560,12 +549,10 @@ export default function Billing() {
                   onClick={() => contractFileRef.current?.click()}
                   data-testid="button-choose-contract-file"
                 >
-                  <Upload size={16} />
                   {contractFile ? "Change File" : "Choose File"}
                 </Button>
                 {contractFile && (
                   <span className="text-sm text-muted-foreground flex items-center gap-1">
-                    <FileText size={14} />
                     {contractFile.name}
                   </span>
                 )}
@@ -590,7 +577,6 @@ export default function Billing() {
                 disabled={createContractMutation.isPending}
                 data-testid="button-submit-contract"
               >
-                <Upload size={14} />
                 {createContractMutation.isPending ? "Uploading..." : "Upload Agreement"}
               </Button>
             </div>

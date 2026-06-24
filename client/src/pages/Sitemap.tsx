@@ -2,7 +2,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { Link } from "wouter";
-import { ChevronRight } from "lucide-react";
 
 import { PageHero } from "@/components/layout/PageHero";
 
@@ -36,7 +35,7 @@ export default function Sitemap() {
                 <li key={i}>
                   <Link href={link.href} className="flex items-center justify-between p-4 rounded-xl hover:bg-secondary transition-colors border border-transparent hover:border-border group">
                       <span className="text-lg font-bold text-primary group-hover:text-accent transition-colors">{link.label}</span>
-                      <ChevronRight size={20} className="text-muted-foreground group-hover:text-accent transition-colors" />
+                      <span aria-hidden="true" className="text-xl leading-none text-muted-foreground group-hover:text-accent transition-colors">&rsaquo;</span>
                   </Link>
                 </li>
               ))}

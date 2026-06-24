@@ -4,10 +4,6 @@ import { PortalLayout } from "@/components/layout/PortalLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
-import {
-  Plus, Search, Filter, Phone, Mail, Building2, User, Calendar,
-  DollarSign, Target, ChevronDown, X, Pencil, Trash2, UserPlus
-} from "lucide-react";
 import type { Lead } from "@shared/schema";
 
 const STATUS_OPTIONS = ["new", "contacted", "qualified", "proposal", "negotiation", "won", "lost"] as const;
@@ -209,7 +205,7 @@ export default function Leads() {
               className="bg-accent hover:bg-accent/90 text-white"
               data-testid="button-add-lead"
             >
-              <Plus size={16} className="mr-2" /> Add Lead
+              Add Lead
             </Button>
           )}
         </div>
@@ -230,12 +226,10 @@ export default function Leads() {
 
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <Input
               placeholder="Search by company, contact, or email..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9"
               data-testid="input-search-leads"
             />
           </div>
@@ -268,8 +262,8 @@ export default function Leads() {
               <h2 className="text-lg font-bold text-primary">
                 {editingLead ? "Edit Lead" : "Add New Lead"}
               </h2>
-              <button onClick={resetForm} className="text-muted-foreground hover:text-primary">
-                <X size={20} />
+              <button onClick={resetForm} className="text-muted-foreground hover:text-primary text-lg font-bold leading-none">
+                ✕
               </button>
             </div>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -365,7 +359,6 @@ export default function Leads() {
           <div className="text-center py-12 text-muted-foreground">Loading leads...</div>
         ) : filteredLeads.length === 0 ? (
           <div className="text-center py-16 bg-white rounded-xl border border-border">
-            <Target size={48} className="mx-auto text-muted-foreground/30 mb-4" />
             <p className="text-lg font-semibold text-primary mb-1">No leads found</p>
             <p className="text-sm text-muted-foreground">
               {searchQuery || statusFilter !== "all" ? "Try adjusting your filters" : isAdmin ? "Click 'Add Lead' to create your first lead" : "No leads have been assigned to you yet"}
@@ -393,11 +386,11 @@ export default function Leads() {
                       </span>
                     </div>
                     <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted-foreground">
-                      <span className="flex items-center gap-1.5"><User size={13} /> {lead.contactName}</span>
-                      <span className="flex items-center gap-1.5"><Mail size={13} /> {lead.contactEmail}</span>
-                      {lead.contactPhone && <span className="flex items-center gap-1.5"><Phone size={13} /> {lead.contactPhone}</span>}
-                      {lead.serviceInterest && <span className="flex items-center gap-1.5"><Target size={13} /> {lead.serviceInterest}</span>}
-                      {lead.estimatedValue && <span className="flex items-center gap-1.5"><DollarSign size={13} /> {lead.estimatedValue}</span>}
+                      <span className="flex items-center gap-1.5">{lead.contactName}</span>
+                      <span className="flex items-center gap-1.5">{lead.contactEmail}</span>
+                      {lead.contactPhone && <span className="flex items-center gap-1.5">{lead.contactPhone}</span>}
+                      {lead.serviceInterest && <span className="flex items-center gap-1.5">{lead.serviceInterest}</span>}
+                      {lead.estimatedValue && <span className="flex items-center gap-1.5">{lead.estimatedValue}</span>}
                     </div>
                     {lead.notes && (
                       <p className="text-xs text-muted-foreground mt-2 line-clamp-1 italic">{lead.notes}</p>
@@ -407,7 +400,6 @@ export default function Leads() {
                   <div className="flex items-center gap-3 shrink-0">
                     {lead.assignedToName ? (
                       <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-xs font-semibold text-accent">
-                        <UserPlus size={13} />
                         {lead.assignedToName}
                       </div>
                     ) : (
@@ -416,7 +408,6 @@ export default function Leads() {
 
                     {lead.nextFollowUpDate && (
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                        <Calendar size={13} />
                         {lead.nextFollowUpDate}
                       </div>
                     )}
@@ -444,10 +435,10 @@ export default function Leads() {
 
                     <button
                       onClick={() => handleEdit(lead)}
-                      className="p-2 rounded-lg hover:bg-gray-100 text-muted-foreground hover:text-primary transition-colors"
+                      className="px-3 py-1.5 rounded-lg hover:bg-gray-100 text-muted-foreground hover:text-primary transition-colors text-[10px] font-bold uppercase tracking-wider"
                       data-testid={`button-edit-${lead.id}`}
                     >
-                      <Pencil size={15} />
+                      Edit
                     </button>
 
                     {isAdmin && (
@@ -455,10 +446,10 @@ export default function Leads() {
                         onClick={() => {
                           if (confirm("Delete this lead?")) deleteMutation.mutate(lead.id);
                         }}
-                        className="p-2 rounded-lg hover:bg-red-50 text-muted-foreground hover:text-red-600 transition-colors"
+                        className="px-3 py-1.5 rounded-lg hover:bg-red-50 text-muted-foreground hover:text-red-600 transition-colors text-[10px] font-bold uppercase tracking-wider"
                         data-testid={`button-delete-${lead.id}`}
                       >
-                        <Trash2 size={15} />
+                        Delete
                       </button>
                     )}
                   </div>

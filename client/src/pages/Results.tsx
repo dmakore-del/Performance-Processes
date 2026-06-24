@@ -4,7 +4,6 @@ import { SEOHead } from "@/components/SEOHead";
 import { PageHero } from "@/components/layout/PageHero";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Quote, Clock } from "lucide-react";
 import { Link } from "wouter";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
@@ -75,7 +74,6 @@ export default function Results() {
         <section className="py-6 bg-accent/10 border-b border-accent/20" data-testid="section-results-notice">
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex items-center justify-center gap-3 text-center">
-              <Clock size={18} className="text-accent shrink-0" />
               <p className="text-sm font-semibold text-primary">
                 Case studies coming soon — we publish only verified, authentic client results.
               </p>
@@ -149,7 +147,7 @@ export default function Results() {
                   className="flex flex-col h-full rounded-2xl border border-dashed border-border bg-[#FAFAFA] p-8"
                   data-testid={`card-testimonial-placeholder-${i}`}
                 >
-                  <Quote size={28} className="text-accent/30 mb-4" />
+                  <span aria-hidden="true" className="text-4xl font-serif text-accent/30 leading-none mb-4 block">&ldquo;</span>
                   <p className="text-sm text-muted-foreground/70 italic leading-relaxed mb-6">
                     "A verified client testimonial will be published here once confirmed with our partner."
                   </p>
@@ -185,7 +183,6 @@ export default function Results() {
                 <Link href="/services">
                   <Button variant="outline" className="rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider w-full sm:w-auto" data-testid="button-results-services">
                     Explore Packages
-                    <ArrowRight size={14} className="ml-2" />
                   </Button>
                 </Link>
               </div>

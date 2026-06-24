@@ -6,18 +6,6 @@ import { Link } from "wouter";
 import { useState } from "react";
 import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/components/ui/animate-on-scroll";
 import {
-  Search,
-  Target,
-  Rocket,
-  TrendingUp,
-  ArrowRight,
-  CheckCircle2,
-  Clock,
-  ChevronDown,
-  ClipboardList,
-  Calendar,
-} from "lucide-react";
-import {
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -46,7 +34,6 @@ export default function Approach() {
   const steps = [
     {
       num: "01",
-      icon: Search,
       title: language === "en" ? "Discover" : "Découvrir",
       desc: language === "en"
         ? "We start by understanding your business, audience, and growth goals — and audit the systems you already have in place."
@@ -78,7 +65,6 @@ export default function Approach() {
     },
     {
       num: "02",
-      icon: Target,
       title: language === "en" ? "Design & Plan" : "Conception et planification",
       desc: language === "en"
         ? "We design the website, marketing engine, CRM workflows, and operating playbooks your business will run on."
@@ -110,7 +96,6 @@ export default function Approach() {
     },
     {
       num: "03",
-      icon: Rocket,
       title: language === "en" ? "Build & Install" : "Construire et installer",
       desc: language === "en"
         ? "We build the website, set up the CRM, launch the marketing engine, and train your team to run it."
@@ -142,7 +127,6 @@ export default function Approach() {
     },
     {
       num: "04",
-      icon: TrendingUp,
       title: language === "en" ? "Run & Optimize" : "Exploiter et optimiser",
       desc: language === "en"
         ? "Optional ongoing support keeps your marketing, CRM, and systems running and improving — month after month."
@@ -295,12 +279,10 @@ export default function Approach() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="link-hero-book">
-                    <Calendar size={18} />
                     {language === "en" ? "Book a Consultation" : "Réservez une consultation"}
                 </a>
                 <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="link-hero-services">
                     {language === "en" ? "Explore Services" : "Explorer les services"}
-                    <ArrowRight size={18} />
                 </Link>
               </div>
             </div>
@@ -358,7 +340,6 @@ export default function Approach() {
 
             <div className="space-y-5">
               {steps.map((step, i) => {
-                const Icon = step.icon;
                 const isExpanded = expandedStep === step.num;
                 return (
                   <div key={i} data-testid={`step-${step.num}`}>
@@ -369,9 +350,7 @@ export default function Approach() {
                             <div className={`absolute top-4 right-4 w-32 h-32 rounded-full bg-gradient-to-br ${step.color}`} />
                           </div>
                           <span className="text-6xl lg:text-7xl font-black opacity-20 italic leading-none relative z-10">{step.num}</span>
-                          <Icon className="w-9 h-9 mt-3 text-accent relative z-10" />
-                          <div className="mt-3 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1 text-sm relative z-10 flex items-center gap-1.5">
-                            <Clock className="w-3 h-3" />
+                          <div className="mt-6 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1 text-sm relative z-10">
                             {step.duration}
                           </div>
                         </div>
@@ -390,7 +369,7 @@ export default function Approach() {
                             data-testid={`button-expand-step-${step.num}`}
                           >
                             {isExpanded ? "Show less" : "Learn more about this phase"}
-                            <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} />
+                            <span aria-hidden="true" className={`transition-transform duration-300 inline-block ${isExpanded ? "rotate-180" : ""}`}>&#9662;</span>
                           </button>
 
                           <div className={`grid transition-all duration-500 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-6" : "grid-rows-[0fr] opacity-0"}`}>
@@ -406,13 +385,12 @@ export default function Approach() {
                               <div className="grid md:grid-cols-2 gap-8 pt-8 border-t border-gray-100">
                                 <div className="bg-gradient-to-br from-[#f0f4f8] to-white rounded-3xl p-7 border border-border/30">
                                   <h4 className="text-lg font-bold text-primary mb-5 flex items-center gap-2">
-                                    <ClipboardList className="w-5 h-5 text-accent" />
                                     Key Activities
                                   </h4>
                                   <ul className="space-y-3">
                                     {step.activities.map((activity, j) => (
                                       <li key={j} className="flex items-start gap-3 text-muted-foreground">
-                                        <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                                        <span aria-hidden="true" className="text-accent flex-shrink-0">—</span>
                                         <span>{activity}</span>
                                       </li>
                                     ))}
@@ -420,13 +398,12 @@ export default function Approach() {
                                 </div>
                                 <div className="bg-gradient-to-br from-[#f0f4f8] to-white rounded-3xl p-7 border border-border/30">
                                   <h4 className="text-lg font-bold text-primary mb-5 flex items-center gap-2">
-                                    <Target className="w-5 h-5 text-accent" />
                                     Expected Outcomes
                                   </h4>
                                   <ul className="space-y-3">
                                     {step.outcomes.map((outcome, j) => (
                                       <li key={j} className="flex items-start gap-3 text-muted-foreground">
-                                        <ArrowRight className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                                        <span aria-hidden="true" className="text-accent flex-shrink-0">&rsaquo;</span>
                                         <span>{outcome}</span>
                                       </li>
                                     ))}
@@ -547,7 +524,6 @@ export default function Approach() {
                   Book a complimentary discovery call to talk through where your business is today and what to install first.
                 </p>
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="link-cta-consultation">
-                    <Calendar size={18} />
                     Book a Consultation
                 </a>
               </AnimateOnScroll>

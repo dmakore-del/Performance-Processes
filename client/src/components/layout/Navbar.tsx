@@ -1,5 +1,4 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown, UserCircle, Calendar } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/hooks/use-language";
@@ -78,7 +77,7 @@ function DesktopDropdown({ item, isActive }: { item: NavItem; isActive: boolean 
         data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
       >
         {item.label}
-        <ChevronDown size={14} className={cn("transition-transform duration-200", isOpen && "rotate-180")} />
+        <span aria-hidden="true" className={cn("text-[10px] leading-none transition-transform duration-200", isOpen && "rotate-180")}>&#9662;</span>
       </button>
 
       {isOpen && (
@@ -154,7 +153,7 @@ function MobileAccordion({ item, location, onNavigate }: { item: NavItem; locati
         data-testid={`link-mobile-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
       >
         {item.label}
-        <ChevronDown size={24} className="-rotate-90" />
+        <span aria-hidden="true" className="text-2xl leading-none">&rsaquo;</span>
       </Link>
     );
   }
@@ -169,7 +168,7 @@ function MobileAccordion({ item, location, onNavigate }: { item: NavItem; locati
         data-testid={`link-mobile-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
       >
         {item.label}
-        <ChevronDown size={24} className={cn("transition-transform duration-200", isOpen ? "rotate-0" : "-rotate-90")} />
+        <span aria-hidden="true" className={cn("text-lg leading-none transition-transform duration-200", isOpen ? "rotate-0" : "-rotate-90")}>&#9662;</span>
       </button>
 
       {isOpen && (
@@ -305,17 +304,18 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/portal" className="p-2 hover:bg-secondary rounded-full transition-colors hidden md:block" data-testid="link-portal-signin">
-            <UserCircle size={20} className="text-primary" />
+          <Link href="/portal" className="hidden md:inline-flex items-center px-3 py-2 text-[13px] font-semibold uppercase tracking-wider text-primary hover:text-accent transition-colors" data-testid="link-portal-signin">
+            {language === "en" ? "Sign In" : "Connexion"}
           </Link>
           <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center justify-center rounded-none bg-accent text-white hover:bg-primary transition-all font-bold px-6 h-11 uppercase tracking-wider text-xs" data-testid="link-book-call-nav">
               {language === "en" ? "Book a Strategy Call" : "Réserver un appel"}
           </a>
           <button
-            className="lg:hidden p-2 text-primary hover:bg-secondary rounded-full"
+            className="lg:hidden p-2 text-primary hover:bg-secondary rounded-full text-xl leading-none"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            <span aria-hidden="true">{isMobileMenuOpen ? "\u2715" : "\u2630"}</span>
           </button>
         </div>
       </div>
@@ -326,7 +326,7 @@ export function Navbar() {
              <div className="flex items-center">
                <img src={logoImg} alt="Performance Processes" className="h-12 w-auto" />
              </div>
-             <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:bg-secondary rounded-full transition-colors"><X size={32} /></button>
+             <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:bg-secondary rounded-full transition-colors text-2xl leading-none" aria-label="Close menu"><span aria-hidden="true">&times;</span></button>
           </div>
           <div className="flex flex-col p-8 gap-1 overflow-y-auto pb-24">
             {navItems.map((item) => (
@@ -347,7 +347,7 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Client Portal
-              <ChevronDown size={24} className="-rotate-90" />
+              <span aria-hidden="true" className="text-2xl leading-none">&rsaquo;</span>
             </Link>
 
             <div className="flex gap-4 pt-4 border-b border-border pb-4">

@@ -2,10 +2,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/components/ui/animate-on-scroll";
-import {
-  ArrowRight,
-  ArrowDown,
-} from "lucide-react";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
 
@@ -64,7 +60,7 @@ export default function Solutions() {
                 </Link>
                 <a href="#ways-to-work" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-solutions-hero-tiers">
                   See All Options
-                  <ArrowDown size={16} />
+                  <span aria-hidden="true">&#9662;</span>
                 </a>
               </div>
             </div>
@@ -745,12 +741,12 @@ export default function Solutions() {
                         {item.isExternal ? (
                           <a href={item.ctaLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-accent hover:text-primary transition-colors" data-testid={`link-audience-cta-${i}`}>
                             {item.cta}
-                            <ArrowRight size={14} />
+                            <span aria-hidden="true">&rsaquo;</span>
                           </a>
                         ) : (
                           <Link href={item.ctaLink} className="inline-flex items-center gap-2 text-sm font-bold text-accent hover:text-primary transition-colors" data-testid={`link-audience-cta-${i}`}>
                             {item.cta}
-                            <ArrowRight size={14} />
+                            <span aria-hidden="true">&rsaquo;</span>
                           </Link>
                         )}
                       </div>

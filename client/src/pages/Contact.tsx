@@ -2,7 +2,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
-import { Send, CheckCircle, Loader2, Briefcase, Users, HelpCircle, MessageSquare, ArrowRight, Shield, Award, Star, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { PageHero } from "@/components/layout/PageHero";
 import { useState } from "react";
@@ -12,22 +11,18 @@ import torontoSkyline from "@assets/generated/toronto-skyline.png";
 
 const whyReachOutCards = [
   {
-    icon: Briefcase,
     title: "New Engagement",
     description: "Looking to install a website, CRM, marketing engine, or full growth infrastructure? Let's scope it together.",
   },
   {
-    icon: Users,
     title: "Existing Client Support",
     description: "Already working with us? Reach out for project updates, training requests, or to expand your monthly support.",
   },
   {
-    icon: MessageSquare,
     title: "Partnership Inquiry",
     description: "Interested in partnering with Performance Processes? We're always open to strategic collaborations and referral partnerships.",
   },
   {
-    icon: HelpCircle,
     title: "General Questions",
     description: "Have questions about our services, scope, pricing, or process? We're happy to help with no obligation.",
   },
@@ -123,26 +118,11 @@ export default function Contact() {
         <section className="bg-gradient-to-r from-primary via-primary to-primary/95 py-8" data-testid="section-trust-strip">
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-white">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                  <Shield size={18} className="text-accent" />
-                </div>
-                <span className="font-bold text-sm uppercase tracking-wider">Growth Infrastructure Studio</span>
-              </div>
+              <span className="font-bold text-sm uppercase tracking-wider">Growth Infrastructure Studio</span>
               <div className="hidden md:block w-px h-8 bg-white/15" />
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                  <Award size={18} className="text-accent" />
-                </div>
-                <span className="font-bold text-sm uppercase tracking-wider">End-to-End Support</span>
-              </div>
+              <span className="font-bold text-sm uppercase tracking-wider">End-to-End Support</span>
               <div className="hidden md:block w-px h-8 bg-white/15" />
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                  <Star size={18} className="text-accent" />
-                </div>
-                <span className="font-bold text-sm uppercase tracking-wider">24hr Response Guarantee</span>
-              </div>
+              <span className="font-bold text-sm uppercase tracking-wider">24hr Response Guarantee</span>
             </div>
           </div>
         </section>
@@ -225,9 +205,6 @@ export default function Contact() {
               <div className="bg-white p-8 lg:p-12 rounded-3xl border border-border/60 shadow-2xl">
                 {submitted ? (
                   <div className="flex flex-col items-center justify-center py-12 text-center gap-6">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
-                      <CheckCircle size={40} className="text-green-500" />
-                    </div>
                     <h3 className="text-2xl font-bold text-primary" data-testid="text-success-title">
                       {language === "en" ? "Message Sent!" : "Message envoyé !"}
                     </h3>
@@ -310,9 +287,9 @@ export default function Contact() {
                         data-testid="button-submit"
                       >
                         {mutation.isPending ? (
-                          <><Loader2 size={18} className="animate-spin" /> {language === "en" ? "Sending..." : "Envoi..."}</>
+                          <>{language === "en" ? "Sending..." : "Envoi..."}</>
                         ) : (
-                          <>{language === "en" ? "Send Message" : "Envoyer le message"} <Send size={18} /></>
+                          <>{language === "en" ? "Send Message" : "Envoyer le message"}</>
                         )}
                       </Button>
                     </form>
@@ -343,9 +320,7 @@ export default function Contact() {
                     </div>
                   </div>
                   {index < nextSteps.length - 1 && (
-                    <div className="hidden md:block absolute top-9 left-[60%] w-[80%] h-[2px] bg-gradient-to-r from-accent/30 to-accent/10">
-                      <ArrowRight size={16} className="text-accent/40 absolute -right-2 -top-[7px]" />
-                    </div>
+                    <div className="hidden md:block absolute top-9 left-[60%] w-[80%] h-[2px] bg-gradient-to-r from-accent/30 to-accent/10" />
                   )}
                   <div className="bg-gradient-to-br from-[#FAFAFA] to-white rounded-2xl p-6 border border-border/60">
                     <h3 className="text-lg font-bold text-primary mb-3">{item.title}</h3>
@@ -379,12 +354,10 @@ export default function Contact() {
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                     className="w-full flex items-center justify-between p-7 text-left hover:bg-gray-50/50 transition-colors"
                     data-testid={`button-faq-${index}`}
+                    aria-expanded={openFaq === index}
                   >
                     <span className="font-bold text-primary pr-4">{faq.question}</span>
-                    <ChevronDown
-                      size={20}
-                      className={`text-accent flex-shrink-0 transition-transform duration-300 ${openFaq === index ? "rotate-180" : ""}`}
-                    />
+                    <span className={`text-accent flex-shrink-0 text-2xl leading-none font-light transition-transform duration-300 ${openFaq === index ? "rotate-45" : ""}`}>+</span>
                   </button>
                   {openFaq === index && (
                     <div className="px-7 pb-7">

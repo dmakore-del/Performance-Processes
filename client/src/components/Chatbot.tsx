@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Mail } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 
 const FAQ_DATA = [
@@ -182,10 +181,10 @@ export function Chatbot() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-accent text-white shadow-lg shadow-accent/30 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer"
+          className="fixed bottom-6 right-6 z-50 h-14 px-6 rounded-full bg-accent text-white shadow-lg shadow-accent/30 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer text-xs font-bold uppercase tracking-widest"
           data-testid="button-open-chatbot"
         >
-          <MessageCircle size={24} />
+          Chat
         </button>
       )}
 
@@ -194,7 +193,7 @@ export function Chatbot() {
           <div className="bg-primary px-5 py-4 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full bg-accent/20 flex items-center justify-center">
-                <MessageCircle size={18} className="text-white" />
+                <span className="text-white text-xs font-black tracking-tight">PP</span>
               </div>
               <div>
                 <h3 className="text-white font-bold text-sm">Performance Processes</h3>
@@ -207,8 +206,9 @@ export function Chatbot() {
               onClick={() => setIsOpen(false)}
               className="text-white/60 hover:text-white transition-colors cursor-pointer"
               data-testid="button-close-chatbot"
+              aria-label="Close chat"
             >
-              <X size={20} />
+              <span aria-hidden="true" className="text-xl leading-none">&times;</span>
             </button>
           </div>
 
@@ -233,7 +233,6 @@ export function Chatbot() {
                       className="flex items-center gap-2 mt-3 text-accent font-bold text-xs hover:underline"
                       data-testid="link-chatbot-email"
                     >
-                      <Mail size={14} />
                       contact@performanceprocesses.com
                     </a>
                   )}
@@ -258,10 +257,11 @@ export function Chatbot() {
               <button
                 onClick={handleSend}
                 disabled={!input.trim()}
-                className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center hover:bg-primary transition-colors disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed flex-shrink-0"
+                className="h-10 px-4 rounded-full bg-accent text-white flex items-center justify-center hover:bg-primary transition-colors disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed flex-shrink-0 text-[11px] font-bold uppercase tracking-widest"
                 data-testid="button-send-chatbot"
+                aria-label="Send message"
               >
-                <Send size={16} />
+                Send
               </button>
             </div>
           </div>

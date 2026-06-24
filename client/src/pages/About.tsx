@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
-import { ArrowRight } from "lucide-react";
 import founderImage from "@/assets/founder.png";
 import seanImage from "@/assets/ChatGPT_Image_Feb_20,_2026,_04_07_16_PM_1771621735605.png";
 import collaborationImg from "@assets/generated/collaboration.png";
@@ -89,10 +88,12 @@ export default function About() {
               muted
               loop
               playsInline
+              preload="auto"
+              {...{ "webkit-playsinline": "true" } as any}
               className="w-full h-full object-cover opacity-40"
               poster={teamStrategyImg}
             >
-              <source src="/assets/videos/systems-network.mp4" type="video/mp4" />
+              <source src="/assets/videos/architecture-rise.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/60" />
           </div>
@@ -121,7 +122,7 @@ export default function About() {
                     Book a Discovery Call
                 </a>
                 <Link href="/services" className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 w-full sm:w-auto" data-testid="button-hero-services">
-                    Explore Our Services <ArrowRight size={18} className="ml-2" />
+                    Explore Our Services
                 </Link>
               </div>
             </div>
@@ -585,6 +586,8 @@ export default function About() {
               muted
               loop
               playsInline
+              preload="auto"
+              {...{ "webkit-playsinline": "true" } as any}
               className="w-full h-full object-cover opacity-50"
               poster={teamStrategyImg}
             >

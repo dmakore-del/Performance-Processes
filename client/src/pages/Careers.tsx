@@ -3,7 +3,6 @@ import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { PageHero } from "@/components/layout/PageHero";
 import { useLanguage } from "@/hooks/use-language";
-import { CheckCircle2, Upload, Loader2, CheckCircle, FileText, X, Users, Clock, Home, BookOpen, DollarSign, Compass, TrendingUp, Quote, Briefcase, Send, ArrowRight, Heart, Star, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useState, useRef } from "react";
@@ -129,17 +128,15 @@ export default function Careers() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { icon: Clock, title: "Flexible Schedule", desc: "Work on your own terms. Set your own hours and manage your pipeline with full autonomy over your time." },
-                { icon: Home, title: "Remote Work", desc: "Operate from anywhere. Our team is fully distributed, allowing you to work from the location that suits you best." },
-                { icon: BookOpen, title: "Professional Development", desc: "Access training resources, mentorship from senior consultants, and opportunities to expand your expertise." },
-                { icon: DollarSign, title: "Uncapped Earnings", desc: "No salary caps. Your compensation is directly tied to your performance, with competitive commission structures." },
-                { icon: Users, title: "Mentorship", desc: "Learn from experienced industry professionals who are invested in your growth and long-term success." },
-                { icon: Compass, title: "Industry Exposure", desc: "Gain experience across diverse sectors including government, healthcare, finance, nonprofit, and technology." },
+                { title: "Flexible Schedule", desc: "Work on your own terms. Set your own hours and manage your pipeline with full autonomy over your time." },
+                { title: "Remote Work", desc: "Operate from anywhere. Our team is fully distributed, allowing you to work from the location that suits you best." },
+                { title: "Professional Development", desc: "Access training resources, mentorship from senior consultants, and opportunities to expand your expertise." },
+                { title: "Uncapped Earnings", desc: "No salary caps. Your compensation is directly tied to your performance, with competitive commission structures." },
+                { title: "Mentorship", desc: "Learn from experienced industry professionals who are invested in your growth and long-term success." },
+                { title: "Industry Exposure", desc: "Gain experience across diverse sectors including government, healthcare, finance, nonprofit, and technology." },
               ].map((benefit, i) => (
                 <div key={i} className="bg-white p-8 rounded-2xl border border-border shadow-sm hover:shadow-lg transition-shadow" data-testid={`card-benefit-${i}`}>
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
-                    <benefit.icon size={24} className="text-accent" />
-                  </div>
+                  <div className="w-10 h-px bg-accent mb-5" />
                   <h3 className="text-lg font-bold text-primary mb-2">{benefit.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{benefit.desc}</p>
                 </div>
@@ -177,7 +174,6 @@ export default function Careers() {
 
         <section className="py-16 bg-primary" data-testid="section-our-promise">
           <div className="container mx-auto px-4 md:px-8 max-w-4xl text-center">
-            <Heart size={48} className="text-accent mx-auto mb-6 opacity-60" />
             <h3 className="text-2xl md:text-3xl text-white font-heading font-extrabold mb-6 italic" data-testid="text-promise-title">
               Our Promise to Our Team
             </h3>
@@ -226,7 +222,7 @@ export default function Careers() {
                   "Maintain a pipeline of qualified leads"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 size={20} className="text-accent flex-shrink-0 mt-0.5" />
+                    <span className="text-accent flex-shrink-0 mt-1 leading-none">—</span>
                     <span className="text-muted-foreground">{item}</span>
                   </li>
                 ))}
@@ -244,7 +240,7 @@ export default function Careers() {
                   "High level of professionalism and integrity"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 size={20} className="text-accent flex-shrink-0 mt-0.5" />
+                    <span className="text-accent flex-shrink-0 mt-1 leading-none">—</span>
                     <span className="text-muted-foreground">{item}</span>
                   </li>
                 ))}
@@ -268,7 +264,7 @@ export default function Careers() {
                   "Opportunity to align with a performance-focused consulting brand"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 size={20} className="text-accent flex-shrink-0 mt-0.5" />
+                    <span className="text-accent flex-shrink-0 mt-1 leading-none">—</span>
                     <span className="text-muted-foreground">{item}</span>
                   </li>
                 ))}
@@ -383,9 +379,6 @@ export default function Careers() {
 
           <div className="bg-white p-8 md:p-12 rounded-3xl border border-border shadow-xl space-y-6 mt-12" data-testid="section-future-roles">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Briefcase size={24} className="text-primary" />
-              </div>
               <div>
                 <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-3">
                   Coming Soon
@@ -407,7 +400,6 @@ export default function Careers() {
                 onClick={() => setIsFormOpen(true)}
                 data-testid="button-general-application"
               >
-                <Send size={16} />
                 Submit General Application
               </Button>
               <span className="text-sm text-muted-foreground">or email us at <a href="mailto:careers@performanceprocesses.com" className="text-accent hover:underline font-medium">careers@performanceprocesses.com</a></span>
@@ -421,9 +413,6 @@ export default function Careers() {
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0">
           {submitted ? (
             <div className="flex flex-col items-center justify-center py-16 px-8 text-center gap-6">
-              <div className="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center">
-                <CheckCircle size={40} className="text-green-500" />
-              </div>
               <h3 className="text-2xl font-bold text-primary" data-testid="text-application-success">
                 Application Submitted!
               </h3>
@@ -548,15 +537,14 @@ export default function Careers() {
                   />
                   {resumeFile ? (
                     <div className="flex items-center gap-3 bg-green-50 border border-green-200 rounded-xl px-5 py-3.5">
-                      <FileText size={20} className="text-green-600 flex-shrink-0" />
                       <span className="text-sm font-medium text-green-800 flex-1 truncate">{resumeFile.name}</span>
                       <button
                         type="button"
                         onClick={() => { setResumeFile(null); if (fileInputRef.current) fileInputRef.current.value = ""; }}
-                        className="text-green-600 hover:text-red-500 transition-colors"
+                        className="text-xs font-bold uppercase tracking-wider text-green-700 hover:text-red-500 transition-colors"
                         data-testid="button-remove-resume"
                       >
-                        <X size={18} />
+                        Remove
                       </button>
                     </div>
                   ) : (
@@ -566,7 +554,6 @@ export default function Careers() {
                       className="w-full border-2 border-dashed border-border rounded-xl px-5 py-8 flex flex-col items-center gap-3 hover:border-accent hover:bg-accent/5 transition-all cursor-pointer"
                       data-testid="button-upload-resume"
                     >
-                      <Upload size={28} className="text-muted-foreground" />
                       <span className="text-sm font-bold text-muted-foreground">Click to upload your resume</span>
                       <span className="text-xs text-muted-foreground/60">PDF, DOC, or DOCX (max 10MB)</span>
                     </button>
@@ -592,11 +579,7 @@ export default function Careers() {
                   className="w-full rounded-full bg-accent text-white hover:bg-primary h-14 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 disabled:opacity-50"
                   data-testid="button-submit-application"
                 >
-                  {mutation.isPending ? (
-                    <><Loader2 size={18} className="animate-spin" /> Submitting...</>
-                  ) : (
-                    "Submit Application"
-                  )}
+                  {mutation.isPending ? "Submitting..." : "Submit Application"}
                 </Button>
               </form>
             </>

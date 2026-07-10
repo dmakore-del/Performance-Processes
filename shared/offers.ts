@@ -553,6 +553,83 @@ export const CATEGORY_META: Record<OfferCategory, { label: string; description: 
   },
 };
 
+export type ServiceCategory = Exclude<OfferCategory, "packages" | "bundle">;
+
+export interface CategoryNarrative {
+  eyebrow: string;
+  problem: string;
+  benefits: string[];
+}
+
+export const CATEGORY_NARRATIVE: Record<ServiceCategory, CategoryNarrative> = {
+  website: {
+    eyebrow: "The problem we solve",
+    problem:
+      "An outdated or missing website costs you credibility and leads every day. Visitors arrive, can't quickly see what you do or why to trust you, and leave without contacting you.",
+    benefits: [
+      "A professional presence that builds trust from the first visit",
+      "More enquiries and leads from the traffic you already have",
+      "Mobile-responsive design with an SEO foundation built in",
+      "A site you own and can grow as your business grows",
+    ],
+  },
+  marketing: {
+    eyebrow: "The problem we solve",
+    problem:
+      "Most small businesses market in bursts, a post here, a campaign there, with no clear plan. Effort goes out, but leads don't come back in consistently.",
+    benefits: [
+      "Clear positioning and messaging your audience responds to",
+      "A structured plan instead of guesswork and sporadic posting",
+      "Campaigns designed to generate and convert leads",
+      "Channels chosen deliberately, so budget goes where it works",
+    ],
+  },
+  crm: {
+    eyebrow: "The problem we solve",
+    problem:
+      "When leads live in inboxes and spreadsheets, follow-up slips and revenue quietly leaks. You can't improve a pipeline you can't see.",
+    benefits: [
+      "Every lead captured, tracked, and followed up on time",
+      "Faster response times that win more of the deals you quote",
+      "Full visibility into your pipeline and where deals stall",
+      "Reporting that supports better sales decisions",
+    ],
+  },
+  systems: {
+    eyebrow: "The problem we solve",
+    problem:
+      "When how the business runs lives in the founder's head, delivery is inconsistent, delegation is hard, and growth adds chaos instead of profit.",
+    benefits: [
+      "Documented processes your team can actually run",
+      "Role clarity and accountability across the business",
+      "KPIs and reporting that show what's working",
+      "A scalable foundation ready for your next stage of growth",
+    ],
+  },
+  "hr-recruiting": {
+    eyebrow: "The problem we solve",
+    problem:
+      "Bad hires are expensive and slow hiring stalls growth. Without structure, interviews are inconsistent and new people are left to figure it out alone.",
+    benefits: [
+      "The right hires, faster, with structured screening and scorecards",
+      "A repeatable recruitment process you can run for every role",
+      "Compliant HR foundations, policies, onboarding, and reviews",
+      "Stronger performance management as your team grows",
+    ],
+  },
+  support: {
+    eyebrow: "The problem we solve",
+    problem:
+      "Systems and marketing decay without attention, and most small businesses can't justify a full-time hire to maintain them. Momentum fades month by month.",
+    benefits: [
+      "A senior growth partner without the cost of a full-time hire",
+      "Continuous optimization of marketing, systems, and KPIs",
+      "A monthly cadence that keeps execution accountable",
+      "Priority support when something needs attention now",
+    ],
+  },
+};
+
 export function getOffer(id: string): Offer | undefined {
   return OFFERS.find((o) => o.id === id);
 }

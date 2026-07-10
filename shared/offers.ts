@@ -637,3 +637,234 @@ export function getOffer(id: string): Offer | undefined {
 export function getOffersByCategory(category: OfferCategory): Offer[] {
   return OFFERS.filter((o) => o.category === category);
 }
+
+export interface LandingFaq {
+  q: string;
+  a: string;
+}
+
+export interface LandingContent {
+  slug: string;
+  category: ServiceCategory;
+  seoTitle: string;
+  seoDescription: string;
+  headline: string;
+  accentWord: string;
+  intro: string;
+  included: string[];
+  faqs: LandingFaq[];
+  related: ServiceCategory[];
+  testimonialOrg?: string;
+}
+
+export const LANDING_PAGES: Record<ServiceCategory, LandingContent> = {
+  website: {
+    slug: "website-services",
+    category: "website",
+    seoTitle: "Small Business Website Design Services in Toronto | Performance Processes",
+    seoDescription:
+      "Professional, mobile-responsive websites for small businesses, from a simple online presence to a conversion-focused lead engine. Clear pricing from $1,500, secure online checkout, Toronto-based.",
+    headline: "Websites that win trust and convert visitors into leads",
+    accentWord: "convert",
+    intro:
+      "Your website is usually the first impression a prospect gets. We design and build professional, mobile-responsive websites for small and emerging businesses, with clear pricing, an SEO foundation, and structures built to turn visitors into enquiries.",
+    included: [
+      "Mobile-responsive design that looks professional on every device",
+      "Basic on-page SEO so customers can find you",
+      "Contact and lead capture forms wired to your inbox",
+      "Website copy support so your message is clear",
+      "Analytics setup and launch support on larger packages",
+    ],
+    faqs: [
+      {
+        q: "How much does a small business website cost?",
+        a: "Our website packages have clear, fixed prices: the Starter Website Package is $1,500, the Business Website Package is $2,500, and the Website Conversion Package is $3,500. Every price is listed on the package card, and you can pay securely online by credit card, debit, or PayPal.",
+      },
+      {
+        q: "What is the difference between the three website packages?",
+        a: "The Starter package (up to 5 pages) gives you a simple, professional presence. The Business package (up to 8 pages) adds service pages, Google Business Profile integration, and analytics. The Conversion package (up to 10 pages) adds a landing page, lead capture, and a conversion-focused structure designed to turn visitors into leads.",
+      },
+      {
+        q: "Will I own my website?",
+        a: "Yes. Every website we build is yours to keep and grow as your business grows.",
+      },
+      {
+        q: "Is there a discount for NextUp Foundation partners?",
+        a: "Yes. Through our NextUp Foundation for Canadian Youth partnership, eligible organizations can apply the NEXTPROCESSES code for 40% off website packages at checkout.",
+      },
+    ],
+    related: ["marketing", "crm"],
+    testimonialOrg: "NextUp Foundation for Canadian Youth",
+  },
+  marketing: {
+    slug: "marketing-services",
+    category: "marketing",
+    seoTitle: "Small Business Marketing Services and Lead Generation | Performance Processes",
+    seoDescription:
+      "Structured marketing for small businesses: audits, positioning, social media setup, campaign launches, and complete lead generation systems. Fixed pricing from $1,200 with secure online checkout.",
+    headline: "Marketing with structure, not guesswork",
+    accentWord: "structure",
+    intro:
+      "Most small businesses market in bursts, a post here, a campaign there, with no clear plan. We install marketing structure: clear positioning, deliberate channels, campaign plans, and lead generation systems that turn effort into a consistent flow of enquiries.",
+    included: [
+      "Marketing audit and offer positioning review",
+      "Target audience clarification and content direction",
+      "Campaign strategy, messaging, and launch plans",
+      "Landing page and lead capture recommendations",
+      "KPI tracking so you know what is working",
+    ],
+    faqs: [
+      {
+        q: "What marketing services do you offer?",
+        a: "Four fixed-price packages: the Marketing Starter Package ($1,500) for structure and a 30-day action plan, the Social Media Setup Package ($1,200) for a professional social foundation, the Campaign Setup Package ($2,500) for launching a campaign or offer, and the Growth Engine Package ($5,000) for a complete basic lead generation setup.",
+      },
+      {
+        q: "Do you run our ads or post for us every month?",
+        a: "These packages are one-time builds that give you strategy, structure, and plans you can execute. If you want ongoing hands-on marketing help, our Monthly Marketing Support retainer covers monthly planning, content direction, campaign support, and reporting.",
+      },
+      {
+        q: "How do I know which package fits my business?",
+        a: "Book a free consultation and we will recommend the right starting point based on your goals, or start with the Marketing Starter Package, which includes an audit and a 30-day action plan.",
+      },
+    ],
+    related: ["website", "crm"],
+  },
+  crm: {
+    slug: "crm-lead-tracking",
+    category: "crm",
+    seoTitle: "CRM Setup and Lead Tracking for Small Businesses | Performance Processes",
+    seoDescription:
+      "CRM setup, sales pipelines, and follow-up systems for small businesses, so every lead is captured, tracked, and followed up on time. Fixed pricing from $1,500 with secure online checkout.",
+    headline: "Never lose another lead to a missed follow-up",
+    accentWord: "lead",
+    intro:
+      "When leads live in inboxes and spreadsheets, follow-up slips and revenue quietly leaks. We set up your CRM, pipeline, and follow-up workflows so every lead is captured, tracked, and followed up on time, and you can finally see where deals stall.",
+    included: [
+      "CRM setup with pipeline stages and contact fields",
+      "Lead source tracking so you know where enquiries come from",
+      "Follow-up workflows and reminders",
+      "Email response templates and automation recommendations",
+      "Reporting dashboards for better sales decisions",
+    ],
+    faqs: [
+      {
+        q: "What does CRM setup cost?",
+        a: "The CRM Starter Setup is $1,500 and covers a basic CRM with pipeline stages, contact fields, lead source tracking, follow-up reminders, and simple reporting. The Lead Tracking and Follow-Up System is $2,500 and adds a structured follow-up workflow, email templates, automation recommendations, and a reporting dashboard.",
+      },
+      {
+        q: "Do I need special software?",
+        a: "No. We set up the system around tools that fit your business and budget, and configure it to match how you actually sell.",
+      },
+      {
+        q: "Will my team know how to use it?",
+        a: "The setup is built around your workflow, with pipeline stages, reminders, and templates your team can run day to day. If you want ongoing help, our monthly support retainers include lead tracking reviews.",
+      },
+    ],
+    related: ["marketing", "support"],
+  },
+  systems: {
+    slug: "business-systems",
+    category: "systems",
+    seoTitle: "Business Systems, Process Audits, and SOPs for Small Business | Performance Processes",
+    seoDescription:
+      "Business system audits, process documentation, role clarity, and 90-day action plans that give small businesses the structure to scale. Fixed pricing from $750 with secure online checkout.",
+    headline: "Structure your business so it can scale without you",
+    accentWord: "scale",
+    intro:
+      "When how the business runs lives in the founder's head, delivery is inconsistent, delegation is hard, and growth adds chaos instead of profit. We audit, document, and structure how your business runs, so your team can execute without everything routing through you.",
+    included: [
+      "A full review of your structure, website, marketing, and process gaps",
+      "Priority recommendations and suggested next steps",
+      "Role clarity and basic org structure",
+      "KPI recommendations and reporting direction",
+      "A 90-day action plan you can execute",
+    ],
+    faqs: [
+      {
+        q: "What is a Business System Audit?",
+        a: "A $750 review of your current structure, website, marketing, processes, and execution gaps. You receive a summary report, priority recommendations, and suggested next steps, clarity on what is and is not working before you invest further.",
+      },
+      {
+        q: "What is the Foundation Sprint?",
+        a: "A $3,500 engagement that builds the structure your business needs before scaling: role clarity, basic org structure, KPI recommendations, a process gap review, and a 90-day action plan.",
+      },
+      {
+        q: "Which one should I start with?",
+        a: "If you are unsure where the problems are, start with the Business System Audit. If you already know you need structure, the Foundation Sprint builds it. Book a free consultation and we will point you to the right fit.",
+      },
+    ],
+    related: ["support", "hr-recruiting"],
+    testimonialOrg: "Ubuntu Immigration",
+  },
+  "hr-recruiting": {
+    slug: "hr-recruiting",
+    category: "hr-recruiting",
+    seoTitle: "HR and Recruiting Services for Small Businesses | Performance Processes",
+    seoDescription:
+      "Hiring strategy, candidate sourcing and screening, recruitment systems, HR foundations, and interview coaching for growing businesses. Fixed pricing from $750 with secure online checkout.",
+    headline: "Hire the right people, with a process you can repeat",
+    accentWord: "right",
+    intro:
+      "Bad hires are expensive and slow hiring stalls growth. We bring structure to how you hire and manage people, from job descriptions and candidate scorecards to sourcing, screening, HR foundations, and repeatable recruitment systems.",
+    included: [
+      "Hiring strategy, job descriptions, and candidate scorecards",
+      "Candidate sourcing, outreach, and pre-screening",
+      "Standardized interview processes and rubrics",
+      "Employee handbook, onboarding, and offer templates",
+      "Compliance review against Canadian employment standards",
+    ],
+    faqs: [
+      {
+        q: "What do your recruiting services cost?",
+        a: "Fixed prices for each package: Hiring Strategy and Job Descriptions is $1,500, Talent Sourcing and Screening is $2,500 per role, the Recruitment Setup Package is $3,500, HR Foundations is $2,000, and Interview and Career Readiness Coaching is $750.",
+      },
+      {
+        q: "Do you replace a recruitment agency?",
+        a: "For a single role, Talent Sourcing and Screening covers sourcing, outreach, pre-screening, and a shortlist of qualified candidates over a 30-day sourcing window. If you hire regularly, the Recruitment Setup Package builds a repeatable hiring system you can run yourself.",
+      },
+      {
+        q: "We have no HR at all. Where do we start?",
+        a: "The HR Foundations Package covers the core documentation every small business needs: an employee handbook, onboarding checklist, offer letter templates, a performance review framework, offboarding process, and a compliance review against Canadian employment standards.",
+      },
+    ],
+    related: ["systems", "support"],
+  },
+  support: {
+    slug: "growth-support",
+    category: "support",
+    seoTitle: "Ongoing Growth and Marketing Support Retainers | Performance Processes",
+    seoDescription:
+      "Monthly retainers that keep your marketing, CRM, website, and KPIs improving, a senior growth partner without the cost of a full-time hire. Custom pricing, assessed case by case.",
+    headline: "A growth partner who keeps your systems improving",
+    accentWord: "improving",
+    intro:
+      "Systems and marketing decay without attention, and most small businesses can't justify a full-time hire to maintain them. Our monthly retainers keep your marketing, website, lead tracking, and KPIs measured, maintained, and improving, with a senior partner on call.",
+    included: [
+      "Monthly strategy and planning calls",
+      "Marketing planning, content direction, and campaign support",
+      "Website and CRM review and optimization",
+      "KPI and performance reviews",
+      "Priority support between calls on the full retainer",
+    ],
+    faqs: [
+      {
+        q: "How much does ongoing support cost?",
+        a: "Retainer pricing is assessed case by case based on the scope your business needs. There are three tiers, Monthly Marketing Support, Monthly Growth Support, and the Growth Partner Retainer, and after a conversation we will recommend the right one and quote it clearly.",
+      },
+      {
+        q: "What is the difference between the three retainers?",
+        a: "Monthly Marketing Support focuses on marketing planning, content direction, campaigns, and reporting. Monthly Growth Support adds website recommendations, lead tracking review, and a monthly strategy call. The Growth Partner Retainer is the fullest option, covering marketing, CRM, website optimization, KPIs, and process improvement.",
+      },
+      {
+        q: "Am I locked into a long contract?",
+        a: "Retainers are monthly engagements. We review scope and results with you regularly, and we will recommend the arrangement that fits during your consultation.",
+      },
+    ],
+    related: ["crm", "systems"],
+    testimonialOrg: "TrueNorth Property & Facilities",
+  },
+};
+
+export function getLandingBySlug(slug: string): LandingContent | undefined {
+  return Object.values(LANDING_PAGES).find((l) => l.slug === slug);
+}

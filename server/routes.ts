@@ -398,7 +398,9 @@ export async function registerRoutes(
         appliedCode = NEXTUP_CODE;
       }
 
-      const allowedReturnPages = ["/services", "/pricing", "/playbooks", "/solutions"];
+      const { LANDING_PAGES } = await import("@shared/offers");
+      const landingReturnPages = Object.values(LANDING_PAGES).map((l) => `/services/${l.slug}`);
+      const allowedReturnPages = ["/services", "/pricing", "/playbooks", "/solutions", ...landingReturnPages];
       const safeReturn = allowedReturnPages.includes(returnPage) ? returnPage : "/services";
 
       const trustedDomain = process.env.REPLIT_DOMAINS?.split(",")[0]?.trim();

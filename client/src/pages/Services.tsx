@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { OfferCard } from "@/components/OfferCard";
 import { Button } from "@/components/ui/button";
-import { OFFERS, CATEGORY_META, CATEGORY_NARRATIVE, type ServiceCategory } from "@shared/offers";
+import { OFFERS, CATEGORY_META, CATEGORY_NARRATIVE, LANDING_PAGES, type ServiceCategory } from "@shared/offers";
 import { useToast } from "@/hooks/use-toast";
 import geoPatternImg from "@assets/generated/geo-pattern-new.png";
 
@@ -256,6 +256,13 @@ export default function Services() {
                       ))}
                     </ul>
                     <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+                      <Link
+                        href={`/services/${LANDING_PAGES[cat].slug}`}
+                        className="text-xs font-semibold uppercase tracking-[0.2em] text-accent hover:text-primary transition-colors underline underline-offset-4 decoration-accent/40 hover:decoration-primary"
+                        data-testid={`link-learn-more-${cat}`}
+                      >
+                        Learn More
+                      </Link>
                       <a
                         href={BOOKINGS_URL}
                         target="_blank"

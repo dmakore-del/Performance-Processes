@@ -21,6 +21,7 @@ import Recruiting from "./pages/Recruiting";
 import Marketing from "./pages/Marketing";
 import Solutions from "./pages/Solutions";
 import Services from "./pages/Services";
+import ServiceLanding from "./pages/ServiceLanding";
 import Results from "./pages/Results";
 
 import Login from "./pages/auth/Login";
@@ -61,6 +62,7 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/solutions" component={Solutions} />
       <Route path="/services" component={Services} />
+      <Route path="/services/:slug" component={ServiceLanding} />
       <Route path="/results" component={Results} />
       <Route path="/approach" component={Approach} />
       <Route path="/contact" component={Contact} />

@@ -91,19 +91,29 @@ export default function Careers() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-4">
-                  Why Work With Us
+                  {language === "en" ? "Why Work With Us" : "Pourquoi travailler avec nous"}
                 </div>
                 <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">
-                  Build Your Career With <span className="text-accent italic">Purpose</span>
+                  {language === "en" ? (
+                    <>Build Your Career With <span className="text-accent italic">Purpose</span></>
+                  ) : (
+                    <>Bâtissez votre carrière avec <span className="text-accent italic">sens</span></>
+                  )}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  At Performance Processes, we believe that exceptional consulting starts with exceptional people. We're not just building a team, we're cultivating a community of driven professionals who share a passion for helping organizations unlock their full potential.
+                  {language === "en"
+                    ? "At Performance Processes, we believe that exceptional consulting starts with exceptional people. We're not just building a team, we're cultivating a community of driven professionals who share a passion for helping organizations unlock their full potential."
+                    : "Chez Performance Processes, nous croyons qu'un conseil exceptionnel commence par des personnes exceptionnelles. Nous ne bâtissons pas seulement une équipe, nous cultivons une communauté de professionnels motivés qui partagent la passion d'aider les organisations à réaliser leur plein potentiel."}
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Our culture is built on trust, autonomy, and a relentless focus on results. We empower our team members to take ownership, think strategically, and deliver transformative outcomes for our clients. Every engagement is an opportunity to make a real difference.
+                  {language === "en"
+                    ? "Our culture is built on trust, autonomy, and a relentless focus on results. We empower our team members to take ownership, think strategically, and deliver transformative outcomes for our clients. Every engagement is an opportunity to make a real difference."
+                    : "Notre culture repose sur la confiance, l'autonomie et une concentration constante sur les résultats. Nous donnons à nos membres d'équipe les moyens de prendre les rênes, de penser stratégiquement et de livrer des résultats transformateurs pour nos clients. Chaque mandat est une occasion de faire une réelle différence."}
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Whether you're an experienced consultant or a rising professional looking to break into the advisory space, Performance Processes offers a platform where your skills, ambition, and network can translate into meaningful impact, and meaningful income.
+                  {language === "en"
+                    ? "Whether you're an experienced consultant or a rising professional looking to break into the advisory space, Performance Processes offers a platform where your skills, ambition, and network can translate into meaningful impact, and meaningful income."
+                    : "Que vous soyez un consultant expérimenté ou un professionnel en devenir souhaitant percer dans le domaine du conseil, Performance Processes offre une plateforme où vos compétences, votre ambition et votre réseau peuvent se traduire par un impact significatif, et un revenu significatif."}
                 </p>
               </div>
               <div className="rounded-2xl overflow-hidden shadow-xl">
@@ -117,24 +127,37 @@ export default function Careers() {
           <div className="container mx-auto px-4 md:px-8 max-w-6xl">
             <div className="text-center mb-14">
               <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">
-                Benefits & Perks
+                {language === "en" ? "Benefits & Perks" : "Avantages"}
               </div>
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4">
-                What You'll <span className="text-accent italic">Gain</span>
+                {language === "en" ? (
+                  <>What You'll <span className="text-accent italic">Gain</span></>
+                ) : (
+                  <>Ce que vous <span className="text-accent italic">gagnerez</span></>
+                )}
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                We offer a comprehensive set of benefits designed to support your professional growth, personal well-being, and financial success.
+                {language === "en"
+                  ? "We offer a comprehensive set of benefits designed to support your professional growth, personal well-being, and financial success."
+                  : "Nous offrons un ensemble complet d'avantages conçus pour soutenir votre croissance professionnelle, votre bien-être personnel et votre réussite financière."}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
+              {(language === "en" ? [
                 { title: "Flexible Schedule", desc: "Work on your own terms. Set your own hours and manage your pipeline with full autonomy over your time." },
                 { title: "Remote Work", desc: "Operate from anywhere. Our team is fully distributed, allowing you to work from the location that suits you best." },
                 { title: "Professional Development", desc: "Access training resources, mentorship from senior consultants, and opportunities to expand your expertise." },
                 { title: "Uncapped Earnings", desc: "No salary caps. Your compensation is directly tied to your performance, with competitive commission structures." },
                 { title: "Mentorship", desc: "Learn from experienced industry professionals who are invested in your growth and long-term success." },
                 { title: "Industry Exposure", desc: "Gain experience across diverse sectors including government, healthcare, finance, nonprofit, and technology." },
-              ].map((benefit, i) => (
+              ] : [
+                { title: "Horaire flexible", desc: "Travaillez selon vos conditions. Fixez vos propres heures et gérez votre pipeline avec une autonomie complète sur votre temps." },
+                { title: "Télétravail", desc: "Travaillez de n'importe où. Notre équipe est entièrement répartie, ce qui vous permet de travailler à l'endroit qui vous convient le mieux." },
+                { title: "Perfectionnement professionnel", desc: "Accédez à des ressources de formation, au mentorat de consultants chevronnés et à des occasions d'élargir votre expertise." },
+                { title: "Revenus sans plafond", desc: "Aucun plafond salarial. Votre rémunération est directement liée à votre rendement, avec des structures de commission concurrentielles." },
+                { title: "Mentorat", desc: "Apprenez auprès de professionnels expérimentés de l'industrie qui s'investissent dans votre croissance et votre réussite à long terme." },
+                { title: "Exposition à l'industrie", desc: "Acquérez de l'expérience dans divers secteurs, notamment le gouvernement, la santé, la finance, le secteur sans but lucratif et la technologie." },
+              ]).map((benefit, i) => (
                 <div key={i} className="bg-white p-8 rounded-2xl border border-border shadow-sm hover:shadow-lg transition-shadow" data-testid={`card-benefit-${i}`}>
                   <div className="w-10 h-px bg-accent mb-5" />
                   <h3 className="text-lg font-bold text-primary mb-2">{benefit.title}</h3>
@@ -153,19 +176,29 @@ export default function Careers() {
               </div>
               <div className="order-1 lg:order-2">
                 <div className="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-4">
-                  Life at Performance Processes
+                  {language === "en" ? "Life at Performance Processes" : "La vie chez Performance Processes"}
                 </div>
                 <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">
-                  A Team Built on <span className="text-accent italic">Excellence</span>
+                  {language === "en" ? (
+                    <>A Team Built on <span className="text-accent italic">Excellence</span></>
+                  ) : (
+                    <>Une équipe bâtie sur <span className="text-accent italic">l'excellence</span></>
+                  )}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Our team is made up of professionals who bring diverse backgrounds, deep expertise, and a shared commitment to driving meaningful change. We foster an environment where ideas are valued, collaboration is natural, and every contribution matters.
+                  {language === "en"
+                    ? "Our team is made up of professionals who bring diverse backgrounds, deep expertise, and a shared commitment to driving meaningful change. We foster an environment where ideas are valued, collaboration is natural, and every contribution matters."
+                    : "Notre équipe est composée de professionnels aux parcours variés, dotés d'une expertise approfondie et d'un engagement commun à générer un changement significatif. Nous favorisons un environnement où les idées sont valorisées, la collaboration est naturelle et chaque contribution compte."}
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  From day one, you'll have the tools and support you need to succeed. Our onboarding process ensures you understand our service offerings, methodology, and client engagement approach so you can hit the ground running with confidence.
+                  {language === "en"
+                    ? "From day one, you'll have the tools and support you need to succeed. Our onboarding process ensures you understand our service offerings, methodology, and client engagement approach so you can hit the ground running with confidence."
+                    : "Dès le premier jour, vous disposerez des outils et du soutien nécessaires pour réussir. Notre processus d'intégration vous assure de comprendre nos offres de services, notre méthodologie et notre approche de la relation client, afin de démarrer en toute confiance."}
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Growth is not just encouraged, it's built into everything we do. As Performance Processes expands, so do the opportunities for our team members to take on greater responsibilities, develop new capabilities, and shape the direction of the firm.
+                  {language === "en"
+                    ? "Growth is not just encouraged, it's built into everything we do. As Performance Processes expands, so do the opportunities for our team members to take on greater responsibilities, develop new capabilities, and shape the direction of the firm."
+                    : "La croissance n'est pas seulement encouragée, elle est intégrée à tout ce que nous faisons. À mesure que Performance Processes prend de l'ampleur, les occasions se multiplient pour nos membres d'équipe d'assumer de plus grandes responsabilités, de développer de nouvelles compétences et de façonner l'orientation de la firme."}
                 </p>
               </div>
             </div>
@@ -175,13 +208,17 @@ export default function Careers() {
         <section className="py-16 bg-primary" data-testid="section-our-promise">
           <div className="container mx-auto px-4 md:px-8 max-w-4xl text-center">
             <h3 className="text-2xl md:text-3xl text-white font-heading font-extrabold mb-6 italic" data-testid="text-promise-title">
-              Our Promise to Our Team
+              {language === "en" ? "Our Promise to Our Team" : "Notre promesse à notre équipe"}
             </h3>
             <p className="text-xl text-white/80 leading-relaxed mb-4">
-              We believe that when our people succeed, our clients succeed. That's why we're committed to providing every team member with the support, autonomy, and resources they need to thrive.
+              {language === "en"
+                ? "We believe that when our people succeed, our clients succeed. That's why we're committed to providing every team member with the support, autonomy, and resources they need to thrive."
+                : "Nous croyons que lorsque nos gens réussissent, nos clients réussissent. C'est pourquoi nous nous engageons à offrir à chaque membre de l'équipe le soutien, l'autonomie et les ressources dont il a besoin pour s'épanouir."}
             </p>
             <p className="text-lg text-white/60 leading-relaxed">
-              At Performance Processes, you're not just joining a firm, you're joining a mission to help organizations reach their full potential.
+              {language === "en"
+                ? "At Performance Processes, you're not just joining a firm, you're joining a mission to help organizations reach their full potential."
+                : "Chez Performance Processes, vous ne rejoignez pas seulement une firme, vous rejoignez une mission visant à aider les organisations à réaliser leur plein potentiel."}
             </p>
           </div>
         </section>
@@ -190,37 +227,48 @@ export default function Careers() {
           <div className="bg-white p-8 md:p-12 rounded-3xl border border-border shadow-xl space-y-8">
             <div className="border-b border-border pb-8">
               <div className="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-4">
-                Open Role
+                {language === "en" ? "Open Role" : "Poste ouvert"}
               </div>
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4">
-                Business Development Consultant
+                {language === "en" ? "Business Development Consultant" : "Conseiller en développement des affaires"}
               </h2>
               <div className="flex gap-4 text-sm font-bold uppercase tracking-widest text-muted-foreground">
-                <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-500"></div> Remote / Flexible</span>
-                <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-accent"></div> Commission-Based</span>
+                <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-500"></div> {language === "en" ? "Remote / Flexible" : "À distance / Flexible"}</span>
+                <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-accent"></div> {language === "en" ? "Commission-Based" : "À commission"}</span>
               </div>
             </div>
 
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <p>
-                We are seeking a results-driven Consultant to support business development and client acquisition efforts. This commission-based role is ideal for a motivated professional with strong networks, consultative selling skills, and a passion for helping organizations improve performance and strategic alignment.
+                {language === "en"
+                  ? "We are seeking a results-driven Consultant to support business development and client acquisition efforts. This commission-based role is ideal for a motivated professional with strong networks, consultative selling skills, and a passion for helping organizations improve performance and strategic alignment."
+                  : "Nous recherchons un conseiller axé sur les résultats pour soutenir les efforts de développement des affaires et d'acquisition de clients. Ce poste à commission est idéal pour un professionnel motivé doté de solides réseaux, de compétences en vente consultative et d'une passion pour aider les organisations à améliorer leur rendement et leur alignement stratégique."}
               </p>
               <p>
-                The Consultant will identify potential clients, initiate conversations with decision-makers, and represent our consulting services with professionalism and credibility. This role offers flexible engagement and uncapped earning potential based on successful client conversions.
+                {language === "en"
+                  ? "The Consultant will identify potential clients, initiate conversations with decision-makers, and represent our consulting services with professionalism and credibility. This role offers flexible engagement and uncapped earning potential based on successful client conversions."
+                  : "Le conseiller repérera les clients potentiels, amorcera des conversations avec les décideurs et représentera nos services de consultation avec professionnalisme et crédibilité. Ce poste offre un engagement flexible et un potentiel de gains sans plafond en fonction des conversions de clients réussies."}
               </p>
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-xl font-bold text-primary">Key Responsibilities</h3>
+              <h3 className="text-xl font-bold text-primary">{language === "en" ? "Key Responsibilities" : "Principales responsabilités"}</h3>
               <ul className="space-y-3">
-                {[
+                {(language === "en" ? [
                   "Identify and engage prospective clients aligned with our service offerings",
                   "Build relationships with organizational leaders and decision-makers",
                   "Present consulting solutions tailored to client needs",
                   "Facilitate introductions and initial strategy discussions",
                   "Support proposal follow-up and deal progression",
                   "Maintain a pipeline of qualified leads"
-                ].map((item, i) => (
+                ] : [
+                  "Repérer et mobiliser des clients potentiels alignés sur nos offres de services",
+                  "Bâtir des relations avec les dirigeants et les décideurs des organisations",
+                  "Présenter des solutions de consultation adaptées aux besoins des clients",
+                  "Faciliter les présentations et les premières discussions stratégiques",
+                  "Soutenir le suivi des propositions et la progression des ententes",
+                  "Maintenir un pipeline de prospects qualifiés"
+                ]).map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="text-accent flex-shrink-0 mt-1 leading-none">·</span>
                     <span className="text-muted-foreground">{item}</span>
@@ -230,15 +278,21 @@ export default function Careers() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-xl font-bold text-primary">Ideal Candidate Profile</h3>
+              <h3 className="text-xl font-bold text-primary">{language === "en" ? "Ideal Candidate Profile" : "Profil du candidat idéal"}</h3>
               <ul className="space-y-3">
-                {[
+                {(language === "en" ? [
                   "Strong professional network within corporate, nonprofit, or SME sectors",
                   "Experience in consulting, advisory services, or business development",
                   "Excellent communication and relationship-building skills",
                   "Self-motivated and target-driven",
                   "High level of professionalism and integrity"
-                ].map((item, i) => (
+                ] : [
+                  "Solide réseau professionnel dans les secteurs corporatif, sans but lucratif ou des PME",
+                  "Expérience en consultation, en services-conseils ou en développement des affaires",
+                  "Excellentes compétences en communication et en établissement de relations",
+                  "Autonome et axé sur les objectifs",
+                  "Haut niveau de professionnalisme et d'intégrité"
+                ]).map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="text-accent flex-shrink-0 mt-1 leading-none">·</span>
                     <span className="text-muted-foreground">{item}</span>

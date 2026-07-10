@@ -5,14 +5,62 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import type { Offer, PriceMode } from "@shared/offers";
+import { localizeOffer } from "@shared/offers";
+import { useLanguage } from "@/hooks/use-language";
 
 interface OfferCardProps {
   offer: Offer;
   returnPage?: string;
 }
 
+const CARD_COPY = {
+  en: {
+    mostPopular: "Most Popular",
+    bestFor: "Best for",
+    perPerson: "Per Person",
+    team: "Team",
+    processing: "Processing...",
+    subscribeNow: "Subscribe Now",
+    getStarted: "Get Started",
+    requestQuote: "Request Quote",
+    payWith: "Pay with",
+    payMethods: "Card · Debit · PayPal",
+    havePromo: "Have a NextUp discount code?",
+    discountCode: "Discount code",
+    clear: "Clear",
+    codeNotRecognized: "Code not recognized.",
+    discountWillApply: "40% NextUp discount will apply at checkout.",
+    nextUpApplied: "NextUp 40% off applied",
+    checkoutErrorTitle: "Checkout error",
+    checkoutErrorDesc: "Could not start checkout. Please try again.",
+  },
+  fr: {
+    mostPopular: "Le plus populaire",
+    bestFor: "Idéal pour",
+    perPerson: "Par personne",
+    team: "Équipe",
+    processing: "Traitement en cours...",
+    subscribeNow: "S'abonner",
+    getStarted: "Commencer",
+    requestQuote: "Demander un devis",
+    payWith: "Payer avec",
+    payMethods: "Carte · Débit · PayPal",
+    havePromo: "Vous avez un code de réduction NextUp?",
+    discountCode: "Code de réduction",
+    clear: "Effacer",
+    codeNotRecognized: "Code non reconnu.",
+    discountWillApply: "La réduction NextUp de 40 % sera appliquée au paiement.",
+    nextUpApplied: "Réduction NextUp de 40 % appliquée",
+    checkoutErrorTitle: "Erreur de paiement",
+    checkoutErrorDesc: "Impossible de démarrer le paiement. Veuillez réessayer.",
+  },
+} as const;
+
 export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
   const { toast } = useToast();
+  const { language } = useLanguage();
+  const cc = CARD_COPY[language];
+  const loc = localizeOffer(offer, language);
   const [mode, setMode] = useState<PriceMode>("standard");
   const [busy, setBusy] = useState(false);
   const [showPromo, setShowPromo] = useState(false);
@@ -32,12 +80,12 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
         window.location.href = data.url;
       } else {
         setBusy(false);
-        toast({ title: "Checkout error", description: "Could not start checkout. Please try again.", variant: "destructive" });
+        toast({ title: cc.checkoutErrorTitle, description: cc.checkoutErrorDesc, variant: "destructive" });
       }
     },
     onError: (err: any) => {
       setBusy(false);
-      toast({ title: "Checkout error", description: err?.message || "Could not start checkout. Please try again.", variant: "destructive" });
+      toast({ title: cc.checkoutErrorTitle, description: err?.message || cc.checkoutErrorDesc, variant: "destructive" });
     },
   });
 
@@ -54,7 +102,7 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
 
   const showBuy = !offer.isRange;
   const isWebsite = offer.category === "website";
-  const baseLabel = mode === "team" && offer.perTeamLabel ? offer.perTeamLabel : offer.priceLabel;
+  const baseLabel = mode === "team" && offer.perTeamLabel ? loc.perTeamLabel ?? offer.perTeamLabel : loc.priceLabel;
   const baseAmount = mode === "team" && offer.perTeamPrice ? offer.perTeamPrice : offer.price;
   const codeIsNextUp = promoCode.trim().toUpperCase() === "NEXTPROCESSES";
   const discountActive = isWebsite && codeIsNextUp;
@@ -72,15 +120,15 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
     >
       {offer.highlight && (
         <span className="absolute top-0 right-0 text-[10px] uppercase tracking-[0.2em] bg-accent text-white px-3 py-1.5">
-          Most Popular
+          {cc.mostPopular}
         </span>
       )}
 
       <div className="mb-5">
         <h3 className="text-display text-2xl text-primary mb-2" data-testid={`text-offer-name-${offer.id}`}>
-          {offer.name}
+          {loc.name}
         </h3>
-        <p className="text-sm text-muted-foreground leading-relaxed font-light">{offer.description}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed font-light">{loc.description}</p>
       </div>
 
       <div className="mb-6">
@@ -96,7 +144,7 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
         </div>
         {discountActive && (
           <div className="text-[11px] uppercase tracking-wider text-primary mt-1.5">
-            NextUp 40% off applied
+            {cc.nextUpApplied}
           </div>
         )}
         {offer.isPerPerson && offer.perTeamLabel && (
@@ -107,7 +155,7 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
               className={`px-3 py-1.5 transition-colors ${mode === "standard" ? "bg-primary text-white" : "text-primary hover:text-accent"}`}
               data-testid={`button-mode-standard-${offer.id}`}
             >
-              Per Person
+              {cc.perPerson}
             </button>
             <button
               type="button"
@@ -115,19 +163,19 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
               className={`px-3 py-1.5 transition-colors ${mode === "team" ? "bg-primary text-white" : "text-primary hover:text-accent"}`}
               data-testid={`button-mode-team-${offer.id}`}
             >
-              Team
+              {cc.team}
             </button>
           </div>
         )}
       </div>
 
       <div className="mb-5">
-        <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Best for</div>
-        <p className="text-sm text-primary leading-relaxed font-light">{offer.bestFor}</p>
+        <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-2">{cc.bestFor}</div>
+        <p className="text-sm text-primary leading-relaxed font-light">{loc.bestFor}</p>
       </div>
 
       <ul className="space-y-2.5 mb-7">
-        {offer.includes.map((item, i) => (
+        {loc.includes.map((item, i) => (
           <li key={i} className="flex items-start gap-2.5 text-sm text-primary font-light">
             <span aria-hidden="true" className="text-accent shrink-0 leading-relaxed">·</span>
             <span>{item}</span>
@@ -145,12 +193,12 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
                 className="text-[11px] font-bold uppercase tracking-wider text-primary hover:text-accent transition-colors"
                 data-testid={`button-promo-toggle-${offer.id}`}
               >
-                Have a NextUp discount code?
+                {cc.havePromo}
               </button>
             ) : (
               <div className="flex flex-col gap-2">
                 <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-                  Discount code
+                  {cc.discountCode}
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -168,15 +216,15 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
                       className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground hover:text-primary px-2"
                       data-testid={`button-promo-clear-${offer.id}`}
                     >
-                      Clear
+                      {cc.clear}
                     </button>
                   )}
                 </div>
                 {promoCode.trim() && !codeIsNextUp && (
-                  <p className="text-[11px] text-destructive font-medium">Code not recognized.</p>
+                  <p className="text-[11px] text-destructive font-medium">{cc.codeNotRecognized}</p>
                 )}
                 {discountActive && (
-                  <p className="text-[11px] text-primary font-semibold">40% NextUp discount will apply at checkout.</p>
+                  <p className="text-[11px] text-primary font-semibold">{cc.discountWillApply}</p>
                 )}
               </div>
             )}
@@ -192,11 +240,11 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
               }`}
               data-testid={`button-buy-${offer.id}`}
             >
-              {busy ? "Processing..." : offer.isMonthly ? "Subscribe Now" : "Get Started"}
+              {busy ? cc.processing : offer.isMonthly ? cc.subscribeNow : cc.getStarted}
             </Button>
             <div className="flex items-center justify-center gap-2 pt-0.5">
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Pay with</span>
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Card · Debit · PayPal</span>
+              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{cc.payWith}</span>
+              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{cc.payMethods}</span>
             </div>
           </>
         ) : offer.ctaHref ? (
@@ -205,7 +253,7 @@ export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
               className="w-full rounded-none h-12 font-semibold text-xs uppercase tracking-[0.2em] bg-primary text-white hover:bg-accent"
               data-testid={`button-explore-${offer.id}`}
             >
-              Request Quote
+              {cc.requestQuote}
             </Button>
           </Link>
         ) : null}

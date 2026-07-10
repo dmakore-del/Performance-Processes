@@ -11,11 +11,66 @@ import {
   CATEGORY_META,
   CATEGORY_NARRATIVE,
   LANDING_PAGES,
+  getLocalizedLanding,
+  getLocalizedCategoryMeta,
+  getLocalizedNarrative,
 } from "@shared/offers";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/hooks/use-language";
 import NotFound from "./not-found";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+
+const PAGE_COPY = {
+  en: {
+    bookConsultation: "Book a Consultation",
+    requestProposal: "Request a Proposal",
+    soundFamiliar: "Sound familiar?",
+    whatYouGain: "What you gain",
+    whatsIncludedEyebrow: "What's Included",
+    whatsIncludedHeading: "Everything you need, built and installed.",
+    packagesEyebrow: "Packages and Pricing",
+    packagesHeading: "Clear prices. Pay securely online.",
+    packagesTail: " Every fixed-price service can be paid for online by credit card, debit, or PayPal via secure Stripe checkout.",
+    inTheirWords: "In Their Words",
+    seeAllResults: "See All Results and Testimonials",
+    faqEyebrow: "FAQ",
+    faqHeading: "Common questions.",
+    relatedEyebrow: "Related Services",
+    relatedHeading: "Often paired with.",
+    exploreAll: "Explore All Services",
+    ctaHeading: "Ready to get started?",
+    ctaBody: "Book a free consultation to talk through your goals, or request a proposal and we will map out the right fit.",
+    paymentSuccessTitle: "Payment successful",
+    paymentSuccessDesc: "Thank you. We will be in touch shortly to get started.",
+    paymentCancelledTitle: "Payment cancelled",
+    paymentCancelledDesc: "Your payment was not completed.",
+  },
+  fr: {
+    bookConsultation: "Réserver une consultation",
+    requestProposal: "Demander une proposition",
+    soundFamiliar: "Ça vous parle?",
+    whatYouGain: "Ce que vous y gagnez",
+    whatsIncludedEyebrow: "Ce qui est inclus",
+    whatsIncludedHeading: "Tout ce dont vous avez besoin, conçu et installé.",
+    packagesEyebrow: "Forfaits et tarifs",
+    packagesHeading: "Des prix clairs. Payez en ligne en toute sécurité.",
+    packagesTail: " Chaque service à prix fixe peut être payé en ligne par carte de crédit, débit ou PayPal via le paiement sécurisé Stripe.",
+    inTheirWords: "Dans leurs mots",
+    seeAllResults: "Voir tous les résultats et témoignages",
+    faqEyebrow: "FAQ",
+    faqHeading: "Questions fréquentes.",
+    relatedEyebrow: "Services connexes",
+    relatedHeading: "Souvent combinés avec.",
+    exploreAll: "Explorer tous les services",
+    ctaHeading: "Prêt à commencer?",
+    ctaBody: "Réservez une consultation gratuite pour discuter de vos objectifs, ou demandez une proposition et nous définirons la solution qui vous convient.",
+    paymentSuccessTitle: "Paiement réussi",
+    paymentSuccessDesc: "Merci. Nous vous contacterons sous peu pour commencer.",
+    paymentCancelledTitle: "Paiement annulé",
+    paymentCancelledDesc: "Votre paiement n'a pas été complété.",
+  },
+} as const;
 
 const TESTIMONIAL_EXCERPTS: Record<string, { text: string; author: string }> = {
   "NextUp Foundation for Canadian Youth": {
@@ -47,32 +102,35 @@ function HeadlineWithAccent({ headline, accentWord }: { headline: string; accent
 export default function ServiceLanding() {
   const [, params] = useRoute("/services/:slug");
   const slug = params?.slug ?? "";
-  const landing = getLandingBySlug(slug);
+  const rawLanding = getLandingBySlug(slug);
   const { toast } = useToast();
+  const { language } = useLanguage();
+  const pc = PAGE_COPY[language];
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
-    if (!landing) return;
+    if (!rawLanding) return;
     const urlParams = new URLSearchParams(window.location.search);
     const payment = urlParams.get("payment");
     if (payment === "success") {
-      toast({ title: "Payment successful", description: "Thank you. We will be in touch shortly to get started." });
-      window.history.replaceState({}, "", `/services/${landing.slug}`);
+      toast({ title: pc.paymentSuccessTitle, description: pc.paymentSuccessDesc });
+      window.history.replaceState({}, "", `/services/${rawLanding.slug}`);
     } else if (payment === "cancelled") {
-      toast({ title: "Payment cancelled", description: "Your payment was not completed.", variant: "destructive" });
-      window.history.replaceState({}, "", `/services/${landing.slug}`);
+      toast({ title: pc.paymentCancelledTitle, description: pc.paymentCancelledDesc, variant: "destructive" });
+      window.history.replaceState({}, "", `/services/${rawLanding.slug}`);
     }
-  }, [landing?.slug]);
+  }, [rawLanding?.slug]);
 
   useEffect(() => {
     setOpenFaq(null);
   }, [slug]);
 
-  if (!landing) return <NotFound />;
+  if (!rawLanding) return <NotFound />;
 
-  const meta = CATEGORY_META[landing.category];
-  const narrative = CATEGORY_NARRATIVE[landing.category];
-  const offers = getOffersByCategory(landing.category);
+  const landing = getLocalizedLanding(rawLanding, language);
+  const meta = getLocalizedCategoryMeta(rawLanding.category, language);
+  const narrative = getLocalizedNarrative(rawLanding.category, language);
+  const offers = getOffersByCategory(rawLanding.category);
   const testimonial = landing.testimonialOrg ? TESTIMONIAL_EXCERPTS[landing.testimonialOrg] : undefined;
 
   return (
@@ -97,12 +155,12 @@ export default function ServiceLanding() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                 <Button className="rounded-none bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-semibold text-xs uppercase tracking-[0.2em] w-full sm:w-auto" data-testid="button-landing-book">
-                  Book a Consultation
+                  {pc.bookConsultation}
                 </Button>
               </a>
               <Link href="/contact">
                 <Button variant="outline" className="rounded-none border-2 border-white/30 bg-transparent text-white hover:bg-white/10 h-14 px-10 font-semibold text-xs uppercase tracking-[0.2em] w-full sm:w-auto" data-testid="button-landing-proposal">
-                  Request a Proposal
+                  {pc.requestProposal}
                 </Button>
               </Link>
             </div>
@@ -115,13 +173,13 @@ export default function ServiceLanding() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
               <div className="lg:col-span-6">
                 <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">{narrative.eyebrow}</p>
-                <h2 className="text-display text-4xl md:text-5xl text-primary mb-5">Sound familiar?</h2>
+                <h2 className="text-display text-4xl md:text-5xl text-primary mb-5">{pc.soundFamiliar}</h2>
                 <p className="text-base md:text-lg text-primary font-light leading-relaxed" data-testid="text-landing-problem">
                   {narrative.problem}
                 </p>
               </div>
               <div className="lg:col-span-5 lg:col-start-8 flex flex-col justify-center">
-                <p className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-4">What you gain</p>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-4">{pc.whatYouGain}</p>
                 <ul className="space-y-3">
                   {narrative.benefits.map((b, i) => (
                     <li key={i} className="flex items-start gap-3 border-t border-border pt-3" data-testid={`text-landing-benefit-${i}`}>
@@ -139,9 +197,9 @@ export default function ServiceLanding() {
         <section className="py-24 bg-secondary/40 border-b border-border" data-testid="section-landing-included">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mb-12">
-              <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">What's Included</p>
+              <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">{pc.whatsIncludedEyebrow}</p>
               <h2 className="text-display text-4xl md:text-5xl text-primary">
-                Everything you need, built and installed.
+                {pc.whatsIncludedHeading}
               </h2>
             </div>
             <ul className="max-w-3xl">
@@ -159,12 +217,12 @@ export default function ServiceLanding() {
         <section className="py-24 bg-background border-b border-border" data-testid="section-landing-offers">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mb-14">
-              <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">Packages and Pricing</p>
+              <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">{pc.packagesEyebrow}</p>
               <h2 className="text-display text-4xl md:text-5xl text-primary mb-5">
-                Clear prices. Pay securely online.
+                {pc.packagesHeading}
               </h2>
               <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed">
-                {meta.description} Every fixed-price service can be paid for online by credit card, debit, or PayPal via secure Stripe checkout.
+                {meta.description}{pc.packagesTail}
               </p>
             </div>
             <div
@@ -177,7 +235,7 @@ export default function ServiceLanding() {
               }`}
             >
               {offers.map((offer) => (
-                <OfferCard key={offer.id} offer={offer} returnPage={`/services/${landing.slug}`} />
+                <OfferCard key={offer.id} offer={offer} returnPage={`/services/${rawLanding.slug}`} />
               ))}
             </div>
           </div>
@@ -187,7 +245,7 @@ export default function ServiceLanding() {
         {testimonial && (
           <section className="py-24 bg-primary text-white" data-testid="section-landing-testimonial">
             <div className="container mx-auto px-4 md:px-8 max-w-4xl">
-              <p className="text-[11px] uppercase tracking-[0.4em] mb-8 text-white/50 text-center">In Their Words</p>
+              <p className="text-[11px] uppercase tracking-[0.4em] mb-8 text-white/50 text-center">{pc.inTheirWords}</p>
               <figure className="text-center">
                 <span aria-hidden="true" className="text-display text-5xl text-accent/60 leading-none mb-6 block">&ldquo;</span>
                 <blockquote className="text-xl md:text-2xl font-heading font-light leading-relaxed text-white/90 mb-8" data-testid="text-landing-testimonial">
@@ -205,7 +263,7 @@ export default function ServiceLanding() {
                   className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80 hover:text-accent transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-accent"
                   data-testid="link-landing-results"
                 >
-                  See All Results and Testimonials
+                  {pc.seeAllResults}
                 </Link>
               </div>
             </div>
@@ -216,8 +274,8 @@ export default function ServiceLanding() {
         <section className="py-24 bg-secondary/40 border-b border-border" data-testid="section-landing-faq">
           <div className="container mx-auto px-4 md:px-8 max-w-3xl">
             <div className="mb-12">
-              <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">FAQ</p>
-              <h2 className="text-display text-4xl md:text-5xl text-primary">Common questions.</h2>
+              <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">{pc.faqEyebrow}</p>
+              <h2 className="text-display text-4xl md:text-5xl text-primary">{pc.faqHeading}</h2>
             </div>
             <div>
               {landing.faqs.map((faq, i) => {
@@ -250,8 +308,8 @@ export default function ServiceLanding() {
         <section className="py-24 bg-background border-b border-border" data-testid="section-landing-related">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mb-12">
-              <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">Related Services</p>
-              <h2 className="text-display text-4xl md:text-5xl text-primary">Often paired with.</h2>
+              <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">{pc.relatedEyebrow}</p>
+              <h2 className="text-display text-4xl md:text-5xl text-primary">{pc.relatedHeading}</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border max-w-4xl">
               {landing.related.map((cat) => {
@@ -264,10 +322,10 @@ export default function ServiceLanding() {
                     data-testid={`link-related-${cat}`}
                   >
                     <h3 className="text-display text-2xl text-primary group-hover:text-white transition-colors mb-3">
-                      {CATEGORY_META[cat].label}
+                      {getLocalizedCategoryMeta(cat, language).label}
                     </h3>
                     <p className="text-sm text-muted-foreground group-hover:text-white/70 transition-colors font-light leading-relaxed">
-                      {CATEGORY_META[cat].description}
+                      {getLocalizedCategoryMeta(cat, language).description}
                     </p>
                   </Link>
                 );
@@ -279,7 +337,7 @@ export default function ServiceLanding() {
                 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent"
                 data-testid="link-landing-all-services"
               >
-                Explore All Services
+                {pc.exploreAll}
               </Link>
             </div>
           </div>
@@ -289,20 +347,20 @@ export default function ServiceLanding() {
         <section className="py-24 bg-primary text-white" data-testid="section-landing-cta">
           <div className="container mx-auto px-4 md:px-8 max-w-3xl text-center">
             <h2 className="text-display text-4xl md:text-5xl mb-6 text-white">
-              Ready to get started?
+              {pc.ctaHeading}
             </h2>
             <p className="text-lg text-white/70 mb-10 font-light">
-              Book a free consultation to talk through your goals, or request a proposal and we will map out the right fit.
+              {pc.ctaBody}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                 <Button className="rounded-none bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-semibold text-xs uppercase tracking-[0.2em] w-full sm:w-auto" data-testid="button-landing-cta-book">
-                  Book a Consultation
+                  {pc.bookConsultation}
                 </Button>
               </a>
               <Link href="/contact">
                 <Button variant="outline" className="rounded-none border-2 border-white/30 bg-transparent text-white hover:bg-white/10 h-14 px-10 font-semibold text-xs uppercase tracking-[0.2em] w-full sm:w-auto" data-testid="button-landing-cta-proposal">
-                  Request a Proposal
+                  {pc.requestProposal}
                 </Button>
               </Link>
             </div>

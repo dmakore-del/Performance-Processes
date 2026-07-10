@@ -573,7 +573,7 @@ export async function registerRoutes(
       if (!["active", "pending_approval", "suspended"].includes(status)) {
         return res.status(400).json({ message: "Invalid status" });
       }
-      const user = await storage.updateUser(req.params.id, { status });
+      const user = await storage.updateUser(String(req.params.id), { status });
       res.json({ id: user.id, status: user.status, fullName: user.fullName });
     } catch (error) {
       res.status(500).json({ message: "Failed to update user status" });
@@ -586,7 +586,7 @@ export async function registerRoutes(
       if (!["client", "staff", "admin"].includes(role)) {
         return res.status(400).json({ message: "Invalid role" });
       }
-      const user = await storage.updateUser(req.params.id, { role });
+      const user = await storage.updateUser(String(req.params.id), { role });
       res.json({ id: user.id, role: user.role, fullName: user.fullName });
     } catch (error) {
       res.status(500).json({ message: "Failed to update user role" });
@@ -617,7 +617,7 @@ export async function registerRoutes(
   app.use("/api/portal", requireAuth);
 
   const requireStaffOrAdmin = (req: any, res: any, next: any) => {
-    const user = req.user as any;
+    const user = (req as any).user;
     if (!user || (user.role !== "staff" && user.role !== "admin")) {
       return res.status(403).json({ message: "Staff or admin access required" });
     }
@@ -627,7 +627,7 @@ export async function registerRoutes(
   // Engagements - filtered by user role
   app.get("/api/portal/engagements", async (req, res) => {
     try {
-      const user = req.user as any;
+      const user = (req as any).user;
       const data = await storage.getEngagementsForUser(user.id, user.role);
       res.json(data);
     } catch (error) {
@@ -751,7 +751,7 @@ export async function registerRoutes(
   app.post("/api/portal/documents/upload", documentUpload.single("file"), async (req, res) => {
     try {
       if (!req.file) return res.status(400).json({ message: "File is required" });
-      const user = req.user as any;
+      const user = (req as any).user;
       const ext = path.extname(req.file.originalname).replace(".", "").toLowerCase();
       const sizeBytes = req.file.size;
       const sizeStr = sizeBytes > 1024 * 1024
@@ -897,7 +897,7 @@ export async function registerRoutes(
   // Messages - private between sender and recipient
   app.get("/api/portal/engagements/:engagementId/messages", async (req, res) => {
     try {
-      const user = req.user as any;
+      const user = (req as any).user;
       const data = await storage.getMessages(Number(req.params.engagementId), user.id);
       res.json(data);
     } catch (error) {
@@ -907,7 +907,7 @@ export async function registerRoutes(
 
   app.post("/api/portal/messages", async (req, res) => {
     try {
-      const user = req.user as any;
+      const user = (req as any).user;
       const messageData = {
         ...req.body,
         senderId: user.id,
@@ -1079,7 +1079,7 @@ export async function registerRoutes(
   });
 
   app.get("/api/portal/contracts/file/:filename", requireAuth, (req, res) => {
-    const filename = path.basename(req.params.filename);
+    const filename = path.basename(String(req.params.filename));
     const filePath = path.join(contractsDir, filename);
     if (!fs.existsSync(filePath)) return res.status(404).json({ message: "File not found" });
     res.sendFile(filePath);
@@ -1087,7 +1087,7 @@ export async function registerRoutes(
 
   app.post("/api/portal/contracts/:id/sign", async (req, res) => {
     try {
-      const user = req.user as any;
+      const user = (req as any).user;
       const contract = await storage.getContract(Number(req.params.id));
       if (!contract) return res.status(404).json({ message: "Contract not found" });
       if (contract.status === "signed") return res.status(400).json({ message: "Contract already signed" });

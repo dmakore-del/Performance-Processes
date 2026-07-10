@@ -176,7 +176,7 @@ async function seedProducts() {
     const product = await stripe.products.create({
       name: service.name,
       description: service.description,
-      metadata: service.metadata,
+      metadata: service.metadata as Record<string, string>,
     });
 
     const priceParams: any = {

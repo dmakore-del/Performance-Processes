@@ -239,9 +239,12 @@ export function Navbar() {
       label: language === "en" ? "Solutions" : "Solutions",
       children: [
         { label: language === "en" ? "All Packages & Services" : "Tous les forfaits et services", href: "/services" },
-        { label: language === "en" ? "Growth Systems" : "Systèmes de croissance", href: "/services#cat-marketing" },
-        { label: language === "en" ? "Operations Systems" : "Systèmes d'exploitation", href: "/services#cat-systems" },
-        { label: language === "en" ? "Team Systems" : "Systèmes d'équipe", href: "/services#cat-hr-recruiting" },
+        { label: language === "en" ? "Website Services" : "Services de site web", href: "/services/website-services" },
+        { label: language === "en" ? "Marketing Services" : "Services de marketing", href: "/services/marketing-services" },
+        { label: language === "en" ? "CRM & Lead Tracking" : "CRM et suivi des prospects", href: "/services/crm-lead-tracking" },
+        { label: language === "en" ? "Business Systems" : "Systèmes d'affaires", href: "/services/business-systems" },
+        { label: language === "en" ? "HR & Recruiting" : "RH et recrutement", href: "/services/hr-recruiting" },
+        { label: language === "en" ? "Ongoing Growth Support" : "Soutien continu à la croissance", href: "/services/growth-support" },
       ],
     },
     {

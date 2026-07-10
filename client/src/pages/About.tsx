@@ -14,9 +14,9 @@ import { AnimateOnScroll, FloatingShape, GradientOrb, GeometricAccent } from "@/
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
 export default function About() {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
 
-  const values = [
+  const values = language === "en" ? [
     {
       title: "Integrity",
       description: "We operate with unwavering honesty and transparency.",
@@ -47,14 +47,51 @@ export default function About() {
       description: "We hold ourselves to the same standards we set.",
       practice: "We track our commitments, take ownership of results, and course-correct when needed.",
     },
+  ] : [
+    {
+      title: "Intégrité",
+      description: "Nous agissons avec une honnêteté et une transparence indéfectibles.",
+      practice: "Chaque recommandation repose sur ce qui est réellement le mieux pour nos clients, et non sur ce qui génère le plus de revenus.",
+    },
+    {
+      title: "Excellence",
+      description: "Nous visons les plus hauts standards dans tout ce que nous faisons.",
+      practice: "De la recherche et l'analyse à la clarté de nos livrables, nous nous imposons la même exigence que celle que nous fixons à nos clients.",
+    },
+    {
+      title: "Collaboration",
+      description: "Nous travaillons aux côtés de nos clients, pas au-dessus d'eux.",
+      practice: "Nous combinons notre expertise à votre connaissance de l'organisation pour créer des stratégies véritablement adaptées à votre contexte.",
+    },
+    {
+      title: "Innovation",
+      description: "Nous faisons continuellement évoluer nos méthodologies.",
+      practice: "Nous adoptons de nouveaux cadres, technologies et approches pour garder nos clients une longueur d'avance.",
+    },
+    {
+      title: "Impact",
+      description: "Chaque mandat doit produire des résultats mesurables.",
+      practice: "Nous suivons les résultats avec des indicateurs clairs et des mesures de succès, car un changement durable exige des preuves.",
+    },
+    {
+      title: "Responsabilité",
+      description: "Nous nous imposons les mêmes standards que ceux que nous fixons.",
+      practice: "Nous suivons nos engagements, assumons nos résultats et corrigeons le tir au besoin.",
+    },
   ];
 
-  const credentials = [
+  const credentials = language === "en" ? [
     { label: "Psychology", detail: "Academic Training" },
     { label: "HR Management", detail: "Academic Training" },
     { label: "Small Business Systems", detail: "Sector Expertise" },
     { label: "Marketing & CRM", detail: "Sector Expertise" },
     { label: "Training & Coaching", detail: "Service Area" },
+  ] : [
+    { label: "Psychologie", detail: "Formation académique" },
+    { label: "Gestion des RH", detail: "Formation académique" },
+    { label: "Systèmes de petites entreprises", detail: "Expertise sectorielle" },
+    { label: "Marketing et CRM", detail: "Expertise sectorielle" },
+    { label: "Formation et coaching", detail: "Domaine de service" },
   ];
 
   return (

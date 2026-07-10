@@ -15,16 +15,374 @@ import empoweredOwnerImg from "@assets/generated/empowered-business-owner.png";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
+const CONTENT = {
+  en: {
+    hero: {
+      titleA: "One system.",
+      titleB: "Multiple ways in.",
+      subtitle: "Whether you're a solo professional, a growing small business, or a scaling organization, we meet you where you are, with the level of support you need.",
+      exploreServices: "Explore Our Services",
+      seeAllOptions: "See All Options",
+    },
+    system: {
+      eyebrow: "The System",
+      heading: "Five integrated systems, one growth engine",
+      para: "Everything your business needs to scale, integrated and delivered as one unified system across every tier of engagement.",
+      components: [
+        { name: "Talent Acquisition System", desc: "Build the team structure required to scale, finding and placing the right people in the right roles." },
+        { name: "People & Performance System", desc: "Performance systems that improve execution, from onboarding to reviews to accountability." },
+        { name: "Demand Generation System", desc: "Systems that attract and convert customers through strategy, content, and campaigns." },
+        { name: "Conversion System", desc: "Digital infrastructure that turns visitors into leads and leads into clients." },
+        { name: "Execution Systems", desc: "Practical tools, templates, and frameworks that codify your operations for repeatable success." },
+      ],
+      allCombinedTitle: "All Systems Combined",
+      allCombinedDesc: "Available across every tier, from playbooks to full builds",
+    },
+    ladder: {
+      eyebrow: "Your Growth Path",
+      heading: "Start where you are. Scale from there.",
+      para: "Every tier uses the same proven system. Choose the level of support that fits your stage, and upgrade as you grow.",
+      steps: [
+        { label: "Start", tier: "Playbooks" },
+        { label: "Learn", tier: "Training Programs" },
+        { label: "Grow", tier: "Guided Implementation" },
+        { label: "Scale", tier: "Full System Build" },
+      ],
+      chain: ["Self-paced", "Structured training", "Hands-on support", "Ongoing partnership"],
+    },
+    ways: {
+      eyebrow: "Ways to Work With Us",
+      heading: "Choose the right level for your business",
+      para: "One system, four ways to access it. From self-guided playbooks to structured training to full-scale implementation, every tier delivers the same proven methodology.",
+      bestForLabel: "Best for",
+      includedLabel: "What's included",
+      includedModularLabel: "What's included (modular)",
+      exampleSystemsLabel: "Example systems",
+      exampleProgramsLabel: "Example programs",
+      examplePackagesLabel: "Example packages",
+    },
+    tierPlaybooks: {
+      badge: "Tier 1: Entry Level",
+      title: "Playbooks",
+      desc: "Self-guided systems to implement structure, hiring, marketing, and execution on your own.",
+      meta2: "Self-paced",
+      bestFor: "Professionals, consultants, coaches, solo operators, early-stage small businesses, and budget-conscious nonprofits",
+      included: ["Templates and frameworks", "SOP structures", "KPI systems", "Funnel and website structures", "Hiring systems", "Implementation guides"],
+      examples: [
+        { name: "Hiring System", price: "$199" },
+        { name: "Performance Management System", price: "$279" },
+        { name: "Operations Blueprint", price: "$199" },
+      ],
+      cta: "Request a Playbook",
+    },
+    tierTraining: {
+      badge: "Tier 2: Training",
+      title: "Training Programs",
+      desc: "Practical training programs that help leaders and teams implement real systems for growth, execution, and performance.",
+      meta2: "1 session to 8 weeks",
+      bestFor: "Small businesses, nonprofits, professionals, small teams, and founder-led organizations looking for guided learning with practical application",
+      included: ["Live virtual training sessions", "Cohort-based implementation programs", "Team workshops (in-person or virtual)", "Templates and implementation tools", "System-specific curriculum", "Post-training action plans"],
+      examples: [
+        { name: "Business System Foundations", price: "$199+" },
+        { name: "Hiring & Team Systems", price: "$299+" },
+        { name: "Growth Systems Training", price: "$299+" },
+      ],
+      cta: "Inquire About Training",
+    },
+    tierGuided: {
+      flag: "Most Flexible",
+      badge: "Tier 3: Mid-Tier",
+      title: "Guided Implementation",
+      desc: "Hands-on support to install key systems without a full-scale engagement. We work alongside you to get it right.",
+      meta2: "2 to 8 weeks",
+      bestFor: "Small businesses ($500K to $5M), funded or scaling nonprofits, and professionals ready to invest in structured implementation",
+      included: ["Foundation sprint (org structure, KPIs)", "Hiring system setup", "Website conversion improvements", "Funnel and CRM setup", "Basic playbook creation", "Process fixes and optimization"],
+      examples: [
+        { name: "Foundation Sprint", desc: "Org structure + KPI system", price: "$3K to $6K", time: "2 to 4 weeks" },
+        { name: "Growth Engine Sprint", desc: "Website + funnel + CRM", price: "$5K to $10K", time: "4 to 8 weeks" },
+        { name: "Hiring System Setup", desc: "Hiring process + scorecards + onboarding", price: "$2K to $5K", time: "2 to 4 weeks" },
+      ],
+      cta: "Explore Guided Implementation",
+    },
+    tierFull: {
+      badge: "Tier 4: Scale",
+      title: "Full System Build",
+      desc: "Complete design, build, and ongoing operation of your business systems. We become your infrastructure partner.",
+      meta2: "2 weeks to ongoing",
+      bestFor: "Growing businesses ($1M+), larger nonprofits, and established teams ready for comprehensive infrastructure",
+      phases: [
+        { label: "Phase 1: Foundation", desc: "Org structure, KPI systems, process design, strategy and roadmap", price: "$5,000 to $15,000", time: "2 to 4 weeks" },
+        { label: "Phase 2: Build", desc: "Recruiting, HR systems, website, marketing funnel, CRM, playbooks", price: "$15,000 to $50,000+", time: "6 to 12 weeks" },
+        { label: "Phase 3: Run", desc: "KPI tracking, execution support, marketing optimization, process refinement", price: "$4,000 to $12,000/mo", time: "Ongoing" },
+      ],
+      cta: "Book a Strategy Call",
+    },
+    phases: {
+      eyebrow: "Full System Build: How We Deliver",
+      heading: "Three phases to scalable growth",
+      para: "Every full engagement follows a structured path: design, implement, optimize. Each phase builds on the last to create infrastructure that compounds.",
+      foundation: {
+        eyebrow: "Phase 1",
+        title: "Foundation",
+        desc: "Design the business for scale. We audit your current state and build the blueprint for growth.",
+        items: ["Business audit", "Org structure design", "Role definition", "KPI and performance system design", "Process mapping", "Playbook creation", "Marketing strategy and customer journey"],
+        time: "2 to 4 weeks",
+      },
+      build: {
+        eyebrow: "Phase 2",
+        title: "Build",
+        desc: "Implement people, systems, and growth infrastructure. This is where the system comes to life.",
+        peopleLabel: "People & Operations",
+        peopleItems: ["Talent acquisition and placement", "People & performance system setup", "Performance management implementation"],
+        demandLabel: "Demand Generation & Conversion",
+        demandItems: ["Conversion system design and development", "Landing pages and funnel architecture", "Demand generation system setup", "CRM and lead tracking", "Analytics and dashboards"],
+        time: "6 to 12 weeks",
+      },
+      run: {
+        eyebrow: "Phase 3",
+        title: "Run",
+        desc: "Ongoing execution, optimization, and scaling. We stay embedded in your operations to keep the system running and improving.",
+        items: ["KPI tracking and reporting", "Weekly and monthly performance reviews", "Ongoing talent acquisition support", "Process and operations optimization", "Demand generation optimization", "Funnel and conversion improvements", "Digital infrastructure optimization", "Strategic advisory"],
+        time: "Ongoing (minimum 3 to 6 months)",
+      },
+    },
+    flagship: {
+      badge: "Flagship Offer",
+      title: "90-Day Growth Infrastructure Build",
+      desc: "A structured engagement combining Foundation + Build into one accelerated implementation. In 90 days, we design your growth blueprint and build the infrastructure to execute it.",
+      items: ["Complete strategy and system design", "Recruiting priorities and team building", "Website and marketing infrastructure setup", "Operational systems and playbooks", "Performance tracking and KPI frameworks"],
+      meta1: "~90 days",
+      cta: "Book a Strategy Call",
+      cardLabel: "days to full growth infrastructure",
+    },
+    who: {
+      eyebrow: "Find Your Fit",
+      heading: "Who this is for",
+      para: "We serve multiple audiences through one unified system. Here's where you fit and the best way to start.",
+      bestFitLabel: "Best fit",
+      investmentLabel: "Expected investment",
+      cards: [
+        {
+          audience: "Professionals",
+          desc: "Consultants, coaches, solo operators looking to build structured systems for their practice.",
+          bestFit: "Playbooks, Training, or Guided Implementation",
+          cta: "Explore Our Services",
+        },
+        {
+          audience: "Small Businesses",
+          desc: "Early to mid-stage companies ($500K to $5M) ready to install repeatable systems for growth.",
+          bestFit: "Training, Guided Implementation, or Full System",
+          cta: "Explore Our Services",
+        },
+        {
+          audience: "Nonprofits",
+          desc: "Mission-driven organizations that need structure, hiring systems, and operational clarity without enterprise budgets.",
+          bestFit: "Playbooks, Training, or Guided Implementation",
+          cta: "Request a Quote",
+        },
+        {
+          audience: "Growing Organizations",
+          desc: "Established businesses ($1M+) and larger nonprofits ready for comprehensive infrastructure design and implementation.",
+          bestFit: "Training Workshops, Guided Implementation, or Full System Build",
+          cta: "Book a Strategy Call",
+        },
+      ],
+    },
+    finalCta: {
+      heading: "Ready to build the infrastructure your business needs?",
+      para: "Whether you're starting with a playbook, joining a training program, exploring guided implementation, or ready for a full system build, the next step is simple.",
+      services: "Explore Our Services",
+      quote: "Request a Quote",
+      book: "Book a Strategy Call",
+    },
+  },
+  fr: {
+    hero: {
+      titleA: "Un seul système.",
+      titleB: "Plusieurs façons d'y accéder.",
+      subtitle: "Que vous soyez un professionnel indépendant, une petite entreprise en croissance ou une organisation en expansion, nous vous rencontrons là où vous êtes, avec le niveau d'accompagnement dont vous avez besoin.",
+      exploreServices: "Découvrir nos services",
+      seeAllOptions: "Voir toutes les options",
+    },
+    system: {
+      eyebrow: "Le système",
+      heading: "Cinq systèmes intégrés, un moteur de croissance",
+      para: "Tout ce dont votre entreprise a besoin pour croître, intégré et livré comme un système unifié à chaque niveau d'engagement.",
+      components: [
+        { name: "Système d'acquisition de talents", desc: "Bâtir la structure d'équipe nécessaire à la croissance, en trouvant et en plaçant les bonnes personnes aux bons postes." },
+        { name: "Système de gestion des personnes et de la performance", desc: "Des systèmes de performance qui améliorent l'exécution, de l'intégration aux évaluations et à la responsabilisation." },
+        { name: "Système de génération de la demande", desc: "Des systèmes qui attirent et convertissent les clients grâce à la stratégie, au contenu et aux campagnes." },
+        { name: "Système de conversion", desc: "Une infrastructure numérique qui transforme les visiteurs en prospects et les prospects en clients." },
+        { name: "Systèmes d'exécution", desc: "Des outils, modèles et cadres pratiques qui codifient vos opérations pour un succès reproductible." },
+      ],
+      allCombinedTitle: "Tous les systèmes combinés",
+      allCombinedDesc: "Disponibles à chaque niveau, des playbooks aux implémentations complètes",
+    },
+    ladder: {
+      eyebrow: "Votre parcours de croissance",
+      heading: "Commencez là où vous êtes. Progressez à partir de là.",
+      para: "Chaque niveau utilise le même système éprouvé. Choisissez le niveau d'accompagnement adapté à votre stade, et évoluez au fur et à mesure de votre croissance.",
+      steps: [
+        { label: "Démarrer", tier: "Playbooks" },
+        { label: "Apprendre", tier: "Programmes de formation" },
+        { label: "Croître", tier: "Implémentation accompagnée" },
+        { label: "Développer", tier: "Construction complète de systèmes" },
+      ],
+      chain: ["À votre rythme", "Formation structurée", "Soutien pratique", "Partenariat continu"],
+    },
+    ways: {
+      eyebrow: "Façons de travailler avec nous",
+      heading: "Choisissez le bon niveau pour votre entreprise",
+      para: "Un seul système, quatre façons d'y accéder. Des playbooks autonomes à la formation structurée jusqu'à l'implémentation à grande échelle, chaque niveau offre la même méthodologie éprouvée.",
+      bestForLabel: "Idéal pour",
+      includedLabel: "Ce qui est inclus",
+      includedModularLabel: "Ce qui est inclus (modulaire)",
+      exampleSystemsLabel: "Exemples de systèmes",
+      exampleProgramsLabel: "Exemples de programmes",
+      examplePackagesLabel: "Exemples de forfaits",
+    },
+    tierPlaybooks: {
+      badge: "Niveau 1 : Entrée de gamme",
+      title: "Playbooks",
+      desc: "Des systèmes autonomes pour mettre en place structure, recrutement, marketing et exécution par vous-même.",
+      meta2: "À votre rythme",
+      bestFor: "Professionnels, consultants, coachs, opérateurs indépendants, petites entreprises en démarrage et organismes sans but lucratif soucieux de leur budget",
+      included: ["Modèles et cadres", "Structures de procédures normalisées", "Systèmes d'indicateurs de performance", "Structures de tunnels et de sites web", "Systèmes de recrutement", "Guides d'implémentation"],
+      examples: [
+        { name: "Système de recrutement", price: "$199" },
+        { name: "Système de gestion de la performance", price: "$279" },
+        { name: "Plan directeur des opérations", price: "$199" },
+      ],
+      cta: "Demander un playbook",
+    },
+    tierTraining: {
+      badge: "Niveau 2 : Formation",
+      title: "Programmes de formation",
+      desc: "Des programmes de formation pratiques qui aident les dirigeants et les équipes à mettre en place de véritables systèmes de croissance, d'exécution et de performance.",
+      meta2: "1 séance à 8 semaines",
+      bestFor: "Petites entreprises, organismes sans but lucratif, professionnels, petites équipes et organisations dirigées par leur fondateur recherchant un apprentissage encadré avec une application pratique",
+      included: ["Séances de formation virtuelles en direct", "Programmes d'implémentation en cohorte", "Ateliers d'équipe (en personne ou virtuels)", "Modèles et outils d'implémentation", "Programme adapté à chaque système", "Plans d'action après la formation"],
+      examples: [
+        { name: "Fondations des systèmes d'affaires", price: "$199+" },
+        { name: "Systèmes de recrutement et d'équipe", price: "$299+" },
+        { name: "Formation aux systèmes de croissance", price: "$299+" },
+      ],
+      cta: "S'informer sur la formation",
+    },
+    tierGuided: {
+      flag: "Le plus flexible",
+      badge: "Niveau 3 : Intermédiaire",
+      title: "Implémentation accompagnée",
+      desc: "Un soutien pratique pour installer les systèmes clés sans engagement à grande échelle. Nous travaillons à vos côtés pour bien faire les choses.",
+      meta2: "2 à 8 semaines",
+      bestFor: "Petites entreprises (500 000 $ à 5 M$), organismes sans but lucratif financés ou en croissance, et professionnels prêts à investir dans une implémentation structurée",
+      included: ["Sprint de fondation (structure organisationnelle, indicateurs)", "Mise en place du système de recrutement", "Améliorations de la conversion du site web", "Configuration du tunnel et du CRM", "Création de playbook de base", "Corrections et optimisation des processus"],
+      examples: [
+        { name: "Sprint de fondation", desc: "Structure organisationnelle + système d'indicateurs", price: "$3K to $6K", time: "2 à 4 semaines" },
+        { name: "Sprint moteur de croissance", desc: "Site web + tunnel + CRM", price: "$5K to $10K", time: "4 à 8 semaines" },
+        { name: "Mise en place du système de recrutement", desc: "Processus de recrutement + grilles d'évaluation + intégration", price: "$2K to $5K", time: "2 à 4 semaines" },
+      ],
+      cta: "Découvrir l'implémentation accompagnée",
+    },
+    tierFull: {
+      badge: "Niveau 4 : Expansion",
+      title: "Construction complète de systèmes",
+      desc: "Conception, construction et exploitation continue complètes de vos systèmes d'affaires. Nous devenons votre partenaire d'infrastructure.",
+      meta2: "2 semaines à en continu",
+      bestFor: "Entreprises en croissance (1 M$ et plus), plus grands organismes sans but lucratif et équipes établies prêtes pour une infrastructure complète",
+      phases: [
+        { label: "Phase 1 : Fondation", desc: "Structure organisationnelle, systèmes d'indicateurs, conception des processus, stratégie et feuille de route", price: "$5,000 to $15,000", time: "2 à 4 semaines" },
+        { label: "Phase 2 : Construction", desc: "Recrutement, systèmes RH, site web, tunnel marketing, CRM, playbooks", price: "$15,000 to $50,000+", time: "6 à 12 semaines" },
+        { label: "Phase 3 : Exploitation", desc: "Suivi des indicateurs, soutien à l'exécution, optimisation marketing, raffinement des processus", price: "$4,000 to $12,000/mo", time: "En continu" },
+      ],
+      cta: "Réserver un appel stratégique",
+    },
+    phases: {
+      eyebrow: "Construction complète de systèmes : notre livraison",
+      heading: "Trois phases vers une croissance évolutive",
+      para: "Chaque engagement complet suit un parcours structuré : concevoir, implémenter, optimiser. Chaque phase s'appuie sur la précédente pour créer une infrastructure qui se renforce dans le temps.",
+      foundation: {
+        eyebrow: "Phase 1",
+        title: "Fondation",
+        desc: "Concevoir l'entreprise pour la croissance. Nous évaluons votre situation actuelle et bâtissons le plan directeur de croissance.",
+        items: ["Audit d'entreprise", "Conception de la structure organisationnelle", "Définition des rôles", "Conception du système d'indicateurs et de performance", "Cartographie des processus", "Création de playbooks", "Stratégie marketing et parcours client"],
+        time: "2 à 4 semaines",
+      },
+      build: {
+        eyebrow: "Phase 2",
+        title: "Construction",
+        desc: "Implémenter les personnes, les systèmes et l'infrastructure de croissance. C'est là que le système prend vie.",
+        peopleLabel: "Personnes et opérations",
+        peopleItems: ["Acquisition et placement des talents", "Mise en place du système de gestion des personnes et de la performance", "Implémentation de la gestion de la performance"],
+        demandLabel: "Génération de la demande et conversion",
+        demandItems: ["Conception et développement du système de conversion", "Pages d'atterrissage et architecture de tunnel", "Mise en place du système de génération de la demande", "CRM et suivi des prospects", "Analytique et tableaux de bord"],
+        time: "6 à 12 semaines",
+      },
+      run: {
+        eyebrow: "Phase 3",
+        title: "Exploitation",
+        desc: "Exécution, optimisation et mise à l'échelle en continu. Nous restons intégrés à vos opérations pour que le système continue de fonctionner et de s'améliorer.",
+        items: ["Suivi et production de rapports sur les indicateurs", "Revues de performance hebdomadaires et mensuelles", "Soutien continu à l'acquisition de talents", "Optimisation des processus et des opérations", "Optimisation de la génération de la demande", "Améliorations du tunnel et de la conversion", "Optimisation de l'infrastructure numérique", "Conseil stratégique"],
+        time: "En continu (minimum de 3 à 6 mois)",
+      },
+    },
+    flagship: {
+      badge: "Offre phare",
+      title: "Construction d'infrastructure de croissance en 90 jours",
+      desc: "Un engagement structuré combinant Fondation et Construction en une seule implémentation accélérée. En 90 jours, nous concevons votre plan directeur de croissance et bâtissons l'infrastructure pour l'exécuter.",
+      items: ["Conception complète de la stratégie et du système", "Priorités de recrutement et constitution d'équipe", "Mise en place de l'infrastructure web et marketing", "Systèmes opérationnels et playbooks", "Suivi de la performance et cadres d'indicateurs"],
+      meta1: "~90 jours",
+      cta: "Réserver un appel stratégique",
+      cardLabel: "jours vers une infrastructure de croissance complète",
+    },
+    who: {
+      eyebrow: "Trouvez votre profil",
+      heading: "À qui cela s'adresse",
+      para: "Nous servons plusieurs clientèles grâce à un système unifié. Voici où vous vous situez et la meilleure façon de commencer.",
+      bestFitLabel: "Meilleure option",
+      investmentLabel: "Investissement prévu",
+      cards: [
+        {
+          audience: "Professionnels",
+          desc: "Consultants, coachs et opérateurs indépendants souhaitant bâtir des systèmes structurés pour leur pratique.",
+          bestFit: "Playbooks, Formation ou Implémentation accompagnée",
+          cta: "Découvrir nos services",
+        },
+        {
+          audience: "Petites entreprises",
+          desc: "Entreprises en démarrage ou en croissance (500 000 $ à 5 M$) prêtes à installer des systèmes reproductibles pour croître.",
+          bestFit: "Formation, Implémentation accompagnée ou Système complet",
+          cta: "Découvrir nos services",
+        },
+        {
+          audience: "Organismes sans but lucratif",
+          desc: "Organisations à vocation sociale qui ont besoin de structure, de systèmes de recrutement et de clarté opérationnelle sans budgets d'entreprise.",
+          bestFit: "Playbooks, Formation ou Implémentation accompagnée",
+          cta: "Demander une soumission",
+        },
+        {
+          audience: "Organisations en croissance",
+          desc: "Entreprises établies (1 M$ et plus) et plus grands organismes sans but lucratif prêts pour la conception et l'implémentation d'une infrastructure complète.",
+          bestFit: "Ateliers de formation, Implémentation accompagnée ou Construction complète de systèmes",
+          cta: "Réserver un appel stratégique",
+        },
+      ],
+    },
+    finalCta: {
+      heading: "Prêt à bâtir l'infrastructure dont votre entreprise a besoin ?",
+      para: "Que vous commenciez par un playbook, participiez à un programme de formation, exploriez l'implémentation accompagnée ou soyez prêt pour une construction complète de systèmes, la prochaine étape est simple.",
+      services: "Découvrir nos services",
+      quote: "Demander une soumission",
+      book: "Réserver un appel stratégique",
+    },
+  },
+};
+
 export default function Solutions() {
   const { language } = useLanguage();
+  const c = CONTENT[language];
 
-  const systemComponents = [
-    { name: "Talent Acquisition System", desc: "Build the team structure required to scale, finding and placing the right people in the right roles." },
-    { name: "People & Performance System", desc: "Performance systems that improve execution, from onboarding to reviews to accountability." },
-    { name: "Demand Generation System", desc: "Systems that attract and convert customers through strategy, content, and campaigns." },
-    { name: "Conversion System", desc: "Digital infrastructure that turns visitors into leads and leads into clients." },
-    { name: "Execution Systems", desc: "Practical tools, templates, and frameworks that codify your operations for repeatable success." },
-  ];
+  const systemComponents = c.system.components;
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans overflow-x-hidden">
@@ -47,18 +405,18 @@ export default function Solutions() {
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-32 relative z-10">
             <div className="max-w-3xl">
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08] animate-fade-in-up" style={{ animationDelay: "0.15s" }} data-testid="text-solutions-hero-title">
-                One system. <span className="text-accent">Multiple ways in.</span>
+                {c.hero.titleA} <span className="text-accent">{c.hero.titleB}</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-2xl animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-                Whether you're a solo professional, a growing small business, or a scaling organization, we meet you where you are, with the level of support you need.
+                {c.hero.subtitle}
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.45s" }}>
                 <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-hero-services">
 
-                  Explore Our Services
+                  {c.hero.exploreServices}
                 </Link>
                 <a href="#ways-to-work" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-solutions-hero-tiers">
-                  See All Options
+                  {c.hero.seeAllOptions}
                   <span aria-hidden="true">&#9662;</span>
                 </a>
               </div>
@@ -71,12 +429,12 @@ export default function Solutions() {
           <GeometricAccent className="top-20 -right-10 text-primary" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-16">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">The System</p>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">{c.system.eyebrow}</p>
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">
-                Five integrated systems, one growth engine
+                {c.system.heading}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Everything your business needs to scale, integrated and delivered as one unified system across every tier of engagement.
+                {c.system.para}
               </p>
             </AnimateOnScroll>
 
@@ -92,8 +450,8 @@ export default function Solutions() {
               ))}
               <AnimateOnScroll animation="fade-up" delay={5 * 80}>
                 <div className="relative p-7 rounded-2xl border-2 border-dashed border-accent/30 bg-accent/5 flex flex-col items-center justify-center text-center h-full group hover:border-accent/50 transition-all" data-testid="system-component-cta">
-                  <p className="text-sm font-bold text-primary mb-1">All Systems Combined</p>
-                  <p className="text-xs text-muted-foreground">Available across every tier, from playbooks to full builds</p>
+                  <p className="text-sm font-bold text-primary mb-1">{c.system.allCombinedTitle}</p>
+                  <p className="text-xs text-muted-foreground">{c.system.allCombinedDesc}</p>
                 </div>
               </AnimateOnScroll>
             </div>
@@ -103,12 +461,12 @@ export default function Solutions() {
         <section className="py-20 bg-[#FAFAFA] relative overflow-hidden" data-testid="section-value-ladder">
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-16">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Your Growth Path</p>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">{c.ladder.eyebrow}</p>
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">
-                Start where you are. Scale from there.
+                {c.ladder.heading}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Every tier uses the same proven system. Choose the level of support that fits your stage, and upgrade as you grow.
+                {c.ladder.para}
               </p>
             </AnimateOnScroll>
 
@@ -117,10 +475,10 @@ export default function Solutions() {
                 <div className="hidden md:block absolute top-1/2 left-[12%] right-[12%] h-[2px] bg-gradient-to-r from-zinc-500 via-zinc-500 via-accent to-primary z-0" />
 
                 {[
-                  { label: "Start", tier: "Playbooks", price: "$149 to $999", color: "bg-zinc-700", ring: "ring-zinc-200" },
-                  { label: "Learn", tier: "Training Programs", price: "$99 to $10,000", color: "bg-zinc-700", ring: "ring-zinc-200" },
-                  { label: "Grow", tier: "Guided Implementation", price: "$2,000 to $10,000", color: "bg-accent", ring: "ring-zinc-200" },
-                  { label: "Scale", tier: "Full System Build", price: "$5,000 to $50,000+", color: "bg-primary", ring: "ring-zinc-200" },
+                  { label: c.ladder.steps[0].label, tier: c.ladder.steps[0].tier, price: "$149 to $999", color: "bg-zinc-700", ring: "ring-zinc-200" },
+                  { label: c.ladder.steps[1].label, tier: c.ladder.steps[1].tier, price: "$99 to $10,000", color: "bg-zinc-700", ring: "ring-zinc-200" },
+                  { label: c.ladder.steps[2].label, tier: c.ladder.steps[2].tier, price: "$2,000 to $10,000", color: "bg-accent", ring: "ring-zinc-200" },
+                  { label: c.ladder.steps[3].label, tier: c.ladder.steps[3].tier, price: "$5,000 to $50,000+", color: "bg-primary", ring: "ring-zinc-200" },
                 ].map((step, i) => (
                   <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
                     <div className="flex flex-col items-center relative z-10 py-6">
@@ -137,13 +495,13 @@ export default function Solutions() {
 
               <AnimateOnScroll className="text-center mt-8">
                 <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                  <span>Self-paced</span>
+                  <span>{c.ladder.chain[0]}</span>
                   <span className="text-accent/40">→</span>
-                  <span>Structured training</span>
+                  <span>{c.ladder.chain[1]}</span>
                   <span className="text-accent/40">→</span>
-                  <span>Hands-on support</span>
+                  <span>{c.ladder.chain[2]}</span>
                   <span className="text-accent/40">→</span>
-                  <span>Ongoing partnership</span>
+                  <span>{c.ladder.chain[3]}</span>
                 </div>
               </AnimateOnScroll>
             </div>
@@ -155,12 +513,12 @@ export default function Solutions() {
           <FloatingShape className="w-10 h-10 top-40 right-20" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Ways to Work With Us</p>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">{c.ways.eyebrow}</p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                Choose the right level for your business
+                {c.ways.heading}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                One system, four ways to access it. From self-guided playbooks to structured training to full-scale implementation, every tier delivers the same proven methodology.
+                {c.ways.para}
               </p>
             </AnimateOnScroll>
 
@@ -173,10 +531,10 @@ export default function Solutions() {
                       <div className="h-full min-h-[280px] bg-gradient-to-br from-zinc-700 to-zinc-800 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
 
-                          Tier 1: Entry Level
+                          {c.tierPlaybooks.badge}
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Playbooks</h3>
-                        <p className="text-white/80 leading-relaxed mb-4">Self-guided systems to implement structure, hiring, marketing, and execution on your own.</p>
+                        <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">{c.tierPlaybooks.title}</h3>
+                        <p className="text-white/80 leading-relaxed mb-4">{c.tierPlaybooks.desc}</p>
                         <div className="flex flex-wrap gap-4">
                           <div className="flex items-center gap-2 text-sm text-white/70">
 
@@ -184,20 +542,20 @@ export default function Solutions() {
                           </div>
                           <div className="flex items-center gap-2 text-sm text-white/70">
 
-                            <span className="font-bold text-white">Self-paced</span>
+                            <span className="font-bold text-white">{c.tierPlaybooks.meta2}</span>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="lg:col-span-3 p-8 lg:p-10">
                       <div className="mb-6">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-2">Best for</p>
-                        <p className="text-sm text-muted-foreground">Professionals, consultants, coaches, solo operators, early-stage small businesses, and budget-conscious nonprofits</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-2">{c.ways.bestForLabel}</p>
+                        <p className="text-sm text-muted-foreground">{c.tierPlaybooks.bestFor}</p>
                       </div>
                       <div className="mb-6">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">What's included</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">{c.ways.includedLabel}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                          {["Templates and frameworks", "SOP structures", "KPI systems", "Funnel and website structures", "Hiring systems", "Implementation guides"].map((item, j) => (
+                          {c.tierPlaybooks.included.map((item, j) => (
                             <div key={j} className="flex items-start gap-2">
                               <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                               <span className="text-sm text-muted-foreground">{item}</span>
@@ -206,13 +564,9 @@ export default function Solutions() {
                         </div>
                       </div>
                       <div className="mb-6">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">Example systems</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">{c.ways.exampleSystemsLabel}</p>
                         <div className="flex flex-wrap gap-3">
-                          {[
-                            { name: "Hiring System", price: "$199" },
-                            { name: "Performance Management System", price: "$279" },
-                            { name: "Operations Blueprint", price: "$199" },
-                          ].map((ex, j) => (
+                          {c.tierPlaybooks.examples.map((ex, j) => (
                             <div key={j} className="inline-flex items-center gap-2 bg-zinc-100 border border-zinc-100 rounded-full px-4 py-2 text-sm">
                               <span className="font-semibold text-primary">{ex.name}</span>
                               <span className="text-zinc-800 font-bold">{ex.price}</span>
@@ -222,7 +576,7 @@ export default function Solutions() {
                       </div>
                       <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-zinc-700 text-white hover:bg-zinc-800 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-playbooks">
 
-                        Request a Playbook
+                        {c.tierPlaybooks.cta}
                       </Link>
                     </div>
                   </div>
@@ -236,10 +590,10 @@ export default function Solutions() {
                       <div className="h-full min-h-[280px] bg-gradient-to-br from-zinc-700 to-zinc-900 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
 
-                          Tier 2: Training
+                          {c.tierTraining.badge}
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Training Programs</h3>
-                        <p className="text-white/80 leading-relaxed mb-4">Practical training programs that help leaders and teams implement real systems for growth, execution, and performance.</p>
+                        <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">{c.tierTraining.title}</h3>
+                        <p className="text-white/80 leading-relaxed mb-4">{c.tierTraining.desc}</p>
                         <div className="flex flex-wrap gap-4">
                           <div className="flex items-center gap-2 text-sm text-white/70">
 
@@ -247,20 +601,20 @@ export default function Solutions() {
                           </div>
                           <div className="flex items-center gap-2 text-sm text-white/70">
 
-                            <span className="font-bold text-white">1 session to 8 weeks</span>
+                            <span className="font-bold text-white">{c.tierTraining.meta2}</span>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="lg:col-span-3 p-8 lg:p-10">
                       <div className="mb-6">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-2">Best for</p>
-                        <p className="text-sm text-muted-foreground">Small businesses, nonprofits, professionals, small teams, and founder-led organizations looking for guided learning with practical application</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-2">{c.ways.bestForLabel}</p>
+                        <p className="text-sm text-muted-foreground">{c.tierTraining.bestFor}</p>
                       </div>
                       <div className="mb-6">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">What's included</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">{c.ways.includedLabel}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                          {["Live virtual training sessions", "Cohort-based implementation programs", "Team workshops (in-person or virtual)", "Templates and implementation tools", "System-specific curriculum", "Post-training action plans"].map((item, j) => (
+                          {c.tierTraining.included.map((item, j) => (
                             <div key={j} className="flex items-start gap-2">
                               <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                               <span className="text-sm text-muted-foreground">{item}</span>
@@ -269,13 +623,9 @@ export default function Solutions() {
                         </div>
                       </div>
                       <div className="mb-6">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">Example programs</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">{c.ways.exampleProgramsLabel}</p>
                         <div className="flex flex-wrap gap-3">
-                          {[
-                            { name: "Business System Foundations", price: "$199+" },
-                            { name: "Hiring & Team Systems", price: "$299+" },
-                            { name: "Growth Systems Training", price: "$299+" },
-                          ].map((ex, j) => (
+                          {c.tierTraining.examples.map((ex, j) => (
                             <div key={j} className="inline-flex items-center gap-2 bg-zinc-100 border border-zinc-100 rounded-full px-4 py-2 text-sm">
                               <span className="font-semibold text-primary">{ex.name}</span>
                               <span className="text-zinc-800 font-bold">{ex.price}</span>
@@ -285,7 +635,7 @@ export default function Solutions() {
                       </div>
                       <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-zinc-700 text-white hover:bg-zinc-800 h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-training">
 
-                        Inquire About Training
+                        {c.tierTraining.cta}
                       </Link>
                     </div>
                   </div>
@@ -294,16 +644,16 @@ export default function Solutions() {
 
               <AnimateOnScroll animation="fade-up" delay={200}>
                 <div className="bg-white rounded-3xl border-2 border-accent/30 shadow-xl overflow-hidden relative" data-testid="tier-guided">
-                  <div className="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-4 py-1.5 rounded-bl-xl">Most Flexible</div>
+                  <div className="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-4 py-1.5 rounded-bl-xl">{c.tierGuided.flag}</div>
                   <div className="grid grid-cols-1 lg:grid-cols-5">
                     <div className="lg:col-span-2 relative">
                       <div className="h-full min-h-[280px] bg-gradient-to-br from-accent to-zinc-900 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
 
-                          Tier 3: Mid-Tier
+                          {c.tierGuided.badge}
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Guided Implementation</h3>
-                        <p className="text-white/80 leading-relaxed mb-4">Hands-on support to install key systems without a full-scale engagement. We work alongside you to get it right.</p>
+                        <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">{c.tierGuided.title}</h3>
+                        <p className="text-white/80 leading-relaxed mb-4">{c.tierGuided.desc}</p>
                         <div className="flex flex-wrap gap-4">
                           <div className="flex items-center gap-2 text-sm text-white/70">
 
@@ -311,20 +661,20 @@ export default function Solutions() {
                           </div>
                           <div className="flex items-center gap-2 text-sm text-white/70">
 
-                            <span className="font-bold text-white">2 to 8 weeks</span>
+                            <span className="font-bold text-white">{c.tierGuided.meta2}</span>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="lg:col-span-3 p-8 lg:p-10">
                       <div className="mb-6">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-2">Best for</p>
-                        <p className="text-sm text-muted-foreground">Small businesses ($500K to $5M), funded or scaling nonprofits, and professionals ready to invest in structured implementation</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-2">{c.ways.bestForLabel}</p>
+                        <p className="text-sm text-muted-foreground">{c.tierGuided.bestFor}</p>
                       </div>
                       <div className="mb-6">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">What's included (modular)</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">{c.ways.includedModularLabel}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                          {["Foundation sprint (org structure, KPIs)", "Hiring system setup", "Website conversion improvements", "Funnel and CRM setup", "Basic playbook creation", "Process fixes and optimization"].map((item, j) => (
+                          {c.tierGuided.included.map((item, j) => (
                             <div key={j} className="flex items-start gap-2">
                               <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                               <span className="text-sm text-muted-foreground">{item}</span>
@@ -333,13 +683,9 @@ export default function Solutions() {
                         </div>
                       </div>
                       <div className="mb-6">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">Example packages</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">{c.ways.examplePackagesLabel}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                          {[
-                            { name: "Foundation Sprint", desc: "Org structure + KPI system", price: "$3K to $6K", time: "2 to 4 weeks" },
-                            { name: "Growth Engine Sprint", desc: "Website + funnel + CRM", price: "$5K to $10K", time: "4 to 8 weeks" },
-                            { name: "Hiring System Setup", desc: "Hiring process + scorecards + onboarding", price: "$2K to $5K", time: "2 to 4 weeks" },
-                          ].map((pkg, j) => (
+                          {c.tierGuided.examples.map((pkg, j) => (
                             <div key={j} className="bg-zinc-100 border border-zinc-100 rounded-xl p-4">
                               <h4 className="text-sm font-bold text-primary mb-1">{pkg.name}</h4>
                               <p className="text-xs text-muted-foreground mb-2">{pkg.desc}</p>
@@ -351,7 +697,7 @@ export default function Solutions() {
                       </div>
                       <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-primary h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-guided">
 
-                        Explore Guided Implementation
+                        {c.tierGuided.cta}
                       </a>
                     </div>
                   </div>
@@ -365,10 +711,10 @@ export default function Solutions() {
                       <div className="h-full min-h-[280px] bg-gradient-to-br from-primary to-zinc-950 p-8 lg:p-10 flex flex-col justify-center">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider mb-4 w-fit">
 
-                          Tier 4: Scale
+                          {c.tierFull.badge}
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">Full System Build</h3>
-                        <p className="text-white/80 leading-relaxed mb-4">Complete design, build, and ongoing operation of your business systems. We become your infrastructure partner.</p>
+                        <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-white mb-3">{c.tierFull.title}</h3>
+                        <p className="text-white/80 leading-relaxed mb-4">{c.tierFull.desc}</p>
                         <div className="flex flex-wrap gap-4">
                           <div className="flex items-center gap-2 text-sm text-white/70">
 
@@ -376,41 +722,31 @@ export default function Solutions() {
                           </div>
                           <div className="flex items-center gap-2 text-sm text-white/70">
 
-                            <span className="font-bold text-white">2 weeks to ongoing</span>
+                            <span className="font-bold text-white">{c.tierFull.meta2}</span>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="lg:col-span-3 p-8 lg:p-10">
                       <div className="mb-6">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-2">Best for</p>
-                        <p className="text-sm text-muted-foreground">Growing businesses ($1M+), larger nonprofits, and established teams ready for comprehensive infrastructure</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-2">{c.ways.bestForLabel}</p>
+                        <p className="text-sm text-muted-foreground">{c.tierFull.bestFor}</p>
                       </div>
                       <div className="mb-6">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                          <div className="bg-zinc-100 rounded-xl p-4 border border-zinc-100">
-                            <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Phase 1: Foundation</p>
-                            <p className="text-sm text-muted-foreground mb-3">Org structure, KPI systems, process design, strategy and roadmap</p>
-                            <p className="text-sm font-bold text-primary">$5,000 to $15,000</p>
-                            <p className="text-xs text-muted-foreground">2 to 4 weeks</p>
-                          </div>
-                          <div className="bg-zinc-100 rounded-xl p-4 border border-zinc-100">
-                            <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Phase 2: Build</p>
-                            <p className="text-sm text-muted-foreground mb-3">Recruiting, HR systems, website, marketing funnel, CRM, playbooks</p>
-                            <p className="text-sm font-bold text-primary">$15,000 to $50,000+</p>
-                            <p className="text-xs text-muted-foreground">6 to 12 weeks</p>
-                          </div>
-                          <div className="bg-zinc-100 rounded-xl p-4 border border-zinc-100">
-                            <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Phase 3: Run</p>
-                            <p className="text-sm text-muted-foreground mb-3">KPI tracking, execution support, marketing optimization, process refinement</p>
-                            <p className="text-sm font-bold text-primary">$4,000 to $12,000/mo</p>
-                            <p className="text-xs text-muted-foreground">Ongoing</p>
-                          </div>
+                          {c.tierFull.phases.map((ph, j) => (
+                            <div key={j} className="bg-zinc-100 rounded-xl p-4 border border-zinc-100">
+                              <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">{ph.label}</p>
+                              <p className="text-sm text-muted-foreground mb-3">{ph.desc}</p>
+                              <p className="text-sm font-bold text-primary">{ph.price}</p>
+                              <p className="text-xs text-muted-foreground">{ph.time}</p>
+                            </div>
+                          ))}
                         </div>
                       </div>
                       <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white hover:bg-accent h-12 px-8 font-bold text-sm uppercase tracking-wider transition-all duration-300" data-testid="link-tier-full-build">
 
-                        Book a Strategy Call
+                        {c.tierFull.cta}
                       </a>
                     </div>
                   </div>
@@ -425,12 +761,12 @@ export default function Solutions() {
           <FloatingShape className="w-10 h-10 top-40 right-20" variant="dot" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-20">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Full System Build: How We Deliver</p>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">{c.phases.eyebrow}</p>
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                Three phases to scalable growth
+                {c.phases.heading}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Every full engagement follows a structured path: design, implement, optimize. Each phase builds on the last to create infrastructure that compounds.
+                {c.phases.para}
               </p>
             </AnimateOnScroll>
 
@@ -446,21 +782,13 @@ export default function Solutions() {
                     </div>
                     <div className="p-8 lg:p-12 flex flex-col justify-center">
                       <div className="flex items-center gap-3 mb-2">
-                        <p className="text-xs font-black uppercase tracking-[0.3em] text-accent">Phase 1</p>
+                        <p className="text-xs font-black uppercase tracking-[0.3em] text-accent">{c.phases.foundation.eyebrow}</p>
                       </div>
-                      <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-3">Foundation</h3>
-                      <p className="text-lg text-muted-foreground mb-6 leading-relaxed">Design the business for scale. We audit your current state and build the blueprint for growth.</p>
+                      <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-3">{c.phases.foundation.title}</h3>
+                      <p className="text-lg text-muted-foreground mb-6 leading-relaxed">{c.phases.foundation.desc}</p>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                        {[
-                          "Business audit",
-                          "Org structure design",
-                          "Role definition",
-                          "KPI and performance system design",
-                          "Process mapping",
-                          "Playbook creation",
-                          "Marketing strategy and customer journey",
-                        ].map((item, j) => (
+                        {c.phases.foundation.items.map((item, j) => (
                           <div key={j} className="flex items-start gap-2.5">
                             <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                             <span className="text-sm text-muted-foreground font-medium">{item}</span>
@@ -471,7 +799,7 @@ export default function Solutions() {
                       <div className="flex flex-wrap gap-4 pt-4 border-t border-border">
                         <div className="flex items-center gap-2 text-sm">
 
-                          <span className="font-semibold text-primary">2 to 4 weeks</span>
+                          <span className="font-semibold text-primary">{c.phases.foundation.time}</span>
                         </div>
                         <div className="flex items-center gap-2 text-sm">
 
@@ -488,19 +816,15 @@ export default function Solutions() {
                   <div className="grid grid-cols-1 lg:grid-cols-2">
                     <div className="p-8 lg:p-12 flex flex-col justify-center order-2 lg:order-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <p className="text-xs font-black uppercase tracking-[0.3em] text-accent">Phase 2</p>
+                        <p className="text-xs font-black uppercase tracking-[0.3em] text-accent">{c.phases.build.eyebrow}</p>
                       </div>
-                      <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-3">Build</h3>
-                      <p className="text-lg text-muted-foreground mb-6 leading-relaxed">Implement people, systems, and growth infrastructure. This is where the system comes to life.</p>
+                      <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-3">{c.phases.build.title}</h3>
+                      <p className="text-lg text-muted-foreground mb-6 leading-relaxed">{c.phases.build.desc}</p>
 
                       <div className="mb-5">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">People & Operations</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">{c.phases.build.peopleLabel}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          {[
-                            "Talent acquisition and placement",
-                            "People & performance system setup",
-                            "Performance management implementation",
-                          ].map((item, j) => (
+                          {c.phases.build.peopleItems.map((item, j) => (
                             <div key={j} className="flex items-start gap-2.5">
                               <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                               <span className="text-sm text-muted-foreground font-medium">{item}</span>
@@ -510,15 +834,9 @@ export default function Solutions() {
                       </div>
 
                       <div className="mb-8">
-                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">Demand Generation & Conversion</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary/60 mb-3">{c.phases.build.demandLabel}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          {[
-                            "Conversion system design and development",
-                            "Landing pages and funnel architecture",
-                            "Demand generation system setup",
-                            "CRM and lead tracking",
-                            "Analytics and dashboards",
-                          ].map((item, j) => (
+                          {c.phases.build.demandItems.map((item, j) => (
                             <div key={j} className="flex items-start gap-2.5">
                               <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                               <span className="text-sm text-muted-foreground font-medium">{item}</span>
@@ -530,7 +848,7 @@ export default function Solutions() {
                       <div className="flex flex-wrap gap-4 pt-4 border-t border-border">
                         <div className="flex items-center gap-2 text-sm">
 
-                          <span className="font-semibold text-primary">6 to 12 weeks</span>
+                          <span className="font-semibold text-primary">{c.phases.build.time}</span>
                         </div>
                         <div className="flex items-center gap-2 text-sm">
 
@@ -557,22 +875,13 @@ export default function Solutions() {
                     </div>
                     <div className="p-8 lg:p-12 flex flex-col justify-center">
                       <div className="flex items-center gap-3 mb-2">
-                        <p className="text-xs font-black uppercase tracking-[0.3em] text-accent">Phase 3</p>
+                        <p className="text-xs font-black uppercase tracking-[0.3em] text-accent">{c.phases.run.eyebrow}</p>
                       </div>
-                      <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-3">Run</h3>
-                      <p className="text-lg text-muted-foreground mb-6 leading-relaxed">Ongoing execution, optimization, and scaling. We stay embedded in your operations to keep the system running and improving.</p>
+                      <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-3">{c.phases.run.title}</h3>
+                      <p className="text-lg text-muted-foreground mb-6 leading-relaxed">{c.phases.run.desc}</p>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                        {[
-                          "KPI tracking and reporting",
-                          "Weekly and monthly performance reviews",
-                          "Ongoing talent acquisition support",
-                          "Process and operations optimization",
-                          "Demand generation optimization",
-                          "Funnel and conversion improvements",
-                          "Digital infrastructure optimization",
-                          "Strategic advisory",
-                        ].map((item, j) => (
+                        {c.phases.run.items.map((item, j) => (
                           <div key={j} className="flex items-start gap-2.5">
                             <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
                             <span className="text-sm text-muted-foreground font-medium">{item}</span>
@@ -583,7 +892,7 @@ export default function Solutions() {
                       <div className="flex flex-wrap gap-4 pt-4 border-t border-border">
                         <div className="flex items-center gap-2 text-sm">
 
-                          <span className="font-semibold text-primary">Ongoing (minimum 3 to 6 months)</span>
+                          <span className="font-semibold text-primary">{c.phases.run.time}</span>
                         </div>
                         <div className="flex items-center gap-2 text-sm">
 
@@ -610,23 +919,17 @@ export default function Solutions() {
               <AnimateOnScroll animation="fade-left">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-6">
 
-                  Flagship Offer
+                  {c.flagship.badge}
                 </div>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
-                  90-Day Growth Infrastructure Build
+                  {c.flagship.title}
                 </h2>
                 <p className="text-lg text-white/70 leading-relaxed mb-8">
-                  A structured engagement combining Foundation + Build into one accelerated implementation. In 90 days, we design your growth blueprint and build the infrastructure to execute it.
+                  {c.flagship.desc}
                 </p>
 
                 <div className="space-y-4 mb-10">
-                  {[
-                    "Complete strategy and system design",
-                    "Recruiting priorities and team building",
-                    "Website and marketing infrastructure setup",
-                    "Operational systems and playbooks",
-                    "Performance tracking and KPI frameworks",
-                  ].map((item, i) => (
+                  {c.flagship.items.map((item, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                       <span className="text-white/80 font-medium">{item}</span>
@@ -637,7 +940,7 @@ export default function Solutions() {
                 <div className="flex flex-wrap gap-6 mb-10 pb-8 border-b border-white/10">
                   <div className="flex items-center gap-2">
 
-                    <span className="text-white font-bold">~90 days</span>
+                    <span className="text-white font-bold">{c.flagship.meta1}</span>
                   </div>
                   <div className="flex items-center gap-2">
 
@@ -647,7 +950,7 @@ export default function Solutions() {
 
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-flagship-book">
 
-                  Book a Strategy Call
+                  {c.flagship.cta}
                 </a>
               </AnimateOnScroll>
 
@@ -660,7 +963,7 @@ export default function Solutions() {
                   <FloatingShape className="w-20 h-20 -bottom-6 -left-6 z-[-1]" variant="ring" />
                   <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-5 border border-border max-w-[200px] animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
                     <p className="text-2xl font-extrabold text-accent mb-1">90</p>
-                    <p className="text-xs text-muted-foreground font-bold">days to full growth infrastructure</p>
+                    <p className="text-xs text-muted-foreground font-bold">{c.flagship.cardLabel}</p>
                   </div>
                 </div>
               </AnimateOnScroll>
@@ -672,50 +975,50 @@ export default function Solutions() {
           <GeometricAccent className="top-20 -right-10 text-primary" />
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-16">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">Find Your Fit</p>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4">{c.who.eyebrow}</p>
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-6">
-                Who this is for
+                {c.who.heading}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We serve multiple audiences through one unified system. Here's where you fit and the best way to start.
+                {c.who.para}
               </p>
             </AnimateOnScroll>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {[
                 {
-                  audience: "Professionals",
-                  desc: "Consultants, coaches, solo operators looking to build structured systems for their practice.",
-                  bestFit: "Playbooks, Training, or Guided Implementation",
+                  audience: c.who.cards[0].audience,
+                  desc: c.who.cards[0].desc,
+                  bestFit: c.who.cards[0].bestFit,
                   investment: "$99 to $10,000",
-                  cta: "Explore Our Services",
+                  cta: c.who.cards[0].cta,
                   ctaLink: "/services",
                   color: "from-zinc-700 to-zinc-800",
                 },
                 {
-                  audience: "Small Businesses",
-                  desc: "Early to mid-stage companies ($500K to $5M) ready to install repeatable systems for growth.",
-                  bestFit: "Training, Guided Implementation, or Full System",
+                  audience: c.who.cards[1].audience,
+                  desc: c.who.cards[1].desc,
+                  bestFit: c.who.cards[1].bestFit,
                   investment: "$99 to $50,000+",
-                  cta: "Explore Our Services",
+                  cta: c.who.cards[1].cta,
                   ctaLink: "/services",
                   color: "from-accent to-zinc-900",
                 },
                 {
-                  audience: "Nonprofits",
-                  desc: "Mission-driven organizations that need structure, hiring systems, and operational clarity without enterprise budgets.",
-                  bestFit: "Playbooks, Training, or Guided Implementation",
+                  audience: c.who.cards[2].audience,
+                  desc: c.who.cards[2].desc,
+                  bestFit: c.who.cards[2].bestFit,
                   investment: "$99 to $10,000",
-                  cta: "Request a Quote",
+                  cta: c.who.cards[2].cta,
                   ctaLink: "/contact",
                   color: "from-green-500 to-green-600",
                 },
                 {
-                  audience: "Growing Organizations",
-                  desc: "Established businesses ($1M+) and larger nonprofits ready for comprehensive infrastructure design and implementation.",
-                  bestFit: "Training Workshops, Guided Implementation, or Full System Build",
+                  audience: c.who.cards[3].audience,
+                  desc: c.who.cards[3].desc,
+                  bestFit: c.who.cards[3].bestFit,
                   investment: "$2,000 to $50,000+",
-                  cta: "Book a Strategy Call",
+                  cta: c.who.cards[3].cta,
                   ctaLink: BOOKINGS_URL,
                   color: "from-primary to-zinc-950",
                   isExternal: true,
@@ -729,11 +1032,11 @@ export default function Solutions() {
                     <div className="p-6 flex flex-col flex-1">
                       <p className="text-sm text-muted-foreground leading-relaxed mb-4">{item.desc}</p>
                       <div className="mb-3">
-                        <p className="text-xs font-bold uppercase tracking-wider text-primary/60 mb-1">Best fit</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-primary/60 mb-1">{c.who.bestFitLabel}</p>
                         <p className="text-sm font-semibold text-primary">{item.bestFit}</p>
                       </div>
                       <div className="mb-6">
-                        <p className="text-xs font-bold uppercase tracking-wider text-primary/60 mb-1">Expected investment</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-primary/60 mb-1">{c.who.investmentLabel}</p>
                         <p className="text-sm font-semibold text-accent">{item.investment}</p>
                       </div>
                       <div className="mt-auto">
@@ -768,23 +1071,23 @@ export default function Solutions() {
                 <FloatingShape className="w-14 h-14 top-10 right-10 z-[5]" variant="ring" />
                 <div className="relative z-10 p-12 lg:p-20 max-w-2xl">
                   <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
-                    Ready to build the infrastructure your business needs?
+                    {c.finalCta.heading}
                   </h2>
                   <p className="text-lg text-white/70 mb-12">
-                    Whether you're starting with a playbook, joining a training program, exploring guided implementation, or ready for a full system build, the next step is simple.
+                    {c.finalCta.para}
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-services">
     
-                      Explore Our Services
+                      {c.finalCta.services}
                     </Link>
                     <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-zinc-700 text-white hover:bg-zinc-800 h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-contact">
 
-                      Request a Quote
+                      {c.finalCta.quote}
                     </Link>
                     <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105" data-testid="link-solutions-cta-book">
     
-                      Book a Strategy Call
+                      {c.finalCta.book}
                     </a>
                   </div>
                 </div>

@@ -868,3 +868,735 @@ export const LANDING_PAGES: Record<ServiceCategory, LandingContent> = {
 export function getLandingBySlug(slug: string): LandingContent | undefined {
   return Object.values(LANDING_PAGES).find((l) => l.slug === slug);
 }
+
+export type Language = "en" | "fr";
+
+type OfferFr = Partial<Pick<Offer, "name" | "description" | "bestFor" | "includes" | "priceLabel">>;
+
+export const OFFERS_FR: Record<string, OfferFr> = {
+  "growth-system": {
+    name: "Système de croissance",
+    description:
+      "Un système complet pour attirer, capter et convertir plus de prospects, conçu et installé pour vous.",
+    bestFor:
+      "Les petites entreprises qui ont besoin d'un moteur fiable pour générer et convertir des prospects.",
+    includes: [
+      "Structure de site web ou de page de destination axée sur la conversion",
+      "Stratégie marketing et positionnement de l'offre",
+      "Configuration du CRM et du suivi des prospects",
+      "Flux de capture et de relance des prospects",
+      "Messages de campagne et orientation du contenu",
+      "Configuration du suivi des analyses et des indicateurs clés",
+      "Plan d'exécution de 30 jours",
+    ],
+  },
+  "operations-system": {
+    name: "Système d'exploitation",
+    description:
+      "Documentez, simplifiez et automatisez le fonctionnement quotidien de votre entreprise.",
+    bestFor:
+      "Les entreprises qui ont besoin de structure, de procédures et de systèmes avant de croître.",
+    includes: [
+      "Audit complet de l'entreprise et des processus",
+      "Structure organisationnelle et clarté des rôles",
+      "Procédures normalisées et guides opérationnels",
+      "Configuration du tableau de bord des indicateurs et des rapports",
+      "Recommandations d'automatisation des flux de travail",
+      "Plan d'intégration des outils et des systèmes",
+      "Feuille de route de mise en œuvre sur 90 jours",
+    ],
+  },
+  "team-performance-system": {
+    name: "Système de performance d'équipe",
+    description:
+      "Recrutez les bonnes personnes et bâtissez la structure pour gérer la performance en toute confiance.",
+    bestFor:
+      "Les équipes en croissance qui ont besoin de systèmes de recrutement et d'une structure de performance claire.",
+    includes: [
+      "Stratégie de recrutement et descriptions de poste",
+      "Flux de recrutement et d'entretien",
+      "Grilles d'évaluation des candidats et plan d'intégration",
+      "Cadre d'évaluation de la performance",
+      "Cartographie de la clarté des rôles et des responsabilités",
+      "Indicateurs d'équipe et cadence de suivi",
+    ],
+  },
+  "ongoing-performance-support": {
+    name: "Soutien continu à la performance",
+    description:
+      "Un partenaire mensuel pour maintenir vos systèmes en marche, mesurés et en amélioration. La tarification est évaluée au cas par cas.",
+    priceLabel: "Sur mesure",
+    bestFor:
+      "Les entreprises qui souhaitent un soutien continu en matière de systèmes, de marketing et de performance.",
+    includes: [
+      "Appel mensuel de stratégie et de planification",
+      "Revue des indicateurs et de la performance",
+      "Optimisation du marketing et des systèmes",
+      "Affinement des processus et recommandations",
+      "Soutien prioritaire entre les appels",
+      "Mises à jour trimestrielles de la feuille de route",
+    ],
+  },
+  "starter-website": {
+    name: "Forfait site web de départ",
+    description:
+      "Une présence en ligne simple et professionnelle pour vous lancer rapidement.",
+    bestFor:
+      "Les professionnels, les jeunes pousses et les petites entreprises qui ont besoin d'une présence en ligne simple.",
+    includes: [
+      "Jusqu'à 5 pages",
+      "Design adaptatif pour mobile",
+      "Formulaire de contact",
+      "Référencement de base sur la page",
+      "Soutien à la rédaction de la page d'accueil",
+      "Liens vers les réseaux sociaux",
+      "Soutien de base au lancement",
+    ],
+  },
+  "business-website": {
+    name: "Forfait site web d'entreprise",
+    description:
+      "Un site web plus solide pour présenter vos services et générer des prospects.",
+    bestFor:
+      "Les petites entreprises qui ont besoin d'un site web plus solide pour présenter leurs services et générer des prospects.",
+    includes: [
+      "Jusqu'à 8 pages",
+      "Design adaptatif pour mobile",
+      "Pages de services",
+      "Formulaire de contact et de prospects",
+      "Configuration du référencement de base",
+      "Intégration au profil d'entreprise Google",
+      "Configuration des analyses",
+      "Soutien de base à la rédaction du site",
+    ],
+  },
+  "website-conversion": {
+    name: "Forfait site web de conversion",
+    description: "Un site web conçu pour convertir les visiteurs en prospects.",
+    bestFor:
+      "Les entreprises qui ont besoin d'un site web conçu pour convertir les visiteurs en prospects.",
+    includes: [
+      "Jusqu'à 10 pages",
+      "Page de destination",
+      "Formulaire de capture de prospects",
+      "Structure de page axée sur la conversion",
+      "Stratégie d'appel à l'action",
+      "Configuration du référencement de base",
+      "Configuration des analyses",
+      "Soutien à la rédaction du site",
+      "Soutien au lancement",
+    ],
+  },
+  "marketing-starter": {
+    name: "Forfait marketing de départ",
+    description: "De la structure et de la clarté pour votre marketing.",
+    bestFor:
+      "Les petites entreprises qui ont besoin de structure et de clarté pour leur marketing.",
+    includes: [
+      "Audit marketing",
+      "Revue du positionnement de l'offre",
+      "Clarification de la clientèle cible",
+      "Orientation de contenu de base",
+      "Plan d'action marketing de 30 jours",
+      "Canaux recommandés et prochaines étapes",
+    ],
+  },
+  "social-media-setup": {
+    name: "Forfait configuration des réseaux sociaux",
+    description: "Une base professionnelle pour les réseaux sociaux.",
+    bestFor:
+      "Les entreprises qui ont besoin d'une base professionnelle sur les réseaux sociaux.",
+    includes: [
+      "Revue et optimisation des profils",
+      "Rédaction de la bio et de la section à propos",
+      "Orientation de contenu de marque",
+      "Piliers de contenu",
+      "10 idées de publications de départ",
+      "Plan de publication de base",
+    ],
+  },
+  "campaign-setup": {
+    name: "Forfait configuration de campagne",
+    description:
+      "Tout ce qu'il vous faut pour lancer une campagne ou promouvoir une offre.",
+    bestFor:
+      "Les entreprises qui se préparent à lancer une campagne ou à promouvoir une offre.",
+    includes: [
+      "Stratégie de campagne",
+      "Définition de la clientèle",
+      "Messages de campagne",
+      "Recommandation de page de destination",
+      "Rédaction de la prospection par courriel ou message direct",
+      "Plan de campagne de 30 jours",
+      "Recommandations de suivi des indicateurs",
+    ],
+  },
+  "growth-engine": {
+    name: "Forfait moteur de croissance",
+    description: "Une configuration complète de base pour la génération de prospects.",
+    bestFor:
+      "Les petites entreprises qui ont besoin d'une configuration complète de base pour la génération de prospects.",
+    includes: [
+      "Stratégie marketing",
+      "Structure de page de destination ou d'entonnoir",
+      "Configuration de la capture de prospects",
+      "Configuration de base du CRM ou du suivi des prospects",
+      "Messages de campagne",
+      "Plan d'exécution de 30 jours",
+      "Configuration des analyses et du suivi",
+    ],
+  },
+  "crm-starter": {
+    name: "Configuration CRM de départ",
+    description: "Organisez et suivez vos prospects.",
+    bestFor: "Les entreprises qui ont besoin d'organiser et de suivre leurs prospects.",
+    includes: [
+      "Configuration de base du CRM",
+      "Étapes du pipeline",
+      "Champs de contact",
+      "Suivi de la source des prospects",
+      "Rappels de relance",
+      "Configuration de rapports simples",
+    ],
+  },
+  "lead-tracking-followup": {
+    name: "Système de suivi et de relance des prospects",
+    description: "Un processus de relance commerciale plus structuré.",
+    bestFor:
+      "Les entreprises qui ont besoin d'un processus de relance commerciale plus structuré.",
+    includes: [
+      "Configuration du CRM",
+      "Pipeline de prospects",
+      "Flux de relance",
+      "Modèles de réponse par courriel",
+      "Recommandations d'automatisation simples",
+      "Tableau de bord de rapports",
+    ],
+  },
+  "business-system-audit": {
+    name: "Audit des systèmes d'entreprise",
+    description: "Une vision claire de ce qui fonctionne et de ce qui ne fonctionne pas dans votre entreprise.",
+    bestFor:
+      "Les petites entreprises qui ont besoin de clarté sur ce qui ne fonctionne pas.",
+    includes: [
+      "Revue de la structure actuelle",
+      "Revue des lacunes du site web, du marketing, des processus et de l'exécution",
+      "Rapport de synthèse",
+      "Recommandations prioritaires",
+      "Prochaines étapes suggérées",
+    ],
+  },
+  "foundation-sprint": {
+    name: "Sprint de fondation",
+    description: "Bâtissez la structure dont votre entreprise a besoin avant de croître.",
+    bestFor: "Les entreprises qui ont besoin de structure avant de croître.",
+    includes: [
+      "Clarté des rôles",
+      "Structure organisationnelle de base",
+      "Recommandations d'indicateurs clés",
+      "Revue des lacunes de processus",
+      "Plan d'action de 90 jours",
+    ],
+  },
+  "hiring-strategy": {
+    name: "Forfait stratégie de recrutement et descriptions de poste",
+    description:
+      "Des définitions de rôles claires et un plan de recrutement structuré avant de commencer les entretiens.",
+    bestFor:
+      "Les petites entreprises qui se préparent à recruter et qui ont besoin de clarté sur les rôles, les responsabilités et le profil du bon candidat.",
+    includes: [
+      "Séance de cadrage et de découverte du rôle",
+      "Rédaction de descriptions de poste (jusqu'à 2 rôles)",
+      "Grille d'évaluation des candidats et barème d'entretien",
+      "Conseils de balisage de la rémunération",
+      "Canaux de recrutement recommandés",
+      "Plan de recrutement de 30 jours",
+    ],
+  },
+  "talent-sourcing-screening": {
+    name: "Recherche et présélection de talents",
+    description:
+      "Nous recherchons, présélectionnons et retenons les candidats pour que vous ne rencontriez que les personnes qualifiées.",
+    bestFor:
+      "Les entreprises qui ont besoin d'aide pour pourvoir un seul poste sans assumer toute la charge de la recherche.",
+    includes: [
+      "Recherche sur LinkedIn et les canaux pertinents",
+      "Prospection et présélection des candidats",
+      "Liste restreinte de candidats qualifiés",
+      "Résumés des entretiens téléphoniques",
+      "Soutien à la planification des entretiens",
+      "Fenêtre de recherche de 30 jours par poste",
+    ],
+  },
+  "recruitment-setup": {
+    name: "Forfait configuration du recrutement",
+    description:
+      "Bâtissez un système de recrutement reproductible que vous pouvez exécuter vous-même pour chaque poste futur.",
+    bestFor:
+      "Les entreprises en croissance qui recrutent régulièrement et souhaitent un processus de recrutement structuré et reproductible.",
+    includes: [
+      "Configuration du flux de suivi des candidatures",
+      "Processus d'entretien normalisé et barèmes",
+      "Modèle de cadrage pour le gestionnaire d'embauche",
+      "Modèles de lettre d'offre et d'intégration",
+      "Documentation du guide de recrutement",
+      "Séance de formation de l'équipe",
+    ],
+  },
+  "hr-foundations": {
+    name: "Forfait fondations RH",
+    description:
+      "La documentation RH de base et la structure d'intégration dont chaque petite entreprise a besoin.",
+    bestFor:
+      "Les petites entreprises sans RH dédiées qui ont besoin de politiques de base, d'intégration et de conformité.",
+    includes: [
+      "Manuel de l'employé (politiques de base)",
+      "Liste de vérification d'intégration et trousse d'accueil",
+      "Modèles de lettre d'offre et d'emploi",
+      "Cadre d'évaluation de la performance",
+      "Processus de cessation d'emploi et de départ",
+      "Revue de conformité (normes d'emploi canadiennes)",
+    ],
+  },
+  "interview-coaching": {
+    name: "Accompagnement à l'entretien et à la préparation de carrière",
+    description:
+      "Un accompagnement individuel pour aider les professionnels à passer leurs entretiens avec confiance.",
+    bestFor:
+      "Les professionnels qui se préparent à des entretiens, à des promotions ou à des transitions de carrière.",
+    includes: [
+      "Revue du CV et de LinkedIn",
+      "Récit personnel et positionnement",
+      "Deux séances d'entretien simulé",
+      "Préparation aux entretiens comportementaux et situationnels",
+      "Accompagnement à la négociation salariale",
+      "Document de suivi et de rétroaction",
+    ],
+  },
+  "monthly-marketing": {
+    name: "Soutien marketing mensuel",
+    description:
+      "Planification marketing, campagnes et rapports en continu. La tarification est évaluée au cas par cas.",
+    priceLabel: "Sur mesure",
+    bestFor:
+      "Les entreprises qui ont besoin d'un partenaire marketing sans recruter à l'interne.",
+    includes: [
+      "Planification marketing mensuelle",
+      "Orientation de contenu",
+      "Soutien aux campagnes",
+      "Rapports de base",
+      "Recommandations d'optimisation",
+    ],
+  },
+  "monthly-growth": {
+    name: "Soutien mensuel à la croissance",
+    description:
+      "Soutien au marketing, au site web, au suivi des prospects et aux indicateurs chaque mois. La tarification est évaluée au cas par cas.",
+    priceLabel: "Sur mesure",
+    bestFor: "Les entreprises qui ont besoin d'un soutien mensuel élargi à la croissance.",
+    includes: [
+      "Soutien marketing",
+      "Recommandations d'amélioration du site web",
+      "Revue du suivi des prospects",
+      "Revue des indicateurs clés",
+      "Appel de stratégie mensuel",
+    ],
+  },
+  "growth-partner-retainer": {
+    name: "Forfait partenaire de croissance",
+    description:
+      "Soutien continu complet en matière de marketing, de CRM, de site web, d'indicateurs et de processus. La tarification est évaluée au cas par cas.",
+    priceLabel: "Sur mesure",
+    bestFor: "Les entreprises qui souhaitent un partenaire de croissance intégré.",
+    includes: [
+      "Soutien marketing",
+      "Revue du CRM et du suivi des prospects",
+      "Soutien à l'optimisation du site web",
+      "Revue des indicateurs et de la performance",
+      "Soutien à l'amélioration des processus",
+      "Soutien mensuel à la stratégie et à l'exécution",
+    ],
+  },
+  "launch-bundle": {
+    name: "Forfait lancement",
+    description:
+      "Un site web de départ, une configuration des réseaux sociaux et un soutien au lancement, en un seul ensemble.",
+    bestFor:
+      "Les nouvelles entreprises prêtes à se lancer avec une configuration de départ complète.",
+    includes: [
+      "Forfait site web de départ",
+      "Forfait configuration des réseaux sociaux",
+      "Soutien de base au lancement",
+    ],
+  },
+  "growth-starter-bundle": {
+    name: "Forfait croissance de départ",
+    description:
+      "Un site web plus solide, une structure marketing et un CRM, regroupés ensemble.",
+    bestFor: "Les petites entreprises prêtes à générer des prospects de façon constante.",
+    includes: [
+      "Forfait site web d'entreprise",
+      "Forfait marketing de départ",
+      "Configuration CRM de départ",
+    ],
+  },
+  "growth-engine-bundle": {
+    name: "Forfait moteur de croissance",
+    description:
+      "Un site web axé sur la conversion, une campagne et un système de relance en un seul ensemble.",
+    bestFor: "Les entreprises prêtes à bâtir un véritable moteur de génération de prospects.",
+    includes: [
+      "Forfait site web de conversion",
+      "Forfait configuration de campagne",
+      "Système de suivi et de relance des prospects",
+    ],
+  },
+  "scale-support-bundle": {
+    name: "Forfait soutien à la mise à l'échelle",
+    description:
+      "Fondation, moteur de croissance et soutien à la mise en œuvre de 30 jours.",
+    bestFor:
+      "Les entreprises prêtes à croître avec de la structure et une exécution accompagnée.",
+    includes: [
+      "Sprint de fondation",
+      "Composantes du forfait moteur de croissance",
+      "Soutien à la mise en œuvre de 30 jours",
+    ],
+  },
+};
+
+export const CATEGORY_META_FR: Record<OfferCategory, { label: string; description: string }> = {
+  packages: {
+    label: "Forfaits phares",
+    description:
+      "Quatre systèmes productisés qui règlent un résultat d'affaires complet, achetez en ligne et nous démarrons.",
+  },
+  website: {
+    label: "Services de site web",
+    description:
+      "Des sites web qui fonctionnent, d'une simple présence à un moteur de conversion.",
+  },
+  marketing: {
+    label: "Services marketing",
+    description:
+      "Apportez de la structure, des campagnes et de la génération de prospects à votre marketing.",
+  },
+  crm: {
+    label: "CRM et suivi des prospects",
+    description: "Captez, suivez et relancez vos prospects de façon constante.",
+  },
+  systems: {
+    label: "Systèmes d'entreprise",
+    description:
+      "Audits, cadres et structure pour le fonctionnement de votre entreprise.",
+  },
+  "hr-recruiting": {
+    label: "RH et recrutement",
+    description:
+      "Stratégie de recrutement, recherche, fondations RH et accompagnement de carrière pour les entreprises en croissance.",
+  },
+  support: {
+    label: "Soutien continu à la croissance",
+    description:
+      "Des forfaits mensuels pour garder la croissance, le marketing et les systèmes sur la bonne voie.",
+  },
+  bundle: {
+    label: "Forfaits populaires",
+    description:
+      "Des ensembles préconçus qui combinent nos services les plus demandés.",
+  },
+};
+
+export const CATEGORY_NARRATIVE_FR: Record<ServiceCategory, CategoryNarrative> = {
+  website: {
+    eyebrow: "Le problème que nous résolvons",
+    problem:
+      "Un site web désuet ou absent vous coûte de la crédibilité et des prospects chaque jour. Les visiteurs arrivent, ne voient pas rapidement ce que vous faites ni pourquoi vous faire confiance, et repartent sans vous contacter.",
+    benefits: [
+      "Une présence professionnelle qui inspire confiance dès la première visite",
+      "Plus de demandes et de prospects à partir du trafic que vous avez déjà",
+      "Un design adaptatif pour mobile avec une base de référencement intégrée",
+      "Un site que vous possédez et pouvez faire évoluer avec votre entreprise",
+    ],
+  },
+  marketing: {
+    eyebrow: "Le problème que nous résolvons",
+    problem:
+      "La plupart des petites entreprises font du marketing par à-coups, une publication ici, une campagne là, sans plan clair. L'effort sort, mais les prospects ne reviennent pas de façon constante.",
+    benefits: [
+      "Un positionnement et des messages clairs auxquels votre clientèle réagit",
+      "Un plan structuré plutôt que des suppositions et des publications sporadiques",
+      "Des campagnes conçues pour générer et convertir des prospects",
+      "Des canaux choisis délibérément, pour que le budget aille là où il fonctionne",
+    ],
+  },
+  crm: {
+    eyebrow: "Le problème que nous résolvons",
+    problem:
+      "Quand les prospects vivent dans les boîtes de réception et les tableurs, la relance échappe et les revenus fuient discrètement. On ne peut pas améliorer un pipeline qu'on ne voit pas.",
+    benefits: [
+      "Chaque prospect capté, suivi et relancé à temps",
+      "Des temps de réponse plus rapides qui remportent plus des affaires que vous proposez",
+      "Une visibilité complète sur votre pipeline et sur les points de blocage",
+      "Des rapports qui appuient de meilleures décisions commerciales",
+    ],
+  },
+  systems: {
+    eyebrow: "Le problème que nous résolvons",
+    problem:
+      "Quand le fonctionnement de l'entreprise vit dans la tête du fondateur, la livraison est irrégulière, la délégation est difficile et la croissance ajoute du chaos plutôt que du profit.",
+    benefits: [
+      "Des processus documentés que votre équipe peut réellement exécuter",
+      "De la clarté des rôles et de la responsabilisation dans toute l'entreprise",
+      "Des indicateurs et des rapports qui montrent ce qui fonctionne",
+      "Une base évolutive prête pour votre prochaine étape de croissance",
+    ],
+  },
+  "hr-recruiting": {
+    eyebrow: "Le problème que nous résolvons",
+    problem:
+      "Les mauvais recrutements coûtent cher et un recrutement lent freine la croissance. Sans structure, les entretiens sont irréguliers et les nouvelles personnes doivent se débrouiller seules.",
+    benefits: [
+      "Les bons recrutements, plus vite, avec une présélection structurée et des grilles d'évaluation",
+      "Un processus de recrutement reproductible que vous pouvez exécuter pour chaque poste",
+      "Des fondations RH conformes, politiques, intégration et évaluations",
+      "Une meilleure gestion de la performance à mesure que votre équipe grandit",
+    ],
+  },
+  support: {
+    eyebrow: "Le problème que nous résolvons",
+    problem:
+      "Les systèmes et le marketing se dégradent sans attention, et la plupart des petites entreprises ne peuvent justifier un poste à temps plein pour les entretenir. L'élan s'estompe mois après mois.",
+    benefits: [
+      "Un partenaire de croissance chevronné sans le coût d'un poste à temps plein",
+      "Une optimisation continue du marketing, des systèmes et des indicateurs",
+      "Une cadence mensuelle qui garde l'exécution responsable",
+      "Un soutien prioritaire quand une situation exige de l'attention immédiate",
+    ],
+  },
+};
+
+type LandingFr = Partial<Pick<LandingContent, "headline" | "accentWord" | "intro" | "included" | "faqs">>;
+
+export const LANDING_PAGES_FR: Record<ServiceCategory, LandingFr> = {
+  website: {
+    headline: "Des sites web qui gagnent la confiance et convertissent les visiteurs en prospects",
+    accentWord: "convertissent",
+    intro:
+      "Votre site web est souvent la première impression qu'un prospect reçoit. Nous concevons et bâtissons des sites web professionnels et adaptatifs pour les petites entreprises et les entreprises émergentes, avec une tarification claire, une base de référencement et des structures conçues pour transformer les visiteurs en demandes.",
+    included: [
+      "Un design adaptatif qui paraît professionnel sur chaque appareil",
+      "Un référencement de base sur la page pour que les clients vous trouvent",
+      "Des formulaires de contact et de capture de prospects reliés à votre boîte de réception",
+      "Un soutien à la rédaction du site pour que votre message soit clair",
+      "La configuration des analyses et le soutien au lancement sur les forfaits plus complets",
+    ],
+    faqs: [
+      {
+        q: "Combien coûte un site web pour une petite entreprise?",
+        a: "Nos forfaits de site web ont des prix clairs et fixes : le Forfait site web de départ est à 1 500 $, le Forfait site web d'entreprise à 2 500 $ et le Forfait site web de conversion à 3 500 $. Chaque prix est indiqué sur la carte du forfait, et vous pouvez payer en ligne de façon sécurisée par carte de crédit, débit ou PayPal.",
+      },
+      {
+        q: "Quelle est la différence entre les trois forfaits de site web?",
+        a: "Le forfait de départ (jusqu'à 5 pages) vous offre une présence simple et professionnelle. Le forfait d'entreprise (jusqu'à 8 pages) ajoute des pages de services, l'intégration au profil d'entreprise Google et les analyses. Le forfait de conversion (jusqu'à 10 pages) ajoute une page de destination, la capture de prospects et une structure axée sur la conversion conçue pour transformer les visiteurs en prospects.",
+      },
+      {
+        q: "Serai-je propriétaire de mon site web?",
+        a: "Oui. Chaque site web que nous bâtissons vous appartient et peut évoluer avec votre entreprise.",
+      },
+      {
+        q: "Y a-t-il un rabais pour les partenaires de la Fondation NextUp?",
+        a: "Oui. Grâce à notre partenariat avec la NextUp Foundation for Canadian Youth, les organisations admissibles peuvent appliquer le code NEXTPROCESSES pour obtenir 40 % de rabais sur les forfaits de site web au paiement.",
+      },
+    ],
+  },
+  marketing: {
+    headline: "Du marketing avec de la structure, pas des suppositions",
+    accentWord: "structure",
+    intro:
+      "La plupart des petites entreprises font du marketing par à-coups, une publication ici, une campagne là, sans plan clair. Nous installons une structure marketing : un positionnement clair, des canaux délibérés, des plans de campagne et des systèmes de génération de prospects qui transforment l'effort en un flux constant de demandes.",
+    included: [
+      "Audit marketing et revue du positionnement de l'offre",
+      "Clarification de la clientèle cible et orientation de contenu",
+      "Stratégie de campagne, messages et plans de lancement",
+      "Recommandations de page de destination et de capture de prospects",
+      "Suivi des indicateurs pour savoir ce qui fonctionne",
+    ],
+    faqs: [
+      {
+        q: "Quels services marketing offrez-vous?",
+        a: "Quatre forfaits à prix fixe : le Forfait marketing de départ (1 500 $) pour la structure et un plan d'action de 30 jours, le Forfait configuration des réseaux sociaux (1 200 $) pour une base sociale professionnelle, le Forfait configuration de campagne (2 500 $) pour lancer une campagne ou une offre, et le Forfait moteur de croissance (5 000 $) pour une configuration complète de base de génération de prospects.",
+      },
+      {
+        q: "Gérez-vous nos publicités ou publiez-vous pour nous chaque mois?",
+        a: "Ces forfaits sont des réalisations ponctuelles qui vous donnent une stratégie, une structure et des plans que vous pouvez exécuter. Si vous souhaitez une aide marketing pratique en continu, notre forfait Soutien marketing mensuel couvre la planification mensuelle, l'orientation de contenu, le soutien aux campagnes et les rapports.",
+      },
+      {
+        q: "Comment savoir quel forfait convient à mon entreprise?",
+        a: "Réservez une consultation gratuite et nous vous recommanderons le bon point de départ selon vos objectifs, ou commencez par le Forfait marketing de départ, qui comprend un audit et un plan d'action de 30 jours.",
+      },
+    ],
+  },
+  crm: {
+    headline: "Ne perdez plus jamais un prospect à cause d'une relance manquée",
+    accentWord: "prospect",
+    intro:
+      "Quand les prospects vivent dans les boîtes de réception et les tableurs, la relance échappe et les revenus fuient discrètement. Nous configurons votre CRM, votre pipeline et vos flux de relance pour que chaque prospect soit capté, suivi et relancé à temps, et pour que vous voyiez enfin où les affaires se bloquent.",
+    included: [
+      "Configuration du CRM avec étapes de pipeline et champs de contact",
+      "Suivi de la source des prospects pour savoir d'où viennent les demandes",
+      "Flux de relance et rappels",
+      "Modèles de réponse par courriel et recommandations d'automatisation",
+      "Tableaux de bord de rapports pour de meilleures décisions commerciales",
+    ],
+    faqs: [
+      {
+        q: "Combien coûte la configuration d'un CRM?",
+        a: "La Configuration CRM de départ est à 1 500 $ et couvre un CRM de base avec étapes de pipeline, champs de contact, suivi de la source des prospects, rappels de relance et rapports simples. Le Système de suivi et de relance des prospects est à 2 500 $ et ajoute un flux de relance structuré, des modèles de courriel, des recommandations d'automatisation et un tableau de bord de rapports.",
+      },
+      {
+        q: "Ai-je besoin d'un logiciel particulier?",
+        a: "Non. Nous configurons le système autour d'outils qui conviennent à votre entreprise et à votre budget, et nous l'adaptons à votre façon de vendre.",
+      },
+      {
+        q: "Mon équipe saura-t-elle l'utiliser?",
+        a: "La configuration est bâtie autour de votre flux de travail, avec des étapes de pipeline, des rappels et des modèles que votre équipe peut utiliser au quotidien. Si vous souhaitez une aide continue, nos forfaits de soutien mensuel comprennent des revues du suivi des prospects.",
+      },
+    ],
+  },
+  systems: {
+    headline: "Structurez votre entreprise pour qu'elle puisse croître sans vous",
+    accentWord: "croître",
+    intro:
+      "Quand le fonctionnement de l'entreprise vit dans la tête du fondateur, la livraison est irrégulière, la délégation est difficile et la croissance ajoute du chaos plutôt que du profit. Nous auditons, documentons et structurons le fonctionnement de votre entreprise, pour que votre équipe puisse exécuter sans que tout passe par vous.",
+    included: [
+      "Une revue complète de votre structure, de votre site web, de votre marketing et des lacunes de processus",
+      "Des recommandations prioritaires et des prochaines étapes suggérées",
+      "De la clarté des rôles et une structure organisationnelle de base",
+      "Des recommandations d'indicateurs et une orientation des rapports",
+      "Un plan d'action de 90 jours que vous pouvez exécuter",
+    ],
+    faqs: [
+      {
+        q: "Qu'est-ce qu'un audit des systèmes d'entreprise?",
+        a: "Une revue à 750 $ de votre structure actuelle, de votre site web, de votre marketing, de vos processus et des lacunes d'exécution. Vous recevez un rapport de synthèse, des recommandations prioritaires et des prochaines étapes suggérées, une vision claire de ce qui fonctionne et de ce qui ne fonctionne pas avant d'investir davantage.",
+      },
+      {
+        q: "Qu'est-ce que le Sprint de fondation?",
+        a: "Un engagement à 3 500 $ qui bâtit la structure dont votre entreprise a besoin avant de croître : clarté des rôles, structure organisationnelle de base, recommandations d'indicateurs, revue des lacunes de processus et plan d'action de 90 jours.",
+      },
+      {
+        q: "Par lequel devrais-je commencer?",
+        a: "Si vous ne savez pas où se trouvent les problèmes, commencez par l'Audit des systèmes d'entreprise. Si vous savez déjà que vous avez besoin de structure, le Sprint de fondation la bâtit. Réservez une consultation gratuite et nous vous orienterons vers le bon choix.",
+      },
+    ],
+  },
+  "hr-recruiting": {
+    headline: "Recrutez les bonnes personnes, avec un processus que vous pouvez répéter",
+    accentWord: "bonnes",
+    intro:
+      "Les mauvais recrutements coûtent cher et un recrutement lent freine la croissance. Nous apportons de la structure à votre façon de recruter et de gérer les personnes, des descriptions de poste et des grilles d'évaluation des candidats à la recherche, à la présélection, aux fondations RH et aux systèmes de recrutement reproductibles.",
+    included: [
+      "Stratégie de recrutement, descriptions de poste et grilles d'évaluation des candidats",
+      "Recherche, prospection et présélection des candidats",
+      "Processus d'entretien normalisés et barèmes",
+      "Manuel de l'employé, intégration et modèles d'offre",
+      "Revue de conformité aux normes d'emploi canadiennes",
+    ],
+    faqs: [
+      {
+        q: "Combien coûtent vos services de recrutement?",
+        a: "Des prix fixes pour chaque forfait : Stratégie de recrutement et descriptions de poste à 1 500 $, Recherche et présélection de talents à 2 500 $ par poste, le Forfait configuration du recrutement à 3 500 $, Fondations RH à 2 000 $, et Accompagnement à l'entretien et à la préparation de carrière à 750 $.",
+      },
+      {
+        q: "Remplacez-vous une agence de recrutement?",
+        a: "Pour un seul poste, la Recherche et présélection de talents couvre la recherche, la prospection, la présélection et une liste restreinte de candidats qualifiés sur une fenêtre de 30 jours. Si vous recrutez régulièrement, le Forfait configuration du recrutement bâtit un système de recrutement reproductible que vous pouvez exécuter vous-même.",
+      },
+      {
+        q: "Nous n'avons aucune RH. Par où commencer?",
+        a: "Le Forfait fondations RH couvre la documentation de base dont chaque petite entreprise a besoin : un manuel de l'employé, une liste de vérification d'intégration, des modèles de lettre d'offre, un cadre d'évaluation de la performance, un processus de départ et une revue de conformité aux normes d'emploi canadiennes.",
+      },
+    ],
+  },
+  support: {
+    headline: "Un partenaire de croissance qui garde vos systèmes en amélioration",
+    accentWord: "amélioration",
+    intro:
+      "Les systèmes et le marketing se dégradent sans attention, et la plupart des petites entreprises ne peuvent justifier un poste à temps plein pour les entretenir. Nos forfaits mensuels gardent votre marketing, votre site web, votre suivi des prospects et vos indicateurs mesurés, entretenus et en amélioration, avec un partenaire chevronné à votre disposition.",
+    included: [
+      "Appels mensuels de stratégie et de planification",
+      "Planification marketing, orientation de contenu et soutien aux campagnes",
+      "Revue et optimisation du site web et du CRM",
+      "Revues des indicateurs et de la performance",
+      "Soutien prioritaire entre les appels sur le forfait complet",
+    ],
+    faqs: [
+      {
+        q: "Combien coûte le soutien continu?",
+        a: "La tarification des forfaits est évaluée au cas par cas selon la portée dont votre entreprise a besoin. Il y a trois niveaux, Soutien marketing mensuel, Soutien mensuel à la croissance et Forfait partenaire de croissance, et après une conversation nous vous recommanderons le bon et le chiffrerons clairement.",
+      },
+      {
+        q: "Quelle est la différence entre les trois forfaits?",
+        a: "Le Soutien marketing mensuel se concentre sur la planification marketing, l'orientation de contenu, les campagnes et les rapports. Le Soutien mensuel à la croissance ajoute des recommandations de site web, une revue du suivi des prospects et un appel de stratégie mensuel. Le Forfait partenaire de croissance est l'option la plus complète, couvrant le marketing, le CRM, l'optimisation du site web, les indicateurs et l'amélioration des processus.",
+      },
+      {
+        q: "Suis-je lié par un long contrat?",
+        a: "Les forfaits sont des engagements mensuels. Nous revoyons la portée et les résultats avec vous régulièrement, et nous vous recommanderons l'arrangement qui convient lors de votre consultation.",
+      },
+    ],
+  },
+};
+
+export function localizeOffer(offer: Offer, lang: Language): Offer {
+  if (lang === "en") return offer;
+  const fr = OFFERS_FR[offer.id];
+  if (!fr) return offer;
+  return {
+    ...offer,
+    name: fr.name ?? offer.name,
+    description: fr.description ?? offer.description,
+    bestFor: fr.bestFor ?? offer.bestFor,
+    includes: fr.includes ?? offer.includes,
+    priceLabel: fr.priceLabel ?? offer.priceLabel,
+  };
+}
+
+export function getLocalizedCategoryMeta(
+  cat: OfferCategory,
+  lang: Language,
+): { label: string; description: string; order: number } {
+  const en = CATEGORY_META[cat];
+  if (lang === "en") return en;
+  const fr = CATEGORY_META_FR[cat];
+  return {
+    label: fr?.label ?? en.label,
+    description: fr?.description ?? en.description,
+    order: en.order,
+  };
+}
+
+export function getLocalizedNarrative(cat: ServiceCategory, lang: Language): CategoryNarrative {
+  const en = CATEGORY_NARRATIVE[cat];
+  if (lang === "en") return en;
+  const fr = CATEGORY_NARRATIVE_FR[cat];
+  if (!fr) return en;
+  return {
+    eyebrow: fr.eyebrow ?? en.eyebrow,
+    problem: fr.problem ?? en.problem,
+    benefits: fr.benefits ?? en.benefits,
+  };
+}
+
+export function getLocalizedLanding(landing: LandingContent, lang: Language): LandingContent {
+  if (lang === "en") return landing;
+  const fr = LANDING_PAGES_FR[landing.category];
+  if (!fr) return landing;
+  return {
+    ...landing,
+    headline: fr.headline ?? landing.headline,
+    accentWord: fr.accentWord ?? landing.accentWord,
+    intro: fr.intro ?? landing.intro,
+    included: fr.included ?? landing.included,
+    faqs: fr.faqs ?? landing.faqs,
+  };
+}

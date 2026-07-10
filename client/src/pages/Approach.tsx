@@ -38,29 +38,45 @@ export default function Approach() {
       desc: language === "en"
         ? "We start by understanding your business, audience, and growth goals, and audit the systems you already have in place."
         : "Nous commençons par comprendre votre entreprise, votre audience et vos objectifs de croissance, et nous auditons les systèmes déjà en place.",
-      duration: "1–2 weeks",
+      duration: language === "en" ? "1–2 weeks" : "1 à 2 semaines",
       color: "from-zinc-700/15 to-zinc-800/5",
       accentColor: "text-zinc-800",
       bgAccent: "bg-zinc-800",
       borderAccent: "border-zinc-700/20",
-      details: [
+      details: language === "en" ? [
         "Every engagement starts with a clear-eyed look at where your business is today. We learn how you sell, who you sell to, what's working, and where the friction lives, across your website, marketing, CRM, and back-office systems.",
         "We talk to you, your team, and where useful, your customers. We review your current site, marketing channels, CRM (if any), and the day-to-day processes that keep the business running.",
         "The output of Discover is a short, honest map of your current state and a prioritized list of what to install first to unlock the biggest wins.",
+      ] : [
+        "Chaque mandat commence par un regard lucide sur la situation actuelle de votre entreprise. Nous apprenons comment vous vendez, à qui vous vendez, ce qui fonctionne et où se trouvent les frictions, à travers votre site web, votre marketing, votre CRM et vos systèmes administratifs.",
+        "Nous discutons avec vous, votre équipe et, lorsque c'est utile, vos clients. Nous examinons votre site actuel, vos canaux marketing, votre CRM (le cas échéant) et les processus quotidiens qui font fonctionner l'entreprise.",
+        "Le résultat de la phase Découvrir est une carte courte et honnête de votre état actuel et une liste priorisée de ce qu'il faut installer en premier pour débloquer les gains les plus importants.",
       ],
-      activities: [
+      activities: language === "en" ? [
         "Founder & team interviews",
         "Website, brand, and marketing audit",
         "CRM and lead-flow review",
         "Business systems and SOP review",
         "Audience and offer clarity check",
         "Prioritized roadmap and quote",
+      ] : [
+        "Entretiens avec le fondateur et l'équipe",
+        "Audit du site web, de la marque et du marketing",
+        "Examen du CRM et du flux de prospects",
+        "Examen des systèmes d'affaires et des procédures",
+        "Vérification de la clarté de l'audience et de l'offre",
+        "Feuille de route priorisée et devis",
       ],
-      outcomes: [
+      outcomes: language === "en" ? [
         "Clear picture of what's working and what isn't",
         "Prioritized list of growth-infrastructure gaps",
         "Right-sized scope and budget recommendation",
         "A confident starting point, no guesswork",
+      ] : [
+        "Un portrait clair de ce qui fonctionne et de ce qui ne fonctionne pas",
+        "Une liste priorisée des lacunes de l'infrastructure de croissance",
+        "Une recommandation de portée et de budget adaptée",
+        "Un point de départ confiant, sans conjectures",
       ],
     },
     {
@@ -69,29 +85,45 @@ export default function Approach() {
       desc: language === "en"
         ? "We design the website, marketing engine, CRM workflows, and operating playbooks your business will run on."
         : "Nous concevons le site web, le moteur marketing, les flux CRM et les manuels d'exploitation sur lesquels votre entreprise fonctionnera.",
-      duration: "2–4 weeks",
+      duration: language === "en" ? "2–4 weeks" : "2 à 4 semaines",
       color: "from-emerald-500/15 to-emerald-600/5",
       accentColor: "text-emerald-600",
       bgAccent: "bg-emerald-600",
       borderAccent: "border-emerald-500/20",
-      details: [
+      details: language === "en" ? [
         "With the picture clear, we design the system. That means site architecture and key page layouts, the marketing channels and campaigns we'll launch with, the CRM pipeline that will track every lead, and the SOPs your team will actually use.",
         "We work in tight cycles with you, quick approvals, no surprises. You see structure and copy before anything is built so the heavy build phase moves fast.",
         "By the end of Design & Plan you have a documented blueprint: what's being built, by when, by whom, and what success looks like.",
+      ] : [
+        "Une fois le portrait clair, nous concevons le système. Cela comprend l'architecture du site et la mise en page des pages clés, les canaux marketing et les campagnes de lancement, le pipeline CRM qui suivra chaque prospect et les procédures que votre équipe utilisera réellement.",
+        "Nous travaillons en cycles serrés avec vous, des approbations rapides, sans surprise. Vous voyez la structure et le contenu avant que quoi que ce soit ne soit construit, afin que la phase de construction avance rapidement.",
+        "À la fin de la phase Conception et planification, vous disposez d'un plan documenté : ce qui sera construit, quand, par qui, et à quoi ressemble le succès.",
       ],
-      activities: [
+      activities: language === "en" ? [
         "Sitemap, wireframes, and brand direction",
         "Marketing campaign and content plan",
         "CRM pipeline and lead-flow design",
         "SOPs and operating playbooks drafted",
         "KPI and reporting framework agreed",
         "Implementation roadmap signed off",
+      ] : [
+        "Plan du site, maquettes et direction de marque",
+        "Plan de campagne marketing et de contenu",
+        "Conception du pipeline CRM et du flux de prospects",
+        "Rédaction des procédures et manuels d'exploitation",
+        "Cadre d'indicateurs et de reporting convenu",
+        "Feuille de route de mise en œuvre approuvée",
       ],
-      outcomes: [
+      outcomes: language === "en" ? [
         "Approved blueprint for the full system",
         "Clear KPIs and definition of done",
         "Aligned timeline across every workstream",
         "Confidence before a single thing is built",
+      ] : [
+        "Un plan approuvé pour l'ensemble du système",
+        "Des indicateurs clairs et une définition du « terminé »",
+        "Un échéancier aligné sur tous les chantiers",
+        "La confiance avant même que quoi que ce soit ne soit construit",
       ],
     },
     {
@@ -100,29 +132,45 @@ export default function Approach() {
       desc: language === "en"
         ? "We build the website, set up the CRM, launch the marketing engine, and train your team to run it."
         : "Nous construisons le site web, configurons le CRM, lançons le moteur marketing et formons votre équipe à l'exploiter.",
-      duration: "4–12 weeks",
+      duration: language === "en" ? "4–12 weeks" : "4 à 12 semaines",
       color: "from-amber-500/15 to-amber-600/5",
       accentColor: "text-amber-600",
       bgAccent: "bg-amber-600",
       borderAccent: "border-amber-500/20",
-      details: [
+      details: language === "en" ? [
         "This is where the system goes from blueprint to live infrastructure. We build the website, configure the CRM, set up email and social channels, and write the playbooks your team will follow.",
         "We don't disappear and reappear with a finished product. You see progress weekly, and we train your team alongside the build so they own the system the moment it goes live.",
         "Build & Install ends with a launch, site live, CRM tracking real leads, first campaigns out, team trained, documentation handed over.",
+      ] : [
+        "C'est ici que le système passe du plan à une infrastructure en fonction. Nous construisons le site web, configurons le CRM, mettons en place les canaux courriel et sociaux et rédigeons les manuels que votre équipe suivra.",
+        "Nous ne disparaissons pas pour réapparaître avec un produit fini. Vous voyez les progrès chaque semaine, et nous formons votre équipe pendant la construction afin qu'elle s'approprie le système dès sa mise en ligne.",
+        "La phase Construire et installer se termine par un lancement : site en ligne, CRM qui suit de vrais prospects, premières campagnes lancées, équipe formée, documentation remise.",
       ],
-      activities: [
+      activities: language === "en" ? [
         "Website design, build, and launch",
         "CRM setup and lead automation",
         "Marketing channels and first campaigns",
         "SOPs and playbooks finalized",
         "Team training sessions and walkthroughs",
         "Launch checklist and go-live support",
+      ] : [
+        "Conception, construction et lancement du site web",
+        "Configuration du CRM et automatisation des prospects",
+        "Canaux marketing et premières campagnes",
+        "Finalisation des procédures et des manuels",
+        "Séances de formation et démonstrations pour l'équipe",
+        "Liste de vérification de lancement et soutien à la mise en ligne",
       ],
-      outcomes: [
+      outcomes: language === "en" ? [
         "Live website, CRM, and marketing engine",
         "Team trained to run the day-to-day",
         "Documented playbooks you keep forever",
         "Real leads flowing through a real pipeline",
+      ] : [
+        "Un site web, un CRM et un moteur marketing en fonction",
+        "Une équipe formée pour gérer le quotidien",
+        "Des manuels documentés que vous conservez pour toujours",
+        "De vrais prospects circulant dans un vrai pipeline",
       ],
     },
     {
@@ -131,34 +179,50 @@ export default function Approach() {
       desc: language === "en"
         ? "Optional ongoing support keeps your marketing, CRM, and systems running and improving, month after month."
         : "Un soutien continu optionnel maintient votre marketing, votre CRM et vos systèmes opérationnels et en amélioration, mois après mois.",
-      duration: "Optional, monthly",
+      duration: language === "en" ? "Optional, monthly" : "Optionnel, mensuel",
       color: "from-violet-500/15 to-violet-600/5",
       accentColor: "text-violet-600",
       bgAccent: "bg-violet-600",
       borderAccent: "border-violet-500/20",
-      details: [
+      details: language === "en" ? [
         "A great launch is the start, not the finish. Many clients keep us on a monthly retainer to run their marketing, manage the CRM, optimize the website, and refine the playbooks as the business grows.",
         "We track the KPIs we agreed in Design & Plan, share a monthly performance summary, and adjust the system based on real data, not guesses.",
         "When something new comes up, a new offer, a new market, a new hire, we already know your system and can move fast. If you'd rather run it in-house, we hand off cleanly and stay available for ad-hoc support.",
+      ] : [
+        "Un excellent lancement est le début, pas la fin. De nombreux clients nous gardent en mandat mensuel pour gérer leur marketing, administrer le CRM, optimiser le site web et affiner les manuels à mesure que l'entreprise grandit.",
+        "Nous suivons les indicateurs convenus lors de la phase Conception et planification, partageons un sommaire de performance mensuel et ajustons le système selon des données réelles, pas des suppositions.",
+        "Quand quelque chose de nouveau survient, une nouvelle offre, un nouveau marché, une nouvelle embauche, nous connaissons déjà votre système et pouvons agir rapidement. Si vous préférez le gérer à l'interne, nous effectuons un transfert soigné et restons disponibles pour un soutien ponctuel.",
       ],
-      activities: [
+      activities: language === "en" ? [
         "Monthly marketing execution",
         "CRM management and lead nurture",
         "Website updates and conversion tweaks",
         "Performance reporting and reviews",
         "New campaigns, content, and SOP updates",
         "Quarterly strategy refresh sessions",
+      ] : [
+        "Exécution marketing mensuelle",
+        "Gestion du CRM et maturation des prospects",
+        "Mises à jour du site et ajustements de conversion",
+        "Rapports de performance et revues",
+        "Nouvelles campagnes, contenu et mises à jour des procédures",
+        "Séances trimestrielles de rafraîchissement stratégique",
       ],
-      outcomes: [
+      outcomes: language === "en" ? [
         "A growth engine that keeps producing",
         "Clear monthly visibility on what's working",
         "Compounding improvements over time",
         "Optional, no long-term lock-in",
+      ] : [
+        "Un moteur de croissance qui continue de produire",
+        "Une visibilité mensuelle claire sur ce qui fonctionne",
+        "Des améliorations qui se cumulent au fil du temps",
+        "Optionnel, sans engagement à long terme",
       ],
     },
   ];
 
-  const toolsAndFrameworks = [
+  const toolsAndFrameworks = language === "en" ? [
     {
       image: balancedScorecardImg,
       title: "Website & Brand System",
@@ -199,9 +263,50 @@ export default function Approach() {
       title: "Ongoing Support Retainers",
       desc: "Optional monthly retainers, marketing execution, CRM management, content, and continuous optimization, with no long-term lock-in.",
     },
+  ] : [
+    {
+      image: balancedScorecardImg,
+      title: "Système de site web et de marque",
+      desc: "Design éditorial, performance rapide, architecture prête pour la conversion et un système de marque partagé par votre site, vos réseaux sociaux et vos supports de vente.",
+    },
+    {
+      image: swotAnalysisImg,
+      title: "Moteur marketing",
+      desc: "Une infrastructure de courriel, de réseaux sociaux et de campagnes conçue pour alimenter le haut de votre pipeline et transformer l'attention en prospects qualifiés.",
+    },
+    {
+      image: kpiFrameworksImg,
+      title: "CRM et suivi des prospects",
+      desc: "Un CRM adapté que votre équipe utilisera réellement : pipelines, automatisations et rapports pour qu'aucun prospect ne passe entre les mailles du filet.",
+    },
+    {
+      image: processMappingImg,
+      title: "Procédures et manuels d'exploitation",
+      desc: "Des manuels documentés pour les ventes, le marketing et les opérations, afin que votre entreprise fonctionne de la même façon, que vous soyez présent ou non.",
+    },
+    {
+      image: stakeholderAnalysisImg,
+      title: "Formation et mise en œuvre",
+      desc: "Des ateliers et du coaching individuel pour que votre équipe apprenne le système à mesure qu'il se construit et se l'approprie dès sa mise en ligne.",
+    },
+    {
+      image: changeManagementImg,
+      title: "Sprints de fondation",
+      desc: "Des mandats courts et ciblés pour définir la structure, les rôles, les indicateurs et les bases qui font tenir une petite entreprise.",
+    },
+    {
+      image: performanceDashboardsImg,
+      title: "Tableaux de bord de performance",
+      desc: "Des tableaux de bord mensuels simples qui montrent la performance du site web, du marketing et du CRM par rapport aux indicateurs fixés ensemble.",
+    },
+    {
+      image: leadershipCompetencyImg,
+      title: "Mandats de soutien continu",
+      desc: "Des mandats mensuels optionnels : exécution marketing, gestion du CRM, contenu et optimisation continue, sans engagement à long terme.",
+    },
   ];
 
-  const faqItems = [
+  const faqItems = language === "en" ? [
     {
       question: "Which services do you actually offer?",
       answer: "Six integrated practices: Websites, Marketing, CRM & Lead Tracking, Business Systems, Training & Implementation, and Ongoing Support. You can buy any one as a standalone productized engagement, or combine several into a bundle that installs your full growth infrastructure end-to-end.",
@@ -237,6 +342,43 @@ export default function Approach() {
     {
       question: "Can you work alongside our existing tools or partners?",
       answer: "Yes. We meet you where you are. If you already have a CRM, an agency, or in-house marketing, we plug into what's working and replace only what isn't. We're focused on outcomes, not territory.",
+    },
+  ] : [
+    {
+      question: "Quels services offrez-vous réellement ?",
+      answer: "Six pratiques intégrées : sites web, marketing, CRM et suivi des prospects, systèmes d'affaires, formation et mise en œuvre, et soutien continu. Vous pouvez acheter chacune comme un mandat autonome, ou en combiner plusieurs dans un forfait qui installe votre infrastructure de croissance complète de bout en bout.",
+    },
+    {
+      question: "Combien de temps dure un mandat type ?",
+      answer: "Cela dépend de la portée. Un site web autonome prend habituellement de 4 à 8 semaines. Une configuration CRM prend généralement de 2 à 4 semaines. Un forfait d'infrastructure de croissance complet (web + marketing + CRM + systèmes + formation) dure généralement de 8 à 12 semaines, du lancement à la mise en ligne. Les mandats de soutien continu sont mensuels et se poursuivent aussi longtemps qu'ils sont utiles.",
+    },
+    {
+      question: "Avec qui travaillez-vous ?",
+      answer: "Des professionnels, des organismes sans but lucratif et des petites et moyennes entreprises partout au Canada. Les profils fréquents incluent les services professionnels, les métiers et services locaux, les cabinets de santé et de mieux-être, les coachs et consultants, les créateurs et marques personnelles, ainsi que les OSBL en croissance.",
+    },
+    {
+      question: "Offrez-vous des prix fixes ?",
+      answer: "Oui. Presque tout ce que nous faisons est offert sous forme de produit : une portée, des livrables, un échéancier et un prix clairement définis que vous voyez avant de vous engager. Les forfaits et les mandats continus sont également à prix fixe. La seule chose que nous chiffrons au cas par cas est le travail très sur mesure qui ne correspond pas à une offre existante.",
+    },
+    {
+      question: "Qu'est-ce qui rend votre approche différente ?",
+      answer: "Trois choses. D'abord, nous installons un seul système intégré, web, marketing, CRM, systèmes, formation et soutien, au lieu de vendre chaque pièce séparément. Ensuite, nous le construisons et l'exploitons avec vous, sans nous limiter à remettre des présentations. Enfin, chaque mandat laisse derrière lui des manuels documentés et des opérateurs formés pour que le système fonctionne sans nous.",
+    },
+    {
+      question: "Travaillez-vous à distance ou en personne ?",
+      answer: "La majeure partie de notre travail se fait à distance avec des suivis hebdomadaires structurés, ce qui garde les échéanciers serrés et les budgets prévisibles. Pour les ateliers, la formation et les séances stratégiques clés, nous nous déplaçons là où cela compte. Le mode hybride est le plus courant.",
+    },
+    {
+      question: "Que se passe-t-il après le lancement ?",
+      answer: "Vous conservez tout ce que nous avons construit : le site web, la configuration du CRM, les procédures, les actifs de marque, les manuels. À partir de là, vous pouvez gérer le système à l'interne, le confier à votre équipe, ou nous garder en mandat mensuel pour exécuter le marketing, gérer le CRM et continuer d'optimiser.",
+    },
+    {
+      question: "Combien de temps demandez-vous à notre équipe ?",
+      answer: "Moins que la plupart des firmes. Nous concevons des mandats productisés pour réduire au minimum les réunions, généralement une séance de travail hebdomadaire de 30 à 45 minutes, plus des approbations asynchrones pour le design et le contenu. L'exception est la formation, où nous voulons délibérément votre équipe dans la salle.",
+    },
+    {
+      question: "Pouvez-vous travailler avec nos outils ou partenaires existants ?",
+      answer: "Oui. Nous vous rencontrons là où vous êtes. Si vous avez déjà un CRM, une agence ou un marketing à l'interne, nous nous branchons sur ce qui fonctionne et ne remplaçons que ce qui ne fonctionne pas. Nous sommes axés sur les résultats, pas sur le territoire.",
     },
   ];
 
@@ -296,18 +438,26 @@ export default function Approach() {
             <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
               <AnimateOnScroll animation="fade-left">
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-8 italic" data-testid="text-methodology-title">
-                  Built to Build, Not Just Advise
+                  {language === "en" ? "Built to Build, Not Just Advise" : "Conçus pour construire, pas seulement conseiller"}
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Most firms hand over a strategy and walk away. We do the opposite, we install the website, set up the CRM, launch the marketing, write the playbooks, and train the team that will run it all.
+                  {language === "en"
+                    ? "Most firms hand over a strategy and walk away. We do the opposite, we install the website, set up the CRM, launch the marketing, write the playbooks, and train the team that will run it all."
+                    : "La plupart des firmes remettent une stratégie puis s'en vont. Nous faisons le contraire : nous installons le site web, configurons le CRM, lançons le marketing, rédigeons les manuels et formons l'équipe qui gérera le tout."}
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  At the heart of our method is a simple belief: <strong className="text-primary">growth comes from systems people actually use, not slide decks they nod at.</strong> Every page we design, every CRM pipeline we configure, and every playbook we write is built so your team owns and runs it the day it ships.
+                  {language === "en" ? (
+                    <>At the heart of our method is a simple belief: <strong className="text-primary">growth comes from systems people actually use, not slide decks they nod at.</strong> Every page we design, every CRM pipeline we configure, and every playbook we write is built so your team owns and runs it the day it ships.</>
+                  ) : (
+                    <>Au cœur de notre méthode se trouve une conviction simple : <strong className="text-primary">la croissance vient des systèmes que les gens utilisent réellement, pas des présentations qu'ils approuvent d'un signe de tête.</strong> Chaque page que nous concevons, chaque pipeline CRM que nous configurons et chaque manuel que nous rédigeons est bâti pour que votre équipe se l'approprie et l'exploite dès sa livraison.</>
+                  )}
                 </p>
               </AnimateOnScroll>
               <AnimateOnScroll animation="fade-right" delay={200}>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  Our four-phase approach is the same whether you're buying one offer or installing the full growth infrastructure, Discover, Design & Plan, Build & Install, then Run & Optimize. Productized scope, fixed timelines, real outcomes.
+                  {language === "en"
+                    ? "Our four-phase approach is the same whether you're buying one offer or installing the full growth infrastructure, Discover, Design & Plan, Build & Install, then Run & Optimize. Productized scope, fixed timelines, real outcomes."
+                    : "Notre approche en quatre phases est la même que vous achetiez une seule offre ou que vous installiez l'infrastructure de croissance complète : Découvrir, Conception et planification, Construire et installer, puis Exploiter et optimiser. Portée productisée, échéanciers fixes, résultats réels."}
                 </p>
                 <div className="relative">
                   <img
@@ -319,8 +469,8 @@ export default function Approach() {
                   <FloatingShape className="w-20 h-20 -top-4 -right-4 z-[-1]" variant="square" />
                   <FloatingShape className="w-14 h-14 -bottom-3 left-10 z-[-1]" variant="ring" />
                   <div className="absolute -bottom-6 -left-6 bg-primary text-white p-6 rounded-2xl shadow-lg hidden md:block">
-                    <p className="text-3xl font-extrabold italic">4 Phases</p>
-                    <p className="text-sm opacity-80">Proven methodology</p>
+                    <p className="text-3xl font-extrabold italic">{language === "en" ? "4 Phases" : "4 phases"}</p>
+                    <p className="text-sm opacity-80">{language === "en" ? "Proven methodology" : "Méthodologie éprouvée"}</p>
                   </div>
                 </div>
               </AnimateOnScroll>
@@ -334,7 +484,7 @@ export default function Approach() {
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center mb-20">
               <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic" data-testid="text-process-title">
-                Four Phases to Lasting Impact
+                {language === "en" ? "Four Phases to Lasting Impact" : "Quatre phases vers un impact durable"}
               </h2>
             </AnimateOnScroll>
 
@@ -368,7 +518,7 @@ export default function Approach() {
                             className="inline-flex items-center gap-2 text-accent font-semibold hover:text-accent/80 transition-colors duration-200 mb-2"
                             data-testid={`button-expand-step-${step.num}`}
                           >
-                            {isExpanded ? "Show less" : "Learn more about this phase"}
+                            {isExpanded ? (language === "en" ? "Show less" : "Afficher moins") : (language === "en" ? "Learn more about this phase" : "En savoir plus sur cette phase")}
                             <span aria-hidden="true" className={`transition-transform duration-300 inline-block ${isExpanded ? "rotate-180" : ""}`}>&#9662;</span>
                           </button>
 
@@ -385,7 +535,7 @@ export default function Approach() {
                               <div className="grid md:grid-cols-2 gap-8 pt-8 border-t border-gray-100">
                                 <div className="bg-gradient-to-br from-[#f0f4f8] to-white rounded-3xl p-7 border border-border/30">
                                   <h4 className="text-lg font-bold text-primary mb-5 flex items-center gap-2">
-                                    Key Activities
+                                    {language === "en" ? "Key Activities" : "Activités clés"}
                                   </h4>
                                   <ul className="space-y-3">
                                     {step.activities.map((activity, j) => (
@@ -398,7 +548,7 @@ export default function Approach() {
                                 </div>
                                 <div className="bg-gradient-to-br from-[#f0f4f8] to-white rounded-3xl p-7 border border-border/30">
                                   <h4 className="text-lg font-bold text-primary mb-5 flex items-center gap-2">
-                                    Expected Outcomes
+                                    {language === "en" ? "Expected Outcomes" : "Résultats attendus"}
                                   </h4>
                                   <ul className="space-y-3">
                                     {step.outcomes.map((outcome, j) => (
@@ -434,10 +584,12 @@ export default function Approach() {
           <div className="container mx-auto px-4 md:px-8">
             <AnimateOnScroll className="text-center mb-20">
               <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-6" data-testid="text-tools-title">
-                What We Build For You
+                {language === "en" ? "What We Build For You" : "Ce que nous construisons pour vous"}
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Eight building blocks across our six practices. Mix and match into a single offer, or stack them into a full growth-infrastructure bundle.
+                {language === "en"
+                  ? "Eight building blocks across our six practices. Mix and match into a single offer, or stack them into a full growth-infrastructure bundle."
+                  : "Huit composantes réparties sur nos six pratiques. Combinez-les dans une seule offre, ou empilez-les dans un forfait d'infrastructure de croissance complet."}
               </p>
             </AnimateOnScroll>
 
@@ -469,10 +621,12 @@ export default function Approach() {
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-20">
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary italic mb-6" data-testid="text-faq-title">
-                  Frequently Asked Questions
+                  {language === "en" ? "Frequently Asked Questions" : "Foire aux questions"}
                 </h2>
                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                  Common questions about our services, scope, pricing, and what it's like to work with Performance Processes.
+                  {language === "en"
+                    ? "Common questions about our services, scope, pricing, and what it's like to work with Performance Processes."
+                    : "Questions fréquentes sur nos services, notre portée, nos prix et ce que c'est de travailler avec Performance Processes."}
                 </p>
               </div>
 
@@ -515,16 +669,20 @@ export default function Approach() {
               </AnimateOnScroll>
               <AnimateOnScroll animation="fade-right" delay={200} className="order-1 md:order-2">
                 <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-white italic mb-8" data-testid="text-cta-title">
-                  Ready to install your growth infrastructure?
+                  {language === "en" ? "Ready to install your growth infrastructure?" : "Prêt à installer votre infrastructure de croissance ?"}
                 </h2>
                 <p className="text-lg text-white/70 leading-relaxed mb-6">
-                  Whether you need a single piece, a new website, a CRM, a marketing engine, or the full system installed end-to-end, we'll scope it clearly, build it cleanly, and train your team to run it.
+                  {language === "en"
+                    ? "Whether you need a single piece, a new website, a CRM, a marketing engine, or the full system installed end-to-end, we'll scope it clearly, build it cleanly, and train your team to run it."
+                    : "Que vous ayez besoin d'un seul élément, un nouveau site web, un CRM, un moteur marketing, ou du système complet installé de bout en bout, nous définirons clairement la portée, construirons proprement et formerons votre équipe à l'exploiter."}
                 </p>
                 <p className="text-lg text-white/70 leading-relaxed mb-10">
-                  Book a complimentary discovery call to talk through where your business is today and what to install first.
+                  {language === "en"
+                    ? "Book a complimentary discovery call to talk through where your business is today and what to install first."
+                    : "Réservez un appel de découverte gratuit pour discuter de la situation actuelle de votre entreprise et de ce qu'il faut installer en premier."}
                 </p>
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-accent/30 hover:scale-105 w-full sm:w-auto" data-testid="link-cta-consultation">
-                    Book a Consultation
+                    {language === "en" ? "Book a Consultation" : "Réservez une consultation"}
                 </a>
               </AnimateOnScroll>
             </div>

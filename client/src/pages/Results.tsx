@@ -5,6 +5,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { useLanguage } from "@/hooks/use-language";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -19,7 +20,7 @@ interface CaseStudy {
   impact: string;
 }
 
-const CASE_STUDY: CaseStudy = {
+const CASE_STUDY_EN: CaseStudy = {
   industry: "Property & Facilities",
   client: "TrueNorth Property & Facilities",
   title: "Transforming Operations Through Custom Business Systems",
@@ -37,6 +38,26 @@ const CASE_STUDY: CaseStudy = {
   ],
   impact:
     "The organization now operates with greater efficiency, improved information accessibility, and stronger operational control, allowing leadership to focus on strategic growth rather than administrative overhead.",
+};
+
+const CASE_STUDY_FR: CaseStudy = {
+  industry: "Immobilier et gestion d'installations",
+  client: "TrueNorth Property & Facilities",
+  title: "Transformer les opérations grâce à des systèmes d'affaires sur mesure",
+  system: "Système d'exploitation",
+  challenge:
+    "À mesure que l'organisation développait ses services de gestion immobilière et d'installations, les processus manuels et les systèmes déconnectés créaient des inefficacités dans la gestion des employés, les communications avec les clients et la production de rapports opérationnels. La direction avait besoin d'une plateforme centralisée pour améliorer la visibilité, la responsabilisation et la prestation de services.",
+  solution:
+    "Performance Processes a conçu et développé un portail client et un système de gestion des ressources humaines (GRH) sur mesure, adaptés aux flux de travail de l'organisation. La solution a centralisé les dossiers des employés, automatisé les processus administratifs, simplifié les interactions avec les clients et fourni à la direction des données opérationnelles en temps réel.",
+  results: [
+    "Efficacité accrue grâce à l'automatisation des principaux processus RH et administratifs.",
+    "Expérience client améliorée grâce à un accès centralisé à l'information et aux communications sur les services.",
+    "Meilleure visibilité sur la performance de la main-d'œuvre et des opérations.",
+    "Dépendance réduite aux feuilles de calcul et aux rapports manuels.",
+    "Fondation technologique évolutive établie pour soutenir la croissance future.",
+  ],
+  impact:
+    "L'organisation fonctionne désormais avec une plus grande efficacité, un meilleur accès à l'information et un contrôle opérationnel renforcé, ce qui permet à la direction de se concentrer sur la croissance stratégique plutôt que sur les tâches administratives.",
 };
 
 interface Testimonial {
@@ -66,7 +87,60 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
+const CONTENT = {
+  en: {
+    heroTitle: <>Results that <span className="text-accent">compound.</span></>,
+    heroSubtitle:
+      "Real outcomes from the systems we build and run for small and emerging businesses, in the words of the partners we work with.",
+    caseEyebrow: "Case Study",
+    caseHeading: "The systems behind the outcomes",
+    caseIntro:
+      "Each engagement leaves behind infrastructure our clients keep. Here is one example of the work in action.",
+    challengeLabel: "Challenge",
+    solutionLabel: "Solution",
+    resultsLabel: "Results",
+    impactLabel: "Impact",
+    testimonialsEyebrow: "In Their Words",
+    testimonialsHeading: "What our partners say",
+    testimonialsIntro: "Verified words from the organizations we have partnered with.",
+    testimonialsNote: "",
+    ctaHeading: "Want results like these?",
+    ctaSubtitle:
+      "Book a strategy call to talk through your goals, or explore the packages we build and install.",
+    ctaBook: "Book a Strategy Call",
+    ctaServices: "Explore Packages",
+    caseStudy: CASE_STUDY_EN,
+  },
+  fr: {
+    heroTitle: <>Des résultats qui <span className="text-accent">s'accumulent.</span></>,
+    heroSubtitle:
+      "De véritables résultats issus des systèmes que nous concevons et exploitons pour les petites entreprises et les entreprises émergentes, dans les mots des partenaires avec qui nous travaillons.",
+    caseEyebrow: "Étude de cas",
+    caseHeading: "Les systèmes derrière les résultats",
+    caseIntro:
+      "Chaque mandat laisse derrière lui une infrastructure que nos clients conservent. Voici un exemple du travail en action.",
+    challengeLabel: "Défi",
+    solutionLabel: "Solution",
+    resultsLabel: "Résultats",
+    impactLabel: "Impact",
+    testimonialsEyebrow: "Dans leurs mots",
+    testimonialsHeading: "Ce que disent nos partenaires",
+    testimonialsIntro: "Des témoignages vérifiés des organisations avec qui nous avons collaboré.",
+    testimonialsNote: "Témoignages présentés dans leur langue d'origine.",
+    ctaHeading: "Vous voulez des résultats comme ceux-ci ?",
+    ctaSubtitle:
+      "Réservez un appel stratégique pour discuter de vos objectifs, ou explorez les forfaits que nous concevons et installons.",
+    ctaBook: "Réserver un appel stratégique",
+    ctaServices: "Explorer les forfaits",
+    caseStudy: CASE_STUDY_FR,
+  },
+};
+
 export default function Results() {
+  const { language } = useLanguage();
+  const c = CONTENT[language];
+  const CASE_STUDY = c.caseStudy;
+
   return (
     <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead
@@ -78,20 +152,20 @@ export default function Results() {
 
       <main className="flex-grow">
         <PageHero
-          title={<>Results that <span className="text-accent">compound.</span></>}
-          subtitle="Real outcomes from the systems we build and run for small and emerging businesses, in the words of the partners we work with."
+          title={c.heroTitle}
+          subtitle={c.heroSubtitle}
         />
 
         {/* Featured case study */}
         <section className="py-20 bg-[#FAFAFA]" data-testid="section-case-studies">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mb-12">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-3">Case Study</p>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-3">{c.caseEyebrow}</p>
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-3">
-                The systems behind the outcomes
+                {c.caseHeading}
               </h2>
               <p className="text-base md:text-lg text-muted-foreground">
-                Each engagement leaves behind infrastructure our clients keep. Here is one example of the work in action.
+                {c.caseIntro}
               </p>
             </div>
 
@@ -120,7 +194,7 @@ export default function Results() {
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   <div className="p-8 md:p-12 md:border-r border-b md:border-b-0 border-border">
                     <p className="text-[11px] font-black uppercase tracking-[0.25em] text-primary/40 mb-3">
-                      Challenge
+                      {c.challengeLabel}
                     </p>
                     <p className="text-sm md:text-base text-muted-foreground leading-relaxed" data-testid="text-case-challenge">
                       {CASE_STUDY.challenge}
@@ -128,7 +202,7 @@ export default function Results() {
                   </div>
                   <div className="p-8 md:p-12 border-b border-border">
                     <p className="text-[11px] font-black uppercase tracking-[0.25em] text-primary/40 mb-3">
-                      Solution
+                      {c.solutionLabel}
                     </p>
                     <p className="text-sm md:text-base text-muted-foreground leading-relaxed" data-testid="text-case-solution">
                       {CASE_STUDY.solution}
@@ -138,7 +212,7 @@ export default function Results() {
 
                 <div className="p-8 md:p-12 border-b border-border">
                   <p className="text-[11px] font-black uppercase tracking-[0.25em] text-primary/40 mb-6">
-                    Results
+                    {c.resultsLabel}
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
                     {CASE_STUDY.results.map((r, i) => (
@@ -156,7 +230,7 @@ export default function Results() {
 
                 <div className="p-8 md:p-12 bg-primary text-white">
                   <p className="text-[11px] font-black uppercase tracking-[0.25em] text-accent mb-3">
-                    Impact
+                    {c.impactLabel}
                   </p>
                   <p className="text-base md:text-lg leading-relaxed text-white/90" data-testid="text-case-impact">
                     {CASE_STUDY.impact}
@@ -171,13 +245,18 @@ export default function Results() {
         <section className="py-20 bg-white border-t" data-testid="section-testimonials">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mx-auto text-center mb-12">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-3">In Their Words</p>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-3">{c.testimonialsEyebrow}</p>
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-3">
-                What our partners say
+                {c.testimonialsHeading}
               </h2>
               <p className="text-base md:text-lg text-muted-foreground">
-                Verified words from the organizations we have partnered with.
+                {c.testimonialsIntro}
               </p>
+              {language === "fr" && (
+                <p className="text-sm text-muted-foreground italic mt-3">
+                  &laquo;&nbsp;{c.testimonialsNote}&nbsp;&raquo;
+                </p>
+              )}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -212,20 +291,20 @@ export default function Results() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold mb-6">
-                Want results like these?
+                {c.ctaHeading}
               </h2>
               <p className="text-lg text-white/70 mb-10">
-                Book a strategy call to talk through your goals, or explore the packages we build and install.
+                {c.ctaSubtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
                   <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider w-full sm:w-auto" data-testid="button-results-book">
-                    Book a Strategy Call
+                    {c.ctaBook}
                   </Button>
                 </a>
                 <Link href="/services">
                   <Button variant="outline" className="rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider w-full sm:w-auto" data-testid="button-results-services">
-                    Explore Packages
+                    {c.ctaServices}
                   </Button>
                 </Link>
               </div>

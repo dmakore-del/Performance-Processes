@@ -69,11 +69,23 @@ const CASE_RESULT = {
     "The organization now operates with greater efficiency, improved information accessibility, and stronger operational control, with leadership focused on strategic growth rather than administrative overhead.",
 };
 
-const QUOTE = {
-  text: "Their ability to understand our operational requirements and translate them into practical, efficient digital solutions was exceptional.",
-  org: "TrueNorth Property & Facilities",
-  author: "Management Team",
-};
+const TESTIMONIALS = [
+  {
+    text: "Performance Processes played a key role in helping us bring our digital vision to life. Their team developed a modern, user-friendly website that effectively communicates our mission and engages youth, donors, and community partners.",
+    org: "NextUp Foundation for Canadian Youth",
+    author: "Leadership Team",
+  },
+  {
+    text: "Their ability to understand our operational requirements and translate them into practical, efficient digital solutions was exceptional. The systems they delivered have streamlined workflows, improved information accessibility, and enhanced overall organizational efficiency.",
+    org: "TrueNorth Property & Facilities",
+    author: "Management Team",
+  },
+  {
+    text: "Working with Performance Processes on our process mapping initiative provided tremendous value to our organization. They helped us clearly document, analyze, and optimize our key operational processes, giving us greater visibility into how work flows across the business.",
+    org: "Ubuntu Immigration",
+    author: "Leadership Team",
+  },
+];
 
 export default function Services() {
   const { toast } = useToast();
@@ -334,26 +346,29 @@ export default function Services() {
                 <p className="text-sm text-primary font-light leading-relaxed" data-testid="text-case-result">{CASE_RESULT.result}</p>
               </div>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
-              <figure className="lg:col-span-8">
-                <blockquote className="text-display text-2xl md:text-3xl text-primary leading-snug mb-5" data-testid="text-quote">
-                  &ldquo;{QUOTE.text}&rdquo;
-                </blockquote>
-                <figcaption>
-                  <div className="w-8 h-px bg-accent mb-3" />
-                  <p className="text-sm font-semibold text-primary">{QUOTE.org}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{QUOTE.author}</p>
-                </figcaption>
-              </figure>
-              <div className="lg:col-span-4 lg:text-right">
-                <Link
-                  href="/results"
-                  className="text-xs font-semibold uppercase tracking-[0.2em] text-primary hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent"
-                  data-testid="link-all-results"
-                >
-                  See All Results and Testimonials
-                </Link>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border mb-10">
+              {TESTIMONIALS.map((t, i) => (
+                <figure key={i} className="bg-background p-8 md:p-10 flex flex-col h-full" data-testid={`card-testimonial-${i}`}>
+                  <span aria-hidden="true" className="text-display text-4xl text-accent/50 leading-none mb-4 block">&ldquo;</span>
+                  <blockquote className="text-sm text-muted-foreground font-light leading-relaxed mb-6 flex-grow" data-testid={`text-testimonial-quote-${i}`}>
+                    {t.text}
+                  </blockquote>
+                  <figcaption className="mt-auto border-t border-border pt-5">
+                    <div className="w-8 h-px bg-accent mb-3" />
+                    <p className="text-sm font-semibold text-primary" data-testid={`text-testimonial-org-${i}`}>{t.org}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{t.author}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <div className="text-center">
+              <Link
+                href="/results"
+                className="text-xs font-semibold uppercase tracking-[0.2em] text-primary hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent"
+                data-testid="link-all-results"
+              >
+                See All Results and Testimonials
+              </Link>
             </div>
           </div>
         </section>

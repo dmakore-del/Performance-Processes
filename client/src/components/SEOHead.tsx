@@ -6,9 +6,10 @@ interface SEOHeadProps {
   path: string;
   type?: string;
   noindex?: boolean;
+  jsonLd?: object;
 }
 
-export function SEOHead({ title, description, path, type = "website", noindex = false }: SEOHeadProps) {
+export function SEOHead({ title, description, path, type = "website", noindex = false, jsonLd }: SEOHeadProps) {
   const fullTitle = title.includes("Performance Processes") ? title : `${title} | Performance Processes`;
   const canonicalUrl = `https://performanceprocesses.com${path}`;
 
@@ -47,10 +48,25 @@ export function SEOHead({ title, description, path, type = "website", noindex = 
     }
     canonical.setAttribute("href", canonicalUrl);
 
+    const existingJsonLd = document.getElementById("seo-page-jsonld");
+    if (jsonLd) {
+      let script = existingJsonLd as HTMLScriptElement | null;
+      if (!script) {
+        script = document.createElement("script");
+        script.type = "application/ld+json";
+        script.id = "seo-page-jsonld";
+        document.head.appendChild(script);
+      }
+      script.textContent = JSON.stringify(jsonLd);
+    } else if (existingJsonLd) {
+      existingJsonLd.remove();
+    }
+
     return () => {
       document.title = "Performance Processes | Management Consulting Toronto";
+      document.getElementById("seo-page-jsonld")?.remove();
     };
-  }, [fullTitle, description, canonicalUrl, type, noindex]);
+  }, [fullTitle, description, canonicalUrl, type, noindex, jsonLd]);
 
   return null;
 }

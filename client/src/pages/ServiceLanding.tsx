@@ -135,7 +135,20 @@ export default function ServiceLanding() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col font-sans">
-      <SEOHead title={landing.seoTitle} description={landing.seoDescription} path={`/services/${landing.slug}`} />
+      <SEOHead
+        title={landing.seoTitle}
+        description={landing.seoDescription}
+        path={`/services/${landing.slug}`}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: landing.faqs.map((faq) => ({
+            "@type": "Question",
+            name: faq.q,
+            acceptedAnswer: { "@type": "Answer", text: faq.a },
+          })),
+        }}
+      />
       <Navbar />
 
       <main className="flex-grow">

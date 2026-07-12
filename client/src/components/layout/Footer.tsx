@@ -7,9 +7,40 @@ import { apiRequest } from "@/lib/queryClient";
 import logoImg from "@/assets/logo.png";
 import { WhatsAppIcon, LinkedInIcon, InstagramIcon } from "@/components/icons/SocialIcons";
 
+const LEAD_MAGNET_CONTENT = {
+  en: {
+    eyebrow: "Newsletter",
+    heading: "Subscribe to Leadership Insights",
+    description: "Get actionable frameworks, performance management tips, and exclusive resources delivered to your inbox.",
+    placeholder: "Enter your email",
+    subscribe: "Subscribe",
+    subscribing: "Subscribing...",
+    noSpam: "No spam. Unsubscribe anytime.",
+    successTitle: "You're subscribed!",
+    successDescription: "Check your inbox for a welcome email with leadership insights and resources.",
+    errorTitle: "Something went wrong",
+    errorDescription: "Please try again or contact us directly.",
+  },
+  fr: {
+    eyebrow: "Infolettre",
+    heading: "Abonnez-vous à Perspectives en leadership",
+    description: "Recevez des cadres concrets, des conseils en gestion de la performance et des ressources exclusives directement dans votre boîte courriel.",
+    placeholder: "Entrez votre courriel",
+    subscribe: "S'abonner",
+    subscribing: "Abonnement en cours...",
+    noSpam: "Pas de pourriel. Désabonnez-vous à tout moment.",
+    successTitle: "Vous êtes abonné !",
+    successDescription: "Consultez votre boîte courriel pour un message de bienvenue avec des perspectives en leadership et des ressources.",
+    errorTitle: "Une erreur est survenue",
+    errorDescription: "Veuillez réessayer ou nous contacter directement.",
+  },
+};
+
 function LeadMagnetSection() {
   const [email, setEmail] = useState("");
   const { toast } = useToast();
+  const { language } = useLanguage();
+  const c = LEAD_MAGNET_CONTENT[language] ?? LEAD_MAGNET_CONTENT.en;
 
   const subscribeMutation = useMutation({
     mutationFn: async (emailAddr: string) => {
@@ -18,15 +49,15 @@ function LeadMagnetSection() {
     },
     onSuccess: () => {
       toast({
-        title: "You're subscribed!",
-        description: "Check your inbox for a welcome email with leadership insights and resources.",
+        title: c.successTitle,
+        description: c.successDescription,
       });
       setEmail("");
     },
     onError: () => {
       toast({
-        title: "Something went wrong",
-        description: "Please try again or contact us directly.",
+        title: c.errorTitle,
+        description: c.errorDescription,
         variant: "destructive",
       });
     },
@@ -42,12 +73,12 @@ function LeadMagnetSection() {
     <section className="bg-gradient-to-br from-primary via-primary to-primary/90 py-16 md:py-20" data-testid="section-lead-magnet">
       <div className="container mx-auto px-4 md:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-6">Newsletter</div>
+          <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-6">{c.eyebrow}</div>
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
-            Subscribe to Leadership Insights
+            {c.heading}
           </h2>
           <p className="text-white/70 text-base md:text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-            Get actionable frameworks, performance management tips, and exclusive resources delivered to your inbox.
+            {c.description}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <div className="relative flex-1">
@@ -55,7 +86,7 @@ function LeadMagnetSection() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
+                placeholder={c.placeholder}
                 className="w-full px-4 py-3 rounded-xl bg-white text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent"
                 required
                 data-testid="input-lead-magnet-email"
@@ -67,10 +98,10 @@ function LeadMagnetSection() {
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accent/90 transition-colors shrink-0 disabled:opacity-60"
               data-testid="button-lead-magnet-subscribe"
             >
-              {subscribeMutation.isPending ? "Subscribing..." : "Subscribe"}
+              {subscribeMutation.isPending ? c.subscribing : c.subscribe}
             </button>
           </form>
-          <p className="text-white/40 text-xs mt-4">No spam. Unsubscribe anytime.</p>
+          <p className="text-white/40 text-xs mt-4">{c.noSpam}</p>
         </div>
       </div>
     </section>

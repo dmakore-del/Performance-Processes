@@ -56,7 +56,7 @@ const CARD_COPY = {
   },
 } as const;
 
-export function OfferCard({ offer, returnPage = "/services" }: OfferCardProps) {
+export function OfferCard({ offer, returnPage = "/" }: OfferCardProps) {
   const { toast } = useToast();
   const { language } = useLanguage();
   const cc = CARD_COPY[language];

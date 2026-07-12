@@ -7,6 +7,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { OfferCard } from "@/components/OfferCard";
 import { getOffersByCategory } from "@shared/offers";
 import { useLanguage } from "@/hooks/use-language";
+import { useToast } from "@/hooks/use-toast";
 
 import heroVideoPoster from "@assets/generated/hero-video-poster.png";
 import cityAerialImg from "@assets/generated/city-aerial-new.png";
@@ -53,7 +54,6 @@ const CONTENT = {
       eyebrow: "What we do",
       headline: "Five practices, one growth engine.",
       body: "Each capability stands on its own, and works better as part of the whole.",
-      viewAll: "View all services",
       imageAlt: "Two professionals discussing ideas in a bright workspace",
       items: [
         {
@@ -96,7 +96,12 @@ const CONTENT = {
       headlineSuffix: ", not just hours.",
       body: "Four productized packages, each solving a full business outcome. Pay online by card, debit, or PayPal, and we get started.",
       imageAlt: "An entrepreneur working in a sunlit modern office",
-      seeAll: "See the full catalog",
+      bundlesHeading: "Popular bundles",
+      bundlesBody: "Combined services at a better rate, for businesses ready to move on more than one front.",
+      paymentSuccessTitle: "Payment received",
+      paymentSuccessBody: "Thank you. A receipt is on its way to your inbox, and we'll reach out shortly to get started.",
+      paymentCancelledTitle: "Payment cancelled",
+      paymentCancelledBody: "No charge was made. You can try again whenever you're ready.",
     },
     process: {
       eyebrow: "How we help",
@@ -170,7 +175,6 @@ const CONTENT = {
       eyebrow: "Ce que nous faisons",
       headline: "Cinq pratiques, un seul moteur de croissance.",
       body: "Chaque capacité tient sur elle-même et donne encore plus de résultats lorsqu'elle s'intègre à l'ensemble.",
-      viewAll: "Voir tous les services",
       imageAlt: "Deux professionnels échangeant des idées dans un espace de travail lumineux",
       items: [
         {
@@ -213,7 +217,12 @@ const CONTENT = {
       headlineSuffix: " complet, pas seulement des heures.",
       body: "Quatre forfaits clés en main, chacun réglant un résultat d'affaires complet. Payez en ligne par carte, débit ou PayPal, et nous démarrons.",
       imageAlt: "Une entrepreneure au travail dans un bureau moderne baigné de lumière",
-      seeAll: "Voir le catalogue complet",
+      bundlesHeading: "Forfaits populaires",
+      bundlesBody: "Des services combinés à un meilleur tarif, pour les entreprises prêtes à avancer sur plusieurs fronts.",
+      paymentSuccessTitle: "Paiement reçu",
+      paymentSuccessBody: "Merci. Un reçu est en route vers votre boîte courriel, et nous vous contacterons sous peu pour démarrer.",
+      paymentCancelledTitle: "Paiement annulé",
+      paymentCancelledBody: "Aucun montant n'a été prélevé. Vous pouvez réessayer quand vous serez prêt.",
     },
     process: {
       eyebrow: "Comment nous aidons",
@@ -255,11 +264,32 @@ const CONTENT = {
 } as const;
 
 const PACKAGES = getOffersByCategory("packages");
+const BUNDLES = getOffersByCategory("bundle");
 
 export default function Home() {
   const { language } = useLanguage();
   const c = CONTENT[language];
+  const { toast } = useToast();
   const heroVideoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const payment = params.get("payment");
+    if (!payment) return;
+    if (payment === "success") {
+      toast({
+        title: c.packages.paymentSuccessTitle,
+        description: c.packages.paymentSuccessBody,
+      });
+    } else if (payment === "cancelled") {
+      toast({
+        title: c.packages.paymentCancelledTitle,
+        description: c.packages.paymentCancelledBody,
+        variant: "destructive",
+      });
+    }
+    window.history.replaceState({}, "", "/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     const v = heroVideoRef.current;
     if (!v) return;
@@ -337,13 +367,13 @@ export default function Home() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/services"
+                <a
+                  href="#capabilities"
                   className="inline-flex items-center justify-center bg-white text-primary hover:bg-accent hover:text-white h-14 px-9 text-xs uppercase tracking-[0.2em] font-semibold transition-colors duration-300"
                   data-testid="link-hero-services"
                 >
                   {c.hero.exploreCta}
-                </Link>
+                </a>
                 <a
                   href={BOOKINGS_URL}
                   target="_blank"
@@ -399,6 +429,7 @@ export default function Home() {
             CAPABILITIES, clean, scannable editorial list
         ———————————————————————————————————————————————————————————— */}
         <section
+          id="capabilities"
           className="py-24 md:py-32 bg-secondary/40 border-y border-border"
           data-testid="section-capabilities"
         >
@@ -414,13 +445,6 @@ export default function Home() {
                 <p className="text-muted-foreground leading-relaxed font-light max-w-sm mb-8">
                   {c.capabilities.body}
                 </p>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-2 text-primary hover:text-accent transition-colors text-xs uppercase tracking-[0.2em] font-semibold"
-                  data-testid="link-capabilities-all"
-                >
-                  {c.capabilities.viewAll} <span aria-hidden="true">→</span>
-                </Link>
                 <div className="mt-12 aspect-[4/3] overflow-hidden">
                   <img
                     src={teamCollabImg}
@@ -478,7 +502,7 @@ export default function Home() {
         {/* ——————————————————————————————————————————————————————————
             PACKAGES, buyable productized systems
         ———————————————————————————————————————————————————————————— */}
-        <section className="py-24 md:py-32 bg-background" data-testid="section-packages">
+        <section id="packages" className="py-24 md:py-32 bg-background" data-testid="section-packages">
           <div className="container mx-auto px-6 md:px-8">
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-16">
               <AnimateOnScroll>
@@ -507,20 +531,28 @@ export default function Home() {
             <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
               {PACKAGES.map((offer, i) => (
                 <AnimateOnScroll key={offer.id} animation="fade-up" delay={i * 80}>
-                  <OfferCard offer={offer} returnPage="/services" />
+                  <OfferCard offer={offer} returnPage="/" />
                 </AnimateOnScroll>
               ))}
             </div>
 
-            <AnimateOnScroll className="mt-14">
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 text-primary hover:text-accent transition-colors text-xs uppercase tracking-[0.2em] font-semibold"
-                data-testid="link-packages-all"
-              >
-                {c.packages.seeAll} <span aria-hidden="true">→</span>
-              </Link>
+            <AnimateOnScroll className="mt-24">
+              <div className="max-w-2xl mb-12">
+                <h3 className="text-display text-primary text-3xl md:text-4xl leading-[1.08] mb-4" data-testid="text-bundles-heading">
+                  {c.packages.bundlesHeading}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed font-light">
+                  {c.packages.bundlesBody}
+                </p>
+              </div>
             </AnimateOnScroll>
+            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+              {BUNDLES.map((offer, i) => (
+                <AnimateOnScroll key={offer.id} animation="fade-up" delay={i * 80}>
+                  <OfferCard offer={offer} returnPage="/" />
+                </AnimateOnScroll>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -595,13 +627,13 @@ export default function Home() {
                 >
                   {c.cta.bookCta}
                 </a>
-                <Link
-                  href="/services"
+                <a
+                  href="#capabilities"
                   className="inline-flex items-center justify-center border border-white/35 text-white hover:bg-white/10 h-14 px-10 text-xs uppercase tracking-[0.2em] font-semibold transition-colors duration-300"
                   data-testid="link-cta-services"
                 >
                   {c.cta.servicesCta}
-                </Link>
+                </a>
               </div>
             </AnimateOnScroll>
           </div>

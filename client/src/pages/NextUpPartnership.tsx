@@ -297,7 +297,7 @@ export default function NextUpPartnership() {
                 {c.ctaBook}
               </Link>
               <Link
-                href="/services"
+                href="/#capabilities"
                 className="inline-flex items-center justify-center rounded-full border-2 border-white/30 text-white hover:bg-white/10 transition-all font-bold px-8 h-14 uppercase tracking-wider text-sm"
                 data-testid="button-view-services"
               >

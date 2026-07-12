@@ -346,7 +346,7 @@ export default function ServiceLanding() {
             </div>
             <div className="mt-10">
               <Link
-                href="/services"
+                href="/#capabilities"
                 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent"
                 data-testid="link-landing-all-services"
               >

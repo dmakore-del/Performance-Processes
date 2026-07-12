@@ -140,14 +140,13 @@ export function Footer() {
             <div className="flex flex-col gap-6">
               <h3 className="text-primary text-sm font-bold uppercase tracking-[0.1em]">Services</h3>
               <ul className="flex flex-col gap-3.5 text-sm font-medium text-muted-foreground">
-                <li><a href="/services#cat-packages" className="hover:text-accent transition-colors font-semibold text-primary">{language === "en" ? "Headline Packages" : "Forfaits vedettes"}</a></li>
+                <li><a href="/#packages" className="hover:text-accent transition-colors font-semibold text-primary">{language === "en" ? "Headline Packages" : "Forfaits vedettes"}</a></li>
                 <li><Link href="/services/website-services" className="hover:text-accent transition-colors">{language === "en" ? "Website Services" : "Services de site web"}</Link></li>
                 <li><Link href="/services/marketing-services" className="hover:text-accent transition-colors">{language === "en" ? "Marketing Services" : "Services de marketing"}</Link></li>
                 <li><Link href="/services/crm-lead-tracking" className="hover:text-accent transition-colors">{language === "en" ? "CRM & Lead Tracking" : "CRM et suivi des prospects"}</Link></li>
                 <li><Link href="/services/business-systems" className="hover:text-accent transition-colors">{language === "en" ? "Business Systems" : "Systèmes d'affaires"}</Link></li>
                 <li><Link href="/services/hr-recruiting" className="hover:text-accent transition-colors">{language === "en" ? "HR & Recruiting" : "RH et recrutement"}</Link></li>
                 <li><Link href="/services/growth-support" className="hover:text-accent transition-colors">{language === "en" ? "Ongoing Growth Support" : "Soutien continu à la croissance"}</Link></li>
-                <li><Link href="/services" className="hover:text-accent transition-colors">{language === "en" ? "All Packages & Services" : "Tous les forfaits et services"}</Link></li>
                 <li><Link href="/results" className="hover:text-accent transition-colors">{language === "en" ? "Results & Case Studies" : "Résultats et études de cas"}</Link></li>
                 <li><Link href="/nextup-partnership" className="hover:text-accent transition-colors">{language === "en" ? "NextUp Youth Partnership" : "Partenariat jeunesse NextUp"}</Link></li>
               </ul>

@@ -271,8 +271,8 @@ export async function registerRoutes(
         return res.status(400).json({ message: "Price ID is required" });
       }
 
-      const allowedReturnPages = ["/consulting", "/recruiting", "/playbooks", "/services", "/marketing", "/solutions", "/pricing"];
-      const returnPage = allowedReturnPages.includes(req.body.returnPage) ? req.body.returnPage : "/services";
+      const allowedReturnPages = ["/", "/consulting", "/recruiting", "/playbooks", "/services", "/marketing", "/solutions", "/pricing"];
+      const returnPage = allowedReturnPages.includes(req.body.returnPage) ? req.body.returnPage : "/";
 
       const stripe = await getUncachableStripeClient();
 
@@ -400,8 +400,8 @@ export async function registerRoutes(
 
       const { LANDING_PAGES } = await import("@shared/offers");
       const landingReturnPages = Object.values(LANDING_PAGES).map((l) => `/services/${l.slug}`);
-      const allowedReturnPages = ["/services", "/pricing", "/playbooks", "/solutions", ...landingReturnPages];
-      const safeReturn = allowedReturnPages.includes(returnPage) ? returnPage : "/services";
+      const allowedReturnPages = ["/", "/services", "/pricing", "/playbooks", "/solutions", ...landingReturnPages];
+      const safeReturn = allowedReturnPages.includes(returnPage) ? returnPage : "/";
 
       const trustedDomain = process.env.REPLIT_DOMAINS?.split(",")[0]?.trim();
       let baseUrl: string;

@@ -411,7 +411,7 @@ export default function Solutions() {
                 {c.hero.subtitle}
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.45s" }}>
-                <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-hero-services">
+                <Link href="/#capabilities" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-hero-services">
 
                   {c.hero.exploreServices}
                 </Link>
@@ -992,7 +992,7 @@ export default function Solutions() {
                   bestFit: c.who.cards[0].bestFit,
                   investment: "$99 to $10,000",
                   cta: c.who.cards[0].cta,
-                  ctaLink: "/services",
+                  ctaLink: "/#capabilities",
                   color: "from-zinc-700 to-zinc-800",
                 },
                 {
@@ -1001,7 +1001,7 @@ export default function Solutions() {
                   bestFit: c.who.cards[1].bestFit,
                   investment: "$99 to $50,000+",
                   cta: c.who.cards[1].cta,
-                  ctaLink: "/services",
+                  ctaLink: "/#capabilities",
                   color: "from-accent to-zinc-900",
                 },
                 {
@@ -1077,7 +1077,7 @@ export default function Solutions() {
                     {c.finalCta.para}
                   </p>
                   <div className="flex flex-wrap gap-4">
-                    <Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-services">
+                    <Link href="/#capabilities" className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary hover:bg-accent hover:text-white h-14 px-10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl" data-testid="link-solutions-cta-services">
     
                       {c.finalCta.services}
                     </Link>

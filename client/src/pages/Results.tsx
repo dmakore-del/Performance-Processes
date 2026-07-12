@@ -302,7 +302,7 @@ export default function Results() {
                     {c.ctaBook}
                   </Button>
                 </a>
-                <Link href="/services">
+                <Link href="/#capabilities">
                   <Button variant="outline" className="rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider w-full sm:w-auto" data-testid="button-results-services">
                     {c.ctaServices}
                   </Button>

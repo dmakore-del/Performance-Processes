@@ -20,7 +20,6 @@ import Consulting from "./pages/Consulting";
 import Recruiting from "./pages/Recruiting";
 import Marketing from "./pages/Marketing";
 import Solutions from "./pages/Solutions";
-import Services from "./pages/Services";
 import ServiceLanding from "./pages/ServiceLanding";
 import Results from "./pages/Results";
 
@@ -48,7 +47,19 @@ import { Chatbot } from "./components/Chatbot";
 function ScrollToTop() {
   const [location] = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const hash = window.location.hash;
+    if (hash) {
+      requestAnimationFrame(() => {
+        const el = document.getElementById(hash.slice(1));
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          window.scrollTo(0, 0);
+        }
+      });
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, [location]);
   return null;
 }
@@ -61,7 +72,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/solutions" component={Solutions} />
-      <Route path="/services" component={Services} />
+      <Route path="/services">{() => <Redirect to="/" />}</Route>
       <Route path="/services/:slug" component={ServiceLanding} />
       <Route path="/results" component={Results} />
       <Route path="/approach" component={Approach} />
@@ -73,13 +84,13 @@ function Router() {
       <Route path="/news">{() => <Redirect to="/" />}</Route>
       <Route path="/insights">{() => <Redirect to="/" />}</Route>
       <Route path="/nextup-partnership" component={NextUpPartnership} />
-      <Route path="/playbooks">{() => <Redirect to="/services" />}</Route>
+      <Route path="/playbooks">{() => <Redirect to="/" />}</Route>
       <Route path="/assessment">{() => <Redirect to="/contact" />}</Route>
-      <Route path="/training">{() => <Redirect to="/services" />}</Route>
+      <Route path="/training">{() => <Redirect to="/" />}</Route>
       <Route path="/consulting">{() => <Redirect to="/solutions" />}</Route>
       <Route path="/recruiting">{() => <Redirect to="/solutions" />}</Route>
       <Route path="/marketing">{() => <Redirect to="/solutions" />}</Route>
-      <Route path="/pricing">{() => <Redirect to="/services" />}</Route>
+      <Route path="/pricing">{() => <Redirect to="/" />}</Route>
       <Route path="/free-audit">{() => <Redirect to="/contact" />}</Route>
       <Route path="/womens-performance-grant">{() => <Redirect to="/nextup-partnership" />}</Route>
 

@@ -238,7 +238,6 @@ export function Navbar() {
     {
       label: language === "en" ? "Solutions" : "Solutions",
       children: [
-        { label: language === "en" ? "All Packages & Services" : "Tous les forfaits et services", href: "/services" },
         { label: language === "en" ? "Website Services" : "Services de site web", href: "/services/website-services" },
         { label: language === "en" ? "Marketing Services" : "Services de marketing", href: "/services/marketing-services" },
         { label: language === "en" ? "CRM & Lead Tracking" : "CRM et suivi des prospects", href: "/services/crm-lead-tracking" },

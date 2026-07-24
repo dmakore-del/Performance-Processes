@@ -2,7 +2,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import founderImage from "@/assets/founder.png";
-import seanImage from "@/assets/ChatGPT_Image_Feb_20,_2026,_04_07_16_PM_1771621735605.png";
 import collaborationImg from "@assets/generated/collaboration.png";
 import trainingImg from "@assets/generated/training.png";
 import teamStrategyImg from "@assets/generated/team-strategy-new.png";
@@ -288,106 +287,6 @@ export default function About() {
                   : "Que vous soyez un professionnel qui construit son premier site web, un organisme sans but lucratif qui lance une campagne, ou une petite entreprise qui installe un CRM, de la formation et un soutien continu, nous intégrons les six pratiques que la plupart des firmes vendent séparément en un seul système d'exécution conçu pour une croissance mesurable."}
               </p>
             </AnimateOnScroll>
-          </div>
-        </section>
-
-        <section className="py-28 bg-white border-b border-border relative overflow-hidden">
-          <FloatingShape className="w-16 h-16 top-20 right-20" variant="ring" />
-          <div className="container mx-auto px-4 md:px-8">
-            <AnimateOnScroll className="text-center mb-16">
-              <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
-                {language === "en" ? "Our Team" : "Notre équipe"}
-              </div>
-              <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-primary mb-6">
-                {language === "en" ? "Leadership" : "Direction"}
-              </h2>
-            </AnimateOnScroll>
-
-            <div className="flex flex-col lg:flex-row gap-16 items-center lg:items-start max-w-6xl mx-auto">
-              <AnimateOnScroll animation="fade-left" className="lg:w-1/3">
-                <div className="relative">
-                  <div className="absolute top-4 -right-4 w-full h-full border-2 border-accent/20 rounded-2xl -z-10"></div>
-                  <img
-                    src={seanImage}
-                    alt="Sean Ogbonnaya - Director of Business Development"
-                    className="rounded-2xl shadow-xl w-full h-auto object-cover aspect-[3/4] hover:scale-[1.02] transition-transform duration-700"
-                    data-testid="img-sean"
-                  />
-                </div>
-              </AnimateOnScroll>
-              <AnimateOnScroll animation="fade-right" delay={200} className="lg:w-2/3">
-                <h3 className="text-3xl font-heading font-extrabold text-primary mb-2">
-                  Sean <span className="text-accent italic">Ogbonnaya</span>
-                </h3>
-                <div className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-8">
-                  {language === "en" ? "Director of Business Development" : "Directeur du développement des affaires"}
-                </div>
-
-                <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-[600px]">
-                  {language === "en" ? (
-                    <>
-                      <p>
-                        Sean Ogbonnaya leads strategic growth initiatives
-                        and builds lasting partnerships with small
-                        businesses, nonprofits, and professionals
-                        committed to building better systems.
-                      </p>
-                      <p>
-                        With degrees in Computer Science and the
-                        Creative Arts, and a strong background in
-                        relationship development and strategic advisory,
-                        Sean specializes in helping clients pick the right
-                        starting point, whether that's a new website,
-                        a CRM, or a full growth-infrastructure bundle.
-                      </p>
-                      <p className="font-medium text-primary italic border-l-4 border-accent pl-6 py-2 bg-gradient-to-r from-[#FAFAFA] to-transparent rounded-r-lg">
-                        Passionate about matching clients with the right
-                        productized offer, from a single-practice engagement
-                        to a fully integrated growth-infrastructure build.
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <p>
-                        Sean Ogbonnaya dirige les initiatives de croissance
-                        stratégique et bâtit des partenariats durables avec des
-                        petites entreprises, des organismes sans but lucratif et
-                        des professionnels déterminés à bâtir de meilleurs systèmes.
-                      </p>
-                      <p>
-                        Titulaire de diplômes en informatique et en arts créatifs,
-                        et fort d'une solide expérience en développement de relations
-                        et en conseil stratégique, Sean se spécialise dans l'aide aux
-                        clients pour choisir le bon point de départ, qu'il s'agisse
-                        d'un nouveau site web, d'un CRM ou d'un forfait complet
-                        d'infrastructure de croissance.
-                      </p>
-                      <p className="font-medium text-primary italic border-l-4 border-accent pl-6 py-2 bg-gradient-to-r from-[#FAFAFA] to-transparent rounded-r-lg">
-                        Passionné par l'idée de jumeler les clients avec la bonne offre
-                        productisée, d'un mandat à pratique unique à une infrastructure
-                        de croissance entièrement intégrée.
-                      </p>
-                    </>
-                  )}
-                </div>
-
-                <div className="mt-10 flex flex-wrap gap-4 items-center">
-                  <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-accent text-white hover:bg-primary h-14 px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-accent/20" data-testid="button-schedule-sean">
-                      {language === "en" ? "Schedule Consultation" : "Planifier une consultation"}
-                  </a>
-                  <div className="flex flex-wrap gap-3">
-                    <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-[#FAFAFA] to-white rounded-xl border border-border">
-                      <div className="w-2 h-2 rounded-full bg-accent"></div>
-                      <span className="text-xs font-bold uppercase tracking-widest text-primary">{language === "en" ? "Relationship Development" : "Développement de relations"}</span>
-                    </div>
-                    <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-[#FAFAFA] to-white rounded-xl border border-border">
-                      <div className="w-2 h-2 rounded-full bg-accent"></div>
-                      <span className="text-xs font-bold uppercase tracking-widest text-primary">{language === "en" ? "Strategic Advisory" : "Conseil stratégique"}</span>
-                    </div>
-                  </div>
-                </div>
-              </AnimateOnScroll>
-            </div>
           </div>
         </section>
 

@@ -1,0 +1,361 @@
+Please redesign performanceprocesses.com to give Performance Processes a clearer and more focused market position.
+
+The company should no longer be presented as a broad management consulting firm serving everyone from individual professionals to large enterprises. Reposition it as a business launch and setup consultancy that helps aspiring and early-stage entrepreneurs establish, organize and professionally launch their businesses.
+
+The central message should be:
+
+“Performance Processes helps entrepreneurs incorporate, set up and launch professional businesses through practical consulting, operational support, website development and digital presence services.”
+
+The website should make it immediately clear that we support clients through three stages:
+
+1. Business Formation
+2. Business Setup
+3. Website and Digital Launch
+
+Target Audience
+
+The primary audience is:
+
+* Aspiring entrepreneurs preparing to start a business
+* New business owners who need help formalizing their operations
+* Early-stage businesses that lack professional systems or an online presence
+* Service-based businesses, consultants and independent professionals
+* Canadian entrepreneurs, particularly those in Ontario and the Greater Toronto Area
+
+The site should speak to people who have a business idea or recently started a business but feel unsure about incorporation, administrative setup, systems, branding, websites or launching professionally.
+
+Brand Positioning
+
+Use the following positioning statement throughout the website:
+
+“Everything you need to establish, build and launch your business.”
+
+An alternative short brand statement that can appear in selected sections is:
+
+“We help you incorporate it, set it up, build it and launch it.”
+
+Performance Processes should feel like a knowledgeable business partner that simplifies the startup process. The messaging should be professional, practical, encouraging and easy to understand. Avoid excessive corporate language, vague consulting terminology and claims that make the company sound like a law firm or accounting firm.
+
+The website must clearly state that Performance Processes provides incorporation support and general business guidance but does not provide legal, tax or accounting advice. Clients should be referred to qualified professionals where regulated advice is required.
+
+Visual Direction
+
+Maintain a clean, modern, minimalistic and elevated appearance.
+
+Use:
+
+* A predominantly white or warm off-white background
+* Light pink as the principal accent colour
+* Black, charcoal and neutral tones for text
+* Generous white space
+* Clean typography
+* Strong but simple calls to action
+* Professional imagery featuring diverse entrepreneurs and small-business owners
+* Subtle animation and movement without making the site feel busy
+* A polished, approachable boutique-consulting aesthetic
+
+The website should not resemble a generic corporate consulting template or an inexpensive web-design agency.
+
+Navigation
+
+Simplify the main navigation to:
+
+* Home
+* Start a Business
+* Business Setup
+* Websites and Digital Presence
+* Packages
+* About
+* Contact
+
+Include a prominent “Book a Consultation” or “Start Your Business” button in the header.
+
+Homepage Structure
+
+1. Hero Section
+
+Headline:
+
+“From business idea to business launch.”
+
+Supporting copy:
+
+“Performance Processes helps entrepreneurs incorporate, establish and professionally launch their businesses—all with the strategy, systems, website and digital support they need in one place.”
+
+Primary button:
+
+“Start Your Business”
+
+Secondary button:
+
+“Explore Our Services”
+
+The hero should quickly communicate that this is a comprehensive business-launch service, not only a website company and not a broad traditional management consultancy.
+
+2. Problem and Solution Section
+
+Create a section for entrepreneurs who know what business they want to start but do not know how to structure or launch it.
+
+Suggested heading:
+
+“Starting a business should not feel this complicated.”
+
+Suggested copy:
+
+“From choosing a business structure and completing registrations to setting up your systems, website and online presence, launching a business involves dozens of decisions. We bring those pieces together into one clear, guided process.”
+
+3. Three Core Services
+
+Present three visually distinct service categories.
+
+Business Formation
+
+* Business structure guidance
+* Business name search and registration support
+* Provincial or federal incorporation support
+* Business number and applicable account setup guidance
+* Startup requirements checklist
+* General compliance guidance
+* Referrals to legal and accounting professionals when required
+
+Business Setup
+
+* Business model and launch strategy
+* Service and pricing development
+* Business plan support
+* Professional email and software setup
+* Payment and invoicing systems
+* Appointment-booking systems
+* CRM setup
+* Administrative workflows
+* Policies, templates and operating processes
+
+Websites and Digital Presence
+
+* Website strategy
+* Website design and development
+* Domain and hosting setup
+* Brand direction
+* Business email integration
+* Contact, booking and payment integrations
+* Google Business Profile setup
+* Social-media integration
+* Foundational search-engine optimization
+* Website training and ongoing support
+
+Each category should have its own page with a clear explanation, process, deliverables and call to action.
+
+4. How It Works
+
+Present a simple four-step process:
+
+Step 1: Consult
+We learn about the business idea, current stage and launch goals.
+
+Step 2: Establish
+We help the client formalize the business and identify its essential requirements.
+
+Step 3: Build
+We develop the operational foundation, website and necessary digital systems.
+
+Step 4: Launch
+We prepare the business to enter the market with confidence and ongoing support.
+
+5. Packages
+
+Create three clear package levels. Do not publish prices unless they can be easily updated through the administrator dashboard.
+
+Business Foundation
+
+For entrepreneurs who need help formalizing and organizing a new business.
+
+Possible inclusions:
+
+* Initial business consultation
+* Structure and incorporation guidance
+* Registration support
+* Startup checklist
+* Essential administrative setup
+* One follow-up consultation
+
+Business Launch
+
+For entrepreneurs who need both business setup and a professional digital presence.
+
+Possible inclusions:
+
+* Everything in Business Foundation
+* Business model and pricing consultation
+* Essential business systems
+* Professional email setup
+* Custom starter website
+* Domain and hosting setup
+* Google Business Profile
+* Foundational SEO
+
+Complete Business Build
+
+For clients who want comprehensive, hands-on support from idea to launch.
+
+Possible inclusions:
+
+* Everything in Business Launch
+* Expanded website
+* Brand direction
+* CRM or booking-system setup
+* Payment and invoicing integration
+* Operational workflows
+* Templates and business documents
+* Digital launch plan
+* Post-launch support
+
+Add a comparison table so visitors can easily understand the differences between the packages.
+
+6. Why Performance Processes
+
+Suggested heading:
+
+“One partner for every part of your business launch.”
+
+Emphasize the following benefits:
+
+* A single point of support from formation through launch
+* Practical, hands-on implementation
+* Clear guidance without unnecessary jargon
+* Customized services instead of generic startup templates
+* Business strategy connected directly to the website and digital presence
+* Continued support after launch
+
+7. Portfolio or Client Work
+
+Show completed websites and business projects with:
+
+* Client name
+* Industry
+* Initial challenge
+* Services provided
+* Final result
+* Website screenshots or mockups
+* Link to the live website, where appropriate
+
+Do not limit the portfolio to visual website images. Explain how Performance Processes helped establish, organize or improve each business.
+
+8. Testimonials
+
+Include testimonials focused on tangible outcomes, such as helping a client launch, become more professional, improve credibility or simplify their business operations.
+
+9. Final Call to Action
+
+Suggested heading:
+
+“Ready to turn your idea into a real business?”
+
+Suggested copy:
+
+“Whether you need help incorporating, building your business foundation or launching your website, we will help you identify the right place to begin.”
+
+Button:
+
+“Book Your Consultation”
+
+Service Pages
+
+Every service page should include:
+
+* A clear outcome-focused headline
+* Who the service is for
+* The problems it addresses
+* What is included
+* The step-by-step process
+* Frequently asked questions
+* Related packages
+* A strong consultation call to action
+
+About Page
+
+Position Danai Makore as the Founder and Principal Consultant of Performance Processes.
+
+The page should communicate that Performance Processes was created to close the gap between having a business idea and knowing how to establish and launch it properly. Explain that many entrepreneurs work with separate consultants, developers and service providers, resulting in disconnected decisions. Performance Processes brings strategy, setup, systems and digital execution together.
+
+The tone should establish competence and credibility while remaining relatable to first-time entrepreneurs.
+
+Contact and Lead Qualification
+
+The contact form should collect:
+
+* Full name
+* Email address
+* Phone number
+* Business name, if applicable
+* Current business stage
+* Services needed
+* Target launch date
+* Estimated project budget
+* Brief description of the business or idea
+* Preferred consultation time
+
+For “Current business stage,” include:
+
+* I have an idea
+* I am preparing to register or incorporate
+* My business is registered but not fully set up
+* I need a website or digital presence
+* I have launched and need help improving my business
+
+Technical Requirements
+
+* Fully responsive across desktop, tablet and mobile
+* Fast loading and optimized images
+* Accessible design and readable contrast
+* SEO-friendly page structure
+* Unique page titles and meta descriptions
+* Clear heading hierarchy
+* Relevant structured data
+* Working contact and consultation forms
+* Analytics integration
+* Easy-to-update portfolio, packages, services and testimonials
+* Secure hosting and SSL
+* Spam protection for forms
+* Integration with the existing booking system, if applicable
+* Preserve English and French functionality only if bilingual service remains part of the business strategy
+
+SEO Direction
+
+Shift the SEO strategy toward commercially relevant phrases such as:
+
+* Business startup consulting Toronto
+* Business incorporation support Ontario
+* Start a business in Ontario
+* Small-business setup services
+* Business launch consultant
+* Website design for small businesses Toronto
+* Business registration and website package
+* Startup consulting for Canadian entrepreneurs
+* Small-business website development
+* Business setup and digital presence
+
+Update the homepage title from the broad “Management Consulting Toronto” positioning to something more focused, such as:
+
+“Business Setup, Incorporation Support & Websites | Performance Processes”
+
+Suggested meta description:
+
+“Performance Processes helps Canadian entrepreneurs incorporate, set up and launch their businesses with practical consulting, operational systems, website development and digital presence support.”
+
+Content to Remove or Rework
+
+Remove or significantly reduce:
+
+* Broad enterprise consulting language
+* Leadership development
+* Professional or career coaching
+* Talent acquisition as a central service
+* Messaging aimed at medium-to-large organizations
+* The “five integrated systems” positioning
+* Multiple overlapping service tiers that are difficult to understand
+* Vague terms such as organizational transformation, executive advisory and performance optimization unless directly connected to business setup
+* Any language suggesting that Performance Processes provides legal, accounting or tax advice
+
+The completed website should allow a visitor to understand the company within five seconds:
+
+Performance Processes helps entrepreneurs formally establish their businesses, build the systems they need and launch with a professional website and digital presence.

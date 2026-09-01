@@ -11,19 +11,14 @@ const CONTENT = {
     heroTitle: <>Site<span className="text-accent">map</span></>,
     links: [
       { label: "Home", href: "/" },
-      { label: "About Us", href: "/about" },
-      { label: "Website Services", href: "/services/website-services" },
-      { label: "Marketing Services", href: "/services/marketing-services" },
-      { label: "CRM & Lead Tracking", href: "/services/crm-lead-tracking" },
-      { label: "Business Systems", href: "/services/business-systems" },
-      { label: "HR & Recruiting", href: "/services/hr-recruiting" },
-      { label: "Ongoing Growth Support", href: "/services/growth-support" },
-      { label: "Solutions Framework", href: "/solutions" },
-      { label: "NextUp Youth Partnership", href: "/nextup-partnership" },
-      { label: "Our Approach", href: "/approach" },
+       { label: "Start a Business", href: "/start-a-business" },
+       { label: "Business Setup", href: "/business-setup" },
+       { label: "Websites & Digital Presence", href: "/websites-digital" },
+       { label: "Packages", href: "/packages" },
+       { label: "About Us", href: "/about" },
+       { label: "Results", href: "/results" },
       { label: "Contact", href: "/contact" },
-      { label: "Careers", href: "/careers" },
-      { label: "Client Portal", href: "/portal" },
+       { label: "NextUp Youth Partnership", href: "/nextup-partnership" },
       { label: "Privacy & Terms", href: "/legal" },
       { label: "Accessibility", href: "/accessibility" },
     ],
@@ -32,19 +27,14 @@ const CONTENT = {
     heroTitle: <>Plan du <span className="text-accent">site</span></>,
     links: [
       { label: "Accueil", href: "/" },
-      { label: "À propos", href: "/about" },
-      { label: "Services de site web", href: "/services/website-services" },
-      { label: "Services de marketing", href: "/services/marketing-services" },
-      { label: "CRM et suivi des prospects", href: "/services/crm-lead-tracking" },
-      { label: "Systèmes d'affaires", href: "/services/business-systems" },
-      { label: "RH et recrutement", href: "/services/hr-recruiting" },
-      { label: "Soutien continu à la croissance", href: "/services/growth-support" },
-      { label: "Cadre de solutions", href: "/solutions" },
-      { label: "Partenariat jeunesse NextUp", href: "/nextup-partnership" },
-      { label: "Notre approche", href: "/approach" },
+       { label: "Démarrer une entreprise", href: "/start-a-business" },
+       { label: "Mise en place", href: "/business-setup" },
+       { label: "Sites web et présence numérique", href: "/websites-digital" },
+       { label: "Forfaits", href: "/packages" },
+       { label: "À propos", href: "/about" },
+       { label: "Résultats", href: "/results" },
       { label: "Contact", href: "/contact" },
-      { label: "Carrières", href: "/careers" },
-      { label: "Portail client", href: "/portal" },
+       { label: "Partenariat jeunesse NextUp", href: "/nextup-partnership" },
       { label: "Confidentialité et conditions", href: "/legal" },
       { label: "Accessibilité", href: "/accessibility" },
     ],
@@ -58,7 +48,7 @@ export default function Sitemap() {
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
-      <SEOHead title="Sitemap" description="Navigate all pages on the Performance Processes website. Find services, solutions, career opportunities, and more." path="/sitemap" noindex />
+      <SEOHead title="Sitemap" description="Browse Performance Processes' Canadian business formation, setup, website, and digital-launch services for early-stage entrepreneurs." path="/sitemap" noindex />
       <Navbar />
       <main className="flex-grow">
         <PageHero 

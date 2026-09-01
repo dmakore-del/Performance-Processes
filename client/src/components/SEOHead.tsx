@@ -63,7 +63,7 @@ export function SEOHead({ title, description, path, type = "website", noindex = 
     }
 
     return () => {
-      document.title = "Performance Processes | Management Consulting Toronto";
+      document.title = "Business Setup, Incorporation Support & Websites | Performance Processes";
       document.getElementById("seo-page-jsonld")?.remove();
     };
   }, [fullTitle, description, canonicalUrl, type, noindex, jsonLd]);

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -29,43 +30,43 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
-  --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Cormorant Garamond', serif;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-heading: 'Fraunces', serif;
 }
 
 :root {
-  --radius: 0.125rem;
+  --radius: 0.25rem;
 
   /* Brand palette: black & white with a restrained pink accent (from logo) */
-  --background: 0 0% 100%;
-  --foreground: 0 0% 8%;
+  --background: 36 43% 96%;
+  --foreground: 20 13% 12%;
   
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 8%;
+  --card: 36 43% 98%;
+  --card-foreground: 20 13% 12%;
   
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 8%;
+  --popover: 36 43% 98%;
+  --popover-foreground: 20 13% 12%;
   
   /* Black (dominant brand color) */
-  --primary: 0 0% 9%;
-  --primary-foreground: 0 0% 100%;
+  --primary: 20 13% 12%;
+  --primary-foreground: 36 43% 96%;
   
   /* Soft blush pink — used sparingly as an accent */
-  --accent: 345 58% 62%;
-  --accent-foreground: 0 0% 100%;
+  --accent: 349 62% 76%;
+  --accent-foreground: 20 13% 12%;
   
-  --secondary: 0 0% 96%;
-  --secondary-foreground: 0 0% 9%;
+  --secondary: 350 45% 91%;
+  --secondary-foreground: 20 13% 12%;
   
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 40%;
+  --muted: 28 25% 91%;
+  --muted-foreground: 20 9% 39%;
   
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
 
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 345 58% 62%;
+  --border: 22 17% 83%;
+  --input: 22 17% 83%;
+  --ring: 349 62% 76%;
 }
 
 @layer base {
@@ -78,6 +79,16 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-medium tracking-tight;
   }
+}
+
+html { scroll-behavior: smooth; }
+::selection { background: hsl(var(--accent)); color: hsl(var(--primary)); }
+.text-display { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.04em; }
+.eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; }
+.pp-grid { background-image: linear-gradient(hsl(var(--primary) / .07) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary) / .07) 1px, transparent 1px); background-size: 44px 44px; }
+.reveal-up { animation: fade-in-up .8s cubic-bezier(.16,1,.3,1) both; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
 
 @layer utilities {

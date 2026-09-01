@@ -22,6 +22,8 @@ import Marketing from "./pages/Marketing";
 import Solutions from "./pages/Solutions";
 import ServiceLanding from "./pages/ServiceLanding";
 import Results from "./pages/Results";
+import LaunchService from "./pages/LaunchService";
+import Packages from "./pages/Packages";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -71,11 +73,15 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/solutions" component={Solutions} />
+      <Route path="/start-a-business" component={LaunchService} />
+      <Route path="/business-setup" component={LaunchService} />
+      <Route path="/websites-digital" component={LaunchService} />
+      <Route path="/packages" component={Packages} />
+      <Route path="/solutions">{() => <Redirect to="/packages" />}</Route>
       <Route path="/services">{() => <Redirect to="/" />}</Route>
-      <Route path="/services/:slug" component={ServiceLanding} />
+      <Route path="/services/:slug">{() => <Redirect to="/packages" />}</Route>
       <Route path="/results" component={Results} />
-      <Route path="/approach" component={Approach} />
+      <Route path="/approach">{() => <Redirect to="/about" />}</Route>
       <Route path="/contact" component={Contact} />
       <Route path="/legal" component={Legal} />
       <Route path="/sitemap" component={Sitemap} />
@@ -87,10 +93,10 @@ function Router() {
       <Route path="/playbooks">{() => <Redirect to="/" />}</Route>
       <Route path="/assessment">{() => <Redirect to="/contact" />}</Route>
       <Route path="/training">{() => <Redirect to="/" />}</Route>
-      <Route path="/consulting">{() => <Redirect to="/solutions" />}</Route>
-      <Route path="/recruiting">{() => <Redirect to="/solutions" />}</Route>
-      <Route path="/marketing">{() => <Redirect to="/solutions" />}</Route>
-      <Route path="/pricing">{() => <Redirect to="/" />}</Route>
+      <Route path="/consulting">{() => <Redirect to="/business-setup" />}</Route>
+      <Route path="/recruiting">{() => <Redirect to="/business-setup" />}</Route>
+      <Route path="/marketing">{() => <Redirect to="/websites-digital" />}</Route>
+      <Route path="/pricing">{() => <Redirect to="/packages" />}</Route>
       <Route path="/free-audit">{() => <Redirect to="/contact" />}</Route>
       <Route path="/womens-performance-grant">{() => <Redirect to="/nextup-partnership" />}</Route>
 

@@ -11,6 +11,42 @@ import { sql } from "drizzle-orm";
 import { requireAuth, requireAdmin } from "./auth";
 
 const uploadsDir = path.join(process.cwd(), "uploads", "resumes");
+const contactSubmissionAttempts = new Map<string, number[]>();
+const CONTACT_RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+const CONTACT_RATE_LIMIT_MAX_SUBMISSIONS = 5;
+let lastContactRateLimitCleanup = 0;
+
+function isHoneypotFilled(value: unknown): boolean {
+  return typeof value === "string" ? value.trim().length > 0 : value != null;
+}
+
+function isContactSubmissionRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const windowStart = now - CONTACT_RATE_LIMIT_WINDOW_MS;
+
+  if (now - lastContactRateLimitCleanup > 60 * 1000) {
+    contactSubmissionAttempts.forEach((attempts: number[], address: string) => {
+      const recentAttempts = attempts.filter((attempt: number) => attempt > windowStart);
+      if (recentAttempts.length === 0) {
+        contactSubmissionAttempts.delete(address);
+      } else {
+        contactSubmissionAttempts.set(address, recentAttempts);
+      }
+    });
+    lastContactRateLimitCleanup = now;
+  }
+
+  const attempts = (contactSubmissionAttempts.get(ip) ?? []).filter((attempt) => attempt > windowStart);
+  if (attempts.length >= CONTACT_RATE_LIMIT_MAX_SUBMISSIONS) {
+    contactSubmissionAttempts.set(ip, attempts);
+    return true;
+  }
+
+  attempts.push(now);
+  contactSubmissionAttempts.set(ip, attempts);
+  return false;
+}
+
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
@@ -45,6 +81,15 @@ export async function registerRoutes(
 ): Promise<Server> {
   app.post("/api/contact", async (req, res) => {
     try {
+      if (isHoneypotFilled(req.body?.website)) {
+        return res.status(201).json({ message: "Message sent successfully" });
+      }
+
+      const ip = req.ip || req.socket.remoteAddress || "unknown";
+      if (isContactSubmissionRateLimited(ip)) {
+        return res.status(429).json({ message: "Too many contact form submissions. Please try again in 15 minutes." });
+      }
+
       const parsed = insertContactSchema.safeParse(req.body);
       if (!parsed.success) {
         return res.status(400).json({ message: "Invalid form data", errors: parsed.error.flatten() });
@@ -52,14 +97,14 @@ export async function registerRoutes(
       const submission = await storage.createContactSubmission(parsed.data);
 
       const { notifyContactForm } = await import('./emailNotifications');
-      notifyContactForm({ name: parsed.data.name, email: parsed.data.email, message: parsed.data.message }).catch(err => console.error("Contact notification failed:", err));
+      notifyContactForm({ name: parsed.data.name, email: parsed.data.email, message: parsed.data.message }).catch(() => console.error("Contact notification failed"));
 
       const { sendContactConfirmation } = await import('./leadNurtureEmails');
-      sendContactConfirmation(parsed.data.email, parsed.data.name).catch(err => console.error("Contact confirmation email failed:", err));
+      sendContactConfirmation(parsed.data.email, parsed.data.name).catch(() => console.error("Contact confirmation email failed"));
 
       return res.status(201).json({ message: "Message sent successfully", id: submission.id });
     } catch (error) {
-      console.error("Contact form error:", error);
+      console.error("Contact form error");
       return res.status(500).json({ message: "Failed to send message" });
     }
   });

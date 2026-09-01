@@ -135,6 +135,37 @@ app.use((req, res, next) => {
 
   await registerRoutes(httpServer, app);
 
+  // Retired public pages must redirect before either Vite or production static
+  // middleware serves the single-page application fallback.
+  const retiredPublicRedirects: Record<string, string> = {
+    "/services": "/packages",
+    "/services/website-services": "/websites-digital",
+    "/services/marketing-services": "/websites-digital",
+    "/services/crm-lead-tracking": "/business-setup",
+    "/services/business-systems": "/business-setup",
+    "/services/hr-recruiting": "/business-setup",
+    "/services/growth-support": "/packages",
+    "/solutions": "/packages",
+    "/pricing": "/packages",
+    "/approach": "/about",
+    "/consulting": "/business-setup",
+    "/recruiting": "/business-setup",
+    "/marketing": "/websites-digital",
+  };
+
+  app.use((req, res, next) => {
+    if (req.path.startsWith("/api")) {
+      return next();
+    }
+
+    const destination = retiredPublicRedirects[req.path];
+    if (destination) {
+      return res.redirect(301, destination);
+    }
+
+    return next();
+  });
+
   try {
     await seedAdminAccount();
   } catch (err) {

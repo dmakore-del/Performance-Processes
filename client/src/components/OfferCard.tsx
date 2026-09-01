@@ -24,7 +24,9 @@ const CARD_COPY = {
     getStarted: "Get Started",
     requestQuote: "Request Quote",
     payWith: "Pay with",
-    payMethods: "Card · Debit · PayPal",
+    payMethods: "Credit & debit cards · PayPal when available",
+    oneTime: "One-time service fee · CAD",
+    monthlyCadence: "Monthly service fee · CAD",
     havePromo: "Have a NextUp discount code?",
     discountCode: "Discount code",
     clear: "Clear",
@@ -44,7 +46,9 @@ const CARD_COPY = {
     getStarted: "Commencer",
     requestQuote: "Demander un devis",
     payWith: "Payer avec",
-    payMethods: "Carte · Débit · PayPal",
+    payMethods: "Cartes de crédit et débit · PayPal si offert",
+    oneTime: "Frais de service unique · CAD",
+    monthlyCadence: "Frais de service mensuels · CAD",
     havePromo: "Vous avez un code de réduction NextUp?",
     discountCode: "Code de réduction",
     clear: "Effacer",
@@ -113,13 +117,13 @@ export function OfferCard({ offer, returnPage = "/" }: OfferCardProps) {
 
   return (
     <div
-      className={`relative flex flex-col h-full rounded-none border bg-white p-7 transition-colors ${
+       className={`relative flex flex-col h-full border bg-card p-7 transition-colors ${
         offer.highlight ? "border-accent" : "border-border hover:border-primary/40"
       }`}
       data-testid={`offer-card-${offer.id}`}
     >
       {offer.highlight && (
-        <span className="absolute top-0 right-0 text-[10px] uppercase tracking-[0.2em] bg-accent text-white px-3 py-1.5">
+         <span className="absolute top-0 right-0 text-[11px] bg-accent text-primary px-3 py-1.5">
           {cc.mostPopular}
         </span>
       )}
@@ -147,6 +151,9 @@ export function OfferCard({ offer, returnPage = "/" }: OfferCardProps) {
             {cc.nextUpApplied}
           </div>
         )}
+        <p className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+          {offer.isMonthly ? cc.monthlyCadence : cc.oneTime}
+        </p>
         {offer.isPerPerson && offer.perTeamLabel && (
           <div className="mt-4 inline-flex items-center border border-border text-xs">
             <button
@@ -185,7 +192,7 @@ export function OfferCard({ offer, returnPage = "/" }: OfferCardProps) {
 
       <div className="mt-auto space-y-2.5">
         {showBuy && isWebsite && (
-          <div className="rounded-none bg-secondary/50 border border-border p-3">
+           <div className="bg-secondary/50 border border-border p-3">
             {!showPromo ? (
               <button
                 type="button"
@@ -206,7 +213,7 @@ export function OfferCard({ offer, returnPage = "/" }: OfferCardProps) {
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value)}
                     placeholder="NEXTPROCESSES"
-                    className="flex-1 min-w-0 rounded-md border border-border bg-white px-3 py-2 text-sm font-mono uppercase tracking-wide focus:outline-none focus:border-accent"
+                     className="flex-1 min-w-0 border border-border bg-card px-3 py-2 text-sm font-mono uppercase tracking-wide focus:outline-none focus:border-accent"
                     data-testid={`input-promo-${offer.id}`}
                   />
                   {promoCode && (
@@ -248,13 +255,12 @@ export function OfferCard({ offer, returnPage = "/" }: OfferCardProps) {
             </div>
           </>
         ) : offer.ctaHref ? (
-          <Link href={offer.ctaHref}>
-            <Button
-              className="w-full rounded-none h-12 font-semibold text-xs uppercase tracking-[0.2em] bg-primary text-white hover:bg-accent"
-              data-testid={`button-explore-${offer.id}`}
-            >
-              {cc.requestQuote}
-            </Button>
+          <Link
+            href={offer.ctaHref}
+            className="flex w-full h-12 items-center justify-center rounded-none bg-primary text-white text-xs font-semibold uppercase tracking-[0.2em] hover:bg-accent"
+            data-testid={`button-explore-${offer.id}`}
+          >
+            {cc.requestQuote}
           </Link>
         ) : null}
       </div>

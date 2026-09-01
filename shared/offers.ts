@@ -30,6 +30,98 @@ export interface Offer {
 
 export const OFFERS: Offer[] = [
   {
+    id: "business-foundation",
+    name: "Business Foundation",
+    description: "Make your business official and organized with the essential guidance, registration support, and launch-ready administration to move forward with confidence.",
+    price: 149500,
+    priceLabel: "$1,495",
+    bestFor: "Founders formalizing a new business and needing a clear, practical first step.",
+    includes: ["Initial business consultation", "Structure and incorporation guidance", "Registration support", "Startup checklist", "Essential administrative setup", "One follow-up consultation"],
+    category: "packages",
+  },
+  {
+    id: "business-launch",
+    name: "Business Launch",
+    description: "Build a solid foundation and a professional digital presence that helps your new business look ready for customers.",
+    price: 499500,
+    priceLabel: "$4,995",
+    bestFor: "Founders ready to move from an idea or registration into a credible, client-ready launch.",
+    includes: ["Everything in Business Foundation", "Business model and pricing consultation", "Essential business systems", "Professional email setup", "Custom starter website", "Google Business Profile and foundational SEO"],
+    category: "packages",
+    highlight: true,
+  },
+  {
+    id: "complete-business-build",
+    name: "Complete Business Build",
+    description: "Hands-on support from idea through launch, with the digital, operational, and client systems your business needs to run.",
+    price: 999500,
+    priceLabel: "$9,995",
+    bestFor: "Founders who want one experienced partner to help build the business end to end.",
+    includes: ["Everything in Business Launch", "Expanded website and brand direction", "CRM or booking-system setup", "Payment and invoicing integration", "Operational workflows and templates", "Digital launch plan and post-launch support"],
+    category: "packages",
+  },
+  {
+    id: "business-name-registration",
+    name: "Business Name Search & Registration Support",
+    description: "Administrative support to search, prepare, and submit your business name registration with a clear record of the next steps.",
+    price: 29900,
+    priceLabel: "$299",
+    bestFor: "Founders who have chosen a name and want practical help making the registration process orderly.",
+    includes: ["Business name availability search guidance", "Registration readiness review", "Administrative preparation and submission support", "Registration confirmation checklist", "Next-step guidance after registration"],
+    category: "systems",
+  },
+  {
+    id: "ontario-federal-incorporation",
+    name: "Ontario or Federal Incorporation Support",
+    description: "Practical administrative incorporation support to help you prepare and submit an Ontario or federal incorporation filing.",
+    price: 69900,
+    priceLabel: "$699 + government filing fees",
+    bestFor: "Founders ready to incorporate who want organized, hands-on administrative support through the filing process.",
+    includes: ["Incorporation pathway discussion", "Filing readiness checklist", "Administrative form preparation support", "Ontario or federal submission support", "Post-filing administrative next steps"],
+    category: "systems",
+  },
+  {
+    id: "cra-business-number",
+    name: "CRA Business Number Setup",
+    description: "Administrative support to set up your CRA Business Number and understand the practical information needed for your records.",
+    price: 24900,
+    priceLabel: "$249",
+    bestFor: "Newly registered or incorporated businesses that need their CRA Business Number set up correctly.",
+    includes: ["CRA Business Number setup support", "Information and document checklist", "Application preparation guidance", "Confirmation record checklist"],
+    category: "systems",
+  },
+  {
+    id: "cra-program-accounts",
+    name: "CRA Program Account Setup Support",
+    description: "Administrative support for relevant CRA program accounts, including GST/HST, payroll, and import/export accounts where applicable.",
+    price: 29900,
+    priceLabel: "$299",
+    bestFor: "Businesses preparing to collect GST/HST, hire employees, or import/export goods.",
+    includes: ["Program account needs review", "GST/HST, payroll, or import/export setup support as applicable", "Information checklist", "Application preparation guidance", "Account confirmation checklist"],
+    category: "systems",
+  },
+  {
+    id: "startup-compliance-checklist",
+    name: "Startup Requirements & Compliance Checklist",
+    description: "A practical checklist of the registrations, records, and operating requirements to organize before you launch.",
+    price: 19900,
+    priceLabel: "$199",
+    bestFor: "Founders who want a clear administrative starting point before opening their doors.",
+    includes: ["Business startup requirements review", "Customized administrative checklist", "Registration and account milestone list", "Recordkeeping and operational readiness prompts", "Recommended next steps"],
+    category: "systems",
+  },
+  {
+    id: "incorporation-cra-bundle",
+    name: "Incorporation + CRA Setup Bundle",
+    description: "A coordinated administrative setup covering incorporation support, your CRA Business Number, and applicable CRA program accounts.",
+    price: 99500,
+    priceLabel: "$995 + government filing fees",
+    bestFor: "Founders who want one practical process to move from incorporation preparation into CRA setup.",
+    includes: ["Ontario or federal incorporation support", "CRA Business Number setup", "CRA program account setup support as applicable", "Filing and information checklists", "Post-setup administrative next steps"],
+    category: "systems",
+    highlight: true,
+  },
+  {
     id: "growth-system",
     name: "Growth System",
     description: "A complete system to attract, capture, and convert more leads — built and installed for you.",
@@ -45,7 +137,7 @@ export const OFFERS: Offer[] = [
       "Analytics and KPI tracking setup",
       "30-day execution plan",
     ],
-    category: "packages",
+    category: "marketing",
     highlight: true,
   },
   {
@@ -64,7 +156,7 @@ export const OFFERS: Offer[] = [
       "Tool and systems integration plan",
       "90-day implementation roadmap",
     ],
-    category: "packages",
+    category: "systems",
   },
   {
     id: "team-performance-system",
@@ -81,14 +173,14 @@ export const OFFERS: Offer[] = [
       "Role clarity and accountability map",
       "Team KPIs and check-in cadence",
     ],
-    category: "packages",
+    category: "hr-recruiting",
   },
   {
     id: "ongoing-performance-support",
     name: "Ongoing Performance Support",
-    description: "A monthly partner to keep your systems running, measured, and improving. Pricing is assessed on a case-by-case basis.",
+    description: "A monthly partner to keep your systems running, measured, and improving.",
     price: 75000,
-    priceLabel: "Custom",
+    priceLabel: "$750 / month",
     bestFor: "Businesses that want continuous support across systems, marketing, and performance.",
     includes: [
       "Monthly strategy and planning call",
@@ -98,10 +190,8 @@ export const OFFERS: Offer[] = [
       "Priority support between calls",
       "Quarterly roadmap updates",
     ],
-    category: "packages",
+    category: "support",
     isMonthly: true,
-    isRange: true,
-    ctaHref: "/contact",
   },
 
   {
@@ -394,9 +484,9 @@ export const OFFERS: Offer[] = [
   {
     id: "monthly-marketing",
     name: "Monthly Marketing Support",
-    description: "Ongoing marketing planning, campaigns, and reporting. Pricing is assessed on a case-by-case basis.",
+    description: "Ongoing marketing planning, campaigns, and reporting, with a clear monthly cadence.",
     price: 150000,
-    priceLabel: "Custom",
+    priceLabel: "$1,500 / month",
     bestFor: "Businesses that need a marketing partner without hiring in-house.",
     includes: [
       "Monthly marketing planning",
@@ -407,15 +497,13 @@ export const OFFERS: Offer[] = [
     ],
     category: "support",
     isMonthly: true,
-    isRange: true,
-    ctaHref: "/contact",
   },
   {
     id: "monthly-growth",
     name: "Monthly Growth Support",
-    description: "Marketing, website, lead tracking, and KPI support every month. Pricing is assessed on a case-by-case basis.",
+    description: "Marketing, website, lead tracking, and KPI support every month.",
     price: 250000,
-    priceLabel: "Custom",
+    priceLabel: "$2,500 / month",
     bestFor: "Businesses that need broader monthly growth support.",
     includes: [
       "Marketing support",
@@ -427,15 +515,13 @@ export const OFFERS: Offer[] = [
     category: "support",
     isMonthly: true,
     highlight: true,
-    isRange: true,
-    ctaHref: "/contact",
   },
   {
     id: "growth-partner-retainer",
     name: "Growth Partner Retainer",
-    description: "Full ongoing support across marketing, CRM, website, KPIs, and process. Pricing is assessed on a case-by-case basis.",
+    description: "Full ongoing support across marketing, CRM, website, KPIs, and process.",
     price: 400000,
-    priceLabel: "Custom",
+    priceLabel: "$4,000 / month",
     bestFor: "Businesses that want an embedded growth partner.",
     includes: [
       "Marketing support",
@@ -447,8 +533,6 @@ export const OFFERS: Offer[] = [
     ],
     category: "support",
     isMonthly: true,
-    isRange: true,
-    ctaHref: "/contact",
   },
 
   {
@@ -512,17 +596,17 @@ export const OFFERS: Offer[] = [
 
 export const CATEGORY_META: Record<OfferCategory, { label: string; description: string; order: number }> = {
   packages: {
-    label: "Headline Packages",
-    description: "Four productized systems that solve a complete business outcome — buy online and we get started.",
+    label: "Launch Packages",
+    description: "Three clear launch paths for founders — choose your scope, buy online, and we get started.",
     order: 0,
   },
   website: {
-    label: "Website Services",
+    label: "Websites & Digital Presence",
     description: "Websites that work, from a simple presence to a conversion engine.",
     order: 1,
   },
   marketing: {
-    label: "Marketing Services",
+    label: "Marketing / CRM",
     description: "Bring structure, campaigns, and lead generation to your marketing.",
     order: 2,
   },
@@ -532,22 +616,22 @@ export const CATEGORY_META: Record<OfferCategory, { label: string; description: 
     order: 3,
   },
   systems: {
-    label: "Business Systems",
+    label: "Business Setup / Systems",
     description: "Audits, frameworks, and structure for how your business runs.",
     order: 4,
   },
   "hr-recruiting": {
-    label: "HR and Recruiting",
+    label: "People / HR Support",
     description: "Hiring strategy, sourcing, HR foundations, and career coaching for growing businesses.",
     order: 5,
   },
   support: {
-    label: "Ongoing Growth Support",
+    label: "Monthly Support",
     description: "Monthly retainers to keep growth, marketing, and systems on track.",
     order: 6,
   },
   bundle: {
-    label: "Popular Packages",
+    label: "Bundled Builds",
     description: "Pre-built bundles that combine our most-requested services.",
     order: 7,
   },
@@ -874,6 +958,69 @@ export type Language = "en" | "fr";
 type OfferFr = Partial<Pick<Offer, "name" | "description" | "bestFor" | "includes" | "priceLabel">>;
 
 export const OFFERS_FR: Record<string, OfferFr> = {
+  "business-name-registration": {
+    name: "Recherche de nom commercial et soutien à l’enregistrement",
+    description: "Un soutien administratif pour rechercher, préparer et soumettre l’enregistrement de votre nom commercial, avec une prochaine étape claire.",
+    priceLabel: "299 $",
+    bestFor: "Les fondateurs qui ont choisi un nom et souhaitent un accompagnement pratique pour organiser l’enregistrement.",
+    includes: ["Orientation sur la disponibilité du nom commercial", "Revue de préparation à l’enregistrement", "Préparation administrative et soutien à la soumission", "Liste de vérification de la confirmation", "Orientation sur les étapes suivant l’enregistrement"],
+  },
+  "ontario-federal-incorporation": {
+    name: "Soutien à l’incorporation en Ontario ou au fédéral",
+    description: "Un soutien pratique et administratif pour vous aider à préparer et soumettre une demande d’incorporation en Ontario ou au fédéral.",
+    priceLabel: "699 $ + frais gouvernementaux",
+    bestFor: "Les fondateurs prêts à s’incorporer qui veulent un soutien administratif organisé tout au long du processus de dépôt.",
+    includes: ["Discussion du parcours d’incorporation", "Liste de préparation au dépôt", "Soutien à la préparation administrative des formulaires", "Soutien à la soumission en Ontario ou au fédéral", "Prochaines étapes administratives après le dépôt"],
+  },
+  "cra-business-number": {
+    name: "Configuration du numéro d’entreprise de l’ARC",
+    description: "Un soutien administratif pour configurer votre numéro d’entreprise de l’ARC et organiser les renseignements nécessaires à vos dossiers.",
+    priceLabel: "249 $",
+    bestFor: "Les entreprises nouvellement enregistrées ou incorporées qui doivent configurer leur numéro d’entreprise de l’ARC.",
+    includes: ["Soutien à la configuration du numéro d’entreprise de l’ARC", "Liste des renseignements et documents", "Orientation sur la préparation de la demande", "Liste de vérification du dossier de confirmation"],
+  },
+  "cra-program-accounts": {
+    name: "Soutien à la configuration des comptes de programme de l’ARC",
+    description: "Un soutien administratif pour les comptes de programme de l’ARC pertinents, y compris TPS/TVH, paie et importation/exportation selon le cas.",
+    priceLabel: "299 $",
+    bestFor: "Les entreprises qui se préparent à percevoir la TPS/TVH, à embaucher ou à importer/exporter des biens.",
+    includes: ["Revue des besoins en comptes de programme", "Soutien à la configuration TPS/TVH, paie ou import/export selon le cas", "Liste des renseignements requis", "Orientation sur la préparation de la demande", "Liste de vérification de la confirmation du compte"],
+  },
+  "startup-compliance-checklist": {
+    name: "Liste des exigences de démarrage et de conformité",
+    description: "Une liste pratique des enregistrements, dossiers et exigences de fonctionnement à organiser avant votre lancement.",
+    priceLabel: "199 $",
+    bestFor: "Les fondateurs qui souhaitent un point de départ administratif clair avant d’ouvrir leurs portes.",
+    includes: ["Revue des exigences de démarrage", "Liste administrative personnalisée", "Liste des étapes d’enregistrement et de comptes", "Points de préparation des dossiers et des opérations", "Prochaines étapes recommandées"],
+  },
+  "incorporation-cra-bundle": {
+    name: "Forfait incorporation + configuration ARC",
+    description: "Une mise en place administrative coordonnée couvrant le soutien à l’incorporation, votre numéro d’entreprise de l’ARC et les comptes de programme applicables.",
+    priceLabel: "995 $ + frais gouvernementaux",
+    bestFor: "Les fondateurs qui veulent un processus pratique unique, de la préparation à l’incorporation jusqu’à la configuration de l’ARC.",
+    includes: ["Soutien à l’incorporation en Ontario ou au fédéral", "Configuration du numéro d’entreprise de l’ARC", "Soutien à la configuration des comptes de programme ARC selon le cas", "Listes de vérification des dépôts et renseignements", "Prochaines étapes administratives après la configuration"],
+  },
+  "business-foundation": {
+    name: "Fondation d’entreprise",
+    description: "Officialisez et organisez votre entreprise grâce à l’orientation essentielle, au soutien à l’enregistrement et à la mise en place administrative nécessaire pour avancer en confiance.",
+    bestFor: "Les fondateurs qui officialisent une nouvelle entreprise et ont besoin d’une première étape claire et pratique.",
+    priceLabel: "1 495 $",
+    includes: ["Consultation initiale", "Orientation sur la structure et l’incorporation", "Soutien à l’enregistrement", "Liste de vérification de démarrage", "Mise en place administrative essentielle", "Une consultation de suivi"],
+  },
+  "business-launch": {
+    name: "Lancement d’entreprise",
+    description: "Bâtissez une fondation solide et une présence numérique professionnelle qui donne à votre nouvelle entreprise une image prête pour ses clients.",
+    bestFor: "Les fondateurs prêts à passer de l’idée ou de l’enregistrement à un lancement crédible et prêt pour les clients.",
+    priceLabel: "4 995 $",
+    includes: ["Tout ce qui est inclus dans Fondation d’entreprise", "Consultation sur le modèle d’affaires et les prix", "Systèmes d’entreprise essentiels", "Configuration du courriel professionnel", "Site web de départ personnalisé", "Fiche Google Business et SEO de base"],
+  },
+  "complete-business-build": {
+    name: "Construction complète de l’entreprise",
+    description: "Un accompagnement pratique de l’idée au lancement, avec les systèmes numériques, opérationnels et clients nécessaires au fonctionnement de votre entreprise.",
+    bestFor: "Les fondateurs qui veulent un partenaire expérimenté pour bâtir leur entreprise de bout en bout.",
+    priceLabel: "9 995 $",
+    includes: ["Tout ce qui est inclus dans Lancement d’entreprise", "Site web élargi et orientation de marque", "Configuration d’un CRM ou système de réservation", "Intégration du paiement et de la facturation", "Flux de travail et modèles opérationnels", "Plan de lancement numérique et soutien après lancement"],
+  },
   "growth-system": {
     name: "Système de croissance",
     description:
@@ -924,8 +1071,8 @@ export const OFFERS_FR: Record<string, OfferFr> = {
   "ongoing-performance-support": {
     name: "Soutien continu à la performance",
     description:
-      "Un partenaire mensuel pour maintenir vos systèmes en marche, mesurés et en amélioration. La tarification est évaluée au cas par cas.",
-    priceLabel: "Sur mesure",
+      "Un partenaire mensuel pour maintenir vos systèmes en marche, mesurés et en amélioration.",
+    priceLabel: "750 $ / mois",
     bestFor:
       "Les entreprises qui souhaitent un soutien continu en matière de systèmes, de marketing et de performance.",
     includes: [
@@ -1176,8 +1323,8 @@ export const OFFERS_FR: Record<string, OfferFr> = {
   "monthly-marketing": {
     name: "Soutien marketing mensuel",
     description:
-      "Planification marketing, campagnes et rapports en continu. La tarification est évaluée au cas par cas.",
-    priceLabel: "Sur mesure",
+      "Planification marketing, campagnes et rapports en continu, selon une cadence mensuelle claire.",
+    priceLabel: "1 500 $ / mois",
     bestFor:
       "Les entreprises qui ont besoin d'un partenaire marketing sans recruter à l'interne.",
     includes: [
@@ -1191,8 +1338,8 @@ export const OFFERS_FR: Record<string, OfferFr> = {
   "monthly-growth": {
     name: "Soutien mensuel à la croissance",
     description:
-      "Soutien au marketing, au site web, au suivi des prospects et aux indicateurs chaque mois. La tarification est évaluée au cas par cas.",
-    priceLabel: "Sur mesure",
+      "Soutien au marketing, au site web, au suivi des prospects et aux indicateurs chaque mois.",
+    priceLabel: "2 500 $ / mois",
     bestFor: "Les entreprises qui ont besoin d'un soutien mensuel élargi à la croissance.",
     includes: [
       "Soutien marketing",
@@ -1205,8 +1352,8 @@ export const OFFERS_FR: Record<string, OfferFr> = {
   "growth-partner-retainer": {
     name: "Forfait partenaire de croissance",
     description:
-      "Soutien continu complet en matière de marketing, de CRM, de site web, d'indicateurs et de processus. La tarification est évaluée au cas par cas.",
-    priceLabel: "Sur mesure",
+      "Soutien continu complet en matière de marketing, de CRM, de site web, d'indicateurs et de processus.",
+    priceLabel: "4 000 $ / mois",
     bestFor: "Les entreprises qui souhaitent un partenaire de croissance intégré.",
     includes: [
       "Soutien marketing",
@@ -1267,17 +1414,17 @@ export const OFFERS_FR: Record<string, OfferFr> = {
 
 export const CATEGORY_META_FR: Record<OfferCategory, { label: string; description: string }> = {
   packages: {
-    label: "Forfaits phares",
+    label: "Forfaits de lancement",
     description:
-      "Quatre systèmes productisés qui règlent un résultat d'affaires complet, achetez en ligne et nous démarrons.",
+      "Trois parcours clairs pour les fondateurs : choisissez la portée, achetez en ligne et nous démarrons.",
   },
   website: {
-    label: "Services de site web",
+    label: "Sites web et présence numérique",
     description:
       "Des sites web qui fonctionnent, d'une simple présence à un moteur de conversion.",
   },
   marketing: {
-    label: "Services marketing",
+    label: "Marketing / CRM",
     description:
       "Apportez de la structure, des campagnes et de la génération de prospects à votre marketing.",
   },
@@ -1286,22 +1433,22 @@ export const CATEGORY_META_FR: Record<OfferCategory, { label: string; descriptio
     description: "Captez, suivez et relancez vos prospects de façon constante.",
   },
   systems: {
-    label: "Systèmes d'entreprise",
+    label: "Mise en place / systèmes",
     description:
       "Audits, cadres et structure pour le fonctionnement de votre entreprise.",
   },
   "hr-recruiting": {
-    label: "RH et recrutement",
+    label: "Soutien aux personnes / RH",
     description:
       "Stratégie de recrutement, recherche, fondations RH et accompagnement de carrière pour les entreprises en croissance.",
   },
   support: {
-    label: "Soutien continu à la croissance",
+    label: "Soutien mensuel",
     description:
       "Des forfaits mensuels pour garder la croissance, le marketing et les systèmes sur la bonne voie.",
   },
   bundle: {
-    label: "Forfaits populaires",
+    label: "Constructions groupées",
     description:
       "Des ensembles préconçus qui combinent nos services les plus demandés.",
   },

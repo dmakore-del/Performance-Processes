@@ -3,7 +3,6 @@ import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { PageHero } from "@/components/layout/PageHero";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
-import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
 
@@ -142,7 +141,7 @@ export default function Results() {
   const CASE_STUDY = c.caseStudy;
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
+    <div className="min-h-[100dvh] bg-background flex flex-col font-sans">
       <SEOHead
         title="Results & Case Studies | Performance Processes"
         description="Real outcomes from the systems we build for small and emerging businesses. Case studies and client results from Performance Processes."
@@ -150,17 +149,16 @@ export default function Results() {
       />
       <Navbar />
 
-      <main className="flex-grow">
+       <main className="flex-grow">
         <PageHero
           title={c.heroTitle}
           subtitle={c.heroSubtitle}
         />
 
         {/* Featured case study */}
-        <section className="py-20 bg-[#FAFAFA]" data-testid="section-case-studies">
+         <section className="py-24 bg-background" data-testid="section-case-studies">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="max-w-3xl mb-12">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-3">{c.caseEyebrow}</p>
+             <div className="max-w-3xl mb-12">
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-3">
                 {c.caseHeading}
               </h2>
@@ -171,15 +169,15 @@ export default function Results() {
 
             <AnimateOnScroll animation="fade-up">
               <article
-                className="rounded-2xl border border-border bg-white overflow-hidden"
+                 className="border border-border bg-card overflow-hidden"
                 data-testid="card-case-study-truenorth"
               >
                 <div className="p-8 md:p-12 border-b border-border">
-                  <p className="text-[11px] font-black uppercase tracking-[0.25em] text-accent mb-3">
+                   <p className="text-sm font-medium text-accent mb-3">
                     {CASE_STUDY.industry}
                   </p>
                   <h3
-                    className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-3"
+                     className="text-display text-3xl text-primary mb-3"
                     data-testid="text-case-title"
                   >
                     {CASE_STUDY.title}
@@ -193,17 +191,17 @@ export default function Results() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   <div className="p-8 md:p-12 md:border-r border-b md:border-b-0 border-border">
-                    <p className="text-[11px] font-black uppercase tracking-[0.25em] text-primary/40 mb-3">
+                     <h4 className="text-sm font-medium text-primary/60 mb-3">
                       {c.challengeLabel}
-                    </p>
+                     </h4>
                     <p className="text-sm md:text-base text-muted-foreground leading-relaxed" data-testid="text-case-challenge">
                       {CASE_STUDY.challenge}
                     </p>
                   </div>
                   <div className="p-8 md:p-12 border-b border-border">
-                    <p className="text-[11px] font-black uppercase tracking-[0.25em] text-primary/40 mb-3">
+                     <h4 className="text-sm font-medium text-primary/60 mb-3">
                       {c.solutionLabel}
-                    </p>
+                     </h4>
                     <p className="text-sm md:text-base text-muted-foreground leading-relaxed" data-testid="text-case-solution">
                       {CASE_STUDY.solution}
                     </p>
@@ -211,9 +209,9 @@ export default function Results() {
                 </div>
 
                 <div className="p-8 md:p-12 border-b border-border">
-                  <p className="text-[11px] font-black uppercase tracking-[0.25em] text-primary/40 mb-6">
+                   <h4 className="text-sm font-medium text-primary/60 mb-6">
                     {c.resultsLabel}
-                  </p>
+                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
                     {CASE_STUDY.results.map((r, i) => (
                       <div
@@ -229,9 +227,9 @@ export default function Results() {
                 </div>
 
                 <div className="p-8 md:p-12 bg-primary text-white">
-                  <p className="text-[11px] font-black uppercase tracking-[0.25em] text-accent mb-3">
+                   <h4 className="text-sm font-medium text-accent mb-3">
                     {c.impactLabel}
-                  </p>
+                   </h4>
                   <p className="text-base md:text-lg leading-relaxed text-white/90" data-testid="text-case-impact">
                     {CASE_STUDY.impact}
                   </p>
@@ -242,10 +240,9 @@ export default function Results() {
         </section>
 
         {/* Testimonials */}
-        <section className="py-20 bg-white border-t" data-testid="section-testimonials">
+         <section className="py-24 bg-card border-t" data-testid="section-testimonials">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-3">{c.testimonialsEyebrow}</p>
+             <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-3">
                 {c.testimonialsHeading}
               </h2>
@@ -263,7 +260,7 @@ export default function Results() {
               {TESTIMONIALS.map((t, i) => (
                 <AnimateOnScroll key={i} animation="fade-up" delay={i * 100}>
                   <figure
-                    className="flex flex-col h-full rounded-2xl border border-border bg-[#FAFAFA] p-8"
+                     className="flex flex-col h-full border border-border bg-background p-8"
                     data-testid={`card-testimonial-${i}`}
                   >
                     <span aria-hidden="true" className="text-4xl font-serif text-accent/40 leading-none mb-4 block">
@@ -297,16 +294,12 @@ export default function Results() {
                 {c.ctaSubtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
-                  <Button className="rounded-full bg-accent text-white hover:bg-white hover:text-primary h-14 px-10 font-bold text-sm uppercase tracking-wider w-full sm:w-auto" data-testid="button-results-book">
-                    {c.ctaBook}
-                  </Button>
-                </a>
-                <Link href="/#capabilities">
-                  <Button variant="outline" className="rounded-full border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 font-bold text-sm uppercase tracking-wider w-full sm:w-auto" data-testid="button-results-services">
-                    {c.ctaServices}
-                  </Button>
-                </Link>
+                 <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="bg-accent px-8 py-4 text-sm text-primary transition hover:bg-white" data-testid="button-results-book">
+                   {c.ctaBook} <span aria-hidden="true">↗</span>
+                 </a>
+                 <Link href="/#capabilities" className="border border-white/30 px-8 py-4 text-sm text-white transition hover:border-accent hover:text-accent" data-testid="button-results-services">
+                   {c.ctaServices} <span aria-hidden="true">↗</span>
+                 </Link>
               </div>
             </div>
           </div>

@@ -1,34 +1,110 @@
-import { Link } from "wouter";
+import { useMemo, useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
+import { OfferCard } from "@/components/OfferCard";
 import { useLanguage } from "@/hooks/use-language";
+import { OFFERS, getLocalizedCategoryMeta, type OfferCategory } from "@shared/offers";
 
-type Plan = [string, string, string[]];
-const EN: Plan[] = [
-  ["Business Foundation", "For formalizing and organizing a new business.", ["Initial business consultation", "Structure and incorporation guidance", "Registration support", "Startup checklist", "Essential administrative setup", "One follow-up consultation"]],
-  ["Business Launch", "For a solid foundation and a professional digital presence.", ["Everything in Business Foundation", "Business model and pricing consultation", "Essential business systems", "Professional email setup", "Custom starter website", "Google Business Profile and foundational SEO"]],
-  ["Complete Business Build", "For hands-on support from idea through launch.", ["Everything in Business Launch", "Expanded website and brand direction", "CRM or booking-system setup", "Payment and invoicing integration", "Operational workflows and templates", "Digital launch plan and post-launch support"]],
-];
-const FR: Plan[] = [
-  ["Fondation d’entreprise", "Pour officialiser et organiser une nouvelle entreprise.", ["Consultation initiale", "Orientation sur la structure et l’incorporation", "Soutien à l’enregistrement", "Liste de démarrage", "Mise en place administrative essentielle", "Une consultation de suivi"]],
-  ["Lancement d’entreprise", "Pour une fondation solide et une présence numérique professionnelle.", ["Tout ce qui est inclus dans Fondation", "Consultation sur le modèle et les prix", "Systèmes d’entreprise essentiels", "Courriel professionnel", "Site web de départ personnalisé", "Fiche Google et SEO de base"]],
-  ["Construction complète", "Pour un accompagnement pratique de l’idée au lancement.", ["Tout ce qui est inclus dans Lancement", "Site élargi et orientation de marque", "CRM ou système de réservation", "Intégration paiement et facturation", "Flux de travail et modèles", "Plan de lancement et soutien après lancement"]],
-];
+type CatalogGroup = OfferCategory | "marketing-crm";
+const CATEGORY_ORDER: CatalogGroup[] = ["packages", "website", "systems", "marketing-crm", "hr-recruiting", "support", "bundle"];
 
 export default function Packages() {
   const { language } = useLanguage();
   const fr = language === "fr";
-  const plans = fr ? FR : EN;
-  return <div className="min-h-[100dvh] bg-background">
-    <SEOHead title={fr ? "Forfaits de lancement d’entreprise | Performance Processes" : "Business Launch Packages | Performance Processes"} description={fr ? "Des forfaits clairs de formation, mise en place et lancement de sites web pour les entrepreneurs canadiens." : "Clear, customized business formation, setup, and website launch packages for Canadian entrepreneurs."} path="/packages" />
-    <Navbar />
-    <main>
-      <section className="bg-secondary px-5 py-24"><div className="mx-auto max-w-[1100px] text-center"><p className="eyebrow">{fr ? "Des façons claires de commencer" : "Clear ways to begin"}</p><h1 className="text-display mt-6 text-5xl md:text-7xl">{fr ? "Construisez votre lancement selon vos besoins actuels." : "Build your launch around what you need now."}</h1><p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-muted-foreground">{fr ? "Chaque forfait commence par une conversation. La portée et l’investissement sont adaptés à votre étape et votre calendrier." : "Every package begins with a conversation. Scope and investment are tailored to your stage, priorities, and launch timeline."}</p></div></section>
-      <section className="mx-auto max-w-[1240px] px-5 py-24"><div className="grid gap-5 lg:grid-cols-3">{plans.map(([name, desc, items], i) => <article key={name} className={`flex flex-col border p-8 ${i === 1 ? "border-primary bg-primary text-primary-foreground" : "border-primary/15 bg-card"}`}><p className="font-mono text-xs">{`0${i + 1}`}</p><h2 className="text-display mt-8 text-3xl">{name}</h2><p className={`mt-4 min-h-14 leading-7 ${i === 1 ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{desc}</p><ul className="mt-8 flex-1 border-t border-current/20">{items.map(x => <li key={x} className="border-b border-current/20 py-3 text-sm">{x}</li>)}</ul><Link href="/contact" className={`mt-8 px-5 py-4 text-center text-xs font-bold uppercase tracking-[.14em] ${i === 1 ? "bg-accent text-primary" : "bg-primary text-primary-foreground"}`}>{fr ? "Discuter de ce forfait" : "Talk through this package"}</Link></article>)}</div>
-        <div className="mt-20 overflow-x-auto"><h2 className="text-display text-4xl">{fr ? "En bref" : "At a glance"}</h2><table className="mt-8 w-full min-w-[680px] border-collapse text-left text-sm"><thead><tr className="border-b border-primary"><th className="p-4">{fr ? "Ce que vous recevez" : "What you receive"}</th>{plans.map(([n]) => <th key={n} className="p-4">{n}</th>)}</tr></thead><tbody>{(fr ? [["Orientation de formation", "Incluse", "Incluse", "Incluse"], ["Systèmes d’entreprise", "Essentiels", "Essentiels", "Élargis"], ["Site professionnel", "—", "Départ", "Élargi"], ["Soutien au lancement", "—", "Inclus", "Après lancement"]] : [["Formation guidance", "Included", "Included", "Included"], ["Business systems", "Essential", "Essential", "Expanded"], ["Professional website", "—", "Starter", "Expanded"], ["Launch support", "—", "Included", "Post-launch"]]).map(row => <tr key={row[0]} className="border-b border-primary/15">{row.map((x, cellIndex) => <td key={`${row[0]}-${cellIndex}`} className="p-4">{x}</td>)}</tr>)}</tbody></table></div>
-      </section>
-    </main>
-    <Footer />
-  </div>;
+  const [active, setActive] = useState<CatalogGroup | "all">("all");
+  const launchOffers = useMemo(() => OFFERS.filter((offer) => offer.category === "packages").slice(0, 3), []);
+  const visibleCategories = active === "all" ? CATEGORY_ORDER : [active];
+
+  return (
+    <div className="min-h-[100dvh] bg-background">
+      <SEOHead
+        title={fr ? "Forfaits et services | Performance Processes" : "Business packages and services | Performance Processes"}
+        description={fr ? "Explorez tous nos forfaits à prix clairs en dollars canadiens et commencez en ligne." : "Explore every service and package with clear Canadian-dollar pricing and start online."}
+        path="/packages"
+      />
+      <Navbar />
+      <main>
+         <section className="bg-secondary px-5 py-20 md:py-28">
+           <div className="mx-auto grid max-w-[1160px] gap-10 md:grid-cols-[1.2fr_.8fr] md:items-end">
+            <h1 className="text-display max-w-4xl text-5xl leading-[.98] md:text-8xl">
+              {fr ? "Construisez l’entreprise dont vous avez besoin maintenant." : "Build the business you need now."}
+            </h1>
+             <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground md:mb-1">
+              {fr ? "Des fondations au soutien mensuel, chaque offre est définie, tarifée en CAD et prête à être achetée en ligne." : "From first foundations to monthly support, every offer is defined, priced in CAD, and ready to buy online."}
+            </p>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-[1240px] px-5 py-20">
+          <div className="flex flex-col gap-5 border-b border-primary/15 pb-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h2 className="text-display text-4xl md:text-5xl">{fr ? "Les forfaits de lancement" : "Launch packages"}</h2>
+            </div>
+            <p className="max-w-md text-sm leading-6 text-muted-foreground">{fr ? "Un investissement unique pour passer de l’idée à une entreprise prête à fonctionner." : "One-time investments to move from idea to a business ready to operate."}</p>
+          </div>
+           <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {launchOffers.map((offer) => <OfferCard key={offer.id} offer={offer} returnPage="/packages" />)}
+          </div>
+
+          <div className="mt-20 overflow-x-auto">
+            <h2 className="text-display text-4xl">{fr ? "Comparer les trois forfaits" : "Compare the three packages"}</h2>
+            <table className="mt-8 w-full min-w-[760px] border-collapse text-left text-sm">
+              <thead><tr className="border-b border-primary"><th className="p-4">{fr ? "Ce que vous recevez" : "What you receive"}</th>{launchOffers.map((offer) => <th key={offer.id} className="p-4">{offer.name}</th>)}</tr></thead>
+              <tbody>
+                {(fr ? [
+                  ["Orientation de formation", "Incluse", "Incluse", "Incluse"],
+                  ["Systèmes d’entreprise", "Essentiels", "Essentiels", "Élargis"],
+                  ["Site professionnel", "—", "Départ", "Élargi"],
+                  ["Soutien au lancement", "—", "Inclus", "Après lancement"],
+                ] : [
+                  ["Formation guidance", "Included", "Included", "Included"],
+                  ["Business systems", "Essential", "Essential", "Expanded"],
+                  ["Professional website", "—", "Starter", "Expanded"],
+                  ["Launch support", "—", "Included", "Post-launch"],
+                ]).map((row) => <tr key={row[0]} className="border-b border-primary/15">{row.map((cell, index) => <td key={`${row[0]}-${index}`} className={`p-4 ${index === 0 ? "font-semibold" : ""}`}>{cell}</td>)}</tr>)}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section className="bg-primary px-5 py-16 text-primary-foreground">
+          <div className="mx-auto max-w-[1160px]">
+            <h2 className="text-display max-w-3xl text-5xl">{fr ? "Choisissez la prochaine pièce à mettre en place." : "Choose the next piece to put in place."}</h2>
+            <div className="mt-10 flex gap-2 overflow-x-auto pb-2">
+               <button type="button" onClick={() => setActive("all")} className={`shrink-0 border px-4 py-3 text-sm ${active === "all" ? "border-accent bg-accent text-primary" : "border-primary-foreground/30 hover:border-accent"}`}>{fr ? "Tout le catalogue" : "All offers"}</button>
+              {CATEGORY_ORDER.slice(1).map((category) => {
+                const meta = category === "marketing-crm" ? { label: fr ? "Marketing / CRM" : "Marketing / CRM" } : getLocalizedCategoryMeta(category, language);
+                 return <button type="button" key={category} onClick={() => setActive(category)} className={`shrink-0 border px-4 py-3 text-sm ${active === category ? "border-accent bg-accent text-primary" : "border-primary-foreground/30 hover:border-accent"}`}>{meta.label}</button>;
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-[1240px] px-5 py-16">
+          <aside className="mb-16 border-l-2 border-accent bg-secondary px-6 py-6 md:px-8">
+            <div className="mt-3 grid gap-4 md:grid-cols-2">
+              <p className="leading-7 text-muted-foreground">{fr ? "Les frais indiqués pour les services de formation d’entreprise sont les frais de service de Performance Processes. Les frais de dépôt, recherches de nom et autres débours gouvernementaux sont distincts et payables en plus lorsqu’ils s’appliquent." : "Prices shown for Business Formation services are Performance Processes service fees. Government filing fees, name searches, and other government disbursements are separate and payable in addition where applicable."}</p>
+              <p className="leading-7 text-muted-foreground">{fr ? "Performance Processes offre du soutien administratif à l’incorporation et une orientation générale; nous ne fournissons pas de conseils juridiques, fiscaux ou comptables." : "Performance Processes provides administrative incorporation support and general guidance; we do not provide legal, tax, or accounting advice."}</p>
+            </div>
+          </aside>
+          <div className="space-y-20">
+            {visibleCategories.map((category) => {
+              const offers = category === "marketing-crm"
+                ? OFFERS.filter((offer) => offer.category === "marketing" || offer.category === "crm")
+                : OFFERS.filter((offer) => offer.category === category);
+              const meta = category === "marketing-crm"
+                ? { label: fr ? "Marketing / CRM" : "Marketing / CRM", description: fr ? "Donnez une structure à votre marketing et gardez chaque prospect visible et suivi." : "Give your marketing structure and keep every lead visible and followed up." }
+                : getLocalizedCategoryMeta(category, language);
+              return <div key={category} id={category}>
+                <div className="mb-8 max-w-2xl"><h2 className="text-display text-4xl">{meta.label}</h2><p className="mt-3 leading-7 text-muted-foreground">{meta.description}</p></div>
+                <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">{offers.map((offer) => <OfferCard key={offer.id} offer={offer} returnPage="/packages" />)}</div>
+              </div>;
+            })}
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
 }

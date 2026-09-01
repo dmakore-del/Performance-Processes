@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, serial, timestamp, boolean, integer, date } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, serial, timestamp, boolean, integer, date, uniqueIndex } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -249,6 +249,45 @@ export const insertInvoiceSchema = createInsertSchema(invoices).omit({
 
 export type InsertInvoice = z.infer<typeof insertInvoiceSchema>;
 export type Invoice = typeof invoices.$inferSelect;
+
+// This is intentionally in the public schema (rather than Stripe's synced schema).
+// It is our durable, immutable record of what was receipted and delivered.
+export const paymentReceipts = pgTable("payment_receipts", {
+  id: serial("id").primaryKey(),
+  stripeEventId: text("stripe_event_id").notNull(),
+  stripeSessionId: text("stripe_session_id"),
+  stripePaymentId: text("stripe_payment_id"),
+  stripeInvoiceId: text("stripe_invoice_id"),
+  receiptNumber: text("receipt_number").notNull(),
+  customerEmail: text("customer_email"),
+  customerName: text("customer_name"),
+  serviceDescription: text("service_description").notNull(),
+  subtotalCents: integer("subtotal_cents").notNull(),
+  amountCents: integer("amount_cents").notNull(),
+  currency: varchar("currency", { length: 3 }).notNull().default("cad"),
+  paymentStatus: text("payment_status").notNull(),
+  paymentMethod: text("payment_method"),
+  recurring: boolean("recurring").notNull().default(false),
+  paidAt: timestamp("paid_at"),
+  // Base64 is used because this Drizzle version has no bytea column helper.
+  // It remains private, database-backed receipt content and is decoded only by admin download.
+  pdfContent: text("pdf_content").notNull(),
+  emailStatus: text("email_status").notNull().default("pending"),
+  emailError: text("email_error"),
+  emailSentAt: timestamp("email_sent_at"),
+  deliveryAttempts: integer("delivery_attempts").notNull().default(0),
+  nextDeliveryAttemptAt: timestamp("next_delivery_attempt_at"),
+  deliveryClaimedAt: timestamp("delivery_claimed_at"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+}, (table) => [
+  uniqueIndex("payment_receipts_stripe_event_id_unique").on(table.stripeEventId),
+  uniqueIndex("payment_receipts_receipt_number_unique").on(table.receiptNumber),
+  uniqueIndex("payment_receipts_stripe_session_id_unique").on(table.stripeSessionId),
+  uniqueIndex("payment_receipts_stripe_invoice_id_unique").on(table.stripeInvoiceId),
+  uniqueIndex("payment_receipts_stripe_payment_id_unique").on(table.stripePaymentId),
+]);
+
+export type PaymentReceipt = typeof paymentReceipts.$inferSelect;
 
 export const contracts = pgTable("contracts", {
   id: serial("id").primaryKey(),

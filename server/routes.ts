@@ -1,20 +1,62 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema, insertEngagementSchema, insertMilestoneSchema, insertDocumentSchema, insertActionItemSchema, insertMeetingSchema, insertMessageSchema, insertResourceSchema, insertInvoiceSchema, insertContractSchema, insertPerformanceKpiSchema } from "@shared/schema";
+import { insertContactSchema, insertEngagementSchema, insertMilestoneSchema, insertDocumentSchema, insertActionItemSchema, insertMeetingSchema, insertMessageSchema, insertResourceSchema, insertInvoiceSchema, insertContractSchema, insertPerformanceKpiSchema, paymentReceipts } from "@shared/schema";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
 import { getUncachableStripeClient, getStripePublishableKey } from "./stripeClient";
 import { db } from "./db";
-import { sql } from "drizzle-orm";
+import { sql, desc, ilike, or } from "drizzle-orm";
 import { requireAuth, requireAdmin } from "./auth";
+import { attemptReceiptDelivery } from "./receiptDelivery";
 
 const uploadsDir = path.join(process.cwd(), "uploads", "resumes");
 const contactSubmissionAttempts = new Map<string, number[]>();
 const CONTACT_RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const CONTACT_RATE_LIMIT_MAX_SUBMISSIONS = 5;
 let lastContactRateLimitCleanup = 0;
+
+const CHECKOUT_PAYMENT_METHODS: Array<"card" | "paypal"> = ["card", "paypal"];
+const CARD_ONLY_PAYMENT_METHODS: Array<"card"> = ["card"];
+
+function isPayPalAvailabilityError(error: any): boolean {
+  const message = String(error?.message || "");
+  const code = String(error?.code || "");
+  // Only fall back when Stripe has rejected PayPal itself.  Other validation,
+  // network, or account errors must remain visible to the caller.
+  return /paypal/i.test(message) && (
+    /not (activated|enabled|available|supported)|unavailable|invalid/i.test(message) ||
+    /payment_method_(unactivated|unsupported|invalid)/i.test(code)
+  );
+}
+
+async function createCheckoutSession(stripe: any, params: Record<string, any>) {
+  try {
+    const session = await stripe.checkout.sessions.create({
+      ...params,
+      payment_method_types: CHECKOUT_PAYMENT_METHODS,
+    });
+    return { session, paymentMethods: CHECKOUT_PAYMENT_METHODS };
+  } catch (error) {
+    if (!isPayPalAvailabilityError(error)) throw error;
+    // Stripe rejected the first request before creating a Checkout Session.
+    // Retrying once with identical params and card only keeps debit/card live.
+    const session = await stripe.checkout.sessions.create({
+      ...params,
+      payment_method_types: CARD_ONLY_PAYMENT_METHODS,
+    });
+    return { session, paymentMethods: CARD_ONLY_PAYMENT_METHODS };
+  }
+}
+
+function checkoutErrorMessage(error: any): string {
+  const details = String(error?.message || error || "");
+  if (/paypal/i.test(details)) {
+    return "PayPal is unavailable for this Stripe account. Credit and debit card checkout remains available.";
+  }
+  return "Unable to create checkout. Please try again or contact support.";
+}
 
 function isHoneypotFilled(value: unknown): boolean {
   return typeof value === "string" ? value.trim().length > 0 : value != null;
@@ -322,13 +364,16 @@ export async function registerRoutes(
       const stripe = await getUncachableStripeClient();
 
       const price = await stripe.prices.retrieve(priceId);
+      if (price.currency.toLowerCase() !== "cad") {
+        return res.status(400).json({ message: "This offer is not configured in CAD. Please select a CAD price." });
+      }
       const isRecurring = !!price.recurring;
 
       const baseUrl = process.env.REPLIT_DOMAINS
         ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
         : `${req.protocol}://${req.get('host')}`;
 
-      const session = await stripe.checkout.sessions.create({
+      const { session, paymentMethods } = await createCheckoutSession(stripe, {
         line_items: [{ price: priceId, quantity: 1 }],
         mode: isRecurring ? 'subscription' : 'payment',
         success_url: `${baseUrl}${returnPage}?payment=success`,
@@ -338,10 +383,10 @@ export async function registerRoutes(
         },
       });
 
-      res.json({ url: session.url });
+      res.json({ url: session.url, paymentMethods });
     } catch (error) {
       console.error("Checkout error:", error);
-      res.status(500).json({ message: "Failed to create checkout session" });
+      res.status(500).json({ message: checkoutErrorMessage(error) });
     }
   });
 
@@ -371,6 +416,9 @@ export async function registerRoutes(
 
       for (const item of items) {
         const price = await stripe.prices.retrieve(item.priceId, { expand: ['product'] });
+        if (price.currency.toLowerCase() !== "cad") {
+          return res.status(400).json({ message: `Product ${item.priceId} is not configured in CAD.` });
+        }
         const product = typeof price.product === 'object' ? price.product : null;
         if (!product || !('metadata' in product) || product.metadata?.category !== 'playbook') {
           return res.status(400).json({ message: `Invalid product: ${item.priceId}` });
@@ -386,7 +434,7 @@ export async function registerRoutes(
         quantity: item.quantity,
       }));
 
-      const session = await stripe.checkout.sessions.create({
+      const { session, paymentMethods } = await createCheckoutSession(stripe, {
         line_items,
         mode: 'payment',
         success_url: `${baseUrl}/playbooks?payment=success`,
@@ -396,10 +444,10 @@ export async function registerRoutes(
         },
       });
 
-      res.json({ url: session.url });
+      res.json({ url: session.url, paymentMethods });
     } catch (error) {
       console.error("Cart checkout error:", error);
-      res.status(500).json({ message: "Failed to create checkout session" });
+      res.status(500).json({ message: checkoutErrorMessage(error) });
     }
   });
 
@@ -461,7 +509,7 @@ export async function registerRoutes(
 
       const stripe = await getUncachableStripeClient();
 
-      const session = await stripe.checkout.sessions.create({
+      const { session, paymentMethods } = await createCheckoutSession(stripe, {
         line_items: [
           {
             price_data: {
@@ -488,10 +536,10 @@ export async function registerRoutes(
         },
       });
 
-      res.json({ url: session.url });
+      res.json({ url: session.url, paymentMethods });
     } catch (error: any) {
       console.error("Instant checkout error:", error?.message || error);
-      res.status(500).json({ message: "Failed to create checkout session" });
+      res.status(500).json({ message: checkoutErrorMessage(error) });
     }
   });
 
@@ -514,7 +562,7 @@ export async function registerRoutes(
         ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
         : `${req.protocol}://${req.get('host')}`;
 
-      const session = await stripe.checkout.sessions.create({
+      const { session, paymentMethods } = await createCheckoutSession(stripe, {
         line_items: [{
           price_data: {
             currency: 'cad',
@@ -535,14 +583,14 @@ export async function registerRoutes(
         },
       });
 
-      res.json({ url: session.url });
+      res.json({ url: session.url, paymentMethods });
     } catch (error) {
       console.error("Sponsor checkout error:", error);
-      res.status(500).json({ message: "Failed to create sponsorship checkout" });
+      res.status(500).json({ message: checkoutErrorMessage(error) });
     }
   });
 
-  app.post("/api/test-receipt", async (req, res) => {
+  app.post("/api/test-receipt", requireAdmin, async (req, res) => {
     if (process.env.REPLIT_DEPLOYMENT === '1') {
       return res.status(404).json({ message: "Not found" });
     }
@@ -655,6 +703,77 @@ export async function registerRoutes(
     } catch (error) {
       console.error("Admin applications error:", error);
       res.status(500).json({ message: "Failed to fetch job applications" });
+    }
+  });
+
+  // Receipt contents and customer contact information are never returned in this ledger response.
+  app.get("/api/admin/receipts", requireAdmin, async (req, res) => {
+    try {
+      const search = typeof req.query.search === "string" ? req.query.search.trim().slice(0, 120) : "";
+      const where = search ? or(
+        ilike(paymentReceipts.receiptNumber, `%${search}%`),
+        ilike(paymentReceipts.customerEmail, `%${search}%`),
+        ilike(paymentReceipts.customerName, `%${search}%`),
+        ilike(paymentReceipts.serviceDescription, `%${search}%`),
+      ) : undefined;
+      const rows = await db.select({
+        id: paymentReceipts.id, receiptNumber: paymentReceipts.receiptNumber,
+        customerEmail: paymentReceipts.customerEmail, customerName: paymentReceipts.customerName,
+        serviceDescription: paymentReceipts.serviceDescription, subtotalCents: paymentReceipts.subtotalCents,
+        amountCents: paymentReceipts.amountCents, currency: paymentReceipts.currency,
+        paymentStatus: paymentReceipts.paymentStatus, paymentMethod: paymentReceipts.paymentMethod,
+        recurring: paymentReceipts.recurring, paidAt: paymentReceipts.paidAt,
+        emailStatus: paymentReceipts.emailStatus, emailSentAt: paymentReceipts.emailSentAt,
+        deliveryAttempts: paymentReceipts.deliveryAttempts, nextDeliveryAttemptAt: paymentReceipts.nextDeliveryAttemptAt,
+        createdAt: paymentReceipts.createdAt,
+      }).from(paymentReceipts).where(where).orderBy(desc(paymentReceipts.paidAt)).limit(250);
+      res.set("Cache-Control", "private, no-store").json(rows);
+    } catch (error) {
+      console.error("Admin receipts error:", error);
+      res.status(500).json({ message: "Failed to fetch receipt ledger" });
+    }
+  });
+
+  app.post("/api/admin/receipts/:id/resend", requireAdmin, async (req, res) => {
+    const id = Number(req.params.id);
+    if (!Number.isSafeInteger(id) || id < 1) return res.status(400).json({ message: "Invalid receipt id" });
+    try {
+      const [receipt] = await db.select({
+        id: paymentReceipts.id, customerEmail: paymentReceipts.customerEmail, emailStatus: paymentReceipts.emailStatus,
+      }).from(paymentReceipts).where(sql`${paymentReceipts.id} = ${id}`);
+      if (!receipt) return res.status(404).json({ message: "Receipt not found" });
+      if (!receipt.customerEmail) return res.status(400).json({ message: "This receipt has no customer email address." });
+      if (receipt.emailStatus === "sending") return res.status(409).json({ message: "Receipt delivery is already in progress." });
+      if (receipt.emailStatus !== "failed") return res.status(400).json({ message: "Only failed receipt deliveries can be resent manually." });
+      await db.update(paymentReceipts).set({
+        emailStatus: "pending", emailError: null, nextDeliveryAttemptAt: new Date(), deliveryClaimedAt: null,
+      }).where(sql`${paymentReceipts.id} = ${id}`);
+      // Claim and send immediately when possible; scheduler remains the durable fallback.
+      const result = await attemptReceiptDelivery(id);
+      res.status(result === "sent" ? 200 : 202).json({ status: result });
+    } catch (error) {
+      console.error("Receipt resend error:", error);
+      res.status(500).json({ message: "Failed to queue receipt resend" });
+    }
+  });
+
+  app.get("/api/admin/receipts/:id/pdf", requireAdmin, async (req, res) => {
+    const id = Number(req.params.id);
+    if (!Number.isSafeInteger(id) || id < 1) return res.status(400).json({ message: "Invalid receipt id" });
+    try {
+      const [receipt] = await db.select({
+        receiptNumber: paymentReceipts.receiptNumber, pdfContent: paymentReceipts.pdfContent,
+      }).from(paymentReceipts).where(sql`${paymentReceipts.id} = ${id}`);
+      if (!receipt) return res.status(404).json({ message: "Receipt not found" });
+      res.set({
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `attachment; filename="receipt-${receipt.receiptNumber.replace(/[^A-Za-z0-9-]/g, "")}.pdf"`,
+        "Cache-Control": "private, no-store",
+        "X-Content-Type-Options": "nosniff",
+      }).send(Buffer.from(receipt.pdfContent, "base64"));
+    } catch (error) {
+      console.error("Receipt download error:", error);
+      res.status(500).json({ message: "Failed to download receipt" });
     }
   });
 
@@ -1059,7 +1178,7 @@ export async function registerRoutes(
       const stripe = await getUncachableStripeClient();
       const amountCents = invoice.amountCents || Math.round(parseFloat(invoice.amount.replace(/[^0-9.]/g, "")) * 100);
 
-      const session = await stripe.checkout.sessions.create({
+      const { session, paymentMethods } = await createCheckoutSession(stripe, {
         line_items: [{
           price_data: {
             currency: "cad",
@@ -1078,10 +1197,10 @@ export async function registerRoutes(
       });
 
       await storage.updateInvoice(invoice.id, { stripeSessionId: session.id } as any);
-      res.json({ url: session.url });
+      res.json({ url: session.url, paymentMethods });
     } catch (error) {
       console.error("Payment error:", error);
-      res.status(500).json({ message: "Failed to create payment session" });
+      res.status(500).json({ message: checkoutErrorMessage(error) });
     }
   });
 
@@ -1242,24 +1361,6 @@ export async function registerRoutes(
       res.json(staffUsers.map(u => ({ id: u.id, fullName: u.fullName, email: u.email, role: u.role })));
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch staff users" });
-    }
-  });
-
-  // Stripe webhook for payment confirmation
-  app.post("/api/stripe/webhook/invoice-paid", async (req, res) => {
-    try {
-      const { type, data } = req.body;
-      if (type === "checkout.session.completed" && data?.object?.metadata?.invoiceId) {
-        const invoiceId = Number(data.object.metadata.invoiceId);
-        await storage.updateInvoice(invoiceId, {
-          status: "paid",
-          paidAt: new Date(),
-        } as any);
-      }
-      res.json({ received: true });
-    } catch (error) {
-      console.error("Webhook error:", error);
-      res.status(500).json({ message: "Webhook processing failed" });
     }
   });
 

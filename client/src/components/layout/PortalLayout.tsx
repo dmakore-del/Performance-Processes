@@ -46,6 +46,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
     ...staffNavItems,
     { label: "User Management", href: "/portal/admin/users" },
     { label: "Submissions", href: "/portal/admin/submissions" },
+    { label: "Receipts / Reçus", href: "/portal/admin/receipts" },
   ];
 
   const navItems = user?.role === "admin" ? adminNavItems : isClient ? clientNavItems : staffNavItems;

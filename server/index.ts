@@ -179,6 +179,13 @@ app.use((req, res, next) => {
     console.error("Email scheduler start error (non-fatal):", err);
   }
 
+  try {
+    const { startReceiptDeliveryScheduler } = await import("./receiptDelivery");
+    startReceiptDeliveryScheduler();
+  } catch (err) {
+    console.error("Receipt delivery scheduler start error (non-fatal):", err);
+  }
+
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";

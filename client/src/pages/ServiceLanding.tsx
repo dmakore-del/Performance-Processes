@@ -156,9 +156,6 @@ export default function ServiceLanding() {
         <section className="bg-primary relative" data-testid="section-landing-hero">
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent" />
           <div className="container mx-auto px-4 md:px-8 py-20 lg:py-28 max-w-4xl text-center">
-            <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-white/50" data-testid="text-landing-eyebrow">
-              {meta.label}
-            </p>
             <h1 className="text-4xl md:text-6xl font-heading font-medium text-white mb-7 leading-[1.08]" data-testid="text-landing-headline">
               <HeadlineWithAccent headline={landing.headline} accentWord={landing.accentWord} />
             </h1>
@@ -185,14 +182,13 @@ export default function ServiceLanding() {
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
               <div className="lg:col-span-6">
-                <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">{narrative.eyebrow}</p>
                 <h2 className="text-display text-4xl md:text-5xl text-primary mb-5">{pc.soundFamiliar}</h2>
                 <p className="text-base md:text-lg text-primary font-light leading-relaxed" data-testid="text-landing-problem">
                   {narrative.problem}
                 </p>
               </div>
               <div className="lg:col-span-5 lg:col-start-8 flex flex-col justify-center">
-                <p className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-4">{pc.whatYouGain}</p>
+                <h3 className="text-display text-2xl text-primary mb-4">{pc.whatYouGain}</h3>
                 <ul className="space-y-3">
                   {narrative.benefits.map((b, i) => (
                     <li key={i} className="flex items-start gap-3 border-t border-border pt-3" data-testid={`text-landing-benefit-${i}`}>
@@ -210,7 +206,6 @@ export default function ServiceLanding() {
         <section className="py-24 bg-secondary/40 border-b border-border" data-testid="section-landing-included">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mb-12">
-              <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">{pc.whatsIncludedEyebrow}</p>
               <h2 className="text-display text-4xl md:text-5xl text-primary">
                 {pc.whatsIncludedHeading}
               </h2>
@@ -230,7 +225,6 @@ export default function ServiceLanding() {
         <section className="py-24 bg-background border-b border-border" data-testid="section-landing-offers">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mb-14">
-              <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">{pc.packagesEyebrow}</p>
               <h2 className="text-display text-4xl md:text-5xl text-primary mb-5">
                 {pc.packagesHeading}
               </h2>
@@ -258,7 +252,6 @@ export default function ServiceLanding() {
         {testimonial && (
           <section className="py-24 bg-primary text-white" data-testid="section-landing-testimonial">
             <div className="container mx-auto px-4 md:px-8 max-w-4xl">
-              <p className="text-[11px] uppercase tracking-[0.4em] mb-8 text-white/50 text-center">{pc.inTheirWords}</p>
               <figure className="text-center">
                 <span aria-hidden="true" className="text-display text-5xl text-accent/60 leading-none mb-6 block">&ldquo;</span>
                 <blockquote className="text-xl md:text-2xl font-heading font-light leading-relaxed text-white/90 mb-8" data-testid="text-landing-testimonial">
@@ -287,7 +280,6 @@ export default function ServiceLanding() {
         <section className="py-24 bg-secondary/40 border-b border-border" data-testid="section-landing-faq">
           <div className="container mx-auto px-4 md:px-8 max-w-3xl">
             <div className="mb-12">
-              <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">{pc.faqEyebrow}</p>
               <h2 className="text-display text-4xl md:text-5xl text-primary">{pc.faqHeading}</h2>
             </div>
             <div>
@@ -321,7 +313,6 @@ export default function ServiceLanding() {
         <section className="py-24 bg-background border-b border-border" data-testid="section-landing-related">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mb-12">
-              <p className="text-[11px] uppercase tracking-[0.4em] mb-6 text-muted-foreground">{pc.relatedEyebrow}</p>
               <h2 className="text-display text-4xl md:text-5xl text-primary">{pc.relatedHeading}</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border max-w-4xl">

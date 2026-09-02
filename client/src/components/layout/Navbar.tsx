@@ -20,7 +20,7 @@ export function Navbar() {
   ];
   return <header className="sticky top-0 z-[60] border-b border-primary/10 bg-background/95 backdrop-blur">
     <div className="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between px-5 lg:px-10">
-      <Link href="/" className="flex items-center"><img src={logoImg} alt="Performance Processes" className="no-grayscale h-11 w-auto" /></Link>
+      <Link href="/" className="flex items-center"><img src={logoImg} alt="Performance Processes" className="h-11 w-auto" /></Link>
       <nav className="hidden xl:flex items-center gap-5">
         {links.map(([label, href]) => <Link key={href} href={href} className={`border-b pb-1 text-[11px] font-medium tracking-[.03em] transition-colors hover:border-accent hover:text-accent ${location === href ? "border-accent text-primary" : "border-transparent text-primary/70"}`}>{label}</Link>)}
       </nav>

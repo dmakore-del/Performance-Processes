@@ -51,7 +51,7 @@ export default function Login() {
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
           <Link href="/">
-            <img src={logoImg} alt="Performance Processes" className="no-grayscale h-16 w-auto mx-auto mb-4 cursor-pointer" />
+            <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-4 cursor-pointer" />
           </Link>
           <h1 className="text-3xl font-heading font-extrabold text-white">Client Portal</h1>
           <p className="text-white/70 mt-2">Sign in to access your engagement dashboard</p>

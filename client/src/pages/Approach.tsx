@@ -38,7 +38,7 @@ export default function Approach() {
       desc: language === "en"
         ? "We start by understanding your business, audience, and growth goals, and audit the systems you already have in place."
         : "Nous commençons par comprendre votre entreprise, votre audience et vos objectifs de croissance, et nous auditons les systèmes déjà en place.",
-      duration: language === "en" ? "1–2 weeks" : "1 à 2 semaines",
+      duration: language === "en" ? "1 to 2 weeks" : "1 à 2 semaines",
       color: "from-zinc-700/15 to-zinc-800/5",
       accentColor: "text-zinc-800",
       bgAccent: "bg-zinc-800",
@@ -85,7 +85,7 @@ export default function Approach() {
       desc: language === "en"
         ? "We design the website, marketing engine, CRM workflows, and operating playbooks your business will run on."
         : "Nous concevons le site web, le moteur marketing, les flux CRM et les manuels d'exploitation sur lesquels votre entreprise fonctionnera.",
-      duration: language === "en" ? "2–4 weeks" : "2 à 4 semaines",
+      duration: language === "en" ? "2 to 4 weeks" : "2 à 4 semaines",
       color: "from-emerald-500/15 to-emerald-600/5",
       accentColor: "text-emerald-600",
       bgAccent: "bg-emerald-600",
@@ -132,7 +132,7 @@ export default function Approach() {
       desc: language === "en"
         ? "We build the website, set up the CRM, launch the marketing engine, and train your team to run it."
         : "Nous construisons le site web, configurons le CRM, lançons le moteur marketing et formons votre équipe à l'exploiter.",
-      duration: language === "en" ? "4–12 weeks" : "4 à 12 semaines",
+      duration: language === "en" ? "4 to 12 weeks" : "4 à 12 semaines",
       color: "from-amber-500/15 to-amber-600/5",
       accentColor: "text-amber-600",
       bgAccent: "bg-amber-600",
@@ -313,7 +313,7 @@ export default function Approach() {
     },
     {
       question: "How long does a typical engagement last?",
-      answer: "It depends on the scope. A standalone website usually runs 4–8 weeks. A CRM setup is typically 2–4 weeks. A full growth-infrastructure bundle (web + marketing + CRM + systems + training) usually runs 8–12 weeks from kickoff to launch. Ongoing support retainers are monthly and continue as long as they're useful.",
+      answer: "It depends on the scope. A standalone website usually runs 4 to 8 weeks. A CRM setup is typically 2 to 4 weeks. A full growth infrastructure bundle, with web, marketing, CRM, systems, and training, usually runs 8 to 12 weeks from kickoff to launch. Ongoing support retainers are monthly and continue as long as they're useful.",
     },
     {
       question: "Who do you work with?",
@@ -337,7 +337,7 @@ export default function Approach() {
     },
     {
       question: "How much of our team's time do you need?",
-      answer: "Less than most firms. We design productized engagements to minimize the meetings tax, typically a weekly 30–45 minute working session, plus async approvals for design and copy. The exception is training, where we deliberately want your team in the room.",
+      answer: "Less than most firms. We design productized engagements to minimize the meetings tax, typically a weekly 30 to 45 minute working session, plus async approvals for design and copy. The exception is training, where we deliberately want your team in the room.",
     },
     {
       question: "Can you work alongside our existing tools or partners?",

@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
-import { OfferCard } from "@/components/OfferCard";
+import { OfferCarousel } from "@/components/OfferCarousel";
 import { useLanguage } from "@/hooks/use-language";
 import { OFFERS, getLocalizedCategoryMeta, type OfferCategory } from "@shared/offers";
 
@@ -12,9 +12,9 @@ const CATEGORY_ORDER: CatalogGroup[] = ["packages", "website", "systems", "marke
 export default function Packages() {
   const { language } = useLanguage();
   const fr = language === "fr";
-  const [active, setActive] = useState<CatalogGroup | "all">("all");
+  const [active, setActive] = useState<CatalogGroup>("packages");
   const launchOffers = useMemo(() => OFFERS.filter((offer) => offer.category === "packages").slice(0, 3), []);
-  const visibleCategories = active === "all" ? CATEGORY_ORDER : [active];
+  const visibleCategories = [active];
 
   return (
     <div className="min-h-[100dvh] bg-background">
@@ -43,39 +43,36 @@ export default function Packages() {
             </div>
             <p className="max-w-md text-sm leading-6 text-muted-foreground">{fr ? "Un investissement unique pour passer de l’idée à une entreprise prête à fonctionner." : "One-time investments to move from idea to a business ready to operate."}</p>
           </div>
-           <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {launchOffers.map((offer) => <OfferCard key={offer.id} offer={offer} returnPage="/packages" />)}
-          </div>
+          <OfferCarousel offers={launchOffers} returnPage="/packages" />
 
-          <div className="mt-20 overflow-x-auto">
-            <h2 className="text-display text-4xl">{fr ? "Comparer les trois forfaits" : "Compare the three packages"}</h2>
+           <details className="mt-20 overflow-x-auto">
+             <summary className="cursor-pointer text-display text-4xl">{fr ? "Comparer les trois forfaits" : "Compare the three packages"}</summary>
             <table className="mt-8 w-full min-w-[760px] border-collapse text-left text-sm">
               <thead><tr className="border-b border-primary"><th className="p-4">{fr ? "Ce que vous recevez" : "What you receive"}</th>{launchOffers.map((offer) => <th key={offer.id} className="p-4">{offer.name}</th>)}</tr></thead>
               <tbody>
                 {(fr ? [
                   ["Orientation de formation", "Incluse", "Incluse", "Incluse"],
                   ["Systèmes d’entreprise", "Essentiels", "Essentiels", "Élargis"],
-                  ["Site professionnel", "—", "Départ", "Élargi"],
-                  ["Soutien au lancement", "—", "Inclus", "Après lancement"],
+                  ["Site professionnel", "Non inclus", "Départ", "Élargi"],
+                  ["Soutien au lancement", "Non inclus", "Inclus", "Après lancement"],
                 ] : [
                   ["Formation guidance", "Included", "Included", "Included"],
                   ["Business systems", "Essential", "Essential", "Expanded"],
-                  ["Professional website", "—", "Starter", "Expanded"],
-                  ["Launch support", "—", "Included", "Post-launch"],
+                  ["Professional website", "Not included", "Starter", "Expanded"],
+                  ["Launch support", "Not included", "Included", "After launch"],
                 ]).map((row) => <tr key={row[0]} className="border-b border-primary/15">{row.map((cell, index) => <td key={`${row[0]}-${index}`} className={`p-4 ${index === 0 ? "font-semibold" : ""}`}>{cell}</td>)}</tr>)}
               </tbody>
             </table>
-          </div>
+           </details>
         </section>
 
-        <section className="bg-primary px-5 py-16 text-primary-foreground">
+        <section id="package-categories" className="border-y border-primary/10 bg-secondary px-5 py-16 text-primary">
           <div className="mx-auto max-w-[1160px]">
             <h2 className="text-display max-w-3xl text-5xl">{fr ? "Choisissez la prochaine pièce à mettre en place." : "Choose the next piece to put in place."}</h2>
             <div className="mt-10 flex gap-2 overflow-x-auto pb-2">
-               <button type="button" onClick={() => setActive("all")} className={`shrink-0 border px-4 py-3 text-sm ${active === "all" ? "border-accent bg-accent text-primary" : "border-primary-foreground/30 hover:border-accent"}`}>{fr ? "Tout le catalogue" : "All offers"}</button>
-              {CATEGORY_ORDER.slice(1).map((category) => {
+               {CATEGORY_ORDER.map((category) => {
                 const meta = category === "marketing-crm" ? { label: fr ? "Marketing / CRM" : "Marketing / CRM" } : getLocalizedCategoryMeta(category, language);
-                 return <button type="button" key={category} onClick={() => setActive(category)} className={`shrink-0 border px-4 py-3 text-sm ${active === category ? "border-accent bg-accent text-primary" : "border-primary-foreground/30 hover:border-accent"}`}>{meta.label}</button>;
+                  return <button type="button" key={category} onClick={() => setActive(category)} className={`shrink-0 border px-4 py-3 text-sm ${active === category ? "border-accent bg-accent text-primary" : "border-primary/20 bg-background hover:border-accent"}`}>{meta.label}</button>;
               })}
             </div>
           </div>
@@ -98,7 +95,7 @@ export default function Packages() {
                 : getLocalizedCategoryMeta(category, language);
               return <div key={category} id={category}>
                 <div className="mb-8 max-w-2xl"><h2 className="text-display text-4xl">{meta.label}</h2><p className="mt-3 leading-7 text-muted-foreground">{meta.description}</p></div>
-                <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">{offers.map((offer) => <OfferCard key={offer.id} offer={offer} returnPage="/packages" />)}</div>
+                <OfferCarousel offers={offers} returnPage="/packages" />
               </div>;
             })}
           </div>

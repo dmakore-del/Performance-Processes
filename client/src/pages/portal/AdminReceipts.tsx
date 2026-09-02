@@ -40,7 +40,7 @@ export default function AdminReceipts() {
     onError: (error: Error) => toast({ title: fr ? "Échec du renvoi" : "Resend failed", description: error.message, variant: "destructive" }),
   });
   const money = (r: Receipt) => new Intl.NumberFormat("en-CA", { style: "currency", currency: r.currency.toUpperCase() }).format(r.amountCents / 100);
-  const date = (value: string | null) => value ? new Intl.DateTimeFormat(fr ? "fr-CA" : "en-CA", { dateStyle: "medium" }).format(new Date(value)) : "—";
+  const date = (value: string | null) => value ? new Intl.DateTimeFormat(fr ? "fr-CA" : "en-CA", { dateStyle: "medium" }).format(new Date(value)) : "Not available";
 
   return <PortalLayout>
     <div className="space-y-7">
@@ -62,10 +62,10 @@ export default function AdminReceipts() {
               {isLoading ? <tr><td colSpan={7} className="p-10 text-center text-muted-foreground">{fr ? "Chargement…" : "Loading…"}</td></tr> : data.length === 0 ? <tr><td colSpan={7} className="p-10 text-center text-muted-foreground">{fr ? "Aucun reçu trouvé." : "No receipts found."}</td></tr> :
                 data.map((r) => <tr key={r.id} className="border-t border-border hover:bg-secondary/30">
                   <td className="p-4"><p className="font-bold text-primary">{r.receiptNumber}</p><p className="text-xs text-muted-foreground">{date(r.paidAt || r.createdAt)}</p></td>
-                  <td className="p-4"><p className="font-medium">{r.customerName || "—"}</p><p className="text-xs text-muted-foreground">{r.customerEmail || "—"}</p></td>
+                  <td className="p-4"><p className="font-medium">{r.customerName || "Not available"}</p><p className="text-xs text-muted-foreground">{r.customerEmail || "Not available"}</p></td>
                   <td className="p-4 max-w-[220px] truncate">{r.serviceDescription}{r.recurring && <span className="ml-2 text-[10px] text-accent font-bold">{fr ? "RÉCURRENT" : "RECURRING"}</span>}</td>
                   <td className="p-4 text-right font-bold text-primary">{money(r)}</td>
-                  <td className="p-4"><span className="rounded-full bg-green-50 border border-green-200 px-2 py-1 text-[10px] font-bold uppercase text-green-700">{r.paymentStatus}</span><p className="text-xs text-muted-foreground mt-1">{r.paymentMethod || "—"}</p></td>
+                  <td className="p-4"><span className="rounded-full bg-green-50 border border-green-200 px-2 py-1 text-[10px] font-bold uppercase text-green-700">{r.paymentStatus}</span><p className="text-xs text-muted-foreground mt-1">{r.paymentMethod || "Not available"}</p></td>
                   <td className="p-4"><span className={r.emailStatus === "sent" ? "text-green-700" : r.emailStatus === "failed" ? "text-red-700" : "text-muted-foreground"}>{r.emailStatus}</span><p className="text-xs text-muted-foreground mt-1">{fr ? "Tentatives" : "Attempts"}: {r.deliveryAttempts}{r.nextDeliveryAttemptAt ? ` · ${fr ? "Prochain" : "Next"} ${date(r.nextDeliveryAttemptAt)}` : ""}</p>{r.emailStatus === "failed" && <Button variant="link" size="sm" className="h-auto p-0 text-accent" disabled={resendMutation.isPending} onClick={() => resendMutation.mutate(r.id)}>{fr ? "Renvoyer maintenant" : "Resend now"}</Button>}</td>
                   <td className="p-4 text-right"><Button variant="outline" size="sm" asChild><a href={`/api/admin/receipts/${r.id}/pdf`} data-testid={`button-download-receipt-${r.id}`}>{fr ? "PDF" : "PDF"}</a></Button></td>
                 </tr>)}

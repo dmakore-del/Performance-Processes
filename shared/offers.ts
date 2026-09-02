@@ -124,7 +124,7 @@ export const OFFERS: Offer[] = [
   {
     id: "growth-system",
     name: "Growth System",
-    description: "A complete system to attract, capture, and convert more leads — built and installed for you.",
+    description: "A complete system to attract, capture, and convert more leads, built and installed for you.",
     price: 250000,
     priceLabel: "$2,500",
     bestFor: "Small businesses that need a reliable engine for generating and converting leads.",
@@ -597,7 +597,7 @@ export const OFFERS: Offer[] = [
 export const CATEGORY_META: Record<OfferCategory, { label: string; description: string; order: number }> = {
   packages: {
     label: "Launch Packages",
-    description: "Three clear launch paths for founders — choose your scope, buy online, and we get started.",
+    description: "Three clear launch paths for founders, choose your scope, buy online, and we get started.",
     order: 0,
   },
   website: {

@@ -76,7 +76,7 @@ export default function Register() {
         {bgVideo}
         <div className="w-full max-w-md text-center relative z-10">
           <Link href="/">
-            <img src={logoImg} alt="Performance Processes" className="no-grayscale h-16 w-auto mx-auto mb-6 cursor-pointer" />
+            <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-6 cursor-pointer" />
           </Link>
           <div className="bg-white/95 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl p-8">
             <h1 data-testid="text-pending-title" className="text-2xl font-heading font-extrabold text-primary mb-3">Account Created</h1>
@@ -108,7 +108,7 @@ export default function Register() {
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
           <Link href="/">
-            <img src={logoImg} alt="Performance Processes" className="no-grayscale h-16 w-auto mx-auto mb-4 cursor-pointer" />
+            <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-4 cursor-pointer" />
           </Link>
           <h1 className="text-3xl font-heading font-extrabold text-white">Create Account</h1>
           <p className="text-white/70 mt-2">Register for the Performance Processes portal</p>

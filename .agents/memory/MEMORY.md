@@ -1,3 +1,3 @@
-- [Brand palette & editorial direction](brand-palette.md) — clean black/warm-white with restrained blush; all public media stays in colour; Newsreader + Manrope; avoid template patterns and decorative kickers.
+- [Brand palette & editorial direction](brand-palette.md) — white dominant editorial design with restrained black and blush accents; colour media; Newsreader + Manrope; avoid template patterns.
 - [EN/FR i18n conventions](i18n-conventions.md) — per-page CONTENT={en,fr} + shared/offers.ts localize helpers; quotes stay English, SEO stays English, checkout sends only offer.id.
 - [Stripe PayPal activation](stripe-paypal.md) — checkout supports PayPal automatically, but the connected account must activate PayPal; card/debit fallback stays available.

@@ -95,7 +95,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
         }}
       />
 
-      {/* ───────────────── Desktop sidebar — dark editorial ───────────────── */}
+      {/* Desktop sidebar */}
       <aside className="hidden lg:flex flex-col w-72 bg-primary text-white fixed h-full z-20 overflow-hidden">
         {/* Subtle gradient sheen */}
         <div
@@ -111,7 +111,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
 
         <div className="relative h-24 flex items-center px-7 border-b border-white/10">
           <Link href="/" className="flex items-center gap-3 group" data-testid="link-portal-logo">
-            <img src={logoImg} alt="Performance Processes" className="no-grayscale h-9 w-auto" />
+            <img src={logoImg} alt="Performance Processes" className="h-9 w-auto" />
             <div className="leading-none">
               <p className="text-[9px] font-black uppercase tracking-[0.32em] text-accent mb-1">Performance</p>
               <p className="font-heading font-black text-lg tracking-tight text-white uppercase italic group-hover:text-accent transition-colors">
@@ -238,7 +238,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
       {/* ───────────────── Mobile top bar ───────────────── */}
       <div className="lg:hidden fixed top-0 w-full h-20 bg-primary text-white border-b border-white/10 flex items-center justify-between px-4 z-30">
         <Link href="/" className="flex items-center gap-2">
-          <img src={logoImg} alt="Performance Processes" className="no-grayscale h-8 w-auto" />
+          <img src={logoImg} alt="Performance Processes" className="h-8 w-auto" />
           <span className="font-heading font-black text-lg tracking-tighter text-white uppercase italic">Portal</span>
         </Link>
         <div className="flex items-center gap-4">

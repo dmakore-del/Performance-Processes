@@ -4,6 +4,7 @@ import { PortalLayout } from "@/components/layout/PortalLayout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 interface ContactSubmission {
   id: number;
@@ -39,6 +40,7 @@ function formatDate(dateStr: string) {
 }
 
 export default function AdminSubmissions() {
+  const { t, formatDate } = usePortalI18n();
   const [contactSearch, setContactSearch] = useState("");
   const [appSearch, setAppSearch] = useState("");
 
@@ -69,7 +71,7 @@ export default function AdminSubmissions() {
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-heading font-extrabold text-primary" data-testid="text-submissions-title">
-            Submissions Tracker
+            {t("Submissions Tracker")}
           </h1>
           <p className="text-muted-foreground mt-1">View and manage all form submissions</p>
         </div>
@@ -89,7 +91,7 @@ export default function AdminSubmissions() {
               <div className="p-4 border-b border-border">
                 <div className="relative max-w-sm">
                   <Input
-                    placeholder="Search contacts..."
+                    placeholder={t("Search contacts...")}
                     value={contactSearch}
                     onChange={(e) => setContactSearch(e.target.value)}
                     data-testid="input-search-contacts"
@@ -97,9 +99,9 @@ export default function AdminSubmissions() {
                 </div>
               </div>
               {contactsLoading ? (
-                <div className="p-8 text-center text-muted-foreground">Loading...</div>
+                <div className="p-8 text-center text-muted-foreground">{t("Loading...")}</div>
               ) : filteredContacts.length === 0 ? (
-                <div className="p-8 text-center text-muted-foreground">No contact submissions found</div>
+                <div className="p-8 text-center text-muted-foreground">{t("No contact submissions found")}</div>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm" data-testid="table-contacts">
@@ -142,7 +144,7 @@ export default function AdminSubmissions() {
               <div className="p-4 border-b border-border">
                 <div className="relative max-w-sm">
                   <Input
-                    placeholder="Search applications..."
+                    placeholder={t("Search applications...")}
                     value={appSearch}
                     onChange={(e) => setAppSearch(e.target.value)}
                     data-testid="input-search-applications"
@@ -150,9 +152,9 @@ export default function AdminSubmissions() {
                 </div>
               </div>
               {appsLoading ? (
-                <div className="p-8 text-center text-muted-foreground">Loading...</div>
+                <div className="p-8 text-center text-muted-foreground">{t("Loading...")}</div>
               ) : filteredApps.length === 0 ? (
-                <div className="p-8 text-center text-muted-foreground">No job applications found</div>
+                <div className="p-8 text-center text-muted-foreground">{t("No job applications found")}</div>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm" data-testid="table-applications">

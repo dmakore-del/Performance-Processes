@@ -6,6 +6,7 @@ import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
 import { useAuth } from "@/hooks/use-auth";
 import { useQuery } from "@tanstack/react-query";
 import type { Meeting } from "@shared/schema";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 const MS_BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -29,6 +30,7 @@ export default function Meetings() {
   const { engagementId, isLoading: engLoading } = usePortalEngagement();
   const { data: meetings, isLoading: meetingsLoading } = usePortalData<Meeting[]>("meetings", engagementId);
   const { user } = useAuth();
+  const { t, locale } = usePortalI18n();
   const [notesOpen, setNotesOpen] = useState(false);
   const [selectedMeeting, setSelectedMeeting] = useState<Meeting | null>(null);
   const [selectedBooking, setSelectedBooking] = useState<BookingEvent | null>(null);
@@ -56,7 +58,7 @@ export default function Meetings() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center py-20" data-testid="meetings-loading">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">Loading</span>
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">{t("Loading")}</span>
         </div>
       </PortalLayout>
     );
@@ -66,11 +68,11 @@ export default function Meetings() {
     return (
       <PortalLayout>
         <div className="flex flex-col items-center justify-center py-20 text-center" data-testid="meetings-empty-state">
-          <h2 className="text-xl font-bold text-primary mb-2">No Active Engagement</h2>
-          <p className="text-muted-foreground mb-6">Your consultant will set up your engagement shortly.</p>
+          <h2 className="text-xl font-bold text-primary mb-2">{t("No Active Engagement")}</h2>
+          <p className="text-muted-foreground mb-6">{t("Your consultant will set up your engagement shortly.")}</p>
           <a href={MS_BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
             <Button className="rounded-full bg-accent text-white hover:bg-primary font-bold uppercase tracking-wider text-xs px-6" data-testid="button-schedule-consultation">
-              Schedule a Consultation
+              {t("Schedule a Consultation")}
             </Button>
           </a>
         </div>
@@ -99,13 +101,13 @@ export default function Meetings() {
 
   const formatBookingDate = (dateStr: string) => {
     const d = new Date(dateStr);
-    return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" });
+    return d.toLocaleDateString(locale, { weekday: "short", month: "short", day: "numeric", year: "numeric" });
   };
 
   const formatBookingTime = (startStr: string, endStr: string) => {
     const s = new Date(startStr);
     const e = new Date(endStr);
-    const fmt = (d: Date) => d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
+    const fmt = (d: Date) => d.toLocaleTimeString(locale, { hour: "numeric", minute: "2-digit", hour12: true });
     return `${fmt(s)} , ${fmt(e)}`;
   };
 
@@ -116,7 +118,7 @@ export default function Meetings() {
 
   const getBookingMonth = (dateStr: string) => {
     const d = new Date(dateStr);
-    return d.toLocaleDateString("en-US", { month: "short" });
+    return d.toLocaleDateString(locale, { month: "short" });
   };
 
   return (
@@ -124,35 +126,35 @@ export default function Meetings() {
       <div className="space-y-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-meetings-title">Meeting Hub</h1>
-            <p className="text-lg text-muted-foreground" data-testid="text-meetings-subtitle">View your scheduled bookings and past meeting notes.</p>
+            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-meetings-title">{t("Meeting Hub")}</h1>
+            <p className="text-lg text-muted-foreground" data-testid="text-meetings-subtitle">{t("View your scheduled bookings and past meeting notes.")}</p>
           </div>
           <a href={MS_BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
             <Button className="rounded-full bg-accent text-white hover:bg-primary font-bold uppercase tracking-wider text-xs px-6" data-testid="button-schedule-meeting">
-              Schedule a Meeting
+              {t("Schedule a Meeting")}
             </Button>
           </a>
         </div>
 
         {bookingsLoading && (
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            Syncing bookings from your calendar...
+            {t("Syncing bookings from your calendar...")}
           </div>
         )}
 
         {bookingsError && !bookingsLoading && (
           <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-4 text-sm text-yellow-800" data-testid="text-bookings-error">
-            Calendar sync is temporarily unavailable. Your manually scheduled meetings are still shown below.
+            {t("Calendar sync is temporarily unavailable. Your manually scheduled meetings are still shown below.")}
           </div>
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
-            <h3 className="text-xl font-bold text-primary border-b border-border pb-4" data-testid="text-upcoming-header">Upcoming Sessions</h3>
+            <h3 className="text-xl font-bold text-primary border-b border-border pb-4" data-testid="text-upcoming-header">{t("Upcoming Sessions")}</h3>
             <div className="space-y-4">
               {upcomingBookings.length === 0 && upcomingMeetings.length === 0 ? (
                 <div className="bg-white p-8 rounded-3xl border border-border text-center text-muted-foreground" data-testid="text-no-upcoming">
-                  No upcoming meetings scheduled. Click "Schedule a Meeting" to book a session.
+                  {t("No upcoming meetings scheduled. Click \"Schedule a Meeting\" to book a session.")}
                 </div>
               ) : (
                 <>
@@ -171,7 +173,7 @@ export default function Meetings() {
                           <div className="flex items-center gap-2 mt-1">
                             {booking.isOnline && (
                               <span className="px-2 py-0.5 rounded-full bg-secondary text-xs font-semibold text-primary" data-testid={`badge-online-${booking.id}`}>
-                                Online
+                                {t("Online")}
                               </span>
                             )}
                             {booking.location && (
@@ -187,12 +189,12 @@ export default function Meetings() {
                       </div>
                       <div className="w-full md:w-auto flex gap-3">
                         <Button variant="outline" className="rounded-xl border-border hover:bg-secondary text-xs font-bold" onClick={() => openBookingDetail(booking)} data-testid={`button-detail-${booking.id}`}>
-                          Details
+                          {t("Details")}
                         </Button>
                         {booking.meetingLink && (
                           <a href={booking.meetingLink} target="_blank" rel="noopener noreferrer" data-testid={`link-join-booking-${booking.id}`}>
                             <Button className="rounded-xl bg-primary text-white hover:bg-accent font-bold text-xs">
-                              Join Meeting
+                              {t("Join Meeting")}
                             </Button>
                           </a>
                         )}
@@ -226,7 +228,7 @@ export default function Meetings() {
                         <div className="w-full md:w-auto flex gap-3">
                           {meeting.agendaItems && (
                             <Button variant="outline" className="rounded-xl border-border hover:bg-secondary" onClick={() => openNotes(meeting)} data-testid={`button-agenda-${meeting.id}`}>
-                              Agenda
+                              {t("Agenda")}
                             </Button>
                           )}
                         </div>
@@ -239,11 +241,11 @@ export default function Meetings() {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-xl font-bold text-primary border-b border-border pb-4" data-testid="text-past-header">Past Meetings</h3>
+            <h3 className="text-xl font-bold text-primary border-b border-border pb-4" data-testid="text-past-header">{t("Past Meetings")}</h3>
             <div className="bg-white rounded-3xl border border-border shadow-sm overflow-hidden">
               {pastBookings.length === 0 && completedMeetings.length === 0 ? (
                 <div className="p-6 text-center text-muted-foreground" data-testid="text-no-past">
-                  No past meetings yet.
+                  {t("No past meetings yet.")}
                 </div>
               ) : (
                 <>
@@ -268,10 +270,10 @@ export default function Meetings() {
                           onClick={() => openNotes(meeting)}
                           data-testid={`button-view-notes-${meeting.id}`}
                         >
-                          View Notes & Action Items
+                          {t("View Notes & Action Items")}
                         </div>
                       ) : (
-                        <span className="text-xs text-muted-foreground">No notes available</span>
+                        <span className="text-xs text-muted-foreground">{t("No notes available")}</span>
                       )}
                     </div>
                   ))}
@@ -294,18 +296,18 @@ export default function Meetings() {
             </div>
             {selectedMeeting?.agendaItems && (
               <div>
-                <h4 className="font-bold text-primary text-sm mb-2">Agenda</h4>
+                <h4 className="font-bold text-primary text-sm mb-2">{t("Agenda")}</h4>
                 <p className="text-sm text-foreground whitespace-pre-wrap" data-testid="text-agenda-content">{selectedMeeting.agendaItems}</p>
               </div>
             )}
             {selectedMeeting?.notes && (
               <div>
-                <h4 className="font-bold text-primary text-sm mb-2">Notes</h4>
+                <h4 className="font-bold text-primary text-sm mb-2">{t("Notes")}</h4>
                 <p className="text-sm text-foreground whitespace-pre-wrap" data-testid="text-notes-content">{selectedMeeting.notes}</p>
               </div>
             )}
             {!selectedMeeting?.notes && !selectedMeeting?.agendaItems && (
-              <p className="text-sm text-muted-foreground">No notes or agenda available for this meeting.</p>
+              <p className="text-sm text-muted-foreground">{t("No notes or agenda available for this meeting.")}</p>
             )}
           </div>
         </DialogContent>
@@ -324,17 +326,17 @@ export default function Meetings() {
                 </div>
                 {selectedBooking.location && (
                   <div className="text-sm">
-                    <span className="font-bold text-primary">Location:</span> {selectedBooking.location}
+                      <span className="font-bold text-primary">{t("Location:")}</span> {selectedBooking.location}
                   </div>
                 )}
                 {selectedBooking.organizer && (
                   <div className="text-sm">
-                    <span className="font-bold text-primary">Organizer:</span> {selectedBooking.organizer}
+                      <span className="font-bold text-primary">{t("Organizer:")}</span> {selectedBooking.organizer}
                   </div>
                 )}
                 {selectedBooking.attendees.length > 0 && (
                   <div>
-                    <h4 className="font-bold text-primary text-sm mb-2">Attendees</h4>
+                    <h4 className="font-bold text-primary text-sm mb-2">{t("Attendees")}</h4>
                     <div className="space-y-1">
                       {selectedBooking.attendees.map((a, i) => (
                         <div key={i} className="text-sm text-muted-foreground flex items-center gap-2">
@@ -359,14 +361,14 @@ export default function Meetings() {
                   {selectedBooking.meetingLink && (
                     <a href={selectedBooking.meetingLink} target="_blank" rel="noopener noreferrer">
                       <Button className="rounded-xl bg-primary text-white hover:bg-accent font-bold text-xs" data-testid="button-join-from-detail">
-                        Join Meeting
+                        {t("Join Meeting")}
                       </Button>
                     </a>
                   )}
                   {selectedBooking.webLink && (
                     <a href={selectedBooking.webLink} target="_blank" rel="noopener noreferrer">
                       <Button variant="outline" className="rounded-xl border-border hover:bg-secondary text-xs font-bold" data-testid="button-open-outlook">
-                        Open in Outlook
+                        {t("Open in Outlook")}
                       </Button>
                     </a>
                   )}

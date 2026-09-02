@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import logoImg from "@/assets/logo.png";
 import { useAuth, useLogout } from "@/hooks/use-auth";
 import { usePortalEngagement } from "@/hooks/use-portal";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 export function PortalLayout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -13,41 +14,42 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
   const logoutMutation = useLogout();
   const { engagement, engagements, setSelectedEngagementId } = usePortalEngagement();
+  const { t, role } = usePortalI18n();
 
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
   const isClient = user?.role === "client";
 
   const clientNavItems = [
-    { label: "Overview", href: "/portal" },
-    { label: "Launch plan", href: "/portal/roadmap" },
-    { label: "Deliverables", href: "/portal/documents" },
-    { label: "Sessions", href: "/portal/meetings" },
-    { label: "Next actions", href: "/portal/actions" },
-    { label: "Progress", href: "/portal/performance" },
-    { label: "Messages", href: "/portal/messages" },
-    { label: "Resource library", href: "/portal/resources" },
-    { label: "Billing", href: "/portal/billing" },
+    { label: t("Overview"), href: "/portal" },
+    { label: t("Launch plan"), href: "/portal/roadmap" },
+    { label: t("Deliverables"), href: "/portal/documents" },
+    { label: t("Sessions"), href: "/portal/meetings" },
+    { label: t("Next actions"), href: "/portal/actions" },
+    { label: t("Progress"), href: "/portal/performance" },
+    { label: t("Messages"), href: "/portal/messages" },
+    { label: t("Resource library"), href: "/portal/resources" },
+    { label: t("Billing"), href: "/portal/billing" },
   ];
 
   const staffNavItems = [
-    { label: "Overview", href: "/portal" },
-    { label: "Milestones", href: "/portal/roadmap" },
-    { label: "Documents", href: "/portal/documents" },
-    { label: "Meeting Hub", href: "/portal/meetings" },
-    { label: "Action Items", href: "/portal/actions" },
-    { label: "KPIs & Metrics", href: "/portal/performance" },
-    { label: "Client Messages", href: "/portal/messages" },
-    { label: "Resources", href: "/portal/resources" },
-    { label: "Billing & Contracts", href: "/portal/billing" },
-    { label: "Leads Tracker", href: "/portal/leads" },
+    { label: t("Overview"), href: "/portal" },
+    { label: t("Milestones"), href: "/portal/roadmap" },
+    { label: t("Documents"), href: "/portal/documents" },
+    { label: t("Meeting Hub"), href: "/portal/meetings" },
+    { label: t("Action Items"), href: "/portal/actions" },
+    { label: t("KPIs & Metrics"), href: "/portal/performance" },
+    { label: t("Client Messages"), href: "/portal/messages" },
+    { label: t("Resources"), href: "/portal/resources" },
+    { label: t("Billing & Contracts"), href: "/portal/billing" },
+    { label: t("Leads Tracker"), href: "/portal/leads" },
   ];
 
   const adminNavItems = [
     ...staffNavItems,
-    { label: "Billing & Retainers", href: "/portal/admin/billing" },
-    { label: "User Management", href: "/portal/admin/users" },
-    { label: "Submissions", href: "/portal/admin/submissions" },
-    { label: "Receipts / Reçus", href: "/portal/admin/receipts" },
+    { label: t("Billing & Retainers"), href: "/portal/admin/billing" },
+    { label: t("User Management"), href: "/portal/admin/users" },
+    { label: t("Submissions"), href: "/portal/admin/submissions" },
+    { label: t("Receipts"), href: "/portal/admin/receipts" },
   ];
 
   const navItems = user?.role === "admin" ? adminNavItems : isClient ? clientNavItems : staffNavItems;
@@ -71,18 +73,18 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
   const hasMultipleEngagements = isStaffOrAdmin && engagements.length > 1;
 
   const portalTitle = isClient
-    ? `${user?.companyName || "Client"} Portal`
+    ? `${user?.companyName || t("Client")} Portal`
     : user?.role === "admin"
-    ? "Admin Portal"
-    : "Staff Portal";
+    ? t("Admin Portal")
+    : t("Staff Portal");
 
   const portalSubtitle = isClient
-    ? "Client engagement"
+    ? t("Client engagement")
     : user?.role === "admin"
-    ? "Administrator"
-    : "Engagement manager";
+    ? t("Administrator")
+    : t("Engagement manager");
 
-  const sectionLabel = isStaffOrAdmin ? "Operations" : "Your workspace";
+  const sectionLabel = isStaffOrAdmin ? t("Operations") : t("Your workspace");
 
   return (
     <div className="min-h-screen flex font-sans bg-[#fffdfc] relative">
@@ -125,7 +127,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
         {isStaffOrAdmin && engagements.length > 0 && (
           <div className="relative px-4 pt-5 pb-3">
              <p className="text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground px-3 mb-2">
-              {user?.role === "admin" ? "Engagement" : "Assigned client"}
+              {user?.role === "admin" ? t("Engagement") : t("Assigned client")}
             </p>
             <div className="relative">
               <button
@@ -141,10 +143,10 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                 </div>
                 <div className="flex-1 min-w-0">
                  <p className="text-sm font-bold text-primary truncate" data-testid="text-active-client">
-                    {engagement?.clientName || "Select client"}
+                    {engagement?.clientName || t("Select client")}
                   </p>
                    <p className="text-[10px] text-muted-foreground truncate uppercase tracking-wider">
-                    {engagement?.engagementType || "No engagement"}
+                     {engagement?.engagementType || t("No engagement")}
                   </p>
                 </div>
                 {hasMultipleEngagements && (
@@ -169,7 +171,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-bold text-primary truncate">{eng.clientName}</p>
                         <p className="text-[10px] text-muted-foreground uppercase tracking-wider">
-                          {eng.engagementType} · {eng.currentPhase || "Active"}
+                          {eng.engagementType} · {eng.currentPhase || t("Active")}
                         </p>
                       </div>
                       {engagement?.id === eng.id && <div className="w-2 h-2 rounded-full bg-accent flex-shrink-0" />}
@@ -231,7 +233,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
             data-testid="button-logout"
              className="mt-2 w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
           >
-            Sign out
+            {t("Sign out")}
           </button>
         </div>
       </aside>
@@ -244,15 +246,15 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
         </Link>
         <div className="flex items-center gap-4">
              <button className="text-primary/85 relative text-xs font-bold uppercase tracking-[0.18em]" aria-label="Notifications">
-            Alerts
+             {t("Alerts")}
              <span className="absolute -top-1 -right-2 w-2 h-2 bg-accent rounded-full ring-2 ring-white"></span>
           </button>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
              className="text-primary text-xs font-bold uppercase tracking-[0.18em]"
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={isMobileMenuOpen ? t("Close") : t("Menu")}
           >
-            {isMobileMenuOpen ? "Close" : "Menu"}
+            {isMobileMenuOpen ? t("Close") : t("Menu")}
           </button>
         </div>
       </div>
@@ -262,7 +264,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           {isStaffOrAdmin && engagements.length > 0 && (
             <div className="px-4 pt-5 pb-3 border-b border-white/10">
                <p className="text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground mb-2">
-                {user?.role === "admin" ? "Engagement" : "Assigned client"}
+                {user?.role === "admin" ? t("Engagement") : t("Assigned client")}
               </p>
               <div className="space-y-1">
                 {engagements.map((eng) => (
@@ -313,7 +315,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
               onClick={handleLogout}
                className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
             >
-              Sign out
+              {t("Sign out")}
             </button>
           </nav>
         </div>
@@ -346,7 +348,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
               className="h-11 px-5 rounded-full bg-white border border-border flex items-center justify-center text-primary hover:text-accent hover:border-accent transition-colors relative shadow-sm text-[11px] font-bold uppercase tracking-[0.18em]"
               aria-label="Notifications"
             >
-              Alerts
+              {t("Alerts")}
               <span className="absolute top-2 right-2 w-2 h-2 bg-accent rounded-full animate-pulse" />
             </button>
             <Link href="/portal/meetings">
@@ -354,7 +356,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                  className="bg-primary text-white hover:bg-accent hover:text-primary h-11 px-6 font-bold uppercase tracking-[0.18em] text-[11px] transition-all"
                 data-testid="button-book-meeting"
               >
-                Book meeting
+                {t("Book meeting")}
               </Button>
             </Link>
           </div>

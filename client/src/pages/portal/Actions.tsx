@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { ActionItem } from "@shared/schema";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 const STATUS_CYCLE = ["pending", "in-progress", "completed"] as const;
 
@@ -20,6 +21,7 @@ export default function Actions() {
   const { data: actions, isLoading: actionsLoading } = usePortalData<ActionItem[]>("actions", engagementId);
   const { toast } = useToast();
   const { user } = useAuth();
+  const { t, status, priority } = usePortalI18n();
   const canEdit = user?.role === 'staff' || user?.role === 'admin';
   const [dialogOpen, setDialogOpen] = useState(false);
   const [newTask, setNewTask] = useState("");
@@ -51,7 +53,7 @@ export default function Actions() {
       setNewOwner("");
       setNewDueDate("");
       setNewPriority("medium");
-      toast({ title: "Action created", description: "New action item has been added." });
+       toast({ title: t("Action created"), description: t("New action item has been added.") });
     },
   });
 
@@ -61,7 +63,7 @@ export default function Actions() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [queryKey] });
-      toast({ title: "Action deleted", description: "Action item has been removed." });
+       toast({ title: t("Action deleted"), description: t("Action item has been removed.") });
     },
   });
 
@@ -104,7 +106,7 @@ export default function Actions() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse" data-testid="loading-spinner">Loading</span>
+           <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse" data-testid="loading-spinner">{t("Loading")}</span>
         </div>
       </PortalLayout>
     );
@@ -114,8 +116,8 @@ export default function Actions() {
     return (
       <PortalLayout>
         <div className="flex flex-col items-center justify-center min-h-[400px] text-center" data-testid="empty-state-no-engagement">
-          <h2 className="text-xl font-bold text-primary mb-2">No Active Engagement</h2>
-          <p className="text-muted-foreground">Your consultant will set up your engagement shortly.</p>
+           <h2 className="text-xl font-bold text-primary mb-2">{t("No Active Engagement")}</h2>
+           <p className="text-muted-foreground">{t("Your consultant will set up your engagement shortly.")}</p>
         </div>
       </PortalLayout>
     );
@@ -126,48 +128,48 @@ export default function Actions() {
       <div className="space-y-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-page-title">Action Tracker</h1>
-            <p className="text-lg text-muted-foreground" data-testid="text-page-description">Keep track of agreed action items, ownership, and deadlines.</p>
+             <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-page-title">{t("Action Tracker")}</h1>
+             <p className="text-lg text-muted-foreground" data-testid="text-page-description">{t("Keep track of agreed action items, ownership, and deadlines.")}</p>
           </div>
           {canEdit && (
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
               <Button data-testid="button-new-action">
-                New Action
+                 {t("New Action")}
               </Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Create New Action Item</DialogTitle>
+                 <DialogTitle>{t("Create New Action Item")}</DialogTitle>
               </DialogHeader>
               <div className="space-y-4 pt-4">
                 <div>
-                  <Label htmlFor="task">Task</Label>
-                  <Input id="task" data-testid="input-task" value={newTask} onChange={e => setNewTask(e.target.value)} placeholder="Describe the action item" />
+                   <Label htmlFor="task">{t("Task")}</Label>
+                   <Input id="task" data-testid="input-task" value={newTask} onChange={e => setNewTask(e.target.value)} placeholder={t("Describe the action item")} />
                 </div>
                 <div>
-                  <Label htmlFor="owner">Owner</Label>
-                  <Input id="owner" data-testid="input-owner" value={newOwner} onChange={e => setNewOwner(e.target.value)} placeholder="Who is responsible?" />
+                   <Label htmlFor="owner">{t("Owner")}</Label>
+                   <Input id="owner" data-testid="input-owner" value={newOwner} onChange={e => setNewOwner(e.target.value)} placeholder={t("Who is responsible?")} />
                 </div>
                 <div>
-                  <Label htmlFor="dueDate">Due Date</Label>
+                   <Label htmlFor="dueDate">{t("Due Date")}</Label>
                   <Input id="dueDate" data-testid="input-due-date" type="date" value={newDueDate} onChange={e => setNewDueDate(e.target.value)} />
                 </div>
                 <div>
-                  <Label htmlFor="priority">Priority</Label>
+                   <Label htmlFor="priority">{t("Priority")}</Label>
                   <Select value={newPriority} onValueChange={setNewPriority}>
                     <SelectTrigger data-testid="select-priority">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="high">High</SelectItem>
-                      <SelectItem value="medium">Medium</SelectItem>
-                      <SelectItem value="low">Low</SelectItem>
+                       <SelectItem value="high">{t("High")}</SelectItem>
+                       <SelectItem value="medium">{t("Medium")}</SelectItem>
+                       <SelectItem value="low">{t("Low")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <Button data-testid="button-submit-action" onClick={handleCreate} disabled={createMutation.isPending || !newTask || !newOwner || !newDueDate} className="w-full">
-                  {createMutation.isPending ? "Creating..." : "Create Action"}
+                   {createMutation.isPending ? t("Creating...") : t("Create Action")}
                 </Button>
               </div>
             </DialogContent>
@@ -177,19 +179,19 @@ export default function Actions() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-white p-5 rounded-2xl border border-border shadow-sm" data-testid="card-summary-open">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">Open</p>
+             <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">{t("Open")}</p>
             <p className="text-3xl font-black text-primary" data-testid="text-count-open">{openCount}</p>
           </div>
           <div className="bg-white p-5 rounded-2xl border border-border shadow-sm" data-testid="card-summary-in-progress">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">In Progress</p>
+             <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">{t("In Progress")}</p>
             <p className="text-3xl font-black text-accent" data-testid="text-count-in-progress">{inProgressCount}</p>
           </div>
           <div className="bg-red-50 p-5 rounded-2xl border border-red-100 shadow-sm" data-testid="card-summary-overdue">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-red-500 mb-1">Overdue</p>
+             <p className="text-[10px] font-bold uppercase tracking-widest text-red-500 mb-1">{t("Overdue")}</p>
             <p className="text-3xl font-black text-red-600" data-testid="text-count-overdue">{overdueCount}</p>
           </div>
           <div className="bg-green-50 p-5 rounded-2xl border border-green-100 shadow-sm" data-testid="card-summary-completed">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-green-600 mb-1">Completed</p>
+             <p className="text-[10px] font-bold uppercase tracking-widest text-green-600 mb-1">{t("Completed")}</p>
             <p className="text-3xl font-black text-green-700" data-testid="text-count-completed">{completedCount}</p>
           </div>
         </div>
@@ -227,7 +229,7 @@ export default function Actions() {
                             data-testid={`button-status-${action.id}`}
                             title="Click to cycle status"
                           >
-                            {displayStatus === 'in-progress' ? 'In Progress' : displayStatus}
+                             {status(displayStatus)}
                           </button>
                           ) : (
                           <span
@@ -240,7 +242,7 @@ export default function Actions() {
                             )}
                             data-testid={`status-icon-${action.id}`}
                           >
-                            {displayStatus === 'in-progress' ? 'In Progress' : displayStatus}
+                             {status(displayStatus)}
                           </span>
                           )}
                         </td>
@@ -269,7 +271,7 @@ export default function Actions() {
                             action.priority === 'medium' ? "bg-orange-50 text-orange-600 border-orange-200" :
                             "bg-zinc-100 text-zinc-800 border-zinc-200"
                           )} data-testid={`badge-priority-${action.id}`}>
-                            {action.priority}
+                             {priority(action.priority)}
                           </span>
                         </td>
                         {canEdit && (
@@ -280,7 +282,7 @@ export default function Actions() {
                             data-testid={`button-delete-${action.id}`}
                             title="Delete action"
                           >
-                            <span className="text-xs font-bold uppercase tracking-wider">Delete</span>
+                             <span className="text-xs font-bold uppercase tracking-wider">{t("Delete")}</span>
                           </button>
                         </td>
                         )}
@@ -290,7 +292,7 @@ export default function Actions() {
                 ) : (
                   <tr>
                     <td colSpan={canEdit ? 6 : 5} className="py-12 text-center text-muted-foreground" data-testid="text-empty-actions">
-                      {canEdit ? 'No action items yet. Click "New Action" to create one.' : 'No action items yet.'}
+                       {canEdit ? t('No action items yet. Click "New Action" to create one.') : t('No action items yet.')}
                     </td>
                   </tr>
                 )}

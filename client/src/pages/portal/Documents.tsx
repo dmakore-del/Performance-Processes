@@ -10,11 +10,13 @@ import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/lib/queryClient";
 import type { Document } from "@shared/schema";
 import { useState, useRef } from "react";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 export default function Documents() {
   const { engagementId, isLoading: engLoading } = usePortalEngagement();
   const { data: documents, isLoading: docsLoading } = usePortalData<Document[]>("documents", engagementId);
   const { toast } = useToast();
+  const { t, fr, formatDate } = usePortalI18n();
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
   const [uploadOpen, setUploadOpen] = useState(false);
   const [folderName, setFolderName] = useState("General");
@@ -37,20 +39,20 @@ export default function Documents() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/documents`] });
-      toast({ title: "Document uploaded", description: "Your file has been uploaded successfully." });
+      toast({ title: t("Document uploaded"), description: t("Your file has been uploaded successfully.") });
       setUploadOpen(false);
       setFolderName("General");
       if (fileInputRef.current) fileInputRef.current.value = "";
     },
     onError: (error: Error) => {
-      toast({ title: "Upload failed", description: error.message, variant: "destructive" });
+      toast({ title: t("Upload failed"), description: error.message, variant: "destructive" });
     },
   });
 
   const handleUploadSubmit = () => {
     const file = fileInputRef.current?.files?.[0];
     if (!file) {
-      toast({ title: "No file selected", description: "Please select a file to upload.", variant: "destructive" });
+      toast({ title: t("No file selected"), description: t("Please select a file to upload."), variant: "destructive" });
       return;
     }
     if (!engagementId) return;
@@ -97,7 +99,7 @@ export default function Documents() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="documents-loading">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">Loading</span>
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">{t("Loading")}</span>
         </div>
       </PortalLayout>
     );
@@ -108,8 +110,8 @@ export default function Documents() {
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="documents-empty-state">
           <div className="text-center space-y-4">
-            <h2 className="text-xl font-bold text-primary" data-testid="text-no-engagement">No active engagement</h2>
-            <p className="text-muted-foreground" data-testid="text-no-engagement-desc">Your consultant will set up your engagement shortly.</p>
+            <h2 className="text-xl font-bold text-primary" data-testid="text-no-engagement">{t("No Active Engagement")}</h2>
+            <p className="text-muted-foreground" data-testid="text-no-engagement-desc">{t("Your consultant will set up your engagement shortly.")}</p>
           </div>
         </div>
       </PortalLayout>
@@ -123,26 +125,26 @@ export default function Documents() {
       <div className="space-y-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-documents-title">Deliverables & Documents</h1>
-            <p className="text-lg text-muted-foreground" data-testid="text-documents-subtitle">Centralized access to all project materials and final reports.</p>
+            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-documents-title">{t("Deliverables & Documents")}</h1>
+            <p className="text-lg text-muted-foreground" data-testid="text-documents-subtitle">{t("Centralized access to all project materials and final reports.")}</p>
           </div>
           <Button
             className="rounded-full bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-xs px-6"
             onClick={() => setUploadOpen(true)}
             data-testid="button-upload-document"
           >
-            Upload Document
+            {t("Upload Document")}
           </Button>
         </div>
 
         <Dialog open={uploadOpen} onOpenChange={setUploadOpen}>
           <DialogContent data-testid="dialog-upload">
             <DialogHeader>
-              <DialogTitle>Upload Document</DialogTitle>
+              <DialogTitle>{t("Upload Document")}</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <div>
-                <Label htmlFor="file-input">File</Label>
+                <Label htmlFor="file-input">{t("File")}</Label>
                 <Input
                   id="file-input"
                   type="file"
@@ -151,12 +153,12 @@ export default function Documents() {
                 />
               </div>
               <div>
-                <Label htmlFor="folder-input">Folder</Label>
+                <Label htmlFor="folder-input">{t("Folder")}</Label>
                 <Input
                   id="folder-input"
                   value={folderName}
                   onChange={(e) => setFolderName(e.target.value)}
-                  placeholder="Enter folder name"
+                  placeholder={t("Enter folder name")}
                   data-testid="input-folder"
                 />
                 <div className="flex gap-2 mt-2 flex-wrap">
@@ -168,7 +170,7 @@ export default function Documents() {
                       onClick={() => setFolderName(s)}
                       data-testid={`button-folder-suggestion-${s.toLowerCase().replace(/\s+/g, '-')}`}
                     >
-                      {s}
+                       {fr ? ({ General: "Général", "Discovery Phase": "Phase de découverte", "Strategic Engagement": "Mandat stratégique" } as Record<string, string>)[s] : s}
                     </button>
                   ))}
                 </div>
@@ -179,14 +181,14 @@ export default function Documents() {
                 className="w-full"
                 data-testid="button-submit-upload"
               >
-                {uploadMutation.isPending ? "Uploading..." : "Upload"}
+                 {uploadMutation.isPending ? t("Uploading...") : t("Upload")}
               </Button>
             </div>
           </DialogContent>
         </Dialog>
 
         <div>
-          <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">Folders</h3>
+           <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">{t("Folders")}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             {folders.map((folder, i) => (
               <div
@@ -200,7 +202,7 @@ export default function Documents() {
                 <div className="flex items-center gap-3">
                   <div className="flex-1 min-w-0">
                     <p className="font-bold text-primary text-sm truncate" data-testid={`text-folder-name-${i}`}>{folder.name}</p>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mt-1" data-testid={`text-folder-count-${i}`}>{folder.count} Files</p>
+                     <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mt-1" data-testid={`text-folder-count-${i}`}>{folder.count} {t("Files")}</p>
                   </div>
                 </div>
               </div>
@@ -211,11 +213,11 @@ export default function Documents() {
         <div className="bg-white rounded-3xl border border-border shadow-sm overflow-hidden">
           <div className="p-6 border-b border-border bg-secondary/30 flex justify-between items-center">
             <h3 className="text-lg font-bold text-primary" data-testid="text-files-header">
-              {selectedFolder ? selectedFolder : "All Files"}
+               {selectedFolder ? selectedFolder : t("All Files")}
             </h3>
             {selectedFolder && (
               <Button variant="ghost" size="sm" onClick={() => setSelectedFolder(null)} data-testid="button-clear-folder-filter">
-                Show All
+                 {t("Show All")}
               </Button>
             )}
           </div>
@@ -224,18 +226,18 @@ export default function Documents() {
             <table className="w-full text-left border-collapse" data-testid="table-documents">
               <thead>
                 <tr className="border-b border-border bg-secondary/10">
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground w-1/2">Name</th>
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Date Uploaded</th>
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Size</th>
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Version</th>
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground text-right">Actions</th>
+                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground w-1/2">{t("Name")}</th>
+                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Date Uploaded")}</th>
+                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Size")}</th>
+                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Version")}</th>
+                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground text-right">{t("Actions")}</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredFiles.length === 0 ? (
                   <tr>
                     <td colSpan={5} className="py-12 text-center text-muted-foreground" data-testid="text-no-documents">
-                      No documents found.
+                       {t("No documents found.")}
                     </td>
                   </tr>
                 ) : (
@@ -248,7 +250,7 @@ export default function Documents() {
                         </div>
                       </td>
                       <td className="py-4 px-6 text-sm text-muted-foreground" data-testid={`text-document-date-${file.id}`}>
-                        {file.uploadedAt ? new Date(file.uploadedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : ","}
+                         {file.uploadedAt ? formatDate(file.uploadedAt, { month: "short", day: "numeric", year: "numeric" }) : ","}
                       </td>
                       <td className="py-4 px-6 text-sm text-muted-foreground" data-testid={`text-document-size-${file.id}`}>{file.size}</td>
                       <td className="py-4 px-6">
@@ -261,7 +263,7 @@ export default function Documents() {
                             onClick={() => handleDownload(file)}
                             data-testid={`button-download-${file.id}`}
                           >
-                            <span className="text-xs font-bold uppercase tracking-wider">Download</span>
+                             <span className="text-xs font-bold uppercase tracking-wider">{t("Download")}</span>
                           </button>
                         </div>
                       </td>

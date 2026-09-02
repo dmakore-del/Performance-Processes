@@ -12,10 +12,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { ActionItem, Meeting, Milestone, Document } from "@shared/schema";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 export default function Dashboard() {
   const { engagement, engagementId, isLoading } = usePortalEngagement();
   const { user } = useAuth();
+  const { t, status } = usePortalI18n();
   const { toast } = useToast();
   const { data: actions } = usePortalData<ActionItem[]>("actions", engagementId);
   const { data: meetings } = usePortalData<Meeting[]>("meetings", engagementId);
@@ -38,11 +40,11 @@ export default function Dashboard() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/portal/engagements"] });
-      toast({ title: "Project Updated", description: "Project status has been updated." });
+      toast({ title: t("Project Updated"), description: t("Project status has been updated.") });
       setStatusDialogOpen(false);
     },
     onError: (error: Error) => {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
+      toast({ title: t("Error"), description: error.message, variant: "destructive" });
     },
   });
 
@@ -50,7 +52,7 @@ export default function Dashboard() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse">Loading</span>
+            <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse">{t("Loading")}</span>
         </div>
       </PortalLayout>
     );
@@ -65,12 +67,12 @@ export default function Dashboard() {
               {isStaffOrAdmin ? "C" : "!"}
             </div>
             <h2 className="text-xl font-bold text-primary mb-3">
-              {isStaffOrAdmin ? "No Assigned Clients" : "No Active Engagement"}
+              {isStaffOrAdmin ? (t("No Assigned Clients")) : t("No Active Engagement")}
             </h2>
             <p className="text-muted-foreground">
               {isStaffOrAdmin
-                ? "You don't have any client engagements assigned yet. The admin will assign clients to you."
-                : "Your consultant will set up your engagement shortly."}
+                ? t("You don't have any client engagements assigned yet. The admin will assign clients to you.")
+                : t("Your consultant will set up your engagement shortly.")}
             </p>
           </div>
         </div>
@@ -85,7 +87,7 @@ export default function Dashboard() {
   const recentDocs = documents?.slice(0, 3) || [];
 
   const statusColor = engagement.status === "active" ? "bg-green-500" : "bg-orange-500";
-  const statusLabel = engagement.status === "active" ? "Active" : engagement.status === "on-hold" ? "On Hold" : engagement.status;
+  const statusLabel = status(engagement.status);
 
   return (
     <PortalLayout>
@@ -97,15 +99,15 @@ export default function Dashboard() {
             </h1>
             <p className="text-lg text-muted-foreground mt-2">
               {isStaffOrAdmin
-                ? "Manage this client's engagement, milestones, and deliverables."
-                : "Here is the latest overview of your consulting engagement."}
+                ? t("Manage this client's engagement, milestones, and deliverables.")
+                : t("Here is the latest overview of your consulting engagement.")}
             </p>
           </div>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-full border border-border shadow-sm">
               <div className={`w-3 h-3 rounded-full ${statusColor} animate-pulse`}></div>
               <span data-testid="text-project-status" className="font-bold text-sm uppercase tracking-wider text-primary">
-                Status: {statusLabel}
+                {t("Status")}: {statusLabel}
               </span>
             </div>
             {isStaffOrAdmin && (
@@ -123,39 +125,39 @@ export default function Dashboard() {
                 }}
                 data-testid="button-edit-status"
               >
-                Edit
+                {t("Edit")}
               </Button>
             )}
           </div>
         </div>
 
         <div className="bg-white p-6 rounded-3xl border border-border shadow-sm">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">Engagement Summary</h3>
+            <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">{t("Engagement Summary")}</h3>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
             {isStaffOrAdmin && (
               <div>
-                <p className="text-xs text-muted-foreground mb-1">Client</p>
+                <p className="text-xs text-muted-foreground mb-1">{t("Client")}</p>
                 <p data-testid="text-client-name" className="font-bold text-primary">{engagement.clientName}</p>
               </div>
             )}
             <div>
-              <p className="text-xs text-muted-foreground mb-1">Type</p>
+                <p className="text-xs text-muted-foreground mb-1">{t("Type")}</p>
               <p data-testid="text-engagement-type" className="font-bold text-primary">{engagement.engagementType}</p>
             </div>
             <div>
-              <p className="text-xs text-muted-foreground mb-1">Start Date</p>
+                <p className="text-xs text-muted-foreground mb-1">{t("Start Date")}</p>
               <p data-testid="text-start-date" className="font-bold text-primary">{engagement.startDate}</p>
             </div>
             <div>
-              <p className="text-xs text-muted-foreground mb-1">Current Phase</p>
+                <p className="text-xs text-muted-foreground mb-1">{t("Current Phase")}</p>
               <p data-testid="text-current-phase" className="font-bold text-primary">{engagement.currentPhase}</p>
             </div>
             <div>
-              <p className="text-xs text-muted-foreground mb-1">Next Session</p>
+                <p className="text-xs text-muted-foreground mb-1">{t("Next Session")}</p>
               <p data-testid="text-next-session" className="font-bold text-primary">{engagement.nextSession || ","}</p>
             </div>
             <div>
-              <p className="text-xs text-muted-foreground mb-1">Outstanding Actions</p>
+                <p className="text-xs text-muted-foreground mb-1">{t("Outstanding Actions")}</p>
               <p data-testid="text-outstanding-actions" className="font-bold text-primary">{openActions.length}</p>
             </div>
           </div>
@@ -165,23 +167,23 @@ export default function Dashboard() {
           <div className="bg-white p-6 rounded-3xl border border-border shadow-sm flex flex-col justify-between">
             <div className="w-12 h-1 rounded-full bg-accent mb-4" />
             <h3 data-testid="text-completion-percent" className="text-3xl font-black text-primary mb-1">{engagement.completionPercent}%</h3>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Overall Completion</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Overall Completion")}</p>
           </div>
           <div className="bg-white p-6 rounded-3xl border border-border shadow-sm flex flex-col justify-between">
             <div className="w-12 h-1 rounded-full bg-primary mb-4" />
             <h3 data-testid="text-upcoming-milestones" className="text-3xl font-black text-primary mb-1">{pendingMilestones.length}</h3>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Upcoming Milestones</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Upcoming Milestones")}</p>
           </div>
           <div className="bg-white p-6 rounded-3xl border border-border shadow-sm flex flex-col justify-between">
             <div className="w-12 h-1 rounded-full bg-orange-500 mb-4" />
             <h3 data-testid="text-overdue-count" className="text-3xl font-black text-primary mb-1">{overdueActions.length}</h3>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Overdue Items</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Overdue Items")}</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="bg-white p-8 rounded-3xl border border-border shadow-sm">
-            <h3 className="text-xl font-bold text-primary mb-6">Key Milestones</h3>
+            <h3 className="text-xl font-bold text-primary mb-6">{t("Key Milestones")}</h3>
             <div className="space-y-4">
               {milestones?.slice(0, 6).map((ms) => (
                 <div key={ms.id} className="flex items-center gap-4">
@@ -201,16 +203,16 @@ export default function Dashboard() {
             </div>
             <Link href="/portal/roadmap">
               <button data-testid="link-view-roadmap" className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors">
-                View full roadmap <span className="ml-2">→</span>
+                {t("View full roadmap")} <span className="ml-2">→</span>
               </button>
             </Link>
           </div>
 
           <div className="bg-white p-8 rounded-3xl border border-border shadow-sm">
-            <h3 className="text-xl font-bold text-primary mb-6">Upcoming Schedule</h3>
+            <h3 className="text-xl font-bold text-primary mb-6">{t("Upcoming Schedule")}</h3>
             <div className="space-y-4">
               {upcomingMeetings.length === 0 && (
-                <p className="text-sm text-muted-foreground">No upcoming meetings scheduled.</p>
+                <p className="text-sm text-muted-foreground">{t("No upcoming meetings scheduled.")}</p>
               )}
               {upcomingMeetings.map((meeting) => {
                 const parts = meeting.meetingDate.split(" ");
@@ -232,7 +234,7 @@ export default function Dashboard() {
             </div>
             <Link href="/portal/meetings">
               <button data-testid="link-view-calendar" className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors">
-                View full calendar <span className="ml-2">→</span>
+                {t("View full calendar")} <span className="ml-2">→</span>
               </button>
             </Link>
           </div>
@@ -240,7 +242,7 @@ export default function Dashboard() {
 
         <div className="border-y border-border bg-secondary p-8 md:p-10 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
-          <h3 className="text-2xl font-bold mb-8 relative z-10">Recent Deliverables</h3>
+          <h3 className="text-2xl font-bold mb-8 relative z-10">{t("Recent Deliverables")}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 relative z-10">
             {recentDocs.map((doc) => (
               <div key={doc.id} className="flex items-center gap-4 bg-white hover:bg-white p-4 rounded-2xl transition-colors border border-border cursor-pointer">
@@ -254,7 +256,7 @@ export default function Dashboard() {
           </div>
           <Link href="/portal/documents">
              <button data-testid="link-view-documents" className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors relative z-10">
-              View all documents <span className="ml-2">→</span>
+               {t("View all documents")} <span className="ml-2">→</span>
             </button>
           </Link>
         </div>
@@ -263,26 +265,26 @@ export default function Dashboard() {
       <Dialog open={statusDialogOpen} onOpenChange={setStatusDialogOpen}>
         <DialogContent className="max-w-md" data-testid="edit-status-dialog">
           <DialogHeader>
-            <DialogTitle>Edit Project Status</DialogTitle>
+            <DialogTitle>{t("Edit Project Status")}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 pt-2">
             <div>
-              <Label>Project Status</Label>
+              <Label>{t("Project Status")}</Label>
               <Select value={statusForm.status} onValueChange={(v) => setStatusForm({ ...statusForm, status: v })}>
                 <SelectTrigger data-testid="select-project-status"><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="active">Active</SelectItem>
-                  <SelectItem value="on-hold">On Hold</SelectItem>
-                  <SelectItem value="completed">Completed</SelectItem>
+                  <SelectItem value="active">{t("Active")}</SelectItem>
+                  <SelectItem value="on-hold">{t("On Hold")}</SelectItem>
+                  <SelectItem value="completed">{t("Completed")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div>
-              <Label>Current Phase</Label>
+              <Label>{t("Current Phase")}</Label>
               <Input data-testid="input-current-phase" value={statusForm.currentPhase} onChange={(e) => setStatusForm({ ...statusForm, currentPhase: e.target.value })} />
             </div>
             <div>
-              <Label>Completion %</Label>
+              <Label>{t("Completion %")}</Label>
               <Input data-testid="input-completion-percent" type="number" min={0} max={100} value={statusForm.completionPercent} onChange={(e) => setStatusForm({ ...statusForm, completionPercent: parseInt(e.target.value) || 0 })} />
             </div>
             <div className="flex justify-end">
@@ -292,7 +294,7 @@ export default function Dashboard() {
                 disabled={updateEngagementMutation.isPending}
                 data-testid="button-save-status"
               >
-                {updateEngagementMutation.isPending ? "Saving..." : "Save Changes"}
+                {updateEngagementMutation.isPending ? t("Saving...") : t("Save Changes")}
               </Button>
             </div>
           </div>

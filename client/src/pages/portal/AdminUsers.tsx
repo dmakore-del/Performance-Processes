@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Redirect } from "wouter";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 interface AdminUser {
   id: string;
@@ -25,6 +26,7 @@ interface AdminUser {
 
 export default function AdminUsers() {
   const { user } = useAuth();
+  const { t, role: translateRole } = usePortalI18n();
 
   if (user && user.role !== "admin") {
     return <Redirect to="/portal" />;
@@ -98,7 +100,7 @@ export default function AdminUsers() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse">Loading</span>
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse">{t("Loading")}</span>
         </div>
       </PortalLayout>
     );
@@ -109,13 +111,13 @@ export default function AdminUsers() {
       <div className="space-y-8">
         <div className="flex items-start justify-between">
           <div>
-            <h1 data-testid="text-admin-users-title" className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2">User Management</h1>
-            <p className="text-lg text-muted-foreground">Manage user accounts, approve staff, and control access.</p>
+            <h1 data-testid="text-admin-users-title" className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2">{t("User Management")}</h1>
+            <p className="text-lg text-muted-foreground">{t("Manage user accounts, approve staff, and control access.")}</p>
           </div>
           <Dialog open={createEngagementOpen} onOpenChange={setCreateEngagementOpen}>
             <DialogTrigger asChild>
               <Button data-testid="button-create-engagement" className="bg-accent hover:bg-accent/90 text-white rounded-xl">
-                Create Engagement
+                {t("Create Engagement")}
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px]">
@@ -131,7 +133,7 @@ export default function AdminUsers() {
                 className="space-y-4 mt-4"
               >
                 <div className="space-y-2">
-                  <Label htmlFor="clientName">Client Name</Label>
+                  <Label htmlFor="clientName">{t("Client Name")}</Label>
                   <Input
                     id="clientName"
                     data-testid="input-client-name"
@@ -141,13 +143,13 @@ export default function AdminUsers() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="engagementType">Engagement Type</Label>
+                  <Label htmlFor="engagementType">{t("Engagement Type")}</Label>
                   <Select
                     value={engagementForm.engagementType}
                     onValueChange={(val) => setEngagementForm(f => ({ ...f, engagementType: val }))}
                   >
                     <SelectTrigger data-testid="select-engagement-type">
-                      <SelectValue placeholder="Select type" />
+                      <SelectValue placeholder={t("Select type")} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="Strategic">Strategic</SelectItem>
@@ -158,7 +160,7 @@ export default function AdminUsers() {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="startDate">Start Date</Label>
+                  <Label htmlFor="startDate">{t("Start Date")}</Label>
                   <Input
                     id="startDate"
                     type="date"
@@ -169,23 +171,23 @@ export default function AdminUsers() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="currentPhase">Current Phase</Label>
+                  <Label htmlFor="currentPhase">{t("Current Phase")}</Label>
                   <Input
                     id="currentPhase"
                     data-testid="input-current-phase"
                     value={engagementForm.currentPhase}
                     onChange={(e) => setEngagementForm(f => ({ ...f, currentPhase: e.target.value }))}
-                    placeholder="e.g. Discovery, Planning, Execution"
+                    placeholder={t("e.g. Discovery, Planning, Execution")}
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="clientUserId">Assign Client User</Label>
+                  <Label htmlFor="clientUserId">{t("Assign Client User")}</Label>
                   <Select
                     value={engagementForm.clientUserId}
                     onValueChange={(val) => setEngagementForm(f => ({ ...f, clientUserId: val }))}
                   >
                     <SelectTrigger data-testid="select-client-user">
-                      <SelectValue placeholder="Select client user" />
+                      <SelectValue placeholder={t("Select client user")} />
                     </SelectTrigger>
                     <SelectContent>
                       {clientUsers.map(u => (
@@ -195,13 +197,13 @@ export default function AdminUsers() {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="assignedStaffId">Assign Staff</Label>
+                  <Label htmlFor="assignedStaffId">{t("Assign Staff")}</Label>
                   <Select
                     value={engagementForm.assignedStaffId}
                     onValueChange={(val) => setEngagementForm(f => ({ ...f, assignedStaffId: val }))}
                   >
                     <SelectTrigger data-testid="select-staff-user">
-                      <SelectValue placeholder="Select staff member" />
+                      <SelectValue placeholder={t("Select staff member")} />
                     </SelectTrigger>
                     <SelectContent>
                       {staffUsers.map(u => (
@@ -216,7 +218,7 @@ export default function AdminUsers() {
                   disabled={engagementMutation.isPending}
                   className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl"
                 >
-                  {engagementMutation.isPending ? "Creating..." : "Create Engagement"}
+                  {engagementMutation.isPending ? t("Creating...") : t("Create Engagement")}
                 </Button>
               </form>
             </DialogContent>
@@ -229,7 +231,7 @@ export default function AdminUsers() {
             <p className="text-3xl font-black">{users?.length || 0}</p>
           </button>
           <button onClick={() => setFilter("pending_approval")} data-testid="filter-pending" className={cn("p-5 rounded-2xl border shadow-sm text-left transition-all", filter === "pending_approval" ? "bg-orange-500 text-white border-orange-500" : "bg-white border-border hover:border-orange-300")}>
-            <p className={cn("text-[10px] font-bold uppercase tracking-widest mb-1", filter === "pending_approval" ? "text-white/70" : "text-orange-500")}>Pending</p>
+            <p className={cn("text-[10px] font-bold uppercase tracking-widest mb-1", filter === "pending_approval" ? "text-white/70" : "text-orange-500")}>{t("Pending")}</p>
             <p className="text-3xl font-black">{pendingCount}</p>
           </button>
           <button onClick={() => setFilter("active")} data-testid="filter-active" className={cn("p-5 rounded-2xl border shadow-sm text-left transition-all", filter === "active" ? "bg-green-500 text-white border-green-500" : "bg-white border-border hover:border-green-300")}>
@@ -245,13 +247,13 @@ export default function AdminUsers() {
         <div className="bg-white rounded-3xl border border-border shadow-sm overflow-hidden">
           <div className="p-6 border-b border-border bg-secondary/30">
             <h3 className="text-lg font-bold text-primary">
-              {filter === "all" ? "All Users" : filter === "pending_approval" ? "Pending Approval" : filter === "active" ? "Active Users" : "Suspended Users"}
+              {filter === "all" ? t("All Users") : filter === "pending_approval" ? t("Pending Approval") : filter === "active" ? t("Active Users") : t("Suspended Users")}
             </h3>
           </div>
 
           {filteredUsers.length === 0 ? (
             <div className="p-12 text-center">
-              <p className="text-muted-foreground">No users found in this category.</p>
+              <p className="text-muted-foreground">{t("No users found in this category.")}</p>
             </div>
           ) : (
             <div className="overflow-x-auto">

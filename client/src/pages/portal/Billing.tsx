@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import type { Invoice, Contract } from "@shared/schema";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 export default function Billing() {
   const { engagement, engagementId, isLoading: engLoading } = usePortalEngagement();
@@ -19,6 +20,7 @@ export default function Billing() {
   const { data: contracts, isLoading: conLoading } = usePortalData<Contract[]>("contracts", engagementId);
   const { toast } = useToast();
   const { user } = useAuth();
+  const { t, status } = usePortalI18n();
 
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
 
@@ -51,8 +53,8 @@ export default function Billing() {
     const params = new URLSearchParams(window.location.search);
     if (params.get("payment") === "success") {
       toast({
-        title: "Payment successful!",
-        description: "Your payment has been processed.",
+        title: t("Payment successful!"),
+        description: t("Your payment has been processed."),
       });
       window.history.replaceState({}, "", window.location.pathname);
       queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/invoices`] });
@@ -68,13 +70,13 @@ export default function Billing() {
       window.location.href = data.url;
     },
     onError: (error: Error) => {
-      toast({ title: "Payment Error", description: error.message, variant: "destructive" });
+      toast({ title: t("Payment Error"), description: error.message, variant: "destructive" });
     },
   });
 
   const retainerMutation = useMutation({
     mutationFn: async () => {
-      if (!engagementId) throw new Error("No engagement selected");
+       if (!engagementId) throw new Error(t("No engagement selected"));
       const res = await apiRequest("POST", `/api/portal/engagements/${engagementId}/retainer/checkout`);
       return res.json();
     },
@@ -82,7 +84,7 @@ export default function Billing() {
       window.location.href = data.url;
     },
     onError: (error: Error) => {
-      toast({ title: "Retainer payment error", description: error.message, variant: "destructive" });
+      toast({ title: t("Retainer payment error"), description: error.message, variant: "destructive" });
     },
   });
 
@@ -92,13 +94,13 @@ export default function Billing() {
       return res.json();
     },
     onSuccess: () => {
-      toast({ title: "Contract Signed", description: "The contract has been signed successfully." });
+      toast({ title: t("Contract Signed"), description: t("The contract has been signed successfully.") });
       queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/contracts`] });
       setSignDialogOpen(false);
       setSelectedContract(null);
     },
     onError: (error: Error) => {
-      toast({ title: "Signing Error", description: error.message, variant: "destructive" });
+      toast({ title: t("Signing Error"), description: error.message, variant: "destructive" });
     },
   });
 
@@ -108,7 +110,7 @@ export default function Billing() {
       return res.json();
     },
     onSuccess: () => {
-      toast({ title: "Invoice Created", description: "The invoice has been created and is ready for client payment." });
+      toast({ title: t("Invoice Created"), description: t("The invoice has been created and is ready for client payment.") });
       queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/invoices`] });
       setCreateInvoiceOpen(false);
       setInvoiceForm({ invoiceNumber: "", description: "", amount: "", amountCents: 0, issueDate: "", dueDate: "" });
@@ -140,7 +142,7 @@ export default function Billing() {
       return res.json();
     },
     onSuccess: () => {
-      toast({ title: "Agreement Created", description: "The agreement has been uploaded and created." });
+      toast({ title: t("Agreement Created"), description: t("The agreement has been uploaded and created.") });
       queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/contracts`] });
       setCreateContractOpen(false);
       setContractForm({ title: "", terms: "", documentDate: "" });
@@ -148,7 +150,7 @@ export default function Billing() {
       if (contractFileRef.current) contractFileRef.current.value = "";
     },
     onError: (error: Error) => {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
+      toast({ title: t("Error"), description: error.message, variant: "destructive" });
     },
   });
 
@@ -221,7 +223,7 @@ export default function Billing() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center py-20" data-testid="billing-loading">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">Loading</span>
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">{t("Loading")}</span>
         </div>
       </PortalLayout>
     );
@@ -231,8 +233,8 @@ export default function Billing() {
     return (
       <PortalLayout>
         <div className="flex flex-col items-center justify-center py-20 text-center" data-testid="billing-empty">
-          <h2 className="text-xl font-bold text-primary mb-2">No Active Engagement</h2>
-          <p className="text-muted-foreground">Your consultant will set up your engagement shortly.</p>
+          <h2 className="text-xl font-bold text-primary mb-2">{t("No Active Engagement")}</h2>
+          <p className="text-muted-foreground">{t("Your consultant will set up your engagement shortly.")}</p>
         </div>
       </PortalLayout>
     );
@@ -243,16 +245,16 @@ export default function Billing() {
     <PortalLayout>
       <div className="space-y-8">
         <div>
-          <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="billing-title">Billing & Agreements</h1>
-          <p className="text-lg text-muted-foreground" data-testid="billing-subtitle">Manage invoices, payments, and view engagement contracts.</p>
+          <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="billing-title">{t("Billing & Agreements")}</h1>
+          <p className="text-lg text-muted-foreground" data-testid="billing-subtitle">{t("Manage invoices, payments, and view engagement contracts.")}</p>
         </div>
 
         <div className="space-y-8">
           <div className="grid gap-4 md:grid-cols-3">
             {[
-              ["Outstanding", outstandingInvoices.length, "outstanding"],
-              ["Overdue", overdueInvoices.length, "overdue"],
-              ["Paid invoices", paidInvoices.length, "paid"],
+              [t("Outstanding"), outstandingInvoices.length, "outstanding"],
+              [t("Overdue"), overdueInvoices.length, "overdue"],
+              [t("Paid invoices"), paidInvoices.length, "paid"],
             ].map(([label, value, key]) => (
               <button key={key} type="button" onClick={() => setInvoiceFilter(key as typeof invoiceFilter)} className={`border p-5 text-left transition-colors ${invoiceFilter === key ? "border-accent bg-secondary" : "border-border bg-white hover:border-accent"}`}>
                 <p className="text-xs font-semibold text-muted-foreground">{label}</p>
@@ -265,14 +267,14 @@ export default function Billing() {
             <section className="border-l-2 border-accent bg-secondary p-6 md:p-8" data-testid="retainer-card">
               <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.24em] text-accent">Monthly support</p>
-                  <h2 className="mt-3 text-3xl font-heading text-primary">{activeEngagement.retainerPlan || "Your monthly retainer"}</h2>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{activeEngagement.retainerStatus === "past_due" ? "Your latest retainer payment needs attention." : "Keep your ongoing support active with a secure monthly payment."}</p>
-                  <p className="mt-4 text-2xl font-heading text-primary">${(activeEngagement.retainerAmountCents / 100).toLocaleString("en-CA", { minimumFractionDigits: 2 })} <span className="text-sm text-muted-foreground">CAD per month</span></p>
+                  <p className="text-[10px] font-black uppercase tracking-[0.24em] text-accent">{t("Monthly support")}</p>
+                  <h2 className="mt-3 text-3xl font-heading text-primary">{activeEngagement.retainerPlan || t("Your monthly retainer")}</h2>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{activeEngagement.retainerStatus === "past_due" ? t("Your latest retainer payment needs attention.") : t("Keep your ongoing support active with a secure monthly payment.")}</p>
+                  <p className="mt-4 text-2xl font-heading text-primary">${(activeEngagement.retainerAmountCents / 100).toLocaleString("en-CA", { minimumFractionDigits: 2 })} <span className="text-sm text-muted-foreground">{t("CAD per month")}</span></p>
                 </div>
                 {!isStaffOrAdmin && activeEngagement.retainerStatus !== "paused" && (
                   <Button className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => retainerMutation.mutate()} disabled={retainerMutation.isPending} data-testid="button-pay-retainer">
-                    {retainerMutation.isPending ? "Opening secure checkout" : activeEngagement.retainerStatus === "active" ? "Manage monthly payment" : "Start monthly retainer"}
+                    {retainerMutation.isPending ? t("Opening secure checkout") : activeEngagement.retainerStatus === "active" ? t("Manage monthly payment") : t("Start monthly retainer")}
                   </Button>
                 )}
               </div>
@@ -282,28 +284,28 @@ export default function Billing() {
           <div className="space-y-5">
             <div className="flex flex-col gap-4 border-b border-border pb-4 md:flex-row md:items-end md:justify-between">
               <div>
-                <h3 className="text-2xl font-heading text-primary" data-testid="invoices-heading">Invoices</h3>
-                <p className="mt-1 text-sm text-muted-foreground">Review past payments and take care of anything outstanding.</p>
+                <h3 className="text-2xl font-heading text-primary" data-testid="invoices-heading">{t("Invoices")}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{t("Review past payments and take care of anything outstanding.")}</p>
               </div>
-              {isStaffOrAdmin && <Button size="sm" className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => setCreateInvoiceOpen(true)} data-testid="button-create-invoice">Create invoice</Button>}
+              {isStaffOrAdmin && <Button size="sm" className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => setCreateInvoiceOpen(true)} data-testid="button-create-invoice">{t("Create invoice")}</Button>}
             </div>
             <div className="flex gap-1 overflow-x-auto border border-border bg-white p-1" role="tablist" aria-label="Invoice views">
-              {(["all", "outstanding", "overdue", "paid"] as const).map((item) => <button key={item} type="button" role="tab" aria-selected={invoiceFilter === item} onClick={() => setInvoiceFilter(item)} className={`shrink-0 px-4 py-2 text-xs font-semibold capitalize ${invoiceFilter === item ? "bg-accent text-primary" : "text-muted-foreground hover:text-primary"}`}>{item}</button>)}
+              {(["all", "outstanding", "overdue", "paid"] as const).map((item) => <button key={item} type="button" role="tab" aria-selected={invoiceFilter === item} onClick={() => setInvoiceFilter(item)} className={`shrink-0 px-4 py-2 text-xs font-semibold capitalize ${invoiceFilter === item ? "bg-accent text-primary" : "text-muted-foreground hover:text-primary"}`}>{item === "all" ? t("All") : item === "outstanding" ? t("Outstanding") : item === "overdue" ? t("Overdue") : t("Paid invoices")}</button>)}
             </div>
             <div className="border border-border bg-white" data-testid="invoices-list">
               {visibleInvoices.length > 0 ? visibleInvoices.map((inv) => {
-                const status = invoiceStatus(inv);
+               const invoiceState = invoiceStatus(inv);
                 return <div key={inv.id} className="flex flex-col gap-4 border-b border-border p-5 last:border-0 transition-colors hover:bg-secondary/20 sm:flex-row sm:items-center sm:justify-between" data-testid={`invoice-row-${inv.id}`}>
-                  <div><h4 className="font-semibold text-primary" data-testid={`invoice-number-${inv.id}`}>{inv.invoiceNumber}</h4><p className="mt-1 text-xs text-muted-foreground">Issued {inv.issueDate}, due {inv.dueDate}</p>{inv.description && <p className="mt-1 text-sm text-muted-foreground">{inv.description}</p>}</div>
-                  <div className="flex items-center justify-between gap-4 sm:justify-end"><div className="text-right"><p className="font-heading text-xl text-primary" data-testid={`invoice-amount-${inv.id}`}>{inv.amount}</p><span className={`text-[10px] font-bold uppercase tracking-[.12em] ${status === "paid" ? "text-green-700" : status === "overdue" ? "text-red-700" : "text-accent"}`} data-testid={`invoice-status-${inv.id}`}>{status}</span></div>{status !== "paid" && status !== "void" && !isStaffOrAdmin && <Button size="sm" className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => payMutation.mutate(inv.id)} disabled={payMutation.isPending} data-testid={`button-pay-${inv.id}`}>{payMutation.isPending ? "Processing" : "Pay invoice"}</Button>}{isStaffOrAdmin && status !== "paid" && <span className="text-xs text-muted-foreground">Client payment pending</span>}</div>
+                   <div><h4 className="font-semibold text-primary" data-testid={`invoice-number-${inv.id}`}>{inv.invoiceNumber}</h4><p className="mt-1 text-xs text-muted-foreground">{t("Issued")} {inv.issueDate}, {t("due")} {inv.dueDate}</p>{inv.description && <p className="mt-1 text-sm text-muted-foreground">{inv.description}</p>}</div>
+                   <div className="flex items-center justify-between gap-4 sm:justify-end"><div className="text-right"><p className="font-heading text-xl text-primary" data-testid={`invoice-amount-${inv.id}`}>{inv.amount}</p><span className={`text-[10px] font-bold uppercase tracking-[.12em] ${invoiceState === "paid" ? "text-green-700" : invoiceState === "overdue" ? "text-red-700" : "text-accent"}`} data-testid={`invoice-status-${inv.id}`}>{status(invoiceState)}</span></div>{invoiceState !== "paid" && invoiceState !== "void" && !isStaffOrAdmin && <Button size="sm" className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => payMutation.mutate(inv.id)} disabled={payMutation.isPending} data-testid={`button-pay-${inv.id}`}>{payMutation.isPending ? t("Processing") : t("Pay invoice")}</Button>}{isStaffOrAdmin && invoiceState !== "paid" && <span className="text-xs text-muted-foreground">{t("Client payment pending")}</span>}</div>
                 </div>;
-              }) : <div className="p-8 text-center text-sm text-muted-foreground" data-testid="invoices-empty">No invoices in this view.</div>}
+              }) : <div className="p-8 text-center text-sm text-muted-foreground" data-testid="invoices-empty">{t("No invoices in this view.")}</div>}
             </div>
           </div>
 
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <h3 className="text-xl font-bold text-primary" data-testid="contracts-heading">Contracts & Agreements</h3>
+              <h3 className="text-xl font-bold text-primary" data-testid="contracts-heading">{t("Contracts & Agreements")}</h3>
               {isStaffOrAdmin && (
                 <Button
                   size="sm"
@@ -311,7 +313,7 @@ export default function Billing() {
                   onClick={() => setCreateContractOpen(true)}
                   data-testid="button-create-contract"
                 >
-                  Upload Agreement
+                  {t("Upload Agreement")}
                 </Button>
               )}
             </div>
@@ -343,12 +345,12 @@ export default function Billing() {
                           data-testid={`button-download-contract-${contract.id}`}
                         >
                           <a href={(contract as any).documentUrl} target="_blank" rel="noopener noreferrer">
-                            View
+                            {t("View")}
                           </a>
                         </Button>
                       )}
                       {contract.status === 'signed' ? (
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-green-600" data-testid={`contract-signed-${contract.id}`}>Signed</span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-green-600" data-testid={`contract-signed-${contract.id}`}>{t("Signed")}</span>
                       ) : (
                         <Button
                           className="bg-accent text-white hover:bg-primary text-xs px-4 h-8 rounded-lg"
@@ -358,7 +360,7 @@ export default function Billing() {
                           }}
                           data-testid={`button-sign-${contract.id}`}
                         >
-                          Sign
+                          {t("Sign")}
                         </Button>
                       )}
                     </div>
@@ -377,7 +379,7 @@ export default function Billing() {
       <Dialog open={signDialogOpen} onOpenChange={setSignDialogOpen}>
         <DialogContent className="max-w-lg" data-testid="sign-contract-dialog">
           <DialogHeader>
-            <DialogTitle data-testid="sign-dialog-title">Sign Contract: {selectedContract?.title}</DialogTitle>
+            <DialogTitle data-testid="sign-dialog-title">{t("Sign Contract")}: {selectedContract?.title}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             {selectedContract?.terms && (
@@ -386,7 +388,7 @@ export default function Billing() {
               </div>
             )}
             <div>
-              <Label>Signature</Label>
+              <Label>{t("Signature")}</Label>
               <div className="border rounded-lg mt-1 bg-white">
                 <canvas
                   ref={canvasRef}
@@ -406,7 +408,7 @@ export default function Billing() {
             </div>
             <div className="flex gap-2 justify-end">
               <Button variant="outline" onClick={clearCanvas} data-testid="button-clear-signature">
-                Clear
+                {t("Clear")}
               </Button>
               <Button
                 className="bg-accent text-white hover:bg-primary"
@@ -414,7 +416,7 @@ export default function Billing() {
                 disabled={signMutation.isPending}
                 data-testid="button-submit-signature"
               >
-                {signMutation.isPending ? "Signing..." : "Sign Contract"}
+                {signMutation.isPending ? t("Signing...") : t("Sign Contract")}
               </Button>
             </div>
           </div>
@@ -424,11 +426,11 @@ export default function Billing() {
       <Dialog open={createInvoiceOpen} onOpenChange={setCreateInvoiceOpen}>
         <DialogContent className="max-w-md" data-testid="create-invoice-dialog">
           <DialogHeader>
-            <DialogTitle>Create & Send Invoice</DialogTitle>
+            <DialogTitle>{t("Create & Send Invoice")}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <Label>Invoice Number</Label>
+              <Label>{t("Invoice Number")}</Label>
               <Input
                 value={invoiceForm.invoiceNumber}
                 onChange={(e) => setInvoiceForm({ ...invoiceForm, invoiceNumber: e.target.value })}
@@ -437,7 +439,7 @@ export default function Billing() {
               />
             </div>
             <div>
-              <Label>Description</Label>
+              <Label>{t("Description")}</Label>
               <Input
                 value={invoiceForm.description}
                 onChange={(e) => setInvoiceForm({ ...invoiceForm, description: e.target.value })}
@@ -447,7 +449,7 @@ export default function Billing() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label>Amount</Label>
+              <Label>{t("Amount")}</Label>
                 <Input
                   value={invoiceForm.amount}
                   onChange={(e) => {
@@ -459,7 +461,7 @@ export default function Billing() {
                 />
               </div>
               <div>
-                <Label>Amount (cents)</Label>
+              <Label>{t("Amount (cents)")}</Label>
                 <Input
                   type="number"
                   value={invoiceForm.amountCents || ""}
@@ -471,7 +473,7 @@ export default function Billing() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label>Issue Date</Label>
+                <Label>{t("Issue Date")}</Label>
                 <Input
                   type="date"
                   value={invoiceForm.issueDate}
@@ -480,7 +482,7 @@ export default function Billing() {
                 />
               </div>
               <div>
-                <Label>Due Date</Label>
+                <Label>{t("Due Date")}</Label>
                 <Input
                   type="date"
                   value={invoiceForm.dueDate}
@@ -502,7 +504,7 @@ export default function Billing() {
                 disabled={createInvoiceMutation.isPending}
                 data-testid="button-submit-invoice"
               >
-                {createInvoiceMutation.isPending ? "Sending..." : "Create & Send Invoice"}
+                {createInvoiceMutation.isPending ? t("Sending...") : t("Create & Send Invoice")}
               </Button>
             </div>
           </div>
@@ -512,11 +514,11 @@ export default function Billing() {
       <Dialog open={createContractOpen} onOpenChange={setCreateContractOpen}>
         <DialogContent className="max-w-md" data-testid="create-contract-dialog">
           <DialogHeader>
-            <DialogTitle>Upload Agreement / Document</DialogTitle>
+            <DialogTitle>{t("Upload Agreement / Document")}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <Label>Title</Label>
+              <Label>{t("Title")}</Label>
               <Input
                 value={contractForm.title}
                 onChange={(e) => setContractForm({ ...contractForm, title: e.target.value })}
@@ -525,7 +527,7 @@ export default function Billing() {
               />
             </div>
             <div>
-              <Label>Terms & Conditions</Label>
+              <Label>{t("Terms & Conditions")}</Label>
               <Textarea
                 value={contractForm.terms}
                 onChange={(e) => setContractForm({ ...contractForm, terms: e.target.value })}
@@ -535,7 +537,7 @@ export default function Billing() {
               />
             </div>
             <div>
-              <Label>Attach Document (PDF, DOC, etc.)</Label>
+              <Label>{t("Attach Document (PDF, DOC, etc.)")}</Label>
               <div className="flex items-center gap-3 mt-1">
                 <input
                   ref={contractFileRef}
@@ -552,7 +554,7 @@ export default function Billing() {
                   onClick={() => contractFileRef.current?.click()}
                   data-testid="button-choose-contract-file"
                 >
-                  {contractFile ? "Change File" : "Choose File"}
+                  {contractFile ? t("Change File") : t("Choose File")}
                 </Button>
                 {contractFile && (
                   <span className="text-sm text-muted-foreground flex items-center gap-1">
@@ -562,7 +564,7 @@ export default function Billing() {
               </div>
             </div>
             <div>
-              <Label>Document Date</Label>
+              <Label>{t("Document Date")}</Label>
               <Input
                 type="date"
                 value={contractForm.documentDate}
@@ -580,7 +582,7 @@ export default function Billing() {
                 disabled={createContractMutation.isPending}
                 data-testid="button-submit-contract"
               >
-                {createContractMutation.isPending ? "Uploading..." : "Upload Agreement"}
+                {createContractMutation.isPending ? t("Uploading...") : t("Upload Agreement")}
               </Button>
             </div>
           </div>

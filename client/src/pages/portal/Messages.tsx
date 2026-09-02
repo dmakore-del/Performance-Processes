@@ -5,6 +5,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import type { Message } from "@shared/schema";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 interface Participant {
   id: string;
@@ -16,6 +17,7 @@ export default function Messages() {
   const { engagement, engagementId, isLoading: engLoading } = usePortalEngagement();
   const { data: messages, isLoading: msgsLoading } = usePortalData<Message[]>("messages", engagementId);
   const { user } = useAuth();
+  const { t, formatDate } = usePortalI18n();
   const [selectedRecipientId, setSelectedRecipientId] = useState<string | null>(null);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -70,9 +72,9 @@ export default function Messages() {
     const today = new Date();
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-    if (d.toDateString() === today.toDateString()) return "Today";
-    if (d.toDateString() === yesterday.toDateString()) return "Yesterday";
-    return d.toLocaleDateString([], { month: "short", day: "numeric", year: "numeric" });
+    if (d.toDateString() === today.toDateString()) return t("Today");
+    if (d.toDateString() === yesterday.toDateString()) return t("Yesterday");
+    return formatDate(d, { month: "short", day: "numeric", year: "numeric" });
   };
 
   const groupedByDate: { label: string; msgs: Message[] }[] = [];
@@ -126,7 +128,7 @@ export default function Messages() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center h-64">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse" data-testid="spinner-loading">Loading</span>
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse" data-testid="spinner-loading">{t("Loading")}</span>
         </div>
       </PortalLayout>
     );
@@ -137,8 +139,8 @@ export default function Messages() {
       <PortalLayout>
         <div className="flex items-center justify-center h-64">
           <div className="text-center" data-testid="empty-state-no-engagement">
-            <h2 className="text-xl font-bold text-primary mb-2">No Active Engagement</h2>
-            <p className="text-muted-foreground">Your consultant will set up your engagement shortly.</p>
+            <h2 className="text-xl font-bold text-primary mb-2">{t("No Active Engagement")}</h2>
+            <p className="text-muted-foreground">{t("Your consultant will set up your engagement shortly.")}</p>
           </div>
         </div>
       </PortalLayout>
@@ -149,19 +151,19 @@ export default function Messages() {
     <PortalLayout>
       <div className="h-[calc(100vh-8rem)] flex flex-col">
         <div className="mb-6">
-          <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-page-title">Communication Center</h1>
-          <p className="text-lg text-muted-foreground" data-testid="text-page-subtitle">Secure messaging with your consulting team.</p>
+          <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-page-title">{t("Communication Center")}</h1>
+          <p className="text-lg text-muted-foreground" data-testid="text-page-subtitle">{t("Secure messaging with your consulting team.")}</p>
         </div>
 
         <div className="flex-1 bg-white rounded-3xl border border-border shadow-sm flex overflow-hidden">
           <div className="w-80 border-r border-border hidden md:flex flex-col bg-secondary/10" data-testid="sidebar-participants">
             <div className="p-4 border-b border-border">
-              <h3 className="font-bold text-primary text-sm">Conversations</h3>
+              <h3 className="font-bold text-primary text-sm">{t("Conversations")}</h3>
             </div>
             <div className="flex-1 overflow-y-auto">
               {otherParticipants.length === 0 && (
                 <div className="p-4 text-center">
-                  <p className="text-sm text-muted-foreground" data-testid="text-no-participants">No participants yet</p>
+                  <p className="text-sm text-muted-foreground" data-testid="text-no-participants">{t("No participants yet")}</p>
                 </div>
               )}
               {otherParticipants.map((participant) => {
@@ -209,8 +211,8 @@ export default function Messages() {
             {!selectedRecipientId ? (
               <div className="flex-1 flex items-center justify-center bg-[#FAFAFA]">
                 <div className="text-center" data-testid="text-select-conversation">
-                  <p className="text-muted-foreground text-sm font-medium">Select a conversation</p>
-                  <p className="text-muted-foreground text-xs mt-1">Choose a participant from the sidebar to start messaging</p>
+                  <p className="text-muted-foreground text-sm font-medium">{t("Select a conversation")}</p>
+                  <p className="text-muted-foreground text-xs mt-1">{t("Choose a participant from the sidebar to start messaging")}</p>
                 </div>
               </div>
             ) : (
@@ -225,7 +227,7 @@ export default function Messages() {
                         {selectedParticipant?.fullName ?? "Unknown"}
                       </h3>
                       <p className="text-xs text-muted-foreground" data-testid="text-message-count">
-                        {filteredMessages.length} message{filteredMessages.length !== 1 ? "s" : ""}
+                        {filteredMessages.length} {filteredMessages.length === 1 ? t("message") : t("messages")}
                       </p>
                     </div>
                   </div>
@@ -248,7 +250,7 @@ export default function Messages() {
                 <div className="flex-1 p-6 overflow-y-auto bg-[#FAFAFA] space-y-6" data-testid="container-messages">
                   {filteredMessages.length === 0 && (
                     <div className="flex items-center justify-center h-full">
-                      <p className="text-muted-foreground text-sm" data-testid="text-no-messages">No messages yet. Start the conversation!</p>
+                      <p className="text-muted-foreground text-sm" data-testid="text-no-messages">{t("No messages yet. Start the conversation!")}</p>
                     </div>
                   )}
 
@@ -278,7 +280,7 @@ export default function Messages() {
                               <div className={mine ? "flex flex-col items-end" : ""}>
                                 <div className={`flex items-baseline gap-2 mb-1 ${mine ? "flex-row-reverse" : ""}`}>
                                   <span className="font-bold text-sm text-primary" data-testid={`text-sender-${msg.id}`}>
-                                    {msg.senderName}{mine ? " (You)" : ""}
+                                    {msg.senderName}{mine ? ` (${t("You")})` : ""}
                                   </span>
                                   <span className="text-[10px] text-muted-foreground" data-testid={`text-time-${msg.id}`}>
                                     {formatTime(msg.sentAt)}
@@ -308,7 +310,7 @@ export default function Messages() {
                   <div className="flex items-center gap-3 bg-secondary/50 border border-border rounded-2xl p-2 focus-within:border-accent transition-colors">
                     <input
                       type="text"
-                      placeholder="Type a message..."
+                      placeholder={t("Type a message...")}
                       className="flex-1 bg-transparent px-4 outline-none text-sm font-medium"
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
@@ -326,7 +328,7 @@ export default function Messages() {
                       className="h-10 px-5 bg-accent text-white rounded-xl flex items-center justify-center hover:bg-primary transition-colors flex-shrink-0 disabled:opacity-50 text-xs font-bold uppercase tracking-wider"
                       data-testid="btn-send-message"
                     >
-                      Send
+                      {t("Send")}
                     </button>
                   </div>
                 </div>

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
 import type { Lead } from "@shared/schema";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 const STATUS_OPTIONS = ["new", "contacted", "qualified", "proposal", "negotiation", "won", "lost"] as const;
 const PRIORITY_OPTIONS = ["low", "medium", "high", "urgent"] as const;
@@ -32,6 +33,7 @@ type StaffUser = { id: string; fullName: string; email: string; role: string };
 
 export default function Leads() {
   const { user } = useAuth();
+  const { t, status, priority } = usePortalI18n();
   const queryClient = useQueryClient();
   const isAdmin = user?.role === "admin";
 
@@ -193,7 +195,7 @@ export default function Leads() {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h1 className="text-2xl font-bold text-primary" data-testid="text-leads-title">
-              {isAdmin ? "Leads Tracker" : "My Assigned Leads"}
+              {isAdmin ? t("Leads Tracker") : t("My Assigned Leads")}
             </h1>
             <p className="text-sm text-muted-foreground mt-1">
               {isAdmin ? "Manage business development leads and assign them to staff" : "Track and update your assigned leads"}
@@ -205,7 +207,7 @@ export default function Leads() {
               className="bg-accent hover:bg-accent/90 text-white"
               data-testid="button-add-lead"
             >
-              Add Lead
+              {t("Add Lead")}
             </Button>
           )}
         </div>
@@ -239,7 +241,7 @@ export default function Leads() {
             className="px-3 py-2 rounded-lg border border-border bg-white text-sm"
             data-testid="select-filter-status"
           >
-            <option value="all">All Statuses</option>
+            <option value="all">{t("All Statuses")}</option>
             {STATUS_OPTIONS.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
           </select>
           {isAdmin && (
@@ -260,7 +262,7 @@ export default function Leads() {
           <div className="bg-white rounded-xl border border-border p-6" data-testid="form-lead">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-lg font-bold text-primary">
-                {editingLead ? "Edit Lead" : "Add New Lead"}
+                {editingLead ? t("Edit Lead") : t("Add New Lead")}
               </h2>
               <button onClick={resetForm} className="text-muted-foreground hover:text-primary text-lg font-bold leading-none">
                 ✕
@@ -269,7 +271,7 @@ export default function Leads() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div>
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">Company Name *</label>
+                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Company Name")} *</label>
                   <Input data-testid="input-lead-company" value={form.companyName} onChange={(e) => setForm({ ...form, companyName: e.target.value })} required />
                 </div>
                 <div>
@@ -291,13 +293,13 @@ export default function Leads() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">Status</label>
+                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Status")}</label>
                   <select data-testid="select-lead-status" value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value })} className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm">
                     {STATUS_OPTIONS.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">Priority</label>
+                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Priority")}</label>
                   <select data-testid="select-lead-priority" value={form.priority} onChange={(e) => setForm({ ...form, priority: e.target.value })} className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm">
                     {PRIORITY_OPTIONS.map(p => <option key={p} value={p}>{p.charAt(0).toUpperCase() + p.slice(1)}</option>)}
                   </select>
@@ -347,7 +349,7 @@ export default function Leads() {
               </div>
               <div className="flex gap-3 pt-2">
                 <Button type="submit" className="bg-accent hover:bg-accent/90 text-white" data-testid="button-submit-lead">
-                  {editingLead ? "Update Lead" : "Create Lead"}
+                  {editingLead ? t("Update Lead") : t("Create Lead")}
                 </Button>
                 <Button type="button" variant="outline" onClick={resetForm}>Cancel</Button>
               </div>
@@ -356,12 +358,12 @@ export default function Leads() {
         )}
 
         {isLoading ? (
-          <div className="text-center py-12 text-muted-foreground">Loading leads...</div>
+          <div className="text-center py-12 text-muted-foreground">{t("Loading leads...")}</div>
         ) : filteredLeads.length === 0 ? (
           <div className="text-center py-16 bg-white rounded-xl border border-border">
-            <p className="text-lg font-semibold text-primary mb-1">No leads found</p>
+            <p className="text-lg font-semibold text-primary mb-1">{t("No leads found")}</p>
             <p className="text-sm text-muted-foreground">
-              {searchQuery || statusFilter !== "all" ? "Try adjusting your filters" : isAdmin ? "Click 'Add Lead' to create your first lead" : "No leads have been assigned to you yet"}
+              {searchQuery || statusFilter !== "all" ? t("Try adjusting your filters") : isAdmin ? t("Click 'Add Lead' to create your first lead") : t("No leads have been assigned to you yet")}
             </p>
           </div>
         ) : (

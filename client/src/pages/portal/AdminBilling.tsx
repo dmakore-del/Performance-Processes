@@ -11,6 +11,7 @@ import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import type { Engagement, Invoice } from "@shared/schema";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 type BillingData = { engagements: Engagement[]; invoices: Invoice[] };
 type InvoiceFilter = "all" | "unpaid" | "overdue" | "paid";
@@ -21,6 +22,7 @@ const money = (cents: number, currency = "cad") => new Intl.NumberFormat("en-CA"
 
 export default function AdminBilling() {
   const { user } = useAuth();
+  const { t, status: translateStatus } = usePortalI18n();
   const { toast } = useToast();
   const [filter, setFilter] = useState<InvoiceFilter>("all");
   const [selectedEngagementId, setSelectedEngagementId] = useState<number | null>(null);
@@ -154,18 +156,18 @@ export default function AdminBilling() {
       <div className="space-y-8">
         <header className="flex flex-col gap-5 border-b border-border pb-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-[0.28em] text-accent">Admin workspace</p>
-            <h1 className="mt-3 text-4xl font-heading text-primary md:text-5xl">Billing and retainers</h1>
-            <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">Set the commercial terms, keep invoices current, and give every client a simple place to pay.</p>
+            <p className="text-[10px] font-black uppercase tracking-[0.28em] text-accent">{t("Admin workspace")}</p>
+            <h1 className="mt-3 text-4xl font-heading text-primary md:text-5xl">{t("Billing and retainers")}</h1>
+            <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">{t("Set the commercial terms, keep invoices current, and give every client a simple place to pay.")}</p>
           </div>
-          <Button className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={openCreateInvoice}>Create invoice</Button>
+          <Button className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={openCreateInvoice}>{t("Create invoice")}</Button>
         </header>
 
         <section className="grid gap-4 sm:grid-cols-3" aria-label="Billing overview">
           {[
-            ["Open balance", invoices.filter((item) => invoiceStatus(item) === "unpaid").reduce((sum, item) => sum + item.amountCents, 0), "unpaid"],
-            ["Overdue", invoices.filter((item) => invoiceStatus(item) === "overdue").reduce((sum, item) => sum + item.amountCents, 0), "overdue"],
-            ["Paid invoices", invoices.filter((item) => invoiceStatus(item) === "paid").length, "paid"],
+            [t("Open balance"), invoices.filter((item) => invoiceStatus(item) === "unpaid").reduce((sum, item) => sum + item.amountCents, 0), "unpaid"],
+            [t("Overdue"), invoices.filter((item) => invoiceStatus(item) === "overdue").reduce((sum, item) => sum + item.amountCents, 0), "overdue"],
+            [t("Paid invoices"), invoices.filter((item) => invoiceStatus(item) === "paid").length, "paid"],
           ].map(([label, value, key]) => (
             <button key={key} type="button" onClick={() => setFilter(key as InvoiceFilter)} className={`border p-5 text-left transition-colors ${filter === key ? "border-accent bg-secondary" : "border-border bg-white hover:border-accent"}`}>
               <p className="text-xs font-semibold text-muted-foreground">{label}</p>
@@ -178,24 +180,24 @@ export default function AdminBilling() {
           <div className="space-y-5">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-heading text-primary">Client retainers</h2>
-                <p className="mt-1 text-sm text-muted-foreground">Adjust the monthly plan shown to the selected client.</p>
+                <h2 className="text-2xl font-heading text-primary">{t("Client retainers")}</h2>
+                <p className="mt-1 text-sm text-muted-foreground">{t("Adjust the monthly plan shown to the selected client.")}</p>
               </div>
             </div>
             <div className="border border-border bg-white">
               <div className="border-b border-border p-4">
-                <Label htmlFor="admin-engagement">Client engagement</Label>
+                <Label htmlFor="admin-engagement">{t("Client engagement")}</Label>
                 <Select value={String(selectedEngagement?.id || "")} onValueChange={(value) => setSelectedEngagementId(Number(value))}>
-                  <SelectTrigger id="admin-engagement" className="mt-2"><SelectValue placeholder="Select an engagement" /></SelectTrigger>
+                  <SelectTrigger id="admin-engagement" className="mt-2"><SelectValue placeholder={t("Select an engagement")} /></SelectTrigger>
                   <SelectContent>{engagements.map((item) => <SelectItem key={item.id} value={String(item.id)}>{item.clientName}, {item.engagementType}</SelectItem>)}</SelectContent>
                 </Select>
               </div>
               {selectedEngagement ? (
                 <div className="space-y-5 p-5">
                   <div className="border-l-2 border-accent bg-secondary p-4">
-                    <p className="text-xs font-semibold text-muted-foreground">Current plan</p>
-                    <p className="mt-1 text-xl font-heading text-primary">{selectedEngagement.retainerPlan || "No retainer configured"}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{money(selectedEngagement.retainerAmountCents)} per month, {selectedEngagement.retainerStatus || "inactive"}</p>
+                    <p className="text-xs font-semibold text-muted-foreground">{t("Current plan")}</p>
+                    <p className="mt-1 text-xl font-heading text-primary">{selectedEngagement.retainerPlan || t("No retainer configured")}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{money(selectedEngagement.retainerAmountCents)} {t("per month")}, {translateStatus(selectedEngagement.retainerStatus || "inactive")}</p>
                   </div>
                   <div className="space-y-4">
                     <div><Label htmlFor="retainer-plan">Plan name</Label><Input id="retainer-plan" className="mt-2" value={retainerForm.retainerPlan} onChange={(event) => setRetainerForm({ ...retainerForm, retainerPlan: event.target.value })} placeholder="Ongoing Performance Support" /></div>

@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import type { Resource } from "@shared/schema";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 function getResourceLabel(resourceType: string) {
   const t = resourceType.toLowerCase();
@@ -30,6 +31,7 @@ export default function Resources() {
   const [requestOpen, setRequestOpen] = useState(false);
   const { toast } = useToast();
   const { user } = useAuth();
+  const { t } = usePortalI18n();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
@@ -79,7 +81,7 @@ export default function Resources() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/portal/resources"] });
-      toast({ title: "Resource created", description: "The resource has been added successfully." });
+      toast({ title: t("Resource created"), description: t("The resource has been added successfully.") });
       setCreateOpen(false);
       setCreateForm({ title: "", description: "", content: "", category: "", resourceType: "", accessUrl: "" });
       setSelectedFile(null);
@@ -101,7 +103,7 @@ export default function Resources() {
       return res.json();
     },
     onSuccess: () => {
-      toast({ title: "Request Sent", description: "Your resource request has been sent to the team. We'll get back to you soon." });
+      toast({ title: t("Request Sent"), description: t("Your resource request has been sent to the team. We'll get back to you soon.") });
       setRequestOpen(false);
       setRequestForm({ name: user?.fullName || "", email: user?.email || "", subject: "", message: "" });
     },
@@ -117,7 +119,7 @@ export default function Resources() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="loading-resources">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">Loading</span>
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">{t("Loading")}</span>
         </div>
       </PortalLayout>
     );
@@ -128,19 +130,19 @@ export default function Resources() {
       <div className="space-y-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-resources-title">Resource Library</h1>
-            <p className="text-lg text-muted-foreground" data-testid="text-resources-description">Exclusive educational materials, templates, and guides to support your growth.</p>
+            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-resources-title">{t("Resource Library")}</h1>
+            <p className="text-lg text-muted-foreground" data-testid="text-resources-description">{t("Exclusive educational materials, templates, and guides to support your growth.")}</p>
           </div>
           {isStaffOrAdmin && (
             <Dialog open={createOpen} onOpenChange={setCreateOpen}>
               <DialogTrigger asChild>
                 <Button data-testid="button-add-resource" className="gap-2">
-                  Add Resource
+                  {t("Add Resource")}
                 </Button>
               </DialogTrigger>
               <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
-                  <DialogTitle>Add Resource</DialogTitle>
+                  <DialogTitle>{t("Add Resource")}</DialogTitle>
                 </DialogHeader>
                 <form
                   className="space-y-4 pt-4"
@@ -150,7 +152,7 @@ export default function Resources() {
                   }}
                 >
                   <div>
-                    <Label htmlFor="create-title">Title</Label>
+                    <Label htmlFor="create-title">{t("Title")}</Label>
                     <Input
                       id="create-title"
                       data-testid="input-resource-title"
@@ -160,7 +162,7 @@ export default function Resources() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="create-description">Description</Label>
+                    <Label htmlFor="create-description">{t("Description")}</Label>
                     <Input
                       id="create-description"
                       data-testid="input-resource-description"
@@ -169,42 +171,42 @@ export default function Resources() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="create-content">Content</Label>
+                    <Label htmlFor="create-content">{t("Content")}</Label>
                     <Textarea
                       id="create-content"
                       data-testid="input-resource-content"
                       value={createForm.content}
                       onChange={(e) => setCreateForm((f) => ({ ...f, content: e.target.value }))}
                       rows={5}
-                      placeholder="Full resource content that users will see when they click the resource..."
+                      placeholder={t("Full resource content that users will see when they click the resource...")}
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="create-category">Category</Label>
+                      <Label htmlFor="create-category">{t("Category")}</Label>
                       <Input
                         id="create-category"
                         data-testid="input-resource-category"
                         value={createForm.category}
                         onChange={(e) => setCreateForm((f) => ({ ...f, category: e.target.value }))}
-                        placeholder="e.g. Strategy, Leadership"
+                        placeholder={t("e.g. Strategy, Leadership")}
                         required
                       />
                     </div>
                     <div>
-                      <Label htmlFor="create-type">Resource Type</Label>
+                      <Label htmlFor="create-type">{t("Resource Type")}</Label>
                       <Input
                         id="create-type"
                         data-testid="input-resource-type"
                         value={createForm.resourceType}
                         onChange={(e) => setCreateForm((f) => ({ ...f, resourceType: e.target.value }))}
-                        placeholder="e.g. PDF Guide, Template"
+                        placeholder={t("e.g. PDF Guide, Template")}
                         required
                       />
                     </div>
                   </div>
                   <div>
-                    <Label htmlFor="create-file">Attach PDF or File</Label>
+                    <Label htmlFor="create-file">{t("Attach PDF or File")}</Label>
                     <div className="flex items-center gap-3 mt-1">
                       <input
                         ref={fileInputRef}
@@ -222,7 +224,7 @@ export default function Resources() {
                         onClick={() => fileInputRef.current?.click()}
                         data-testid="button-choose-file"
                       >
-                        {selectedFile ? "Change File" : "Choose File"}
+                        {selectedFile ? t("Change File") : t("Choose File")}
                       </Button>
                       {selectedFile && (
                         <span className="text-sm text-muted-foreground flex items-center gap-1">
@@ -232,7 +234,7 @@ export default function Resources() {
                     </div>
                   </div>
                   <div>
-                    <Label htmlFor="create-accessUrl">External Link (optional)</Label>
+                    <Label htmlFor="create-accessUrl">{t("External Link (optional)")}</Label>
                     <Input
                       id="create-accessUrl"
                       data-testid="input-resource-accessurl"
@@ -242,7 +244,7 @@ export default function Resources() {
                     />
                   </div>
                   <Button type="submit" data-testid="button-submit-resource" disabled={createMutation.isPending} className="w-full">
-                    {createMutation.isPending ? "Creating..." : "Create Resource"}
+                    {createMutation.isPending ? t("Creating...") : t("Create Resource")}
                   </Button>
                 </form>
               </DialogContent>
@@ -262,7 +264,7 @@ export default function Resources() {
                   : "bg-white text-muted-foreground border-border hover:border-primary hover:text-primary"
               }`}
             >
-              {cat}
+                 {cat === "All" ? t("All") : cat}
             </button>
           ))}
         </div>
@@ -301,13 +303,13 @@ export default function Resources() {
                 </div>
               </div>
               <div className="mt-6 flex items-center text-xs font-bold uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                Access Resource
+                 {t("Access Resource")}
               </div>
             </div>
           ))}
           {filtered.length === 0 && (
             <div className="col-span-full text-center py-12 text-muted-foreground" data-testid="text-no-resources">
-              No resources found in this category.
+              {t("No resources found in this category.")}
             </div>
           )}
         </div>
@@ -334,11 +336,11 @@ export default function Resources() {
                   ) : (
                     <div className="bg-secondary/30 rounded-2xl p-6 border border-border text-center">
                       {selectedResource.fileUrl ? (
-                        <p className="text-sm text-muted-foreground">Download the attached file to view the full content.</p>
+                        <p className="text-sm text-muted-foreground">{t("Download the attached file to view the full content.")}</p>
                       ) : selectedResource.accessUrl ? (
-                        <p className="text-sm text-muted-foreground">Click the link below to access this resource.</p>
+                        <p className="text-sm text-muted-foreground">{t("Click the link below to access this resource.")}</p>
                       ) : (
-                        <p className="text-sm text-muted-foreground">Content is being prepared for this resource. Please check back soon or contact your consultant.</p>
+                        <p className="text-sm text-muted-foreground">{t("Content is being prepared for this resource. Please check back soon or contact your consultant.")}</p>
                       )}
                     </div>
                   )}
@@ -354,14 +356,14 @@ export default function Resources() {
                     {selectedResource.fileUrl && (
                       <Button asChild data-testid="button-download-resource">
                         <a href={selectedResource.fileUrl} target="_blank" rel="noopener noreferrer" className="gap-2">
-                          Download PDF
+                          {t("Download PDF")}
                         </a>
                       </Button>
                     )}
                     {selectedResource.accessUrl && (
                       <Button variant="outline" asChild data-testid="button-access-resource">
                         <a href={selectedResource.accessUrl} target="_blank" rel="noopener noreferrer" className="gap-2">
-                          Open Link
+                          {t("Open Link")}
                         </a>
                       </Button>
                     )}
@@ -374,8 +376,8 @@ export default function Resources() {
 
         <div className="bg-primary text-white p-10 rounded-3xl shadow-xl mt-12 text-center relative overflow-hidden">
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
-          <h3 className="text-2xl font-bold mb-4 relative z-10">Looking for something specific?</h3>
-          <p className="text-primary-foreground/80 mb-6 relative z-10 max-w-xl mx-auto">Our consultants can curate specific resources or templates based on your current organizational challenges.</p>
+          <h3 className="text-2xl font-bold mb-4 relative z-10">{t("Looking for something specific?")}</h3>
+          <p className="text-primary-foreground/80 mb-6 relative z-10 max-w-xl mx-auto">{t("Our consultants can curate specific resources or templates based on your current organizational challenges.")}</p>
           <button
             onClick={() => {
               setRequestForm({ name: user?.fullName || "", email: user?.email || "", subject: "", message: "" });
@@ -384,7 +386,7 @@ export default function Resources() {
             className="relative z-10 bg-accent hover:bg-white hover:text-primary text-white font-bold uppercase tracking-widest text-sm px-8 py-4 rounded-full transition-all"
             data-testid="button-request-resource"
           >
-            Request a Resource
+            {t("Request a Resource")}
           </button>
         </div>
       </div>
@@ -392,7 +394,7 @@ export default function Resources() {
       <Dialog open={requestOpen} onOpenChange={setRequestOpen}>
         <DialogContent className="max-w-md" data-testid="request-resource-dialog">
           <DialogHeader>
-            <DialogTitle>Request a Resource</DialogTitle>
+            <DialogTitle>{t("Request a Resource")}</DialogTitle>
           </DialogHeader>
           <form
             className="space-y-4 pt-2"
@@ -402,7 +404,7 @@ export default function Resources() {
             }}
           >
             <div>
-              <Label htmlFor="req-name">Your Name</Label>
+              <Label htmlFor="req-name">{t("Your Name")}</Label>
               <Input
                 id="req-name"
                 data-testid="input-request-name"
@@ -412,7 +414,7 @@ export default function Resources() {
               />
             </div>
             <div>
-              <Label htmlFor="req-email">Your Email</Label>
+              <Label htmlFor="req-email">{t("Your Email")}</Label>
               <Input
                 id="req-email"
                 type="email"
@@ -423,24 +425,24 @@ export default function Resources() {
               />
             </div>
             <div>
-              <Label htmlFor="req-subject">Resource Topic</Label>
+              <Label htmlFor="req-subject">{t("Resource Topic")}</Label>
               <Input
                 id="req-subject"
                 data-testid="input-request-subject"
                 value={requestForm.subject}
                 onChange={(e) => setRequestForm({ ...requestForm, subject: e.target.value })}
-                placeholder="e.g. Change Management Framework, KPI Dashboard Template"
+                placeholder={t("e.g. Change Management Framework, KPI Dashboard Template")}
                 required
               />
             </div>
             <div>
-              <Label htmlFor="req-message">Details</Label>
+              <Label htmlFor="req-message">{t("Details")}</Label>
               <Textarea
                 id="req-message"
                 data-testid="input-request-message"
                 value={requestForm.message}
                 onChange={(e) => setRequestForm({ ...requestForm, message: e.target.value })}
-                placeholder="Describe what type of resource you're looking for and how you plan to use it..."
+                placeholder={t("Describe what type of resource you're looking for and how you plan to use it...")}
                 rows={4}
                 required
               />
@@ -451,7 +453,7 @@ export default function Resources() {
               disabled={requestMutation.isPending}
               className="w-full bg-accent text-white hover:bg-primary gap-2"
             >
-              {requestMutation.isPending ? "Sending..." : "Send Request"}
+              {requestMutation.isPending ? t("Sending...") : t("Send Request")}
             </Button>
           </form>
         </DialogContent>

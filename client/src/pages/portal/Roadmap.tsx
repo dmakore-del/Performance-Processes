@@ -12,12 +12,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { Milestone } from "@shared/schema";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 export default function Roadmap() {
   const { engagement, engagementId, isLoading: engagementLoading } = usePortalEngagement();
   const { data: milestones, isLoading: milestonesLoading } = usePortalData<Milestone[]>("milestones", engagementId);
   const { user } = useAuth();
   const { toast } = useToast();
+  const { t } = usePortalI18n();
 
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
   const isLoading = engagementLoading || milestonesLoading;
@@ -42,7 +44,7 @@ export default function Roadmap() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/milestones`] });
-      toast({ title: "Milestone Created", description: "The milestone has been added." });
+       toast({ title: t("Milestone Created"), description: t("The milestone has been added.") });
       setCreateOpen(false);
       resetForm();
     },
@@ -58,7 +60,7 @@ export default function Roadmap() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/milestones`] });
-      toast({ title: "Milestone Updated" });
+       toast({ title: t("Milestone Updated") });
       setEditingMilestone(null);
       resetForm();
     },
@@ -89,7 +91,7 @@ export default function Roadmap() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="roadmap-loading">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse">Loading</span>
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse">{t("Loading")}</span>
         </div>
       </PortalLayout>
     );
@@ -106,8 +108,8 @@ export default function Roadmap() {
       <div className="space-y-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4" data-testid="text-roadmap-title">Project Roadmap</h1>
-            <p className="text-lg text-muted-foreground max-w-3xl" data-testid="text-roadmap-description">Track the progress of our engagement across key phases and milestones.</p>
+            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-4" data-testid="text-roadmap-title">{t("Project Roadmap")}</h1>
+            <p className="text-lg text-muted-foreground max-w-3xl" data-testid="text-roadmap-description">{t("Track the progress of our engagement across key phases and milestones.")}</p>
           </div>
           {isStaffOrAdmin && (
             <Button
@@ -115,7 +117,7 @@ export default function Roadmap() {
               className="bg-accent text-white hover:bg-primary gap-2"
               data-testid="button-add-milestone"
             >
-              Add Milestone
+              {t("Add Milestone")}
             </Button>
           )}
         </div>
@@ -125,18 +127,18 @@ export default function Roadmap() {
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div>
                 <h3 className="text-xl font-bold text-primary" data-testid="text-engagement-type">{engagement?.engagementType ?? "Engagement"}</h3>
-                <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground mt-2" data-testid="text-engagement-phase">Current Phase: {engagement?.currentPhase}</p>
+                <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground mt-2" data-testid="text-engagement-phase">{t("Current Phase:")} {engagement?.currentPhase}</p>
               </div>
               <div className="flex items-center gap-6 text-sm font-bold">
-                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-green-500" /> Completed</div>
-                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-accent" /> In Progress</div>
-                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full border-2 border-muted-foreground" /> Pending</div>
+                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-green-500" /> {t("Completed")}</div>
+                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-accent" /> {t("In Progress")}</div>
+                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full border-2 border-muted-foreground" /> {t("Pending")}</div>
               </div>
             </div>
             
             <div className="mt-8">
               <div className="flex justify-between text-xs font-bold uppercase tracking-widest mb-2">
-                <span className="text-accent" data-testid="text-completion-percent">{completionPercent}% Complete</span>
+                <span className="text-accent" data-testid="text-completion-percent">{completionPercent}{t("% Complete")}</span>
               </div>
               <div className="h-3 w-full bg-border rounded-full overflow-hidden">
                 <div className="h-full bg-accent rounded-full transition-all duration-500" data-testid="progress-bar" style={{ width: `${completionPercent}%` }}></div>
@@ -194,7 +196,7 @@ export default function Roadmap() {
                               <span className="hidden sm:inline text-xs font-bold uppercase tracking-wider text-muted-foreground bg-secondary px-3 py-1 rounded-lg" data-testid={`text-milestone-date-${item.id}`}>{item.dueDate}</span>
                             )}
                             {item.owner && (
-                              <span className="hidden sm:inline text-xs font-bold uppercase tracking-wider text-muted-foreground bg-secondary px-3 py-1 rounded-lg" data-testid={`text-milestone-owner-${item.id}`}>Owner: {item.owner}</span>
+                  <span className="hidden sm:inline text-xs font-bold uppercase tracking-wider text-muted-foreground bg-secondary px-3 py-1 rounded-lg" data-testid={`text-milestone-owner-${item.id}`}>{t("Owner")}: {item.owner}</span>
                             )}
                             {isStaffOrAdmin && (
                               <button
@@ -212,7 +214,7 @@ export default function Roadmap() {
                                 className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-primary"
                                 data-testid={`button-edit-milestone-${item.id}`}
                               >
-                                <span className="text-[10px] font-bold uppercase tracking-wider">Edit</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider">{t("Edit")}</span>
                               </button>
                             )}
                           </div>
@@ -226,7 +228,7 @@ export default function Roadmap() {
 
             {groupedPhases.length === 0 && (
               <div className="text-center py-12 text-muted-foreground" data-testid="text-no-milestones">
-                No milestones found for this engagement.
+                {t("No milestones found for this engagement.")}
               </div>
             )}
           </div>

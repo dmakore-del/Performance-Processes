@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { PerformanceKpi } from "@shared/schema";
+import { usePortalI18n } from "@/lib/portal-i18n";
 
 function calculateOverallHealth(kpis: PerformanceKpi[]): { label: string; color: string } {
   if (kpis.length === 0) return { label: "No Data", color: "text-muted-foreground" };
@@ -23,6 +24,7 @@ function calculateOverallHealth(kpis: PerformanceKpi[]): { label: string; color:
 
 export default function Performance() {
   const { user } = useAuth();
+  const { t, status } = usePortalI18n();
   const { engagementId, isLoading: engLoading } = usePortalEngagement();
   const { data: kpis, isLoading: kpisLoading } = usePortalData<PerformanceKpi[]>("kpis", engagementId);
 
@@ -80,7 +82,7 @@ export default function Performance() {
     return (
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="performance-loading">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">Loading</span>
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">{t("Loading")}</span>
         </div>
       </PortalLayout>
     );
@@ -91,8 +93,8 @@ export default function Performance() {
       <PortalLayout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="performance-empty">
           <div className="text-center space-y-4">
-            <h2 className="text-xl font-bold text-primary">No Active Engagement</h2>
-            <p className="text-muted-foreground">Your consultant will set up your engagement shortly.</p>
+            <h2 className="text-xl font-bold text-primary">{t("No Active Engagement")}</h2>
+            <p className="text-muted-foreground">{t("Your consultant will set up your engagement shortly.")}</p>
           </div>
         </div>
       </PortalLayout>
@@ -104,59 +106,59 @@ export default function Performance() {
       <div className="space-y-8">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-performance-title">Performance Dashboard</h1>
-            <p className="text-lg text-muted-foreground" data-testid="text-performance-subtitle">Track key performance indicators and organizational metrics.</p>
+            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-performance-title">{t("Performance Dashboard")}</h1>
+            <p className="text-lg text-muted-foreground" data-testid="text-performance-subtitle">{t("Track key performance indicators and organizational metrics.")}</p>
           </div>
           <div className="flex items-center gap-3">
             {isStaffOrAdmin && (
               <Dialog open={createOpen} onOpenChange={setCreateOpen}>
                 <DialogTrigger asChild>
                   <Button data-testid="button-add-kpi">
-                    Add KPI
+                    {t("Add KPI")}
                   </Button>
                 </DialogTrigger>
                 <DialogContent data-testid="dialog-create-kpi">
                   <DialogHeader>
-                    <DialogTitle>Add New KPI</DialogTitle>
+                    <DialogTitle>{t("Add New KPI")}</DialogTitle>
                   </DialogHeader>
                   <div className="space-y-4 pt-4">
                     <div>
-                      <Label htmlFor="kpi-name">Name</Label>
+                      <Label htmlFor="kpi-name">{t("Name")}</Label>
                       <Input id="kpi-name" data-testid="input-kpi-name" value={formData.name} onChange={e => setFormData(f => ({ ...f, name: e.target.value }))} placeholder="e.g. Revenue Growth" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="kpi-current">Current Value</Label>
+                        <Label htmlFor="kpi-current">{t("Current Value")}</Label>
                         <Input id="kpi-current" data-testid="input-kpi-current" value={formData.currentValue} onChange={e => setFormData(f => ({ ...f, currentValue: e.target.value }))} placeholder="e.g. 75" />
                       </div>
                       <div>
-                        <Label htmlFor="kpi-target">Target Value</Label>
+                        <Label htmlFor="kpi-target">{t("Target Value")}</Label>
                         <Input id="kpi-target" data-testid="input-kpi-target" value={formData.targetValue} onChange={e => setFormData(f => ({ ...f, targetValue: e.target.value }))} placeholder="e.g. 90" />
                       </div>
                     </div>
                     <div>
-                      <Label htmlFor="kpi-status">Status</Label>
+                      <Label htmlFor="kpi-status">{t("Status")}</Label>
                       <Select value={formData.status} onValueChange={v => setFormData(f => ({ ...f, status: v }))}>
                         <SelectTrigger data-testid="select-kpi-status">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="on-track">On Track</SelectItem>
-                          <SelectItem value="needs-attention">Needs Attention</SelectItem>
-                          <SelectItem value="at-risk">At Risk</SelectItem>
+                          <SelectItem value="on-track">{t("On Track")}</SelectItem>
+                          <SelectItem value="needs-attention">{t("Needs Attention")}</SelectItem>
+                          <SelectItem value="at-risk">{t("At Risk")}</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     <div>
-                      <Label htmlFor="kpi-period">Period</Label>
+                      <Label htmlFor="kpi-period">{t("Period")}</Label>
                       <Input id="kpi-period" data-testid="input-kpi-period" value={formData.period} onChange={e => setFormData(f => ({ ...f, period: e.target.value }))} placeholder="e.g. Q1 2026" />
                     </div>
                     <div>
-                      <Label htmlFor="kpi-category">Category</Label>
+                      <Label htmlFor="kpi-category">{t("Category")}</Label>
                       <Input id="kpi-category" data-testid="input-kpi-category" value={formData.category} onChange={e => setFormData(f => ({ ...f, category: e.target.value }))} placeholder="e.g. Financial" />
                     </div>
                     <Button className="w-full" data-testid="button-submit-kpi" onClick={handleCreate} disabled={createMutation.isPending || !formData.name}>
-                      {createMutation.isPending ? "Creating..." : "Create KPI"}
+                      {createMutation.isPending ? t("Creating...") : t("Create KPI")}
                     </Button>
                   </div>
                 </DialogContent>
@@ -172,18 +174,18 @@ export default function Performance() {
           <div className="bg-primary text-white p-6 rounded-3xl shadow-lg relative overflow-hidden" data-testid="card-overall-health">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
             <div className="relative z-10">
-              <p className="text-xs font-bold uppercase tracking-widest text-white/70 mb-1">Overall Health</p>
-              <h3 className="text-4xl font-black" data-testid="text-overall-health">{health.label}</h3>
+                <p className="text-xs font-bold uppercase tracking-widest text-white/70 mb-1">{t("Overall Health")}</p>
+                <h3 className="text-4xl font-black" data-testid="text-overall-health">{status(health.label.toLowerCase().replace(" ", "-"))}</h3>
             </div>
           </div>
           
           <div className="bg-white p-6 rounded-3xl border border-border shadow-sm lg:col-span-3 flex items-center justify-center" data-testid="chart-quarterly-trajectory">
              <div className="text-center space-y-4 w-full">
                <div className="flex justify-between items-end mb-6 border-b border-border pb-2">
-                 <h4 className="font-bold text-primary">Quarterly Trajectory</h4>
+                  <h4 className="font-bold text-primary">{t("Quarterly Trajectory")}</h4>
                  <div className="flex gap-4">
-                   <div className="flex items-center gap-2 text-xs text-muted-foreground"><div className="w-3 h-3 bg-accent rounded-sm"></div> Actual</div>
-                   <div className="flex items-center gap-2 text-xs text-muted-foreground"><div className="w-3 h-3 bg-primary rounded-sm"></div> Target</div>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground"><div className="w-3 h-3 bg-accent rounded-sm"></div> {t("Actual")}</div>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground"><div className="w-3 h-3 bg-primary rounded-sm"></div> {t("Target")}</div>
                  </div>
                </div>
                <div className="h-40 w-full flex items-end justify-between px-4">
@@ -215,17 +217,17 @@ export default function Performance() {
           </div>
         )}
 
-        <h3 className="text-2xl font-heading font-bold text-primary mt-12 mb-6">Key Performance Indicators</h3>
+         <h3 className="text-2xl font-heading font-bold text-primary mt-12 mb-6">{t("Key Performance Indicators")}</h3>
         <div className="bg-white rounded-3xl border border-border shadow-sm overflow-hidden" data-testid="table-kpis">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b border-border bg-secondary/30">
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Metric</th>
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Current</th>
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Target</th>
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Variance</th>
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Status</th>
+                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Metric")}</th>
+                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Current")}</th>
+                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Target")}</th>
+                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Variance")}</th>
+                   <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Status")}</th>
                   {isStaffOrAdmin && <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground"></th>}
                 </tr>
               </thead>
@@ -255,13 +257,13 @@ export default function Performance() {
                           kpi.status === 'needs-attention' ? "bg-orange-50 text-orange-600 border-orange-200" :
                           "bg-red-50 text-red-600 border-red-200"
                         )} data-testid={`badge-kpi-status-${kpi.id}`}>
-                          {kpi.status.replace('-', ' ')}
+                           {status(kpi.status)}
                         </span>
                       </td>
                       {isStaffOrAdmin && (
                         <td className="py-5 px-6">
                           <Button variant="ghost" size="sm" className="opacity-0 group-hover:opacity-100 transition-opacity text-red-500 hover:text-red-700 hover:bg-red-50 text-xs font-bold uppercase tracking-wider" data-testid={`button-delete-kpi-${kpi.id}`} onClick={() => deleteMutation.mutate(kpi.id)} disabled={deleteMutation.isPending}>
-                            Delete
+                           {t("Delete")}
                           </Button>
                         </td>
                       )}
@@ -270,7 +272,7 @@ export default function Performance() {
                 })}
                 {kpiList.length === 0 && (
                   <tr>
-                    <td colSpan={isStaffOrAdmin ? 6 : 5} className="py-12 text-center text-muted-foreground" data-testid="text-no-kpis">No KPI data available.</td>
+                   <td colSpan={isStaffOrAdmin ? 6 : 5} className="py-12 text-center text-muted-foreground" data-testid="text-no-kpis">{t("No KPI data available.")}</td>
                   </tr>
                 )}
               </tbody>

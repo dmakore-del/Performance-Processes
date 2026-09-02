@@ -226,11 +226,11 @@ export default function Results() {
                   </div>
                 </div>
 
-                <div className="p-8 md:p-12 bg-primary text-white">
-                   <h4 className="text-sm font-medium text-accent mb-3">
+                <div className="p-8 md:p-12 bg-secondary border-t border-accent">
+                   <h4 className="text-sm font-medium text-primary mb-3">
                     {c.impactLabel}
                    </h4>
-                  <p className="text-base md:text-lg leading-relaxed text-white/90" data-testid="text-case-impact">
+                  <p className="text-base md:text-lg leading-relaxed text-primary/80" data-testid="text-case-impact">
                     {CASE_STUDY.impact}
                   </p>
                 </div>
@@ -284,20 +284,20 @@ export default function Results() {
         </section>
 
         {/* CTA */}
-        <section className="py-24 bg-primary text-white" data-testid="section-results-cta">
+         <section className="py-24 bg-secondary border-t border-primary/10" data-testid="section-results-cta">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-5xl font-heading font-extrabold mb-6">
                 {c.ctaHeading}
               </h2>
-              <p className="text-lg text-white/70 mb-10">
+              <p className="text-lg text-muted-foreground mb-10">
                 {c.ctaSubtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                  <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="bg-accent px-8 py-4 text-sm text-primary transition hover:bg-white" data-testid="button-results-book">
                    {c.ctaBook} <span aria-hidden="true">↗</span>
                  </a>
-                 <Link href="/#capabilities" className="border border-white/30 px-8 py-4 text-sm text-white transition hover:border-accent hover:text-accent" data-testid="button-results-services">
+                 <Link href="/#capabilities" className="border border-primary/30 px-8 py-4 text-sm text-primary transition hover:border-accent hover:bg-accent" data-testid="button-results-services">
                    {c.ctaServices} <span aria-hidden="true">↗</span>
                  </Link>
               </div>

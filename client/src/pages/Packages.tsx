@@ -28,7 +28,7 @@ export default function Packages() {
       <main>
          <section className="bg-secondary px-5 py-12 md:py-16">
            <div className="mx-auto grid max-w-[1160px] gap-8 md:grid-cols-[1.1fr_.9fr] md:items-center">
-            <div><p className="eyebrow mb-5 text-accent">{fr ? "Offres de lancement" : "Launch offers"}</p><h1 className="text-display max-w-4xl text-5xl leading-[.96] md:text-7xl">
+            <div><h1 className="text-display max-w-4xl text-5xl leading-[.96] md:text-7xl">
               {fr ? "Construisez l’entreprise dont vous avez besoin maintenant." : "Build the business you need now."}
             </h1>
              <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">

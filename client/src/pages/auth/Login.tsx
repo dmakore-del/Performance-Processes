@@ -5,8 +5,42 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import logoImg from "@/assets/logo.png";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function Login() {
+  const { language } = useLanguage();
+  const fr = language === "fr";
+  const copy = fr ? {
+    title: "Portail client",
+    subtitle: "Connectez-vous pour accéder au tableau de bord de votre mandat",
+    email: "Adresse courriel",
+    password: "Mot de passe",
+    passwordPlaceholder: "Entrez votre mot de passe",
+    hide: "Masquer",
+    show: "Afficher",
+    signIn: "Se connecter",
+    forgot: "Mot de passe oublié?",
+    noAccount: "Vous n’avez pas de compte?",
+    signUp: "Créer un compte",
+    back: "Retour au site web",
+    invalid: "Adresse courriel ou mot de passe invalide",
+    failed: "La connexion a échoué",
+  } : {
+    title: "Client Portal",
+    subtitle: "Sign in to access your engagement dashboard",
+    email: "Email Address",
+    password: "Password",
+    passwordPlaceholder: "Enter your password",
+    hide: "Hide",
+    show: "Show",
+    signIn: "Sign In",
+    forgot: "Forgot your password?",
+    noAccount: "Don't have an account?",
+    signUp: "Sign Up",
+    back: "Back to website",
+    invalid: "Invalid email or password",
+    failed: "Login failed",
+  };
   const [, setLocation] = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,9 +59,9 @@ export default function Login() {
       const msg = err.message || "";
       try {
         const parsed = JSON.parse(msg.replace(/^\d+:\s*/, ""));
-        setError(parsed.message || "Login failed");
+        setError(fr ? copy.failed : (parsed.message || copy.failed));
       } catch {
-        setError("Invalid email or password");
+        setError(copy.invalid);
       }
     }
   };
@@ -39,14 +73,14 @@ export default function Login() {
           <Link href="/">
             <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-4 cursor-pointer" />
           </Link>
-          <h1 className="text-3xl font-heading font-extrabold text-primary">Client Portal</h1>
-          <p className="text-muted-foreground mt-2">Sign in to access your engagement dashboard</p>
+          <h1 className="text-3xl font-heading font-extrabold text-primary">{copy.title}</h1>
+          <p className="text-muted-foreground mt-2">{copy.subtitle}</p>
         </div>
 
         <div className="bg-white border border-border shadow-sm p-8">
           <form onSubmit={handleLogin} className="space-y-5">
             <div>
-              <Label htmlFor="email" className="text-sm font-bold text-primary mb-2 block">Email Address</Label>
+              <Label htmlFor="email" className="text-sm font-bold text-primary mb-2 block">{copy.email}</Label>
               <Input
                 id="email"
                 type="email"
@@ -60,7 +94,7 @@ export default function Login() {
               />
             </div>
             <div>
-              <Label htmlFor="password" className="text-sm font-bold text-primary mb-2 block">Password</Label>
+              <Label htmlFor="password" className="text-sm font-bold text-primary mb-2 block">{copy.password}</Label>
               <div className="relative">
                 <Input
                   id="password"
@@ -69,7 +103,7 @@ export default function Login() {
                   data-testid="input-login-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter your password"
+                  placeholder={copy.passwordPlaceholder}
                   required
                   className="rounded-xl h-12 pr-12"
                 />
@@ -78,7 +112,7 @@ export default function Login() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold uppercase tracking-wider text-muted-foreground hover:text-primary"
                 >
-                  {showPassword ? "Hide" : "Show"}
+                  {showPassword ? copy.hide : copy.show}
                 </button>
               </div>
             </div>
@@ -95,13 +129,13 @@ export default function Login() {
               disabled={loginMutation.isPending}
               className="w-full h-12 rounded-xl bg-primary text-white hover:bg-accent hover:text-primary font-bold uppercase tracking-wider text-sm"
             >
-              Sign In
+              {copy.signIn}
             </Button>
 
             <div className="text-center">
               <Link href="/portal/forgot-password">
                 <span data-testid="link-forgot-password" className="text-sm text-accent hover:text-primary cursor-pointer font-medium">
-                  Forgot your password?
+                  {copy.forgot}
                 </span>
               </Link>
             </div>
@@ -110,10 +144,10 @@ export default function Login() {
 
         <div className="text-center mt-6">
           <p className="text-sm text-muted-foreground">
-            Don't have an account?{" "}
+            {copy.noAccount}{" "}
             <Link href="/portal/register">
                 <span data-testid="link-register" className="text-accent hover:text-primary cursor-pointer font-bold">
-                Sign Up
+                {copy.signUp}
               </span>
             </Link>
           </p>
@@ -122,7 +156,7 @@ export default function Login() {
         <div className="text-center mt-4">
           <Link href="/">
              <span className="text-xs text-muted-foreground hover:text-primary cursor-pointer">
-               ← Back to website
+               ← {copy.back}
             </span>
           </Link>
         </div>

@@ -8,6 +8,8 @@ import { useLanguage } from "@/hooks/use-language";
 
 const CONTENT = {
   en: {
+    seoTitle: "Sitemap | Performance Processes",
+    seoDescription: "Browse Performance Processes' Canadian business formation, setup, website, and digital-launch services.",
     heroTitle: <>Site<span className="text-accent">map</span></>,
     links: [
       { label: "Home", href: "/" },
@@ -24,6 +26,8 @@ const CONTENT = {
     ],
   },
   fr: {
+    seoTitle: "Plan du site | Performance Processes",
+    seoDescription: "Parcourez les services canadiens de formation, de mise en place, de sites web et de lancement numérique de Performance Processes.",
     heroTitle: <>Plan du <span className="text-accent">site</span></>,
     links: [
       { label: "Accueil", href: "/" },
@@ -48,7 +52,7 @@ export default function Sitemap() {
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
-      <SEOHead title="Sitemap" description="Browse Performance Processes' Canadian business formation, setup, website, and digital-launch services for early-stage entrepreneurs." path="/sitemap" noindex />
+      <SEOHead title={c.seoTitle} description={c.seoDescription} path="/sitemap" noindex />
       <Navbar />
       <main className="flex-grow">
         <PageHero 

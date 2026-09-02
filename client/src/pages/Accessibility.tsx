@@ -6,6 +6,8 @@ import { useLanguage } from "@/hooks/use-language";
 
 const CONTENT = {
   en: {
+    seoTitle: "Accessibility Statement | Performance Processes",
+    seoDescription: "Learn about Performance Processes' commitment to digital accessibility and how to report an accessibility barrier.",
     heroTitle: <>Accessi<span className="text-accent">bility</span></>,
     commitmentTitle: "Our Commitment",
     commitmentBody: "Performance Processes is committed to making our website and services accessible to everyone, including individuals with disabilities. We are continuously working to improve the user experience for everyone and applying the relevant accessibility standards.",
@@ -15,6 +17,8 @@ const CONTENT = {
     feedbackBody: "We welcome your feedback on the accessibility of our website. Please let us know if you encounter accessibility barriers by contacting us at contact@performanceprocesses.com.",
   },
   fr: {
+    seoTitle: "Déclaration d’accessibilité | Performance Processes",
+    seoDescription: "Découvrez l’engagement de Performance Processes envers l’accessibilité numérique et comment signaler un obstacle.",
     heroTitle: <>Accessi<span className="text-accent">bilité</span></>,
     commitmentTitle: "Notre engagement",
     commitmentBody: "Performance Processes s'engage à rendre son site Web et ses services accessibles à tous, y compris aux personnes en situation de handicap. Nous travaillons continuellement à améliorer l'expérience utilisateur pour tous et à appliquer les normes d'accessibilité pertinentes.",
@@ -30,7 +34,7 @@ export default function Accessibility() {
   const c = CONTENT[language];
   return (
     <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
-      <SEOHead title="Accessibility Statement" description="Performance Processes is committed to digital accessibility. Learn about our accessibility practices and how we ensure our website is usable for everyone." path="/accessibility" />
+      <SEOHead title={c.seoTitle} description={c.seoDescription} path="/accessibility" />
       <Navbar />
       <main className="flex-grow">
         <PageHero 

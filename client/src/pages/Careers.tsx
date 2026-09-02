@@ -76,7 +76,11 @@ export default function Careers() {
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
-      <SEOHead title="Careers, Join Our Team" description="Explore career opportunities at Performance Processes. We're looking for talented consultants, strategists, and leaders who want to make a meaningful impact on organizations." path="/careers" />
+      <SEOHead
+        title={language === "en" ? "Careers | Performance Processes" : "Carrières | Performance Processes"}
+        description={language === "en" ? "Explore career opportunities at Performance Processes and help Canadian businesses establish, organize, and launch." : "Découvrez les possibilités de carrière chez Performance Processes et aidez les entreprises canadiennes à s’établir, s’organiser et se lancer."}
+        path="/careers"
+      />
       <Navbar />
       <main className="flex-grow">
         <PageHero 
@@ -302,21 +306,28 @@ export default function Careers() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-xl font-bold text-primary">Compensation Structure</h3>
+              <h3 className="text-xl font-bold text-primary">{language === "en" ? "Compensation Structure" : "Structure de rémunération"}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                This is a commission-based role with earnings tied directly to closed consulting engagements. Commission percentages are competitive and structured to reward performance and long-term client relationships.
+                {language === "en"
+                  ? "This is a commission-based role with earnings tied directly to closed consulting engagements. Commission percentages are competitive and structured to reward performance and long-term client relationships."
+                  : "Il s’agit d’un poste à commission dont les revenus sont directement liés aux mandats de conseil conclus. Les pourcentages de commission sont concurrentiels et récompensent le rendement ainsi que les relations durables avec les clients."}
               </p>
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-xl font-bold text-primary">What We Offer</h3>
+              <h3 className="text-xl font-bold text-primary">{language === "en" ? "What We Offer" : "Ce que nous offrons"}</h3>
               <ul className="space-y-3">
-                {[
+                {(language === "en" ? [
                   "Flexible, remote engagement",
                   "High-value consulting services with strong market demand",
                   "Uncapped commission potential",
                   "Opportunity to align with a performance-focused consulting brand"
-                ].map((item, i) => (
+                ] : [
+                  "Mandat flexible à distance",
+                  "Services-conseils à forte valeur répondant à une demande réelle",
+                  "Potentiel de commission sans plafond",
+                  "Possibilité de collaborer avec une marque axée sur la performance"
+                ]).map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="text-accent flex-shrink-0 mt-1 leading-none">·</span>
                     <span className="text-muted-foreground">{item}</span>
@@ -324,7 +335,9 @@ export default function Careers() {
                 ))}
               </ul>
               <p className="text-muted-foreground italic mt-6 border-l-4 border-accent pl-4 py-2 bg-secondary/30">
-                This role is well-suited for independent consultants, industry professionals, or business advisors looking to expand their income through strategic referrals and client acquisition.
+                {language === "en"
+                  ? "This role is well-suited for independent consultants, industry professionals, or business advisors looking to expand their income through strategic referrals and client acquisition."
+                  : "Ce poste convient aux consultants indépendants, aux professionnels de l’industrie et aux conseillers d’affaires qui souhaitent accroître leurs revenus grâce aux recommandations stratégiques et à l’acquisition de clients."}
               </p>
             </div>
 
@@ -334,7 +347,7 @@ export default function Careers() {
                 onClick={() => setIsFormOpen(true)}
                 data-testid="button-apply"
               >
-                Apply for this role
+                {language === "en" ? "Apply for this role" : "Postuler à ce poste"}
               </Button>
             </div>
           </div>
@@ -435,18 +448,22 @@ export default function Careers() {
             <div className="flex items-start gap-4">
               <div>
                 <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-3">
-                  Coming Soon
+                  {language === "en" ? "Coming Soon" : "À venir"}
                 </div>
                 <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-primary mb-4">
-                  Additional Roles on the Horizon
+                  {language === "en" ? "Additional Roles on the Horizon" : "D’autres postes à venir"}
                 </h2>
               </div>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              As Performance Processes continues to grow, we anticipate expanding our team across several areas including project management, research analysis, and client success. We're always looking for talented individuals who align with our mission and values.
+              {language === "en"
+                ? "As Performance Processes continues to grow, we anticipate expanding our team across several areas including project management, research analysis, and client success. We're always looking for talented individuals who align with our mission and values."
+                : "À mesure que Performance Processes grandit, nous prévoyons élargir notre équipe dans plusieurs domaines, notamment la gestion de projets, l’analyse de recherche et la réussite client. Nous cherchons des personnes talentueuses qui partagent notre mission et nos valeurs."}
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Don't see a role that fits? We welcome general applications from professionals who believe they can contribute to our mission. Submit your resume and a brief introduction, and we'll keep your information on file for future opportunities.
+              {language === "en"
+                ? "Don't see a role that fits? We welcome general applications from professionals who believe they can contribute to our mission. Submit your resume and a brief introduction, and we'll keep your information on file for future opportunities."
+                : "Aucun poste ne correspond à votre profil? Nous acceptons les candidatures spontanées de professionnels qui souhaitent contribuer à notre mission. Envoyez votre CV et une brève présentation; nous conserverons vos renseignements pour de futures possibilités."}
             </p>
             <div className="pt-4 border-t border-border flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <Button
@@ -454,9 +471,9 @@ export default function Careers() {
                 onClick={() => setIsFormOpen(true)}
                 data-testid="button-general-application"
               >
-                Submit General Application
+                {language === "en" ? "Submit General Application" : "Envoyer une candidature spontanée"}
               </Button>
-              <span className="text-sm text-muted-foreground">or email us at <a href="mailto:careers@performanceprocesses.com" className="text-accent hover:underline font-medium">careers@performanceprocesses.com</a></span>
+              <span className="text-sm text-muted-foreground">{language === "en" ? "or email us at" : "ou écrivez-nous à"} <a href="mailto:careers@performanceprocesses.com" className="text-accent hover:underline font-medium">careers@performanceprocesses.com</a></span>
             </div>
           </div>
         </div>
@@ -468,10 +485,10 @@ export default function Careers() {
           {submitted ? (
             <div className="flex flex-col items-center justify-center py-16 px-8 text-center gap-6">
               <h3 className="text-2xl font-bold text-primary" data-testid="text-application-success">
-                Application Submitted!
+                {language === "en" ? "Application Submitted!" : "Candidature envoyée!"}
               </h3>
               <p className="text-muted-foreground max-w-sm">
-                Thank you for your interest in joining Performance Processes. We'll review your application and get back to you soon.
+                {language === "en" ? "Thank you for your interest in joining Performance Processes. We'll review your application and get back to you soon." : "Merci de votre intérêt pour Performance Processes. Nous examinerons votre candidature et communiquerons bientôt avec vous."}
               </p>
               <Button 
                 onClick={handleClose} 
@@ -479,23 +496,23 @@ export default function Careers() {
                 className="rounded-full px-8 mt-4"
                 data-testid="button-close-success"
               >
-                Close
+                {language === "en" ? "Close" : "Fermer"}
               </Button>
             </div>
           ) : (
             <>
               <DialogHeader className="p-6 pb-0">
                 <DialogTitle className="text-2xl font-bold text-primary uppercase italic">
-                  Apply: Business Development Consultant
+                  {language === "en" ? "Apply: Business Development Consultant" : "Postuler : conseiller en développement des affaires"}
                 </DialogTitle>
                 <p className="text-sm text-muted-foreground mt-2">
-                  Fields marked with <span className="text-red-500">*</span> are required
+                  {language === "en" ? "Fields marked with" : "Les champs marqués d’un"} <span className="text-red-500">*</span> {language === "en" ? "are required" : "sont obligatoires"}
                 </p>
               </DialogHeader>
               
               {mutation.isError && (
                 <div className="mx-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm font-medium" data-testid="text-apply-error">
-                  {mutation.error?.message || "Something went wrong. Please try again."}
+                  {language === "en" ? (mutation.error?.message || "Something went wrong. Please try again.") : "Une erreur s’est produite. Veuillez réessayer."}
                 </div>
               )}
 
@@ -503,11 +520,11 @@ export default function Careers() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">
-                      First Name <span className="text-red-500">*</span>
+                      {language === "en" ? "First Name" : "Prénom"} <span className="text-red-500">*</span>
                     </label>
                     <input
                       className="w-full bg-[#FAFAFA] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
-                      placeholder="First name"
+                      placeholder={language === "en" ? "First name" : "Prénom"}
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       required
@@ -516,11 +533,11 @@ export default function Careers() {
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">
-                      Last Name <span className="text-red-500">*</span>
+                      {language === "en" ? "Last Name" : "Nom"} <span className="text-red-500">*</span>
                     </label>
                     <input
                       className="w-full bg-[#FAFAFA] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
-                      placeholder="Last name"
+                      placeholder={language === "en" ? "Last name" : "Nom"}
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       required
@@ -546,7 +563,7 @@ export default function Careers() {
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">
-                      Phone <span className="text-red-500">*</span>
+                       {language === "en" ? "Phone" : "Téléphone"} <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="tel"
@@ -562,7 +579,7 @@ export default function Careers() {
 
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">
-                    LinkedIn Profile
+                     {language === "en" ? "LinkedIn Profile" : "Profil LinkedIn"}
                   </label>
                   <input
                     className="w-full bg-[#FAFAFA] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm"
@@ -575,7 +592,7 @@ export default function Careers() {
 
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">
-                    Resume / CV <span className="text-red-500">*</span>
+                     {language === "en" ? "Resume / CV" : "Curriculum vitæ"} <span className="text-red-500">*</span>
                   </label>
                   <input
                     ref={fileInputRef}
@@ -598,7 +615,7 @@ export default function Careers() {
                         className="text-xs font-bold uppercase tracking-wider text-green-700 hover:text-red-500 transition-colors"
                         data-testid="button-remove-resume"
                       >
-                        Remove
+                         {language === "en" ? "Remove" : "Retirer"}
                       </button>
                     </div>
                   ) : (
@@ -608,19 +625,19 @@ export default function Careers() {
                       className="w-full border-2 border-dashed border-border rounded-xl px-5 py-8 flex flex-col items-center gap-3 hover:border-accent hover:bg-accent/5 transition-all cursor-pointer"
                       data-testid="button-upload-resume"
                     >
-                      <span className="text-sm font-bold text-muted-foreground">Click to upload your resume</span>
-                      <span className="text-xs text-muted-foreground/60">PDF, DOC, or DOCX (max 10MB)</span>
+                       <span className="text-sm font-bold text-muted-foreground">{language === "en" ? "Click to upload your resume" : "Cliquez pour téléverser votre CV"}</span>
+                       <span className="text-xs text-muted-foreground/60">{language === "en" ? "PDF, DOC, or DOCX (max 10MB)" : "PDF, DOC ou DOCX (10 Mo maximum)"}</span>
                     </button>
                   )}
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground ml-2">
-                    Cover Letter
+                     {language === "en" ? "Cover Letter" : "Lettre de présentation"}
                   </label>
                   <textarea
                     className="w-full bg-[#FAFAFA] border border-border rounded-xl px-5 py-3.5 outline-none focus:border-accent font-medium text-sm h-32 resize-none"
-                    placeholder="Tell us why you'd be a great fit..."
+                     placeholder={language === "en" ? "Tell us why you'd be a great fit..." : "Expliquez-nous pourquoi votre profil convient..."}
                     value={coverLetter}
                     onChange={(e) => setCoverLetter(e.target.value)}
                     data-testid="input-cover-letter"
@@ -633,7 +650,7 @@ export default function Careers() {
                   className="w-full rounded-full bg-accent text-white hover:bg-primary h-14 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 disabled:opacity-50"
                   data-testid="button-submit-application"
                 >
-                  {mutation.isPending ? "Submitting..." : "Submit Application"}
+                   {mutation.isPending ? (language === "en" ? "Submitting..." : "Envoi en cours...") : (language === "en" ? "Submit Application" : "Envoyer la candidature")}
                 </Button>
               </form>
             </>

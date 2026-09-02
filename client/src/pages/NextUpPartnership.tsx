@@ -10,6 +10,8 @@ const PROMO_CODE = "NEXTPROCESSES";
 
 const CONTENT = {
   en: {
+    seoTitle: "NextUp Partnership | 40% Off Website Services",
+    seoDescription: "Eligible NextUp program participants and qualifying donors receive 40% off Performance Processes website services.",
     heroTitle: (
       <>
         <span className="text-accent">NextUp</span> Foundation Partnership
@@ -71,6 +73,8 @@ const CONTENT = {
     ctaServices: "Browse Website Services",
   },
   fr: {
+    seoTitle: "Partenariat NextUp | 40 % de rabais sur les sites web",
+    seoDescription: "Les participants admissibles aux programmes NextUp et les donateurs admissibles bénéficient de 40 % de rabais sur nos services de sites web.",
     heroTitle: (
       <>
         Partenariat avec la <span className="text-accent">NextUp</span> Foundation
@@ -141,8 +145,8 @@ export default function NextUpPartnership() {
   return (
     <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
       <SEOHead
-        title="NextUp Foundation for Canadian Youth Partnership , 40% Off Website Services"
-        description="Performance Processes partners with the NextUp Foundation for Canadian Youth to offer 40% off website services for anyone enrolled in a NextUp program, or who has donated $500 or more to the foundation in the past year. Verification is coordinated by Performance Processes and NextUp."
+        title={c.seoTitle}
+        description={c.seoDescription}
         path="/nextup-partnership"
       />
       <Navbar />

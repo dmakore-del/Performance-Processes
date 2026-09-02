@@ -100,18 +100,54 @@ const FAQ_DATA = [
   }
 ];
 
+const FAQ_DATA_FR = [
+  {
+    keywords: ["qui êtes-vous", "performance processes", "à propos", "entreprise"],
+    answer: "Performance Processes aide les entrepreneurs canadiens à incorporer, établir, organiser et lancer leur entreprise avec une stratégie, des systèmes et une présence numérique professionnels."
+  },
+  {
+    keywords: ["services", "offrez", "proposez", "aidez", "aide"],
+    answer: "Nous offrons du soutien à la formation d'entreprise, à l'incorporation et à la configuration de comptes de l'ARC, ainsi que des services de stratégie, de systèmes d'affaires, de sites web, de CRM et de présence numérique."
+  },
+  {
+    keywords: ["incorporation", "incorporer", "enregistrer", "démarrer une entreprise", "numéro d'entreprise", "arc"],
+    answer: "Nous offrons un soutien administratif pour l'incorporation en Ontario ou au fédéral, l'enregistrement d'un nom d'entreprise, le numéro d'entreprise de l'ARC et les comptes de programme pertinents. Les frais gouvernementaux sont distincts, et nous ne fournissons pas de conseils juridiques, fiscaux ou comptables."
+  },
+  {
+    keywords: ["site web", "numérique", "présence en ligne", "marketing", "crm"],
+    answer: "Nous concevons des sites web professionnels, configurons les outils de demande, de réservation, de paiement et de CRM, et aidons les nouvelles entreprises à bâtir une présence numérique prête pour leurs clients."
+  },
+  {
+    keywords: ["prix", "coût", "tarifs", "combien", "paiement", "payer"],
+    answer: "Nos forfaits et services sont tarifés en dollars canadiens sur la page Forfaits. Les services admissibles peuvent être payés en ligne par carte de crédit, carte de débit ou PayPal lorsque cette option est offerte par Stripe."
+  },
+  {
+    keywords: ["commencer", "première étape", "consultation", "rendez-vous", "réserver"],
+    answer: "La meilleure première étape est de réserver une consultation. Nous discuterons de votre idée, de votre stade actuel et des éléments à mettre en place en priorité."
+  },
+  {
+    keywords: ["contact", "courriel", "téléphone", "joindre"],
+    answer: "Vous pouvez nous écrire à contact@performanceprocesses.com ou nous appeler au +1 (437) 425-4844."
+  },
+  {
+    keywords: ["bonjour", "salut", "bonsoir", "allo"],
+    answer: "Bonjour! Bienvenue chez Performance Processes. Comment puis-je vous aider avec le lancement ou la mise en place de votre entreprise?"
+  }
+];
+
 interface Message {
   role: "bot" | "user";
   text: string;
 }
 
-function findAnswer(input: string): string | null {
+function findAnswer(input: string, language: "en" | "fr"): string | null {
   const lower = input.toLowerCase().trim();
   if (lower.length < 2) return null;
 
   let bestMatch: { score: number; answer: string } | null = null;
+  const data = language === "fr" ? FAQ_DATA_FR : FAQ_DATA;
 
-  for (const faq of FAQ_DATA) {
+  for (const faq of data) {
     let score = 0;
     for (const keyword of faq.keywords) {
       if (lower.includes(keyword)) {
@@ -126,7 +162,10 @@ function findAnswer(input: string): string | null {
   return bestMatch ? bestMatch.answer : null;
 }
 
-const FALLBACK_MESSAGE = "I'm not sure I can answer that one. For more detailed questions, please email us at contact@performanceprocesses.com and our team will be happy to help!";
+const FALLBACK_MESSAGE = {
+  en: "I'm not sure I can answer that one. For more detailed questions, please email us at contact@performanceprocesses.com and our team will be happy to help!",
+  fr: "Je ne suis pas certain de pouvoir répondre à cette question. Pour une réponse détaillée, écrivez-nous à contact@performanceprocesses.com et notre équipe se fera un plaisir de vous aider."
+};
 
 export function Chatbot() {
   const { language } = useLanguage();
@@ -145,7 +184,7 @@ export function Chatbot() {
           : "Bonjour! Je suis l'assistant de Performance Processes. Posez-moi vos questions sur nos services, notre approche ou comment nous pouvons aider votre organisation."
       }]);
     }
-  }, [isOpen]);
+  }, [isOpen, language]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -162,8 +201,8 @@ export function Chatbot() {
     if (!trimmed) return;
 
     const userMsg: Message = { role: "user", text: trimmed };
-    const answer = findAnswer(trimmed);
-    const botMsg: Message = { role: "bot", text: answer || FALLBACK_MESSAGE };
+    const answer = findAnswer(trimmed, language);
+    const botMsg: Message = { role: "bot", text: answer || FALLBACK_MESSAGE[language] };
 
     setMessages((prev) => [...prev, userMsg, botMsg]);
     setInput("");
@@ -184,7 +223,7 @@ export function Chatbot() {
           className="fixed bottom-6 right-6 z-50 h-14 px-6 rounded-full bg-accent text-white shadow-lg shadow-accent/30 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer text-xs font-bold uppercase tracking-widest"
           data-testid="button-open-chatbot"
         >
-          Chat
+          {language === "fr" ? "Clavardage" : "Chat"}
         </button>
       )}
 
@@ -206,7 +245,7 @@ export function Chatbot() {
               onClick={() => setIsOpen(false)}
               className="text-white/60 hover:text-white transition-colors cursor-pointer"
               data-testid="button-close-chatbot"
-              aria-label="Close chat"
+              aria-label={language === "fr" ? "Fermer le clavardage" : "Close chat"}
             >
               <span aria-hidden="true" className="text-xl leading-none">&times;</span>
             </button>
@@ -227,7 +266,7 @@ export function Chatbot() {
                   data-testid={`text-chat-message-${i}`}
                 >
                   {msg.text}
-                  {msg.role === "bot" && msg.text === FALLBACK_MESSAGE && (
+                  {msg.role === "bot" && msg.text === FALLBACK_MESSAGE[language] && (
                     <a
                       href="mailto:contact@performanceprocesses.com"
                       className="flex items-center gap-2 mt-3 text-accent font-bold text-xs hover:underline"
@@ -259,9 +298,9 @@ export function Chatbot() {
                 disabled={!input.trim()}
                 className="h-10 px-4 rounded-full bg-accent text-white flex items-center justify-center hover:bg-primary transition-colors disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed flex-shrink-0 text-[11px] font-bold uppercase tracking-widest"
                 data-testid="button-send-chatbot"
-                aria-label="Send message"
+                aria-label={language === "fr" ? "Envoyer le message" : "Send message"}
               >
-                Send
+                {language === "fr" ? "Envoyer" : "Send"}
               </button>
             </div>
           </div>

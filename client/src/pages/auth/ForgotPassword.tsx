@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import logoImg from "@/assets/logo.png";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function ForgotPassword() {
   const [location] = useLocation();
@@ -19,6 +20,27 @@ export default function ForgotPassword() {
 }
 
 function ForgotPasswordForm() {
+  const { language } = useLanguage();
+  const fr = language === "fr";
+  const copy = fr ? {
+    title: "Réinitialiser le mot de passe",
+    subtitle: "Nous vous enverrons un lien pour réinitialiser votre mot de passe",
+    check: "Vérifiez votre boîte de réception",
+    sent: "Si un compte correspond à cette adresse, vous recevrez sous peu un lien de réinitialisation.",
+    email: "Adresse courriel",
+    send: "Envoyer le lien",
+    back: "Retour à la connexion",
+    failed: "Impossible d’envoyer le courriel de réinitialisation. Veuillez réessayer.",
+  } : {
+    title: "Reset Password",
+    subtitle: "We'll send you a link to reset your password",
+    check: "Check Your Email",
+    sent: "If an account exists with this address, you will receive a password reset link shortly.",
+    email: "Email Address",
+    send: "Send Reset Link",
+    back: "Back to Sign In",
+    failed: "Failed to send reset email. Please try again.",
+  };
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
@@ -32,7 +54,7 @@ function ForgotPasswordForm() {
       await forgotPassword.mutateAsync(email);
       setSent(true);
     } catch (err: any) {
-      setError("Failed to send reset email. Please try again.");
+      setError(copy.failed);
     }
   };
 
@@ -43,20 +65,20 @@ function ForgotPasswordForm() {
           <Link href="/">
             <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-4 cursor-pointer" />
           </Link>
-          <h1 className="text-3xl font-heading font-extrabold text-primary">Reset Password</h1>
-          <p className="text-muted-foreground mt-2">We'll send you a link to reset your password</p>
+          <h1 className="text-3xl font-heading font-extrabold text-primary">{copy.title}</h1>
+          <p className="text-muted-foreground mt-2">{copy.subtitle}</p>
         </div>
 
         <div className="bg-white rounded-3xl border border-border shadow-sm p-8">
           {sent ? (
             <div className="text-center py-4">
-              <h2 className="text-xl font-bold text-primary mb-2">Check Your Email</h2>
+              <h2 className="text-xl font-bold text-primary mb-2">{copy.check}</h2>
               <p className="text-sm text-muted-foreground mb-6">
-                If an account exists with <strong>{email}</strong>, you will receive a password reset link shortly.
+                {copy.sent}
               </p>
               <Link href="/portal/login">
                 <Button data-testid="button-back-to-login" className="rounded-xl bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-sm">
-                  Back to Sign In
+                  {copy.back}
                 </Button>
               </Link>
             </div>
@@ -64,7 +86,7 @@ function ForgotPasswordForm() {
             <form onSubmit={handleSubmit} className="space-y-5">
 
               <div>
-                <Label htmlFor="email" className="text-sm font-bold text-primary mb-2 block">Email Address</Label>
+                <Label htmlFor="email" className="text-sm font-bold text-primary mb-2 block">{copy.email}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -89,7 +111,7 @@ function ForgotPasswordForm() {
                 disabled={forgotPassword.isPending}
                 className="w-full h-12 rounded-xl bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-sm"
               >
-                Send Reset Link
+                {copy.send}
               </Button>
             </form>
           )}
@@ -98,7 +120,7 @@ function ForgotPasswordForm() {
         <div className="text-center mt-6">
           <Link href="/portal/login">
             <span className="text-sm text-muted-foreground hover:text-primary cursor-pointer">
-              ← Back to Sign In
+              ← {copy.back}
             </span>
           </Link>
         </div>
@@ -108,6 +130,35 @@ function ForgotPasswordForm() {
 }
 
 function ResetPasswordForm({ token }: { token: string }) {
+  const { language } = useLanguage();
+  const fr = language === "fr";
+  const copy = fr ? {
+    title: "Définir un nouveau mot de passe",
+    resetTitle: "Mot de passe réinitialisé",
+    resetBody: "Votre mot de passe a été mis à jour.",
+    signIn: "Se connecter",
+    newPassword: "Nouveau mot de passe",
+    confirm: "Confirmer le mot de passe",
+    min: "Minimum 8 caractères",
+    repeat: "Répétez le nouveau mot de passe",
+    submit: "Réinitialiser le mot de passe",
+    mismatch: "Les mots de passe ne correspondent pas",
+    tooShort: "Le mot de passe doit contenir au moins 8 caractères",
+    failed: "Impossible de réinitialiser le mot de passe. Le lien a peut-être expiré.",
+  } : {
+    title: "Set New Password",
+    resetTitle: "Password Reset",
+    resetBody: "Your password has been updated successfully.",
+    signIn: "Sign In",
+    newPassword: "New Password",
+    confirm: "Confirm Password",
+    min: "Min. 8 characters",
+    repeat: "Repeat new password",
+    submit: "Reset Password",
+    mismatch: "Passwords do not match",
+    tooShort: "Password must be at least 8 characters",
+    failed: "Failed to reset password. The link may have expired.",
+  };
   const [, setLocation] = useLocation();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -121,12 +172,12 @@ function ResetPasswordForm({ token }: { token: string }) {
     setError("");
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError(copy.mismatch);
       return;
     }
 
     if (password.length < 8) {
-      setError("Password must be at least 8 characters");
+      setError(copy.tooShort);
       return;
     }
 
@@ -137,9 +188,9 @@ function ResetPasswordForm({ token }: { token: string }) {
       const msg = err.message || "";
       try {
         const parsed = JSON.parse(msg.replace(/^\d+:\s*/, ""));
-        setError(parsed.message || "Reset failed");
+        setError(fr ? copy.failed : (parsed.message || copy.failed));
       } catch {
-        setError("Failed to reset password. The link may have expired.");
+        setError(copy.failed);
       }
     }
   };
@@ -151,17 +202,17 @@ function ResetPasswordForm({ token }: { token: string }) {
           <Link href="/">
             <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-4 cursor-pointer" />
           </Link>
-          <h1 className="text-3xl font-heading font-extrabold text-primary">Set New Password</h1>
+          <h1 className="text-3xl font-heading font-extrabold text-primary">{copy.title}</h1>
         </div>
 
         <div className="bg-white rounded-3xl border border-border shadow-sm p-8">
           {success ? (
             <div className="text-center py-4">
-              <h2 className="text-xl font-bold text-primary mb-2">Password Reset</h2>
-              <p className="text-sm text-muted-foreground mb-6">Your password has been updated successfully.</p>
+              <h2 className="text-xl font-bold text-primary mb-2">{copy.resetTitle}</h2>
+              <p className="text-sm text-muted-foreground mb-6">{copy.resetBody}</p>
               <Link href="/portal/login">
                 <Button data-testid="button-login-after-reset" className="rounded-xl bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-sm">
-                  Sign In
+                  {copy.signIn}
                 </Button>
               </Link>
             </div>
@@ -169,14 +220,14 @@ function ResetPasswordForm({ token }: { token: string }) {
             <form onSubmit={handleSubmit} className="space-y-5">
 
               <div>
-                <Label htmlFor="password" className="text-sm font-bold text-primary mb-2 block">New Password</Label>
+                <Label htmlFor="password" className="text-sm font-bold text-primary mb-2 block">{copy.newPassword}</Label>
                 <Input
                   id="password"
                   type="password"
                   data-testid="input-reset-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Min. 8 characters"
+                  placeholder={copy.min}
                   required
                   minLength={8}
                   className="rounded-xl h-12"
@@ -184,14 +235,14 @@ function ResetPasswordForm({ token }: { token: string }) {
               </div>
 
               <div>
-                <Label htmlFor="confirmPassword" className="text-sm font-bold text-primary mb-2 block">Confirm Password</Label>
+                <Label htmlFor="confirmPassword" className="text-sm font-bold text-primary mb-2 block">{copy.confirm}</Label>
                 <Input
                   id="confirmPassword"
                   type="password"
                   data-testid="input-reset-confirm"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Repeat new password"
+                  placeholder={copy.repeat}
                   required
                   className="rounded-xl h-12"
                 />
@@ -209,7 +260,7 @@ function ResetPasswordForm({ token }: { token: string }) {
                 disabled={resetPassword.isPending}
                 className="w-full h-12 rounded-xl bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-sm"
               >
-                Reset Password
+                {copy.submit}
               </Button>
             </form>
           )}

@@ -6,6 +6,8 @@ import { useLanguage } from "@/hooks/use-language";
 
 const CONTENT = {
   en: {
+    seoTitle: "Privacy Policy & Terms | Performance Processes",
+    seoDescription: "Read how Performance Processes handles personal information and the terms that apply to our website and services.",
     heroTitle: <>Privacy & <span className="text-accent">Terms</span></>,
     privacyTitle: "Privacy Policy",
     privacyBody: "Performance Processes is committed to protecting your privacy. We collect and use personal data only as necessary to provide our consulting services and communicate with our clients. We do not sell your information to third parties.",
@@ -15,6 +17,8 @@ const CONTENT = {
     dataBody: "We implement industry-standard security measures to protect your data from unauthorized access or disclosure.",
   },
   fr: {
+    seoTitle: "Confidentialité et conditions | Performance Processes",
+    seoDescription: "Découvrez comment Performance Processes traite les renseignements personnels et les conditions applicables à son site et à ses services.",
     heroTitle: <>Confidentialité et <span className="text-accent">Conditions</span></>,
     privacyTitle: "Politique de confidentialité",
     privacyBody: "Performance Processes s'engage à protéger votre vie privée. Nous recueillons et utilisons vos données personnelles uniquement dans la mesure nécessaire pour offrir nos services de conseil et communiquer avec nos clients. Nous ne vendons pas vos renseignements à des tiers.",
@@ -30,7 +34,7 @@ export default function Legal() {
   const c = CONTENT[language];
   return (
     <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans">
-      <SEOHead title="Privacy Policy & Terms of Service" description="Read the Performance Processes privacy policy and terms of service. Learn how we handle your data and the terms governing use of our consulting services." path="/legal" />
+      <SEOHead title={c.seoTitle} description={c.seoDescription} path="/legal" />
       <Navbar />
       <main className="flex-grow">
         <PageHero 

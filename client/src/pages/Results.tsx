@@ -89,6 +89,8 @@ const TESTIMONIALS: Testimonial[] = [
 
 const CONTENT = {
   en: {
+    seoTitle: "Results & Case Studies | Performance Processes",
+    seoDescription: "See real outcomes from the business systems and digital solutions Performance Processes builds for growing organizations.",
     heroTitle: <>Results that <span className="text-accent">compound.</span></>,
     heroSubtitle:
       "Real outcomes from the systems we build and run for small and emerging businesses, in the words of the partners we work with.",
@@ -112,6 +114,8 @@ const CONTENT = {
     caseStudy: CASE_STUDY_EN,
   },
   fr: {
+    seoTitle: "Résultats et études de cas | Performance Processes",
+    seoDescription: "Découvrez les résultats concrets des systèmes d’affaires et solutions numériques conçus par Performance Processes.",
     heroTitle: <>Des résultats qui <span className="text-accent">s'accumulent.</span></>,
     heroSubtitle:
       "De véritables résultats issus des systèmes que nous concevons et exploitons pour les petites entreprises et les entreprises émergentes, dans les mots des partenaires avec qui nous travaillons.",
@@ -144,8 +148,8 @@ export default function Results() {
   return (
     <div className="min-h-[100dvh] bg-background flex flex-col font-sans">
       <SEOHead
-        title="Results & Case Studies | Performance Processes"
-        description="Real outcomes from the systems we build for small and emerging businesses. Case studies and client results from Performance Processes."
+        title={c.seoTitle}
+        description={c.seoDescription}
         path="/results"
       />
       <Navbar />

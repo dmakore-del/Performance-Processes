@@ -18,19 +18,19 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
   const isClient = user?.role === "client";
 
   const clientNavItems = [
-    { label: "Dashboard", href: "/portal" },
-    { label: "Roadmap & Milestones", href: "/portal/roadmap" },
-    { label: "Deliverables & Docs", href: "/portal/documents" },
-    { label: "Meeting Hub", href: "/portal/meetings" },
-    { label: "Action Tracker", href: "/portal/actions" },
-    { label: "Performance", href: "/portal/performance" },
+    { label: "Overview", href: "/portal" },
+    { label: "Launch plan", href: "/portal/roadmap" },
+    { label: "Deliverables", href: "/portal/documents" },
+    { label: "Sessions", href: "/portal/meetings" },
+    { label: "Next actions", href: "/portal/actions" },
+    { label: "Progress", href: "/portal/performance" },
     { label: "Messages", href: "/portal/messages" },
-    { label: "Resource Library", href: "/portal/resources" },
-    { label: "Billing & Contracts", href: "/portal/billing" },
+    { label: "Resource library", href: "/portal/resources" },
+    { label: "Billing", href: "/portal/billing" },
   ];
 
   const staffNavItems = [
-    { label: "Dashboard", href: "/portal" },
+    { label: "Overview", href: "/portal" },
     { label: "Milestones", href: "/portal/roadmap" },
     { label: "Documents", href: "/portal/documents" },
     { label: "Meeting Hub", href: "/portal/meetings" },
@@ -44,6 +44,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
 
   const adminNavItems = [
     ...staffNavItems,
+    { label: "Billing & Retainers", href: "/portal/admin/billing" },
     { label: "User Management", href: "/portal/admin/users" },
     { label: "Submissions", href: "/portal/admin/submissions" },
     { label: "Receipts / Reçus", href: "/portal/admin/receipts" },
@@ -81,40 +82,40 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
     ? "Administrator"
     : "Engagement manager";
 
-  const sectionLabel = isStaffOrAdmin ? "Operations" : "Workspace";
+  const sectionLabel = isStaffOrAdmin ? "Operations" : "Your workspace";
 
   return (
-    <div className="min-h-screen flex font-sans bg-[#F4F6FB] relative">
+    <div className="min-h-screen flex font-sans bg-[#fffdfc] relative">
       {/* Ambient editorial backdrop */}
       <div
-        className="pointer-events-none fixed inset-0 z-0 opacity-70"
+         className="pointer-events-none fixed inset-0 z-0 opacity-50"
         aria-hidden="true"
         style={{
           backgroundImage:
-            "radial-gradient(900px 600px at 80% -10%, rgba(214,30,110,0.08), transparent 60%), radial-gradient(700px 500px at -10% 110%, rgba(15,23,42,0.07), transparent 60%)",
+             "radial-gradient(900px 600px at 80% -10%, rgba(214,30,110,0.06), transparent 60%), radial-gradient(700px 500px at -10% 110%, rgba(15,23,42,0.025), transparent 60%)",
         }}
       />
 
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-72 bg-primary text-white fixed h-full z-20 overflow-hidden">
+       <aside className="hidden lg:flex flex-col w-72 bg-white text-primary fixed h-full z-20 overflow-hidden border-r border-border">
         {/* Subtle gradient sheen */}
         <div
           className="absolute inset-0 pointer-events-none"
           aria-hidden="true"
           style={{
             backgroundImage:
-              "radial-gradient(600px 400px at 100% 0%, rgba(214,30,110,0.18), transparent 60%), radial-gradient(500px 350px at 0% 100%, rgba(255,255,255,0.05), transparent 70%)",
+               "radial-gradient(600px 400px at 100% 0%, rgba(214,30,110,0.08), transparent 60%), radial-gradient(500px 350px at 0% 100%, rgba(15,23,42,0.025), transparent 70%)",
           }}
         />
         {/* Right edge hairline */}
-        <div className="absolute top-0 right-0 h-full w-px bg-white/10" aria-hidden="true" />
+        <div className="absolute top-0 right-0 h-full w-px bg-border" aria-hidden="true" />
 
-        <div className="relative h-24 flex items-center px-7 border-b border-white/10">
+        <div className="relative h-24 flex items-center px-7 border-b border-border">
           <Link href="/" className="flex items-center gap-3 group" data-testid="link-portal-logo">
             <img src={logoImg} alt="Performance Processes" className="h-9 w-auto" />
             <div className="leading-none">
               <p className="text-[9px] font-black uppercase tracking-[0.32em] text-accent mb-1">Performance</p>
-              <p className="font-heading font-black text-lg tracking-tight text-white uppercase italic group-hover:text-accent transition-colors">
+              <p className="font-heading font-black text-lg tracking-tight text-primary uppercase italic group-hover:text-accent transition-colors">
                 Portal
               </p>
             </div>
@@ -123,7 +124,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
 
         {isStaffOrAdmin && engagements.length > 0 && (
           <div className="relative px-4 pt-5 pb-3">
-            <p className="text-[10px] font-black uppercase tracking-[0.28em] text-white/50 px-3 mb-2">
+             <p className="text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground px-3 mb-2">
               {user?.role === "admin" ? "Engagement" : "Assigned client"}
             </p>
             <div className="relative">
@@ -131,23 +132,23 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                 onClick={() => setEngagementDropdownOpen(!engagementDropdownOpen)}
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-3 rounded-2xl border text-left transition-all",
-                  "bg-white/[0.04] border-white/10 hover:border-accent/50 hover:bg-white/[0.07]",
+                   "bg-background border-border hover:border-accent/50 hover:bg-secondary/40",
                 )}
                 data-testid="button-engagement-switcher"
               >
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-accent to-accent/70 flex items-center justify-center flex-shrink-0 shadow-lg shadow-accent/20 text-white text-[10px] font-black">
+             <div className="w-9 h-9 bg-accent/30 flex items-center justify-center flex-shrink-0 text-primary text-[10px] font-black">
                   {(engagement?.clientName || "C").charAt(0).toUpperCase()}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-white truncate" data-testid="text-active-client">
+                 <p className="text-sm font-bold text-primary truncate" data-testid="text-active-client">
                     {engagement?.clientName || "Select client"}
                   </p>
-                  <p className="text-[10px] text-white/50 truncate uppercase tracking-wider">
+                   <p className="text-[10px] text-muted-foreground truncate uppercase tracking-wider">
                     {engagement?.engagementType || "No engagement"}
                   </p>
                 </div>
                 {hasMultipleEngagements && (
-                  <span className={cn("text-white/50 transition-transform text-xs", engagementDropdownOpen && "rotate-180")}>▾</span>
+                   <span className={cn("text-muted-foreground transition-transform text-xs", engagementDropdownOpen && "rotate-180")}>▾</span>
                 )}
               </button>
               {engagementDropdownOpen && hasMultipleEngagements && (
@@ -181,7 +182,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
         )}
 
         <div className="relative flex-1 overflow-y-auto py-4">
-          <p className="text-[10px] font-black uppercase tracking-[0.28em] text-white/40 px-7 mb-3">{sectionLabel}</p>
+           <p className="text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground px-7 mb-3">{sectionLabel}</p>
           <nav className="flex flex-col gap-0.5 px-3">
             {navItems.map((item) => {
               const isActive = location === item.href;
@@ -192,8 +193,8 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                   className={cn(
                     "group relative flex items-center gap-3 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all",
                     isActive
-                      ? "bg-white/[0.08] text-white"
-                      : "text-white/65 hover:bg-white/[0.04] hover:text-white",
+                       ? "bg-accent/15 text-primary"
+                       : "text-muted-foreground hover:bg-secondary hover:text-primary",
                   )}
                   data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and")}`}
                 >
@@ -211,16 +212,16 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           </nav>
         </div>
 
-        <div className="relative p-3 border-t border-white/10">
-          <div className="flex items-center gap-3 px-3 py-3 rounded-2xl bg-white/[0.04] border border-white/10">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent/60 flex items-center justify-center font-black text-white text-sm shadow-lg shadow-accent/20">
+         <div className="relative p-3 border-t border-border">
+           <div className="flex items-center gap-3 px-3 py-3 rounded-2xl bg-secondary/50 border border-border">
+             <div className="w-10 h-10 bg-accent/30 flex items-center justify-center font-black text-primary text-sm">
               {initials}
             </div>
             <div className="flex-1 min-w-0">
-              <p data-testid="text-user-name" className="text-sm font-bold text-white truncate">
+               <p data-testid="text-user-name" className="text-sm font-bold text-primary truncate">
                 {user?.fullName || "User"}
               </p>
-              <p data-testid="text-user-role" className="text-[10px] text-white/55 truncate uppercase tracking-[0.18em] capitalize">
+               <p data-testid="text-user-role" className="text-[10px] text-muted-foreground truncate uppercase tracking-[0.18em] capitalize">
                 {user?.role || ""}
               </p>
             </div>
@@ -228,7 +229,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           <button
             onClick={handleLogout}
             data-testid="button-logout"
-            className="mt-2 w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-[0.2em] text-white/65 hover:text-white hover:bg-white/[0.05] transition-colors"
+             className="mt-2 w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
           >
             Sign out
           </button>
@@ -236,19 +237,19 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* ───────────────── Mobile top bar ───────────────── */}
-      <div className="lg:hidden fixed top-0 w-full h-20 bg-primary text-white border-b border-white/10 flex items-center justify-between px-4 z-30">
+       <div className="lg:hidden fixed top-0 w-full h-20 bg-white text-primary border-b border-border flex items-center justify-between px-4 z-30">
         <Link href="/" className="flex items-center gap-2">
           <img src={logoImg} alt="Performance Processes" className="h-8 w-auto" />
-          <span className="font-heading font-black text-lg tracking-tighter text-white uppercase italic">Portal</span>
+           <span className="font-heading font-black text-lg tracking-tighter text-primary uppercase italic">Portal</span>
         </Link>
         <div className="flex items-center gap-4">
-          <button className="text-white/85 relative text-xs font-bold uppercase tracking-[0.18em]" aria-label="Notifications">
+             <button className="text-primary/85 relative text-xs font-bold uppercase tracking-[0.18em]" aria-label="Notifications">
             Alerts
-            <span className="absolute -top-1 -right-2 w-2 h-2 bg-accent rounded-full ring-2 ring-primary"></span>
+             <span className="absolute -top-1 -right-2 w-2 h-2 bg-accent rounded-full ring-2 ring-white"></span>
           </button>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-white text-xs font-bold uppercase tracking-[0.18em]"
+             className="text-primary text-xs font-bold uppercase tracking-[0.18em]"
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMobileMenuOpen ? "Close" : "Menu"}
@@ -257,10 +258,10 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-20 bg-primary text-white z-20 overflow-y-auto">
+         <div className="lg:hidden fixed inset-0 top-20 bg-white text-primary z-20 overflow-y-auto">
           {isStaffOrAdmin && engagements.length > 0 && (
             <div className="px-4 pt-5 pb-3 border-b border-white/10">
-              <p className="text-[10px] font-black uppercase tracking-[0.28em] text-white/50 mb-2">
+               <p className="text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground mb-2">
                 {user?.role === "admin" ? "Engagement" : "Assigned client"}
               </p>
               <div className="space-y-1">
@@ -274,16 +275,16 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                     className={cn(
                       "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-colors",
                       engagement?.id === eng.id
-                        ? "bg-white/[0.08] border border-accent/40"
-                        : "hover:bg-white/[0.04] border border-transparent",
+                         ? "bg-accent/15 border border-accent/40"
+                         : "hover:bg-secondary border border-transparent",
                     )}
                   >
                     <span className="w-6 h-6 rounded-md bg-accent/20 flex items-center justify-center text-accent text-[10px] font-black flex-shrink-0">
                       {eng.clientName.charAt(0).toUpperCase()}
                     </span>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-bold text-white truncate">{eng.clientName}</p>
-                      <p className="text-[10px] text-white/55 uppercase tracking-wider">{eng.engagementType}</p>
+                     <p className="text-sm font-bold text-primary truncate">{eng.clientName}</p>
+                     <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{eng.engagementType}</p>
                     </div>
                   </button>
                 ))}
@@ -300,17 +301,17 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
                     "flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-sm transition-all",
-                    isActive ? "bg-white/[0.08] text-white" : "text-white/70 hover:bg-white/[0.04]",
+                     isActive ? "bg-accent/15 text-primary" : "text-muted-foreground hover:bg-secondary",
                   )}
                 >
                   {item.label}
                 </Link>
               );
             })}
-            <div className="h-px bg-white/10 my-4" />
+             <div className="h-px bg-border my-4" />
             <button
               onClick={handleLogout}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-[0.2em] text-white/70 hover:text-white hover:bg-white/[0.05] transition-colors"
+               className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
             >
               Sign out
             </button>
@@ -322,8 +323,8 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
       <main className="relative z-[1] flex-1 lg:ml-72 pt-20 lg:pt-0">
         <header className="hidden lg:flex h-24 bg-white/70 backdrop-blur-xl border-b border-border/60 items-center justify-between px-10 sticky top-0 z-10">
           <div className="flex items-center gap-5">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center text-white shadow-lg shadow-primary/20">
-              <span className="text-[11px] font-black tracking-tighter">PP</span>
+             <div className="w-10 h-10 border border-border bg-accent/20 flex items-center justify-center text-primary">
+               <span className="text-[11px] font-black tracking-tighter">PP</span>
             </div>
             <div>
               <p className="text-[10px] font-black uppercase tracking-[0.32em] text-accent mb-1">{portalSubtitle}</p>
@@ -350,7 +351,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
             </button>
             <Link href="/portal/meetings">
               <Button
-                className="rounded-full bg-primary text-white hover:bg-accent h-11 px-6 font-bold uppercase tracking-[0.18em] text-[11px] shadow-lg shadow-primary/15 transition-all"
+                 className="bg-primary text-white hover:bg-accent hover:text-primary h-11 px-6 font-bold uppercase tracking-[0.18em] text-[11px] transition-all"
                 data-testid="button-book-meeting"
               >
                 Book meeting

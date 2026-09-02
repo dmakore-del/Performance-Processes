@@ -41,6 +41,7 @@ import Billing from "./pages/portal/Billing";
 import AdminUsers from "./pages/portal/AdminUsers";
 import AdminSubmissions from "./pages/portal/AdminSubmissions";
 import AdminReceipts from "./pages/portal/AdminReceipts";
+import AdminBilling from "./pages/portal/AdminBilling";
 import Leads from "./pages/portal/Leads";
 
 import { LanguageProvider } from "./hooks/use-language";
@@ -142,6 +143,9 @@ function Router() {
       </Route>
       <Route path="/portal/admin/receipts">
         {() => <ProtectedRoute><AdminReceipts /></ProtectedRoute>}
+      </Route>
+      <Route path="/portal/admin/billing">
+        {() => <ProtectedRoute><AdminBilling /></ProtectedRoute>}
       </Route>
       <Route path="/portal/leads">
         {() => <ProtectedRoute><Leads /></ProtectedRoute>}

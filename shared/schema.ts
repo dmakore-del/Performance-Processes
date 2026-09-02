@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, serial, timestamp, boolean, integer, date, uniqueIndex } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, serial, timestamp, boolean, integer, date, uniqueIndex, json } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -17,6 +17,14 @@ export const users = pgTable("users", {
   resetToken: text("reset_token"),
   resetTokenExpiry: timestamp("reset_token_expiry"),
   createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Session storage is created by server/auth.ts and is included here so schema pushes
+// never mistake the live authentication table for an orphaned table.
+export const userSessions = pgTable("user_sessions", {
+  sid: varchar("sid").primaryKey(),
+  sess: json("sess").notNull(),
+  expire: timestamp("expire", { precision: 6 }).notNull(),
 });
 
 export const insertUserSchema = createInsertSchema(users).pick({
@@ -87,12 +95,20 @@ export const engagements = pgTable("engagements", {
   id: serial("id").primaryKey(),
   clientName: text("client_name").notNull(),
   engagementType: text("engagement_type").notNull(),
+  offerId: text("offer_id"),
+  serviceCategory: text("service_category").default("business-setup"),
   startDate: text("start_date").notNull(),
   currentPhase: text("current_phase").notNull(),
   status: text("status").notNull().default("active"),
   completionPercent: integer("completion_percent").notNull().default(0),
   nextSession: text("next_session"),
   nextSessionDate: text("next_session_date"),
+  retainerPlan: text("retainer_plan"),
+  retainerAmountCents: integer("retainer_amount_cents").notNull().default(0),
+  retainerInterval: text("retainer_interval").notNull().default("month"),
+  retainerStatus: text("retainer_status").notNull().default("inactive"),
+  retainerNextBillingDate: text("retainer_next_billing_date"),
+  retainerStripeSubscriptionId: text("retainer_stripe_subscription_id"),
   assignedStaffId: text("assigned_staff_id"),
   clientUserId: text("client_user_id"),
   createdAt: timestamp("created_at").defaultNow(),
@@ -235,9 +251,12 @@ export const invoices = pgTable("invoices", {
   dueDate: text("due_date").notNull(),
   amount: text("amount").notNull(),
   amountCents: integer("amount_cents").notNull().default(0),
+  currency: varchar("currency", { length: 3 }).notNull().default("cad"),
   status: text("status").notNull().default("unpaid"),
   description: text("description"),
+  paymentType: text("payment_type").notNull().default("one_time"),
   stripeSessionId: text("stripe_session_id"),
+  stripeInvoiceId: text("stripe_invoice_id"),
   paidAt: timestamp("paid_at"),
   createdAt: timestamp("created_at").defaultNow(),
 });

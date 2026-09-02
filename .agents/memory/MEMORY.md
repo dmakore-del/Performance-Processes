@@ -1,3 +1,4 @@
 - [Brand palette & editorial direction](brand-palette.md) — white dominant editorial design with restrained black and blush accents; colour media; Newsreader + Manrope; avoid template patterns.
 - [EN/FR i18n conventions](i18n-conventions.md) — per-page CONTENT={en,fr} + shared/offers.ts localize helpers; quotes stay English, SEO stays English, checkout sends only offer.id.
 - [Stripe PayPal activation](stripe-paypal.md) — checkout supports PayPal automatically, but the connected account must activate PayPal; card/debit fallback stays available.
+- [Session table schema guard](session-table-schema.md) — keep the PostgreSQL session table represented in Drizzle so schema pushes do not try to remove live sessions.

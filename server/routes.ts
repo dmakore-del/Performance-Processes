@@ -788,6 +788,28 @@ export async function registerRoutes(
     next();
   };
 
+  const getAccessibleEngagement = async (req: any, res: any, idValue: string | number) => {
+    const id = Number(idValue);
+    if (!Number.isSafeInteger(id) || id < 1) {
+      res.status(400).json({ message: "Invalid engagement id" });
+      return null;
+    }
+    const engagement = await storage.getEngagement(id);
+    if (!engagement) {
+      res.status(404).json({ message: "Engagement not found" });
+      return null;
+    }
+    const user = req.user;
+    const allowed = user?.role === "admin"
+      || (user?.role === "staff" && engagement.assignedStaffId === user.id)
+      || (user?.role === "client" && engagement.clientUserId === user.id);
+    if (!allowed) {
+      res.status(403).json({ message: "You do not have access to this engagement" });
+      return null;
+    }
+    return engagement;
+  };
+
   // Engagements - filtered by user role
   app.get("/api/portal/engagements", async (req, res) => {
     try {
@@ -802,8 +824,8 @@ export async function registerRoutes(
 
   app.get("/api/portal/engagements/:id", async (req, res) => {
     try {
-      const engagement = await storage.getEngagement(Number(req.params.id));
-      if (!engagement) return res.status(404).json({ message: "Engagement not found" });
+      const engagement = await getAccessibleEngagement(req, res, req.params.id);
+      if (!engagement) return;
       res.json(engagement);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch engagement" });
@@ -812,8 +834,8 @@ export async function registerRoutes(
 
   app.get("/api/portal/engagements/:id/participants", async (req, res) => {
     try {
-      const engagement = await storage.getEngagement(Number(req.params.id));
-      if (!engagement) return res.status(404).json({ message: "Engagement not found" });
+      const engagement = await getAccessibleEngagement(req, res, req.params.id);
+      if (!engagement) return;
       const participants: { id: string; fullName: string; role: string }[] = [];
       if (engagement.clientUserId) {
         const client = await storage.getUser(engagement.clientUserId);
@@ -847,7 +869,11 @@ export async function registerRoutes(
 
   app.patch("/api/portal/engagements/:id", requireStaffOrAdmin, async (req, res) => {
     try {
-      const engagement = await storage.updateEngagement(Number(req.params.id), req.body);
+      const current = await getAccessibleEngagement(req, res, req.params.id);
+      if (!current) return;
+      const parsed = insertEngagementSchema.partial().safeParse(req.body);
+      if (!parsed.success) return res.status(400).json({ message: "Invalid engagement data", errors: parsed.error.flatten() });
+      const engagement = await storage.updateEngagement(current.id, parsed.data);
       res.json(engagement);
     } catch (error) {
       res.status(500).json({ message: "Failed to update engagement" });
@@ -1142,7 +1168,9 @@ export async function registerRoutes(
   // Invoices
   app.get("/api/portal/engagements/:engagementId/invoices", async (req, res) => {
     try {
-      const data = await storage.getInvoices(Number(req.params.engagementId));
+      const engagement = await getAccessibleEngagement(req, res, req.params.engagementId);
+      if (!engagement) return;
+      const data = await storage.getInvoices(engagement.id);
       res.json(data);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch invoices" });
@@ -1153,6 +1181,8 @@ export async function registerRoutes(
     try {
       const parsed = insertInvoiceSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
+      const engagement = await getAccessibleEngagement(req, res, parsed.data.engagementId);
+      if (!engagement) return;
       const invoice = await storage.createInvoice(parsed.data);
       res.status(201).json(invoice);
     } catch (error) {
@@ -1162,7 +1192,13 @@ export async function registerRoutes(
 
   app.patch("/api/portal/invoices/:id", requireAdmin, async (req, res) => {
     try {
-      const invoice = await storage.updateInvoice(Number(req.params.id), req.body);
+      const invoiceId = Number(req.params.id);
+      if (!Number.isSafeInteger(invoiceId) || invoiceId < 1) return res.status(400).json({ message: "Invalid invoice id" });
+      const existing = await storage.getInvoice(invoiceId);
+      if (!existing) return res.status(404).json({ message: "Invoice not found" });
+      const parsed = insertInvoiceSchema.partial().safeParse(req.body);
+      if (!parsed.success) return res.status(400).json({ message: "Invalid invoice data", errors: parsed.error.flatten() });
+      const invoice = await storage.updateInvoice(invoiceId, parsed.data);
       res.json(invoice);
     } catch (error) {
       res.status(500).json({ message: "Failed to update invoice" });
@@ -1173,6 +1209,8 @@ export async function registerRoutes(
     try {
       const invoice = await storage.getInvoice(Number(req.params.id));
       if (!invoice) return res.status(404).json({ message: "Invoice not found" });
+      const engagement = await getAccessibleEngagement(req, res, invoice.engagementId);
+      if (!engagement) return;
       if (invoice.status === "paid") return res.status(400).json({ message: "Invoice already paid" });
 
       const stripe = await getUncachableStripeClient();
@@ -1201,6 +1239,58 @@ export async function registerRoutes(
     } catch (error) {
       console.error("Payment error:", error);
       res.status(500).json({ message: checkoutErrorMessage(error) });
+    }
+  });
+
+  app.post("/api/portal/engagements/:engagementId/retainer/checkout", async (req, res) => {
+    try {
+      const engagement = await getAccessibleEngagement(req, res, req.params.engagementId);
+      if (!engagement) return;
+      if (!engagement.retainerAmountCents || engagement.retainerAmountCents < 1) {
+        return res.status(400).json({ message: "No monthly retainer is configured for this engagement" });
+      }
+      if (engagement.retainerStatus === "paused") {
+        return res.status(400).json({ message: "This retainer is currently paused. Please contact your consultant." });
+      }
+      const stripe = await getUncachableStripeClient();
+      const origin = req.headers.origin || `${req.protocol}://${req.get("host")}`;
+      const { session, paymentMethods } = await createCheckoutSession(stripe, {
+        line_items: [{
+          price_data: {
+            currency: "cad",
+            product_data: {
+              name: engagement.retainerPlan || "Performance Processes monthly retainer",
+              description: "Monthly Performance Processes support",
+            },
+            unit_amount: engagement.retainerAmountCents,
+            recurring: { interval: engagement.retainerInterval || "month" },
+          },
+          quantity: 1,
+        }],
+        mode: "subscription",
+        customer_email: (req as any).user?.email,
+        success_url: `${origin}/portal/billing?payment=success&retainer=1`,
+        cancel_url: `${origin}/portal/billing?payment=cancelled`,
+        metadata: { type: "retainer", engagementId: String(engagement.id) },
+        subscription_data: { metadata: { type: "retainer", engagementId: String(engagement.id) } },
+      });
+      await storage.updateEngagement(engagement.id, { retainerStatus: "checkout_pending" });
+      res.json({ url: session.url, paymentMethods });
+    } catch (error) {
+      console.error("Retainer checkout error:", error);
+      res.status(500).json({ message: checkoutErrorMessage(error) });
+    }
+  });
+
+  app.get("/api/admin/billing", requireAdmin, async (_req, res) => {
+    try {
+      res.json({
+        engagements: await storage.getEngagements(),
+        invoices: await storage.getAllInvoices(),
+      });
+    } catch (error) {
+      console.error("Admin billing error:", error);
+      res.status(500).json({ message: "Failed to load billing workspace" });
     }
   });
 

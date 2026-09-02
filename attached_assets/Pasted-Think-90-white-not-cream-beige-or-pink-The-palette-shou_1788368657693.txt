@@ -1,0 +1,24 @@
+Think 90% white, not cream, beige or pink.
+The palette should be closer to:
+White #FFFFFF — main background
+Soft off-white #FAFAF8 — alternating sections
+Near black #171717 — typography
+Blush #E8C4CB — small brand accent
+Very pale blush #F8EFF1 — occasional section background
+Mid grey #717171 — secondary copy
+The blush should appear in things such as a thin line, button hover, small label, number, icon background or one subtle section. It shouldn't become the site's main colour.
+I would also avoid the image above that is predominantly pink. That goes too far into female entrepreneur/branding agency territory rather than professional consultancy.
+Visually, this is what I mean
+Your hero could literally be:
+PERFORMANCE PROCESSES
+Business Consulting & Digital Solutions
+Build your business
+with confidence.
+From establishing your business and putting the right operational foundations in place to developing your website and digital presence, we help entrepreneurs move from idea to professionally established business.
+Book a Consultation →  Explore Services
+Then on the right, one large bright, editorial photograph — a beautiful modern office, architectural detail, a consultant at a desk, a client meeting, etc.
+Below it, a very clean horizontal credibility strip:
+Business Setup  Advisory  Web Development  Digital Presence
+Then an almost entirely white services section with thin grey dividers rather than floating cards.
+What I would tell your developer
+Create a light, sophisticated boutique business consultancy website. The site should be predominantly crisp white with black typography and extremely restrained blush-pink accents. It should feel professional, established, intelligent and premium while remaining warm and approachable. Use generous white space, strong typographic hierarchy, editorial business photography, fine borders and structured grid layouts. Avoid dark backgrounds, oversized colour blocks, gradients, rounded SaaS-style cards, excessive icons and overly feminine design elements. The visual reference should sit between a modern management consulting firm and a high-end professional-services brand.

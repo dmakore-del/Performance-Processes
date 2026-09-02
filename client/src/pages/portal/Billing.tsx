@@ -45,6 +45,7 @@ export default function Billing() {
     documentDate: "",
   });
   const [contractFile, setContractFile] = useState<File | null>(null);
+  const [invoiceFilter, setInvoiceFilter] = useState<"all" | "outstanding" | "overdue" | "paid">("all");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -68,6 +69,20 @@ export default function Billing() {
     },
     onError: (error: Error) => {
       toast({ title: "Payment Error", description: error.message, variant: "destructive" });
+    },
+  });
+
+  const retainerMutation = useMutation({
+    mutationFn: async () => {
+      if (!engagementId) throw new Error("No engagement selected");
+      const res = await apiRequest("POST", `/api/portal/engagements/${engagementId}/retainer/checkout`);
+      return res.json();
+    },
+    onSuccess: (data: { url: string }) => {
+      window.location.href = data.url;
+    },
+    onError: (error: Error) => {
+      toast({ title: "Retainer payment error", description: error.message, variant: "destructive" });
     },
   });
 
@@ -194,6 +209,13 @@ export default function Billing() {
   };
 
   const isLoading = engLoading || invLoading || conLoading;
+  const currentDate = new Date().toISOString().slice(0, 10);
+  const getInvoiceStatus = (invoice: Invoice) => invoice.status === "unpaid" && invoice.dueDate < currentDate ? "overdue" : invoice.status;
+  const invoiceStatus = (invoice: Invoice) => getInvoiceStatus(invoice);
+  const outstandingInvoices = invoices?.filter((invoice) => invoiceStatus(invoice) === "unpaid") || [];
+  const overdueInvoices = invoices?.filter((invoice) => invoiceStatus(invoice) === "overdue") || [];
+  const paidInvoices = invoices?.filter((invoice) => invoiceStatus(invoice) === "paid") || [];
+  const visibleInvoices = (invoices || []).filter((invoice) => invoiceFilter === "all" || invoiceFilter === "outstanding" && invoiceStatus(invoice) === "unpaid" || invoiceFilter === "overdue" && invoiceStatus(invoice) === "overdue" || invoiceFilter === "paid" && invoiceStatus(invoice) === "paid");
 
   if (isLoading) {
     return (
@@ -215,6 +237,7 @@ export default function Billing() {
       </PortalLayout>
     );
   }
+  const activeEngagement = engagement!;
 
   return (
     <PortalLayout>
@@ -224,77 +247,57 @@ export default function Billing() {
           <p className="text-lg text-muted-foreground" data-testid="billing-subtitle">Manage invoices, payments, and view engagement contracts.</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h3 className="text-xl font-bold text-primary" data-testid="invoices-heading">Recent Invoices</h3>
-              {isStaffOrAdmin && (
-                <Button
-                  size="sm"
-                  className="bg-accent text-white hover:bg-primary"
-                  onClick={() => setCreateInvoiceOpen(true)}
-                  data-testid="button-create-invoice"
-                >
-                  Create Invoice
-                </Button>
-              )}
-            </div>
-            <div className="bg-white rounded-3xl border border-border shadow-sm overflow-hidden" data-testid="invoices-list">
-              {invoices && invoices.length > 0 ? (
-                invoices.map((inv) => (
-                  <div key={inv.id} className="p-6 border-b border-border last:border-0 hover:bg-secondary/20 transition-colors flex flex-col sm:flex-row justify-between sm:items-center gap-4" data-testid={`invoice-row-${inv.id}`}>
-                    <div className="flex items-center gap-4">
-                      <div className={cn(
-                        "w-1 h-12 rounded-full flex-shrink-0",
-                        inv.status === 'paid' ? "bg-green-500" : "bg-orange-500"
-                      )} />
-                      <div>
-                        <h4 className="font-bold text-primary" data-testid={`invoice-number-${inv.id}`}>{inv.invoiceNumber}</h4>
-                        <p className="text-xs text-muted-foreground mt-1">Issued: {inv.issueDate} • Due: {inv.dueDate}</p>
-                        {inv.description && <p className="text-xs text-muted-foreground mt-0.5">{inv.description}</p>}
-                      </div>
-                    </div>
-                    <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-center w-full sm:w-auto gap-2">
-                      <p className="text-lg font-black text-primary" data-testid={`invoice-amount-${inv.id}`}>{inv.amount}</p>
-                      <div className="flex items-center gap-2">
-                        <span className={cn(
-                          "text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md border",
-                          inv.status === 'paid' ? "bg-green-50 text-green-600 border-green-200" : "bg-orange-50 text-orange-600 border-orange-200"
-                        )} data-testid={`invoice-status-${inv.id}`}>
-                          {inv.status}
-                        </span>
-                        {inv.status !== 'paid' && !isStaffOrAdmin && (
-                          <div className="flex items-center gap-2">
-                            <Button
-                              size="sm"
-                              className="bg-accent text-white hover:bg-primary text-xs h-7 px-3 rounded-lg"
-                              onClick={() => payMutation.mutate(inv.id)}
-                              disabled={payMutation.isPending}
-                              data-testid={`button-pay-${inv.id}`}
-                            >
-                              {payMutation.isPending ? "Processing..." : "Pay Now"}
-                            </Button>
-                            <div className="flex items-center gap-1">
-                              <span className="inline-flex px-1 py-0.5 rounded bg-gray-100 text-[8px] font-semibold text-gray-500">Card</span>
-                              <span className="inline-flex px-1 py-0.5 rounded bg-[#FFC43926] text-[8px] font-semibold text-[#003087]">PayPal</span>
-                              <span className="inline-flex px-1 py-0.5 rounded bg-gray-900 text-[8px] font-semibold text-white"> Pay</span>
-                            </div>
-                          </div>
-                        )}
-                        {inv.status !== 'paid' && isStaffOrAdmin && (
-                          <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md border bg-zinc-100 text-zinc-800 border-zinc-200">
-                            Sent
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="p-8 text-center text-muted-foreground" data-testid="invoices-empty">
-                  No invoices found.
+        <div className="space-y-8">
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              ["Outstanding", outstandingInvoices.length, "outstanding"],
+              ["Overdue", overdueInvoices.length, "overdue"],
+              ["Paid invoices", paidInvoices.length, "paid"],
+            ].map(([label, value, key]) => (
+              <button key={key} type="button" onClick={() => setInvoiceFilter(key as typeof invoiceFilter)} className={`border p-5 text-left transition-colors ${invoiceFilter === key ? "border-accent bg-secondary" : "border-border bg-white hover:border-accent"}`}>
+                <p className="text-xs font-semibold text-muted-foreground">{label}</p>
+                <p className="mt-2 text-3xl font-heading text-primary">{value}</p>
+              </button>
+            ))}
+          </div>
+
+          {activeEngagement.retainerAmountCents > 0 && (
+            <section className="border-l-2 border-accent bg-secondary p-6 md:p-8" data-testid="retainer-card">
+              <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.24em] text-accent">Monthly support</p>
+                  <h2 className="mt-3 text-3xl font-heading text-primary">{activeEngagement.retainerPlan || "Your monthly retainer"}</h2>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{activeEngagement.retainerStatus === "past_due" ? "Your latest retainer payment needs attention." : "Keep your ongoing support active with a secure monthly payment."}</p>
+                  <p className="mt-4 text-2xl font-heading text-primary">${(activeEngagement.retainerAmountCents / 100).toLocaleString("en-CA", { minimumFractionDigits: 2 })} <span className="text-sm text-muted-foreground">CAD per month</span></p>
                 </div>
-              )}
+                {!isStaffOrAdmin && activeEngagement.retainerStatus !== "paused" && (
+                  <Button className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => retainerMutation.mutate()} disabled={retainerMutation.isPending} data-testid="button-pay-retainer">
+                    {retainerMutation.isPending ? "Opening secure checkout" : activeEngagement.retainerStatus === "active" ? "Manage monthly payment" : "Start monthly retainer"}
+                  </Button>
+                )}
+              </div>
+            </section>
+          )}
+
+          <div className="space-y-5">
+            <div className="flex flex-col gap-4 border-b border-border pb-4 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h3 className="text-2xl font-heading text-primary" data-testid="invoices-heading">Invoices</h3>
+                <p className="mt-1 text-sm text-muted-foreground">Review past payments and take care of anything outstanding.</p>
+              </div>
+              {isStaffOrAdmin && <Button size="sm" className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => setCreateInvoiceOpen(true)} data-testid="button-create-invoice">Create invoice</Button>}
+            </div>
+            <div className="flex gap-1 overflow-x-auto border border-border bg-white p-1" role="tablist" aria-label="Invoice views">
+              {(["all", "outstanding", "overdue", "paid"] as const).map((item) => <button key={item} type="button" role="tab" aria-selected={invoiceFilter === item} onClick={() => setInvoiceFilter(item)} className={`shrink-0 px-4 py-2 text-xs font-semibold capitalize ${invoiceFilter === item ? "bg-accent text-primary" : "text-muted-foreground hover:text-primary"}`}>{item}</button>)}
+            </div>
+            <div className="border border-border bg-white" data-testid="invoices-list">
+              {visibleInvoices.length > 0 ? visibleInvoices.map((inv) => {
+                const status = invoiceStatus(inv);
+                return <div key={inv.id} className="flex flex-col gap-4 border-b border-border p-5 last:border-0 transition-colors hover:bg-secondary/20 sm:flex-row sm:items-center sm:justify-between" data-testid={`invoice-row-${inv.id}`}>
+                  <div><h4 className="font-semibold text-primary" data-testid={`invoice-number-${inv.id}`}>{inv.invoiceNumber}</h4><p className="mt-1 text-xs text-muted-foreground">Issued {inv.issueDate}, due {inv.dueDate}</p>{inv.description && <p className="mt-1 text-sm text-muted-foreground">{inv.description}</p>}</div>
+                  <div className="flex items-center justify-between gap-4 sm:justify-end"><div className="text-right"><p className="font-heading text-xl text-primary" data-testid={`invoice-amount-${inv.id}`}>{inv.amount}</p><span className={`text-[10px] font-bold uppercase tracking-[.12em] ${status === "paid" ? "text-green-700" : status === "overdue" ? "text-red-700" : "text-accent"}`} data-testid={`invoice-status-${inv.id}`}>{status}</span></div>{status !== "paid" && status !== "void" && !isStaffOrAdmin && <Button size="sm" className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => payMutation.mutate(inv.id)} disabled={payMutation.isPending} data-testid={`button-pay-${inv.id}`}>{payMutation.isPending ? "Processing" : "Pay invoice"}</Button>}{isStaffOrAdmin && status !== "paid" && <span className="text-xs text-muted-foreground">Client payment pending</span>}</div>
+                </div>;
+              }) : <div className="p-8 text-center text-sm text-muted-foreground" data-testid="invoices-empty">No invoices in this view.</div>}
             </div>
           </div>
 

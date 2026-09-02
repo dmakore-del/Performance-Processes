@@ -80,8 +80,18 @@ async function persistAndDeliverReceipt(input: {
 
 async function handleCheckoutCompleted(event: any) {
   const session = event.data.object;
+  if (session.mode === "subscription" && session.metadata?.engagementId && session.subscription) {
+    const engagement = await storage.getEngagement(Number(session.metadata.engagementId));
+    if (engagement) {
+      await storage.updateEngagement(engagement.id, {
+        retainerStatus: "active",
+        retainerStripeSubscriptionId: typeof session.subscription === "string" ? session.subscription : session.subscription.id,
+      });
+    }
+    return;
+  }
   // Subscription charges are receipted from invoice.paid, including the first charge.
-  if (session.payment_status !== "paid" || session.mode === "subscription") return;
+  if (session.payment_status !== "paid") return;
   const stripe = await getUncachableStripeClient();
   const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { expand: ["data.price", "data.price.product"] });
   const first = lineItems.data[0];
@@ -123,17 +133,63 @@ async function handleInvoicePaid(event: any) {
   const stripe = await getUncachableStripeClient();
   const lineItems = invoice.lines?.data || (await stripe.invoices.retrieve(invoice.id, { expand: ["lines.data.price.product"] })).lines.data;
   const service = lineItems.map((item: any) => item.description).filter(Boolean).join("; ") || "Performance Processes subscription";
+  const subscriptionId = typeof invoice.subscription === "string" ? invoice.subscription : invoice.subscription?.id;
+  const engagements = await storage.getEngagements();
+  const engagement = subscriptionId ? engagements.find((item) => item.retainerStripeSubscriptionId === subscriptionId) : undefined;
   const invoicePayment = invoice.payment_intent || invoice.payments?.data?.[0]?.payment?.payment_intent;
   const paymentId = typeof invoicePayment === "string" ? invoicePayment : invoicePayment?.id;
+  const paidAt = new Date((invoice.status_transitions?.paid_at || invoice.created || Math.floor(Date.now() / 1000)) * 1000);
+  if (engagement) {
+    await storage.updateEngagement(engagement.id, {
+      retainerStatus: "active",
+      retainerNextBillingDate: invoice.lines?.data?.[0]?.period?.end
+        ? new Date(invoice.lines.data[0].period.end * 1000).toISOString().slice(0, 10)
+        : engagement.retainerNextBillingDate,
+    });
+    const existing = await storage.getInvoiceByStripeInvoiceId(invoice.id);
+    if (existing) {
+      await storage.updateInvoice(existing.id, { status: "paid", paidAt, amountCents: invoice.amount_paid ?? existing.amountCents, amount: `$${((invoice.amount_paid ?? existing.amountCents) / 100).toFixed(2)}` });
+    } else {
+      await storage.createInvoice({
+        engagementId: engagement.id,
+        invoiceNumber: invoice.number || `RET-${invoice.id.slice(-8).toUpperCase()}`,
+        issueDate: new Date((invoice.created || Math.floor(Date.now() / 1000)) * 1000).toISOString().slice(0, 10),
+        dueDate: invoice.due_date
+          ? new Date(invoice.due_date * 1000).toISOString().slice(0, 10)
+          : paidAt.toISOString().slice(0, 10),
+        amount: `$${((invoice.amount_paid ?? 0) / 100).toFixed(2)}`,
+        amountCents: invoice.amount_paid ?? 0,
+        currency: invoice.currency || "cad",
+        status: "paid",
+        description: service,
+        paymentType: "monthly_retainer",
+        stripeInvoiceId: invoice.id,
+        paidAt,
+      });
+    }
+  }
   await persistAndDeliverReceipt({
     eventId: event.id, invoiceId: invoice.id, paymentId,
     email: invoice.customer_email, name: invoice.customer_name,
     service, subtotal: invoice.subtotal ?? invoice.amount_paid ?? 0, amount: invoice.amount_paid ?? 0,
     currency: invoice.currency || "cad", recurring: true,
-    paidAt: new Date((invoice.status_transitions?.paid_at || invoice.created || Math.floor(Date.now() / 1000)) * 1000),
+    paidAt,
     method: await successfulPaymentMethod(stripe, paymentId),
     interval: lineItems[0]?.price?.recurring?.interval,
   });
+}
+
+async function handleInvoiceFailed(event: any) {
+  const invoice = event.data.object;
+  const existing = await storage.getInvoiceByStripeInvoiceId(invoice.id);
+  if (existing && existing.status !== "paid") {
+    await storage.updateInvoice(existing.id, { status: "overdue" });
+  }
+  const subscriptionId = typeof invoice.subscription === "string" ? invoice.subscription : invoice.subscription?.id;
+  if (subscriptionId) {
+    const engagement = (await storage.getEngagements()).find((item) => item.retainerStripeSubscriptionId === subscriptionId);
+    if (engagement) await storage.updateEngagement(engagement.id, { retainerStatus: "past_due" });
+  }
 }
 
 export class WebhookHandlers {
@@ -145,5 +201,6 @@ export class WebhookHandlers {
       console.warn(`Stripe async payment failed for Checkout session ${event.data.object?.id || "unknown"}; no fulfillment performed.`);
     }
     if (event?.type === "invoice.paid") await handleInvoicePaid(event);
+    if (event?.type === "invoice.payment_failed") await handleInvoiceFailed(event);
   }
 }

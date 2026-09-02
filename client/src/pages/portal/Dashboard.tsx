@@ -89,7 +89,7 @@ export default function Dashboard() {
 
   return (
     <PortalLayout>
-      <div className="space-y-8">
+      <div className="space-y-8 [&_.rounded-3xl]:rounded-none [&_.rounded-2xl]:rounded-none">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
           <div>
             <h1 data-testid="text-dashboard-title" className="text-3xl md:text-4xl font-heading font-extrabold text-primary">
@@ -238,13 +238,13 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="bg-primary text-white p-8 md:p-10 rounded-3xl shadow-xl relative overflow-hidden">
+        <div className="border-y border-border bg-secondary p-8 md:p-10 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
           <h3 className="text-2xl font-bold mb-8 relative z-10">Recent Deliverables</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 relative z-10">
             {recentDocs.map((doc) => (
-              <div key={doc.id} className="flex items-center gap-4 bg-white/10 hover:bg-white/20 p-4 rounded-2xl transition-colors border border-white/10 cursor-pointer">
-                <span className="text-[9px] font-black uppercase tracking-wider text-accent border border-accent/40 rounded px-2 py-1">Doc</span>
+              <div key={doc.id} className="flex items-center gap-4 bg-white hover:bg-white p-4 rounded-2xl transition-colors border border-border cursor-pointer">
+                <span className="text-[9px] font-black uppercase tracking-wider text-accent border border-accent/40 px-2 py-1">Doc</span>
                 <div>
                   <p className="font-bold text-sm line-clamp-1">{doc.name}</p>
                   <p className="text-[10px] uppercase tracking-widest opacity-70 mt-1">{doc.size}</p>
@@ -253,7 +253,7 @@ export default function Dashboard() {
             ))}
           </div>
           <Link href="/portal/documents">
-            <button data-testid="link-view-documents" className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-accent hover:text-white transition-colors relative z-10">
+             <button data-testid="link-view-documents" className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors relative z-10">
               View all documents <span className="ml-2">→</span>
             </button>
           </Link>

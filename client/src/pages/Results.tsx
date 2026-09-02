@@ -5,6 +5,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
+import resultsImage from "@/assets/generated/leadership-presentation.png";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -153,6 +154,7 @@ export default function Results() {
         <PageHero
           title={c.heroTitle}
           subtitle={c.heroSubtitle}
+           image={resultsImage}
         />
 
         {/* Featured case study */}

@@ -5,6 +5,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { OfferCarousel } from "@/components/OfferCarousel";
 import { useLanguage } from "@/hooks/use-language";
 import { OFFERS, getLocalizedCategoryMeta, type OfferCategory } from "@shared/offers";
+import packageImage from "@/assets/generated/strategy-whiteboard.png";
 
 type CatalogGroup = OfferCategory | "marketing-crm";
 const CATEGORY_ORDER: CatalogGroup[] = ["packages", "website", "systems", "marketing-crm", "hr-recruiting", "support", "bundle"];
@@ -25,14 +26,14 @@ export default function Packages() {
       />
       <Navbar />
       <main>
-         <section className="bg-secondary px-5 py-20 md:py-28">
-           <div className="mx-auto grid max-w-[1160px] gap-10 md:grid-cols-[1.2fr_.8fr] md:items-end">
-            <h1 className="text-display max-w-4xl text-5xl leading-[.98] md:text-8xl">
+         <section className="bg-secondary px-5 py-12 md:py-16">
+           <div className="mx-auto grid max-w-[1160px] gap-8 md:grid-cols-[1.1fr_.9fr] md:items-center">
+            <div><p className="eyebrow mb-5 text-accent">{fr ? "Offres de lancement" : "Launch offers"}</p><h1 className="text-display max-w-4xl text-5xl leading-[.96] md:text-7xl">
               {fr ? "Construisez l’entreprise dont vous avez besoin maintenant." : "Build the business you need now."}
             </h1>
-             <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground md:mb-1">
+             <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
               {fr ? "Des fondations au soutien mensuel, chaque offre est définie, tarifée en CAD et prête à être achetée en ligne." : "From first foundations to monthly support, every offer is defined, priced in CAD, and ready to buy online."}
-            </p>
+            </p></div><img src={packageImage} alt="" className="h-64 w-full object-cover md:h-80"/>
           </div>
         </section>
 

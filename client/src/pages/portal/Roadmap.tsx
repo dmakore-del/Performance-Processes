@@ -49,7 +49,7 @@ export default function Roadmap() {
       resetForm();
     },
     onError: (error: Error) => {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
+       toast({ title: t("Error"), description: t("Something went wrong"), variant: "destructive" });
     },
   });
 
@@ -65,7 +65,7 @@ export default function Roadmap() {
       resetForm();
     },
     onError: (error: Error) => {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
+       toast({ title: t("Error"), description: t("Something went wrong"), variant: "destructive" });
     },
   });
 
@@ -126,7 +126,7 @@ export default function Roadmap() {
           <div className="p-8 border-b border-border bg-secondary/30">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div>
-                <h3 className="text-xl font-bold text-primary" data-testid="text-engagement-type">{engagement?.engagementType ?? "Engagement"}</h3>
+                <h3 className="text-xl font-bold text-primary" data-testid="text-engagement-type">{engagement?.engagementType ?? t("Engagement")}</h3>
                 <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground mt-2" data-testid="text-engagement-phase">{t("Current Phase:")} {engagement?.currentPhase}</p>
               </div>
               <div className="flex items-center gap-6 text-sm font-bold">
@@ -176,7 +176,7 @@ export default function Roadmap() {
                                 onClick={() => updateMutation.mutate({ id: item.id, data: { status: statusCycle(item.status) } })}
                                 className="cursor-pointer"
                                 data-testid={`button-toggle-status-${item.id}`}
-                                title="Click to change status"
+                                 title={t("Click to change status")}
                               >
                                 {item.status === 'completed' ? <span className="w-4 h-4 rounded-full bg-green-500 block" /> :
                                  item.status === 'in-progress' ? <span className="w-4 h-4 rounded-full bg-accent block animate-pulse" /> :
@@ -238,42 +238,42 @@ export default function Roadmap() {
       <Dialog open={createOpen} onOpenChange={setCreateOpen}>
         <DialogContent className="max-w-md" data-testid="create-milestone-dialog">
           <DialogHeader>
-            <DialogTitle>Add Milestone</DialogTitle>
+            <DialogTitle>{t("Add Milestone")}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 pt-2">
             <div>
-              <Label>Title</Label>
-              <Input data-testid="input-milestone-title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="Milestone title" required />
+              <Label>{t("Title")}</Label>
+              <Input data-testid="input-milestone-title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder={t("Milestone title")} required />
             </div>
             <div>
-              <Label>Phase</Label>
-              <Input data-testid="input-milestone-phase" value={form.phase} onChange={(e) => setForm({ ...form, phase: e.target.value })} placeholder="e.g. Discovery, Strategy, Implementation" required />
+              <Label>{t("Phase")}</Label>
+              <Input data-testid="input-milestone-phase" value={form.phase} onChange={(e) => setForm({ ...form, phase: e.target.value })} placeholder={t("e.g. Discovery, Strategy, Implementation")} required />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label>Status</Label>
+                <Label>{t("Status")}</Label>
                 <Select value={form.status} onValueChange={(v) => setForm({ ...form, status: v })}>
                   <SelectTrigger data-testid="select-milestone-status"><SelectValue /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="pending">Pending</SelectItem>
-                    <SelectItem value="in-progress">In Progress</SelectItem>
-                    <SelectItem value="completed">Completed</SelectItem>
+                    <SelectItem value="pending">{t("Pending")}</SelectItem>
+                    <SelectItem value="in-progress">{t("In Progress")}</SelectItem>
+                    <SelectItem value="completed">{t("Completed")}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div>
-                <Label>Sort Order</Label>
+                <Label>{t("Sort Order")}</Label>
                 <Input data-testid="input-milestone-sort" type="number" value={form.sortOrder || ""} onChange={(e) => setForm({ ...form, sortOrder: parseInt(e.target.value) || 0 })} placeholder="0" />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label>Due Date</Label>
-                <Input data-testid="input-milestone-due" value={form.dueDate} onChange={(e) => setForm({ ...form, dueDate: e.target.value })} placeholder="e.g. Mar 15, 2026" />
+                <Label>{t("Due Date")}</Label>
+                <Input data-testid="input-milestone-due" value={form.dueDate} onChange={(e) => setForm({ ...form, dueDate: e.target.value })} placeholder={t("e.g. Mar 15, 2026")} />
               </div>
               <div>
-                <Label>Owner</Label>
-                <Input data-testid="input-milestone-owner" value={form.owner} onChange={(e) => setForm({ ...form, owner: e.target.value })} placeholder="e.g. Danai" />
+                <Label>{t("Owner")}</Label>
+                <Input data-testid="input-milestone-owner" value={form.owner} onChange={(e) => setForm({ ...form, owner: e.target.value })} placeholder={t("e.g. Danai")} />
               </div>
             </div>
             <div className="flex justify-end">
@@ -286,7 +286,7 @@ export default function Roadmap() {
                 disabled={createMutation.isPending}
                 data-testid="button-submit-milestone"
               >
-                {createMutation.isPending ? "Creating..." : "Add Milestone"}
+                {createMutation.isPending ? t("Creating...") : t("Add Milestone")}
               </Button>
             </div>
           </div>
@@ -296,41 +296,41 @@ export default function Roadmap() {
       <Dialog open={!!editingMilestone} onOpenChange={(open) => { if (!open) { setEditingMilestone(null); resetForm(); } }}>
         <DialogContent className="max-w-md" data-testid="edit-milestone-dialog">
           <DialogHeader>
-            <DialogTitle>Edit Milestone</DialogTitle>
+            <DialogTitle>{t("Edit Milestone")}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 pt-2">
             <div>
-              <Label>Title</Label>
+              <Label>{t("Title")}</Label>
               <Input data-testid="input-edit-milestone-title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
             </div>
             <div>
-              <Label>Phase</Label>
+              <Label>{t("Phase")}</Label>
               <Input data-testid="input-edit-milestone-phase" value={form.phase} onChange={(e) => setForm({ ...form, phase: e.target.value })} />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label>Status</Label>
+                <Label>{t("Status")}</Label>
                 <Select value={form.status} onValueChange={(v) => setForm({ ...form, status: v })}>
                   <SelectTrigger data-testid="select-edit-milestone-status"><SelectValue /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="pending">Pending</SelectItem>
-                    <SelectItem value="in-progress">In Progress</SelectItem>
-                    <SelectItem value="completed">Completed</SelectItem>
+                    <SelectItem value="pending">{t("Pending")}</SelectItem>
+                    <SelectItem value="in-progress">{t("In Progress")}</SelectItem>
+                    <SelectItem value="completed">{t("Completed")}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div>
-                <Label>Sort Order</Label>
+                <Label>{t("Sort Order")}</Label>
                 <Input data-testid="input-edit-milestone-sort" type="number" value={form.sortOrder || ""} onChange={(e) => setForm({ ...form, sortOrder: parseInt(e.target.value) || 0 })} />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label>Due Date</Label>
+                <Label>{t("Due Date")}</Label>
                 <Input data-testid="input-edit-milestone-due" value={form.dueDate} onChange={(e) => setForm({ ...form, dueDate: e.target.value })} />
               </div>
               <div>
-                <Label>Owner</Label>
+                <Label>{t("Owner")}</Label>
                 <Input data-testid="input-edit-milestone-owner" value={form.owner} onChange={(e) => setForm({ ...form, owner: e.target.value })} />
               </div>
             </div>
@@ -344,7 +344,7 @@ export default function Roadmap() {
                 disabled={updateMutation.isPending}
                 data-testid="button-save-milestone"
               >
-                {updateMutation.isPending ? "Saving..." : "Save Changes"}
+                {updateMutation.isPending ? t("Saving...") : t("Save Changes")}
               </Button>
             </div>
           </div>

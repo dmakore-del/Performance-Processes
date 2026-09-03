@@ -116,7 +116,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           <Link href="/" className="flex items-center gap-3 group" data-testid="link-portal-logo">
             <img src={logoImg} alt="Performance Processes" className="h-9 w-auto" />
             <div className="leading-none">
-              <p className="text-[9px] font-black uppercase tracking-[0.32em] text-accent mb-1">Performance</p>
+              <p className="text-[9px] font-black uppercase tracking-[0.32em] text-accent mb-1">{t("Performance")}</p>
               <p className="font-heading font-black text-lg tracking-tight text-primary uppercase italic group-hover:text-accent transition-colors">
                 Portal
               </p>
@@ -221,7 +221,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
             </div>
             <div className="flex-1 min-w-0">
                <p data-testid="text-user-name" className="text-sm font-bold text-primary truncate">
-                {user?.fullName || "User"}
+                 {user?.fullName || t("User")}
               </p>
                <p data-testid="text-user-role" className="text-[10px] text-muted-foreground truncate uppercase tracking-[0.18em] capitalize">
                 {user?.role || ""}
@@ -245,7 +245,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
            <span className="font-heading font-black text-lg tracking-tighter text-primary uppercase italic">Portal</span>
         </Link>
         <div className="flex items-center gap-4">
-             <button className="text-primary/85 relative text-xs font-bold uppercase tracking-[0.18em]" aria-label="Notifications">
+              <button className="text-primary/85 relative text-xs font-bold uppercase tracking-[0.18em]" aria-label={t("Alerts")}>
              {t("Alerts")}
              <span className="absolute -top-1 -right-2 w-2 h-2 bg-accent rounded-full ring-2 ring-white"></span>
           </button>
@@ -346,7 +346,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-3">
             <button
               className="h-11 px-5 rounded-full bg-white border border-border flex items-center justify-center text-primary hover:text-accent hover:border-accent transition-colors relative shadow-sm text-[11px] font-bold uppercase tracking-[0.18em]"
-              aria-label="Notifications"
+               aria-label={t("Alerts")}
             >
               {t("Alerts")}
               <span className="absolute top-2 right-2 w-2 h-2 bg-accent rounded-full animate-pulse" />

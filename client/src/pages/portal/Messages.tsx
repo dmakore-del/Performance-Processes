@@ -15,9 +15,9 @@ interface Participant {
 
 export default function Messages() {
   const { engagement, engagementId, isLoading: engLoading } = usePortalEngagement();
-  const { data: messages, isLoading: msgsLoading } = usePortalData<Message[]>("messages", engagementId);
+  const { data: messages, isLoading: msgsLoading, isError: messagesError } = usePortalData<Message[]>("messages", engagementId);
   const { user } = useAuth();
-  const { t, formatDate } = usePortalI18n();
+  const { t, role: translateRole, formatDate } = usePortalI18n();
   const [selectedRecipientId, setSelectedRecipientId] = useState<string | null>(null);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -134,6 +134,10 @@ export default function Messages() {
     );
   }
 
+  if (messagesError) {
+    return <PortalLayout><div className="flex items-center justify-center h-64"><p className="text-sm font-bold uppercase tracking-[0.2em] text-destructive">{t("Error")}</p></div></PortalLayout>;
+  }
+
   if (!engagement && !engLoading) {
     return (
       <PortalLayout>
@@ -188,7 +192,7 @@ export default function Messages() {
                             {participant.fullName}
                           </span>
                           <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-semibold ${getRoleBadgeColor(participant.role)}`} data-testid={`badge-role-${participant.id}`}>
-                            {participant.role}
+                            {translateRole(participant.role)}
                           </span>
                         </div>
                         {lastMsg && (
@@ -224,7 +228,7 @@ export default function Messages() {
                     </div>
                     <div>
                       <h3 className="font-bold text-primary" data-testid="text-recipient-name">
-                        {selectedParticipant?.fullName ?? "Unknown"}
+                         {selectedParticipant?.fullName ?? t("Unknown")}
                       </h3>
                       <p className="text-xs text-muted-foreground" data-testid="text-message-count">
                         {filteredMessages.length} {filteredMessages.length === 1 ? t("message") : t("messages")}

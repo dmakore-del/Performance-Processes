@@ -70,7 +70,7 @@ export default function Billing() {
       window.location.href = data.url;
     },
     onError: (error: Error) => {
-      toast({ title: t("Payment Error"), description: error.message, variant: "destructive" });
+      toast({ title: t("Payment Error"), description: t("Something went wrong"), variant: "destructive" });
     },
   });
 
@@ -84,7 +84,7 @@ export default function Billing() {
       window.location.href = data.url;
     },
     onError: (error: Error) => {
-      toast({ title: t("Retainer payment error"), description: error.message, variant: "destructive" });
+      toast({ title: t("Retainer payment error"), description: t("Something went wrong"), variant: "destructive" });
     },
   });
 
@@ -100,7 +100,7 @@ export default function Billing() {
       setSelectedContract(null);
     },
     onError: (error: Error) => {
-      toast({ title: t("Signing Error"), description: error.message, variant: "destructive" });
+      toast({ title: t("Signing Error"), description: t("Something went wrong"), variant: "destructive" });
     },
   });
 
@@ -116,7 +116,7 @@ export default function Billing() {
       setInvoiceForm({ invoiceNumber: "", description: "", amount: "", amountCents: 0, issueDate: "", dueDate: "" });
     },
     onError: (error: Error) => {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
+      toast({ title: t("Error"), description: t("Something went wrong"), variant: "destructive" });
     },
   });
 
@@ -150,7 +150,7 @@ export default function Billing() {
       if (contractFileRef.current) contractFileRef.current.value = "";
     },
     onError: (error: Error) => {
-      toast({ title: t("Error"), description: error.message, variant: "destructive" });
+      toast({ title: t("Error"), description: t("Something went wrong"), variant: "destructive" });
     },
   });
 
@@ -289,7 +289,7 @@ export default function Billing() {
               </div>
               {isStaffOrAdmin && <Button size="sm" className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => setCreateInvoiceOpen(true)} data-testid="button-create-invoice">{t("Create invoice")}</Button>}
             </div>
-            <div className="flex gap-1 overflow-x-auto border border-border bg-white p-1" role="tablist" aria-label="Invoice views">
+             <div className="flex gap-1 overflow-x-auto border border-border bg-white p-1" role="tablist" aria-label={t("Invoice views")}>
               {(["all", "outstanding", "overdue", "paid"] as const).map((item) => <button key={item} type="button" role="tab" aria-selected={invoiceFilter === item} onClick={() => setInvoiceFilter(item)} className={`shrink-0 px-4 py-2 text-xs font-semibold capitalize ${invoiceFilter === item ? "bg-accent text-primary" : "text-muted-foreground hover:text-primary"}`}>{item === "all" ? t("All") : item === "outstanding" ? t("Outstanding") : item === "overdue" ? t("Overdue") : t("Paid invoices")}</button>)}
             </div>
             <div className="border border-border bg-white" data-testid="invoices-list">
@@ -323,14 +323,14 @@ export default function Billing() {
                   <div key={contract.id} className="p-6 border-b border-border last:border-0 hover:bg-secondary/20 transition-colors flex justify-between items-center gap-4" data-testid={`contract-row-${contract.id}`}>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-primary flex-shrink-0 border border-border text-[8px] font-black uppercase tracking-wider">
-                        Doc
+                         {t("Document")}
                       </div>
                       <div>
                         <h4 className="font-bold text-primary text-sm" data-testid={`contract-title-${contract.id}`}>{contract.title}</h4>
                         <p className="text-xs text-muted-foreground mt-1">{contract.documentDate}</p>
                         {contract.status === 'signed' && contract.signedByName && (
                           <p className="text-xs text-green-600 mt-0.5" data-testid={`contract-signer-${contract.id}`}>
-                            Signed by {contract.signedByName} on {contract.signedAt ? new Date(contract.signedAt).toLocaleDateString() : ""}
+                             {t("Signed by")} {contract.signedByName} {t("on")} {contract.signedAt ? new Date(contract.signedAt).toLocaleDateString() : ""}
                           </p>
                         )}
                       </div>
@@ -368,7 +368,7 @@ export default function Billing() {
                 ))
               ) : (
                 <div className="p-8 text-center text-muted-foreground" data-testid="contracts-empty">
-                  No contracts found.
+                   {t("No contracts found.")}
                 </div>
               )}
             </div>
@@ -434,7 +434,7 @@ export default function Billing() {
               <Input
                 value={invoiceForm.invoiceNumber}
                 onChange={(e) => setInvoiceForm({ ...invoiceForm, invoiceNumber: e.target.value })}
-                placeholder="INV-001"
+                 placeholder={t("Invoice number")}
                 data-testid="input-invoice-number"
               />
             </div>
@@ -443,7 +443,7 @@ export default function Billing() {
               <Input
                 value={invoiceForm.description}
                 onChange={(e) => setInvoiceForm({ ...invoiceForm, description: e.target.value })}
-                placeholder="Invoice description"
+                 placeholder={t("Invoice description")}
                 data-testid="input-invoice-description"
               />
             </div>
@@ -456,7 +456,7 @@ export default function Billing() {
                     const val = e.target.value;
                     setInvoiceForm({ ...invoiceForm, amount: val, amountCents: Math.round(parseFloat(val.replace(/[^0-9.]/g, "")) * 100) || 0 });
                   }}
-                  placeholder="$5,000.00"
+                   placeholder={t("Amount")}
                   data-testid="input-invoice-amount"
                 />
               </div>
@@ -466,7 +466,7 @@ export default function Billing() {
                   type="number"
                   value={invoiceForm.amountCents || ""}
                   onChange={(e) => setInvoiceForm({ ...invoiceForm, amountCents: parseInt(e.target.value) || 0 })}
-                  placeholder="500000"
+                   placeholder={t("Amount (cents)")}
                   data-testid="input-invoice-amount-cents"
                 />
               </div>
@@ -492,7 +492,7 @@ export default function Billing() {
               </div>
             </div>
             <div className="bg-zinc-100 p-3 rounded-xl border border-zinc-200 flex items-start gap-3">
-              <p className="text-xs text-zinc-900">This invoice will be visible to the client immediately in their portal. They can pay using the Pay Now button.</p>
+               <p className="text-xs text-zinc-900">{t("This invoice will be visible to the client immediately in their portal. They can pay using the Pay Now button.")}</p>
             </div>
             <div className="flex justify-end">
               <Button
@@ -522,7 +522,7 @@ export default function Billing() {
               <Input
                 value={contractForm.title}
                 onChange={(e) => setContractForm({ ...contractForm, title: e.target.value })}
-                placeholder="Contract title"
+                 placeholder={t("Contract title")}
                 data-testid="input-contract-title"
               />
             </div>
@@ -531,7 +531,7 @@ export default function Billing() {
               <Textarea
                 value={contractForm.terms}
                 onChange={(e) => setContractForm({ ...contractForm, terms: e.target.value })}
-                placeholder="Contract terms and conditions..."
+                 placeholder={t("Contract terms and conditions...")}
                 rows={6}
                 data-testid="input-contract-terms"
               />

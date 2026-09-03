@@ -2,3 +2,4 @@
 - [EN/FR i18n conventions](i18n-conventions.md) — per-page CONTENT={en,fr} + shared/offers.ts localize helpers; quotes stay English, SEO stays English, checkout sends only offer.id.
 - [Stripe PayPal activation](stripe-paypal.md) — checkout supports PayPal automatically, but the connected account must activate PayPal; card/debit fallback stays available.
 - [Session table schema guard](session-table-schema.md) — keep the PostgreSQL session table represented in Drizzle so schema pushes do not try to remove live sessions.
+- [Portal localization audit](portal-i18n-audit.md) — fallback-to-English translators need static route, key, and UI-state checks before release.

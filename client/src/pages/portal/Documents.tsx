@@ -45,7 +45,7 @@ export default function Documents() {
       if (fileInputRef.current) fileInputRef.current.value = "";
     },
     onError: (error: Error) => {
-      toast({ title: t("Upload failed"), description: error.message, variant: "destructive" });
+      toast({ title: t("Upload failed"), description: t("Something went wrong"), variant: "destructive" });
     },
   });
 

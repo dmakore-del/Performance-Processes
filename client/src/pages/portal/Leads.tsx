@@ -197,8 +197,8 @@ export default function Leads() {
             <h1 className="text-2xl font-bold text-primary" data-testid="text-leads-title">
               {isAdmin ? t("Leads Tracker") : t("My Assigned Leads")}
             </h1>
-            <p className="text-sm text-muted-foreground mt-1">
-              {isAdmin ? "Manage business development leads and assign them to staff" : "Track and update your assigned leads"}
+     <p className="text-sm text-muted-foreground mt-1">
+               {isAdmin ? t("Manage business development leads and assign them to staff") : t("Track and update your assigned leads")}
             </p>
           </div>
           {isAdmin && (
@@ -214,10 +214,10 @@ export default function Leads() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: "Total Leads", value: stats.total, color: "bg-primary/10 text-primary" },
-            { label: "New", value: stats.new, color: "bg-zinc-100 text-zinc-900" },
-            { label: "In Pipeline", value: stats.qualified, color: "bg-zinc-100 text-zinc-900" },
-            { label: "Won", value: stats.won, color: "bg-green-100 text-green-700" },
+             { label: t("Total Leads"), value: stats.total, color: "bg-primary/10 text-primary" },
+             { label: t("New"), value: stats.new, color: "bg-zinc-100 text-zinc-900" },
+             { label: t("In Pipeline"), value: stats.qualified, color: "bg-zinc-100 text-zinc-900" },
+             { label: t("Won"), value: stats.won, color: "bg-green-100 text-green-700" },
           ].map((stat, i) => (
             <div key={i} className="bg-white rounded-xl border border-border p-5" data-testid={`stat-leads-${i}`}>
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{stat.label}</p>
@@ -229,7 +229,7 @@ export default function Leads() {
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
             <Input
-              placeholder="Search by company, contact, or email..."
+               placeholder={t("Search by company, contact, or email...")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               data-testid="input-search-leads"
@@ -242,7 +242,7 @@ export default function Leads() {
             data-testid="select-filter-status"
           >
             <option value="all">{t("All Statuses")}</option>
-            {STATUS_OPTIONS.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
+             {STATUS_OPTIONS.map(s => <option key={s} value={s}>{status(s)}</option>)}
           </select>
           {isAdmin && (
             <select
@@ -251,8 +251,8 @@ export default function Leads() {
               className="px-3 py-2 rounded-lg border border-border bg-white text-sm"
               data-testid="select-filter-assigned"
             >
-              <option value="all">All Staff</option>
-              <option value="unassigned">Unassigned</option>
+               <option value="all">{t("All Staff")}</option>
+               <option value="unassigned">{t("Unassigned")}</option>
               {staffUsers.map(s => <option key={s.id} value={s.id}>{s.fullName}</option>)}
             </select>
           )}
@@ -275,49 +275,49 @@ export default function Leads() {
                   <Input data-testid="input-lead-company" value={form.companyName} onChange={(e) => setForm({ ...form, companyName: e.target.value })} required />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">Contact Name *</label>
+                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Contact Name *")}</label>
                   <Input data-testid="input-lead-contact" value={form.contactName} onChange={(e) => setForm({ ...form, contactName: e.target.value })} required />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">Contact Email *</label>
+                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Contact Email *")}</label>
                   <Input data-testid="input-lead-email" type="email" value={form.contactEmail} onChange={(e) => setForm({ ...form, contactEmail: e.target.value })} required />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">Phone</label>
+                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Phone")}</label>
                   <Input data-testid="input-lead-phone" value={form.contactPhone} onChange={(e) => setForm({ ...form, contactPhone: e.target.value })} />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">Source</label>
+                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Source")}</label>
                   <select data-testid="select-lead-source" value={form.source} onChange={(e) => setForm({ ...form, source: e.target.value })} className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm">
-                    {SOURCE_OPTIONS.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
+                     {SOURCE_OPTIONS.map(s => <option key={s} value={s}>{t(s)}</option>)}
                   </select>
                 </div>
                 <div>
                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Status")}</label>
                   <select data-testid="select-lead-status" value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value })} className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm">
-                    {STATUS_OPTIONS.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
+                     {STATUS_OPTIONS.map(s => <option key={s} value={s}>{status(s)}</option>)}
                   </select>
                 </div>
                 <div>
                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Priority")}</label>
                   <select data-testid="select-lead-priority" value={form.priority} onChange={(e) => setForm({ ...form, priority: e.target.value })} className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm">
-                    {PRIORITY_OPTIONS.map(p => <option key={p} value={p}>{p.charAt(0).toUpperCase() + p.slice(1)}</option>)}
+                     {PRIORITY_OPTIONS.map(p => <option key={p} value={p}>{priority(p)}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">Service Interest</label>
+                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Service Interest")}</label>
                   <select data-testid="select-lead-service" value={form.serviceInterest} onChange={(e) => setForm({ ...form, serviceInterest: e.target.value })} className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm">
-                    <option value="">Select...</option>
-                    {SERVICE_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
+                     <option value="">{t("Select...")}</option>
+                     {SERVICE_OPTIONS.map(s => <option key={s} value={s}>{t(s)}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">Estimated Value</label>
-                  <Input data-testid="input-lead-value" placeholder="e.g. $5,000" value={form.estimatedValue} onChange={(e) => setForm({ ...form, estimatedValue: e.target.value })} />
+                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Estimated Value")}</label>
+                   <Input data-testid="input-lead-value" placeholder={t("e.g. $5,000")} value={form.estimatedValue} onChange={(e) => setForm({ ...form, estimatedValue: e.target.value })} />
                 </div>
                 {isAdmin && (
                   <div>
-                    <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">Assign To</label>
+                     <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Assign To")}</label>
                     <select
                       data-testid="select-lead-assign"
                       value={form.assignedToId}
@@ -327,18 +327,18 @@ export default function Leads() {
                       }}
                       className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm"
                     >
-                      <option value="">Unassigned</option>
+                       <option value="">{t("Unassigned")}</option>
                       {staffUsers.map(s => <option key={s.id} value={s.id}>{s.fullName}</option>)}
                     </select>
                   </div>
                 )}
                 <div>
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">Next Follow-up</label>
+                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Next Follow-up")}</label>
                   <Input data-testid="input-lead-followup" type="date" value={form.nextFollowUpDate} onChange={(e) => setForm({ ...form, nextFollowUpDate: e.target.value })} />
                 </div>
               </div>
               <div>
-                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">Notes</label>
+                 <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Notes")}</label>
                 <textarea
                   data-testid="input-lead-notes"
                   value={form.notes}
@@ -351,7 +351,7 @@ export default function Leads() {
                 <Button type="submit" className="bg-accent hover:bg-accent/90 text-white" data-testid="button-submit-lead">
                   {editingLead ? t("Update Lead") : t("Create Lead")}
                 </Button>
-                <Button type="button" variant="outline" onClick={resetForm}>Cancel</Button>
+                 <Button type="button" variant="outline" onClick={resetForm}>{t("Cancel")}</Button>
               </div>
             </form>
           </div>
@@ -380,11 +380,11 @@ export default function Leads() {
                       <h3 className="font-bold text-primary text-lg truncate" data-testid={`text-lead-company-${lead.id}`}>
                         {lead.companyName}
                       </h3>
-                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${statusColors[lead.status] || "bg-gray-100 text-gray-600"}`}>
-                        {lead.status}
+                       <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${statusColors[lead.status] || "bg-gray-100 text-gray-600"}`}>
+                         {status(lead.status)}
                       </span>
-                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${priorityColors[lead.priority] || "bg-gray-100 text-gray-600"}`}>
-                        {lead.priority}
+                       <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${priorityColors[lead.priority] || "bg-gray-100 text-gray-600"}`}>
+                         {priority(lead.priority)}
                       </span>
                     </div>
                     <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted-foreground">
@@ -405,7 +405,7 @@ export default function Leads() {
                         {lead.assignedToName}
                       </div>
                     ) : (
-                      <span className="text-xs text-muted-foreground italic">Unassigned</span>
+                       <span className="text-xs text-muted-foreground italic">{t("Unassigned")}</span>
                     )}
 
                     {lead.nextFollowUpDate && (
@@ -421,7 +421,7 @@ export default function Leads() {
                         className="px-2 py-1.5 rounded-lg border border-border bg-white text-xs min-w-[120px]"
                         data-testid={`select-assign-${lead.id}`}
                       >
-                        <option value="">Assign to...</option>
+                         <option value="">{t("Assign to...")}</option>
                         {staffUsers.map(s => <option key={s.id} value={s.id}>{s.fullName}</option>)}
                       </select>
                     )}
@@ -432,7 +432,7 @@ export default function Leads() {
                       className="px-2 py-1.5 rounded-lg border border-border bg-white text-xs min-w-[110px]"
                       data-testid={`select-status-${lead.id}`}
                     >
-                      {STATUS_OPTIONS.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
+                       {STATUS_OPTIONS.map(s => <option key={s} value={s}>{status(s)}</option>)}
                     </select>
 
                     <button
@@ -440,18 +440,18 @@ export default function Leads() {
                       className="px-3 py-1.5 rounded-lg hover:bg-gray-100 text-muted-foreground hover:text-primary transition-colors text-[10px] font-bold uppercase tracking-wider"
                       data-testid={`button-edit-${lead.id}`}
                     >
-                      Edit
+                       {t("Edit")}
                     </button>
 
                     {isAdmin && (
                       <button
                         onClick={() => {
-                          if (confirm("Delete this lead?")) deleteMutation.mutate(lead.id);
+                           if (confirm(t("Delete this lead?"))) deleteMutation.mutate(lead.id);
                         }}
                         className="px-3 py-1.5 rounded-lg hover:bg-red-50 text-muted-foreground hover:text-red-600 transition-colors text-[10px] font-bold uppercase tracking-wider"
                         data-testid={`button-delete-${lead.id}`}
                       >
-                        Delete
+                         {t("Delete")}
                       </button>
                     )}
                   </div>

@@ -18,7 +18,7 @@ const STATUS_CYCLE = ["pending", "in-progress", "completed"] as const;
 
 export default function Actions() {
   const { engagement, engagementId, isLoading: engLoading } = usePortalEngagement();
-  const { data: actions, isLoading: actionsLoading } = usePortalData<ActionItem[]>("actions", engagementId);
+  const { data: actions, isLoading: actionsLoading, isError: actionsError } = usePortalData<ActionItem[]>("actions", engagementId);
   const { toast } = useToast();
   const { user } = useAuth();
   const { t, status, priority } = usePortalI18n();
@@ -112,6 +112,10 @@ export default function Actions() {
     );
   }
 
+  if (actionsError) {
+    return <PortalLayout><div className="flex items-center justify-center min-h-[400px]"><p className="text-sm font-bold uppercase tracking-[0.2em] text-destructive">{t("Error")}</p></div></PortalLayout>;
+  }
+
   if (!engagement) {
     return (
       <PortalLayout>
@@ -201,12 +205,12 @@ export default function Actions() {
             <table className="w-full text-left border-collapse" data-testid="table-actions">
               <thead>
                 <tr className="border-b border-border bg-secondary/30">
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Status</th>
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground w-1/2">Action Item</th>
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Owner</th>
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Due Date</th>
-                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Priority</th>
-                  {canEdit && <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Actions</th>}
+                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Status")}</th>
+                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground w-1/2">{t("Action Items")}</th>
+                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Owner")}</th>
+                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Due Date")}</th>
+                  <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Priority")}</th>
+                  {canEdit && <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Actions")}</th>}
                 </tr>
               </thead>
               <tbody>
@@ -227,7 +231,7 @@ export default function Actions() {
                               "bg-zinc-100 text-zinc-700 border-zinc-200"
                             )}
                             data-testid={`button-status-${action.id}`}
-                            title="Click to cycle status"
+                            title={t("Click to cycle status")}
                           >
                              {status(displayStatus)}
                           </button>
@@ -280,7 +284,7 @@ export default function Actions() {
                             onClick={() => deleteMutation.mutate(action.id)}
                             className="text-muted-foreground hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
                             data-testid={`button-delete-${action.id}`}
-                            title="Delete action"
+                             title={t("Delete action")}
                           >
                              <span className="text-xs font-bold uppercase tracking-wider">{t("Delete")}</span>
                           </button>

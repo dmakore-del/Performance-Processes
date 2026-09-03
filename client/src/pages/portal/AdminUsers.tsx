@@ -26,7 +26,7 @@ interface AdminUser {
 
 export default function AdminUsers() {
   const { user } = useAuth();
-  const { t, role: translateRole } = usePortalI18n();
+  const { t, role: translateRole, status: translateStatus } = usePortalI18n();
 
   if (user && user.role !== "admin") {
     return <Redirect to="/portal" />;
@@ -59,12 +59,12 @@ export default function AdminUsers() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
       queryClient.invalidateQueries({ queryKey: ["/api/portal/engagements"] });
-      toast({ title: "Engagement created successfully" });
+       toast({ title: t("Engagement created successfully") });
       setCreateEngagementOpen(false);
       setEngagementForm({ clientName: "", engagementType: "", startDate: "", currentPhase: "", clientUserId: "", assignedStaffId: "" });
     },
     onError: (error: Error) => {
-      toast({ title: "Failed to create engagement", description: error.message, variant: "destructive" });
+       toast({ title: t("Failed to create engagement"), description: t("Something went wrong"), variant: "destructive" });
     },
   });
 
@@ -75,7 +75,7 @@ export default function AdminUsers() {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
-      toast({ title: `User ${data.fullName} status updated to ${data.status}` });
+       toast({ title: `${t("User status updated")}: ${data.fullName}, ${translateStatus(data.status)}` });
     },
   });
 
@@ -87,7 +87,7 @@ export default function AdminUsers() {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
       setRoleDropdownId(null);
-      toast({ title: `User ${data.fullName} role updated to ${data.role}` });
+       toast({ title: `${t("User role updated")}: ${data.fullName}, ${translateRole(data.role)}` });
     },
   });
 
@@ -122,7 +122,7 @@ export default function AdminUsers() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px]">
               <DialogHeader>
-                <DialogTitle>Create New Engagement</DialogTitle>
+                <DialogTitle>{t("Create New Engagement")}</DialogTitle>
               </DialogHeader>
               <form
                 data-testid="form-create-engagement"
@@ -152,10 +152,10 @@ export default function AdminUsers() {
                       <SelectValue placeholder={t("Select type")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Strategic">Strategic</SelectItem>
-                      <SelectItem value="Operational">Operational</SelectItem>
-                      <SelectItem value="Leadership">Leadership</SelectItem>
-                      <SelectItem value="Performance">Performance</SelectItem>
+                        <SelectItem value="Strategic">{t("Strategic")}</SelectItem>
+                        <SelectItem value="Operational">{t("Operational")}</SelectItem>
+                        <SelectItem value="Leadership">{t("Leadership")}</SelectItem>
+                        <SelectItem value="Performance">{t("Performance")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -227,7 +227,7 @@ export default function AdminUsers() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <button onClick={() => setFilter("all")} data-testid="filter-all" className={cn("p-5 rounded-2xl border shadow-sm text-left transition-all", filter === "all" ? "bg-primary text-white border-primary" : "bg-white border-border hover:border-accent/30")}>
-            <p className={cn("text-[10px] font-bold uppercase tracking-widest mb-1", filter === "all" ? "text-white/70" : "text-muted-foreground")}>All Users</p>
+           <p className={cn("text-[10px] font-bold uppercase tracking-widest mb-1", filter === "all" ? "text-white/70" : "text-muted-foreground")}>{t("All Users")}</p>
             <p className="text-3xl font-black">{users?.length || 0}</p>
           </button>
           <button onClick={() => setFilter("pending_approval")} data-testid="filter-pending" className={cn("p-5 rounded-2xl border shadow-sm text-left transition-all", filter === "pending_approval" ? "bg-orange-500 text-white border-orange-500" : "bg-white border-border hover:border-orange-300")}>
@@ -235,11 +235,11 @@ export default function AdminUsers() {
             <p className="text-3xl font-black">{pendingCount}</p>
           </button>
           <button onClick={() => setFilter("active")} data-testid="filter-active" className={cn("p-5 rounded-2xl border shadow-sm text-left transition-all", filter === "active" ? "bg-green-500 text-white border-green-500" : "bg-white border-border hover:border-green-300")}>
-            <p className={cn("text-[10px] font-bold uppercase tracking-widest mb-1", filter === "active" ? "text-white/70" : "text-green-600")}>Active</p>
+             <p className={cn("text-[10px] font-bold uppercase tracking-widest mb-1", filter === "active" ? "text-white/70" : "text-green-600")}>{t("Active")}</p>
             <p className="text-3xl font-black">{activeCount}</p>
           </button>
           <button onClick={() => setFilter("suspended")} data-testid="filter-suspended" className={cn("p-5 rounded-2xl border shadow-sm text-left transition-all", filter === "suspended" ? "bg-red-500 text-white border-red-500" : "bg-white border-border hover:border-red-300")}>
-            <p className={cn("text-[10px] font-bold uppercase tracking-widest mb-1", filter === "suspended" ? "text-white/70" : "text-red-500")}>Suspended</p>
+             <p className={cn("text-[10px] font-bold uppercase tracking-widest mb-1", filter === "suspended" ? "text-white/70" : "text-red-500")}>{t("Suspended")}</p>
             <p className="text-3xl font-black">{suspendedCount}</p>
           </button>
         </div>
@@ -260,13 +260,13 @@ export default function AdminUsers() {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="border-b border-border bg-secondary/10">
-                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">User</th>
-                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Company</th>
-                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Role</th>
-                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Status</th>
-                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">2FA</th>
-                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">Joined</th>
-                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground text-right">Actions</th>
+                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("User")}</th>
+                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Company")}</th>
+                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Role")}</th>
+                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Status")}</th>
+                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("2FA")}</th>
+                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">{t("Joined")}</th>
+                    <th className="py-4 px-6 text-xs font-bold uppercase tracking-widest text-muted-foreground text-right">{t("Actions")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -294,7 +294,7 @@ export default function AdminUsers() {
                               "bg-secondary text-primary border-border"
                             )}
                           >
-                            {u.role} <span className="text-[8px]">▾</span>
+                             {translateRole(u.role)} <span className="text-[8px]">▾</span>
                           </button>
                           {roleDropdownId === u.id && (
                             <div className="absolute top-full left-6 z-50 mt-1 bg-white rounded-xl border border-border shadow-lg p-1 min-w-[120px]">
@@ -304,7 +304,7 @@ export default function AdminUsers() {
                                   onClick={() => roleMutation.mutate({ id: u.id, role })}
                                   className={cn("w-full text-left px-3 py-2 text-xs font-bold rounded-lg hover:bg-secondary transition-colors capitalize", u.role === role && "bg-secondary")}
                                 >
-                                  {role}
+                                   {translateRole(role)}
                                 </button>
                               ))}
                             </div>
@@ -317,14 +317,14 @@ export default function AdminUsers() {
                             u.status === "pending_approval" ? "bg-orange-50 text-orange-600 border-orange-200" :
                             "bg-red-50 text-red-600 border-red-200"
                           )}>
-                            {u.status.replace("_", " ")}
+                             {translateStatus(u.status)}
                           </span>
                         </td>
                         <td className="py-4 px-6">
                           {u.twoFactorEnabled ? (
-                            <span className="text-xs font-bold text-green-500 uppercase tracking-wider">On</span>
+                             <span className="text-xs font-bold text-green-500 uppercase tracking-wider">{t("On")}</span>
                           ) : (
-                            <span className="text-xs text-muted-foreground">Off</span>
+                             <span className="text-xs text-muted-foreground">{t("Off")}</span>
                           )}
                         </td>
                         <td className="py-4 px-6 text-sm text-muted-foreground">
@@ -340,7 +340,7 @@ export default function AdminUsers() {
                                 disabled={statusMutation.isPending}
                                 className="bg-green-500 hover:bg-green-600 text-white text-xs h-8 rounded-lg"
                               >
-                                Approve
+                                 {t("Approve")}
                               </Button>
                             )}
                             {u.status === "active" && u.role !== "admin" && (
@@ -352,7 +352,7 @@ export default function AdminUsers() {
                                 disabled={statusMutation.isPending}
                                 className="text-red-500 border-red-200 hover:bg-red-50 text-xs h-8 rounded-lg"
                               >
-                                Suspend
+                                 {t("Suspend")}
                               </Button>
                             )}
                             {u.status === "suspended" && (
@@ -363,7 +363,7 @@ export default function AdminUsers() {
                                 disabled={statusMutation.isPending}
                                 className="bg-zinc-700 hover:bg-zinc-800 text-white text-xs h-8 rounded-lg"
                               >
-                                Activate
+                                 {t("Activate")}
                               </Button>
                             )}
                           </div>

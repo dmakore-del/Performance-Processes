@@ -353,7 +353,7 @@ export default function Meetings() {
                 )}
                 {selectedBooking.bodyPreview && (
                   <div>
-                    <h4 className="font-bold text-primary text-sm mb-2">Details</h4>
+                    <h4 className="font-bold text-primary text-sm mb-2">{t("Details")}</h4>
                     <p className="text-sm text-foreground whitespace-pre-wrap">{selectedBooking.bodyPreview}</p>
                   </div>
                 )}

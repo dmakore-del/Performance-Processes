@@ -88,7 +88,7 @@ export default function Resources() {
       if (fileInputRef.current) fileInputRef.current.value = "";
     },
     onError: (error: Error) => {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
+      toast({ title: t("Error"), description: t("Something went wrong"), variant: "destructive" });
     },
   });
 
@@ -108,7 +108,7 @@ export default function Resources() {
       setRequestForm({ name: user?.fullName || "", email: user?.email || "", subject: "", message: "" });
     },
     onError: (error: Error) => {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
+      toast({ title: t("Error"), description: t("Something went wrong"), variant: "destructive" });
     },
   });
 
@@ -240,7 +240,7 @@ export default function Resources() {
                       data-testid="input-resource-accessurl"
                       value={createForm.accessUrl}
                       onChange={(e) => setCreateForm((f) => ({ ...f, accessUrl: e.target.value }))}
-                      placeholder="https://..."
+                      placeholder={t("External URL")}
                     />
                   </div>
                   <Button type="submit" data-testid="button-submit-resource" disabled={createMutation.isPending} className="w-full">

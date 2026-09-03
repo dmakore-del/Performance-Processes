@@ -43,8 +43,8 @@ export default function Dashboard() {
       toast({ title: t("Project Updated"), description: t("Project status has been updated.") });
       setStatusDialogOpen(false);
     },
-    onError: (error: Error) => {
-      toast({ title: t("Error"), description: error.message, variant: "destructive" });
+    onError: () => {
+      toast({ title: t("Error"), description: t("Something went wrong"), variant: "destructive" });
     },
   });
 
@@ -95,7 +95,7 @@ export default function Dashboard() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
           <div>
             <h1 data-testid="text-dashboard-title" className="text-3xl md:text-4xl font-heading font-extrabold text-primary">
-              {isStaffOrAdmin ? engagement.clientName : "Welcome back"}
+              {isStaffOrAdmin ? engagement.clientName : t("Welcome back")}
             </h1>
             <p className="text-lg text-muted-foreground mt-2">
               {isStaffOrAdmin
@@ -246,7 +246,7 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 relative z-10">
             {recentDocs.map((doc) => (
               <div key={doc.id} className="flex items-center gap-4 bg-white hover:bg-white p-4 rounded-2xl transition-colors border border-border cursor-pointer">
-                <span className="text-[9px] font-black uppercase tracking-wider text-accent border border-accent/40 px-2 py-1">Doc</span>
+                <span className="text-[9px] font-black uppercase tracking-wider text-accent border border-accent/40 px-2 py-1">{t("Document")}</span>
                 <div>
                   <p className="font-bold text-sm line-clamp-1">{doc.name}</p>
                   <p className="text-[10px] uppercase tracking-widest opacity-70 mt-1">{doc.size}</p>

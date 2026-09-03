@@ -26,7 +26,7 @@ export default function Performance() {
   const { user } = useAuth();
   const { t, status } = usePortalI18n();
   const { engagementId, isLoading: engLoading } = usePortalEngagement();
-  const { data: kpis, isLoading: kpisLoading } = usePortalData<PerformanceKpi[]>("kpis", engagementId);
+  const { data: kpis, isLoading: kpisLoading, isError: kpisError } = usePortalData<PerformanceKpi[]>("kpis", engagementId);
 
   const isLoading = engLoading || kpisLoading;
   const kpiList = kpis ?? [];
@@ -88,6 +88,10 @@ export default function Performance() {
     );
   }
 
+  if (kpisError) {
+    return <PortalLayout><div className="flex items-center justify-center min-h-[400px]"><p className="text-sm font-bold uppercase tracking-[0.2em] text-destructive">{t("Error")}</p></div></PortalLayout>;
+  }
+
   if (!engagementId && !isLoading) {
     return (
       <PortalLayout>
@@ -124,16 +128,16 @@ export default function Performance() {
                   <div className="space-y-4 pt-4">
                     <div>
                       <Label htmlFor="kpi-name">{t("Name")}</Label>
-                      <Input id="kpi-name" data-testid="input-kpi-name" value={formData.name} onChange={e => setFormData(f => ({ ...f, name: e.target.value }))} placeholder="e.g. Revenue Growth" />
+                       <Input id="kpi-name" data-testid="input-kpi-name" value={formData.name} onChange={e => setFormData(f => ({ ...f, name: e.target.value }))} placeholder={t("e.g. Revenue Growth")} />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="kpi-current">{t("Current Value")}</Label>
-                        <Input id="kpi-current" data-testid="input-kpi-current" value={formData.currentValue} onChange={e => setFormData(f => ({ ...f, currentValue: e.target.value }))} placeholder="e.g. 75" />
+                         <Input id="kpi-current" data-testid="input-kpi-current" value={formData.currentValue} onChange={e => setFormData(f => ({ ...f, currentValue: e.target.value }))} placeholder={t("e.g. 75")} />
                       </div>
                       <div>
                         <Label htmlFor="kpi-target">{t("Target Value")}</Label>
-                        <Input id="kpi-target" data-testid="input-kpi-target" value={formData.targetValue} onChange={e => setFormData(f => ({ ...f, targetValue: e.target.value }))} placeholder="e.g. 90" />
+                         <Input id="kpi-target" data-testid="input-kpi-target" value={formData.targetValue} onChange={e => setFormData(f => ({ ...f, targetValue: e.target.value }))} placeholder={t("e.g. 90")} />
                       </div>
                     </div>
                     <div>
@@ -151,11 +155,11 @@ export default function Performance() {
                     </div>
                     <div>
                       <Label htmlFor="kpi-period">{t("Period")}</Label>
-                      <Input id="kpi-period" data-testid="input-kpi-period" value={formData.period} onChange={e => setFormData(f => ({ ...f, period: e.target.value }))} placeholder="e.g. Q1 2026" />
+                       <Input id="kpi-period" data-testid="input-kpi-period" value={formData.period} onChange={e => setFormData(f => ({ ...f, period: e.target.value }))} placeholder={t("e.g. Q1 2026")} />
                     </div>
                     <div>
                       <Label htmlFor="kpi-category">{t("Category")}</Label>
-                      <Input id="kpi-category" data-testid="input-kpi-category" value={formData.category} onChange={e => setFormData(f => ({ ...f, category: e.target.value }))} placeholder="e.g. Financial" />
+                       <Input id="kpi-category" data-testid="input-kpi-category" value={formData.category} onChange={e => setFormData(f => ({ ...f, category: e.target.value }))} placeholder={t("e.g. Financial")} />
                     </div>
                     <Button className="w-full" data-testid="button-submit-kpi" onClick={handleCreate} disabled={createMutation.isPending || !formData.name}>
                       {createMutation.isPending ? t("Creating...") : t("Create KPI")}

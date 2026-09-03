@@ -81,9 +81,9 @@ export default function AdminBilling() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/billing"] });
       queryClient.invalidateQueries({ queryKey: ["/api/portal/engagements"] });
-      toast({ title: "Retainer settings saved", description: "The client will see the updated billing plan in their portal." });
+      toast({ title: t("Retainer settings saved"), description: t("The client will see the updated billing plan in their portal.") });
     },
-    onError: (error: Error) => toast({ title: "Could not save retainer", description: error.message, variant: "destructive" }),
+    onError: () => toast({ title: t("Could not save retainer"), description: t("Something went wrong"), variant: "destructive" }),
   });
 
   const createInvoice = useMutation({
@@ -100,9 +100,9 @@ export default function AdminBilling() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/billing"] });
       setInvoiceDialogOpen(false);
-      toast({ title: "Invoice created", description: "The invoice is now available in the client portal." });
+      toast({ title: t("Invoice Created"), description: t("The invoice is now available in the client portal.") });
     },
-    onError: (error: Error) => toast({ title: "Could not create invoice", description: error.message, variant: "destructive" }),
+    onError: () => toast({ title: t("Could not create invoice"), description: t("Something went wrong"), variant: "destructive" }),
   });
 
   const updateInvoice = useMutation({
@@ -114,9 +114,9 @@ export default function AdminBilling() {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/billing"] });
       setInvoiceDialogOpen(false);
       setEditingInvoice(null);
-      toast({ title: "Invoice updated" });
+      toast({ title: t("Invoice updated") });
     },
-    onError: (error: Error) => toast({ title: "Could not update invoice", description: error.message, variant: "destructive" }),
+    onError: () => toast({ title: t("Could not update invoice"), description: t("Something went wrong"), variant: "destructive" }),
   });
 
   const openCreateInvoice = () => {
@@ -163,7 +163,7 @@ export default function AdminBilling() {
           <Button className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={openCreateInvoice}>{t("Create invoice")}</Button>
         </header>
 
-        <section className="grid gap-4 sm:grid-cols-3" aria-label="Billing overview">
+        <section className="grid gap-4 sm:grid-cols-3" aria-label={t("Billing overview")}>
           {[
             [t("Open balance"), invoices.filter((item) => invoiceStatus(item) === "unpaid").reduce((sum, item) => sum + item.amountCents, 0), "unpaid"],
             [t("Overdue"), invoices.filter((item) => invoiceStatus(item) === "overdue").reduce((sum, item) => sum + item.amountCents, 0), "overdue"],
@@ -200,30 +200,30 @@ export default function AdminBilling() {
                     <p className="mt-1 text-sm text-muted-foreground">{money(selectedEngagement.retainerAmountCents)} {t("per month")}, {translateStatus(selectedEngagement.retainerStatus || "inactive")}</p>
                   </div>
                   <div className="space-y-4">
-                    <div><Label htmlFor="retainer-plan">Plan name</Label><Input id="retainer-plan" className="mt-2" value={retainerForm.retainerPlan} onChange={(event) => setRetainerForm({ ...retainerForm, retainerPlan: event.target.value })} placeholder="Ongoing Performance Support" /></div>
-                    <div><Label htmlFor="retainer-amount">Monthly amount in cents</Label><Input id="retainer-amount" className="mt-2" type="number" min="0" value={retainerForm.retainerAmountCents} onChange={(event) => setRetainerForm({ ...retainerForm, retainerAmountCents: event.target.value })} /></div>
-                    <div><Label htmlFor="retainer-status">Retainer status</Label><Select value={retainerForm.retainerStatus} onValueChange={(value) => setRetainerForm({ ...retainerForm, retainerStatus: value })}><SelectTrigger id="retainer-status" className="mt-2"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="inactive">Inactive</SelectItem><SelectItem value="active">Active</SelectItem><SelectItem value="paused">Paused</SelectItem></SelectContent></Select></div>
-                    <div><Label htmlFor="retainer-date">Next billing date</Label><Input id="retainer-date" className="mt-2" type="date" value={retainerForm.retainerNextBillingDate} onChange={(event) => setRetainerForm({ ...retainerForm, retainerNextBillingDate: event.target.value })} /></div>
+                    <div><Label htmlFor="retainer-plan">{t("Plan name")}</Label><Input id="retainer-plan" className="mt-2" value={retainerForm.retainerPlan} onChange={(event) => setRetainerForm({ ...retainerForm, retainerPlan: event.target.value })} placeholder={t("Ongoing Performance Support")} /></div>
+                    <div><Label htmlFor="retainer-amount">{t("Monthly amount in cents")}</Label><Input id="retainer-amount" className="mt-2" type="number" min="0" value={retainerForm.retainerAmountCents} onChange={(event) => setRetainerForm({ ...retainerForm, retainerAmountCents: event.target.value })} /></div>
+                    <div><Label htmlFor="retainer-status">{t("Retainer status")}</Label><Select value={retainerForm.retainerStatus} onValueChange={(value) => setRetainerForm({ ...retainerForm, retainerStatus: value })}><SelectTrigger id="retainer-status" className="mt-2"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="inactive">{t("Inactive")}</SelectItem><SelectItem value="active">{t("Active")}</SelectItem><SelectItem value="paused">{t("Paused")}</SelectItem></SelectContent></Select></div>
+                    <div><Label htmlFor="retainer-date">{t("Next billing date")}</Label><Input id="retainer-date" className="mt-2" type="date" value={retainerForm.retainerNextBillingDate} onChange={(event) => setRetainerForm({ ...retainerForm, retainerNextBillingDate: event.target.value })} /></div>
                   </div>
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-primary" onClick={() => saveRetainer.mutate()} disabled={saveRetainer.isPending}>{saveRetainer.isPending ? "Saving" : "Save retainer settings"}</Button>
+                   <Button className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-primary" onClick={() => saveRetainer.mutate()} disabled={saveRetainer.isPending}>{saveRetainer.isPending ? t("Saving") : t("Save retainer settings")}</Button>
                 </div>
-              ) : <p className="p-6 text-sm text-muted-foreground">Create an engagement to start managing a retainer.</p>}
+              ) : <p className="p-6 text-sm text-muted-foreground">{t("Create an engagement to start managing a retainer.")}</p>}
             </div>
           </div>
 
           <div className="space-y-5">
             <div className="flex flex-col gap-4 border-b border-border pb-4 md:flex-row md:items-end md:justify-between">
-              <div><h2 className="text-2xl font-heading text-primary">Invoice register</h2><p className="mt-1 text-sm text-muted-foreground">Edit, mark paid, or reopen any client invoice.</p></div>
+              <div><h2 className="text-2xl font-heading text-primary">{t("Invoice register")}</h2><p className="mt-1 text-sm text-muted-foreground">{t("Edit, mark paid, or reopen any client invoice.")}</p></div>
               <div className="flex gap-1 border border-border bg-white p-1">
-                {(["all", "unpaid", "overdue", "paid"] as InvoiceFilter[]).map((item) => <button key={item} type="button" onClick={() => setFilter(item)} className={`px-3 py-2 text-xs font-semibold capitalize ${filter === item ? "bg-accent text-primary" : "text-muted-foreground hover:text-primary"}`}>{item}</button>)}
+                 {(["all", "unpaid", "overdue", "paid"] as InvoiceFilter[]).map((item) => <button key={item} type="button" onClick={() => setFilter(item)} className={`px-3 py-2 text-xs font-semibold capitalize ${filter === item ? "bg-accent text-primary" : "text-muted-foreground hover:text-primary"}`}>{item === "all" ? t("All") : translateStatus(item)}</button>)}
               </div>
             </div>
             <div className="overflow-hidden border border-border bg-white">
-              {isLoading ? <p className="p-8 text-sm text-muted-foreground">Loading billing records</p> : filteredInvoices.length === 0 ? <p className="p-8 text-sm text-muted-foreground">No invoices in this view.</p> : filteredInvoices.map((invoice) => {
+              {isLoading ? <p className="p-8 text-sm text-muted-foreground">{t("Loading billing records")}</p> : filteredInvoices.length === 0 ? <p className="p-8 text-sm text-muted-foreground">{t("No invoices in this view.")}</p> : filteredInvoices.map((invoice) => {
                 const status = invoiceStatus(invoice);
                 return <div key={invoice.id} className="flex flex-col gap-4 border-b border-border p-5 last:border-0 md:flex-row md:items-center md:justify-between">
-                  <div className="min-w-0"><div className="flex items-center gap-3"><p className="font-semibold text-primary">{invoice.invoiceNumber}</p><span className={`px-2 py-1 text-[10px] font-bold uppercase tracking-[.12em] ${status === "paid" ? "bg-green-50 text-green-700" : status === "overdue" ? "bg-red-50 text-red-700" : "bg-secondary text-primary"}`}>{status}</span></div><p className="mt-1 text-sm text-muted-foreground">{invoiceClient(invoice)}, {invoice.description || "Service invoice"}</p><p className="mt-1 text-xs text-muted-foreground">Due {invoice.dueDate}</p></div>
-                  <div className="flex items-center justify-between gap-5 md:justify-end"><p className="font-heading text-xl text-primary">{money(invoice.amountCents, invoice.currency)}</p><div className="flex gap-2"><Button variant="outline" size="sm" onClick={() => openEditInvoice(invoice)}>Edit</Button>{status !== "paid" && <Button size="sm" className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => updateInvoice.mutate({ id: invoice.id, data: { status: "paid", paidAt: new Date() } })}>Mark paid</Button>}</div></div>
+                   <div className="min-w-0"><div className="flex items-center gap-3"><p className="font-semibold text-primary">{invoice.invoiceNumber}</p><span className={`px-2 py-1 text-[10px] font-bold uppercase tracking-[.12em] ${status === "paid" ? "bg-green-50 text-green-700" : status === "overdue" ? "bg-red-50 text-red-700" : "bg-secondary text-primary"}`}>{translateStatus(status)}</span></div><p className="mt-1 text-sm text-muted-foreground">{invoiceClient(invoice)}, {invoice.description || t("Service invoice")}</p><p className="mt-1 text-xs text-muted-foreground">{t("Due")} {invoice.dueDate}</p></div>
+                   <div className="flex items-center justify-between gap-5 md:justify-end"><p className="font-heading text-xl text-primary">{money(invoice.amountCents, invoice.currency)}</p><div className="flex gap-2"><Button variant="outline" size="sm" onClick={() => openEditInvoice(invoice)}>{t("Edit")}</Button>{status !== "paid" && <Button size="sm" className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => updateInvoice.mutate({ id: invoice.id, data: { status: "paid", paidAt: new Date() } })}>{t("Mark paid")}</Button>}</div></div>
                 </div>;
               })}
             </div>
@@ -233,15 +233,15 @@ export default function AdminBilling() {
 
       <Dialog open={invoiceDialogOpen} onOpenChange={setInvoiceDialogOpen}>
         <DialogContent className="max-w-lg">
-          <DialogHeader><DialogTitle>{editingInvoice ? "Edit invoice" : "Create invoice"}</DialogTitle></DialogHeader>
+           <DialogHeader><DialogTitle>{editingInvoice ? t("Edit invoice") : t("Create invoice")}</DialogTitle></DialogHeader>
           <div className="space-y-4">
-            <div><Label htmlFor="invoice-client">Client engagement</Label><Select value={invoiceForm.engagementId} onValueChange={(value) => setInvoiceForm({ ...invoiceForm, engagementId: value })}><SelectTrigger id="invoice-client" className="mt-2"><SelectValue placeholder="Select a client" /></SelectTrigger><SelectContent>{engagements.map((item) => <SelectItem key={item.id} value={String(item.id)}>{item.clientName}</SelectItem>)}</SelectContent></Select></div>
-            <div><Label htmlFor="invoice-number">Invoice number</Label><Input id="invoice-number" className="mt-2" value={invoiceForm.invoiceNumber} onChange={(event) => setInvoiceForm({ ...invoiceForm, invoiceNumber: event.target.value })} /></div>
-            <div><Label htmlFor="invoice-description">Description</Label><Input id="invoice-description" className="mt-2" value={invoiceForm.description} onChange={(event) => setInvoiceForm({ ...invoiceForm, description: event.target.value })} /></div>
-            <div className="grid gap-4 sm:grid-cols-2"><div><Label htmlFor="invoice-amount">Amount in cents</Label><Input id="invoice-amount" className="mt-2" type="number" min="1" value={invoiceForm.amountCents} onChange={(event) => setInvoiceForm({ ...invoiceForm, amountCents: event.target.value })} /></div><div><Label htmlFor="invoice-type">Invoice type</Label><Select value={invoiceForm.paymentType} onValueChange={(value) => setInvoiceForm({ ...invoiceForm, paymentType: value })}><SelectTrigger id="invoice-type" className="mt-2"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="one_time">One time service</SelectItem><SelectItem value="monthly_retainer">Monthly retainer</SelectItem></SelectContent></Select></div></div>
-            <div className="grid gap-4 sm:grid-cols-2"><div><Label htmlFor="invoice-issue">Issue date</Label><Input id="invoice-issue" className="mt-2" type="date" value={invoiceForm.issueDate} onChange={(event) => setInvoiceForm({ ...invoiceForm, issueDate: event.target.value })} /></div><div><Label htmlFor="invoice-due">Due date</Label><Input id="invoice-due" className="mt-2" type="date" value={invoiceForm.dueDate} onChange={(event) => setInvoiceForm({ ...invoiceForm, dueDate: event.target.value })} /></div></div>
-            {editingInvoice && <div><Label htmlFor="invoice-status">Status</Label><Select value={invoiceForm.status} onValueChange={(value) => setInvoiceForm({ ...invoiceForm, status: value })}><SelectTrigger id="invoice-status" className="mt-2"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="unpaid">Unpaid</SelectItem><SelectItem value="overdue">Overdue</SelectItem><SelectItem value="paid">Paid</SelectItem><SelectItem value="void">Void</SelectItem></SelectContent></Select></div>}
-            <Button className="w-full bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => editingInvoice ? updateInvoice.mutate({ id: editingInvoice.id, data: { invoiceNumber: invoiceForm.invoiceNumber, description: invoiceForm.description, amountCents: Number(invoiceForm.amountCents), amount: money(Number(invoiceForm.amountCents)), issueDate: invoiceForm.issueDate, dueDate: invoiceForm.dueDate, paymentType: invoiceForm.paymentType, status: invoiceForm.status } }) : createInvoice.mutate()} disabled={createInvoice.isPending || updateInvoice.isPending}>{editingInvoice ? "Save invoice" : "Create invoice"}</Button>
+             <div><Label htmlFor="invoice-client">{t("Client engagement")}</Label><Select value={invoiceForm.engagementId} onValueChange={(value) => setInvoiceForm({ ...invoiceForm, engagementId: value })}><SelectTrigger id="invoice-client" className="mt-2"><SelectValue placeholder={t("Select a client")} /></SelectTrigger><SelectContent>{engagements.map((item) => <SelectItem key={item.id} value={String(item.id)}>{item.clientName}</SelectItem>)}</SelectContent></Select></div>
+             <div><Label htmlFor="invoice-number">{t("Invoice number")}</Label><Input id="invoice-number" className="mt-2" value={invoiceForm.invoiceNumber} onChange={(event) => setInvoiceForm({ ...invoiceForm, invoiceNumber: event.target.value })} /></div>
+             <div><Label htmlFor="invoice-description">{t("Description")}</Label><Input id="invoice-description" className="mt-2" value={invoiceForm.description} onChange={(event) => setInvoiceForm({ ...invoiceForm, description: event.target.value })} /></div>
+             <div className="grid gap-4 sm:grid-cols-2"><div><Label htmlFor="invoice-amount">{t("Amount in cents")}</Label><Input id="invoice-amount" className="mt-2" type="number" min="1" value={invoiceForm.amountCents} onChange={(event) => setInvoiceForm({ ...invoiceForm, amountCents: event.target.value })} /></div><div><Label htmlFor="invoice-type">{t("Invoice type")}</Label><Select value={invoiceForm.paymentType} onValueChange={(value) => setInvoiceForm({ ...invoiceForm, paymentType: value })}><SelectTrigger id="invoice-type" className="mt-2"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="one_time">{t("One time service")}</SelectItem><SelectItem value="monthly_retainer">{t("Monthly retainer")}</SelectItem></SelectContent></Select></div></div>
+             <div className="grid gap-4 sm:grid-cols-2"><div><Label htmlFor="invoice-issue">{t("Issue date")}</Label><Input id="invoice-issue" className="mt-2" type="date" value={invoiceForm.issueDate} onChange={(event) => setInvoiceForm({ ...invoiceForm, issueDate: event.target.value })} /></div><div><Label htmlFor="invoice-due">{t("Due date")}</Label><Input id="invoice-due" className="mt-2" type="date" value={invoiceForm.dueDate} onChange={(event) => setInvoiceForm({ ...invoiceForm, dueDate: event.target.value })} /></div></div>
+             {editingInvoice && <div><Label htmlFor="invoice-status">{t("Status")}</Label><Select value={invoiceForm.status} onValueChange={(value) => setInvoiceForm({ ...invoiceForm, status: value })}><SelectTrigger id="invoice-status" className="mt-2"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="unpaid">{t("Unpaid")}</SelectItem><SelectItem value="overdue">{t("Overdue")}</SelectItem><SelectItem value="paid">{t("Paid")}</SelectItem><SelectItem value="void">{t("Void")}</SelectItem></SelectContent></Select></div>}
+             <Button className="w-full bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => editingInvoice ? updateInvoice.mutate({ id: editingInvoice.id, data: { invoiceNumber: invoiceForm.invoiceNumber, description: invoiceForm.description, amountCents: Number(invoiceForm.amountCents), amount: money(Number(invoiceForm.amountCents)), issueDate: invoiceForm.issueDate, dueDate: invoiceForm.dueDate, paymentType: invoiceForm.paymentType, status: invoiceForm.status } }) : createInvoice.mutate()} disabled={createInvoice.isPending || updateInvoice.isPending}>{editingInvoice ? t("Save invoice") : t("Create invoice")}</Button>
           </div>
         </DialogContent>
       </Dialog>

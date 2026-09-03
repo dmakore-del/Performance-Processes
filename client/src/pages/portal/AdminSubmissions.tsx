@@ -44,11 +44,11 @@ export default function AdminSubmissions() {
   const [contactSearch, setContactSearch] = useState("");
   const [appSearch, setAppSearch] = useState("");
 
-  const { data: contacts = [], isLoading: contactsLoading } = useQuery<ContactSubmission[]>({
+  const { data: contacts = [], isLoading: contactsLoading, isError: contactsError } = useQuery<ContactSubmission[]>({
     queryKey: ["/api/admin/contacts"],
   });
 
-  const { data: applications = [], isLoading: appsLoading } = useQuery<JobApplication[]>({
+  const { data: applications = [], isLoading: appsLoading, isError: appsError } = useQuery<JobApplication[]>({
     queryKey: ["/api/admin/applications"],
   });
 
@@ -66,6 +66,10 @@ export default function AdminSubmissions() {
       a.position.toLowerCase().includes(appSearch.toLowerCase())
   );
 
+  if (contactsError || appsError) {
+    return <PortalLayout><div className="flex min-h-[400px] items-center justify-center"><p className="text-sm font-bold uppercase tracking-[0.2em] text-destructive">{t("Error")}</p></div></PortalLayout>;
+  }
+
   return (
     <PortalLayout>
       <div className="space-y-6">
@@ -73,16 +77,16 @@ export default function AdminSubmissions() {
           <h1 className="text-3xl font-heading font-extrabold text-primary" data-testid="text-submissions-title">
             {t("Submissions Tracker")}
           </h1>
-          <p className="text-muted-foreground mt-1">View and manage all form submissions</p>
+          <p className="text-muted-foreground mt-1">{t("View and manage all form submissions")}</p>
         </div>
 
         <Tabs defaultValue="contacts" className="w-full">
           <TabsList className="grid w-full grid-cols-2 max-w-lg">
             <TabsTrigger value="contacts" className="flex items-center gap-2" data-testid="tab-contacts">
-              Contact ({contacts.length})
+              {t("Contact")} ({contacts.length})
             </TabsTrigger>
             <TabsTrigger value="applications" className="flex items-center gap-2" data-testid="tab-applications">
-              Jobs ({applications.length})
+              {t("Jobs")} ({applications.length})
             </TabsTrigger>
           </TabsList>
 
@@ -107,11 +111,11 @@ export default function AdminSubmissions() {
                   <table className="w-full text-sm" data-testid="table-contacts">
                     <thead>
                       <tr className="border-b border-border bg-secondary/50">
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Date</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Name</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Email</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Message</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Status</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Date")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Name")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Email")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Message")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Status")}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -127,7 +131,7 @@ export default function AdminSubmissions() {
                           </td>
                           <td className="px-4 py-3">
                             <Badge variant={c.read ? "secondary" : "default"} data-testid={`badge-status-${c.id}`}>
-                              {c.read ? "Read" : "New"}
+                              {c.read ? t("Read") : t("New")}
                             </Badge>
                           </td>
                         </tr>
@@ -160,13 +164,13 @@ export default function AdminSubmissions() {
                   <table className="w-full text-sm" data-testid="table-applications">
                     <thead>
                       <tr className="border-b border-border bg-secondary/50">
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Date</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Name</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Email</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Phone</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Position</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">LinkedIn</th>
-                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">Resume</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Date")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Name")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Email")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Phone")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Position")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("LinkedIn")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Resume")}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -184,7 +188,7 @@ export default function AdminSubmissions() {
                           <td className="px-4 py-3">
                             {a.linkedIn ? (
                               <a href={a.linkedIn} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline flex items-center gap-1">
-                                View
+                                {t("View")}
                               </a>
                             ) : (
                               <span className="text-muted-foreground">,</span>

@@ -416,10 +416,7 @@ export default function Careers() {
                   "Entrevue, Les candidats sélectionnés participent à une entrevue ciblée avec notre équipe",
                   "Décision et offre, Les candidats retenus reçoivent une offre formelle décrivant les conditions et les prochaines étapes"
                 ]).map((item, i) => (
-                  <li key={i} className="flex items-start gap-3" data-testid={`text-hiring-step-${i}`}>
-                    <div className="w-7 h-7 rounded-full bg-accent/10 text-accent flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold">
-                      {i + 1}
-                    </div>
+                  <li key={i} className="flex items-start" data-testid={`text-hiring-step-${i}`}>
                     <span className="text-muted-foreground">{item}</span>
                   </li>
                 ))}

@@ -778,7 +778,6 @@ export default function Solutions() {
                     <div className="relative aspect-[16/10] lg:aspect-auto">
                       <img src={communityTownhallImg} alt="Foundation phase" className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-transparent" />
-                      <div className="absolute top-5 left-5 w-12 h-12 rounded-xl bg-accent flex items-center justify-center text-white text-sm font-black shadow-lg shadow-accent/30">01</div>
                     </div>
                     <div className="p-8 lg:p-12 flex flex-col justify-center">
                       <div className="flex items-center gap-3 mb-2">
@@ -859,7 +858,6 @@ export default function Solutions() {
                     <div className="relative aspect-[16/10] lg:aspect-auto order-1 lg:order-2">
                       <img src={communityWorkspaceImg} alt="Build phase" className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-transparent" />
-                      <div className="absolute top-5 right-5 w-12 h-12 rounded-xl bg-accent flex items-center justify-center text-white text-sm font-black shadow-lg shadow-accent/30">02</div>
                     </div>
                   </div>
                 </div>
@@ -871,7 +869,6 @@ export default function Solutions() {
                     <div className="relative aspect-[16/10] lg:aspect-auto">
                       <img src={milestoneImg} alt="Run phase" className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-transparent" />
-                      <div className="absolute top-5 left-5 w-12 h-12 rounded-xl bg-accent flex items-center justify-center text-white text-sm font-black shadow-lg shadow-accent/30">03</div>
                     </div>
                     <div className="p-8 lg:p-12 flex flex-col justify-center">
                       <div className="flex items-center gap-3 mb-2">

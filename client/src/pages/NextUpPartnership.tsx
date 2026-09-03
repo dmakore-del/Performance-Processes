@@ -254,7 +254,6 @@ export default function NextUpPartnership() {
                     className="bg-white rounded-2xl p-7 border border-border hover:shadow-md hover:border-accent/30 transition-all"
                     data-testid={`step-${i}`}
                   >
-                    <div className="text-4xl font-black text-accent/30 mb-3">{step.step}</div>
                     <h3 className="text-lg font-heading font-extrabold text-primary mb-3">
                       {step.title}
                     </h3>

@@ -499,7 +499,6 @@ export default function Approach() {
                           <div className="absolute inset-0 opacity-10">
                             <div className={`absolute top-4 right-4 w-32 h-32 rounded-full bg-gradient-to-br ${step.color}`} />
                           </div>
-                          <span className="text-6xl lg:text-7xl font-black opacity-20 italic leading-none relative z-10">{step.num}</span>
                           <div className="mt-6 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1 text-sm relative z-10">
                             {step.duration}
                           </div>

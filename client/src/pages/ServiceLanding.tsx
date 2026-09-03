@@ -213,7 +213,6 @@ export default function ServiceLanding() {
             <ul className="max-w-3xl">
               {landing.included.map((item, i) => (
                 <li key={i} className="border-t border-border last:border-b py-5 flex items-baseline gap-4" data-testid={`text-landing-included-${i}`}>
-                  <span className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground shrink-0">{`0${i + 1}`}</span>
                   <span className="text-lg md:text-xl text-primary font-light">{item}</span>
                 </li>
               ))}

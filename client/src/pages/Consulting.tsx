@@ -1052,12 +1052,6 @@ export default function Consulting() {
                 {methodSteps.map((step, i) => (
                   <div key={i} className="relative" data-testid={`consulting-method-step-${i}`}>
                     <div className={`bg-gradient-to-br ${step.color} rounded-3xl p-8 h-full border border-border/40 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group`}>
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
-                          {step.icon}
-                        </div>
-                        <span className="text-3xl font-extrabold text-accent/30">{step.step}</span>
-                      </div>
                       <h3 className="text-xl font-extrabold text-primary mb-3">{step.title}</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed mb-5">{step.desc}</p>
                       <ul className="space-y-2">

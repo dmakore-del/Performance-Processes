@@ -121,35 +121,27 @@ export default function Recruiting() {
 
   const methodSteps = [
     {
-      step: "01",
       title: language === "en" ? "Understand" : "Comprendre",
       desc: language === "en" ? "We start by deeply understanding your hiring needs, the role, the culture, and the kind of person who will truly thrive in your organization." : "Nous commençons par comprendre vos besoins en recrutement, le rôle, la culture et le type de personne qui s'épanouira dans votre organisation.",
       outcomes: language === "en" ? ["Role and culture analysis", "Hiring needs assessment", "Ideal candidate profiling", "Timeline and process planning"] : ["Analyse du rôle et de la culture", "Évaluation des besoins", "Profil du candidat idéal", "Planification du processus"],
-      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">01</span>,
       color: "from-zinc-700/10 to-zinc-800/5",
     },
     {
-      step: "02",
       title: language === "en" ? "Source" : "Rechercher",
       desc: language === "en" ? "We tap into our networks, databases, and sourcing strategies to find candidates you won't find on job boards, the hidden talent that makes the difference." : "Nous exploitons nos réseaux et stratégies de sourcing pour trouver des candidats introuvables sur les sites d'emploi.",
       outcomes: language === "en" ? ["Multi-channel sourcing", "Passive candidate outreach", "Network and referral activation", "Diverse talent pipelines"] : ["Sourcing multi-canaux", "Contact de candidats passifs", "Activation du réseau", "Pipelines diversifiés"],
-      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">02</span>,
       color: "from-accent/10 to-accent/5",
     },
     {
-      step: "03",
       title: language === "en" ? "Evaluate" : "Évaluer",
       desc: language === "en" ? "Every candidate goes through a structured evaluation, skills, experience, culture fit, and potential, so you only meet the best." : "Chaque candidat passe par une évaluation structurée, compétences, expérience, adéquation culturelle et potentiel.",
       outcomes: language === "en" ? ["Structured screening process", "Skills and competency assessment", "Culture fit evaluation", "Reference verification"] : ["Processus de présélection structuré", "Évaluation des compétences", "Adéquation culturelle", "Vérification des références"],
-      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">03</span>,
       color: "from-emerald-500/10 to-emerald-600/5",
     },
     {
-      step: "04",
       title: language === "en" ? "Place" : "Placer",
       desc: language === "en" ? "We don't just fill a seat, we help you make the right hire, negotiate the offer, and set your new team member up for success from day one." : "Nous ne remplissons pas simplement un poste, nous vous aidons à faire le bon choix, négocier l'offre et préparer votre nouveau collaborateur au succès.",
       outcomes: language === "en" ? ["Offer negotiation support", "Onboarding guidance", "Placement guarantee", "Post-hire follow-up"] : ["Soutien à la négociation", "Accompagnement à l'intégration", "Garantie de placement", "Suivi post-embauche"],
-      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">04</span>,
       color: "from-zinc-700/10 to-zinc-800/5",
     },
   ];
@@ -897,9 +889,6 @@ export default function Recruiting() {
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-4xl">
-              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="recruiting-text-hero-label">
-                {language === "en" ? "Human Resources" : "Ressources humaines"}
-              </p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="recruiting-text-hero-title">
                 {language === "en" ? (
                   <>Build, manage, and grow the <span className="text-accent">people</span> who power your success</>

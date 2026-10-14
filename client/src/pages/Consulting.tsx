@@ -129,35 +129,27 @@ export default function Consulting() {
 
   const methodSteps = [
     {
-      step: "01",
       title: language === "en" ? "Listen" : "Écouter",
       desc: language === "en" ? "We start by understanding your world, your goals, your challenges, and what matters most to you and your people." : "Nous commençons par comprendre votre réalité, vos objectifs, vos défis et ce qui compte le plus pour vous.",
       outcomes: language === "en" ? ["Deep-dive discovery", "Understanding your vision", "People & culture review", "Stakeholder conversations"] : ["Découverte approfondie", "Comprendre votre vision", "Revue des personnes et de la culture", "Conversations avec les parties prenantes"],
-      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">01</span>,
       color: "from-zinc-700/10 to-zinc-800/5",
     },
     {
-      step: "02",
       title: language === "en" ? "Align" : "Aligner",
       desc: language === "en" ? "Together, we define what success looks like for you, and make sure everyone is moving in the same direction." : "Ensemble, nous définissons ce que le succès signifie pour vous, et veillons à ce que tout le monde avance dans la même direction.",
       outcomes: language === "en" ? ["Shared vision & clarity", "Team buy-in", "Clear success picture", "Prioritized goals"] : ["Vision et clarté partagées", "Adhésion de l'équipe", "Image claire du succès", "Objectifs priorisés"],
-      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">02</span>,
       color: "from-accent/10 to-accent/5",
     },
     {
-      step: "03",
       title: language === "en" ? "Build Together" : "Construire ensemble",
       desc: language === "en" ? "We work alongside you, not from the sidelines, to build the systems, habits, and infrastructure that make progress stick." : "Nous travaillons à vos côtés, pas en retrait, pour bâtir les systèmes et habitudes qui ancrent le progrès.",
       outcomes: language === "en" ? ["Practical systems that work", "People-first processes", "Habits that last", "Real accountability"] : ["Systèmes pratiques qui fonctionnent", "Processus axés sur les personnes", "Habitudes durables", "Responsabilité réelle"],
-      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">03</span>,
       color: "from-emerald-500/10 to-emerald-600/5",
     },
     {
-      step: "04",
       title: language === "en" ? "Grow & Evolve" : "Grandir et évoluer",
       desc: language === "en" ? "We celebrate your wins, learn from what's working, and keep evolving with you as your needs change." : "Nous célébrons vos réussites, apprenons de ce qui fonctionne et continuons à évoluer avec vous.",
       outcomes: language === "en" ? ["Visible progress", "Regular check-ins", "Evolving support", "Lasting momentum"] : ["Progrès visibles", "Points de contact réguliers", "Soutien évolutif", "Élan durable"],
-      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">04</span>,
       color: "from-zinc-700/10 to-zinc-800/5",
     },
   ];
@@ -982,9 +974,6 @@ export default function Consulting() {
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-4xl">
-              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="consulting-text-hero-label">
-                {language === "en" ? "Management Consulting" : "Conseil en gestion"}
-              </p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="consulting-text-hero-title">
                 {language === "en" ? (
                   <>Strategy, operations, people & <span className="text-accent">performance</span></>

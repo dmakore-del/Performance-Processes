@@ -119,35 +119,27 @@ export default function Marketing() {
 
   const methodSteps = [
     {
-      step: "01",
       title: language === "en" ? "Discover" : "Découvrir",
       desc: language === "en" ? "We learn about your brand, your audience, and your goals to build a digital strategy that reflects who you really are." : "Nous découvrons votre marque, votre audience et vos objectifs pour construire une stratégie numérique qui vous reflète.",
       outcomes: language === "en" ? ["Brand & audience analysis", "Competitive landscape review", "Goal definition & alignment", "Strategy roadmap"] : ["Analyse de marque et audience", "Revue concurrentielle", "Définition des objectifs", "Feuille de route stratégique"],
-      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">01</span>,
       color: "from-zinc-700/10 to-zinc-800/5",
     },
     {
-      step: "02",
       title: language === "en" ? "Design" : "Concevoir",
       desc: language === "en" ? "We craft your visual identity and digital assets with intention, every pixel and word designed to build trust and attract the right people." : "Nous créons votre identité visuelle et vos actifs numériques avec intention, chaque élément conçu pour bâtir la confiance.",
       outcomes: language === "en" ? ["Visual identity creation", "Website wireframing", "Content strategy", "User experience design"] : ["Création d'identité visuelle", "Maquettes de site", "Stratégie de contenu", "Design UX"],
-      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">02</span>,
       color: "from-accent/10 to-accent/5",
     },
     {
-      step: "03",
       title: language === "en" ? "Build" : "Construire",
       desc: language === "en" ? "We develop your website and marketing assets with care, ensuring everything works seamlessly across devices and platforms." : "Nous développons votre site Web et vos actifs marketing avec soin, assurant un fonctionnement optimal sur tous les appareils.",
       outcomes: language === "en" ? ["Responsive website development", "SEO implementation", "Content creation", "Analytics integration"] : ["Développement Web responsive", "Implémentation SEO", "Création de contenu", "Intégration analytique"],
-      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">03</span>,
       color: "from-emerald-500/10 to-emerald-600/5",
     },
     {
-      step: "04",
       title: language === "en" ? "Grow" : "Croître",
       desc: language === "en" ? "We launch, optimize, and support your digital presence so it keeps working for you long after the project is done." : "Nous lançons, optimisons et supportons votre présence numérique pour qu'elle continue à travailler pour vous.",
       outcomes: language === "en" ? ["Launch & quality assurance", "Performance monitoring", "Conversion optimization", "Ongoing support"] : ["Lancement et assurance qualité", "Suivi de performance", "Optimisation de conversion", "Support continu"],
-      icon: <span aria-hidden="true" className="text-accent text-2xl font-black">04</span>,
       color: "from-zinc-700/10 to-zinc-800/5",
     },
   ];
@@ -564,9 +556,6 @@ export default function Marketing() {
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
           <div className="container mx-auto px-4 md:px-8 py-24 lg:py-36 relative z-10">
             <div className="max-w-4xl">
-              <p className="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6" data-testid="marketing-text-hero-label">
-                {language === "en" ? "Marketing & Websites" : "Marketing et sites Web"}
-              </p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[1.08]" data-testid="marketing-text-hero-title">
                 {language === "en" ? (
                   <>Digital presence that builds <span className="text-accent">trust</span> and drives results</>

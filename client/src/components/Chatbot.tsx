@@ -12,7 +12,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["services", "what do you offer", "offer", "provide", "help with"],
-    answer: "We offer performance systems for everyone: Enterprise consulting (strategy, systems, executive advisory), Small Business Growth programs ($500,$1,500/mo), Personal Performance Coaching ($100,$500/mo), and Self-Serve tools and programs (from $49). We also handle Business Registration and Website & Digital Presence. Visit our Services page for details."
+    answer: "We help Canadian entrepreneurs establish and launch businesses with incorporation and CRA setup support, business systems, websites, digital services, grant research, and financing application assistance. Visit our Packages page or /funding-retainers for service details and fees."
   },
   {
     keywords: ["different", "unique", "why choose", "stand out", "differentiator"],
@@ -84,11 +84,19 @@ const FAQ_DATA = [
   },
   {
     keywords: ["business registration", "register", "incorporate", "incorporation", "start a business", "new business", "register a company"],
-    answer: "Yes! We offer support for new and emerging businesses, including foundational systems, branding, websites, and marketing setup. Visit our Services page for details, or book a discovery call to discuss what you need."
+    answer: "We provide administrative support for business name registration, Ontario or federal incorporation, business-number and relevant CRA account setup, launch systems, websites, and digital services. We do not provide legal, tax, or accounting advice."
   },
   {
     keywords: ["price", "cost", "pricing", "how much", "fee", "rate", "payment", "pay"],
-    answer: "We offer productized services with transparent pricing: Websites from $1,500, Marketing packages from $1,200, CRM setup from $1,500, Business System Audits from $750, Training from $499/seat, and monthly support retainers from $1,500/mo. Visit our Services page for full package details. Anyone currently enrolled in a NextUp Foundation for Canadian Youth program, or who has donated $500+ to the foundation in the past year, gets 40% off our website services , see our NextUp Partnership page."
+    answer: "Our launch and service package prices are listed on the Packages page. Funding-assistance fees, the 6% success fee for covered grants or financing, monthly retainer options, and retainer terms are described at /funding-retainers. All listed fees exclude applicable HST."
+  },
+  {
+    keywords: ["grant", "grants", "funding", "financing", "loan", "loans", "line of credit"],
+    answer: "We research suitable grant and financing opportunities and assist with application preparation. Standard grant applications are $560 and standard business financing applications are $400, before HST. A mandatory 6% success fee applies to qualifying funds actually received on covered applications we materially support, where permitted, in addition to service fees. Scope and fees are approved in writing before work begins. See /funding-retainers for details."
+  },
+  {
+    keywords: ["retainer", "monthly support", "ongoing support", "cancel retainer", "retainer terms"],
+    answer: "Monthly service-area retainers are available for website, marketing, CRM, business systems, HR/recruiting, and growth support. They are billed in advance on the first, unused hours do not roll over, out-of-scope work is $175/hour with advance approval, and either party may end the month-to-month retainer with 15 business days' written notice. See /funding-retainers for prices and terms."
   },
   {
     keywords: ["contact", "email", "phone", "reach"],
@@ -119,7 +127,15 @@ const FAQ_DATA_FR = [
   },
   {
     keywords: ["prix", "coût", "tarifs", "combien", "paiement", "payer"],
-    answer: "Nos forfaits et services sont tarifés en dollars canadiens sur la page Forfaits. Les services admissibles peuvent être payés en ligne par carte de crédit, carte de débit ou PayPal lorsque cette option est offerte par Stripe."
+    answer: "Les prix des forfaits de lancement et des services sont indiqués sur la page Forfaits. Les frais d’aide au financement, les frais de succès de 6 % applicables aux demandes couvertes, les mandats mensuels et leurs conditions sont présentés à /funding-retainers. Les frais indiqués excluent les taxes applicables."
+  },
+  {
+    keywords: ["subvention", "subventions", "financement", "prêt", "prêts", "marge de crédit"],
+    answer: "Nous recherchons des possibilités pertinentes et aidons à préparer les demandes de subvention et de financement. Une demande standard de subvention coûte 560 $ et une demande standard de financement commercial coûte 400 $, avant les taxes. Des frais de succès obligatoires de 6 % s’appliquent aux fonds admissibles réellement reçus pour les demandes couvertes que nous appuyons de façon importante, lorsque permis, en plus des frais de service. La portée et les frais sont approuvés par écrit avant le début des travaux. Consultez /funding-retainers."
+  },
+  {
+    keywords: ["mandat", "soutien mensuel", "résilier", "conditions du mandat"],
+    answer: "Des mandats mensuels par secteur sont offerts pour les sites web, le marketing, le CRM, les systèmes d’affaires, les RH et le soutien à la croissance. Ils sont facturés d’avance le premier du mois, les heures inutilisées ne sont pas reportées, les travaux hors portée coûtent 175 $ l’heure avec approbation préalable et chaque partie peut résilier avec un préavis écrit de 15 jours ouvrables. Consultez /funding-retainers pour les prix et conditions."
   },
   {
     keywords: ["commencer", "première étape", "consultation", "rendez-vous", "réserver"],

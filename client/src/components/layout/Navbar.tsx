@@ -10,13 +10,13 @@ export function Navbar() {
   const [location] = useLocation();
   const { language, setLanguage } = useLanguage();
   const copy = language === "en" ? {
-    home: "Home", formation: "Start a Business", setup: "Business Setup", digital: "Websites & Digital", packages: "Packages", about: "About", contact: "Contact", book: "Book a consultation", portal: "Client portal"
+    home: "Home", formation: "Start a Business", setup: "Business Setup", digital: "Websites & Digital", funding: "Funding & retainers", packages: "Packages", about: "About", contact: "Contact", book: "Book a consultation", portal: "Client portal"
   } : {
-    home: "Accueil", formation: "Démarrer une entreprise", setup: "Mise en place", digital: "Sites web et numérique", packages: "Forfaits", about: "À propos", contact: "Contact", book: "Réserver une consultation", portal: "Portail client"
+    home: "Accueil", formation: "Démarrer une entreprise", setup: "Mise en place", digital: "Sites web et numérique", funding: "Financement et soutien", packages: "Forfaits", about: "À propos", contact: "Contact", book: "Réserver une consultation", portal: "Portail client"
   };
   const links = [
     [copy.home, "/"], [copy.formation, "/start-a-business"], [copy.setup, "/business-setup"],
-    [copy.digital, "/websites-digital"], [copy.packages, "/packages"], [copy.about, "/about"], [copy.contact, "/contact"],
+    [copy.digital, "/websites-digital"], [copy.funding, "/funding-retainers"], [copy.packages, "/packages"], [copy.about, "/about"], [copy.contact, "/contact"],
   ];
   return <header className="sticky top-0 z-[60] border-b border-primary/10 bg-background/95 backdrop-blur">
     <div className="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between px-5 lg:px-10">

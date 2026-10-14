@@ -24,6 +24,7 @@ import ServiceLanding from "./pages/ServiceLanding";
 import Results from "./pages/Results";
 import LaunchService from "./pages/LaunchService";
 import Packages from "./pages/Packages";
+import FundingRetainers from "./pages/FundingRetainers";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -79,6 +80,7 @@ function Router() {
       <Route path="/business-setup" component={LaunchService} />
       <Route path="/websites-digital" component={LaunchService} />
       <Route path="/packages" component={Packages} />
+      <Route path="/funding-retainers" component={FundingRetainers} />
       <Route path="/solutions">{() => <Redirect to="/packages" />}</Route>
       <Route path="/services">{() => <Redirect to="/" />}</Route>
       <Route path="/services/:slug">{() => <Redirect to="/packages" />}</Route>

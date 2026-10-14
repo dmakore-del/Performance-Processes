@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { OfferCarousel } from "@/components/OfferCarousel";
 import { useLanguage } from "@/hooks/use-language";
+import { Link } from "wouter";
 import { OFFERS, getLocalizedCategoryMeta, type OfferCategory } from "@shared/offers";
 import packageImage from "@/assets/generated/strategy-whiteboard.png";
 
@@ -45,6 +46,11 @@ export default function Packages() {
             <p className="max-w-md text-sm leading-6 text-muted-foreground">{fr ? "Un investissement unique pour passer de l’idée à une entreprise prête à fonctionner." : "One-time investments to move from idea to a business ready to operate."}</p>
           </div>
           <OfferCarousel offers={launchOffers} returnPage="/packages" />
+
+           <div className="mt-10 flex flex-col justify-between gap-4 border-t border-primary/15 pt-6 sm:flex-row sm:items-center">
+             <p className="max-w-2xl text-sm leading-6 text-muted-foreground">{fr ? "Vous cherchez du soutien mensuel ou de l’aide pour trouver du financement? Consultez nos services et conditions." : "Looking for ongoing monthly support or help finding funding? Explore the service options and terms."}</p>
+             <Link href="/funding-retainers" className="shrink-0 border-b border-primary pb-1 text-sm">{fr ? "Financement et mandats mensuels" : "Funding and retainer services"} <span aria-hidden="true">↗</span></Link>
+           </div>
 
            <details className="mt-20 overflow-x-auto">
              <summary className="cursor-pointer text-display text-4xl">{fr ? "Comparer les trois forfaits" : "Compare the three packages"}</summary>

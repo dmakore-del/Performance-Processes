@@ -23,7 +23,7 @@ The About page uses Danai Makore’s actual founder portrait and the portrait of
 
 ## Homepage video
 
-Home uses a locally bundled, muted, looping showreel made only from moving Pexels video clips. It has no photo slide, static poster, or audio track. The reel preloads and autoplays unless reduced-motion or data-saving settings opt out; there is no pause/play control:
+Home uses a locally bundled, muted, looping showreel made only from moving Pexels video clips, supplied in WebM and MP4 formats. It has no photo slide, static poster, or audio track. The reel preloads and autoplays unless reduced-motion preferences opt out; there is no pause control:
 
 | Service scene | Pexels source |
 | --- | --- |

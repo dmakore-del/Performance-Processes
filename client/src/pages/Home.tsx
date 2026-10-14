@@ -62,7 +62,6 @@ function HomeShowreel({ french }: { french: boolean }) {
    <div className="relative aspect-video min-h-[240px] overflow-hidden bg-secondary md:min-h-[360px]">
       <video
         ref={videoRef}
-        src={SHOWREEL_VIDEO}
         muted
         autoPlay={shouldPlay}
         loop
@@ -72,7 +71,10 @@ function HomeShowreel({ french }: { french: boolean }) {
         onSeeked={(event) => updateScene(event.currentTarget)}
         aria-label={scene.description[languageIndex]}
         className="absolute inset-0 h-full w-full object-cover"
-      />
+      >
+        <source src="/assets/videos/performance-processes-showreel-v3.webm" type="video/webm" />
+        <source src={SHOWREEL_VIDEO} type="video/mp4" />
+      </video>
       {!shouldPlay && (
         <button
           type="button"

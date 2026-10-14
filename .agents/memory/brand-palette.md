@@ -25,6 +25,6 @@ The company considers inclusion a core value. Photos, video, and people shown in
 
 **How to apply:** Use varied, professional work scenes without tokenizing people; keep alt text factual and descriptive, and reserve named staff profiles for authentic team portraits.
 
-Keep blush restrained and never use low-contrast pink for small body text. Keep the pink logo and favicon. Preserve mobile-safe muted inline video playback and reduced-motion poster behavior.
+Keep blush restrained and never use low-contrast pink for small body text. Keep the pink logo and favicon. Preserve mobile-safe muted inline video playback. The user wants actual moving footage, not still photos with camera movement or static poster images; use an explicit play option for reduced-motion visitors instead.
 
 Use commas rather than em dashes in prose, and prefer typographic structure over decorative icons.

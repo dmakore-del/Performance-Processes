@@ -10,9 +10,9 @@ export function Navbar() {
   const [location] = useLocation();
   const { language, setLanguage } = useLanguage();
   const copy = language === "en" ? {
-    home: "Home", formation: "Start a Business", setup: "Business Setup", digital: "Websites & Digital", funding: "Funding & retainers", packages: "Packages", about: "About", contact: "Contact", book: "Book a consultation", portal: "Client portal"
+    home: "Home", formation: "Start a Business", setup: "Business Setup", digital: "Websites & Digital", funding: "Grants & Financing", packages: "Packages", about: "About", contact: "Contact", book: "Book a consultation", portal: "Client portal"
   } : {
-    home: "Accueil", formation: "Démarrer une entreprise", setup: "Mise en place", digital: "Sites web et numérique", funding: "Financement et soutien", packages: "Forfaits", about: "À propos", contact: "Contact", book: "Réserver une consultation", portal: "Portail client"
+    home: "Accueil", formation: "Démarrer une entreprise", setup: "Mise en place", digital: "Sites web et numérique", funding: "Subventions et financement", packages: "Forfaits", about: "À propos", contact: "Contact", book: "Réserver une consultation", portal: "Portail client"
   };
   const links = [
     [copy.home, "/"], [copy.formation, "/start-a-business"], [copy.setup, "/business-setup"],

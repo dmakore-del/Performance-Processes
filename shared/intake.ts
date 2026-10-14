@@ -109,8 +109,9 @@ export const intakeSchema = z.object({
 });
 export type IntakeInput = z.infer<typeof intakeSchema>;
 export function healthResults(answers:Record<string,string>) {
+  if (healthFields.some((field) => !/^[1-5]$/.test(answers[field.id] || ""))) return [];
   return healthGroups.map((group,gi)=> {
     const score=group.items.reduce((n,_,i)=>n+Number(answers[`health_${gi}_${i}`]||0),0);
-    return {section:group.section,score,level:score<15?"priority":score<20?"foundation":"strong"};
+    return {section:group.section,score,level:score<15?"priority" as const:score<20?"foundation" as const:"strong" as const};
   });
 }

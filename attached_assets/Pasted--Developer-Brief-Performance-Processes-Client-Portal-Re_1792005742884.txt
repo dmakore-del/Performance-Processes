@@ -1,0 +1,678 @@
+# Developer Brief: Performance Processes Client Portal Rebuild
+
+## 1. Project Overview
+
+We are requesting a complete redesign and rebuild of the **Performance Processes Soleria Inc. Client Portal**.
+
+**Website:** https://performanceprocesses.com  
+**Proposed portal URL:** https://portal.performanceprocesses.com
+
+The objective is to create a sophisticated, secure, fully responsive client management platform that serves as the central hub for all Performance Processes services.
+
+Our business specializes in:
+
+- Business incorporation and company setup
+- Business consulting and advisory services
+- Website design, development, and digital presence
+- Grant research, preparation, and application management
+- Business financing assistance
+- Business plans, financial projections, and cash-flow forecasting
+- Ongoing business support and monthly retainer services
+
+The portal must streamline our client experience while reducing administrative work for our internal team.
+
+**This is intended to be a complete functional rebuild, not merely a visual redesign.** Existing functionality, data, and integrations should be audited before development begins to determine what can be retained or migrated.
+
+---
+
+## 2. Branding and Visual Identity
+
+### Logo and Brand Colours
+
+Use the official Performance Processes logo provided as the primary visual reference.
+
+The portal's colour palette must be extracted from and aligned with our existing logo.
+
+Our logo features vibrant pink, magenta, blush pink, and deep burgundy tones alongside elegant charcoal typography.
+
+Suggested starting palette (approximate values; confirm against the original logo asset):
+
+| Colour | HEX | Application |
+|---|---|---|
+| Signature Pink | #F72B78 | Primary buttons, active navigation, interactive accents |
+| Deep Magenta | #BD1359 | Hover states, progress indicators, selected elements |
+| Burgundy | #80002E | Premium accents and secondary highlights |
+| Soft Blush | #FFF0F5 | Subtle backgrounds, highlighted content |
+| Charcoal | #252525 | Primary headings and body text |
+| White | #FFFFFF | Main backgrounds and cards |
+| Light Grey | #F7F7F8 | Dashboard background and section separation |
+
+### Design Direction
+
+The portal should feel like a premium business consulting and financial advisory platform.
+
+The desired aesthetic is:
+
+- Modern, sophisticated, and minimalist
+- Elegant and professional without appearing overly corporate
+- Clean white backgrounds and spacious layouts
+- Strong typography with clear visual hierarchy
+- Subtle rounded cards and refined borders
+- Minimal visual clutter
+- Strategically used pink and burgundy accents
+- Polished icons, charts, and progress indicators
+- Smooth, subtle transitions and microinteractions
+
+**Important:** Avoid overwhelming the interface with pink. White and neutral tones should dominate, while our logo colours provide distinction.
+
+Use the full logo on the login screen and appropriately sized branding in the dashboard navigation. Do not redesign or alter the company logo.
+
+The interface must be responsive across desktop, tablet, and mobile devices and meet WCAG 2.2 AA accessibility standards.
+
+---
+
+## 3. User Roles and Permissions
+
+Create separate user experiences with role-based access control.
+
+### Client Users
+
+Clients should only access their own organization's information.
+
+They must be able to:
+
+- View active and completed services
+- Track project progress
+- Access documents and agreements
+- Submit requests
+- Communicate with assigned consultants
+- Review and pay invoices
+- Book appointments
+- Track grant and financing applications
+- Approve quotations, proposals, and deliverables
+- Manage their business profile
+
+Support multiple authorized users under one corporate client account, with permissions controlled by a designated client administrator.
+
+### Internal Staff
+
+Authorized Performance Processes employees and consultants should be able to:
+
+- Manage assigned clients
+- Create and update projects
+- Assign tasks and milestones
+- Upload deliverables
+- Manage grant opportunities and applications
+- Send communications
+- Issue quotations and invoices
+- Review client-submitted documents
+- Track application deadlines
+- Generate reports
+
+### System Administrator
+
+Administrators require access to organization-wide settings, client accounts, service configurations, staff permissions, reporting, billing administration, and audit logs.
+
+Financial records and sensitive documents must remain subject to appropriate permission restrictions, including for internal staff.
+
+---
+
+## 4. Client Dashboard
+
+The dashboard should provide an immediate overview of each client's relationship with Performance Processes.
+
+### Dashboard Components
+
+**Welcome Section**
+- Client company name
+- Personalized greeting
+- Assigned account manager
+- Quick access to account support
+
+**Overview Cards**
+- Active services
+- Active projects
+- Pending client actions
+- Outstanding invoices
+- Upcoming appointments
+- Recent documents
+
+**Active Project Tracker**
+
+Each project should display:
+- Project name
+- Service category
+- Current status
+- Milestones completed
+- Next steps
+- Target completion date
+- Assigned consultant
+
+**Action Centre**
+
+Display items requiring client attention, including:
+- Documents to upload
+- Agreements to sign
+- Proposals to approve
+- Invoices to pay
+- Application information to confirm
+- Upcoming deadlines
+
+**Quick Actions**
+- Request a service
+- Upload a document
+- Book a consultation
+- Send a message
+- View invoices
+
+The dashboard should be tailored to the client's active services rather than displaying irrelevant modules.
+
+---
+
+## 5. My Services
+
+Create a dedicated area where clients can view all services purchased from Performance Processes.
+
+Each service should include:
+
+- Service name and description
+- Start date
+- Scope of services
+- Agreed deliverables
+- Applicable service fees
+- Current status
+- Assigned consultant
+- Associated documents and contracts
+- Related projects and support requests
+
+For retainer services, display the monthly fee, billing schedule, current scope, renewal terms, and monthly activity summary.
+
+Clients must also be able to request additional services through the portal.
+
+---
+
+## 6. Project Management
+
+Implement a comprehensive project tracking system.
+
+Each project should have a dedicated workspace with:
+
+- Project overview
+- Progress milestones
+- Target deadlines
+- Deliverables
+- Required client actions
+- Related files
+- Messages and comments
+- Activity history
+
+Suggested project statuses:
+
+1. Pending Onboarding
+2. Information Required
+3. In Progress
+4. Awaiting Client Review
+5. Revisions in Progress
+6. Submitted / Awaiting External Decision
+7. Completed
+8. On Hold
+9. Cancelled
+
+Project status options should be configurable based on the service type.
+
+Clients should have clear visibility into progress without accessing internal staff notes, confidential workflows, or other clients' information.
+
+---
+
+## 7. Grant & Financing Centre
+
+This is a priority feature and should be developed as a comprehensive standalone module.
+
+### A. Grant Opportunity Management
+
+Performance Processes administrators should be able to add relevant grant and financing opportunities to individual client accounts.
+
+Each opportunity should display:
+
+- Grant or financing program name
+- Funding organization
+- Potential funding amount
+- Eligibility criteria
+- Application deadline
+- Eligible expenses
+- Required documentation
+- Performance Processes' preliminary assessment
+- Recommended next steps
+
+Clients should be able to indicate whether they are interested in proceeding.
+
+### B. Application Management
+
+Once a client authorizes an application, the system should create a dedicated application workspace.
+
+Track stages such as:
+
+- Eligibility assessment
+- Application authorized
+- Information collection
+- Draft preparation
+- Internal review
+- Client approval
+- Submission
+- Under funder review
+- Additional information requested
+- Approved
+- Declined
+- Withdrawn
+
+Each application must have its own documents, fees, deadlines, communications, and status history.
+
+### C. Funding and Fee Tracking
+
+Display:
+
+- Amount requested
+- Amount approved
+- Amount received
+- Application preparation fees
+- Outstanding invoices
+- Applicable success fees
+
+For our current grant and financing arrangements, the portal must support a **6% contractual success fee**, where applicable under the signed agreement, plus applicable HST.
+
+All rates and fee calculations must be configurable by authorized administrators and tied to the specific client agreement.
+
+Do not automatically invoice success fees based solely on a change in application status. Billing must follow the agreed contractual trigger.
+
+### D. Post-Award Management
+
+Include the ability to track reporting requirements, funding disbursements, documentation requests, and funder deadlines.
+
+The system must not imply that Performance Processes guarantees funding approval.
+
+---
+
+## 8. Business Incorporation & Setup
+
+Clients purchasing incorporation services should have access to an incorporation workspace.
+
+Include:
+
+- Business information questionnaire
+- Company name preferences
+- Federal or provincial incorporation selection
+- Directors and shareholders information
+- Required document checklist
+- Incorporation progress
+- Filing confirmations
+- Completed incorporation documents
+- Corporate record downloads
+- Annual filing and renewal reminders
+
+Sensitive identification documents must be stored securely and accessible only to authorized personnel.
+
+---
+
+## 9. Website & Digital Services
+
+Clients who retain Performance Processes for digital services should have a website project workspace.
+
+Features should include:
+
+- Website project progress
+- Design and development milestones
+- Content submission forms
+- Branding and media uploads
+- Mockup and design previews
+- Client feedback and revisions
+- Deliverable approval
+- Hosting and domain information
+- Maintenance requests
+- Website support tickets
+
+Where applicable, integrate website analytics and maintenance reporting.
+
+Clients should be able to request website changes and receive quotations before additional billable work begins.
+
+---
+
+## 10. Document Management & E-Signatures
+
+Create a secure centralized document library.
+
+Features must include:
+
+- File uploads and downloads
+- Organized folders by client, project, and service
+- Document categorization
+- File version history
+- Secure document previews
+- Client and staff permissions
+- Downloadable completed deliverables
+- Document request checklists
+- Electronic signature functionality or integration
+
+Support common formats including PDF, DOCX, XLSX, PNG, and JPG.
+
+Documents may include incorporation records, business plans, financial statements, agreements, invoices, grant applications, and funding correspondence.
+
+Use a compliant e-signature provider and retain signature evidence and audit trails.
+
+---
+
+## 11. Billing, Invoices & Payments
+
+Build a billing section where clients can manage their financial relationship with Performance Processes.
+
+### Client Features
+
+- View all invoices
+- Pay outstanding invoices
+- Download receipts
+- View transaction history
+- Access signed agreements
+- Review recurring retainer charges
+- View payment due dates
+- Update authorized payment methods securely
+- Review quotations and approve charges
+
+### Administrator Features
+
+- Create invoices
+- Assign fees to projects
+- Configure recurring retainers
+- Track overdue payments
+- Issue credits and adjustments
+- Configure applicable taxes
+- Manage service pricing
+- Track success fees
+- Export financial reports
+
+Integrate with a reputable payment processor such as Stripe.
+
+Credit card data should not be stored directly on our servers. Use payment-provider-hosted or tokenized payment methods.
+
+The system should support CAD as the primary billing currency, with other currencies configurable if required.
+
+---
+
+## 12. Client Communication & Support
+
+Provide a centralized messaging and support system.
+
+Clients should be able to:
+
+- Message their assigned consultant
+- Submit service requests
+- Ask questions about active projects
+- Attach files to conversations
+- Receive status updates
+- View previous correspondence
+
+Support tickets should include reference numbers, priority levels, assignment, and status tracking.
+
+Internal notes must never be visible to clients.
+
+Email notifications should inform clients of important portal updates without exposing sensitive attachments or confidential financial information in notification emails.
+
+---
+
+## 13. Appointments & Scheduling
+
+Integrate appointment booking into the portal.
+
+Clients should be able to:
+
+- Book consultations
+- View available appointment slots
+- Reschedule appointments according to applicable policies
+- Receive confirmations
+- Access meeting links
+- View previous and upcoming appointments
+
+The system should accommodate integrations with Google Calendar, Microsoft Outlook, or an appropriate scheduling platform.
+
+Where appointments are billable, the system should support payment before confirmation.
+
+---
+
+## 14. Service Requests and Quotation Management
+
+Include a section where clients can request new or additional services.
+
+The process should be:
+
+**Client submits request → Performance Processes reviews → Quotation prepared → Client approves → Agreement/payment completed → Project created.**
+
+Quotation and approval records must be retained.
+
+The system should support configurable service pricing while allowing administrators to prepare custom quotations.
+
+---
+
+## 15. Internal Administrative Dashboard
+
+Develop a separate internal dashboard for managing business operations.
+
+### Key Administrative Modules
+
+**Client CRM**
+- Client records
+- Contacts
+- Service history
+- Active agreements
+- Account assignments
+
+**Project Management**
+- Internal task boards
+- Assignment of consultants
+- Deadlines
+- Milestones
+- Workload visibility
+
+**Grant Pipeline**
+- Opportunities under review
+- Client interest
+- Applications in preparation
+- Submission deadlines
+- Pending funding decisions
+- Approved and declined applications
+
+**Financial Management**
+- Monthly recurring revenue
+- Project revenue
+- Outstanding invoices
+- Grant application fees
+- Success fees
+- Revenue by service category
+
+**Staff Management**
+- Role permissions
+- Assigned accounts
+- Internal notes
+- Task assignments
+- Activity history
+
+**Reporting**
+- Active clients
+- Completed projects
+- Retainer subscriptions
+- Application conversion rates
+- Grant approvals and funding amounts
+- Outstanding client actions
+- Financial performance
+
+---
+
+## 16. Notifications and Automation
+
+Implement automated notifications for:
+
+- New client onboarding
+- Project milestone completion
+- Required document submissions
+- Agreement signature requests
+- Outstanding invoices
+- Upcoming consultations
+- Grant application deadlines
+- Application status changes
+- Retainer renewals
+- Website maintenance updates
+- New messages
+
+Clients should be able to configure their notification preferences.
+
+Administrators should be able to create and edit notification templates.
+
+Avoid excessive notifications by grouping routine updates where appropriate.
+
+---
+
+## 17. Security and Privacy
+
+Security is a fundamental requirement because the portal will process business registration information, financial records, contracts, and other confidential client data.
+
+Implement:
+
+- Secure authentication and password recovery
+- Multifactor authentication
+- Role-based access controls
+- Strict separation of each client organization's data
+- Encryption in transit and at rest
+- Secure document storage
+- Administrative audit logs
+- Session management
+- Rate limiting and intrusion protection
+- Backups and recovery procedures
+- Retention and deletion controls
+- Secure integration authentication
+- Protection against common OWASP web application vulnerabilities
+
+The system must be designed with applicable Canadian privacy obligations, including PIPEDA where applicable, in mind.
+
+Do not use sensitive client financial documents or confidential records for AI training.
+
+---
+
+## 18. Technical Requirements
+
+The rebuilt portal must be:
+
+- Fully responsive
+- Fast and performant
+- Secure and scalable
+- Accessible
+- Modular and maintainable
+- Compatible with modern browsers
+- Connected to the existing Performance Processes website
+- Capable of supporting future integrations
+
+The developer should recommend an appropriate modern technology stack rather than selecting one solely for visual convenience.
+
+All displayed project statuses, invoices, messages, and documents must be backed by functioning data services.
+
+**Do not deliver a static dashboard with placeholder features presented as operational functionality.**
+
+Provide a clearly documented technical architecture, source code, administrative credentials through secure handover, deployment instructions, and integration documentation.
+
+---
+
+## 19. Existing Portal Migration
+
+Before the rebuild, conduct an audit of the current portal.
+
+Identify:
+
+- Existing features and workflows
+- Client accounts
+- Documents and project records
+- Payment and billing integrations
+- Existing databases
+- Authentication processes
+- Features requiring replacement
+- Data that needs to be migrated
+
+Prepare a migration plan that minimizes interruption to existing clients.
+
+Do not delete or overwrite existing production data without approval and a verified recovery plan.
+
+---
+
+## 20. Delivery Priorities
+
+### Phase 1 — Core Portal
+
+- Branding and UI redesign
+- Secure client authentication
+- Client dashboard
+- Business profiles
+- Services and projects
+- Document management
+- Billing and payments
+- Client messaging
+- Appointments
+- Administration dashboard
+
+### Phase 2 — Specialized Workflows
+
+- Grant and financing management
+- Incorporation services workflow
+- Website development workflow
+- Retainer management enhancements
+- Automated client reminders
+- Advanced approval workflows
+
+### Phase 3 — Advanced Features
+
+- Business analytics and reporting
+- Service marketplace
+- Client referral system
+- Advanced grant opportunity management
+- Additional third-party integrations
+- Workflow optimization and automation
+
+The architecture must be designed from the beginning to support all three phases, even where features are delivered incrementally.
+
+---
+
+## 21. Deliverables and Acceptance Criteria
+
+The developer is expected to provide:
+
+1. A visual prototype for desktop and mobile approval before full implementation.
+2. An inventory and audit of the existing portal.
+3. A detailed feature and technical specification.
+4. A development roadmap with milestones.
+5. A fully functional branded client portal.
+6. A complete administrative backend.
+7. Working integrations and documented configuration.
+8. Appropriate security measures and testing.
+9. Migration and deployment support.
+10. Technical documentation and administrator training.
+
+Before project acceptance, demonstrate complete end-to-end workflows, including onboarding a client, creating a project, requesting documents, approving deliverables, issuing an invoice, processing a test payment, and recording a grant application.
+
+All core functionality must be tested across desktop and mobile devices.
+
+---
+
+## 22. Overall Vision
+
+We want Performance Processes to deliver a client experience comparable to a sophisticated professional services firm.
+
+The portal should communicate **professionalism, transparency, efficiency, and trust**.
+
+Clients should be able to log in at any time and understand:
+
+- What services they are receiving
+- What Performance Processes is currently working on
+- What progress has been made
+- What documents or decisions are required from them
+- What payments are outstanding
+- What happens next
+
+The end result should be an elegant, highly functional digital environment that makes working with Performance Processes simple, organized, and professional.
+
+**The visual direction must remain consistent with our official pink, magenta, burgundy, white, and charcoal brand identity throughout the entire experience.**
+
+Please review this specification and provide the proposed architecture, implementation approach, development timeline, and any recommendations for improving the functionality and user experience before commencing development.

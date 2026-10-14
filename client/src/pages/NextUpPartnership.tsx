@@ -31,20 +31,17 @@ const CONTENT = {
     ],
     howItWorks: [
       {
-        step: "01",
         title: "Confirm you qualify",
         description:
           "You're eligible if you're currently enrolled in a NextUp Foundation for Canadian Youth program, and/or you've donated $500 or more to the foundation in the past year.",
       },
       {
-        step: "02",
         title: "We verify your eligibility",
         description:
           "Performance Processes and the NextUp Foundation for Canadian Youth coordinate to confirm your enrollment or donation. Reach out and we'll handle the verification with NextUp directly.",
       },
       {
-        step: "03",
-        title: "Apply your discount at checkout",
+        title: "Apply your discount to eligible website services",
         description: `Once verified, enter the code ${PROMO_CODE} on any website package on our Services page. The 40% discount is applied instantly at checkout.`,
       },
     ],
@@ -94,19 +91,16 @@ const CONTENT = {
     ],
     howItWorks: [
       {
-        step: "01",
         title: "Confirmez votre admissibilité",
         description:
           "Vous êtes admissible si vous êtes actuellement inscrit à un programme de la NextUp Foundation for Canadian Youth, et/ou si vous avez fait un don de 500 $ ou plus à la fondation au cours de la dernière année.",
       },
       {
-        step: "02",
         title: "Nous vérifions votre admissibilité",
         description:
           "Performance Processes et la NextUp Foundation for Canadian Youth se coordonnent pour confirmer votre inscription ou votre don. Contactez-nous et nous nous chargerons de la vérification directement avec NextUp.",
       },
       {
-        step: "03",
         title: "Appliquez votre rabais au paiement",
         description: `Une fois votre admissibilité vérifiée, saisissez le code ${PROMO_CODE} sur n'importe quel forfait de site Web dans notre page Services. Le rabais de 40 % est appliqué instantanément au paiement.`,
       },

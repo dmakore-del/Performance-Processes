@@ -33,9 +33,10 @@ type StaffUser = { id: string; fullName: string; email: string; role: string };
 
 export default function Leads() {
   const { user } = useAuth();
-  const { t, status, priority } = usePortalI18n();
+  const { t, status, priority, fr } = usePortalI18n();
   const queryClient = useQueryClient();
   const isAdmin = user?.role === "admin";
+  const isStaff = user?.role === "staff";
 
   const [showForm, setShowForm] = useState(false);
   const [editingLead, setEditingLead] = useState<Lead | null>(null);
@@ -56,6 +57,7 @@ export default function Leads() {
     notes: "",
     assignedToId: "",
     assignedToName: "",
+    lastContactDate: "",
     nextFollowUpDate: "",
   });
 
@@ -86,11 +88,21 @@ export default function Leads() {
 
   const updateMutation = useMutation({
     mutationFn: async ({ id, data }: { id: number; data: Partial<typeof form> }) => {
+      const staffEditableFields = new Set([
+        "status",
+        "priority",
+        "notes",
+        "lastContactDate",
+        "nextFollowUpDate",
+      ]);
+      const safeData = isStaff
+        ? Object.fromEntries(Object.entries(data).filter(([key]) => staffEditableFields.has(key))) as Partial<typeof form>
+        : data;
       const res = await fetch(`/api/portal/leads/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(data),
+        body: JSON.stringify(safeData),
       });
       if (!res.ok) throw new Error("Failed to update lead");
       return res.json();
@@ -118,13 +130,16 @@ export default function Leads() {
     setForm({
       companyName: "", contactName: "", contactEmail: "", contactPhone: "",
       source: "website", status: "new", priority: "medium", serviceInterest: "",
-      estimatedValue: "", notes: "", assignedToId: "", assignedToName: "", nextFollowUpDate: "",
+      estimatedValue: "", notes: "", assignedToId: "", assignedToName: "", lastContactDate: "", nextFollowUpDate: "",
     });
     setShowForm(false);
     setEditingLead(null);
   };
 
+  const canEditLead = (lead: Lead) => isAdmin || (isStaff && lead.assignedToId === user?.id);
+
   const handleEdit = (lead: Lead) => {
+    if (!canEditLead(lead)) return;
     setEditingLead(lead);
     setForm({
       companyName: lead.companyName,
@@ -139,6 +154,7 @@ export default function Leads() {
       notes: lead.notes || "",
       assignedToId: lead.assignedToId || "",
       assignedToName: lead.assignedToName || "",
+      lastContactDate: lead.lastContactDate || "",
       nextFollowUpDate: lead.nextFollowUpDate || "",
     });
     setShowForm(true);
@@ -147,7 +163,17 @@ export default function Leads() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (editingLead) {
-      updateMutation.mutate({ id: editingLead.id, data: form });
+      if (!canEditLead(editingLead)) return;
+      const data = isStaff
+        ? {
+            status: form.status,
+            priority: form.priority,
+            notes: form.notes,
+            lastContactDate: form.lastContactDate,
+            nextFollowUpDate: form.nextFollowUpDate,
+          }
+        : form;
+      updateMutation.mutate({ id: editingLead.id, data });
     } else {
       createMutation.mutate(form);
     }
@@ -171,7 +197,8 @@ export default function Leads() {
     });
   };
 
-  const filteredLeads = leads.filter(lead => {
+  const assignedLeads = isStaff ? leads.filter((lead) => lead.assignedToId === user?.id) : leads;
+  const filteredLeads = assignedLeads.filter(lead => {
     const matchSearch = searchQuery === "" ||
       lead.companyName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       lead.contactName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -183,10 +210,10 @@ export default function Leads() {
   });
 
   const stats = {
-    total: leads.length,
-    new: leads.filter(l => l.status === "new").length,
-    qualified: leads.filter(l => l.status === "qualified" || l.status === "proposal" || l.status === "negotiation").length,
-    won: leads.filter(l => l.status === "won").length,
+    total: assignedLeads.length,
+    new: assignedLeads.filter(l => l.status === "new").length,
+    qualified: assignedLeads.filter(l => l.status === "qualified" || l.status === "proposal" || l.status === "negotiation").length,
+    won: assignedLeads.filter(l => l.status === "won").length,
   };
 
   return (
@@ -264,12 +291,13 @@ export default function Leads() {
               <h2 className="text-lg font-bold text-primary">
                 {editingLead ? t("Edit Lead") : t("Add New Lead")}
               </h2>
-              <button onClick={resetForm} className="text-muted-foreground hover:text-primary text-lg font-bold leading-none">
-                ✕
+              <button onClick={resetForm} aria-label={t("Close")} className="text-muted-foreground hover:text-primary text-xs font-bold uppercase tracking-wider leading-none">
+                {t("Close")}
               </button>
             </div>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {isAdmin && <>
                 <div>
                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Company Name")} *</label>
                   <Input data-testid="input-lead-company" value={form.companyName} onChange={(e) => setForm({ ...form, companyName: e.target.value })} required />
@@ -293,6 +321,33 @@ export default function Leads() {
                   </select>
                 </div>
                 <div>
+                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Service Interest")}</label>
+                  <select data-testid="select-lead-service" value={form.serviceInterest} onChange={(e) => setForm({ ...form, serviceInterest: e.target.value })} className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm">
+                     <option value="">{t("Select...")}</option>
+                     {SERVICE_OPTIONS.map(s => <option key={s} value={s}>{t(s)}</option>)}
+                  </select>
+                </div>
+                <div>
+                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Estimated Value")}</label>
+                   <Input data-testid="input-lead-value" placeholder={t("e.g. $5,000")} value={form.estimatedValue} onChange={(e) => setForm({ ...form, estimatedValue: e.target.value })} />
+                </div>
+                <div>
+                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Assign To")}</label>
+                  <select
+                    data-testid="select-lead-assign"
+                    value={form.assignedToId}
+                    onChange={(e) => {
+                      const staff = staffUsers.find(s => s.id === e.target.value);
+                      setForm({ ...form, assignedToId: e.target.value, assignedToName: staff?.fullName || "" });
+                    }}
+                    className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm"
+                  >
+                     <option value="">{t("Unassigned")}</option>
+                    {staffUsers.map(s => <option key={s.id} value={s.id}>{s.fullName}</option>)}
+                  </select>
+                </div>
+                </>}
+                <div>
                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Status")}</label>
                   <select data-testid="select-lead-status" value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value })} className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm">
                      {STATUS_OPTIONS.map(s => <option key={s} value={s}>{status(s)}</option>)}
@@ -305,33 +360,9 @@ export default function Leads() {
                   </select>
                 </div>
                 <div>
-                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Service Interest")}</label>
-                  <select data-testid="select-lead-service" value={form.serviceInterest} onChange={(e) => setForm({ ...form, serviceInterest: e.target.value })} className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm">
-                     <option value="">{t("Select...")}</option>
-                     {SERVICE_OPTIONS.map(s => <option key={s} value={s}>{t(s)}</option>)}
-                  </select>
+                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{fr ? "Dernier contact" : "Last contact"}</label>
+                  <Input data-testid="input-lead-last-contact" type="date" value={form.lastContactDate} onChange={(e) => setForm({ ...form, lastContactDate: e.target.value })} />
                 </div>
-                <div>
-                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Estimated Value")}</label>
-                   <Input data-testid="input-lead-value" placeholder={t("e.g. $5,000")} value={form.estimatedValue} onChange={(e) => setForm({ ...form, estimatedValue: e.target.value })} />
-                </div>
-                {isAdmin && (
-                  <div>
-                     <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Assign To")}</label>
-                    <select
-                      data-testid="select-lead-assign"
-                      value={form.assignedToId}
-                      onChange={(e) => {
-                        const staff = staffUsers.find(s => s.id === e.target.value);
-                        setForm({ ...form, assignedToId: e.target.value, assignedToName: staff?.fullName || "" });
-                      }}
-                      className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm"
-                    >
-                       <option value="">{t("Unassigned")}</option>
-                      {staffUsers.map(s => <option key={s.id} value={s.id}>{s.fullName}</option>)}
-                    </select>
-                  </div>
-                )}
                 <div>
                    <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Next Follow-up")}</label>
                   <Input data-testid="input-lead-followup" type="date" value={form.nextFollowUpDate} onChange={(e) => setForm({ ...form, nextFollowUpDate: e.target.value })} />
@@ -400,13 +431,13 @@ export default function Leads() {
                   </div>
 
                   <div className="flex items-center gap-3 shrink-0">
-                    {lead.assignedToName ? (
+                    {isAdmin && lead.assignedToName ? (
                       <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-xs font-semibold text-accent">
                         {lead.assignedToName}
                       </div>
-                    ) : (
+                    ) : isAdmin ? (
                        <span className="text-xs text-muted-foreground italic">{t("Unassigned")}</span>
-                    )}
+                    ) : null}
 
                     {lead.nextFollowUpDate && (
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -426,22 +457,34 @@ export default function Leads() {
                       </select>
                     )}
 
-                    <select
-                      value={lead.status}
-                      onChange={(e) => handleStatusChange(lead.id, e.target.value)}
-                      className="px-2 py-1.5 rounded-lg border border-border bg-white text-xs min-w-[110px]"
-                      data-testid={`select-status-${lead.id}`}
-                    >
-                       {STATUS_OPTIONS.map(s => <option key={s} value={s}>{status(s)}</option>)}
-                    </select>
+                    {canEditLead(lead) && <>
+                      <select
+                        value={lead.status}
+                        onChange={(e) => handleStatusChange(lead.id, e.target.value)}
+                        className="px-2 py-1.5 rounded-lg border border-border bg-white text-xs min-w-[110px]"
+                        data-testid={`select-status-${lead.id}`}
+                        aria-label={`${t("Status")}: ${lead.companyName}`}
+                      >
+                         {STATUS_OPTIONS.map(s => <option key={s} value={s}>{status(s)}</option>)}
+                      </select>
+                      <select
+                        value={lead.priority}
+                        onChange={(e) => updateMutation.mutate({ id: lead.id, data: { priority: e.target.value } })}
+                        className="px-2 py-1.5 rounded-lg border border-border bg-white text-xs min-w-[100px]"
+                        data-testid={`select-priority-${lead.id}`}
+                        aria-label={`${t("Priority")}: ${lead.companyName}`}
+                      >
+                         {PRIORITY_OPTIONS.map(p => <option key={p} value={p}>{priority(p)}</option>)}
+                      </select>
+                    </>}
 
-                    <button
+                    {canEditLead(lead) && <button
                       onClick={() => handleEdit(lead)}
                       className="px-3 py-1.5 rounded-lg hover:bg-gray-100 text-muted-foreground hover:text-primary transition-colors text-[10px] font-bold uppercase tracking-wider"
                       data-testid={`button-edit-${lead.id}`}
                     >
                        {t("Edit")}
-                    </button>
+                    </button>}
 
                     {isAdmin && (
                       <button

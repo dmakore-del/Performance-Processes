@@ -59,27 +59,25 @@ function ForgotPasswordForm() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="portal-auth flex items-center justify-center p-4">
+      <div className="w-full max-w-xl border border-border bg-white p-6 sm:p-10">
         <div className="text-center mb-8">
-          <Link href="/">
+          <Link href="/portal/login">
             <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-4 cursor-pointer" />
           </Link>
           <h1 className="text-3xl font-heading font-extrabold text-primary">{copy.title}</h1>
           <p className="text-muted-foreground mt-2">{copy.subtitle}</p>
         </div>
 
-        <div className="bg-white rounded-3xl border border-border shadow-sm p-8">
+        <div className="portal-auth-panel p-6 sm:p-8">
           {sent ? (
             <div className="text-center py-4">
               <h2 className="text-xl font-bold text-primary mb-2">{copy.check}</h2>
               <p className="text-sm text-muted-foreground mb-6">
                 {copy.sent}
               </p>
-              <Link href="/portal/login">
-                <Button data-testid="button-back-to-login" className="rounded-xl bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-sm">
-                  {copy.back}
-                </Button>
+              <Link href="/portal/login" data-testid="button-back-to-login" className="inline-flex min-h-10 items-center justify-center bg-primary px-4 py-2 text-sm font-bold uppercase tracking-wider text-white hover:bg-accent hover:text-primary">
+                {copy.back}
               </Link>
             </div>
           ) : (
@@ -196,24 +194,22 @@ function ResetPasswordForm({ token }: { token: string }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="portal-auth flex items-center justify-center p-4">
+      <div className="w-full max-w-xl border border-border bg-white p-6 sm:p-10">
         <div className="text-center mb-8">
-          <Link href="/">
+          <Link href="/portal/login">
             <img src={logoImg} alt="Performance Processes" className="h-16 w-auto mx-auto mb-4 cursor-pointer" />
           </Link>
           <h1 className="text-3xl font-heading font-extrabold text-primary">{copy.title}</h1>
         </div>
 
-        <div className="bg-white rounded-3xl border border-border shadow-sm p-8">
+        <div className="portal-auth-panel p-6 sm:p-8">
           {success ? (
             <div className="text-center py-4">
               <h2 className="text-xl font-bold text-primary mb-2">{copy.resetTitle}</h2>
               <p className="text-sm text-muted-foreground mb-6">{copy.resetBody}</p>
-              <Link href="/portal/login">
-                <Button data-testid="button-login-after-reset" className="rounded-xl bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-sm">
-                  {copy.signIn}
-                </Button>
+              <Link href="/portal/login" data-testid="button-login-after-reset" className="inline-flex min-h-10 items-center justify-center bg-primary px-4 py-2 text-sm font-bold uppercase tracking-wider text-white hover:bg-accent hover:text-primary">
+                {copy.signIn}
               </Link>
             </div>
           ) : (

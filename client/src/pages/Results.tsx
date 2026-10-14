@@ -5,7 +5,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
-import resultsImage from "@/assets/generated/leadership-presentation.png";
+import operationsMap from "@/assets/operations-system-map.svg";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -108,7 +108,7 @@ const CONTENT = {
     testimonialsNote: "",
     ctaHeading: "Want results like these?",
     ctaSubtitle:
-      "Book a strategy call to talk through your goals, or explore the packages we build and install.",
+      "Book a strategy call to talk through your goals, or explore the services we build and install.",
     ctaBook: "Book a Strategy Call",
     ctaServices: "Explore Packages",
     caseStudy: CASE_STUDY_EN,
@@ -158,7 +158,8 @@ export default function Results() {
         <PageHero
           title={c.heroTitle}
           subtitle={c.heroSubtitle}
-           image={resultsImage}
+          image={operationsMap}
+          imageAlt={language === "fr" ? "Schéma des dossiers d’employés, des flux de travail automatisés, d’un portail client et de rapports opérationnels reliés." : "Diagram linking employee records, automated workflows, a client portal, and operational reporting."}
         />
 
         {/* Featured case study */}

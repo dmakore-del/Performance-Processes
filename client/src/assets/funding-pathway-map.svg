@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 580" fill="none">
+  <title>Funding preparation pathway</title>
+  <rect width="760" height="580" rx="24" fill="#F7F3F1"/>
+  <path d="M174 143H276M484 143H586M174 437H276M484 437H586M380 199V381" stroke="#9B777D" stroke-width="3" stroke-linecap="round" stroke-dasharray="7 9"/>
+  <rect x="40" y="54" width="190" height="178" rx="18" fill="#FFF" stroke="#E6D8D8" stroke-width="2"/>
+  <rect x="530" y="54" width="190" height="178" rx="18" fill="#FFF" stroke="#E6D8D8" stroke-width="2"/>
+  <rect x="40" y="348" width="190" height="178" rx="18" fill="#FFF" stroke="#E6D8D8" stroke-width="2"/>
+  <rect x="530" y="348" width="190" height="178" rx="18" fill="#FFF" stroke="#E6D8D8" stroke-width="2"/>
+  <rect x="277" y="218" width="206" height="144" rx="20" fill="#3F2931"/>
+  <circle cx="380" cy="112" r="34" stroke="#9C6674" stroke-width="4"/>
+  <path d="m405 137 25 25M363 112h34M380 95v34" stroke="#9C6674" stroke-width="4" stroke-linecap="round"/>
+  <path d="M578 100h96M578 120h70M578 140h86M578 160h52" stroke="#9C6674" stroke-width="5" stroke-linecap="round"/>
+  <path d="M92 407h86v72H92zM110 390h50v17h-50zM111 428h48M111 446h48M111 464h32" stroke="#9C6674" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M583 474v-38l27-21 26 13 29-46M652 382h13v13M570 474h116" stroke="#9C6674" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="380" cy="256" r="10" fill="#E5C2C5"/>
+  <circle cx="380" cy="290" r="10" fill="#E5C2C5"/>
+  <circle cx="380" cy="324" r="10" fill="#E5C2C5"/>
+  <path d="M408 256h42M408 290h42M408 324h28" stroke="#FFF" stroke-width="5" stroke-linecap="round"/>
+</svg>

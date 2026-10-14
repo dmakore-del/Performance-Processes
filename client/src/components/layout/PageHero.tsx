@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
-import geoPatternImg from "@assets/generated/geo-pattern-new.png";
 
 interface PageHeroProps {
   title: ReactNode;
   subtitle?: ReactNode;
   image?: string;
+  imageAlt?: string;
 }
 
-export function PageHero({ title, subtitle, image }: PageHeroProps) {
+export function PageHero({ title, subtitle, image, imageAlt = "" }: PageHeroProps) {
   return (
     <section className="bg-white overflow-hidden relative border-b border-primary/10">
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent z-20" />
@@ -22,7 +22,7 @@ export function PageHero({ title, subtitle, image }: PageHeroProps) {
             </p>
           )}
         </div>
-        {image ? <img src={image} alt="" className="h-60 w-full object-cover md:h-72 border-l-4 border-accent" /> : <img src={geoPatternImg} alt="" className="pointer-events-none absolute right-0 top-0 -z-10 h-full w-1/2 object-cover opacity-[0.04] mix-blend-multiply" />}
+        {image && <img src={image} alt={imageAlt} className="h-60 w-full object-cover md:h-72 border-l-4 border-accent" />}
       </div>
     </section>
   );

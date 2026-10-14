@@ -3,3 +3,4 @@
 - [Stripe PayPal activation](stripe-paypal.md) — checkout supports PayPal automatically, but the connected account must activate PayPal; card/debit fallback stays available.
 - [Session table schema guard](session-table-schema.md) — keep the PostgreSQL session table represented in Drizzle so schema pushes do not try to remove live sessions.
 - [Portal localization audit](portal-i18n-audit.md) — fallback-to-English translators need static route, key, and UI-state checks before release.
+- [Portal authenticator verification](portal-auth.md) — otplib verification returns an async result object, not a boolean; explicitly inspect validity.

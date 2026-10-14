@@ -201,10 +201,8 @@ export default function Dashboard() {
                 </div>
               ))}
             </div>
-            <Link href="/portal/roadmap">
-              <button data-testid="link-view-roadmap" className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors">
-                {t("View full roadmap")} <span className="ml-2">→</span>
-              </button>
+            <Link href="/portal/roadmap" data-testid="link-view-roadmap" className="mt-6 inline-flex items-center text-sm font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors">
+              {t("View full roadmap")} <span className="ml-2">→</span>
             </Link>
           </div>
 
@@ -232,10 +230,8 @@ export default function Dashboard() {
                 );
               })}
             </div>
-            <Link href="/portal/meetings">
-              <button data-testid="link-view-calendar" className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors">
-                {t("View full calendar")} <span className="ml-2">→</span>
-              </button>
+            <Link href="/portal/meetings" data-testid="link-view-calendar" className="mt-6 inline-flex items-center text-sm font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors">
+              {t("View full calendar")} <span className="ml-2">→</span>
             </Link>
           </div>
         </div>
@@ -254,10 +250,8 @@ export default function Dashboard() {
               </div>
             ))}
           </div>
-          <Link href="/portal/documents">
-             <button data-testid="link-view-documents" className="mt-6 flex items-center text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors relative z-10">
-               {t("View all documents")} <span className="ml-2">→</span>
-            </button>
+           <Link href="/portal/documents" data-testid="link-view-documents" className="mt-6 inline-flex items-center text-sm font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors relative z-10">
+             {t("View all documents")} <span className="ml-2">→</span>
           </Link>
         </div>
       </div>

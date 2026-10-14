@@ -6,8 +6,51 @@ import type { Express, Request, Response, NextFunction } from "express";
 import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
 import { pool } from "./db";
+import { z } from "zod";
+import { sendPasswordResetEmail } from "./emailNotifications";
 
 let otplib: any;
+const authAttempts = new Map<string, { count: number; blockedUntil: number; expiresAt: number }>();
+
+function attemptKey(req: Request, scope: string) {
+  return `${req.ip || req.socket.remoteAddress || "unknown"}:${scope}`;
+}
+
+function isBlocked(key: string) {
+  const entry = authAttempts.get(key);
+  if (!entry) return false;
+  if (entry.expiresAt <= Date.now()) {
+    authAttempts.delete(key);
+    return false;
+  }
+  return entry.blockedUntil > Date.now();
+}
+
+function recordFailure(key: string) {
+  const existing = authAttempts.get(key);
+  const entry = existing && existing.expiresAt > Date.now()
+    ? existing
+    : { count: 0, blockedUntil: 0, expiresAt: Date.now() + 15 * 60 * 1000 };
+  entry.count += 1;
+  if (entry.count >= 5) {
+    entry.blockedUntil = Date.now() + 15 * 60 * 1000;
+    entry.expiresAt = entry.blockedUntil;
+    entry.count = 0;
+  }
+  authAttempts.set(key, entry);
+  if (authAttempts.size > 10000) authAttempts.clear();
+}
+
+function clearFailures(key: string) {
+  authAttempts.delete(key);
+}
+
+function regenerateSession(req: Request) {
+  return new Promise<void>((resolve, reject) => {
+    req.session.regenerate((error) => error ? reject(error) : resolve());
+  });
+}
+
 async function getOtpLib() {
   if (!otplib) {
     otplib = await import("otplib");
@@ -61,7 +104,8 @@ export async function setupAuth(app: Express) {
         return res.status(400).json({ message: "Invalid registration data", errors: parsed.error.flatten() });
       }
 
-      const { email, password, companyName, fullName } = parsed.data;
+      const { password, companyName, fullName } = parsed.data;
+      const email = parsed.data.email.trim().toLowerCase();
 
       const existingEmail = await storage.getUserByEmail(email);
       if (existingEmail) {
@@ -75,10 +119,6 @@ export async function setupAuth(app: Express) {
 
       const hashedPassword = await bcrypt.hash(password, 12);
 
-      const accountType = parsed.data.accountType || "client";
-      const role = accountType === "staff" ? "staff" : "client";
-      const status = accountType === "staff" ? "pending_approval" : "active";
-
       const user = await storage.createUser({
         username: email,
         email,
@@ -87,20 +127,13 @@ export async function setupAuth(app: Express) {
         fullName,
       });
 
-      await storage.updateUser(user.id, { role, status });
-
-      if (status === "pending_approval") {
-        return res.status(201).json({
-          message: "Staff account created. Your account is pending admin approval.",
-          pendingApproval: true,
-        });
-      }
-
+      await storage.updateUser(user.id, { role: "client", status: "active" });
+      await regenerateSession(req);
       req.session.userId = user.id;
 
       return res.status(201).json({
         message: "Account created successfully.",
-        user: sanitizeUser(user),
+        user: sanitizeUser({ ...user, role: "client", status: "active" }),
       });
     } catch (error: any) {
       console.error("Registration error:", error);
@@ -116,14 +149,19 @@ export async function setupAuth(app: Express) {
       }
 
       const { email, password } = parsed.data;
-      const user = await storage.getUserByEmail(email);
+      const normalizedEmail = email.trim().toLowerCase();
+      const key = attemptKey(req, `login:${normalizedEmail}`);
+      if (isBlocked(key)) return res.status(429).json({ message: "Too many attempts. Please try again later." });
+      const user = await storage.getUserByEmail(normalizedEmail);
 
       if (!user) {
+        recordFailure(key);
         return res.status(401).json({ message: "Invalid email or password" });
       }
 
       const isValidPassword = await bcrypt.compare(password, user.password);
       if (!isValidPassword) {
+        recordFailure(key);
         return res.status(401).json({ message: "Invalid email or password" });
       }
 
@@ -135,6 +173,12 @@ export async function setupAuth(app: Express) {
         return res.status(403).json({ message: "Your account has been suspended. Please contact support." });
       }
 
+      clearFailures(key);
+      await regenerateSession(req);
+      if (user.twoFactorEnabled) {
+        req.session.pendingTwoFactor = user.id;
+        return res.json({ requiresTwoFactor: true });
+      }
       req.session.userId = user.id;
       return res.json({ user: sanitizeUser(user) });
     } catch (error) {
@@ -146,6 +190,8 @@ export async function setupAuth(app: Express) {
   app.post("/api/auth/verify-2fa", async (req: Request, res: Response) => {
     try {
       const { code } = req.body;
+      const key = attemptKey(req, "two-factor");
+      if (isBlocked(key)) return res.status(429).json({ message: "Too many attempts. Please try again later." });
       const userId = req.session.pendingTwoFactor || req.session.userId;
 
       if (!userId) {
@@ -153,18 +199,25 @@ export async function setupAuth(app: Express) {
       }
 
       const user = await storage.getUser(userId);
-      if (!user || !user.twoFactorSecret) {
+      if (!user || user.status !== "active" || !user.twoFactorSecret) {
         return res.status(401).json({ message: "Invalid session" });
+      }
+      if (typeof code !== "string" || !/^\d{6}$/.test(code)) {
+        recordFailure(key);
+        return res.status(400).json({ message: "Enter a six-digit authentication code" });
       }
 
       const otp = await getOtpLib();
-      const isValid = otp.verify({ secret: user.twoFactorSecret, token: code });
-      if (!isValid) {
+      const verification = await otp.verify({ secret: user.twoFactorSecret, token: code });
+      if (!verification.valid) {
+        recordFailure(key);
         return res.status(401).json({ message: "Invalid 2FA code" });
       }
 
+      clearFailures(key);
       if (req.session.pendingTwoFactor) {
-        delete req.session.pendingTwoFactor;
+        if (user.status !== "active") return res.status(403).json({ message: "This account is not active." });
+        await regenerateSession(req);
         req.session.userId = user.id;
       }
 
@@ -185,7 +238,8 @@ export async function setupAuth(app: Express) {
       if (!userId) return res.status(401).json({ message: "Not authenticated" });
 
       const user = await storage.getUser(userId);
-      if (!user) return res.status(401).json({ message: "User not found" });
+      if (!user || user.status !== "active") return res.status(401).json({ message: "User not found" });
+      if (user.twoFactorEnabled) return res.status(400).json({ message: "Two-factor authentication is already enabled." });
 
       const otp = await getOtpLib();
       let secret = user.twoFactorSecret;
@@ -208,18 +262,29 @@ export async function setupAuth(app: Express) {
 
   app.post("/api/auth/forgot-password", async (req: Request, res: Response) => {
     try {
-      const { email } = req.body;
-      if (!email) return res.status(400).json({ message: "Email is required" });
+      const parsedEmail = z.string().email().safeParse(req.body?.email);
+      const email = parsedEmail.success ? parsedEmail.data.trim().toLowerCase() : "";
+      const rateKey = attemptKey(req, "password-reset");
+      if (isBlocked(rateKey)) return res.json({ message: "If an account exists with that email, a password reset link has been sent." });
+      recordFailure(rateKey);
+      if (!email) {
+        return res.json({ message: "If an account exists with that email, a password reset link has been sent." });
+      }
 
       const user = await storage.getUserByEmail(email);
 
-      if (user) {
+      if (user && user.status === "active") {
         const resetToken = crypto.randomBytes(32).toString("hex");
         const resetTokenExpiry = new Date(Date.now() + 3600000);
+        const tokenHash = crypto.createHash("sha256").update(resetToken).digest("hex");
 
-        await storage.updateUser(user.id, { resetToken, resetTokenExpiry });
-
-        console.log(`Password reset requested for ${email}. Reset token: ${resetToken}`);
+        await storage.updateUser(user.id, { resetToken: tokenHash, resetTokenExpiry });
+        const resetUrl = `https://portal.performanceprocesses.com/portal/forgot-password?token=${encodeURIComponent(resetToken)}`;
+        try {
+          await sendPasswordResetEmail(email, resetUrl);
+        } catch (error: any) {
+          console.error("Password reset email delivery failed.", error?.code || "delivery_failed");
+        }
       }
 
       return res.json({ message: "If an account exists with that email, a password reset link has been sent." });
@@ -240,7 +305,8 @@ export async function setupAuth(app: Express) {
         return res.status(400).json({ message: "Password must be at least 8 characters" });
       }
 
-      const user = await storage.getUserByResetToken(token);
+      const tokenHash = crypto.createHash("sha256").update(String(token)).digest("hex");
+      const user = await storage.getUserByResetToken(tokenHash);
       if (!user || !user.resetTokenExpiry || new Date() > user.resetTokenExpiry) {
         return res.status(400).json({ message: "Invalid or expired reset token" });
       }
@@ -251,6 +317,7 @@ export async function setupAuth(app: Express) {
         resetToken: null,
         resetTokenExpiry: null,
       });
+      await pool.query(`DELETE FROM "user_sessions" WHERE sess->>'userId'=$1`, [user.id]);
 
       return res.json({ message: "Password has been reset successfully" });
     } catch (error) {
@@ -266,7 +333,7 @@ export async function setupAuth(app: Express) {
       }
 
       const user = await storage.getUser(req.session.userId);
-      if (!user) {
+      if (!user || user.status !== "active") {
         req.session.destroy(() => {});
         return res.status(401).json({ message: "User not found" });
       }
@@ -293,7 +360,7 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
     return res.status(401).json({ message: "Authentication required" });
   }
   const user = await storage.getUser(req.session.userId);
-  if (!user) {
+    if (!user || user.status !== "active") {
     return res.status(401).json({ message: "User not found" });
   }
   (req as any).user = sanitizeUser(user);
@@ -305,7 +372,7 @@ export async function requireAdmin(req: Request, res: Response, next: NextFuncti
     return res.status(401).json({ message: "Authentication required" });
   }
   const user = await storage.getUser(req.session.userId);
-  if (!user || user.role !== "admin") {
+  if (!user || user.status !== "active" || user.role !== "admin") {
     return res.status(403).json({ message: "Admin access required" });
   }
   next();

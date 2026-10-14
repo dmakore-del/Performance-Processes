@@ -60,6 +60,31 @@ function wrapHtml(title: string, content: string): string {
   `;
 }
 
+function escapeHtml(value: string) {
+  return value.replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#39;",
+  })[char] || char);
+}
+
+export async function sendPasswordResetEmail(to: string, resetUrl: string) {
+  const fromEmail = process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER;
+  await getTransporter().sendMail({
+    from: `"Performance Processes" <${fromEmail}>`,
+    to,
+    subject: "Reset your Performance Processes portal password",
+    text: `Use this link to reset your password. It expires in one hour.\n\n${resetUrl}\n\nIf you did not request this, you can ignore this email.`,
+    html: wrapHtml("Password Reset", `
+      <p style="font-size:14px;line-height:1.6;color:#222">Use the secure link below to reset your portal password. It expires in one hour.</p>
+      <p style="margin:24px 0"><a href="${escapeHtml(resetUrl)}" style="display:inline-block;padding:13px 20px;background:#171717;color:#fff;text-decoration:none">Reset password</a></p>
+      <p style="font-size:12px;line-height:1.6;color:#666">If you did not request this, you can ignore this email.</p>
+    `),
+  });
+}
+
 function row(label: string, value: string): string {
   return `<tr><td style="padding: 6px 0; color: #666; font-size: 13px; vertical-align: top; width: 140px;">${label}:</td><td style="padding: 6px 0; color: #333; font-size: 13px;">${value}</td></tr>`;
 }

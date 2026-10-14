@@ -23,8 +23,8 @@ import Solutions from "./pages/Solutions";
 import ServiceLanding from "./pages/ServiceLanding";
 import Results from "./pages/Results";
 import LaunchService from "./pages/LaunchService";
-import Packages from "./pages/Packages";
-import FundingRetainers from "./pages/FundingRetainers";
+import GrantsFinancing from "./pages/GrantsFinancing";
+import ClientIntake from "./pages/ClientIntake";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -74,16 +74,22 @@ function Router() {
     <>
     <ScrollToTop />
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/">
+        {() => window.location.hostname === "portal.performanceprocesses.com"
+          ? <Redirect to="/portal/login" />
+          : <Home />}
+      </Route>
       <Route path="/about" component={About} />
       <Route path="/start-a-business" component={LaunchService} />
       <Route path="/business-setup" component={LaunchService} />
       <Route path="/websites-digital" component={LaunchService} />
-      <Route path="/packages" component={Packages} />
-      <Route path="/funding-retainers" component={FundingRetainers} />
-      <Route path="/solutions">{() => <Redirect to="/packages" />}</Route>
+      <Route path="/packages">{() => <Redirect to="/business-setup" />}</Route>
+      <Route path="/funding-retainers">{() => <Redirect to="/grants-financing" />}</Route>
+      <Route path="/grants-financing" component={GrantsFinancing} />
+      <Route path="/intake" component={ClientIntake} />
+      <Route path="/solutions">{() => <Redirect to="/business-setup" />}</Route>
       <Route path="/services">{() => <Redirect to="/" />}</Route>
-      <Route path="/services/:slug">{() => <Redirect to="/packages" />}</Route>
+      <Route path="/services/:slug">{() => <Redirect to="/business-setup" />}</Route>
       <Route path="/results" component={Results} />
       <Route path="/approach">{() => <Redirect to="/about" />}</Route>
       <Route path="/contact" component={Contact} />
@@ -100,7 +106,7 @@ function Router() {
       <Route path="/consulting">{() => <Redirect to="/business-setup" />}</Route>
       <Route path="/recruiting">{() => <Redirect to="/business-setup" />}</Route>
       <Route path="/marketing">{() => <Redirect to="/websites-digital" />}</Route>
-      <Route path="/pricing">{() => <Redirect to="/packages" />}</Route>
+      <Route path="/pricing">{() => <Redirect to="/business-setup" />}</Route>
       <Route path="/free-audit">{() => <Redirect to="/contact" />}</Route>
       <Route path="/womens-performance-grant">{() => <Redirect to="/nextup-partnership" />}</Route>
 

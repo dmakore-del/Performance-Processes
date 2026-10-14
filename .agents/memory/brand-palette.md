@@ -13,6 +13,18 @@ Keep the public website clean, minimal, and editorial. White is the dominant web
 
 All public photographs and videos must display in their original colour. Do not restore a global grayscale filter or alt-text-based colour exceptions. Curate media to create rhythm rather than filling every section.
 
+Use high-quality professional media that reflects the company's work. People and faces in website photos and videos must look real, not AI-generated; prefer real photography and footage.
+
+**Why:** The user explicitly requested professional, relevant graphics, video, and imagery, and rejected AI-looking faces.
+
+**How to apply:** Use sourced real-world media for people, retain authentic team portraits, and never present stock models as actual staff or clients.
+
+The company considers inclusion a core value. Photos, video, and people shown in graphics should represent different groups naturally across the public website. Visible labels such as “illustrative photo” or “stock footage” should not be added to the media.
+
+**Why:** The user said the company is serious about inclusivity, asked for different groups to be represented, and asked to remove illustrative/stock labels.
+
+**How to apply:** Use varied, professional work scenes without tokenizing people; keep alt text factual and descriptive, and reserve named staff profiles for authentic team portraits.
+
 Keep blush restrained and never use low-contrast pink for small body text. Keep the pink logo and favicon. Preserve mobile-safe muted inline video playback and reduced-motion poster behavior.
 
 Use commas rather than em dashes in prose, and prefer typographic structure over decorative icons.

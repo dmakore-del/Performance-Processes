@@ -3,20 +3,38 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { useLanguage } from "@/hooks/use-language";
+import { Building2, Lightbulb, FileText, Landmark, Monitor, Workflow, LifeBuoy } from "lucide-react";
 import founderImage from "@/assets/founder.png";
-import collaborationImage from "@assets/generated/team-collaboration.png";
+import ebukaImage from "@/assets/ebuka-portrait.jpg";
 
 export default function About() {
   const { language } = useLanguage();
   const fr = language === "fr";
   const values = fr ? [["Clarté", "Des conseils pratiques, sans jargon."], ["Structure", "Des fondations qui facilitent l’exécution."], ["Partenariat", "Un soutien adapté à votre prochaine étape."]] : [["Clarity", "Practical guidance without jargon."], ["Structure", "Foundations that make execution easier."], ["Partnership", "Support matched to your next step."]];
-  const support = fr ? ["Orientation sur la structure et l’enregistrement de l’entreprise", "Priorités de lancement, offres, prix et systèmes internes", "Sites web, courriels professionnels et parcours de demande", "Outils de paiement, réservation, CRM et administration"] : ["Business structure and registration guidance", "Launch priorities, offers, pricing, and internal systems", "Websites, professional email, and enquiry journeys", "Payment, booking, CRM, and administrative tools"];
+  const serviceIcons = [Building2, Lightbulb, FileText, Landmark, Monitor, Workflow, LifeBuoy];
+  const services = fr ? [
+    ["Incorporation et mise en place", "Soutien administratif à l’incorporation et à l’enregistrement, avec une orientation sur les premières étapes pour structurer et lancer l’entreprise."],
+    ["Conseil et stratégie d’affaires", "Conseils pratiques pour clarifier les priorités, affiner les offres et organiser le travail nécessaire à la prochaine étape de l’entreprise."],
+    ["Plans d’affaires et prévisions financières", "Élaboration de plans d’affaires, de projections financières et de prévisions de trésorerie pour appuyer la planification et la prise de décision."],
+    ["Subventions et financement", "Recherche d’occasions de financement, préparation des demandes et accompagnement du processus. Les décisions de financement appartiennent aux organismes et prêteurs."],
+    ["Sites web et présence numérique", "Conception et développement de sites web, courriels professionnels et parcours numériques pour les demandes et les réservations."],
+    ["Systèmes et outils opérationnels", "Mise en place d’outils de paiement, de réservation, de CRM et d’administration qui relient les activités quotidiennes."],
+    ["Soutien continu aux entreprises", "Accompagnement au fur et à mesure que l’entreprise évolue, avec une aide pratique pour mettre en œuvre les prochaines priorités."],
+  ] : [
+    ["Incorporation and business setup", "Administrative incorporation and registration support, with guidance on the early steps to structure and launch the business."],
+    ["Business consulting and advisory", "Practical advice to clarify priorities, refine offers, and organize the work needed for the business’s next stage."],
+    ["Business plans and financial forecasts", "Business plans, financial projections, and cash-flow forecasts to support planning and informed decisions."],
+    ["Grants and business financing", "Funding opportunity research, application preparation, and process support. Funding decisions remain with funders and lenders."],
+    ["Websites and digital presence", "Website design and development, professional email, and digital paths for enquiries and bookings."],
+    ["Operational systems and tools", "Payment, booking, CRM, and administrative tools that connect the business’s day-to-day work."],
+    ["Ongoing business support", "Practical guidance as the business evolves and implements its next priorities."],
+  ];
   return <div className="min-h-[100dvh] bg-background"><SEOHead title={fr ? "À propos | Performance Processes" : "About | Performance Processes"} description={fr ? "Un partenaire de lancement pratique pour les entrepreneurs canadiens." : "A practical launch partner for Canadian entrepreneurs."} path="/about"/><Navbar/><main>
-     <section className="border-t-4 border-accent bg-background px-5 py-12 md:py-16"><div className="mx-auto grid max-w-[1100px] gap-8 md:grid-cols-[1.05fr_.95fr] md:items-end"><div><h1 className="text-display max-w-4xl text-5xl leading-[.96] md:text-7xl">{fr ? "L’espace entre une idée et une entreprise établie mérite un meilleur soutien." : "The space between an idea and an established business deserves better support."}</h1></div><img src={collaborationImage} alt={fr ? "Collaboration autour d’une table de travail" : "People collaborating around a work table"} className="h-60 w-full object-cover md:h-80"/></div></section>
-      <section className="border-y border-primary/10 bg-secondary px-5 py-20 md:py-24"><div className="mx-auto grid max-w-[1100px] gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start"><div><h2 className="text-display text-4xl leading-tight md:text-5xl">{fr ? "Nous transformons les premières décisions en fondations utilisables." : "We turn early decisions into foundations you can use."}</h2></div><div className="space-y-5 text-lg leading-8 text-muted-foreground">{fr ? <><p>Performance Processes aide les entrepreneurs à passer de l’idée à une entreprise établie. Nous réunissons l’orientation de formation, la stratégie de lancement, les systèmes pratiques, le site web et le soutien numérique dans un chemin qui respecte leur point de départ.</p><p>Nous existons parce que les premières étapes sont souvent dispersées entre des démarches, des outils et des décisions qui ne se parlent pas. Notre rôle est de rendre ce travail plus clair, de mettre les bonnes pièces en ordre et de créer une base que l’entreprise peut réellement utiliser au quotidien.</p></> : <><p>Performance Processes helps entrepreneurs move from an idea to an established business. We bring formation guidance, launch strategy, practical systems, a website, and digital support into one path that respects where they are starting.</p><p>We exist because early business building is often scattered across forms, tools, and decisions that do not connect. Our role is to make the work clearer, put the right pieces in order, and create a foundation the business can actually use day to day.</p></>}</div></div></section>
+      <section className="border-t-4 border-accent bg-background px-5 py-12 md:py-16"><div className="mx-auto max-w-[1100px]"><h1 className="text-display max-w-4xl text-5xl leading-[.96] md:text-7xl">{fr ? "L’espace entre une idée et une entreprise établie mérite un meilleur soutien." : "The space between an idea and an established business deserves better support."}</h1></div></section>
+       <section className="border-y border-primary/10 bg-secondary px-5 py-20 md:py-24"><div className="mx-auto grid max-w-[1100px] gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start"><div><h2 className="text-display text-4xl leading-tight md:text-5xl">{fr ? "Qui nous sommes : un partenaire d’affaires pour chaque étape de la croissance." : "Who we are: a business-building partner for every stage of growth."}</h2></div><div className="space-y-5 text-lg leading-8 text-muted-foreground">{fr ? <><p>Performance Processes Soleria Inc. est une entreprise canadienne de création d’entreprise et de conseil en croissance. Nous aidons les entrepreneurs et les petites organisations à passer d’une idée à une entreprise structurée, organisée et prête pour le marché. Notre rôle est de relier les décisions d’affaires, les démarches administratives, les systèmes opérationnels et la présence numérique afin que chaque étape soutienne la suivante.</p><p>Nous commençons par comprendre le point de départ, les objectifs et les contraintes de chaque entreprise. Nous recommandons ensuite une voie concrète et les services adaptés, qu’il s’agisse d’un besoin ponctuel ou d’un accompagnement continu à mesure que l’entreprise évolue.</p><p>Notre travail couvre la constitution et la mise en place de l’entreprise, le conseil stratégique, les plans d’affaires, les prévisions financières et de trésorerie, ainsi que la recherche de subventions et le soutien aux demandes de financement. Nous concevons aussi des sites web, des outils numériques et des systèmes administratifs pratiques qui aident les entreprises à servir leurs clients et à gérer leurs activités.</p></> : <><p>Performance Processes Soleria Inc. is a Canadian business formation and growth advisory company. We help entrepreneurs and small organizations move from an early idea to a structured, organized business ready to serve its market. We connect business decisions, administrative steps, operational systems, and digital presence so that each part supports the next.</p><p>We start by understanding each business’s stage, goals, and constraints. Then we recommend a practical path and the services that fit, whether the need is focused or calls for ongoing guidance as the business develops.</p><p>Our work spans incorporation and company setup, business consulting, business plans, financial projections and cash-flow forecasting, grant research and application support, and business financing assistance. We also design websites, digital tools, and administrative systems that help organizations serve customers and manage their day-to-day work.</p></>}</div></div></section>
       <section className="mx-auto grid max-w-[1100px] gap-14 px-5 py-24 lg:grid-cols-[.8fr_1.2fr]">
         <div>
-          <img src={founderImage} alt={fr ? "Danai Makore, fondatrice et consultante principale" : "Danai Makore, Founder and Principal Consultant"} className="w-full object-cover"/>
+           <img src={founderImage} alt={fr ? "Danai Makore, fondatrice et consultante principale" : "Danai Makore, Founder and Principal Consultant"} loading="lazy" className="w-full object-cover"/>
           <div className="bg-accent p-5 text-sm">Danai Makore<br/><span className="text-primary/70">{fr ? "Fondatrice et consultante principale" : "Founder & Principal Consultant"}</span></div>
         </div>
         <div>
@@ -32,14 +50,43 @@ export default function About() {
               <p>The work is for Canadian entrepreneurs starting with an idea, preparing to register, or turning an early business into an organized operation ready for its clients.</p>
             </>}
           </div>
-          <p className="mt-8 border-t border-primary/15 pt-5">
-            <span className="font-heading text-2xl text-primary">Ebuka</span><br/>
-            <span className="text-base text-muted-foreground">{fr ? "Membre de l’équipe Performance Processes" : "Performance Processes team member"}</span>
-          </p>
           <Link href="/contact" className="mt-10 inline-block bg-accent px-7 py-4 text-xs font-semibold tracking-[.08em] text-primary transition hover:bg-primary hover:text-primary-foreground">{fr ? "Commencer une conversation" : "Start a conversation"}</Link>
         </div>
       </section>
-    <section className="border-y border-primary/10 px-5 py-24"><div className="mx-auto grid max-w-[1100px] gap-12 lg:grid-cols-[.8fr_1.2fr]"><h2 className="text-display text-4xl md:text-5xl">{fr ? "Ce que nous mettons en place, ensemble." : "What we put in place, together."}</h2><div className="border-t border-primary/20">{support.map((item)=><div key={item} className="flex gap-5 border-b border-primary/15 py-5"><p className="text-lg">{item}</p></div>)}</div></div></section>
+      <section className="mx-auto grid max-w-[1100px] gap-14 px-5 py-24 lg:grid-cols-[.8fr_1.2fr]">
+        <div>
+           <img
+            src={ebukaImage}
+            alt={fr ? "Ebuka Ogbonnaya, directeur du développement des affaires" : "Ebuka Ogbonnaya, Director of Business Development"}
+             loading="eager"
+            className="w-full object-cover"
+          />
+          <div className="bg-accent p-5 text-sm">
+            Ebuka Ogbonnaya<br/>
+            <span className="text-primary/70">{fr ? "Directeur du développement des affaires" : "Director of Business Development"}</span>
+          </div>
+        </div>
+        <div>
+          <h2 className="text-display text-4xl leading-tight md:text-5xl">
+            {fr ? "Le développement des affaires, fondé sur des relations durables." : "Business development built on lasting relationships."}
+          </h2>
+          <div className="mt-8 space-y-5 text-lg leading-8 text-muted-foreground">
+            {fr ? <>
+              <p>Ebuka Ogbonnaya est directeur du développement des affaires chez Performance Processes. Il compte plus de dix ans d’expérience en développement des affaires et en gestion, notamment en acquisition de clients, en partenariats stratégiques, en négociation et en développement de marchés.</p>
+              <p>Son parcours professionnel international s’étend au Canada, en Malaisie, aux Émirats arabes unis et en Türkiye, avec de l’expérience dans le conseil, le divertissement, l’immobilier et des organisations multinationales.</p>
+              <p>Chez Performance Processes, Ebuka dirige le développement des affaires, les relations clients, les partenariats et les occasions de croissance. Il accompagne les clients potentiels de la première conversation aux recommandations, aux propositions et à l’intégration.</p>
+            </> : <>
+              <p>Ebuka Ogbonnaya is Director of Business Development at Performance Processes. He brings more than ten years of experience in business development and management, including client acquisition, strategic partnerships, negotiation, and market growth.</p>
+              <p>His international career spans Canada, Malaysia, the United Arab Emirates, and Türkiye, with experience in consulting, entertainment, real estate, and multinational corporate environments.</p>
+              <p>At Performance Processes, Ebuka leads business development, client relationships, partnerships, and growth opportunities. He supports prospective clients from initial conversations through recommendations, proposals, and onboarding.</p>
+            </>}
+          </div>
+          <Link href="/contact" className="mt-10 inline-block bg-accent px-7 py-4 text-xs font-semibold tracking-[.08em] text-primary transition hover:bg-primary hover:text-primary-foreground">
+            {fr ? "Commencer une conversation" : "Start a conversation"}
+          </Link>
+        </div>
+      </section>
+    <section className="border-y border-primary/10 bg-secondary px-5 py-20 md:py-24"><div className="mx-auto grid max-w-[1100px] gap-10 lg:grid-cols-[.65fr_1.35fr]"><h2 className="text-display text-4xl md:text-5xl">{fr ? "Des services pour bâtir et faire progresser votre entreprise." : "Services to build and move your business forward."}</h2><div className="border-t border-primary/20">{services.map(([title, description], index)=>{const Icon=serviceIcons[index];return <article key={title} className="grid gap-4 border-b border-primary/15 py-5 sm:grid-cols-[3rem_.65fr_1fr] sm:items-start sm:gap-5"><span className="flex h-11 w-11 items-center justify-center border border-primary/15 bg-background text-accent"><Icon aria-hidden="true" size={21} strokeWidth={1.5}/></span><h3 className="text-lg font-medium">{title}</h3><p className="text-sm leading-6 text-muted-foreground">{description}</p></article>})}</div></div></section>
      <section className="mx-auto max-w-[760px] px-5 py-24"><h2 className="text-display text-4xl md:text-5xl">{fr ? "Un accompagnement direct, avec des limites professionnelles claires." : "Direct support, with clear professional boundaries."}</h2><div className="mt-8 space-y-5 leading-8 text-muted-foreground">{fr ? <><p>Chaque engagement commence par une conversation sur votre étape, vos priorités et ce que vous avez déjà en place. Nous pouvons ensuite définir une voie pratique : un service précis, un forfait de lancement ou une progression par étapes.</p><p>Performance Processes fournit du soutien administratif à l’incorporation et une orientation générale. Nous ne fournissons pas de conseils juridiques, fiscaux ou comptables et nous orientons vers des professionnels qualifiés lorsque ces conseils sont nécessaires.</p><p>Nous croyons aussi qu’une entreprise mieux outillée renforce sa communauté. Notre soutien au travail communautaire de NextUp reflète cet engagement à rendre les possibilités plus concrètes pour les jeunes et les organisations qu’ils servent.</p></> : <><p>Every engagement starts with a conversation about your stage, priorities, and what you already have in place. From there, we can define a practical route: a focused service, a launch package, or a phased progression.</p><p>Performance Processes provides administrative incorporation support and general guidance. We do not provide legal, tax, or accounting advice, and refer to qualified professionals when that advice is needed.</p><p>We also believe a better equipped business strengthens its community. Our support of NextUp’s community work reflects that commitment to making opportunity more practical for young people and the organizations they serve.</p></>}</div></section>
      <section className="bg-secondary px-5 py-24"><div className="mx-auto max-w-[1100px]"><h2 className="text-display text-4xl">{fr ? "Ce qui guide notre travail" : "What guides the work"}</h2><div className="mt-10 grid gap-8 md:grid-cols-3">{values.map(([title, description])=><div key={title} className="border-t border-primary pt-5"><h3 className="text-display text-3xl">{title}</h3><p className="mt-4 leading-7 text-muted-foreground">{description}</p></div>)}</div></div></section>
   </main><Footer/></div>;

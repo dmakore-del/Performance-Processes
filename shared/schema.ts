@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, serial, timestamp, boolean, integer, date, uniqueIndex, json } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, serial, timestamp, boolean, integer, date, uniqueIndex, json, jsonb, index } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -27,6 +27,45 @@ export const userSessions = pgTable("user_sessions", {
   expire: timestamp("expire", { precision: 6 }).notNull(),
 });
 
+export const intakeInvitations = pgTable("intake_invitations", {
+  id: varchar("id").primaryKey(),
+  outlookEventId: text("outlook_event_id").notNull(),
+  attendeeEmail: text("attendee_email").notNull(),
+  attendeeName: text("attendee_name").notNull().default(""),
+  organization: text("organization").notNull().default(""),
+  callAt: timestamp("call_at", { withTimezone: true }).notNull(),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  completedAt: timestamp("completed_at", { withTimezone: true }),
+  mailStatus: text("mail_status").notNull().default("pending"),
+  attempts: integer("attempts").notNull().default(0),
+  nextAttemptAt: timestamp("next_attempt_at", { withTimezone: true }).notNull().defaultNow(),
+  lastError: text("last_error"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+}, (table) => ({
+  outlookAttendeeUnique: uniqueIndex("intake_invitation_event_attendee_uq").on(table.outlookEventId, table.attendeeEmail),
+  retryIndex: index("intake_invitation_retry_idx").on(table.mailStatus, table.nextAttemptAt),
+}));
+
+export const intakeSubmissions = pgTable("intake_submissions", {
+  id: varchar("id").primaryKey(),
+  requestId: varchar("request_id").notNull().unique(),
+  invitationId: varchar("invitation_id").unique(),
+  kind: text("kind").notNull(),
+  language: text("language").notNull(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  organization: text("organization").notNull(),
+  phone: text("phone").notNull().default(""),
+  answers: jsonb("answers").notNull(),
+  mailStatus: text("mail_status").notNull().default("pending"),
+  attempts: integer("attempts").notNull().default(0),
+  nextAttemptAt: timestamp("next_attempt_at", { withTimezone: true }).notNull().defaultNow(),
+  lastError: text("last_error"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+}, (table) => ({
+  retryIndex: index("intake_submission_retry_idx").on(table.mailStatus, table.nextAttemptAt),
+}));
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -45,7 +84,6 @@ export const registerSchema = z.object({
   password: z.string().min(8),
   companyName: z.string().min(2),
   fullName: z.string().min(2),
-  accountType: z.enum(["client", "staff"]).default("client"),
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;

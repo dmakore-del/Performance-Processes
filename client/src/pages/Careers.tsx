@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useState, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
-import collaborationImg from "@assets/generated/collaboration.png";
-import leadershipImg from "@assets/generated/leadership.png";
+import collaborationImg from "@assets/stock_photography/workshop.jpg";
+import accessibleTeamImg from "@assets/stock_photography/wheelchair-inclusive-team.jpg";
 
 export default function Careers() {
   const { language } = useLanguage();
@@ -121,7 +121,7 @@ export default function Careers() {
                 </p>
               </div>
               <div className="rounded-2xl overflow-hidden shadow-xl">
-                <img src={collaborationImg} alt="Team collaboration at Performance Processes" className="w-full h-[400px] object-cover" data-testid="img-culture" />
+                <img src={collaborationImg} alt={language === "en" ? "Colleagues meet around a table during a workshop." : "Des collègues se réunissent autour d’une table pendant un atelier."} loading="lazy" className="w-full h-[400px] object-cover" data-testid="img-culture" />
               </div>
             </div>
           </div>
@@ -172,13 +172,22 @@ export default function Careers() {
           </div>
         </section>
 
+        <section className="border-y border-primary/10 bg-secondary px-5 py-16 md:py-20" aria-label={language === "en" ? "Collaborative workplace" : "Collaboration en milieu de travail"}>
+          <div className="mx-auto max-w-5xl">
+            <img
+              src={accessibleTeamImg}
+              alt={language === "en"
+                ? "A wheelchair user and two colleagues collaborate around a laptop in an accessible office."
+                : "Une personne en fauteuil roulant et deux collègues collaborent autour d’un ordinateur portable dans un bureau accessible."}
+              loading="lazy"
+              className="mx-auto h-auto max-h-[760px] w-full max-w-[560px] object-contain"
+            />
+          </div>
+        </section>
+
         <section className="py-20 bg-white" data-testid="section-life-at-pp">
-          <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1 rounded-2xl overflow-hidden shadow-xl">
-                <img src={leadershipImg} alt="Life at Performance Processes" className="w-full h-[400px] object-cover" data-testid="img-life-at-pp" />
-              </div>
-              <div className="order-1 lg:order-2">
+          <div className="container mx-auto px-4 md:px-8 max-w-4xl">
+            <div>
                 <div className="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-4">
                   {language === "en" ? "Life at Performance Processes" : "La vie chez Performance Processes"}
                 </div>
@@ -204,7 +213,6 @@ export default function Careers() {
                     ? "Growth is not just encouraged, it's built into everything we do. As Performance Processes expands, so do the opportunities for our team members to take on greater responsibilities, develop new capabilities, and shape the direction of the firm."
                     : "La croissance n'est pas seulement encouragée, elle est intégrée à tout ce que nous faisons. À mesure que Performance Processes prend de l'ampleur, les occasions se multiplient pour nos membres d'équipe d'assumer de plus grandes responsabilités, de développer de nouvelles compétences et de façonner l'orientation de la firme."}
                 </p>
-              </div>
             </div>
           </div>
         </section>

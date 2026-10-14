@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { PortalLayout } from "@/components/layout/PortalLayout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { usePortalI18n } from "@/lib/portal-i18n";
+import type { GrantApplication } from "@shared/schema";
 
 interface ContactSubmission {
   id: number;
@@ -41,8 +42,10 @@ function formatDate(dateStr: string) {
 
 export default function AdminSubmissions() {
   const { t, formatDate } = usePortalI18n();
+  const queryClient = useQueryClient();
   const [contactSearch, setContactSearch] = useState("");
   const [appSearch, setAppSearch] = useState("");
+  const [fundingSearch, setFundingSearch] = useState("");
 
   const { data: contacts = [], isLoading: contactsLoading, isError: contactsError } = useQuery<ContactSubmission[]>({
     queryKey: ["/api/admin/contacts"],
@@ -50,6 +53,24 @@ export default function AdminSubmissions() {
 
   const { data: applications = [], isLoading: appsLoading, isError: appsError } = useQuery<JobApplication[]>({
     queryKey: ["/api/admin/applications"],
+  });
+
+  const { data: fundingSubmissions = [], isLoading: fundingLoading, isError: fundingError } = useQuery<GrantApplication[]>({
+    queryKey: ["/api/admin/grant-applications"],
+  });
+
+  const updateFundingStatus = useMutation({
+    mutationFn: async ({ id, status }: { id: number; status: string }) => {
+      const response = await fetch(`/api/admin/grant-applications/${id}/status`, {
+        method: "PATCH",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status }),
+      });
+      if (!response.ok) throw new Error("Failed to update funding submission");
+      return response.json();
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["/api/admin/grant-applications"] }),
   });
 
   const filteredContacts = contacts.filter(
@@ -66,7 +87,21 @@ export default function AdminSubmissions() {
       a.position.toLowerCase().includes(appSearch.toLowerCase())
   );
 
-  if (contactsError || appsError) {
+  const filteredFunding = fundingSubmissions.filter((submission) =>
+    [submission.fullName, submission.email, submission.companyOrOrg || "", submission.industry, submission.focusArea]
+      .some((value) => value.toLowerCase().includes(fundingSearch.toLowerCase()))
+  );
+  const fundingStatuses = ["new", "reviewing", "contacted", "scheduled", "accepted", "declined"];
+  const fundingStatusLabel: Record<string, string> = {
+    new: t("New"),
+    reviewing: t("Reviewing"),
+    contacted: t("Contacted"),
+    scheduled: t("Scheduled"),
+    accepted: t("Accepted"),
+    declined: t("Declined"),
+  };
+
+  if (contactsError || appsError || fundingError) {
     return <PortalLayout><div className="flex min-h-[400px] items-center justify-center"><p className="text-sm font-bold uppercase tracking-[0.2em] text-destructive">{t("Error")}</p></div></PortalLayout>;
   }
 
@@ -81,12 +116,15 @@ export default function AdminSubmissions() {
         </div>
 
         <Tabs defaultValue="contacts" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 max-w-lg">
+          <TabsList className="grid w-full grid-cols-3 max-w-2xl">
             <TabsTrigger value="contacts" className="flex items-center gap-2" data-testid="tab-contacts">
               {t("Contact")} ({contacts.length})
             </TabsTrigger>
             <TabsTrigger value="applications" className="flex items-center gap-2" data-testid="tab-applications">
               {t("Jobs")} ({applications.length})
+            </TabsTrigger>
+            <TabsTrigger value="funding" className="flex items-center gap-2" data-testid="tab-funding">
+              {t("Funding")} ({fundingSubmissions.length})
             </TabsTrigger>
           </TabsList>
 
@@ -133,6 +171,89 @@ export default function AdminSubmissions() {
                             <Badge variant={c.read ? "secondary" : "default"} data-testid={`badge-status-${c.id}`}>
                               {c.read ? t("Read") : t("New")}
                             </Badge>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="funding" className="mt-6">
+            {updateFundingStatus.isError && (
+              <p role="alert" className="mb-4 text-sm text-destructive">{t("Unable to update funding status. Please try again.")}</p>
+            )}
+            <div className="bg-white rounded-2xl border border-border overflow-hidden">
+              <div className="p-4 border-b border-border">
+                <Input
+                  className="max-w-sm"
+                  placeholder={t("Search funding submissions...")}
+                  value={fundingSearch}
+                  onChange={(event) => setFundingSearch(event.target.value)}
+                  data-testid="input-search-funding"
+                />
+              </div>
+              {fundingLoading ? (
+                <div className="p-8 text-center text-muted-foreground">{t("Loading...")}</div>
+              ) : filteredFunding.length === 0 ? (
+                <div className="p-8 text-center text-muted-foreground">{t("No funding submissions found")}</div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm" data-testid="table-funding-submissions">
+                    <thead>
+                      <tr className="border-b border-border bg-secondary/50">
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Date")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Applicant")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Business")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Funding focus")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Status")}</th>
+                        <th className="text-left px-4 py-3 font-bold text-muted-foreground">{t("Details")}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredFunding.map((submission) => (
+                        <tr key={submission.id} className="border-b border-border align-top" data-testid={`row-funding-${submission.id}`}>
+                          <td className="px-4 py-3 whitespace-nowrap text-muted-foreground">
+                            {submission.createdAt ? formatDate(submission.createdAt) : "—"}
+                          </td>
+                          <td className="px-4 py-3">
+                            <p className="font-medium text-primary">{submission.fullName}</p>
+                            <a href={`mailto:${submission.email}`} className="text-accent hover:underline">{submission.email}</a>
+                            <p className="text-xs text-muted-foreground">{submission.phone}</p>
+                          </td>
+                          <td className="px-4 py-3">
+                            <p className="font-medium">{submission.companyOrOrg || "—"}</p>
+                            <p className="text-xs text-muted-foreground">{submission.city}, {submission.province}</p>
+                            <p className="text-xs text-muted-foreground">{submission.industry}</p>
+                          </td>
+                          <td className="px-4 py-3 min-w-40">{submission.focusArea}</td>
+                          <td className="px-4 py-3 min-w-40">
+                            <select
+                              aria-label={`${t("Funding submission status")} ${submission.fullName}`}
+                              className="h-9 w-full border border-border bg-background px-2 text-sm"
+                              value={submission.status}
+                              disabled={updateFundingStatus.isPending}
+                              onChange={(event) => updateFundingStatus.mutate({ id: submission.id, status: event.target.value })}
+                              data-testid={`select-funding-status-${submission.id}`}
+                            >
+                              {fundingStatuses.map((status) => (
+                                <option key={status} value={status}>{fundingStatusLabel[status]}</option>
+                              ))}
+                            </select>
+                          </td>
+                          <td className="px-4 py-3 min-w-56">
+                            <details>
+                              <summary className="cursor-pointer text-primary underline underline-offset-4">{t("View details")}</summary>
+                              <div className="mt-3 space-y-2 text-xs leading-5 text-muted-foreground">
+                                <p><strong>{t("Goals")}:</strong> {submission.goals}</p>
+                                <p><strong>{t("Challenges")}:</strong> {submission.challenges}</p>
+                                <p><strong>{t("Hopes to achieve")}:</strong> {submission.hopeToAchieve}</p>
+                                <p><strong>{t("Current systems")}:</strong> {submission.currentSystems}</p>
+                                {submission.additionalInfo && <p><strong>{t("Additional information")}:</strong> {submission.additionalInfo}</p>}
+                              </div>
+                            </details>
                           </td>
                         </tr>
                       ))}

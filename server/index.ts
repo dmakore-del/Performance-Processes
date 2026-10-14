@@ -138,15 +138,15 @@ app.use((req, res, next) => {
   // Retired public pages must redirect before either Vite or production static
   // middleware serves the single-page application fallback.
   const retiredPublicRedirects: Record<string, string> = {
-    "/services": "/packages",
+    "/services": "/business-setup",
     "/services/website-services": "/websites-digital",
     "/services/marketing-services": "/websites-digital",
     "/services/crm-lead-tracking": "/business-setup",
     "/services/business-systems": "/business-setup",
     "/services/hr-recruiting": "/business-setup",
-    "/services/growth-support": "/packages",
-    "/solutions": "/packages",
-    "/pricing": "/packages",
+    "/services/growth-support": "/business-setup",
+    "/solutions": "/business-setup",
+    "/pricing": "/business-setup",
     "/approach": "/about",
     "/consulting": "/business-setup",
     "/recruiting": "/business-setup",

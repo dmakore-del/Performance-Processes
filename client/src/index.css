@@ -69,6 +69,115 @@
   --ring: 351 58% 73%;
 }
 
+/* Portal: quiet editorial surfaces, with the existing PP blush used as a signal. */
+:root {
+  --portal-canvas: 32 18% 98%;
+  --portal-surface: 0 0% 100%;
+  --portal-line: 0 0% 9% / 0.12;
+}
+
+.portal-shell {
+  min-height: 100dvh;
+  background: hsl(var(--portal-canvas));
+  color: hsl(var(--foreground));
+}
+.portal-shell aside {
+  background: hsl(var(--portal-surface));
+  border-color: hsl(var(--portal-line));
+}
+.portal-shell aside > div:first-of-type {
+  background-image: none !important;
+}
+.portal-shell main {
+  min-width: 0;
+}
+.portal-shell main > div:last-child {
+  padding: clamp(1.25rem, 3.5vw, 3.25rem);
+}
+.portal-shell h1 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: -.025em;
+  line-height: 1.04;
+}
+.portal-shell h2, .portal-shell h3, .portal-shell h4 {
+  letter-spacing: -.015em;
+}
+.portal-shell [class*="shadow-"] {
+  box-shadow: 0 1px 2px hsl(var(--primary) / .035);
+}
+.portal-shell [class*="rounded-3xl"],
+.portal-shell [class*="rounded-2xl"] {
+  border-radius: 3px !important;
+}
+.portal-shell [class*="rounded-xl"] {
+  border-radius: 2px !important;
+}
+.portal-shell button,
+.portal-shell a,
+.portal-shell input,
+.portal-shell select,
+.portal-shell textarea {
+  transition: color .18s ease, background-color .18s ease, border-color .18s ease, opacity .18s ease;
+}
+.portal-shell :is(button, a, input, select, textarea):focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 3px;
+}
+.portal-shell table thead {
+  background: hsl(var(--portal-canvas));
+}
+.portal-shell table th {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: .12em;
+}
+.portal-shell table td {
+  vertical-align: middle;
+}
+.portal-shell .portal-page-heading {
+  border-bottom: 1px solid hsl(var(--portal-line));
+  padding-bottom: 1.4rem;
+}
+.portal-shell .portal-panel {
+  background: hsl(var(--portal-surface));
+  border: 1px solid hsl(var(--portal-line));
+  box-shadow: none;
+}
+.portal-shell .portal-kicker {
+  color: hsl(var(--muted-foreground));
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.portal-shell .portal-empty {
+  border: 1px dashed hsl(var(--portal-line));
+  background: hsl(var(--portal-surface));
+}
+.portal-auth {
+  min-height: 100dvh;
+  background: hsl(var(--portal-canvas));
+  color: hsl(var(--foreground));
+}
+.portal-auth-panel {
+  background: hsl(var(--portal-surface));
+  border: 1px solid hsl(var(--portal-line));
+  box-shadow: 0 18px 55px hsl(var(--primary) / .055);
+}
+.portal-auth input:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 2px;
+}
+@media (max-width: 767px) {
+  .portal-shell main > div:last-child {
+    padding: 1.1rem;
+  }
+  .portal-shell [data-testid^="table-"] {
+    min-width: 680px;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;

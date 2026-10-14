@@ -12,7 +12,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["services", "what do you offer", "offer", "provide", "help with"],
-    answer: "We help Canadian entrepreneurs establish and launch businesses with incorporation and CRA setup support, business systems, websites, digital services, grant research, and financing application assistance. Visit our Packages page or /funding-retainers for service details and fees."
+    answer: "We help Canadian entrepreneurs with business setup, websites and digital services, grant research, and financing application support. Our public grant and financing service fees are listed at /grants-financing."
   },
   {
     keywords: ["different", "unique", "why choose", "stand out", "differentiator"],
@@ -28,7 +28,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["how long", "duration", "timeline", "engagement last", "time"],
-    answer: "Our Strategy & Alignment engagements run 6,12 weeks. Systems & Implementation projects vary by scope. Executive Advisory retainers have a 3-month minimum. Every engagement starts with our Discovery & Assessment phase."
+    answer: "Timelines depend on your goals and the agreed scope. We start by understanding your priorities and recommending a practical next step."
   },
   {
     keywords: ["customized", "custom", "tailored", "personalized"],
@@ -40,7 +40,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["leadership coaching", "coaching", "executive coaching", "leadership development", "personal coaching", "career coaching"],
-    answer: "Yes! We offer Personal Performance Coaching starting at $100/mo for professionals, freelancers, and entrepreneurs, covering goal planning, productivity systems, and habit building. For leadership teams, our Executive Advisory retainer starts at $2,500/mo with strategy sessions and executive coaching."
+    answer: "We tailor advisory and implementation support to the organization’s goals. Contact us to discuss priorities and an appropriate scope."
   },
   {
     keywords: ["governance", "board", "policies", "governance structures"],
@@ -56,7 +56,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["website", "marketing", "digital", "online presence"],
-    answer: "Yes! Our Website & Digital Presence service builds professional, performance-driven websites starting from $1,200. We offer packages from basic sites (5 pages) up to premium enterprise solutions ($12,000+) with full integrations, plus ongoing management at $780/month."
+    answer: "We build professional websites and digital experiences tailored to each organization. Share your goals on a discovery call and we will send a written scope and project-specific pricing by email."
   },
   {
     keywords: ["hands-on", "approach", "collaborative", "how do you work"],
@@ -64,7 +64,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["get started", "start", "begin", "first step", "consultation", "discovery"],
-    answer: "Every engagement begins with our Discovery & Assessment phase ($750,$1,500), where we conduct an organizational intake, needs assessment, and scope definition to build a clear proposal roadmap. Discovery fees can be credited toward your full engagement. You can also book a free consultation through our website."
+    answer: "Start with a discovery call to discuss your organization, goals and possible next steps. After booking, you will receive a fillable preparation form by email. We will send any proposed scope and pricing by email after the call and before paid work begins."
   },
   {
     keywords: ["workshop", "one-time", "retreat", "session"],
@@ -88,15 +88,15 @@ const FAQ_DATA = [
   },
   {
     keywords: ["price", "cost", "pricing", "how much", "fee", "rate", "payment", "pay"],
-    answer: "Our launch and service package prices are listed on the Packages page. Funding-assistance fees, the 6% success fee for covered grants or financing, monthly retainer options, and retainer terms are described at /funding-retainers. All listed fees exclude applicable HST."
+    answer: "Project-specific pricing is shared by email after a discovery call. You can review the scope and costs before deciding whether to authorize any paid work."
   },
   {
     keywords: ["grant", "grants", "funding", "financing", "loan", "loans", "line of credit"],
-    answer: "We research suitable grant and financing opportunities and assist with application preparation. Standard grant applications are $560 and standard business financing applications are $400, before HST. A mandatory 6% success fee applies to qualifying funds actually received on covered applications we materially support, where permitted, in addition to service fees. Scope and fees are approved in writing before work begins. See /funding-retainers for details."
+    answer: "We help identify suitable grant and business-financing opportunities, assess project readiness, and prepare applications. Book a discovery call to discuss your project; we share a recommended scope and its costs by email before paid work begins. Funders and lenders make the final decisions. See /grants-financing for the process."
   },
   {
     keywords: ["retainer", "monthly support", "ongoing support", "cancel retainer", "retainer terms"],
-    answer: "Monthly service-area retainers are available for website, marketing, CRM, business systems, HR/recruiting, and growth support. They are billed in advance on the first, unused hours do not roll over, out-of-scope work is $175/hour with advance approval, and either party may end the month-to-month retainer with 15 business days' written notice. See /funding-retainers for prices and terms."
+    answer: "Ongoing support is scoped to the work your organization needs. Contact us to discuss the right scope and pricing before work begins."
   },
   {
     keywords: ["contact", "email", "phone", "reach"],
@@ -127,15 +127,15 @@ const FAQ_DATA_FR = [
   },
   {
     keywords: ["prix", "coût", "tarifs", "combien", "paiement", "payer"],
-    answer: "Les prix des forfaits de lancement et des services sont indiqués sur la page Forfaits. Les frais d’aide au financement, les frais de succès de 6 % applicables aux demandes couvertes, les mandats mensuels et leurs conditions sont présentés à /funding-retainers. Les frais indiqués excluent les taxes applicables."
+    answer: "Les frais propres à chaque projet sont communiqués par courriel après un appel découverte. Vous pouvez examiner la portée et les coûts avant d’autoriser tout travail payant."
   },
   {
     keywords: ["subvention", "subventions", "financement", "prêt", "prêts", "marge de crédit"],
-    answer: "Nous recherchons des possibilités pertinentes et aidons à préparer les demandes de subvention et de financement. Une demande standard de subvention coûte 560 $ et une demande standard de financement commercial coûte 400 $, avant les taxes. Des frais de succès obligatoires de 6 % s’appliquent aux fonds admissibles réellement reçus pour les demandes couvertes que nous appuyons de façon importante, lorsque permis, en plus des frais de service. La portée et les frais sont approuvés par écrit avant le début des travaux. Consultez /funding-retainers."
+    answer: "Nous aidons à repérer les possibilités de subvention et de financement pertinentes, à évaluer la préparation du projet et à préparer les demandes. Réservez un appel découverte pour discuter du projet; nous transmettrons par courriel la portée recommandée et ses frais avant tout travail payant. Les bailleurs de fonds et prêteurs prennent la décision finale. Consultez /grants-financing pour voir notre démarche."
   },
   {
     keywords: ["mandat", "soutien mensuel", "résilier", "conditions du mandat"],
-    answer: "Des mandats mensuels par secteur sont offerts pour les sites web, le marketing, le CRM, les systèmes d’affaires, les RH et le soutien à la croissance. Ils sont facturés d’avance le premier du mois, les heures inutilisées ne sont pas reportées, les travaux hors portée coûtent 175 $ l’heure avec approbation préalable et chaque partie peut résilier avec un préavis écrit de 15 jours ouvrables. Consultez /funding-retainers pour les prix et conditions."
+    answer: "Le soutien continu est défini selon les besoins de l’organisation. Communiquez avec nous pour discuter de la portée et des frais avant le début des travaux."
   },
   {
     keywords: ["commencer", "première étape", "consultation", "rendez-vous", "réserver"],

@@ -1,7 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import logoImg from "@/assets/logo.png";
 import { useAuth, useLogout } from "@/hooks/use-auth";
 import { usePortalEngagement } from "@/hooks/use-portal";
@@ -87,7 +86,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
   const sectionLabel = isStaffOrAdmin ? t("Operations") : t("Your workspace");
 
   return (
-    <div className="min-h-screen flex font-sans bg-[#fffdfc] relative">
+    <div className="portal-shell min-h-[100dvh] flex font-sans relative">
       {/* Ambient editorial backdrop */}
       <div
          className="pointer-events-none fixed inset-0 z-0 opacity-50"
@@ -99,7 +98,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
       />
 
       {/* Desktop sidebar */}
-       <aside className="hidden lg:flex flex-col w-72 bg-white text-primary fixed h-full z-20 overflow-hidden border-r border-border">
+       <aside className="hidden lg:flex flex-col w-[17rem] bg-white text-primary fixed h-full z-20 overflow-hidden border-r border-border">
         {/* Subtle gradient sheen */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -113,11 +112,11 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
         <div className="absolute top-0 right-0 h-full w-px bg-border" aria-hidden="true" />
 
         <div className="relative h-24 flex items-center px-7 border-b border-border">
-          <Link href="/" className="flex items-center gap-3 group" data-testid="link-portal-logo">
+          <Link href="/portal" className="flex items-center gap-3 group" data-testid="link-portal-logo">
             <img src={logoImg} alt="Performance Processes" className="h-9 w-auto" />
             <div className="leading-none">
-              <p className="text-[9px] font-black uppercase tracking-[0.32em] text-accent mb-1">{t("Performance")}</p>
-              <p className="font-heading font-black text-lg tracking-tight text-primary uppercase italic group-hover:text-accent transition-colors">
+              <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-1">{t("Performance")}</p>
+              <p className="font-heading text-xl tracking-tight text-primary group-hover:text-accent transition-colors">
                 Portal
               </p>
             </div>
@@ -132,6 +131,8 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
             <div className="relative">
               <button
                 onClick={() => setEngagementDropdownOpen(!engagementDropdownOpen)}
+                aria-expanded={engagementDropdownOpen}
+                aria-haspopup="listbox"
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-3 rounded-2xl border text-left transition-all",
                    "bg-background border-border hover:border-accent/50 hover:bg-secondary/40",
@@ -149,12 +150,10 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                      {engagement?.engagementType || t("No engagement")}
                   </p>
                 </div>
-                {hasMultipleEngagements && (
-                   <span className={cn("text-muted-foreground transition-transform text-xs", engagementDropdownOpen && "rotate-180")}>▾</span>
-                )}
+                {hasMultipleEngagements && <span className="text-muted-foreground" aria-hidden="true">⌄</span>}
               </button>
               {engagementDropdownOpen && hasMultipleEngagements && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-border rounded-2xl shadow-2xl shadow-primary/20 z-30 max-h-72 overflow-y-auto">
+                 <div role="listbox" aria-label={t("Assigned client")} className="absolute top-full left-0 right-0 mt-2 bg-white border border-border rounded-2xl shadow-2xl shadow-primary/20 z-30 max-h-72 overflow-y-auto">
                   {engagements.map((eng) => (
                     <button
                       key={eng.id}
@@ -163,7 +162,9 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                         "w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-secondary transition-colors first:rounded-t-2xl last:rounded-b-2xl",
                         engagement?.id === eng.id && "bg-accent/5",
                       )}
-                      data-testid={`button-select-engagement-${eng.id}`}
+                       data-testid={`button-select-engagement-${eng.id}`}
+                       role="option"
+                       aria-selected={engagement?.id === eng.id}
                     >
                       <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary text-[10px] font-black">
                         {eng.clientName.charAt(0).toUpperCase()}
@@ -214,7 +215,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           </nav>
         </div>
 
-         <div className="relative p-3 border-t border-border">
+          <div className="relative p-3 border-t border-border">
            <div className="flex items-center gap-3 px-3 py-3 rounded-2xl bg-secondary/50 border border-border">
              <div className="w-10 h-10 bg-accent/30 flex items-center justify-center font-black text-primary text-sm">
               {initials}
@@ -239,20 +240,18 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* ───────────────── Mobile top bar ───────────────── */}
-       <div className="lg:hidden fixed top-0 w-full h-20 bg-white text-primary border-b border-border flex items-center justify-between px-4 z-30">
-        <Link href="/" className="flex items-center gap-2">
+        <div className="lg:hidden fixed top-0 w-full h-16 bg-white text-primary border-b border-border flex items-center justify-between px-4 z-30">
+        <Link href="/portal" className="flex items-center gap-2">
           <img src={logoImg} alt="Performance Processes" className="h-8 w-auto" />
-           <span className="font-heading font-black text-lg tracking-tighter text-primary uppercase italic">Portal</span>
+            <span className="font-heading text-xl tracking-tight text-primary">Portal</span>
         </Link>
         <div className="flex items-center gap-4">
-              <button className="text-primary/85 relative text-xs font-bold uppercase tracking-[0.18em]" aria-label={t("Alerts")}>
-             {t("Alerts")}
-             <span className="absolute -top-1 -right-2 w-2 h-2 bg-accent rounded-full ring-2 ring-white"></span>
-          </button>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
              className="text-primary text-xs font-bold uppercase tracking-[0.18em]"
             aria-label={isMobileMenuOpen ? t("Close") : t("Menu")}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="portal-mobile-navigation"
           >
             {isMobileMenuOpen ? t("Close") : t("Menu")}
           </button>
@@ -260,7 +259,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
       </div>
 
       {isMobileMenuOpen && (
-         <div className="lg:hidden fixed inset-0 top-20 bg-white text-primary z-20 overflow-y-auto">
+         <div id="portal-mobile-navigation" className="lg:hidden fixed inset-16 bottom-0 bg-white text-primary z-20 overflow-y-auto">
           {isStaffOrAdmin && engagements.length > 0 && (
             <div className="px-4 pt-5 pb-3 border-b border-white/10">
                <p className="text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground mb-2">
@@ -293,7 +292,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
               </div>
             </div>
           )}
-          <nav className="flex flex-col gap-1 p-4">
+          <nav aria-label={sectionLabel} className="flex flex-col gap-1 p-4">
             {navItems.map((item) => {
               const isActive = location === item.href;
               return (
@@ -322,14 +321,11 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
       )}
 
       {/* ───────────────── Main column ───────────────── */}
-      <main className="relative z-[1] flex-1 lg:ml-72 pt-20 lg:pt-0">
+       <main className="relative z-[1] flex-1 lg:ml-[17rem] pt-16 lg:pt-0">
         <header className="hidden lg:flex h-24 bg-white/70 backdrop-blur-xl border-b border-border/60 items-center justify-between px-10 sticky top-0 z-10">
           <div className="flex items-center gap-5">
-             <div className="w-10 h-10 border border-border bg-accent/20 flex items-center justify-center text-primary">
-               <span className="text-[11px] font-black tracking-tighter">PP</span>
-            </div>
             <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.32em] text-accent mb-1">{portalSubtitle}</p>
+               <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground mb-1">{portalSubtitle}</p>
               <h2
                 data-testid="text-portal-title"
                 className="text-2xl font-heading font-extrabold text-primary leading-none tracking-tight"
@@ -344,25 +340,13 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <button
-              className="h-11 px-5 rounded-full bg-white border border-border flex items-center justify-center text-primary hover:text-accent hover:border-accent transition-colors relative shadow-sm text-[11px] font-bold uppercase tracking-[0.18em]"
-               aria-label={t("Alerts")}
-            >
-              {t("Alerts")}
-              <span className="absolute top-2 right-2 w-2 h-2 bg-accent rounded-full animate-pulse" />
-            </button>
-            <Link href="/portal/meetings">
-              <Button
-                 className="bg-primary text-white hover:bg-accent hover:text-primary h-11 px-6 font-bold uppercase tracking-[0.18em] text-[11px] transition-all"
-                data-testid="button-book-meeting"
-              >
+             <Link href="/portal/meetings" className="bg-primary text-white hover:bg-accent hover:text-primary h-11 px-5 inline-flex items-center justify-center font-bold uppercase tracking-[0.12em] text-[10px] transition-all" data-testid="button-book-meeting">
                 {t("Book meeting")}
-              </Button>
             </Link>
           </div>
         </header>
 
-        <div className="p-4 md:p-10 max-w-7xl mx-auto">{children}</div>
+        <div className="p-4 md:p-10 max-w-[1440px] mx-auto">{children}</div>
       </main>
     </div>
   );

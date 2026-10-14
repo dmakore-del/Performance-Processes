@@ -6,10 +6,12 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 import { getUncachableStripeClient, getStripePublishableKey } from "./stripeClient";
-import { db } from "./db";
+import { db, pool } from "./db";
 import { sql, desc, ilike, or } from "drizzle-orm";
 import { requireAuth, requireAdmin } from "./auth";
 import { attemptReceiptDelivery } from "./receiptDelivery";
+import { ensureIntakeStorage, registerIntakeRoutes, startIntakeMailQueue } from "./intakeService";
+import { registerBookingNotificationRoute, startBookingAutomation } from "./bookingAutomation";
 
 const uploadsDir = path.join(process.cwd(), "uploads", "resumes");
 const contactSubmissionAttempts = new Map<string, number[]>();
@@ -121,6 +123,12 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  await ensureIntakeStorage();
+  registerIntakeRoutes(app);
+  registerBookingNotificationRoute(app);
+  startIntakeMailQueue();
+  startBookingAutomation();
+
   app.post("/api/contact", async (req, res) => {
     try {
       if (isHoneypotFilled(req.body?.website)) {
@@ -706,6 +714,31 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/admin/grant-applications", requireAdmin, async (_req, res) => {
+    try {
+      res.json(await storage.getGrantApplications());
+    } catch (error) {
+      console.error("Admin grant applications error:", error);
+      res.status(500).json({ message: "Failed to fetch funding submissions" });
+    }
+  });
+
+  app.patch("/api/admin/grant-applications/:id/status", requireAdmin, async (req, res) => {
+    try {
+      const id = Number(req.params.id);
+      if (!Number.isSafeInteger(id) || id < 1) return res.status(400).json({ message: "Invalid submission id" });
+      const allowedStatuses = new Set(["new", "reviewing", "contacted", "scheduled", "accepted", "declined"]);
+      const status = req.body?.status;
+      if (typeof status !== "string" || !allowedStatuses.has(status)) {
+        return res.status(400).json({ message: "Invalid funding submission status" });
+      }
+      res.json(await storage.updateGrantApplicationStatus(id, status));
+    } catch (error) {
+      console.error("Admin grant application status update failed:", error);
+      res.status(500).json({ message: "Failed to update funding submission" });
+    }
+  });
+
   // Receipt contents and customer contact information are never returned in this ledger response.
   app.get("/api/admin/receipts", requireAdmin, async (req, res) => {
     try {
@@ -810,6 +843,50 @@ export async function registerRoutes(
     return engagement;
   };
 
+  app.use("/api/portal/engagements/:engagementId", async (req: any, res, next) => {
+    try {
+      const engagement = await getAccessibleEngagement(req, res, req.params.engagementId);
+      if (!engagement) return;
+      req.portalEngagement = engagement;
+      next();
+    } catch {
+      res.status(500).json({ message: "Unable to verify engagement access" });
+    }
+  });
+
+  const requireBodyEngagement = async (req: any, res: any, next: any) => {
+    try {
+      const engagement = await getAccessibleEngagement(req, res, req.body?.engagementId);
+      if (!engagement) {
+        if (req.file?.path && fs.existsSync(req.file.path)) fs.unlinkSync(req.file.path);
+        return;
+      }
+      req.portalEngagement = engagement;
+      next();
+    } catch {
+      if (req.file?.path && fs.existsSync(req.file.path)) fs.unlinkSync(req.file.path);
+      res.status(500).json({ message: "Unable to verify engagement access" });
+    }
+  };
+
+  const requireRecordEngagement = (query: string) => async (req: any, res: any, next: any) => {
+    try {
+      const recordId = Number(req.params.id);
+      if (!Number.isSafeInteger(recordId) || recordId < 1) {
+        return res.status(400).json({ message: "Invalid record id" });
+      }
+      const result = await pool.query(query, [recordId]);
+      const engagementId = result.rows[0]?.engagement_id;
+      if (!engagementId) return res.status(404).json({ message: "Record not found" });
+      const engagement = await getAccessibleEngagement(req, res, engagementId);
+      if (!engagement) return;
+      req.portalEngagement = engagement;
+      next();
+    } catch {
+      res.status(500).json({ message: "Unable to verify record access" });
+    }
+  };
+
   // Engagements - filtered by user role
   app.get("/api/portal/engagements", async (req, res) => {
     try {
@@ -871,7 +948,15 @@ export async function registerRoutes(
     try {
       const current = await getAccessibleEngagement(req, res, req.params.id);
       if (!current) return;
-      const parsed = insertEngagementSchema.partial().safeParse(req.body);
+      const user = (req as any).user;
+      const updates = { ...req.body };
+      if (user.role !== "admin") {
+        const allowed = new Set(["status", "currentPhase", "completionPercent", "nextSession", "nextSessionDate"]);
+        if (Object.keys(updates).some((key) => !allowed.has(key))) {
+          return res.status(403).json({ message: "Only administrators can change engagement ownership or billing details." });
+        }
+      }
+      const parsed = insertEngagementSchema.partial().safeParse(updates);
       if (!parsed.success) return res.status(400).json({ message: "Invalid engagement data", errors: parsed.error.flatten() });
       const engagement = await storage.updateEngagement(current.id, parsed.data);
       res.json(engagement);
@@ -890,7 +975,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/milestones", requireStaffOrAdmin, async (req, res) => {
+  app.post("/api/portal/milestones", requireStaffOrAdmin, requireBodyEngagement, async (req, res) => {
     try {
       const parsed = insertMilestoneSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
@@ -901,9 +986,10 @@ export async function registerRoutes(
     }
   });
 
-  app.patch("/api/portal/milestones/:id", requireStaffOrAdmin, async (req, res) => {
+  app.patch("/api/portal/milestones/:id", requireStaffOrAdmin, requireRecordEngagement("SELECT engagement_id FROM milestones WHERE id=$1"), async (req, res) => {
     try {
-      const milestone = await storage.updateMilestone(Number(req.params.id), req.body);
+      const { engagementId: _engagementId, ...updates } = req.body;
+      const milestone = await storage.updateMilestone(Number(req.params.id), updates);
       res.json(milestone);
     } catch (error) {
       res.status(500).json({ message: "Failed to update milestone" });
@@ -938,7 +1024,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/documents/upload", documentUpload.single("file"), async (req, res) => {
+  app.post("/api/portal/documents/upload", documentUpload.single("file"), requireBodyEngagement, async (req, res) => {
     try {
       if (!req.file) return res.status(400).json({ message: "File is required" });
       const user = (req as any).user;
@@ -965,7 +1051,7 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/portal/documents/:id/download", async (req, res) => {
+  app.get("/api/portal/documents/:id/download", requireRecordEngagement("SELECT engagement_id FROM documents WHERE id=$1"), async (req, res) => {
     try {
       const doc = await storage.getDocument(Number(req.params.id));
       if (!doc) return res.status(404).json({ message: "Document not found" });
@@ -978,7 +1064,7 @@ export async function registerRoutes(
     }
   });
 
-  app.delete("/api/portal/documents/:id", async (req, res) => {
+  app.delete("/api/portal/documents/:id", requireRecordEngagement("SELECT engagement_id FROM documents WHERE id=$1"), async (req, res) => {
     try {
       const doc = await storage.getDocument(Number(req.params.id));
       if (doc?.filePath && fs.existsSync(doc.filePath)) {
@@ -1001,7 +1087,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/actions", requireStaffOrAdmin, async (req, res) => {
+  app.post("/api/portal/actions", requireStaffOrAdmin, requireBodyEngagement, async (req, res) => {
     try {
       const parsed = insertActionItemSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
@@ -1012,16 +1098,17 @@ export async function registerRoutes(
     }
   });
 
-  app.patch("/api/portal/actions/:id", requireStaffOrAdmin, async (req, res) => {
+  app.patch("/api/portal/actions/:id", requireStaffOrAdmin, requireRecordEngagement("SELECT engagement_id FROM action_items WHERE id=$1"), async (req, res) => {
     try {
-      const item = await storage.updateActionItem(Number(req.params.id), req.body);
+      const { engagementId: _engagementId, ...updates } = req.body;
+      const item = await storage.updateActionItem(Number(req.params.id), updates);
       res.json(item);
     } catch (error) {
       res.status(500).json({ message: "Failed to update action item" });
     }
   });
 
-  app.delete("/api/portal/actions/:id", requireStaffOrAdmin, async (req, res) => {
+  app.delete("/api/portal/actions/:id", requireStaffOrAdmin, requireRecordEngagement("SELECT engagement_id FROM action_items WHERE id=$1"), async (req, res) => {
     try {
       await storage.deleteActionItem(Number(req.params.id));
       res.json({ message: "Action item deleted" });
@@ -1064,7 +1151,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/meetings", requireStaffOrAdmin, async (req, res) => {
+  app.post("/api/portal/meetings", requireStaffOrAdmin, requireBodyEngagement, async (req, res) => {
     try {
       const parsed = insertMeetingSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
@@ -1075,9 +1162,10 @@ export async function registerRoutes(
     }
   });
 
-  app.patch("/api/portal/meetings/:id", requireStaffOrAdmin, async (req, res) => {
+  app.patch("/api/portal/meetings/:id", requireStaffOrAdmin, requireRecordEngagement("SELECT engagement_id FROM meetings WHERE id=$1"), async (req, res) => {
     try {
-      const meeting = await storage.updateMeeting(Number(req.params.id), req.body);
+      const { engagementId: _engagementId, ...updates } = req.body;
+      const meeting = await storage.updateMeeting(Number(req.params.id), updates);
       res.json(meeting);
     } catch (error) {
       res.status(500).json({ message: "Failed to update meeting" });
@@ -1095,9 +1183,17 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/messages", async (req, res) => {
+  app.post("/api/portal/messages", requireBodyEngagement, async (req, res) => {
     try {
       const user = (req as any).user;
+      const engagement = (req as any).portalEngagement;
+      const administrators = (await storage.getAllUsers())
+        .filter((candidate) => candidate.role === "admin" && candidate.status === "active")
+        .map((candidate) => candidate.id);
+      const participantIds = [engagement.clientUserId, engagement.assignedStaffId, ...administrators].filter(Boolean);
+      if (!participantIds.includes(user.id) || !participantIds.includes(req.body?.recipientId)) {
+        return res.status(403).json({ message: "Messages are limited to participants in this engagement." });
+      }
       const messageData = {
         ...req.body,
         senderId: user.id,
@@ -1177,13 +1273,19 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/invoices", requireStaffOrAdmin, async (req, res) => {
+  app.post("/api/portal/invoices", requireStaffOrAdmin, requireBodyEngagement, async (req, res) => {
     try {
       const parsed = insertInvoiceSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
       const engagement = await getAccessibleEngagement(req, res, parsed.data.engagementId);
       if (!engagement) return;
-      const invoice = await storage.createInvoice(parsed.data);
+      const invoice = await storage.createInvoice({
+        ...parsed.data,
+        status: "unpaid",
+        stripeSessionId: null,
+        stripeInvoiceId: null,
+        paidAt: null,
+      });
       res.status(201).json(invoice);
     } catch (error) {
       res.status(500).json({ message: "Failed to create invoice" });
@@ -1205,7 +1307,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/invoices/:id/pay", async (req, res) => {
+  app.post("/api/portal/invoices/:id/pay", requireRecordEngagement("SELECT engagement_id FROM invoices WHERE id=$1"), async (req, res) => {
     try {
       const invoice = await storage.getInvoice(Number(req.params.id));
       if (!invoice) return res.status(404).json({ message: "Invoice not found" });
@@ -1317,7 +1419,7 @@ export async function registerRoutes(
   });
   const contractUpload = multer({ storage: contractStorage, limits: { fileSize: 25 * 1024 * 1024 } });
 
-  app.post("/api/portal/contracts", requireStaffOrAdmin, contractUpload.single("file"), async (req, res) => {
+  app.post("/api/portal/contracts", requireStaffOrAdmin, contractUpload.single("file"), requireBodyEngagement, async (req, res) => {
     try {
       const body = { ...req.body };
       if (req.file) {
@@ -1325,25 +1427,37 @@ export async function registerRoutes(
       }
       const parsed = insertContractSchema.safeParse(body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
-      const contract = await storage.createContract(parsed.data);
+      const contract = await storage.createContract({
+        ...parsed.data,
+        status: "pending",
+        signedByUserId: null,
+        signedByName: null,
+        signedAt: null,
+        signatureData: null,
+      });
       res.status(201).json(contract);
     } catch (error) {
       res.status(500).json({ message: "Failed to create contract" });
     }
   });
 
-  app.get("/api/portal/contracts/file/:filename", requireAuth, (req, res) => {
+  app.get("/api/portal/contracts/file/:filename", async (req: any, res) => {
     const filename = path.basename(String(req.params.filename));
     const filePath = path.join(contractsDir, filename);
+    const result = await pool.query(`SELECT engagement_id FROM contracts WHERE document_url=$1`, [`/api/portal/contracts/file/${filename}`]);
+    if (!result.rows[0]) return res.status(404).json({ message: "Contract not found" });
+    const engagement = await getAccessibleEngagement(req, res, result.rows[0].engagement_id);
+    if (!engagement) return;
     if (!fs.existsSync(filePath)) return res.status(404).json({ message: "File not found" });
     res.sendFile(filePath);
   });
 
-  app.post("/api/portal/contracts/:id/sign", async (req, res) => {
+  app.post("/api/portal/contracts/:id/sign", requireRecordEngagement("SELECT engagement_id FROM contracts WHERE id=$1"), async (req, res) => {
     try {
       const user = (req as any).user;
       const contract = await storage.getContract(Number(req.params.id));
       if (!contract) return res.status(404).json({ message: "Contract not found" });
+      if (user.role !== "client") return res.status(403).json({ message: "Only the client can sign this agreement." });
       if (contract.status === "signed") return res.status(400).json({ message: "Contract already signed" });
 
       const { signatureData } = req.body;
@@ -1373,7 +1487,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/portal/kpis", requireStaffOrAdmin, async (req, res) => {
+  app.post("/api/portal/kpis", requireStaffOrAdmin, requireBodyEngagement, async (req, res) => {
     try {
       const parsed = insertPerformanceKpiSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
@@ -1384,16 +1498,17 @@ export async function registerRoutes(
     }
   });
 
-  app.patch("/api/portal/kpis/:id", requireStaffOrAdmin, async (req, res) => {
+  app.patch("/api/portal/kpis/:id", requireStaffOrAdmin, requireRecordEngagement("SELECT engagement_id FROM performance_kpis WHERE id=$1"), async (req, res) => {
     try {
-      const kpi = await storage.updatePerformanceKpi(Number(req.params.id), req.body);
+      const { engagementId: _engagementId, ...updates } = req.body;
+      const kpi = await storage.updatePerformanceKpi(Number(req.params.id), updates);
       res.json(kpi);
     } catch (error) {
       res.status(500).json({ message: "Failed to update KPI" });
     }
   });
 
-  app.delete("/api/portal/kpis/:id", requireStaffOrAdmin, async (req, res) => {
+  app.delete("/api/portal/kpis/:id", requireStaffOrAdmin, requireRecordEngagement("SELECT engagement_id FROM performance_kpis WHERE id=$1"), async (req, res) => {
     try {
       await storage.deletePerformanceKpi(Number(req.params.id));
       res.json({ message: "KPI deleted" });
@@ -1428,7 +1543,22 @@ export async function registerRoutes(
 
   app.patch("/api/portal/leads/:id", requireStaffOrAdmin, async (req, res) => {
     try {
-      const lead = await storage.updateLead(Number(req.params.id), req.body);
+      const user = (req as any).user;
+      const id = Number(req.params.id);
+      if (!Number.isSafeInteger(id) || id < 1) return res.status(400).json({ message: "Invalid lead id" });
+      const current = await storage.getLead(id);
+      if (!current) return res.status(404).json({ message: "Lead not found" });
+
+      let updates = req.body;
+      if (user.role !== "admin") {
+        if (current.assignedToId !== user.id) return res.status(403).json({ message: "This lead is not assigned to you." });
+        const allowed = new Set(["status", "priority", "notes", "lastContactDate", "nextFollowUpDate"]);
+        if (Object.keys(req.body || {}).some((key) => !allowed.has(key))) {
+          return res.status(403).json({ message: "Staff can update only the lead status, priority, notes, and follow-up dates." });
+        }
+        updates = Object.fromEntries(Object.entries(req.body || {}).filter(([key]) => allowed.has(key)));
+      }
+      const lead = await storage.updateLead(id, updates);
       res.json(lead);
     } catch (error) {
       res.status(500).json({ message: "Failed to update lead" });
@@ -1447,7 +1577,7 @@ export async function registerRoutes(
   app.get("/api/portal/staff-users", requireStaffOrAdmin, async (_req, res) => {
     try {
       const allUsers = await storage.getAllUsers();
-      const staffUsers = allUsers.filter(u => u.role === "staff" || u.role === "admin");
+      const staffUsers = allUsers.filter(u => (u.role === "staff" || u.role === "admin") && u.status === "active");
       res.json(staffUsers.map(u => ({ id: u.id, fullName: u.fullName, email: u.email, role: u.role })));
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch staff users" });

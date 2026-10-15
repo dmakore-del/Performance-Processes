@@ -126,10 +126,10 @@ export default function GrantsFinancing() {
             <h2 className="text-display max-w-2xl text-4xl md:text-5xl">{c.processTitle}</h2>
             <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="self-start border-b border-primary pb-1 text-sm md:self-end">{c.book} ↗</a>
           </div>
-          <div className="relative grid gap-8 md:grid-cols-5 md:gap-5">
-            <div aria-hidden="true" className="absolute left-[8%] right-[8%] top-6 hidden border-t border-primary/20 md:block" />
+          <div className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-5">
+            <div aria-hidden="true" className="absolute left-[8%] right-[8%] top-6 hidden border-t border-primary/20 lg:block" />
             {c.stages.map(([title,description],index)=>(
-              <article key={title} className="relative border-t border-primary/15 pt-5 md:border-0 md:pt-0">
+              <article key={title} className="relative border-t border-primary/15 pt-5 lg:border-0 lg:pt-0">
                 <div className="mb-5 flex h-12 w-12 items-center justify-center border border-primary/25 bg-background text-accent md:relative md:z-10"><StageIcon index={index}/></div>
                 <h3 className="text-display text-2xl leading-tight">{title}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{description}</p>

@@ -12,7 +12,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["services", "what do you offer", "offer", "provide", "help with"],
-    answer: "We help Canadian entrepreneurs with business setup, websites and digital services, grant research, and financing application support. Our public grant and financing service fees are listed at /grants-financing."
+    answer: "We help Canadian entrepreneurs with business formation, business setup, consulting, websites and digital services, grant research, and financing application support. For grant and financing assistance, the recommended scope, deliverables, timing, and fees are sent by email after a discovery call."
   },
   {
     keywords: ["different", "unique", "why choose", "stand out", "differentiator"],
@@ -20,7 +20,7 @@ const FAQ_DATA = [
   },
   {
     keywords: ["large organizations", "small", "size", "startup", "sme"],
-    answer: "We support everyone, from individuals and freelancers to small businesses and large enterprises. Our services start at just $49 for self-serve tools, $100/mo for personal coaching, $500/mo for small business programs, and scale up to full enterprise consulting."
+    answer: "We support individuals, freelancers, small businesses, and larger organizations. Services are scoped to your goals and needs. For grants and financing, we send the recommended scope, timing, deliverables, and fees by email after a discovery call, before any paid work begins."
   },
   {
     keywords: ["strategic alignment", "alignment", "what is strategic"],
@@ -236,10 +236,15 @@ export function Chatbot() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 h-14 px-6 rounded-full bg-accent text-white shadow-lg shadow-accent/30 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer text-xs font-bold uppercase tracking-widest"
+          aria-label={language === "fr" ? "Ouvrir le clavardage" : "Open chat"}
+          className="fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-4 z-50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-accent text-white shadow-lg shadow-accent/30 transition-colors hover:bg-primary sm:bottom-6 sm:right-6 sm:h-14 sm:w-auto sm:px-6 sm:text-xs sm:font-bold sm:uppercase sm:tracking-widest"
           data-testid="button-open-chatbot"
         >
-          {language === "fr" ? "Clavardage" : "Chat"}
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 sm:hidden">
+            <path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H5l1.8-3.2A7.5 7.5 0 1 1 20 11.5Z" />
+            <path d="M8.5 11.5h7M8.5 14.5h4" />
+          </svg>
+          <span className="sr-only sm:not-sr-only">{language === "fr" ? "Clavardage" : "Chat"}</span>
         </button>
       )}
 

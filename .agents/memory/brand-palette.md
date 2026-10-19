@@ -27,4 +27,8 @@ The company considers inclusion a core value. Photos, video, and people shown in
 
 Keep blush restrained and never use low-contrast pink for small body text. Keep the pink logo and favicon. Preserve mobile-safe muted inline video playback. The user wants actual moving footage, not still photos with camera movement or static poster images; use an explicit play option for reduced-motion visitors instead.
 
-Use commas rather than em dashes in prose, and prefer typographic structure over decorative icons.
+Use commas rather than em dashes in prose, and prefer typographic structure over decorative icons, section numbers, arrow glyphs, and stock badges. Assign each photograph to one public placement only.
+
+**Why:** The user has repeatedly asked to remove numbered section markers and decorative symbols, and explicitly wants images to appear only once across the site.
+
+**How to apply:** Keep navigation and calls to action text-led, and check the public media inventory before assigning a photo to a page or card.

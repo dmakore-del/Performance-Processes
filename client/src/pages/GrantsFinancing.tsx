@@ -1,12 +1,14 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { useLanguage } from "@/hooks/use-language";
 import ownerImage from "@assets/stock_photography/funding-analysis.jpg";
-import fundingPathwayMap from "../assets/funding-pathway-map.svg";
+import strategyMeetingImage from "@assets/stock_photography/strategy-meeting.jpg";
 
 const BOOKING_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+const SHOWREEL_VIDEO = "/assets/videos/performance-processes-showreel-v3.mp4";
 const COPY = {
   en: {
     title: "Turn a promising project into a fundable plan.",
@@ -31,7 +33,6 @@ const COPY = {
       ["Application readiness", "Identify documentation gaps early and organize information you provide into a consistent, reviewable package."],
     ],
     imageAlt: "Hands review business finance documents beside a calculator and laptop",
-    teamAlt: "A diagram connects funding research, readiness, application preparation, submission, and follow-up",
     imageCaption: "Start with the work your organization needs to do.",
     shortlistTitle: "A shortlist before a commitment",
     shortlistBody: "Funding programmes change. We screen current criteria and timing, explain the fit and trade-offs, and share the opportunities that appear relevant. You choose whether to proceed with any one of them.",
@@ -66,7 +67,6 @@ const COPY = {
       ["Préparation de la demande", "Repérer tôt les documents manquants et organiser les renseignements fournis dans un dossier cohérent et facile à examiner."],
     ],
     imageAlt: "Des mains examinent des documents financiers à côté d’une calculatrice et d’un ordinateur portable",
-    teamAlt: "Un schéma relie la recherche de financement, l’évaluation de l’admissibilité, la préparation, le dépôt et le suivi",
     imageCaption: "Commencez par les besoins concrets de votre organisation.",
     shortlistTitle: "Une présélection, avant tout engagement",
     shortlistBody: "Les programmes évoluent. Nous vérifions les critères et les échéances actuels, expliquons la pertinence et les compromis, puis présentons les possibilités pertinentes. Vous choisissez si vous souhaitez poursuivre.",
@@ -80,15 +80,47 @@ const COPY = {
   },
 } as const;
 
-function StageIcon({ index }: { index: number }) {
-  const drawings = [
-    <><circle cx="12" cy="12" r="7"/><path d="M12 8v4l3 2"/></>,
-    <><path d="M4 6h16M4 12h10M4 18h7"/><path d="m16 16 2 2 4-5"/></>,
-    <><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4M8 10h5M10.5 7.5v5"/></>,
-    <><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v6h5M10 14h6M10 18h6"/></>,
-    <><path d="M4 12h13"/><path d="m12 6 6 6-6 6"/><circle cx="19" cy="12" r="2"/></>,
-  ];
-  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-7 w-7">{drawings[index]}</svg>;
+function FundingVideo({ french }: { french: boolean }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [autoplayAllowed] = useState(() => typeof window !== "undefined" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const [userStarted, setUserStarted] = useState(false);
+  const shouldPlay = autoplayAllowed || userStarted;
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !shouldPlay) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    void video.play().catch(() => undefined);
+  }, [shouldPlay]);
+
+  return (
+    <div className="relative h-full min-h-[360px] w-full overflow-hidden bg-primary">
+      <video
+        ref={videoRef}
+        muted
+        autoPlay={shouldPlay}
+        loop
+        playsInline
+        preload={shouldPlay ? "auto" : "none"}
+        poster={strategyMeetingImage}
+        aria-label={french ? "Des collègues examinent ensemble un projet, des chiffres et des notes de travail." : "Colleagues review a project, figures, and working notes together."}
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src="/assets/videos/performance-processes-showreel-v3.webm" type="video/webm" />
+        <source src={SHOWREEL_VIDEO} type="video/mp4" />
+      </video>
+      {!shouldPlay && (
+        <button
+          type="button"
+          onClick={() => setUserStarted(true)}
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary px-6 py-4 text-sm font-semibold text-primary-foreground transition hover:bg-accent hover:text-primary"
+        >
+          {french ? "Lire la vidéo sans son" : "Play the muted video"}
+        </button>
+      )}
+    </div>
+  );
 }
 
 export default function GrantsFinancing() {
@@ -105,32 +137,25 @@ export default function GrantsFinancing() {
             <h1 className="text-display max-w-2xl text-5xl leading-[.98] md:text-7xl">{c.title}</h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground">{c.intro}</p>
             <div className="mt-8 flex flex-wrap items-center gap-6">
-              <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="bg-primary px-6 py-4 text-sm font-medium text-primary-foreground transition hover:bg-accent hover:text-primary">{c.book} <span aria-hidden="true">↗</span></a>
-              <a href="#process" className="border-b border-primary pb-1 text-sm">{c.seeProcess} ↓</a>
+              <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="bg-primary px-6 py-4 text-sm font-medium text-primary-foreground transition hover:bg-accent hover:text-primary">{c.book}</a>
+              <a href="#process" className="border-b border-primary pb-1 text-sm">{c.seeProcess}</a>
             </div>
             <p className="mt-5 max-w-xl text-sm leading-6 text-muted-foreground">{c.bookingNote}</p>
           </div>
           <div className="relative min-h-[340px] overflow-hidden lg:min-h-full">
             <img src={ownerImage} alt={c.imageAlt} fetchPriority="high" className="absolute inset-0 h-full w-full object-cover" />
             <div className="absolute bottom-5 left-5 max-w-xs border-l-2 border-accent bg-background/95 px-5 py-4 text-sm leading-6">{c.imageCaption}</div>
-            <svg className="absolute right-6 top-6 h-24 w-24 text-white/90" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-              <circle cx="50" cy="50" r="37" stroke="currentColor" strokeWidth="1"/>
-              <path d="M50 12v76M12 50h76M23 23l54 54M77 23 23 77" stroke="currentColor" strokeWidth=".7"/>
-              <circle cx="50" cy="50" r="6" fill="#e8b7c4"/>
-            </svg>
           </div>
         </section>
 
         <section id="process" className="mx-auto max-w-7xl scroll-mt-20 px-5 py-20 md:py-28">
           <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <h2 className="text-display max-w-2xl text-4xl md:text-5xl">{c.processTitle}</h2>
-            <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="self-start border-b border-primary pb-1 text-sm md:self-end">{c.book} ↗</a>
+            <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="self-start border-b border-primary pb-1 text-sm md:self-end">{c.book}</a>
           </div>
           <div className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-5">
-            <div aria-hidden="true" className="absolute left-[8%] right-[8%] top-6 hidden border-t border-primary/20 lg:block" />
-            {c.stages.map(([title,description],index)=>(
+            {c.stages.map(([title,description])=>(
               <article key={title} className="relative border-t border-primary/15 pt-5 lg:border-0 lg:pt-0">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center border border-primary/25 bg-background text-accent md:relative md:z-10"><StageIcon index={index}/></div>
                 <h3 className="text-display text-2xl leading-tight">{title}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{description}</p>
               </article>
@@ -143,7 +168,7 @@ export default function GrantsFinancing() {
 
         <section className="grid border-y border-primary/10 bg-secondary lg:grid-cols-2">
           <div className="relative flex min-h-[360px] items-center justify-center p-6 md:p-10 lg:min-h-[560px]">
-            <img src={fundingPathwayMap} alt={c.teamAlt} loading="lazy" className="h-full max-h-[480px] w-full object-contain" />
+            <FundingVideo french={fr} />
           </div>
           <div className="mx-auto flex w-full max-w-3xl flex-col justify-center px-5 py-16 md:px-10 lg:py-24">
             <h2 className="text-display text-4xl md:text-5xl">{c.focusTitle}</h2>
@@ -153,7 +178,7 @@ export default function GrantsFinancing() {
                 <h3 className="font-semibold">{title}</h3><p className="text-sm leading-6 text-muted-foreground">{description}</p>
               </article>)}
             </div>
-            <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="mt-8 self-start border-b border-primary pb-1 text-sm">{c.book} ↗</a>
+            <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="mt-8 self-start border-b border-primary pb-1 text-sm">{c.book}</a>
           </div>
         </section>
 
@@ -161,7 +186,7 @@ export default function GrantsFinancing() {
           <div>
             <h2 className="text-display text-4xl md:text-5xl">{c.quoteTitle}</h2>
             <p className="mt-5 max-w-xl text-lg leading-8 text-muted-foreground">{c.quoteBody}</p>
-            <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="mt-7 inline-block bg-accent px-6 py-4 text-sm font-medium text-primary transition hover:bg-primary hover:text-primary-foreground">{c.speak} ↗</a>
+            <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="mt-7 inline-block bg-accent px-6 py-4 text-sm font-medium text-primary transition hover:bg-primary hover:text-primary-foreground">{c.speak}</a>
           </div>
           <div className="border-l border-primary/15 pl-6 md:pl-8">
             <p className="text-sm leading-7 text-muted-foreground">{c.noGuarantee}</p>
@@ -174,7 +199,7 @@ export default function GrantsFinancing() {
           <div className="mx-auto flex max-w-6xl flex-col justify-between gap-8 md:flex-row md:items-center">
             <h2 className="text-display max-w-2xl text-4xl md:text-5xl">{c.ctaBottom}</h2>
             <div className="flex flex-wrap gap-6">
-              <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="bg-accent px-6 py-4 text-sm font-medium text-primary hover:bg-background">{c.book} ↗</a>
+              <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="bg-accent px-6 py-4 text-sm font-medium text-primary hover:bg-background">{c.book}</a>
               <Link href="/contact" className="self-center border-b border-primary-foreground/70 pb-1 text-sm">{c.contact}</Link>
             </div>
           </div>

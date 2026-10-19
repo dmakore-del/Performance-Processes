@@ -4,6 +4,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { PageHero } from "@/components/layout/PageHero";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
+import partnershipImage from "@assets/stock_images/consulting.jpg";
 
 const NEXTUP_URL = "https://nextupcan.ca/get-involved";
 const PROMO_CODE = "NEXTPROCESSES";
@@ -149,6 +150,15 @@ export default function NextUpPartnership() {
           title={c.heroTitle}
           subtitle={c.heroSubtitle}
         />
+
+        <section className="mx-auto max-w-7xl px-5 pt-10 md:px-8 md:pt-14" aria-label={language === "en" ? "Business advisers at work" : "Conseillers d’affaires au travail"}>
+          <img
+            src={partnershipImage}
+            alt={language === "en" ? "Business advisers review plans and documents together." : "Des conseillers d’affaires examinent ensemble des plans et des documents."}
+            loading="lazy"
+            className="h-64 w-full object-cover md:h-[420px]"
+          />
+        </section>
 
         <section className="py-16 bg-white" data-testid="section-stats">
           <div className="container mx-auto px-4 md:px-8">

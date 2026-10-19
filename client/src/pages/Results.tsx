@@ -5,7 +5,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
-import operationsMap from "@/assets/operations-system-map.svg";
+import entrepreneurPlanningImage from "@assets/stock_images/entrepreneur.jpg";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 
@@ -158,8 +158,8 @@ export default function Results() {
         <PageHero
           title={c.heroTitle}
           subtitle={c.heroSubtitle}
-          image={operationsMap}
-          imageAlt={language === "fr" ? "Schéma des dossiers d’employés, des flux de travail automatisés, d’un portail client et de rapports opérationnels reliés." : "Diagram linking employee records, automated workflows, a client portal, and operational reporting."}
+           image={entrepreneurPlanningImage}
+           imageAlt={language === "fr" ? "Une personne prépare des plans d’affaires dans un carnet, à côté d’un ordinateur." : "A person plans business next steps in a notebook beside a laptop."}
         />
 
         {/* Featured case study */}
@@ -226,7 +226,6 @@ export default function Results() {
                         className="flex gap-3 border-t border-border pt-4"
                         data-testid={`text-case-result-${i}`}
                       >
-                        <span className="text-accent font-black leading-none" aria-hidden="true">·</span>
                         <p className="text-sm text-muted-foreground leading-relaxed">{r}</p>
                       </div>
                     ))}
@@ -270,9 +269,6 @@ export default function Results() {
                      className="flex flex-col h-full border border-border bg-background p-8"
                     data-testid={`card-testimonial-${i}`}
                   >
-                    <span aria-hidden="true" className="text-4xl font-serif text-accent/40 leading-none mb-4 block">
-                      &ldquo;
-                    </span>
                     <blockquote className="text-sm text-muted-foreground leading-relaxed mb-6 flex-grow" data-testid={`text-testimonial-quote-${i}`}>
                       {t.quote}
                     </blockquote>
@@ -302,10 +298,10 @@ export default function Results() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                  <a href={BOOKINGS_URL} target="_blank" rel="noopener noreferrer" className="bg-accent px-8 py-4 text-sm text-primary transition hover:bg-white" data-testid="button-results-book">
-                   {c.ctaBook} <span aria-hidden="true">↗</span>
+                   {c.ctaBook}
                  </a>
                  <Link href="/#capabilities" className="border border-primary/30 px-8 py-4 text-sm text-primary transition hover:border-accent hover:bg-accent" data-testid="button-results-services">
-                   {c.ctaServices} <span aria-hidden="true">↗</span>
+                   {c.ctaServices}
                  </Link>
               </div>
             </div>

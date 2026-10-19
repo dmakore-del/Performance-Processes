@@ -38,3 +38,9 @@ Use commas rather than em dashes in prose, and prefer typographic structure over
 **Why:** The user has repeatedly asked to remove numbered section markers and decorative symbols, wants images to appear only once, and asked to remove generic website commentary.
 
 **How to apply:** Keep headings direct, trim repeated helper copy, retain useful service details and instructions, keep navigation text-led, and check the public media inventory before assigning a photo.
+
+Every service image must visibly match the service it represents. Never return the rejected `muslim-businesswoman.jpg` image to public use.
+
+**Why:** The user repeatedly rejected that image and said service imagery must be relevant rather than randomly assigned.
+
+**How to apply:** Check the subject and visible work in every image before assigning it. Use finance documents and calculators for Grants & Financing, and actual development work for Websites & Digital.

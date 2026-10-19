@@ -7,7 +7,7 @@ import { useLanguage } from "@/hooks/use-language";
 import advisoryTeamImage from "@assets/stock_photography/advisory-team.jpg";
 import experiencedTeamImage from "@assets/stock_photography/experienced-team.jpg";
 import financialPlanningImage from "@assets/stock_photography/financial-planning.jpg";
-import muslimBusinesswomanImage from "@assets/stock_photography/muslim-businesswoman.jpg";
+import webDevelopmentTeamImage from "@assets/image_search/web-digital-6804068.jpg";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
 const SHOWREEL_VIDEO = "/media/hero-services-2026-10.mp4";
@@ -35,8 +35,8 @@ const SHOWREEL_SCENES = [
 const SERVICE_IMAGES = [
   { src: advisoryTeamImage, alt: "Business advisers collaborating around a work table" },
   { src: experiencedTeamImage, alt: "Experienced professionals discussing business priorities" },
-  { src: financialPlanningImage, alt: "Financial planning documents being reviewed at a desk" },
-  { src: muslimBusinesswomanImage, alt: "A businesswoman leading a discussion with colleagues" },
+  { src: webDevelopmentTeamImage, alt: "Web developers working at computers in a shared technology office" },
+  { src: financialPlanningImage, alt: "Financial planning documents, cash, a calculator, and a laptop being reviewed at a desk" },
 ] as const;
 
 function HomeShowreel({ french }: { french: boolean }) {

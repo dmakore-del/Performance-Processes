@@ -19,6 +19,12 @@ Use high-quality professional media that reflects the company's work. People and
 
 **How to apply:** Use sourced real-world media for people, retain authentic team portraits, and never present stock models as actual staff or clients.
 
+The homepage hero should feature a Black woman business adviser leading a diverse team through service-specific work. Photorealistic generated footage is permitted for this requested hero, but must not be described as recorded company footage.
+
+**Why:** The user requested a longer service-showcase video with a Black woman lead and a diverse supporting team, and selected the resolution after the generated-video approach was explained.
+
+**How to apply:** Show incorporation, consulting, digital systems, and funding work with natural movement. Keep this exception scoped to the hero, and retain authentic staff portraits elsewhere.
+
 The company considers inclusion a core value. Photos, video, and people shown in graphics should represent different groups naturally across the public website. Visible labels such as “illustrative photo” or “stock footage” should not be added to the media.
 
 **Why:** The user said the company is serious about inclusivity, asked for different groups to be represented, and asked to remove illustrative/stock labels.

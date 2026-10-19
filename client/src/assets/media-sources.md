@@ -24,7 +24,11 @@ The About page uses Danai Makore’s actual founder portrait and the portrait of
 
 ## Homepage video
 
-Home and Grants & Financing use a locally bundled, muted, looping showreel made only from moving Pexels video clips, supplied in WebM and MP4 formats. It has no photo slides or audio track. Grants & Financing uses a separate photographic poster, assigned to that placement only. The reel preloads and autoplays unless reduced-motion preferences opt out; there is no pause control:
+The homepage uses an original 23.2-second, 1920 × 1080 generated service reel, with three moving scenes: business formation and advisory, digital business tools, and grants and financing. The lead is a fictional adult Black woman business adviser with a diverse supporting cast, not recorded footage of the founder, actual staff, or clients. Reference-image-based video generation was rejected by the provider; the final footage was generated from text descriptions without using the founder's image as video input. The user was informed of this change. There are no photo slides, audio tracks, or visible stock/illustrative labels.
+
+The MP4 and VP9 WebM files are stored in App Storage and served through a fixed public-media allowlist with browser byte-range support. Raw generation and encoding outputs are excluded from Git and deployment. The homepage reel is not reused on other pages.
+
+Grants & Financing retains the earlier, locally bundled Pexels showreel and a separate photographic poster assigned only to that placement:
 
 | Service scene | Pexels source |
 | --- | --- |

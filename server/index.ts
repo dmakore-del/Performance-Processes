@@ -8,9 +8,11 @@ import { WebhookHandlers } from './webhookHandlers';
 import { ensureStripeProducts } from './seedStripeProducts';
 import { setupAuth } from "./auth";
 import { seedAdminAccount } from "./seedAdmin";
+import { registerHeroMedia } from "./heroMedia";
 
 const app = express();
 app.set("trust proxy", 1);
+registerHeroMedia(app);
 const httpServer = createServer(app);
 
 declare module "http" {

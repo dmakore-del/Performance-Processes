@@ -10,8 +10,8 @@ import financialPlanningImage from "@assets/stock_photography/financial-planning
 import muslimBusinesswomanImage from "@assets/stock_photography/muslim-businesswoman.jpg";
 
 const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
-const SHOWREEL_VIDEO = "/assets/videos/performance-processes-showreel-v3.mp4";
-const SHOWREEL_SCENE_SECONDS = 3.65;
+const SHOWREEL_VIDEO = "/media/hero-services-2026-10.mp4";
+const SHOWREEL_SCENE_SECONDS = 7.6;
 const CLIENTS = [
   { name: "Vibes Lounge", href: "https://vibeslounge.ca" },
   { name: "Maison Sparkle Living", href: "https://maisonsparkleliving.com" },
@@ -20,16 +20,16 @@ const CLIENTS = [
 ];
 const SHOWREEL_SCENES = [
   {
-    label: ["Formation d’entreprise", "Business formation"],
-    description: ["Une personne signe un document d’affaires.", "A person signs a business document."],
+    label: ["Formation et conseil", "Business formation & advisory"],
+    description: ["Une conseillère dirige une réunion sur la création et la planification d’entreprise avec une équipe diversifiée.", "A business adviser leads a diverse team through company formation and business planning."],
   },
   {
-    label: ["Financement", "Funding support"],
-    description: ["Des collègues examinent un ordinateur portable et des notes de projet ensemble.", "Colleagues review a laptop and project notes together."],
+    label: ["Sites web et systèmes d’entreprise", "Websites & business systems"],
+    description: ["Une conseillère et ses collègues examinent des outils numériques sur un ordinateur portable.", "An adviser and colleagues review digital business tools together on a laptop."],
   },
   {
-    label: ["Développement numérique", "Digital development"],
-    description: ["Du code Python est affiché sur un écran d’ordinateur.", "Python code appears on a computer screen."],
+    label: ["Subventions et financement", "Grants & financing"],
+    description: ["Une conseillère examine des projections financières et des documents de financement avec des clients.", "An adviser reviews financial projections and funding documents with clients."],
   },
 ] as const;
 const SERVICE_IMAGES = [
@@ -47,6 +47,8 @@ function HomeShowreel({ french }: { french: boolean }) {
     return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   });
   const [userStarted, setUserStarted] = useState(false);
+  const [playbackBlocked, setPlaybackBlocked] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
   const shouldPlay = autoplayAllowed || userStarted;
   const scene = SHOWREEL_SCENES[sceneIndex];
   const languageIndex = french ? 0 : 1;
@@ -57,8 +59,17 @@ function HomeShowreel({ french }: { french: boolean }) {
 
     video.muted = true;
     video.defaultMuted = true;
-    void video.play().catch(() => undefined);
+    void video.play().catch(() => setPlaybackBlocked(true));
   }, [shouldPlay]);
+
+  const startVideo = () => {
+    setUserStarted(true);
+    if (videoFailed) {
+      setVideoFailed(false);
+      videoRef.current?.load();
+    }
+    void videoRef.current?.play().catch(() => setPlaybackBlocked(true));
+  };
 
   const updateScene = (video: HTMLVideoElement) => {
     const nextScene = Math.min(
@@ -79,19 +90,23 @@ function HomeShowreel({ french }: { french: boolean }) {
         preload={shouldPlay ? "auto" : "none"}
         onTimeUpdate={(event) => updateScene(event.currentTarget)}
         onSeeked={(event) => updateScene(event.currentTarget)}
+        onPlaying={() => setPlaybackBlocked(false)}
+        onError={() => setVideoFailed(true)}
         aria-label={scene.description[languageIndex]}
         className="absolute inset-0 h-full w-full object-cover"
       >
-        <source src="/assets/videos/performance-processes-showreel-v3.webm" type="video/webm" />
+        <source src="/media/hero-services-2026-10.webm" type="video/webm" />
         <source src={SHOWREEL_VIDEO} type="video/mp4" />
       </video>
-      {!shouldPlay && (
+      {(!shouldPlay || playbackBlocked || videoFailed) && (
         <button
           type="button"
-          onClick={() => setUserStarted(true)}
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary px-6 py-4 text-sm font-semibold text-primary-foreground transition hover:bg-accent hover:text-primary"
+          onClick={startVideo}
+          className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 bg-primary px-6 py-4 text-sm font-semibold text-primary-foreground transition hover:bg-accent hover:text-primary"
         >
-          {french ? "Lire la vidéo sans son" : "Play the muted video"}
+          {videoFailed
+            ? (french ? "Vidéo indisponible — réessayer" : "Video unavailable — retry")
+            : (french ? "Lire la vidéo sans son" : "Play the muted video")}
         </button>
       )}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/55 via-transparent to-primary/10" />

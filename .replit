@@ -55,3 +55,11 @@ integrations = ["stripe:2.0.0", "outlook:1.0.0"]
 [postMerge]
 path = "scripts/post-merge.sh"
 timeoutMs = 120000
+
+[objectStorage]
+defaultBucketID = "replit-objstore-6e29b6b0-7671-473e-b5d1-3fab19fe71c2"
+
+[userenv]
+
+[userenv.shared]
+DEFAULT_OBJECT_STORAGE_BUCKET_ID = "replit-objstore-6e29b6b0-7671-473e-b5d1-3fab19fe71c2"

@@ -4,20 +4,20 @@ Photographs are bundled locally from the supplied asset files and use one public
 
 | Local file | Pexels photo ID | Description | Public use |
 | --- | ---: | --- | --- |
-| `advisory-team.jpg` | 3184339 | Professionals collaborating at a work table | Home, Business Formation card |
+| `advisory-team.jpg` | 3184339 | Professionals collaborating at a work table | Home services |
 | `strategy-meeting.jpg` | 9301291 | Strategy meeting | Grants & Financing video poster |
 | `client-consultation.jpg` | 7710141 | Collaborative consultation | Contact |
 | `funding-analysis.jpg` | 7821708 | Hands reviewing finance documents, calculator, and laptop | Grants & Financing |
-| `financial-planning.jpg` | 7821708 | Financial planning materials reviewed at a desk | Home, Websites & Digital card |
+| `financial-planning.jpg` | 7821708 | Financial planning materials reviewed at a desk | Home services |
 | `digital-development.jpg` | 574077 | Real laptop coding and digital development | Websites & Digital |
 | `workshop.jpg` | 7580648 | Professional workshop | Careers |
 | `inclusive-team.jpg` | 8127812 | A diverse group, including an Asian woman, a Black woman, and a wheelchair user, collaborates around a laptop | Business Setup |
-| `experienced-team.jpg` | 7434021 | Mature professionals of different genders meet around a table | Home, Business Setup card |
+| `experienced-team.jpg` | 7434021 | Mature professionals of different genders meet around a table | Home services |
 | `business_registration.jpg` | Existing project asset | Business keys, a padlock, and paperwork on a desk | Business Formation |
 | `entrepreneur.jpg` | Existing project asset | A founder plans business next steps in a notebook | Results |
 | `consulting.jpg` | Existing project asset | Professionals review business documents | NextUp Partnership |
 | `business-owner.jpg` | 5717560 | Business owner reviewing work at a laptop; original monochrome photograph | Retained source record, no current public placement |
-| `muslim-businesswoman.jpg` | 8154928 | A businesswoman leads an office discussion | Home, Grants & Financing card |
+| `muslim-businesswoman.jpg` | 8154928 | A businesswoman leads an office discussion | Home services |
 | `wheelchair-inclusive-team.jpg` | 8127698 | A wheelchair user collaborates with two colleagues in an accessible office | Careers |
 
 The About page uses Danai Makore’s actual founder portrait and the portrait of Ebuka supplied by the company. Public photographs are assigned to a single page or card placement and are not reused.

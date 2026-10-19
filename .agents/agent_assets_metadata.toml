@@ -95,3 +95,18 @@ id = "tAlymL4V5dZt-m1gR0HVZ"
 uri = "file://attached_assets/stock_images/workspace1.jpg"
 type = "image"
 title = "modern office workspace with laptop on desk"
+logical_id = "85f89821-56f1-4013-b77c-d44e3b147887"
+
+[[outputs]]
+id = "rUqUM8bpxBqFNXY101Jee"
+uri = "file://generated-artifacts/hero-video/performance-processes-services-1080p.mp4"
+type = "video"
+title = "Performance Processes — new hero reel"
+description = "23-second, 1080p silent service reel with a fictional Black woman adviser and a diverse team. Shows formation and advisory, digital systems, and grants and financing."
+logical_id = "07e08a08-1e4d-459f-afac-5dd97b5aaf9f"
+content_hash = "sha256:a0f2932893b3421961f743df91145f7f5ef9848f2a677f7e31238f051530bc1e"
+size = 7173555
+mtime_ms = 1792447987005
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:69669f3e-81d6-466f-8028-be37d6c6f5c1/07e08a08-1e4d-459f-afac-5dd97b5aaf9f/b9eecd75-fa0d-48f3-859a-0d7140a2eeac"
+storage_version_token = "1792448310080239"
+content_type = "video/mp4"

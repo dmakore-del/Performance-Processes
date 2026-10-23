@@ -14,3 +14,9 @@ Clients need to see the services they selected or were assigned by the admin, se
 **Why:** the user wants the portal aligned with the amended website services and business goals, not generic organizational reporting. They specifically cited website-service results and adding past paid invoices to a client's profile.
 
 **How to apply:** use relevant service-specific reporting suggestions with actual team-entered measurements and baselines; recording an already-paid invoice must not start a new charge.
+
+Keep the client portal minimalist and modern, using the existing website branding. Signup should collect useful business context for the admin rather than just login credentials.
+
+**Why:** the user explicitly requested a simpler portal and enough signup information for the admin to serve each client.
+
+**How to apply:** keep onboarding focused and make its answers available to authorized admins; do not mistake stated service interests for assigned services or payment authorization.

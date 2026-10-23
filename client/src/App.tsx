@@ -182,6 +182,11 @@ function Router() {
   );
 }
 
+function PublicChatbot() {
+  const [path] = useLocation();
+  return path.startsWith("/portal") ? null : <Chatbot />;
+}
+
 function App() {
   return (
     <LanguageProvider>
@@ -190,7 +195,7 @@ function App() {
           <TooltipProvider>
             <Toaster />
             <Router />
-            <Chatbot />
+            <PublicChatbot />
           </TooltipProvider>
         </EngagementProvider>
       </QueryClientProvider>

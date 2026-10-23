@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Redirect } from "wouter";
+import { Redirect, useLocation } from "wouter";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { PortalLayout } from "@/components/layout/PortalLayout";
 import { Button } from "@/components/ui/button";
@@ -13,8 +13,10 @@ import { useToast } from "@/hooks/use-toast";
 import type { Engagement, Invoice } from "@shared/schema";
 import { usePortalI18n } from "@/lib/portal-i18n";
 import { serviceName } from "@shared/portal-services";
+import { isFundingService } from "@shared/funding";
+import { usePortalEngagement } from "@/hooks/use-portal";
 
-type BillingData = { engagements: Engagement[]; invoices: Invoice[] };
+type BillingData = { engagements: Engagement[]; invoices: Invoice[]; fundingInvoiceIds: number[] };
 type InvoiceFilter = "all" | "unpaid" | "overdue" | "paid";
 
 const today = () => new Date().toISOString().slice(0, 10);
@@ -27,7 +29,9 @@ const formatPaidDate = (value: string | Date, locale: string) => {
 
 export default function AdminBilling() {
   const { user } = useAuth();
-  const { t, status: translateStatus, locale } = usePortalI18n();
+  const { t, status: translateStatus, locale, fr } = usePortalI18n();
+  const { setSelectedEngagementId: selectPortalService } = usePortalEngagement();
+  const [, navigate] = useLocation();
   const { toast } = useToast();
   const [filter, setFilter] = useState<InvoiceFilter>("all");
   const [selectedEngagementId, setSelectedEngagementId] = useState<number | null>(null);
@@ -56,6 +60,9 @@ export default function AdminBilling() {
   const engagements = data?.engagements || [];
   const invoices = data?.invoices || [];
   const selectedEngagement = engagements.find((item) => item.id === selectedEngagementId) || engagements[0];
+  const selectedFunding = isFundingService(selectedEngagement?.serviceCategory);
+  const lockedInvoice = !!editingInvoice && !!data?.fundingInvoiceIds?.includes(editingInvoice.id);
+  const fundingInvoiceForm = isFundingService(engagements.find((item) => item.id === Number(invoiceForm.engagementId))?.serviceCategory);
 
   useEffect(() => {
     if (!selectedEngagementId && engagements[0]) setSelectedEngagementId(engagements[0].id);
@@ -120,7 +127,8 @@ export default function AdminBilling() {
 
   const updateInvoice = useMutation({
     mutationFn: async ({ id, data: update }: { id: number; data: Partial<Invoice> }) => {
-      const response = await apiRequest("PATCH", `/api/portal/invoices/${id}`, update);
+      const values = data?.fundingInvoiceIds?.includes(id) ? { status: update.status, paidAt: update.paidAt } : update;
+      const response = await apiRequest("PATCH", `/api/portal/invoices/${id}`, values);
       return response.json();
     },
     onSuccess: () => {
@@ -143,7 +151,7 @@ export default function AdminBilling() {
       issueDate: today(),
       dueDate: "",
       paymentType: selectedEngagement?.retainerAmountCents ? "monthly_retainer" : "one_time",
-      status: "unpaid",
+      status: selectedFunding ? "paid" : "unpaid",
       paidAt: "",
     });
     setInvoiceDialogOpen(true);
@@ -177,7 +185,7 @@ export default function AdminBilling() {
             <h1 className="mt-3 text-4xl font-heading text-primary md:text-5xl">{t("Billing and retainers")}</h1>
             <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">{t("Set the commercial terms, keep invoices current, and give every client a simple place to pay.")}</p>
           </div>
-          <Button className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={openCreateInvoice}>{t("Create invoice")}</Button>
+          <Button className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={openCreateInvoice}>{selectedFunding ? t("Record paid invoice") : t("Create invoice")}</Button>
         </header>
 
         <section className="grid gap-4 sm:grid-cols-3" aria-label={t("Billing overview")}>
@@ -197,8 +205,8 @@ export default function AdminBilling() {
           <div className="space-y-5">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-heading text-primary">{t("Client retainers")}</h2>
-                <p className="mt-1 text-sm text-muted-foreground">{t("Adjust the monthly plan shown to the selected client.")}</p>
+                <h2 className="text-2xl font-heading text-primary">{fr ? "Facturation du client" : "Client billing"}</h2>
+                <p className="mt-1 text-sm text-muted-foreground">{fr ? "Sélectionnez le service du client à gérer." : "Select the client service to manage."}</p>
               </div>
             </div>
             <div className="border border-border bg-white">
@@ -209,7 +217,10 @@ export default function AdminBilling() {
                   <SelectContent>{engagements.map((item) => <SelectItem key={item.id} value={String(item.id)}>{item.clientName}, {item.engagementType}</SelectItem>)}</SelectContent>
                 </Select>
               </div>
-              {selectedEngagement ? (
+              {selectedEngagement && selectedFunding ? <div className="space-y-4 p-5">
+                <p className="text-sm leading-6 text-muted-foreground">{fr ? "Les subventions et le financement utilisent des commandes approuvées et des factures ponctuelles, sans prélèvement mensuel automatique." : "Grants & Financing uses approved service orders and one-time invoices, with no automatic monthly charge."}</p>
+                <Button variant="outline" onClick={() => { selectPortalService(selectedEngagement.id); navigate("/portal/payments"); }}>{fr ? "Gérer les services de financement" : "Manage funding services"}</Button>
+              </div> : selectedEngagement ? (
                 <div className="space-y-5 p-5">
                   <div className="border-l-2 border-accent bg-secondary p-4">
                     <p className="text-xs font-semibold text-muted-foreground">{t("Current plan")}</p>
@@ -252,12 +263,14 @@ export default function AdminBilling() {
         <DialogContent className="max-w-lg">
            <DialogHeader><DialogTitle>{editingInvoice ? t("Edit invoice") : t("Create invoice")}</DialogTitle></DialogHeader>
           <div className="space-y-4">
-              <div><Label htmlFor="invoice-client">{t("Client engagement")}</Label><Select value={invoiceForm.engagementId} onValueChange={(value) => setInvoiceForm({ ...invoiceForm, engagementId: value })}><SelectTrigger id="invoice-client" className="mt-2"><SelectValue placeholder={t("Select a client")} /></SelectTrigger><SelectContent>{engagements.map((item) => <SelectItem key={item.id} value={String(item.id)}>{item.clientName} · {serviceName(item)}</SelectItem>)}</SelectContent></Select></div>
+             <fieldset disabled={lockedInvoice} className="space-y-4 disabled:opacity-70">
+              <div><Label htmlFor="invoice-client">{t("Client engagement")}</Label><Select disabled={!!editingInvoice} value={invoiceForm.engagementId} onValueChange={(value) => setInvoiceForm({ ...invoiceForm, engagementId: value, status: isFundingService(engagements.find((item) => item.id === Number(value))?.serviceCategory) ? "paid" : invoiceForm.status, paymentType: "one_time" })}><SelectTrigger id="invoice-client" className="mt-2"><SelectValue placeholder={t("Select a client")} /></SelectTrigger><SelectContent>{engagements.map((item) => <SelectItem key={item.id} value={String(item.id)}>{item.clientName} · {serviceName(item)}</SelectItem>)}</SelectContent></Select></div>
              <div><Label htmlFor="invoice-number">{t("Invoice number")}</Label><Input id="invoice-number" className="mt-2" value={invoiceForm.invoiceNumber} onChange={(event) => setInvoiceForm({ ...invoiceForm, invoiceNumber: event.target.value })} /></div>
              <div><Label htmlFor="invoice-description">{t("Description")}</Label><Input id="invoice-description" className="mt-2" value={invoiceForm.description} onChange={(event) => setInvoiceForm({ ...invoiceForm, description: event.target.value })} /></div>
              <div className="grid gap-4 sm:grid-cols-2"><div><Label htmlFor="invoice-amount">{t("Amount in cents")}</Label><Input id="invoice-amount" className="mt-2" type="number" min="1" value={invoiceForm.amountCents} onChange={(event) => setInvoiceForm({ ...invoiceForm, amountCents: event.target.value })} /></div><div><Label htmlFor="invoice-type">{t("Invoice type")}</Label><Select value={invoiceForm.paymentType} onValueChange={(value) => setInvoiceForm({ ...invoiceForm, paymentType: value })}><SelectTrigger id="invoice-type" className="mt-2"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="one_time">{t("One time service")}</SelectItem><SelectItem value="monthly_retainer">{t("Monthly retainer")}</SelectItem></SelectContent></Select></div></div>
              <div className="grid gap-4 sm:grid-cols-2"><div><Label htmlFor="invoice-issue">{t("Issue date")}</Label><Input id="invoice-issue" className="mt-2" type="date" value={invoiceForm.issueDate} onChange={(event) => setInvoiceForm({ ...invoiceForm, issueDate: event.target.value })} /></div><div><Label htmlFor="invoice-due">{t("Due date")}</Label><Input id="invoice-due" className="mt-2" type="date" value={invoiceForm.dueDate} onChange={(event) => setInvoiceForm({ ...invoiceForm, dueDate: event.target.value })} /></div></div>
-              <div><Label htmlFor="invoice-status">{t("Status")}</Label><Select value={invoiceForm.status} onValueChange={(value) => setInvoiceForm({ ...invoiceForm, status: value, paidAt: value === "paid" ? invoiceForm.paidAt : "" })}><SelectTrigger id="invoice-status" className="mt-2"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="unpaid">{t("Unpaid")}</SelectItem><SelectItem value="paid">{t("Paid")}</SelectItem>{editingInvoice && <><SelectItem value="overdue">{t("Overdue")}</SelectItem><SelectItem value="void">{t("Void")}</SelectItem></>}</SelectContent></Select></div>
+             </fieldset>
+               <div><Label htmlFor="invoice-status">{t("Status")}</Label><Select disabled={fundingInvoiceForm && !editingInvoice} value={invoiceForm.status} onValueChange={(value) => setInvoiceForm({ ...invoiceForm, status: value, paidAt: value === "paid" ? invoiceForm.paidAt : "" })}><SelectTrigger id="invoice-status" className="mt-2"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="unpaid">{t("Unpaid")}</SelectItem><SelectItem value="paid">{t("Paid")}</SelectItem>{editingInvoice && <><SelectItem value="overdue">{t("Overdue")}</SelectItem><SelectItem value="void">{t("Void")}</SelectItem></>}</SelectContent></Select></div>
               {invoiceForm.status === "paid" && <div><Label htmlFor="invoice-paid-date">{t("Actual paid date")}</Label><Input id="invoice-paid-date" className="mt-2" type="date" value={invoiceForm.paidAt} onChange={(event) => setInvoiceForm({ ...invoiceForm, paidAt: event.target.value })} required /></div>}
               <p className="text-xs leading-5 text-muted-foreground">{invoiceForm.status === "paid" ? t("Records an already-received payment only; no Stripe charge or email will be created.") : t("Unpaid invoices are available to the client for secure payment.")}</p>
               <Button className="w-full bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => {

@@ -14,6 +14,8 @@ import { Textarea } from "@/components/ui/textarea";
 import type { Invoice, Contract } from "@shared/schema";
 import { usePortalI18n } from "@/lib/portal-i18n";
 import { Link } from "wouter";
+import { FundingServices } from "@/components/portal/FundingServices";
+import { isFundingService } from "@shared/funding";
 
 interface PortalReceipt {
   id: number;
@@ -44,6 +46,7 @@ export default function Billing() {
   const isClient = user?.role === "client";
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
   const isAdmin = user?.role === "admin";
+  const isFunding = isFundingService(engagement?.serviceCategory);
   const [clientPaymentView, setClientPaymentView] = useState<"invoices" | "receipts">("invoices");
   const {
     data: receipts = [],
@@ -291,6 +294,8 @@ export default function Billing() {
           {isAdmin && <Link href="/portal/admin/billing" className="mt-3 inline-flex text-xs font-bold uppercase tracking-widest text-primary underline decoration-accent decoration-2 underline-offset-4">{t("Open billing register and payment history")}</Link>}
         </div>
 
+        {isFunding && <FundingServices key={activeEngagement.id} engagementId={activeEngagement.id} />}
+
         {isClient && (
           <div className="flex w-full max-w-md border-b border-border" role="tablist" aria-label={t("Payment records")}>
             {(["invoices", "receipts"] as const).map((view) => (
@@ -324,7 +329,7 @@ export default function Billing() {
             ))}
           </div>
 
-          {activeEngagement.retainerAmountCents > 0 && (
+          {!isFunding && activeEngagement.retainerAmountCents > 0 && (
             <section className="border-l-2 border-accent bg-secondary p-6 md:p-8" data-testid="retainer-card">
               <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                 <div>
@@ -348,7 +353,10 @@ export default function Billing() {
                 <h3 className="text-2xl font-heading text-primary" data-testid="invoices-heading">{t("Invoices")}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{t("Review past payments and take care of anything outstanding.")}</p>
               </div>
-              {isStaffOrAdmin && <Button size="sm" className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => setCreateInvoiceOpen(true)} data-testid="button-create-invoice">{t("Create invoice")}</Button>}
+              {isStaffOrAdmin && (!isFunding || isAdmin) && <Button size="sm" className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => {
+                if (isFunding) setInvoiceForm((form) => ({ ...form, status: "paid", paymentType: "one_time" }));
+                setCreateInvoiceOpen(true);
+              }} data-testid="button-create-invoice">{isFunding ? t("Record paid invoice") : t("Create invoice")}</Button>}
             </div>
              <div className="flex gap-1 overflow-x-auto border border-border bg-white p-1" role="tablist" aria-label={t("Invoice views")}>
               {(["all", "outstanding", "overdue", "paid"] as const).map((item) => <button key={item} type="button" role="tab" aria-selected={invoiceFilter === item} onClick={() => setInvoiceFilter(item)} className={`shrink-0 px-4 py-2 text-xs font-semibold capitalize ${invoiceFilter === item ? "bg-accent text-primary" : "text-muted-foreground hover:text-primary"}`}>{item === "all" ? t("All") : item === "outstanding" ? t("Outstanding") : item === "overdue" ? t("Overdue") : t("Paid invoices")}</button>)}
@@ -598,13 +606,13 @@ export default function Billing() {
             {isAdmin && <>
               <div>
                 <Label>{t("Payment type")}</Label>
-                <select className="mt-1 h-10 w-full border border-input bg-background px-3 text-sm" value={invoiceForm.paymentType} onChange={(e) => setInvoiceForm({ ...invoiceForm, paymentType: e.target.value })}>
+                <select className="mt-1 h-10 w-full border border-input bg-background px-3 text-sm" disabled={isFunding} value={invoiceForm.paymentType} onChange={(e) => setInvoiceForm({ ...invoiceForm, paymentType: e.target.value })}>
                   <option value="one_time">{t("One-time service")}</option><option value="monthly_retainer">{t("Monthly retainer")}</option>
                 </select>
               </div>
               <div>
                 <Label>{t("Record status")}</Label>
-                <select className="mt-1 h-10 w-full border border-input bg-background px-3 text-sm" value={invoiceForm.status} onChange={(e) => setInvoiceForm({ ...invoiceForm, status: e.target.value, paidAt: e.target.value === "paid" ? invoiceForm.paidAt : "" })}>
+                <select className="mt-1 h-10 w-full border border-input bg-background px-3 text-sm" disabled={isFunding} value={invoiceForm.status} onChange={(e) => setInvoiceForm({ ...invoiceForm, status: e.target.value, paidAt: e.target.value === "paid" ? invoiceForm.paidAt : "" })}>
                   <option value="unpaid">{t("Unpaid")}</option><option value="paid">{t("Paid")}</option>
                 </select>
               </div>

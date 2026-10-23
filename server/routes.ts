@@ -16,6 +16,10 @@ import { getPortalService } from "@shared/portal-services";
 import { milestones as milestoneTable } from "@shared/schema";
 import { z } from "zod";
 import { invoiceWriteSchema, invoicePatchSchema, invoicePaymentError, invoiceAmount, kpiWriteSchema, kpiPatchSchema } from "./portalValidation";
+import { registerFundingRoutes } from "./fundingRoutes";
+import { isFundingService } from "@shared/funding";
+import { users as userTable, engagements as engagementTable, fundingCharges as fundingChargeTable } from "@shared/schema";
+import { eq } from "drizzle-orm";
 
 const uploadsDir = path.join(process.cwd(), "uploads", "resumes");
 const contactSubmissionAttempts = new Map<string, number[]>();
@@ -660,6 +664,13 @@ export async function registerRoutes(
         email: u.email,
         fullName: u.fullName,
         companyName: u.companyName,
+        contactPhone: u.contactPhone,
+        businessLocation: u.businessLocation,
+        businessWebsite: u.businessWebsite,
+        industry: u.industry,
+        businessStage: u.businessStage,
+        requestedServices: u.requestedServices,
+        supportGoals: u.supportGoals,
         role: u.role,
         status: u.status,
         twoFactorEnabled: u.twoFactorEnabled,
@@ -672,12 +683,42 @@ export async function registerRoutes(
     }
   });
 
+  app.patch("/api/admin/users/:id/profile", requireAdmin, async (req, res) => {
+    const parsed = z.object({
+      fullName: z.string().trim().min(2).max(120),
+      companyName: z.string().trim().min(2).max(160),
+      contactPhone: z.string().trim().max(40),
+      businessLocation: z.string().trim().max(180),
+      businessWebsite: z.string().trim().max(300).refine((s) => s === "" || (/^https?:\/\//i.test(s) && z.string().url().safeParse(s).success)),
+      industry: z.string().trim().max(120),
+      supportGoals: z.string().trim().max(1200),
+    }).strict().partial().safeParse(req.body);
+    if (!parsed.success || !Object.keys(parsed.data || {}).length) return res.status(400).json({ message: "Enter valid profile details." });
+    try {
+      const current = await storage.getUser(String(req.params.id));
+      if (!current) return res.status(404).json({ message: "User not found." });
+      if (parsed.data.companyName && parsed.data.companyName !== current.companyName) {
+        const duplicate = await storage.getUserByCompanyName(parsed.data.companyName);
+        if (duplicate && duplicate.id !== current.id) return res.status(409).json({ message: "An account already uses this organization name." });
+      }
+      const saved = await db.transaction(async (tx) => {
+        const [updated] = await tx.update(userTable).set(parsed.data).where(eq(userTable.id, current.id)).returning();
+        if (parsed.data.companyName) await tx.update(engagementTable).set({ clientName: parsed.data.companyName }).where(eq(engagementTable.clientUserId, current.id));
+        return updated;
+      });
+      return res.json({ id: saved.id, fullName: saved.fullName, companyName: saved.companyName });
+    } catch {
+      return res.status(500).json({ message: "Unable to update this profile." });
+    }
+  });
+
   app.patch("/api/admin/users/:id/status", requireAdmin, async (req, res) => {
     try {
       const { status } = req.body;
       if (!["active", "pending_approval", "suspended"].includes(status)) {
         return res.status(400).json({ message: "Invalid status" });
       }
+      if (String(req.params.id) === req.session.userId && status !== "active") return res.status(400).json({ message: "You cannot suspend your own administrator account." });
       const user = await storage.updateUser(String(req.params.id), status === "active"
         ? { status, failedAuthAttempts: 0, authLockedAt: null }
         : { status });
@@ -693,6 +734,7 @@ export async function registerRoutes(
       if (!["client", "staff", "admin"].includes(role)) {
         return res.status(400).json({ message: "Invalid role" });
       }
+      if (String(req.params.id) === req.session.userId && role !== "admin") return res.status(400).json({ message: "You cannot remove your own administrator access." });
       const user = await storage.updateUser(String(req.params.id), { role });
       res.json({ id: user.id, role: user.role, fullName: user.fullName });
     } catch (error) {
@@ -818,6 +860,7 @@ export async function registerRoutes(
 
   // ==================== PORTAL API ROUTES ====================
   app.use("/api/portal", requireAuth);
+  registerFundingRoutes(app);
 
   const requireStaffOrAdmin = (req: any, res: any, next: any) => {
     const user = (req as any).user;
@@ -951,6 +994,7 @@ export async function registerRoutes(
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
       const client = await storage.getUser(parsed.data.clientUserId);
       if (!client || client.role !== "client" || client.status !== "active") return res.status(400).json({ message: "Select an active client account for this service." });
+      if (isFundingService(parsed.data.serviceCategory) && parsed.data.retainerAmountCents) return res.status(400).json({ message: "Funding services use approved service orders, not automatic monthly retainers." });
       if (parsed.data.assignedStaffId) {
         const staff = await storage.getUser(parsed.data.assignedStaffId);
         if (!staff || !["staff", "admin"].includes(staff.role) || staff.status !== "active") return res.status(400).json({ message: "Select an active team member." });
@@ -978,6 +1022,9 @@ export async function registerRoutes(
         completionPercent: z.number().int().min(0).max(100),
       }).partial().safeParse(updates);
       if (!parsed.success) return res.status(400).json({ message: "Invalid engagement data", errors: parsed.error.flatten() });
+      if (isFundingService(parsed.data.serviceCategory ?? current.serviceCategory) && (parsed.data.retainerAmountCents ?? current.retainerAmountCents)) {
+        return res.status(400).json({ message: "Funding services use approved service orders, not automatic monthly retainers. Clear the recurring amount before saving." });
+      }
       if (Object.prototype.hasOwnProperty.call(parsed.data, "clientUserId") && parsed.data.clientUserId !== current.clientUserId) {
         return res.status(400).json({ message: "Services with client records cannot be moved to another account. Assign a new service instead." });
       }
@@ -988,6 +1035,8 @@ export async function registerRoutes(
       const existingPlan = await storage.getMilestones(current.id);
       if (parsed.data.serviceCategory && parsed.data.serviceCategory !== current.serviceCategory) {
         const results = await storage.getPerformanceKpis(current.id);
+        const fundingRecords = await pool.query("SELECT 1 FROM funding_orders WHERE engagement_id=$1 LIMIT 1", [current.id]);
+        if (fundingRecords.rowCount) return res.status(409).json({ message: "This service has funding orders. Assign a new service rather than relabeling its approved work and charges." });
         if (existingPlan.length || results.length) return res.status(409).json({ message: "This service has delivery or reporting records. Assign a new service rather than relabeling existing client results." });
       }
       if (current.clientUserId) {
@@ -1413,6 +1462,7 @@ export async function registerRoutes(
       if (!engagement) return;
       const paymentError = invoicePaymentError(parsed.data, (req as any).user.role);
       if (paymentError) return res.status(400).json({ message: paymentError });
+      if (isFundingService(engagement.serviceCategory) && parsed.data.status !== "paid") return res.status(400).json({ message: "Request funding payments through the client's approved funding service orders." });
       const invoice = await storage.createInvoice({
         ...parsed.data,
         amount: invoiceAmount(parsed.data.amountCents, parsed.data.currency),
@@ -1432,6 +1482,8 @@ export async function registerRoutes(
       if (!Number.isSafeInteger(invoiceId) || invoiceId < 1) return res.status(400).json({ message: "Invalid invoice id" });
       const existing = await storage.getInvoice(invoiceId);
       if (!existing) return res.status(404).json({ message: "Invoice not found" });
+      const linked = await pool.query("SELECT id FROM funding_charges WHERE invoice_id=$1", [invoiceId]);
+      if (linked.rowCount && Object.keys(req.body).some((key) => !["status", "paidAt"].includes(key))) return res.status(409).json({ message: "Approved funding charges cannot be repriced. Use the authorized service-order record." });
       const parsed = invoicePatchSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid invoice data", errors: parsed.error.flatten() });
       const merged = { ...existing, ...parsed.data };
@@ -1454,6 +1506,7 @@ export async function registerRoutes(
       const engagement = await getAccessibleEngagement(req, res, invoice.engagementId);
       if (!engagement) return;
       if (invoice.status === "paid") return res.status(400).json({ message: "Invoice already paid" });
+      if (invoice.status === "void") return res.status(400).json({ message: "This invoice is void and cannot be paid." });
 
       const stripe = await getUncachableStripeClient();
       const amountCents = invoice.amountCents || Math.round(parseFloat(invoice.amount.replace(/[^0-9.]/g, "")) * 100);
@@ -1489,6 +1542,7 @@ export async function registerRoutes(
     try {
       const engagement = await getAccessibleEngagement(req, res, req.params.engagementId);
       if (!engagement) return;
+      if (isFundingService(engagement.serviceCategory)) return res.status(400).json({ message: "Funding services have no automatic recurring charges. Use approved service-order invoices." });
       if (!engagement.retainerAmountCents || engagement.retainerAmountCents < 1) {
         return res.status(400).json({ message: "No monthly retainer is configured for this engagement" });
       }
@@ -1527,9 +1581,11 @@ export async function registerRoutes(
 
   app.get("/api/admin/billing", requireAdmin, async (_req, res) => {
     try {
+      const charges = await db.select({ invoiceId: fundingChargeTable.invoiceId }).from(fundingChargeTable);
       res.json({
         engagements: await storage.getEngagements(),
         invoices: await storage.getAllInvoices(),
+        fundingInvoiceIds: charges.map((charge) => charge.invoiceId),
       });
     } catch (error) {
       console.error("Admin billing error:", error);

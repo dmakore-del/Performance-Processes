@@ -150,7 +150,18 @@ export async function setupAuth(app: Express) {
         return res.status(400).json({ message: "Invalid registration data", errors: parsed.error.flatten() });
       }
 
-      const { password, companyName, fullName } = parsed.data;
+      const {
+        password,
+        companyName,
+        fullName,
+        contactPhone,
+        businessLocation,
+        businessWebsite,
+        industry,
+        businessStage,
+        requestedServices,
+        supportGoals,
+      } = parsed.data;
       const email = parsed.data.email.trim().toLowerCase();
 
       const existingEmail = await storage.getUserByEmail(email);
@@ -171,6 +182,13 @@ export async function setupAuth(app: Express) {
         password: hashedPassword,
         companyName,
         fullName,
+        contactPhone,
+        businessLocation,
+        businessWebsite,
+        industry,
+        businessStage,
+        requestedServices,
+        supportGoals,
       });
 
       await storage.updateUser(user.id, { role: "client", status: "active" });

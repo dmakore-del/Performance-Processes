@@ -1,6 +1,8 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useLocation } from "wouter";
+import type { z } from "zod";
+import type { registerSchema } from "@shared/schema";
 
 interface AuthUser {
   id: string;
@@ -16,6 +18,7 @@ interface AuthSession {
   user: AuthUser;
   impersonation: { adminFullName: string; adminEmail: string } | null;
 }
+export type RegistrationInput = z.infer<typeof registerSchema>;
 
 export function useAuth() {
   const { data, isLoading, error } = useQuery<AuthSession>({
@@ -48,7 +51,7 @@ export function useLogin() {
 
 export function useRegister() {
   return useMutation({
-    mutationFn: async (data: { email: string; password: string; companyName: string; fullName: string; accountType?: string }) => {
+    mutationFn: async (data: RegistrationInput) => {
       const res = await apiRequest("POST", "/api/auth/register", data);
       return res.json();
     },

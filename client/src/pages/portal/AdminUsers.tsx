@@ -14,8 +14,9 @@ import { Redirect } from "wouter";
 import { usePortalI18n } from "@/lib/portal-i18n";
 import { ServiceAssignment } from "@/components/portal/ServiceAssignment";
 import { PORTAL_SERVICES } from "@shared/portal-services";
+import { UserProfileDialog, type UserIntakeProfile } from "@/components/portal/UserProfileDialog";
 
-interface AdminUser {
+interface AdminUser extends UserIntakeProfile {
   id: string;
   email: string;
   fullName: string;
@@ -45,6 +46,11 @@ export default function AdminUsers() {
     assignedStaffId: "",
   });
   const { toast } = useToast();
+  const userActionError = (error: Error) => {
+    let message = t("Something went wrong");
+    try { message = JSON.parse(error.message.replace(/^\d+:\s*/, "")).message || message; } catch {}
+    toast({ title: t("Error"), description: message, variant: "destructive" });
+  };
 
   const { data: users, isLoading } = useQuery<AdminUser[]>({
     queryKey: ["/api/admin/users"],
@@ -87,6 +93,7 @@ export default function AdminUsers() {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
        toast({ title: `${t("User status updated")}: ${data.fullName}, ${translateStatus(data.status)}` });
     },
+    onError: userActionError,
   });
 
   const roleMutation = useMutation({
@@ -99,6 +106,7 @@ export default function AdminUsers() {
       setRoleDropdownId(null);
        toast({ title: `${t("User role updated")}: ${data.fullName}, ${translateRole(data.role)}` });
     },
+    onError: userActionError,
   });
 
   const impersonateMutation = useMutation({
@@ -307,6 +315,7 @@ export default function AdminUsers() {
                         <td className="py-4 px-6 text-sm text-muted-foreground">{u.companyName}</td>
                         <td className="py-4 px-6 relative">
                           <button
+                            disabled={u.id === user?.id}
                             onClick={() => setRoleDropdownId(roleDropdownId === u.id ? null : u.id)}
                             className={cn(
                               "text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border flex items-center gap-1",
@@ -352,7 +361,8 @@ export default function AdminUsers() {
                           {new Date(u.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                         </td>
                         <td className="py-4 px-6">
-                          <div className="flex justify-end gap-2">
+                          <div className="flex flex-wrap justify-end gap-2">
+                            <UserProfileDialog profile={u} />
                             {u.status === "pending_approval" && (
                               <Button
                                 size="sm"

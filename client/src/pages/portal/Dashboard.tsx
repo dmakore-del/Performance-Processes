@@ -15,6 +15,8 @@ import type { ActionItem, Meeting, Milestone, Document } from "@shared/schema";
 import { usePortalI18n } from "@/lib/portal-i18n";
 import { ServiceAssignment } from "@/components/portal/ServiceAssignment";
 import { serviceName } from "@shared/portal-services";
+import { FundingServices } from "@/components/portal/FundingServices";
+import { isFundingService } from "@shared/funding";
 
 export default function Dashboard() {
   const { engagement, engagements, engagementId, isLoading, setSelectedEngagementId } = usePortalEngagement();
@@ -161,6 +163,8 @@ export default function Dashboard() {
             </div>)}
           </div> : <div className="portal-empty p-8 text-sm text-muted-foreground">{t("No services have been assigned to this company yet.")}</div>}
         </section>
+
+        {isFundingService(engagement.serviceCategory) && <FundingServices key={engagement.id} engagementId={engagement.id} compact />}
 
         <div className="bg-white p-6 rounded-3xl border border-border shadow-sm">
             <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">{isStaffOrAdmin ? t("Engagement Summary") : t("Company Summary")}</h3>

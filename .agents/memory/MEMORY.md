@@ -9,3 +9,4 @@
 - [Portal account recovery policy](portal-account-recovery.md) — send reset codes, lock accounts after five failed authentication attempts, and notify the admin for review.
 - [Admin account impersonation](portal-impersonation.md) — limit audited “view as user” sessions to active client/staff accounts, with a persistent banner and safe return to admin.
 - [Client portal structure](client-portal-structure.md) — keep client navigation to company overview, payments, progress, and reports; retain distinct staff/admin work areas.
+- [Funding authorization policy](funding-service-policy.md) — private per-service client approval before billing; conflicting agreement rates require an explicit quotation.

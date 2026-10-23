@@ -15,11 +15,10 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
   const { user, impersonation } = useAuth();
   const logoutMutation = useLogout();
   const { engagement, engagements, setSelectedEngagementId } = usePortalEngagement();
-  const { t, role, fr } = usePortalI18n();
+  const { t, fr } = usePortalI18n();
   const [endingImpersonation, setEndingImpersonation] = useState(false);
   const [impersonationError, setImpersonationError] = useState("");
 
-  const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
   const isClient = user?.role === "client";
 
   const clientNavItems = [
@@ -79,36 +78,15 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="portal-shell min-h-[100dvh] flex font-sans relative">
-      {/* Ambient editorial backdrop */}
-      <div
-         className="pointer-events-none fixed inset-0 z-0 opacity-50"
-        aria-hidden="true"
-        style={{
-          backgroundImage:
-             "radial-gradient(900px 600px at 80% -10%, rgba(214,30,110,0.06), transparent 60%), radial-gradient(700px 500px at -10% 110%, rgba(15,23,42,0.025), transparent 60%)",
-        }}
-      />
 
       {/* Desktop sidebar */}
-       <aside className="hidden lg:flex flex-col w-[17rem] bg-white text-primary fixed h-full z-20 overflow-hidden border-r border-border">
-        {/* Subtle gradient sheen */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-          style={{
-            backgroundImage:
-               "radial-gradient(600px 400px at 100% 0%, rgba(214,30,110,0.08), transparent 60%), radial-gradient(500px 350px at 0% 100%, rgba(15,23,42,0.025), transparent 70%)",
-          }}
-        />
-        {/* Right edge hairline */}
-        <div className="absolute top-0 right-0 h-full w-px bg-border" aria-hidden="true" />
-
-        <div className="relative h-24 flex items-center px-7 border-b border-border">
+       <aside aria-label={t("Your workspace")} className="hidden lg:flex flex-col w-[16rem] bg-white text-primary fixed inset-y-0 left-0 z-20 overflow-visible border-r border-border">
+        <div className="h-[5.25rem] flex items-center px-6 border-b border-border">
           <Link href="/portal" className="flex items-center gap-3 group" data-testid="link-portal-logo">
             <img src={logoImg} alt="Performance Processes" className="h-9 w-auto" />
             <div className="leading-none">
-              <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-1">{t("Performance")}</p>
-              <p className="font-heading text-xl tracking-tight text-primary group-hover:text-accent transition-colors">
+              <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-muted-foreground mb-1">{t("Performance")}</p>
+              <p className="font-heading text-lg tracking-tight text-primary group-hover:text-accent transition-colors">
                 Portal
               </p>
             </div>
@@ -116,8 +94,8 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
         </div>
 
         {showEngagementSelector && (
-          <div className="relative px-4 pt-5 pb-3">
-             <p className="text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground px-3 mb-2">
+          <div className="relative px-4 pt-4 pb-2">
+             <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground px-2 mb-2">
               {isClient ? t("Your services") : user?.role === "admin" ? t("Viewing client") : t("Assigned client")}
             </p>
             <div className="relative">
@@ -126,44 +104,44 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                 aria-expanded={engagementDropdownOpen}
                 aria-haspopup="listbox"
                 className={cn(
-                  "w-full flex items-center gap-3 px-3 py-3 rounded-2xl border text-left transition-all",
-                   "bg-background border-border hover:border-accent/50 hover:bg-secondary/40",
+                  "w-full flex items-center gap-3 px-3 py-2.5 rounded-md border text-left transition-colors",
+                   "bg-background border-border hover:border-primary/30 hover:bg-secondary/50",
                 )}
                 data-testid="button-engagement-switcher"
               >
-             <div className="w-9 h-9 bg-accent/30 flex items-center justify-center flex-shrink-0 text-primary text-[10px] font-black">
+             <div className="w-8 h-8 rounded-sm bg-accent/35 flex items-center justify-center flex-shrink-0 text-primary text-[10px] font-bold" aria-hidden="true">
                   {(engagement?.clientName || "C").charAt(0).toUpperCase()}
                 </div>
                 <div className="flex-1 min-w-0">
-                 <p className="text-sm font-bold text-primary truncate" data-testid="text-active-client">
+                  <p className="text-[13px] font-semibold text-primary truncate" data-testid="text-active-client">
                     {engagement?.clientName || t("Select client")}
                   </p>
-                   <p className="text-[10px] text-muted-foreground truncate uppercase tracking-wider">
+                    <p className="text-[10px] text-muted-foreground truncate">
                     {engagement ? serviceName(engagement, fr ? "fr" : "en") : t("No engagement")}
                   </p>
                 </div>
                 {hasMultipleEngagements && <span className="text-muted-foreground" aria-hidden="true">⌄</span>}
               </button>
               {engagementDropdownOpen && hasMultipleEngagements && (
-                 <div role="listbox" aria-label={t("Assigned client")} className="absolute top-full left-0 right-0 mt-2 bg-white border border-border rounded-2xl shadow-2xl shadow-primary/20 z-30 max-h-72 overflow-y-auto">
+                  <div role="listbox" aria-label={t("Assigned client")} className="absolute top-full left-0 right-0 mt-1 bg-white border border-border rounded-md shadow-lg z-30 max-h-72 overflow-y-auto">
                   {engagements.map((eng) => (
                     <button
                       key={eng.id}
                       onClick={() => handleSelectEngagement(eng.id)}
                       className={cn(
-                        "w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-secondary transition-colors first:rounded-t-2xl last:rounded-b-2xl",
+                        "w-full flex items-center gap-3 px-3 py-2.5 text-left hover:bg-secondary transition-colors",
                         engagement?.id === eng.id && "bg-accent/5",
                       )}
                        data-testid={`button-select-engagement-${eng.id}`}
                        role="option"
                        aria-selected={engagement?.id === eng.id}
                     >
-                      <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary text-[10px] font-black">
+                      <div className="w-7 h-7 rounded-sm bg-primary/5 flex items-center justify-center flex-shrink-0 text-primary text-[10px] font-bold" aria-hidden="true">
                         {eng.clientName.charAt(0).toUpperCase()}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-bold text-primary truncate">{eng.clientName}</p>
-                        <p className="text-[10px] text-muted-foreground uppercase tracking-wider">
+                        <p className="text-[13px] font-semibold text-primary truncate">{eng.clientName}</p>
+                        <p className="text-[10px] text-muted-foreground">
                           {serviceName(eng, fr ? "fr" : "en")} · {eng.currentPhase || t("Active")}
                         </p>
                       </div>
@@ -176,8 +154,8 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           </div>
         )}
 
-        <div className="relative flex-1 overflow-y-auto py-4">
-           <p className="text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground px-7 mb-3">{sectionLabel}</p>
+        <div className="relative flex-1 overflow-y-auto py-5">
+           <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground px-6 mb-2">{sectionLabel}</p>
           <nav className="flex flex-col gap-0.5 px-3">
             {navItems.map((item) => {
               const isActive = location === item.href;
@@ -186,20 +164,14 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "group relative flex items-center gap-3 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all",
+                    "group relative flex items-center px-3 py-2.5 mx-2 rounded-md font-medium text-[13px] transition-colors",
                     isActive
-                       ? "bg-accent/15 text-primary"
+                       ? "bg-accent/25 text-primary"
                        : "text-muted-foreground hover:bg-secondary hover:text-primary",
                   )}
+                  aria-current={isActive ? "page" : undefined}
                   data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and")}`}
                 >
-                  {/* Active accent bar */}
-                  <span
-                    className={cn(
-                      "absolute left-0 top-2 bottom-2 w-[3px] rounded-r-full transition-all",
-                      isActive ? "bg-accent opacity-100" : "opacity-0",
-                    )}
-                  />
                   <span className="truncate">{item.label}</span>
                 </Link>
               );
@@ -208,15 +180,24 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
         </div>
 
           <div className="relative p-3 border-t border-border">
-           <div className="flex items-center gap-3 px-3 py-3 rounded-2xl bg-secondary/50 border border-border">
-             <div className="w-10 h-10 bg-accent/30 flex items-center justify-center font-black text-primary text-sm">
+          {user?.role === "admin" && (
+            <Link
+              href="/portal/admin/users"
+              className="mb-2 flex items-center px-3 py-2.5 rounded-md text-[13px] font-medium text-muted-foreground hover:bg-secondary hover:text-primary transition-colors"
+              data-testid="link-admin-users-utility"
+            >
+              {t("User Management")}
+            </Link>
+          )}
+           <div className="flex items-center gap-3 px-2 py-2">
+             <div className="w-9 h-9 rounded-sm bg-accent/35 flex items-center justify-center font-semibold text-primary text-xs" aria-hidden="true">
               {initials}
             </div>
             <div className="flex-1 min-w-0">
                <p data-testid="text-user-name" className="text-sm font-bold text-primary truncate">
                  {user?.fullName || t("User")}
               </p>
-               <p data-testid="text-user-role" className="text-[10px] text-muted-foreground truncate uppercase tracking-[0.18em] capitalize">
+                <p data-testid="text-user-role" className="text-[10px] text-muted-foreground truncate capitalize">
                 {user?.role || ""}
               </p>
             </div>
@@ -224,7 +205,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           <button
             onClick={handleLogout}
             data-testid="button-logout"
-             className="mt-2 w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
+              className="mt-1 w-full flex items-center px-3 py-2.5 rounded-md font-medium text-[13px] text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
           >
             {t("Sign out")}
           </button>
@@ -232,15 +213,18 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* ───────────────── Mobile top bar ───────────────── */}
-        <div className="lg:hidden fixed top-0 w-full h-16 bg-white text-primary border-b border-border flex items-center justify-between px-4 z-30">
+        <div className="lg:hidden fixed top-0 w-full min-h-16 bg-white text-primary border-b border-border flex items-center justify-between px-4 z-30">
         <Link href="/portal" className="flex items-center gap-2">
           <img src={logoImg} alt="Performance Processes" className="h-8 w-auto" />
-            <span className="font-heading text-xl tracking-tight text-primary">Portal</span>
+            <span className="font-heading text-lg tracking-tight text-primary">Portal</span>
         </Link>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 min-w-0">
+          {isClient && user?.companyName && (
+            <span className="max-w-[34vw] truncate text-xs text-muted-foreground" title={user.companyName}>{user.companyName}</span>
+          )}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-             className="text-primary text-xs font-bold uppercase tracking-[0.18em]"
+             className="rounded-sm px-2 py-2 text-primary text-[11px] font-semibold uppercase tracking-[0.12em] hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             aria-label={isMobileMenuOpen ? t("Close") : t("Menu")}
             aria-expanded={isMobileMenuOpen}
             aria-controls="portal-mobile-navigation"
@@ -251,10 +235,10 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
       </div>
 
       {isMobileMenuOpen && (
-         <div id="portal-mobile-navigation" className="lg:hidden fixed inset-16 bottom-0 bg-white text-primary z-20 overflow-y-auto">
+          <div id="portal-mobile-navigation" className="lg:hidden fixed inset-x-0 top-16 bottom-0 bg-white text-primary z-20 overflow-y-auto border-b border-border">
           {showEngagementSelector && (
-            <div className="px-4 pt-5 pb-3 border-b border-white/10">
-               <p className="text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground mb-2">
+             <div className="px-4 pt-4 pb-3 border-b border-border">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground mb-2">
                 {isClient ? t("Your services") : user?.role === "admin" ? t("Viewing client") : t("Assigned client")}
               </p>
               <div className="space-y-1">
@@ -266,25 +250,25 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                       setIsMobileMenuOpen(false);
                     }}
                     className={cn(
-                      "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-colors",
+                      "w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-left transition-colors",
                       engagement?.id === eng.id
-                         ? "bg-accent/15 border border-accent/40"
+                         ? "bg-accent/20 border border-accent/50"
                          : "hover:bg-secondary border border-transparent",
                     )}
                   >
-                    <span className="w-6 h-6 rounded-md bg-accent/20 flex items-center justify-center text-accent text-[10px] font-black flex-shrink-0">
+                     <span className="w-7 h-7 rounded-sm bg-accent/25 flex items-center justify-center text-primary text-[10px] font-semibold flex-shrink-0" aria-hidden="true">
                       {eng.clientName.charAt(0).toUpperCase()}
                     </span>
                     <div className="flex-1 min-w-0">
-                     <p className="text-sm font-bold text-primary truncate">{eng.clientName}</p>
-                      <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{serviceName(eng, fr ? "fr" : "en")}</p>
+                      <p className="text-[13px] font-semibold text-primary truncate">{eng.clientName}</p>
+                       <p className="text-[10px] text-muted-foreground">{serviceName(eng, fr ? "fr" : "en")}</p>
                     </div>
                   </button>
                 ))}
               </div>
             </div>
           )}
-          <nav aria-label={sectionLabel} className="flex flex-col gap-1 p-4">
+          <nav aria-label={sectionLabel} className="flex flex-col gap-1 p-3">
             {navItems.map((item) => {
               const isActive = location === item.href;
               return (
@@ -293,18 +277,33 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
-                    "flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-sm transition-all",
-                     isActive ? "bg-accent/15 text-primary" : "text-muted-foreground hover:bg-secondary",
+                    "flex items-center px-3 py-3 rounded-md font-medium text-sm transition-colors",
+                     isActive ? "bg-accent/25 text-primary" : "text-muted-foreground hover:bg-secondary",
                   )}
+                  aria-current={isActive ? "page" : undefined}
                 >
                   {item.label}
                 </Link>
               );
             })}
-             <div className="h-px bg-border my-4" />
+              <div className="h-px bg-border my-3" />
+            {user?.role === "admin" && (
+              <Link
+                href="/portal/admin/users"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center px-3 py-3 rounded-md font-medium text-sm text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
+                data-testid="link-admin-users-utility-mobile"
+              >
+                {t("User Management")}
+              </Link>
+            )}
+            <div className="mt-2 border-t border-border px-3 pt-3">
+              <p className="truncate text-sm font-semibold text-primary">{user?.fullName || t("User")}</p>
+              <p className="truncate text-xs text-muted-foreground">{user?.email || ""}</p>
+            </div>
             <button
               onClick={handleLogout}
-               className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
+               className="flex w-full items-center px-3 py-3 rounded-md font-medium text-sm text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
             >
               {t("Sign out")}
             </button>
@@ -313,9 +312,9 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
       )}
 
       {/* ───────────────── Main column ───────────────── */}
-       <main className="relative z-[1] flex-1 lg:ml-[17rem] pt-16 lg:pt-0">
+       <main className="relative z-[1] flex-1 min-w-0 lg:ml-[16rem] pt-16 lg:pt-0">
         {impersonation && (
-          <div className="sticky top-0 z-40 flex flex-col gap-2 bg-amber-100 px-4 py-3 text-amber-950 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <div className="sticky top-16 lg:top-0 z-40 flex flex-col gap-2 bg-amber-100 px-4 py-3 text-amber-950 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-6">
             <div className="text-sm">
               <strong>{t("Viewing as")}: {user?.fullName}</strong>
               <span className="ml-2 text-amber-900/80">
@@ -333,13 +332,13 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
             </button>
           </div>
         )}
-        <header className="hidden lg:flex h-24 bg-white/70 backdrop-blur-xl border-b border-border/60 items-center justify-between px-10 sticky top-0 z-10">
+         <header className="hidden lg:flex min-h-[5.25rem] bg-white border-b border-border items-center justify-between px-8 xl:px-10 sticky top-0 z-10">
           <div className="flex items-center gap-5">
             <div>
                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground mb-1">{portalSubtitle}</p>
               <h2
                 data-testid="text-portal-title"
-                className="text-2xl font-heading font-extrabold text-primary leading-none tracking-tight"
+                className="text-xl font-heading font-medium text-primary leading-tight tracking-tight"
               >
                 {portalTitle}
                 {user?.role === "staff" && engagement && (
@@ -351,7 +350,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div className="flex items-center gap-3">
-             <Link href="/portal/meetings" className="bg-primary text-white hover:bg-accent hover:text-primary h-11 px-5 inline-flex items-center justify-center font-bold uppercase tracking-[0.12em] text-[10px] transition-all" data-testid="button-book-meeting">
+             <Link href="/portal/meetings" className="border border-border hover:border-primary/40 hover:bg-secondary h-10 px-4 inline-flex items-center justify-center font-semibold text-[11px] transition-colors" data-testid="button-book-meeting">
                 {t("Book meeting")}
             </Link>
           </div>

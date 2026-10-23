@@ -2,6 +2,7 @@ import { sql } from "drizzle-orm";
 import { pgTable, text, varchar, serial, timestamp, boolean, integer, date, uniqueIndex, json, jsonb, index } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
+import { PORTAL_SERVICES } from "./portal-services";
 
 export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -10,6 +11,13 @@ export const users = pgTable("users", {
   email: text("email").notNull().unique(),
   companyName: text("company_name").notNull(),
   fullName: text("full_name").notNull(),
+  contactPhone: text("contact_phone").notNull().default(""),
+  businessLocation: text("business_location").notNull().default(""),
+  businessWebsite: text("business_website").notNull().default(""),
+  industry: text("industry").notNull().default(""),
+  businessStage: text("business_stage").notNull().default(""),
+  requestedServices: jsonb("requested_services").$type<string[]>().notNull().default([]),
+  supportGoals: text("support_goals").notNull().default(""),
   role: text("role").notNull().default("client"),
   status: text("status").notNull().default("active"),
   failedAuthAttempts: integer("failed_auth_attempts").notNull().default(0),
@@ -87,6 +95,13 @@ export const insertUserSchema = createInsertSchema(users).pick({
   email: true,
   companyName: true,
   fullName: true,
+  contactPhone: true,
+  businessLocation: true,
+  businessWebsite: true,
+  industry: true,
+  businessStage: true,
+  requestedServices: true,
+  supportGoals: true,
 });
 
 export const loginSchema = z.object({
@@ -95,10 +110,26 @@ export const loginSchema = z.object({
 });
 
 export const registerSchema = z.object({
-  email: z.string().email(),
+  email: z.string().trim().email(),
   password: z.string().min(8),
-  companyName: z.string().min(2),
-  fullName: z.string().min(2),
+  companyName: z.string().trim().min(2).max(160),
+  fullName: z.string().trim().min(2).max(120),
+  contactPhone: z.string().trim().min(7).max(40).refine((s) => (s.match(/\d/g) || []).length >= 7, "Enter a valid phone number."),
+  businessLocation: z.string().trim().min(2).max(180),
+  businessWebsite: z.string().trim().max(300).refine((value) => value === "" || (/^https?:\/\//i.test(value) && z.string().url().safeParse(value).success), "Enter a valid http or https website URL."),
+  industry: z.string().trim().max(120),
+  businessStage: z.enum(["planning", "pre-launch", "operating", "growing", "nonprofit"]),
+  requestedServices: z.array(z.string()).min(1).max(9),
+  supportGoals: z.string().trim().min(10).max(1200),
+}).superRefine((data, ctx) => {
+  const validServices = new Set<string>([...PORTAL_SERVICES.map((service) => service.id), "not-sure-yet"]);
+  const uniqueServices = new Set(data.requestedServices);
+  if (uniqueServices.size !== data.requestedServices.length || data.requestedServices.some((service) => !validServices.has(service))) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["requestedServices"], message: "Choose valid services without duplicates." });
+  }
+  if (data.requestedServices.includes("not-sure-yet") && data.requestedServices.length > 1) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["requestedServices"], message: "Choose either specific services or help deciding." });
+  }
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -321,6 +352,64 @@ export const insertInvoiceSchema = createInsertSchema(invoices).omit({
 
 export type InsertInvoice = z.infer<typeof insertInvoiceSchema>;
 export type Invoice = typeof invoices.$inferSelect;
+
+export const fundingOrders = pgTable("funding_orders", {
+  id: serial("id").primaryKey(),
+  engagementId: integer("engagement_id").notNull().references(() => engagements.id),
+  serviceKey: text("service_key").notNull(),
+  scopeKey: text("scope_key").notNull(),
+  scope: text("scope").notNull(),
+  funder: text("funder").notNull().default(""),
+  program: text("program").notNull().default(""),
+  fundingKind: text("funding_kind").notNull().default("grant"),
+  quantity: text("quantity").notNull(),
+  unitFeeCents: integer("unit_fee_cents").notNull(),
+  hstBps: integer("hst_bps").notNull().default(1300),
+  budgetCapCents: integer("budget_cap_cents").notNull(),
+  quoteReference: text("quote_reference").notNull(),
+  recordsDue: text("records_due"),
+  draftDue: text("draft_due"),
+  approvalDue: text("approval_due"),
+  submissionDue: text("submission_due"),
+  percentageFeePermitted: boolean("percentage_fee_permitted").notNull().default(false),
+  agreementVersion: text("agreement_version").notNull(),
+  status: text("status").notNull().default("proposed"),
+  createdByUserId: varchar("created_by_user_id").notNull(),
+  approvedByUserId: varchar("approved_by_user_id"),
+  signerName: text("signer_name"),
+  signerTitle: text("signer_title"),
+  legalBusinessName: text("legal_business_name"),
+  businessAddress: text("business_address"),
+  approvedAt: timestamp("approved_at", { withTimezone: true }),
+  draftProvidedAt: timestamp("draft_provided_at", { withTimezone: true }),
+  draftReference: text("draft_reference"),
+  deliveredAt: timestamp("delivered_at", { withTimezone: true }),
+  deliveredQuantity: integer("delivered_quantity"),
+  deliveryReference: text("delivery_reference"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+export const fundingCharges = pgTable("funding_charges", {
+  id: serial("id").primaryKey(),
+  orderId: integer("order_id").notNull().references(() => fundingOrders.id),
+  engagementId: integer("engagement_id").notNull().references(() => engagements.id),
+  clientUserId: varchar("client_user_id").notNull(),
+  invoiceId: integer("invoice_id").notNull().references(() => invoices.id),
+  stageKey: text("stage_key").notNull(),
+  baseAmountCents: integer("base_amount_cents").notNull(),
+  hstAmountCents: integer("hst_amount_cents").notNull(),
+  hours: text("hours"),
+  qualifyingFundsCents: integer("qualifying_funds_cents"),
+  receiptReference: text("receipt_reference"),
+  receivedDate: text("received_date"),
+  evidenceReference: text("evidence_reference"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+}, (table) => [
+  uniqueIndex("funding_charge_order_stage_unique").on(table.orderId, table.stageKey),
+  uniqueIndex("funding_charge_client_receipt_unique").on(table.clientUserId, table.receiptReference),
+]);
+export type FundingOrder = typeof fundingOrders.$inferSelect;
+export type FundingCharge = typeof fundingCharges.$inferSelect;
+export type FundingOrderView = FundingOrder & { charges: (FundingCharge & { invoiceStatus: string; invoiceNumber: string })[] };
 
 // This is intentionally in the public schema (rather than Stripe's synced schema).
 // It is our durable, immutable record of what was receipted and delivered.

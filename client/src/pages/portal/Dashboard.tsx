@@ -25,6 +25,7 @@ export default function Dashboard() {
   const { data: documents } = usePortalData<Document[]>("documents", engagementId);
 
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
+  const isAdmin = user?.role === "admin";
 
   const [statusDialogOpen, setStatusDialogOpen] = useState(false);
   const [statusForm, setStatusForm] = useState({
@@ -95,7 +96,7 @@ export default function Dashboard() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
           <div>
             <h1 data-testid="text-dashboard-title" className="text-3xl md:text-4xl font-heading font-extrabold text-primary">
-              {isStaffOrAdmin ? engagement.clientName : t("Company Overview")}
+              {isAdmin ? (user?.companyName || "Performance Processes") : isStaffOrAdmin ? engagement.clientName : t("Company Overview")}
             </h1>
             <p className="text-lg text-muted-foreground mt-2">
               {isStaffOrAdmin
@@ -142,7 +143,7 @@ export default function Dashboard() {
             )}
             {isStaffOrAdmin && (
               <div>
-                <p className="text-xs text-muted-foreground mb-1">{t("Client")}</p>
+                <p className="text-xs text-muted-foreground mb-1">{isAdmin ? t("Selected client") : t("Client")}</p>
                 <p data-testid="text-client-name" className="font-bold text-primary">{engagement.clientName}</p>
               </div>
             )}

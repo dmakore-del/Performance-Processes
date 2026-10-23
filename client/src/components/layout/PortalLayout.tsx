@@ -64,7 +64,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
   const portalTitle = isClient
     ? `${user?.companyName || t("Client")} Portal`
     : user?.role === "admin"
-    ? t("Admin Portal")
+    ? `${user?.companyName || "Performance Processes"} Portal`
     : t("Staff Portal");
 
   const portalSubtitle = isClient
@@ -116,7 +116,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
         {isStaffOrAdmin && engagements.length > 0 && (
           <div className="relative px-4 pt-5 pb-3">
              <p className="text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground px-3 mb-2">
-              {user?.role === "admin" ? t("Engagement") : t("Assigned client")}
+              {user?.role === "admin" ? t("Viewing client") : t("Assigned client")}
             </p>
             <div className="relative">
               <button
@@ -253,7 +253,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           {isStaffOrAdmin && engagements.length > 0 && (
             <div className="px-4 pt-5 pb-3 border-b border-white/10">
                <p className="text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground mb-2">
-                {user?.role === "admin" ? t("Engagement") : t("Assigned client")}
+                {user?.role === "admin" ? t("Viewing client") : t("Assigned client")}
               </p>
               <div className="space-y-1">
                 {engagements.map((eng) => (
@@ -340,7 +340,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                 className="text-2xl font-heading font-extrabold text-primary leading-none tracking-tight"
               >
                 {portalTitle}
-                {isStaffOrAdmin && engagement && (
+                {user?.role === "staff" && engagement && (
                   <span className="ml-3 text-base font-bold text-muted-foreground">
                     <span className="text-accent">·</span> {engagement.clientName}
                   </span>

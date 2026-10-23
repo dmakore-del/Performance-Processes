@@ -28,28 +28,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
     { label: t("Reports"), href: "/portal/reports" },
   ];
 
-  const staffNavItems = [
-    { label: t("Overview"), href: "/portal" },
-    { label: t("Milestones"), href: "/portal/roadmap" },
-    { label: t("Documents"), href: "/portal/documents" },
-    { label: t("Meeting Hub"), href: "/portal/meetings" },
-    { label: t("Action Items"), href: "/portal/actions" },
-    { label: t("KPIs & Metrics"), href: "/portal/performance" },
-    { label: t("Client Messages"), href: "/portal/messages" },
-    { label: t("Resources"), href: "/portal/resources" },
-    { label: t("Payments & Contracts"), href: "/portal/payments" },
-    { label: t("Leads Tracker"), href: "/portal/leads" },
-  ];
-
-  const adminNavItems = [
-    ...staffNavItems,
-    { label: t("Billing & Retainers"), href: "/portal/admin/billing" },
-    { label: t("User Management"), href: "/portal/admin/users" },
-    { label: t("Submissions"), href: "/portal/admin/submissions" },
-    { label: t("Receipts"), href: "/portal/admin/receipts" },
-  ];
-
-  const navItems = user?.role === "admin" ? adminNavItems : isClient ? clientNavItems : staffNavItems;
+  const navItems = clientNavItems;
 
   const initials = user?.fullName
     ?.split(" ")
@@ -94,7 +73,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
     ? t("Administrator")
     : t("Engagement manager");
 
-  const sectionLabel = isStaffOrAdmin ? t("Operations") : t("Your workspace");
+  const sectionLabel = t("Your workspace");
 
   return (
     <div className="portal-shell min-h-[100dvh] flex font-sans relative">

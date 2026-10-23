@@ -12,6 +12,8 @@ export const users = pgTable("users", {
   fullName: text("full_name").notNull(),
   role: text("role").notNull().default("client"),
   status: text("status").notNull().default("active"),
+  failedAuthAttempts: integer("failed_auth_attempts").notNull().default(0),
+  authLockedAt: timestamp("auth_locked_at"),
   twoFactorSecret: text("two_factor_secret"),
   twoFactorEnabled: boolean("two_factor_enabled").default(false),
   resetToken: text("reset_token"),

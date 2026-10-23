@@ -6,11 +6,10 @@ export async function seedAdminAccount() {
   
   const existing = await storage.getUserByEmail(adminEmail);
   if (existing) {
-    if (existing.fullName !== "Danai Makore" || existing.role !== "admin" || existing.status !== "active") {
+    if (existing.fullName !== "Danai Makore" || existing.role !== "admin") {
       await storage.updateUser(existing.id, {
         fullName: "Danai Makore",
         role: "admin",
-        status: "active",
       });
       console.log("Admin account updated to Danai Makore");
     } else {

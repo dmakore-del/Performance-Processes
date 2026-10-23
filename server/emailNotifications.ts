@@ -70,17 +70,53 @@ function escapeHtml(value: string) {
   })[char] || char);
 }
 
-export async function sendPasswordResetEmail(to: string, resetUrl: string) {
+export async function sendPasswordResetEmail(to: string, resetCode: string) {
   const fromEmail = process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER;
   await getTransporter().sendMail({
     from: `"Performance Processes" <${fromEmail}>`,
     to,
     subject: "Reset your Performance Processes portal password",
-    text: `Use this link to reset your password. It expires in one hour.\n\n${resetUrl}\n\nIf you did not request this, you can ignore this email.`,
+    text: `Your Performance Processes portal password reset code is ${resetCode}. It expires in 15 minutes.\n\nIf you did not request this, you can ignore this email.`,
     html: wrapHtml("Password Reset", `
-      <p style="font-size:14px;line-height:1.6;color:#222">Use the secure link below to reset your portal password. It expires in one hour.</p>
-      <p style="margin:24px 0"><a href="${escapeHtml(resetUrl)}" style="display:inline-block;padding:13px 20px;background:#171717;color:#fff;text-decoration:none">Reset password</a></p>
+      <p style="font-size:14px;line-height:1.6;color:#222">Enter this code on the portal password reset page. It expires in 15 minutes.</p>
+      <p style="margin:24px 0;padding:18px;background:#f7f5f4;text-align:center;font-size:28px;font-weight:bold;letter-spacing:8px;color:#171717">${escapeHtml(resetCode)}</p>
       <p style="font-size:12px;line-height:1.6;color:#666">If you did not request this, you can ignore this email.</p>
+    `),
+  });
+}
+
+export async function notifyPortalAccountLocked(data: {
+  email: string;
+  fullName: string;
+  reason: string;
+  ipAddress: string;
+  lockedAt: Date;
+}) {
+  const fromEmail = process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER;
+  await getTransporter().sendMail({
+    from: `"Performance Processes" <${fromEmail}>`,
+    to: ADMIN_EMAIL,
+    subject: `Portal account locked for review: ${data.email}`,
+    text: [
+      "A portal account was locked after five unsuccessful authentication attempts.",
+      `Name: ${data.fullName}`,
+      `Email: ${data.email}`,
+      `Attempt type: ${data.reason}`,
+      `IP address: ${data.ipAddress}`,
+      `Locked at: ${data.lockedAt.toISOString()}`,
+      "",
+      "Review the account in Admin Portal > Users. Reactivate it only after confirming the activity is legitimate.",
+    ].join("\n"),
+    html: wrapHtml("Account Security Review", `
+      <p style="font-size:14px;line-height:1.6;color:#222">A portal account was locked after five unsuccessful authentication attempts.</p>
+      <table style="width:100%;border-collapse:collapse">
+        ${row("Name", escapeHtml(data.fullName))}
+        ${row("Email", escapeHtml(data.email))}
+        ${row("Attempt type", escapeHtml(data.reason))}
+        ${row("IP address", escapeHtml(data.ipAddress))}
+        ${row("Locked at", escapeHtml(data.lockedAt.toISOString()))}
+      </table>
+      <p style="font-size:13px;line-height:1.6;color:#444;margin-top:20px">Review the account in Admin Portal &gt; Users. Reactivate it only after confirming the activity is legitimate.</p>
     `),
   });
 }

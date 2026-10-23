@@ -674,7 +674,9 @@ export async function registerRoutes(
       if (!["active", "pending_approval", "suspended"].includes(status)) {
         return res.status(400).json({ message: "Invalid status" });
       }
-      const user = await storage.updateUser(String(req.params.id), { status });
+      const user = await storage.updateUser(String(req.params.id), status === "active"
+        ? { status, failedAuthAttempts: 0, authLockedAt: null }
+        : { status });
       res.json({ id: user.id, status: user.status, fullName: user.fullName });
     } catch (error) {
       res.status(500).json({ message: "Failed to update user status" });

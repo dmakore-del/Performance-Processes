@@ -7,10 +7,11 @@ import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
 import { pool } from "./db";
 import { z } from "zod";
-import { sendPasswordResetEmail } from "./emailNotifications";
+import { sendPasswordResetEmail, notifyPortalAccountLocked } from "./emailNotifications";
 
 let otplib: any;
 const authAttempts = new Map<string, { count: number; blockedUntil: number; expiresAt: number }>();
+const AUTH_FAILURE_LIMIT = 5;
 
 function attemptKey(req: Request, scope: string) {
   return `${req.ip || req.socket.remoteAddress || "unknown"}:${scope}`;
@@ -43,6 +44,36 @@ function recordFailure(key: string) {
 
 function clearFailures(key: string) {
   authAttempts.delete(key);
+}
+
+async function recordAccountAuthFailure(user: any, reason: string, req: Request) {
+  const result = await pool.query(
+    `UPDATE "users"
+     SET "failed_auth_attempts" = "failed_auth_attempts" + 1,
+         "status" = CASE WHEN "failed_auth_attempts" + 1 >= $2 THEN 'suspended' ELSE "status" END,
+         "auth_locked_at" = CASE
+           WHEN "failed_auth_attempts" + 1 >= $2 THEN COALESCE("auth_locked_at", NOW())
+           ELSE "auth_locked_at"
+         END
+     WHERE "id" = $1 AND "status" IN ('active', 'pending_approval')
+     RETURNING "failed_auth_attempts", "status", "auth_locked_at"`,
+    [user.id, AUTH_FAILURE_LIMIT],
+  );
+  const updated = result.rows[0];
+  if (updated?.status !== "suspended" || !updated.auth_locked_at) return false;
+
+  try {
+    await notifyPortalAccountLocked({
+      email: user.email,
+      fullName: user.fullName,
+      reason,
+      ipAddress: req.ip || req.socket.remoteAddress || "unavailable",
+      lockedAt: new Date(updated.auth_locked_at),
+    });
+  } catch (error: any) {
+    console.error("Portal account lock notification failed.", error?.code || "delivery_failed");
+  }
+  return true;
 }
 
 function regenerateSession(req: Request) {
@@ -162,6 +193,10 @@ export async function setupAuth(app: Express) {
       const isValidPassword = await bcrypt.compare(password, user.password);
       if (!isValidPassword) {
         recordFailure(key);
+        const locked = await recordAccountAuthFailure(user, "Portal sign-in", req);
+        if (locked) {
+          return res.status(423).json({ message: "This account is locked after five unsuccessful attempts. The admin team has been notified." });
+        }
         return res.status(401).json({ message: "Invalid email or password" });
       }
 
@@ -170,10 +205,14 @@ export async function setupAuth(app: Express) {
       }
 
       if (user.status === "suspended") {
+        if (user.authLockedAt) {
+          return res.status(423).json({ message: "This account is locked after five unsuccessful attempts. The admin team has been notified." });
+        }
         return res.status(403).json({ message: "Your account has been suspended. Please contact support." });
       }
 
       clearFailures(key);
+      await storage.updateUser(user.id, { failedAuthAttempts: 0 });
       await regenerateSession(req);
       if (user.twoFactorEnabled) {
         req.session.pendingTwoFactor = user.id;
@@ -190,13 +229,14 @@ export async function setupAuth(app: Express) {
   app.post("/api/auth/verify-2fa", async (req: Request, res: Response) => {
     try {
       const { code } = req.body;
-      const key = attemptKey(req, "two-factor");
-      if (isBlocked(key)) return res.status(429).json({ message: "Too many attempts. Please try again later." });
       const userId = req.session.pendingTwoFactor || req.session.userId;
 
       if (!userId) {
         return res.status(401).json({ message: "No pending authentication" });
       }
+
+      const key = attemptKey(req, `two-factor:${userId}`);
+      if (isBlocked(key)) return res.status(429).json({ message: "Too many attempts. Please try again later." });
 
       const user = await storage.getUser(userId);
       if (!user || user.status !== "active" || !user.twoFactorSecret) {
@@ -204,6 +244,10 @@ export async function setupAuth(app: Express) {
       }
       if (typeof code !== "string" || !/^\d{6}$/.test(code)) {
         recordFailure(key);
+        const locked = await recordAccountAuthFailure(user, "Two-factor verification", req);
+        if (locked) {
+          return res.status(423).json({ message: "This account is locked after five unsuccessful attempts. The admin team has been notified." });
+        }
         return res.status(400).json({ message: "Enter a six-digit authentication code" });
       }
 
@@ -211,10 +255,15 @@ export async function setupAuth(app: Express) {
       const verification = await otp.verify({ secret: user.twoFactorSecret, token: code });
       if (!verification.valid) {
         recordFailure(key);
+        const locked = await recordAccountAuthFailure(user, "Two-factor verification", req);
+        if (locked) {
+          return res.status(423).json({ message: "This account is locked after five unsuccessful attempts. The admin team has been notified." });
+        }
         return res.status(401).json({ message: "Invalid 2FA code" });
       }
 
       clearFailures(key);
+      await storage.updateUser(user.id, { failedAuthAttempts: 0 });
       if (req.session.pendingTwoFactor) {
         if (user.status !== "active") return res.status(403).json({ message: "This account is not active." });
         await regenerateSession(req);
@@ -262,32 +311,34 @@ export async function setupAuth(app: Express) {
 
   app.post("/api/auth/forgot-password", async (req: Request, res: Response) => {
     try {
-      const parsedEmail = z.string().email().safeParse(req.body?.email);
+      const rawEmail = typeof req.body?.email === "string" ? req.body.email.trim() : "";
+      const parsedEmail = z.string().email().safeParse(rawEmail);
       const email = parsedEmail.success ? parsedEmail.data.trim().toLowerCase() : "";
       const rateKey = attemptKey(req, "password-reset");
-      if (isBlocked(rateKey)) return res.json({ message: "If an account exists with that email, a password reset link has been sent." });
+      if (isBlocked(rateKey)) return res.status(429).json({ message: "Too many reset code requests. Please wait 15 minutes and try again." });
       recordFailure(rateKey);
       if (!email) {
-        return res.json({ message: "If an account exists with that email, a password reset link has been sent." });
+        return res.json({ message: "If an account exists with that email, a password reset code has been sent." });
       }
 
       const user = await storage.getUserByEmail(email);
 
-      if (user && user.status === "active") {
-        const resetToken = crypto.randomBytes(32).toString("hex");
-        const resetTokenExpiry = new Date(Date.now() + 3600000);
-        const tokenHash = crypto.createHash("sha256").update(resetToken).digest("hex");
+      if (user && (user.status === "active" || user.status === "pending_approval")) {
+        const resetCode = crypto.randomInt(0, 100_000_000).toString().padStart(8, "0");
+        const resetTokenExpiry = new Date(Date.now() + 15 * 60 * 1000);
+        const tokenHash = crypto.createHash("sha256").update(resetCode).digest("hex");
 
         await storage.updateUser(user.id, { resetToken: tokenHash, resetTokenExpiry });
-        const resetUrl = `https://portal.performanceprocesses.com/portal/forgot-password?token=${encodeURIComponent(resetToken)}`;
         try {
-          await sendPasswordResetEmail(email, resetUrl);
+          await sendPasswordResetEmail(email, resetCode);
         } catch (error: any) {
-          console.error("Password reset email delivery failed.", error?.code || "delivery_failed");
+          await storage.updateUser(user.id, { resetToken: null, resetTokenExpiry: null });
+          console.error("Password reset code delivery failed.", error?.code || "delivery_failed");
+          return res.status(503).json({ message: "Unable to send a reset code right now. Please try again later." });
         }
       }
 
-      return res.json({ message: "If an account exists with that email, a password reset link has been sent." });
+      return res.json({ message: "If an account exists with that email, a password reset code has been sent." });
     } catch (error) {
       console.error("Forgot password error:", error);
       return res.status(500).json({ message: "Failed to process request" });
@@ -296,19 +347,76 @@ export async function setupAuth(app: Express) {
 
   app.post("/api/auth/reset-password", async (req: Request, res: Response) => {
     try {
-      const { token, password } = req.body;
-      if (!token || !password) {
-        return res.status(400).json({ message: "Token and new password are required" });
-      }
-
-      if (password.length < 8) {
+      const { token, email: rawEmail, code: rawCode, password } = req.body || {};
+      if (typeof password !== "string" || password.length < 8) {
         return res.status(400).json({ message: "Password must be at least 8 characters" });
       }
 
-      const tokenHash = crypto.createHash("sha256").update(String(token)).digest("hex");
-      const user = await storage.getUserByResetToken(tokenHash);
-      if (!user || !user.resetTokenExpiry || new Date() > user.resetTokenExpiry) {
-        return res.status(400).json({ message: "Invalid or expired reset token" });
+      // Continue to accept unexpired links already sent before the code-based flow.
+      if (typeof token === "string" && !rawEmail && !rawCode) {
+        const legacyRateKey = attemptKey(req, "password-reset-legacy");
+        if (isBlocked(legacyRateKey)) return res.status(429).json({ message: "Too many attempts. Please try again later." });
+
+        const tokenHash = crypto.createHash("sha256").update(token).digest("hex");
+        const legacyUser = await storage.getUserByResetToken(tokenHash);
+        if (!legacyUser || legacyUser.status !== "active" || !legacyUser.resetTokenExpiry || new Date() > legacyUser.resetTokenExpiry) {
+          recordFailure(legacyRateKey);
+          return res.status(400).json({ message: "Invalid or expired reset link" });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 12);
+        await storage.updateUser(legacyUser.id, {
+          password: hashedPassword,
+          resetToken: null,
+          resetTokenExpiry: null,
+          failedAuthAttempts: 0,
+        });
+        await pool.query(`DELETE FROM "user_sessions" WHERE sess->>'userId'=$1`, [legacyUser.id]);
+        clearFailures(legacyRateKey);
+        return res.json({ message: "Password has been reset successfully" });
+      }
+
+      const parsedEmail = z.string().email().safeParse(typeof rawEmail === "string" ? rawEmail.trim() : rawEmail);
+      if (!parsedEmail.success) {
+        return res.status(400).json({ message: "Enter the email address that received the reset code." });
+      }
+
+      const email = parsedEmail.data.trim().toLowerCase();
+      const rateKey = attemptKey(req, `password-reset-code:${email}`);
+      if (isBlocked(rateKey)) return res.status(429).json({ message: "Too many attempts. Please request a new reset code later." });
+      const user = await storage.getUserByEmail(email);
+      if (typeof rawCode !== "string" || !/^\d{8}$/.test(rawCode)) {
+        recordFailure(rateKey);
+        if (user?.status === "active" || user?.status === "pending_approval") {
+          const locked = await recordAccountAuthFailure(user, "Password reset code", req);
+          if (locked) {
+            return res.status(423).json({ message: "This account is locked after five unsuccessful attempts. The admin team has been notified." });
+          }
+        }
+        return res.status(400).json({ message: "Enter the 8-digit reset code." });
+      }
+
+      const suppliedHash = crypto.createHash("sha256").update(rawCode).digest();
+      const storedHash = user?.resetToken ? Buffer.from(user.resetToken, "hex") : Buffer.alloc(0);
+      const validCode = !!user
+        && (user.status === "active" || user.status === "pending_approval")
+        && !!user.resetTokenExpiry
+        && new Date() <= user.resetTokenExpiry
+        && storedHash.length === suppliedHash.length
+        && crypto.timingSafeEqual(storedHash, suppliedHash);
+
+      if (!user || !validCode) {
+        recordFailure(rateKey);
+        if (user?.status === "active" || user?.status === "pending_approval") {
+          const locked = await recordAccountAuthFailure(user, "Password reset code", req);
+          if (locked) {
+            return res.status(423).json({ message: "This account is locked after five unsuccessful attempts. The admin team has been notified." });
+          }
+        }
+        if (user?.status === "suspended" && user.authLockedAt) {
+          return res.status(423).json({ message: "This account is locked after five unsuccessful attempts. The admin team has been notified." });
+        }
+        return res.status(400).json({ message: "Invalid or expired reset code. Request a new code and try again." });
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
@@ -316,8 +424,10 @@ export async function setupAuth(app: Express) {
         password: hashedPassword,
         resetToken: null,
         resetTokenExpiry: null,
+        failedAuthAttempts: 0,
       });
       await pool.query(`DELETE FROM "user_sessions" WHERE sess->>'userId'=$1`, [user.id]);
+      clearFailures(rateKey);
 
       return res.json({ message: "Password has been reset successfully" });
     } catch (error) {

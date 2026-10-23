@@ -391,6 +391,10 @@ export const performanceKpis = pgTable("performance_kpis", {
   status: text("status").notNull().default("on-track"),
   period: text("period").notNull(),
   category: text("category"),
+  baselineValue: text("baseline_value"),
+  unit: text("unit").notNull().default("%"),
+  direction: text("direction").notNull().default("increase"),
+  outcomeNotes: text("outcome_notes"),
 });
 
 export const insertPerformanceKpiSchema = createInsertSchema(performanceKpis).omit({

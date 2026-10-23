@@ -12,6 +12,10 @@ import { requireAuth, requireAdmin } from "./auth";
 import { attemptReceiptDelivery } from "./receiptDelivery";
 import { ensureIntakeStorage, registerIntakeRoutes, startIntakeMailQueue } from "./intakeService";
 import { registerBookingNotificationRoute, startBookingAutomation } from "./bookingAutomation";
+import { getPortalService } from "@shared/portal-services";
+import { milestones as milestoneTable } from "@shared/schema";
+import { z } from "zod";
+import { invoiceWriteSchema, invoicePatchSchema, invoicePaymentError, invoiceAmount, kpiWriteSchema, kpiPatchSchema } from "./portalValidation";
 
 const uploadsDir = path.join(process.cwd(), "uploads", "resumes");
 const contactSubmissionAttempts = new Map<string, number[]>();
@@ -937,9 +941,21 @@ export async function registerRoutes(
 
   app.post("/api/portal/engagements", requireAdmin, async (req, res) => {
     try {
-      const parsed = insertEngagementSchema.safeParse(req.body);
+      const parsed = insertEngagementSchema.extend({
+        completionPercent: z.number().int().min(0).max(100).optional(),
+        clientName: z.string().trim().min(1),
+        engagementType: z.string().trim().min(1),
+        currentPhase: z.string().trim().min(1),
+        clientUserId: z.string().min(1),
+      }).safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
-      const engagement = await storage.createEngagement(parsed.data);
+      const client = await storage.getUser(parsed.data.clientUserId);
+      if (!client || client.role !== "client" || client.status !== "active") return res.status(400).json({ message: "Select an active client account for this service." });
+      if (parsed.data.assignedStaffId) {
+        const staff = await storage.getUser(parsed.data.assignedStaffId);
+        if (!staff || !["staff", "admin"].includes(staff.role) || staff.status !== "active") return res.status(400).json({ message: "Select an active team member." });
+      }
+      const engagement = await storage.createEngagement({ ...parsed.data, clientName: client.companyName, assignedStaffId: parsed.data.assignedStaffId || null });
       res.status(201).json(engagement);
     } catch (error) {
       res.status(500).json({ message: "Failed to create engagement" });
@@ -958,14 +974,69 @@ export async function registerRoutes(
           return res.status(403).json({ message: "Only administrators can change engagement ownership or billing details." });
         }
       }
-      const parsed = insertEngagementSchema.partial().safeParse(updates);
+      const parsed = insertEngagementSchema.extend({
+        completionPercent: z.number().int().min(0).max(100),
+      }).partial().safeParse(updates);
       if (!parsed.success) return res.status(400).json({ message: "Invalid engagement data", errors: parsed.error.flatten() });
+      if (Object.prototype.hasOwnProperty.call(parsed.data, "clientUserId") && parsed.data.clientUserId !== current.clientUserId) {
+        return res.status(400).json({ message: "Services with client records cannot be moved to another account. Assign a new service instead." });
+      }
+      if (parsed.data.assignedStaffId) {
+        const staff = await storage.getUser(parsed.data.assignedStaffId);
+        if (!staff || !["staff", "admin"].includes(staff.role) || staff.status !== "active") return res.status(400).json({ message: "Select an active team member." });
+      }
+      const existingPlan = await storage.getMilestones(current.id);
+      if (parsed.data.serviceCategory && parsed.data.serviceCategory !== current.serviceCategory) {
+        const results = await storage.getPerformanceKpis(current.id);
+        if (existingPlan.length || results.length) return res.status(409).json({ message: "This service has delivery or reporting records. Assign a new service rather than relabeling existing client results." });
+      }
+      if (current.clientUserId) {
+        const client = await storage.getUser(current.clientUserId);
+        if (client) parsed.data.clientName = client.companyName;
+      }
+      if (existingPlan.length) {
+        parsed.data.completionPercent = Math.round(existingPlan.filter(item => item.status === "completed").length / existingPlan.length * 100);
+        parsed.data.currentPhase = [...existingPlan].sort((a, b) => a.sortOrder - b.sortOrder).find(item => item.status !== "completed")?.phase || "Completed";
+      }
       const engagement = await storage.updateEngagement(current.id, parsed.data);
       res.json(engagement);
     } catch (error) {
       res.status(500).json({ message: "Failed to update engagement" });
     }
   });
+
+  app.post("/api/portal/engagements/:id/service-plan", requireStaffOrAdmin, async (req, res) => {
+    try {
+      const engagement = await getAccessibleEngagement(req, res, req.params.id);
+      if (!engagement) return;
+      const service = getPortalService(engagement.serviceCategory);
+      if (!service) return res.status(400).json({ message: "Assign a recognised service before creating its delivery plan." });
+      const created = await db.transaction(async tx => {
+        await tx.execute(sql`SELECT id FROM engagements WHERE id = ${engagement.id} FOR UPDATE`);
+        const existing = await tx.select({ id: milestoneTable.id }).from(milestoneTable).where(sql`${milestoneTable.engagementId} = ${engagement.id}`);
+        if (existing.length) return null;
+        return tx.insert(milestoneTable).values(service.phases.map((phase, index) => ({
+          engagementId: engagement.id, title: phase, phase, status: "pending", sortOrder: index,
+        }))).returning();
+      });
+      if (!created) return res.status(409).json({ message: "This service already has a delivery plan. Edit its existing milestones instead." });
+      await storage.updateEngagement(engagement.id, { completionPercent: 0, currentPhase: service.phases[0] });
+      res.status(201).json(created);
+    } catch {
+      res.status(500).json({ message: "Failed to create service delivery plan" });
+    }
+  });
+
+  const refreshServiceProgress = async (engagementId: number) => {
+    const items = await storage.getMilestones(engagementId);
+    if (!items.length) return;
+    const completed = items.filter(item => item.status === "completed").length;
+    const next = [...items].sort((a, b) => a.sortOrder - b.sortOrder).find(item => item.status !== "completed");
+    await storage.updateEngagement(engagementId, {
+      completionPercent: Math.round(completed / items.length * 100),
+      currentPhase: next?.phase || "Completed",
+    });
+  };
 
   // Milestones
   app.get("/api/portal/engagements/:engagementId/milestones", async (req, res) => {
@@ -979,9 +1050,14 @@ export async function registerRoutes(
 
   app.post("/api/portal/milestones", requireStaffOrAdmin, requireBodyEngagement, async (req, res) => {
     try {
-      const parsed = insertMilestoneSchema.safeParse(req.body);
+      const parsed = insertMilestoneSchema.extend({
+        title: z.string().trim().min(1).max(300),
+        phase: z.string().trim().min(1).max(300),
+        status: z.enum(["pending", "in-progress", "completed"]).default("pending"),
+      }).safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
       const milestone = await storage.createMilestone(parsed.data);
+      await refreshServiceProgress(parsed.data.engagementId);
       res.status(201).json(milestone);
     } catch (error) {
       res.status(500).json({ message: "Failed to create milestone" });
@@ -990,8 +1066,14 @@ export async function registerRoutes(
 
   app.patch("/api/portal/milestones/:id", requireStaffOrAdmin, requireRecordEngagement("SELECT engagement_id FROM milestones WHERE id=$1"), async (req, res) => {
     try {
-      const { engagementId: _engagementId, ...updates } = req.body;
-      const milestone = await storage.updateMilestone(Number(req.params.id), updates);
+      const parsed = insertMilestoneSchema.omit({ engagementId: true }).extend({
+        title: z.string().trim().min(1).max(300),
+        phase: z.string().trim().min(1).max(300),
+        status: z.enum(["pending", "in-progress", "completed"]),
+      }).partial().safeParse(req.body);
+      if (!parsed.success) return res.status(400).json({ message: "Invalid milestone data" });
+      const milestone = await storage.updateMilestone(Number(req.params.id), parsed.data);
+      await refreshServiceProgress(milestone.engagementId);
       res.json(milestone);
     } catch (error) {
       res.status(500).json({ message: "Failed to update milestone" });
@@ -1325,16 +1407,18 @@ export async function registerRoutes(
 
   app.post("/api/portal/invoices", requireStaffOrAdmin, requireBodyEngagement, async (req, res) => {
     try {
-      const parsed = insertInvoiceSchema.safeParse(req.body);
+      const parsed = invoiceWriteSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
       const engagement = await getAccessibleEngagement(req, res, parsed.data.engagementId);
       if (!engagement) return;
+      const paymentError = invoicePaymentError(parsed.data, (req as any).user.role);
+      if (paymentError) return res.status(400).json({ message: paymentError });
       const invoice = await storage.createInvoice({
         ...parsed.data,
-        status: "unpaid",
+        amount: invoiceAmount(parsed.data.amountCents, parsed.data.currency),
         stripeSessionId: null,
         stripeInvoiceId: null,
-        paidAt: null,
+        paidAt: parsed.data.status === "paid" ? parsed.data.paidAt! : null,
       });
       res.status(201).json(invoice);
     } catch (error) {
@@ -1348,9 +1432,15 @@ export async function registerRoutes(
       if (!Number.isSafeInteger(invoiceId) || invoiceId < 1) return res.status(400).json({ message: "Invalid invoice id" });
       const existing = await storage.getInvoice(invoiceId);
       if (!existing) return res.status(404).json({ message: "Invoice not found" });
-      const parsed = insertInvoiceSchema.partial().safeParse(req.body);
+      const parsed = invoicePatchSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid invoice data", errors: parsed.error.flatten() });
-      const invoice = await storage.updateInvoice(invoiceId, parsed.data);
+      const merged = { ...existing, ...parsed.data };
+      const paymentError = invoicePaymentError(merged, "admin");
+      if (paymentError) return res.status(400).json({ message: paymentError });
+      const invoice = await storage.updateInvoice(invoiceId, {
+        ...parsed.data, amount: invoiceAmount(merged.amountCents, merged.currency),
+        paidAt: merged.status === "paid" ? merged.paidAt : null,
+      });
       res.json(invoice);
     } catch (error) {
       res.status(500).json({ message: "Failed to update invoice" });
@@ -1540,9 +1630,10 @@ export async function registerRoutes(
 
   app.post("/api/portal/kpis", requireStaffOrAdmin, requireBodyEngagement, async (req, res) => {
     try {
-      const parsed = insertPerformanceKpiSchema.safeParse(req.body);
+      const parsed = kpiWriteSchema.safeParse(req.body);
       if (!parsed.success) return res.status(400).json({ message: "Invalid data", errors: parsed.error.flatten() });
-      const kpi = await storage.createPerformanceKpi(parsed.data);
+      const engagement = (req as any).portalEngagement;
+      const kpi = await storage.createPerformanceKpi({ ...parsed.data, category: engagement.serviceCategory || parsed.data.category });
       res.status(201).json(kpi);
     } catch (error) {
       res.status(500).json({ message: "Failed to create KPI" });
@@ -1551,8 +1642,9 @@ export async function registerRoutes(
 
   app.patch("/api/portal/kpis/:id", requireStaffOrAdmin, requireRecordEngagement("SELECT engagement_id FROM performance_kpis WHERE id=$1"), async (req, res) => {
     try {
-      const { engagementId: _engagementId, ...updates } = req.body;
-      const kpi = await storage.updatePerformanceKpi(Number(req.params.id), updates);
+      const parsed = kpiPatchSchema.safeParse(req.body);
+      if (!parsed.success) return res.status(400).json({ message: "Invalid reporting data", errors: parsed.error.flatten() });
+      const kpi = await storage.updatePerformanceKpi(Number(req.params.id), parsed.data);
       res.json(kpi);
     } catch (error) {
       res.status(500).json({ message: "Failed to update KPI" });

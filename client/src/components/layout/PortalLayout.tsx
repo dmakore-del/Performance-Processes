@@ -6,6 +6,7 @@ import { useAuth, useLogout } from "@/hooks/use-auth";
 import { usePortalEngagement } from "@/hooks/use-portal";
 import { usePortalI18n } from "@/lib/portal-i18n";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { serviceName } from "@shared/portal-services";
 
 export function PortalLayout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -14,7 +15,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
   const { user, impersonation } = useAuth();
   const logoutMutation = useLogout();
   const { engagement, engagements, setSelectedEngagementId } = usePortalEngagement();
-  const { t, role } = usePortalI18n();
+  const { t, role, fr } = usePortalI18n();
   const [endingImpersonation, setEndingImpersonation] = useState(false);
   const [impersonationError, setImpersonationError] = useState("");
 
@@ -59,12 +60,13 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
     setEngagementDropdownOpen(false);
   };
 
-  const hasMultipleEngagements = isStaffOrAdmin && engagements.length > 1;
+  const hasMultipleEngagements = engagements.length > 1;
+  const showEngagementSelector = engagements.length > 0;
 
   const portalTitle = isClient
     ? `${user?.companyName || t("Client")} Portal`
     : user?.role === "admin"
-    ? `${user?.companyName || "Performance Processes"} Portal`
+    ? "Performance Processes Portal"
     : t("Staff Portal");
 
   const portalSubtitle = isClient
@@ -113,10 +115,10 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           </Link>
         </div>
 
-        {isStaffOrAdmin && engagements.length > 0 && (
+        {showEngagementSelector && (
           <div className="relative px-4 pt-5 pb-3">
              <p className="text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground px-3 mb-2">
-              {user?.role === "admin" ? t("Viewing client") : t("Assigned client")}
+              {isClient ? t("Your services") : user?.role === "admin" ? t("Viewing client") : t("Assigned client")}
             </p>
             <div className="relative">
               <button
@@ -137,7 +139,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                     {engagement?.clientName || t("Select client")}
                   </p>
                    <p className="text-[10px] text-muted-foreground truncate uppercase tracking-wider">
-                     {engagement?.engagementType || t("No engagement")}
+                    {engagement ? serviceName(engagement, fr ? "fr" : "en") : t("No engagement")}
                   </p>
                 </div>
                 {hasMultipleEngagements && <span className="text-muted-foreground" aria-hidden="true">⌄</span>}
@@ -162,7 +164,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-bold text-primary truncate">{eng.clientName}</p>
                         <p className="text-[10px] text-muted-foreground uppercase tracking-wider">
-                          {eng.engagementType} · {eng.currentPhase || t("Active")}
+                          {serviceName(eng, fr ? "fr" : "en")} · {eng.currentPhase || t("Active")}
                         </p>
                       </div>
                       {engagement?.id === eng.id && <div className="w-2 h-2 rounded-full bg-accent flex-shrink-0" />}
@@ -250,10 +252,10 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
 
       {isMobileMenuOpen && (
          <div id="portal-mobile-navigation" className="lg:hidden fixed inset-16 bottom-0 bg-white text-primary z-20 overflow-y-auto">
-          {isStaffOrAdmin && engagements.length > 0 && (
+          {showEngagementSelector && (
             <div className="px-4 pt-5 pb-3 border-b border-white/10">
                <p className="text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground mb-2">
-                {user?.role === "admin" ? t("Viewing client") : t("Assigned client")}
+                {isClient ? t("Your services") : user?.role === "admin" ? t("Viewing client") : t("Assigned client")}
               </p>
               <div className="space-y-1">
                 {engagements.map((eng) => (
@@ -275,7 +277,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
                     </span>
                     <div className="flex-1 min-w-0">
                      <p className="text-sm font-bold text-primary truncate">{eng.clientName}</p>
-                     <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{eng.engagementType}</p>
+                      <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{serviceName(eng, fr ? "fr" : "en")}</p>
                     </div>
                   </button>
                 ))}

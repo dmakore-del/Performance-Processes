@@ -13,11 +13,13 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { ActionItem, Meeting, Milestone, Document } from "@shared/schema";
 import { usePortalI18n } from "@/lib/portal-i18n";
+import { ServiceAssignment } from "@/components/portal/ServiceAssignment";
+import { serviceName } from "@shared/portal-services";
 
 export default function Dashboard() {
-  const { engagement, engagementId, isLoading } = usePortalEngagement();
+  const { engagement, engagements, engagementId, isLoading, setSelectedEngagementId } = usePortalEngagement();
   const { user } = useAuth();
-  const { t, status } = usePortalI18n();
+  const { t, status, fr } = usePortalI18n();
   const { toast } = useToast();
   const { data: actions } = usePortalData<ActionItem[]>("actions", engagementId);
   const { data: meetings } = usePortalData<Meeting[]>("meetings", engagementId);
@@ -26,6 +28,9 @@ export default function Dashboard() {
 
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
   const isAdmin = user?.role === "admin";
+  const companyServices = engagement ? engagements.filter((item) => engagement.clientUserId
+    ? item.clientUserId === engagement.clientUserId
+    : item.id === engagement.id) : engagements;
 
   const [statusDialogOpen, setStatusDialogOpen] = useState(false);
   const [statusForm, setStatusForm] = useState({
@@ -75,6 +80,7 @@ export default function Dashboard() {
                 ? t("You don't have any client engagements assigned yet. The admin will assign clients to you.")
                 : t("Your consultant will set up your engagement shortly.")}
             </p>
+            {isAdmin && <div className="mt-6 flex flex-wrap justify-center gap-3"><ServiceAssignment trigger={<Button className="bg-primary text-primary-foreground">{t("Assign first service")}</Button>} /><Link href="/portal/admin/users" className="inline-flex items-center border border-border px-4 py-2 text-sm font-semibold text-primary">{t("Open client management")}</Link></div>}
           </div>
         </div>
       </PortalLayout>
@@ -101,7 +107,7 @@ export default function Dashboard() {
             <p className="text-lg text-muted-foreground mt-2">
               {isStaffOrAdmin
                 ? t("Manage this client's engagement, milestones, and deliverables.")
-                : t("A current summary of your company and consulting engagement.")}
+                : t("A summary of your company, assigned services, and current delivery.")}
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -129,8 +135,32 @@ export default function Dashboard() {
                 {t("Edit")}
               </Button>
             )}
+            {isAdmin && <ServiceAssignment trigger={<Button variant="outline" size="sm">{t("Assign service")}</Button>} />}
           </div>
         </div>
+
+        <section className="border border-border bg-white">
+          <div className="flex flex-col gap-3 border-b border-border px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="eyebrow text-accent">{t("Company services")}</p>
+              <h2 className="mt-1 text-xl font-heading text-primary">{engagement.clientName}</h2>
+              {isAdmin && <p className="mt-1 text-xs text-muted-foreground">{t("Performance Processes workspace · selected client")}</p>}
+            </div>
+            {isAdmin && <Link href="/portal/admin/users" className="text-xs font-bold uppercase tracking-widest text-primary underline decoration-accent decoration-2 underline-offset-4">{t("Manage clients and services")}</Link>}
+          </div>
+          {companyServices.length ? <div className="divide-y divide-border">
+            {companyServices.map((item) => <div key={item.id} className="flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+              <button type="button" onClick={() => setSelectedEngagementId(item.id)} className="min-w-0 text-left" aria-label={`${t("Service")}: ${serviceName(item, fr ? "fr" : "en")}`}>
+                <span className="block font-semibold text-primary">{serviceName(item, fr ? "fr" : "en")}</span>
+                <span className="mt-1 block text-xs text-muted-foreground">{item.currentPhase} · {item.startDate}</span>
+              </button>
+              <div className="flex items-center gap-4">
+                <span className="text-xs capitalize text-muted-foreground">{status(item.status)} · {item.completionPercent}%</span>
+                {isAdmin && <ServiceAssignment engagement={item} />}
+              </div>
+            </div>)}
+          </div> : <div className="portal-empty p-8 text-sm text-muted-foreground">{t("No services have been assigned to this company yet.")}</div>}
+        </section>
 
         <div className="bg-white p-6 rounded-3xl border border-border shadow-sm">
             <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">{isStaffOrAdmin ? t("Engagement Summary") : t("Company Summary")}</h3>

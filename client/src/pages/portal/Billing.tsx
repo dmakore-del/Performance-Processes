@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import type { Invoice, Contract } from "@shared/schema";
 import { usePortalI18n } from "@/lib/portal-i18n";
+import { Link } from "wouter";
 
 interface PortalReceipt {
   id: number;
@@ -25,16 +26,24 @@ interface PortalReceipt {
   paidAt: string | null;
 }
 
+const formatPaidDate = (value: string | Date, locale: string) => {
+  const dateOnly = new Date(value).toISOString().slice(0, 10);
+  return new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeZone: "UTC" }).format(new Date(`${dateOnly}T12:00:00.000Z`));
+};
+
 export default function Billing() {
   const { engagement, engagementId, isLoading: engLoading } = usePortalEngagement();
-  const { data: invoices, isLoading: invLoading } = usePortalData<Invoice[]>("invoices", engagementId);
-  const { data: contracts, isLoading: conLoading } = usePortalData<Contract[]>("contracts", engagementId);
+  const invoicesQuery = usePortalData<Invoice[]>("invoices", engagementId);
+  const contractsQuery = usePortalData<Contract[]>("contracts", engagementId);
+  const { data: invoices, isLoading: invLoading } = invoicesQuery;
+  const { data: contracts, isLoading: conLoading } = contractsQuery;
   const { toast } = useToast();
   const { user } = useAuth();
-  const { t, status } = usePortalI18n();
+  const { t, status, locale } = usePortalI18n();
 
   const isClient = user?.role === "client";
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
+  const isAdmin = user?.role === "admin";
   const [clientPaymentView, setClientPaymentView] = useState<"invoices" | "receipts">("invoices");
   const {
     data: receipts = [],
@@ -59,6 +68,9 @@ export default function Billing() {
     amountCents: 0,
     issueDate: "",
     dueDate: "",
+    paymentType: "one_time",
+    status: "unpaid",
+    paidAt: "",
   });
 
   const [createContractOpen, setCreateContractOpen] = useState(false);
@@ -131,10 +143,11 @@ export default function Billing() {
       return res.json();
     },
     onSuccess: () => {
-      toast({ title: t("Invoice Created"), description: t("The invoice has been created and is ready for client payment.") });
+      toast({ title: t("Invoice Created"), description: t("The invoice has been recorded in the client portal.") });
       queryClient.invalidateQueries({ queryKey: [`/api/portal/engagements/${engagementId}/invoices`] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/billing"] });
       setCreateInvoiceOpen(false);
-      setInvoiceForm({ invoiceNumber: "", description: "", amount: "", amountCents: 0, issueDate: "", dueDate: "" });
+      setInvoiceForm({ invoiceNumber: "", description: "", amount: "", amountCents: 0, issueDate: "", dueDate: "", paymentType: "one_time", status: "unpaid", paidAt: "" });
     },
     onError: (error: Error) => {
       toast({ title: t("Error"), description: t("Something went wrong"), variant: "destructive" });
@@ -250,6 +263,13 @@ export default function Billing() {
     );
   }
 
+  if (invoicesQuery.isError || contractsQuery.isError) {
+    return <PortalLayout><div role="alert" className="border border-red-200 bg-red-50 p-6 text-sm text-red-800">
+      {t("Unable to load payment records.")}
+      <Button variant="outline" className="ml-3" onClick={() => { invoicesQuery.refetch(); contractsQuery.refetch(); }}>{t("Retry")}</Button>
+    </div></PortalLayout>;
+  }
+
   if (!engagement && !engLoading) {
     return (
       <PortalLayout>
@@ -268,6 +288,7 @@ export default function Billing() {
         <div>
           <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="billing-title">{isClient ? t("Payments") : t("Billing & Agreements")}</h1>
           <p className="text-lg text-muted-foreground" data-testid="billing-subtitle">{isClient ? t("View invoices, make payments, and download receipts.") : t("Manage invoices, payments, and view engagement contracts.")}</p>
+          {isAdmin && <Link href="/portal/admin/billing" className="mt-3 inline-flex text-xs font-bold uppercase tracking-widest text-primary underline decoration-accent decoration-2 underline-offset-4">{t("Open billing register and payment history")}</Link>}
         </div>
 
         {isClient && (
@@ -336,7 +357,7 @@ export default function Billing() {
               {visibleInvoices.length > 0 ? visibleInvoices.map((inv) => {
                const invoiceState = invoiceStatus(inv);
                 return <div key={inv.id} className="flex flex-col gap-4 border-b border-border p-5 last:border-0 transition-colors hover:bg-secondary/20 sm:flex-row sm:items-center sm:justify-between" data-testid={`invoice-row-${inv.id}`}>
-                   <div><h4 className="font-semibold text-primary" data-testid={`invoice-number-${inv.id}`}>{inv.invoiceNumber}</h4><p className="mt-1 text-xs text-muted-foreground">{t("Issued")} {inv.issueDate}, {t("due")} {inv.dueDate}</p>{inv.description && <p className="mt-1 text-sm text-muted-foreground">{inv.description}</p>}</div>
+                    <div><h4 className="font-semibold text-primary" data-testid={`invoice-number-${inv.id}`}>{inv.invoiceNumber}</h4><p className="mt-1 text-xs text-muted-foreground">{t("Issued")} {inv.issueDate}, {t("due")} {inv.dueDate}</p>{invoiceState === "paid" && inv.paidAt && <p className="mt-1 text-xs font-semibold text-emerald-800">{t("Paid")} {formatPaidDate(inv.paidAt, locale)}</p>}{inv.description && <p className="mt-1 text-sm text-muted-foreground">{inv.description}</p>}</div>
                    <div className="flex items-center justify-between gap-4 sm:justify-end"><div className="text-right"><p className="font-heading text-xl text-primary" data-testid={`invoice-amount-${inv.id}`}>{inv.amount}</p><span className={`text-[10px] font-bold uppercase tracking-[.12em] ${invoiceState === "paid" ? "text-green-700" : invoiceState === "overdue" ? "text-red-700" : "text-accent"}`} data-testid={`invoice-status-${inv.id}`}>{status(invoiceState)}</span></div>{invoiceState !== "paid" && invoiceState !== "void" && !isStaffOrAdmin && <Button size="sm" className="bg-accent text-primary hover:bg-primary hover:text-primary-foreground" onClick={() => payMutation.mutate(inv.id)} disabled={payMutation.isPending} data-testid={`button-pay-${inv.id}`}>{payMutation.isPending ? t("Processing") : t("Pay invoice")}</Button>}{isStaffOrAdmin && invoiceState !== "paid" && <span className="text-xs text-muted-foreground">{t("Client payment pending")}</span>}</div>
                 </div>;
               }) : <div className="p-8 text-center text-sm text-muted-foreground" data-testid="invoices-empty">{t("No invoices in this view.")}</div>}
@@ -509,7 +530,7 @@ export default function Billing() {
       <Dialog open={createInvoiceOpen} onOpenChange={setCreateInvoiceOpen}>
         <DialogContent className="max-w-md" data-testid="create-invoice-dialog">
           <DialogHeader>
-            <DialogTitle>{t("Create & Send Invoice")}</DialogTitle>
+            <DialogTitle>{t("Create invoice")}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div>
@@ -574,20 +595,39 @@ export default function Billing() {
                 />
               </div>
             </div>
+            {isAdmin && <>
+              <div>
+                <Label>{t("Payment type")}</Label>
+                <select className="mt-1 h-10 w-full border border-input bg-background px-3 text-sm" value={invoiceForm.paymentType} onChange={(e) => setInvoiceForm({ ...invoiceForm, paymentType: e.target.value })}>
+                  <option value="one_time">{t("One-time service")}</option><option value="monthly_retainer">{t("Monthly retainer")}</option>
+                </select>
+              </div>
+              <div>
+                <Label>{t("Record status")}</Label>
+                <select className="mt-1 h-10 w-full border border-input bg-background px-3 text-sm" value={invoiceForm.status} onChange={(e) => setInvoiceForm({ ...invoiceForm, status: e.target.value, paidAt: e.target.value === "paid" ? invoiceForm.paidAt : "" })}>
+                  <option value="unpaid">{t("Unpaid")}</option><option value="paid">{t("Paid")}</option>
+                </select>
+              </div>
+              {invoiceForm.status === "paid" && <div><Label>{t("Actual paid date")}</Label><Input type="date" value={invoiceForm.paidAt} onChange={(e) => setInvoiceForm({ ...invoiceForm, paidAt: e.target.value })} required /></div>}
+            </>}
             <div className="bg-zinc-100 p-3 rounded-xl border border-zinc-200 flex items-start gap-3">
-               <p className="text-xs text-zinc-900">{t("This invoice will be visible to the client immediately in their portal. They can pay using the Pay Now button.")}</p>
+               <p className="text-xs text-zinc-900">{invoiceForm.status === "paid" ? t("This records a payment already received; enter the actual paid date. No payment or email will be triggered.") : t("This invoice will be visible in the client portal. Unpaid invoices can be paid through secure checkout.")}</p>
             </div>
             <div className="flex justify-end">
               <Button
                 className="bg-accent text-white hover:bg-primary gap-2"
                 onClick={() => {
                   if (!engagementId) return;
-                  createInvoiceMutation.mutate({ ...invoiceForm, engagementId });
+                  if (invoiceForm.dueDate < invoiceForm.issueDate || (invoiceForm.status === "paid" && invoiceForm.paidAt < invoiceForm.issueDate)) return;
+                  createInvoiceMutation.mutate({
+                    ...invoiceForm, engagementId, currency: "cad",
+                    paidAt: invoiceForm.status === "paid" && invoiceForm.paidAt ? `${invoiceForm.paidAt}T00:00:00.000Z` : null,
+                  } as typeof invoiceForm & { engagementId: number });
                 }}
-                disabled={createInvoiceMutation.isPending}
+                disabled={createInvoiceMutation.isPending || !invoiceForm.invoiceNumber || !invoiceForm.issueDate || !invoiceForm.dueDate || invoiceForm.dueDate < invoiceForm.issueDate || !invoiceForm.amountCents || (invoiceForm.status === "paid" && (!isAdmin || !invoiceForm.paidAt || invoiceForm.paidAt < invoiceForm.issueDate || invoiceForm.paidAt > new Date().toISOString().slice(0, 10)))}
                 data-testid="button-submit-invoice"
               >
-                {createInvoiceMutation.isPending ? t("Sending...") : t("Create & Send Invoice")}
+                {createInvoiceMutation.isPending ? t("Saving") : invoiceForm.status === "paid" ? t("Record paid invoice") : t("Create invoice")}
               </Button>
             </div>
           </div>

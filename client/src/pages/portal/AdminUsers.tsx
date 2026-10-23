@@ -12,6 +12,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Redirect } from "wouter";
 import { usePortalI18n } from "@/lib/portal-i18n";
+import { ServiceAssignment } from "@/components/portal/ServiceAssignment";
+import { PORTAL_SERVICES } from "@shared/portal-services";
 
 interface AdminUser {
   id: string;
@@ -26,7 +28,7 @@ interface AdminUser {
 
 export default function AdminUsers() {
   const { user } = useAuth();
-  const { t, role: translateRole, status: translateStatus } = usePortalI18n();
+  const { t, role: translateRole, status: translateStatus, fr } = usePortalI18n();
 
   if (user && user.role !== "admin") {
     return <Redirect to="/portal" />;
@@ -53,7 +55,15 @@ export default function AdminUsers() {
 
   const engagementMutation = useMutation({
     mutationFn: async (data: typeof engagementForm) => {
-      const res = await apiRequest("POST", "/api/portal/engagements", data);
+      const service = PORTAL_SERVICES.find((item) => item.name === data.engagementType);
+      const res = await apiRequest("POST", "/api/portal/engagements", {
+        ...data,
+        serviceCategory: service?.id,
+        currentPhase: data.currentPhase || service?.phases[0] || "",
+        status: "active",
+        completionPercent: 0,
+        assignedStaffId: data.assignedStaffId || undefined,
+      });
       return res.json();
     },
     onSuccess: () => {
@@ -166,10 +176,7 @@ export default function AdminUsers() {
                       <SelectValue placeholder={t("Select type")} />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="Strategic">{t("Strategic")}</SelectItem>
-                        <SelectItem value="Operational">{t("Operational")}</SelectItem>
-                        <SelectItem value="Leadership">{t("Leadership")}</SelectItem>
-                        <SelectItem value="Performance">{t("Performance")}</SelectItem>
+                        {PORTAL_SERVICES.map((service) => <SelectItem key={service.id} value={service.name}>{fr ? service.fr : service.name}</SelectItem>)}
                     </SelectContent>
                   </Select>
                 </div>
@@ -229,7 +236,7 @@ export default function AdminUsers() {
                 <Button
                   type="submit"
                   data-testid="button-submit-engagement"
-                  disabled={engagementMutation.isPending}
+                  disabled={engagementMutation.isPending || !engagementForm.clientUserId || !engagementForm.engagementType || !engagementForm.startDate}
                   className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl"
                 >
                   {engagementMutation.isPending ? t("Creating...") : t("Create Engagement")}
@@ -359,6 +366,7 @@ export default function AdminUsers() {
                             )}
                             {u.status === "active" && u.role !== "admin" && (
                               <>
+                                {u.role === "client" && <ServiceAssignment clientUser={u} trigger={<Button size="sm" variant="outline">{t("Assign service")}</Button>} />}
                                 <Button
                                   size="sm"
                                   variant="outline"

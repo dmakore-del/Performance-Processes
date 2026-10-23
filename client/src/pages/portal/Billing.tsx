@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
 import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -14,6 +14,17 @@ import { Textarea } from "@/components/ui/textarea";
 import type { Invoice, Contract } from "@shared/schema";
 import { usePortalI18n } from "@/lib/portal-i18n";
 
+interface PortalReceipt {
+  id: number;
+  receiptNumber: string;
+  serviceDescription: string;
+  amountCents: number;
+  currency: string;
+  paymentStatus: string;
+  paymentMethod: string | null;
+  paidAt: string | null;
+}
+
 export default function Billing() {
   const { engagement, engagementId, isLoading: engLoading } = usePortalEngagement();
   const { data: invoices, isLoading: invLoading } = usePortalData<Invoice[]>("invoices", engagementId);
@@ -22,7 +33,17 @@ export default function Billing() {
   const { user } = useAuth();
   const { t, status } = usePortalI18n();
 
+  const isClient = user?.role === "client";
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
+  const [clientPaymentView, setClientPaymentView] = useState<"invoices" | "receipts">("invoices");
+  const {
+    data: receipts = [],
+    isLoading: receiptsLoading,
+    isError: receiptsError,
+  } = useQuery<PortalReceipt[]>({
+    queryKey: ["/api/portal/receipts"],
+    enabled: isClient,
+  });
 
   const [signDialogOpen, setSignDialogOpen] = useState(false);
   const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
@@ -210,7 +231,7 @@ export default function Billing() {
     signMutation.mutate({ contractId: selectedContract.id, signatureData });
   };
 
-  const isLoading = engLoading || invLoading || conLoading;
+  const isLoading = engLoading || invLoading || conLoading || (isClient && receiptsLoading);
   const currentDate = new Date().toISOString().slice(0, 10);
   const getInvoiceStatus = (invoice: Invoice) => invoice.status === "unpaid" && invoice.dueDate < currentDate ? "overdue" : invoice.status;
   const invoiceStatus = (invoice: Invoice) => getInvoiceStatus(invoice);
@@ -245,11 +266,30 @@ export default function Billing() {
     <PortalLayout>
       <div className="space-y-8">
         <div>
-          <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="billing-title">{t("Billing & Agreements")}</h1>
-          <p className="text-lg text-muted-foreground" data-testid="billing-subtitle">{t("Manage invoices, payments, and view engagement contracts.")}</p>
+          <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="billing-title">{isClient ? t("Payments") : t("Billing & Agreements")}</h1>
+          <p className="text-lg text-muted-foreground" data-testid="billing-subtitle">{isClient ? t("View invoices, make payments, and download receipts.") : t("Manage invoices, payments, and view engagement contracts.")}</p>
         </div>
 
+        {isClient && (
+          <div className="flex w-full max-w-md border-b border-border" role="tablist" aria-label={t("Payment records")}>
+            {(["invoices", "receipts"] as const).map((view) => (
+              <button
+                key={view}
+                type="button"
+                role="tab"
+                aria-selected={clientPaymentView === view}
+                onClick={() => setClientPaymentView(view)}
+                className={`flex-1 border-b-2 px-4 py-3 text-sm font-semibold transition-colors ${clientPaymentView === view ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-primary"}`}
+              >
+                {view === "invoices" ? t("Invoices") : t("Receipts")}
+              </button>
+            ))}
+          </div>
+        )}
+
         <div className="space-y-8">
+          {(!isClient || clientPaymentView === "invoices") && (
+            <>
           <div className="grid gap-4 md:grid-cols-3">
             {[
               [t("Outstanding"), outstandingInvoices.length, "outstanding"],
@@ -302,7 +342,49 @@ export default function Billing() {
               }) : <div className="p-8 text-center text-sm text-muted-foreground" data-testid="invoices-empty">{t("No invoices in this view.")}</div>}
             </div>
           </div>
+            </>
+          )}
 
+          {isClient && clientPaymentView === "receipts" && (
+            <section className="space-y-5" data-testid="client-receipts">
+              <div>
+                <h2 className="text-2xl font-heading text-primary">{t("Receipts")}</h2>
+                <p className="mt-1 text-sm text-muted-foreground">{t("Download receipts for payments recorded to your account.")}</p>
+              </div>
+              {receiptsError ? (
+                <div role="alert" className="border border-red-200 bg-red-50 p-5 text-sm text-red-800">{t("Unable to load receipts. Please try again.")}</div>
+              ) : receipts.length === 0 ? (
+                <div className="border border-border bg-white p-8 text-center text-sm text-muted-foreground">{t("No receipts are available yet.")}</div>
+              ) : (
+                <div className="divide-y divide-border border border-border bg-white">
+                  {receipts.map((receipt) => (
+                    <div key={receipt.id} className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between" data-testid={`client-receipt-${receipt.id}`}>
+                      <div>
+                        <p className="font-semibold text-primary">{receipt.receiptNumber}</p>
+                        <p className="mt-1 text-sm text-muted-foreground">{receipt.serviceDescription}</p>
+                        <p className="mt-1 text-xs text-muted-foreground">
+                          {receipt.paidAt ? new Date(receipt.paidAt).toLocaleDateString() : t("Date not available")}
+                          {receipt.paymentMethod ? ` · ${t(receipt.paymentMethod === "paypal" ? "PayPal" : receipt.paymentMethod === "card" ? "Card" : receipt.paymentMethod)}` : ""}
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between gap-4 sm:justify-end">
+                        <p className="font-heading text-xl text-primary">
+                          {new Intl.NumberFormat("en-CA", { style: "currency", currency: receipt.currency.toUpperCase() }).format(receipt.amountCents / 100)}
+                        </p>
+                        <Button variant="outline" size="sm" asChild>
+                          <a href={`/api/portal/receipts/${receipt.id}/pdf`} data-testid={`button-download-client-receipt-${receipt.id}`}>
+                            {t("Download receipt")}
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
+          )}
+
+          {isStaffOrAdmin && (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-bold text-primary" data-testid="contracts-heading">{t("Contracts & Agreements")}</h3>
@@ -373,6 +455,7 @@ export default function Billing() {
               )}
             </div>
           </div>
+          )}
         </div>
       </div>
 

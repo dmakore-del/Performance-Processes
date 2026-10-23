@@ -1264,6 +1264,54 @@ export async function registerRoutes(
   });
 
   // Invoices
+  app.get("/api/portal/receipts", requireAuth, async (req, res) => {
+    try {
+      const email = String((req as any).user?.email || "").trim().toLowerCase();
+      const rows = await db.select({
+        id: paymentReceipts.id,
+        receiptNumber: paymentReceipts.receiptNumber,
+        serviceDescription: paymentReceipts.serviceDescription,
+        amountCents: paymentReceipts.amountCents,
+        currency: paymentReceipts.currency,
+        paymentStatus: paymentReceipts.paymentStatus,
+        paymentMethod: paymentReceipts.paymentMethod,
+        paidAt: paymentReceipts.paidAt,
+      }).from(paymentReceipts)
+        .where(sql`lower(coalesce(${paymentReceipts.customerEmail}, '')) = ${email}`)
+        .orderBy(desc(paymentReceipts.paidAt))
+        .limit(250);
+      res.set("Cache-Control", "private, no-store").json(rows);
+    } catch (error) {
+      console.error("Client receipts error:", error);
+      res.status(500).json({ message: "Failed to fetch receipts" });
+    }
+  });
+
+  app.get("/api/portal/receipts/:id/pdf", requireAuth, async (req, res) => {
+    const id = Number(req.params.id);
+    if (!Number.isSafeInteger(id) || id < 1) return res.status(400).json({ message: "Invalid receipt id" });
+    try {
+      const email = String((req as any).user?.email || "").trim().toLowerCase();
+      const [receipt] = await db.select({
+        receiptNumber: paymentReceipts.receiptNumber,
+        pdfContent: paymentReceipts.pdfContent,
+      }).from(paymentReceipts).where(sql`
+        ${paymentReceipts.id} = ${id}
+        AND lower(coalesce(${paymentReceipts.customerEmail}, '')) = ${email}
+      `);
+      if (!receipt) return res.status(404).json({ message: "Receipt not found" });
+      res.set({
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `attachment; filename="receipt-${receipt.receiptNumber.replace(/[^A-Za-z0-9-]/g, "")}.pdf"`,
+        "Cache-Control": "private, no-store",
+        "X-Content-Type-Options": "nosniff",
+      }).send(Buffer.from(receipt.pdfContent, "base64"));
+    } catch (error) {
+      console.error("Client receipt download error:", error);
+      res.status(500).json({ message: "Failed to download receipt" });
+    }
+  });
+
   app.get("/api/portal/engagements/:engagementId/invoices", async (req, res) => {
     try {
       const engagement = await getAccessibleEngagement(req, res, req.params.engagementId);
@@ -1333,8 +1381,9 @@ export async function registerRoutes(
           quantity: 1,
         }],
         mode: "payment",
-        success_url: `${req.headers.origin || req.protocol + "://" + req.get("host")}/portal/billing?payment=success&invoice=${invoice.id}`,
-        cancel_url: `${req.headers.origin || req.protocol + "://" + req.get("host")}/portal/billing?payment=cancelled`,
+        customer_email: (req as any).user?.email,
+        success_url: `${req.headers.origin || req.protocol + "://" + req.get("host")}/portal/payments?payment=success&invoice=${invoice.id}`,
+        cancel_url: `${req.headers.origin || req.protocol + "://" + req.get("host")}/portal/payments?payment=cancelled`,
         metadata: { invoiceId: String(invoice.id) },
       });
 
@@ -1373,8 +1422,8 @@ export async function registerRoutes(
         }],
         mode: "subscription",
         customer_email: (req as any).user?.email,
-        success_url: `${origin}/portal/billing?payment=success&retainer=1`,
-        cancel_url: `${origin}/portal/billing?payment=cancelled`,
+        success_url: `${origin}/portal/payments?payment=success&retainer=1`,
+        cancel_url: `${origin}/portal/payments?payment=cancelled`,
         metadata: { type: "retainer", engagementId: String(engagement.id) },
         subscription_data: { metadata: { type: "retainer", engagementId: String(engagement.id) } },
       });

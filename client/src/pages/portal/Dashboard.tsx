@@ -95,12 +95,12 @@ export default function Dashboard() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
           <div>
             <h1 data-testid="text-dashboard-title" className="text-3xl md:text-4xl font-heading font-extrabold text-primary">
-              {isStaffOrAdmin ? engagement.clientName : t("Welcome back")}
+              {isStaffOrAdmin ? engagement.clientName : t("Company Overview")}
             </h1>
             <p className="text-lg text-muted-foreground mt-2">
               {isStaffOrAdmin
                 ? t("Manage this client's engagement, milestones, and deliverables.")
-                : t("Here is the latest overview of your consulting engagement.")}
+                : t("A current summary of your company and consulting engagement.")}
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -132,8 +132,14 @@ export default function Dashboard() {
         </div>
 
         <div className="bg-white p-6 rounded-3xl border border-border shadow-sm">
-            <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">{t("Engagement Summary")}</h3>
+            <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">{isStaffOrAdmin ? t("Engagement Summary") : t("Company Summary")}</h3>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            {!isStaffOrAdmin && (
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">{t("Company")}</p>
+                <p data-testid="text-company-name" className="font-bold text-primary">{user?.companyName || engagement.clientName}</p>
+              </div>
+            )}
             {isStaffOrAdmin && (
               <div>
                 <p className="text-xs text-muted-foreground mb-1">{t("Client")}</p>
@@ -201,9 +207,11 @@ export default function Dashboard() {
                 </div>
               ))}
             </div>
-            <Link href="/portal/roadmap" data-testid="link-view-roadmap" className="mt-6 inline-flex items-center text-sm font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors">
-              {t("View full roadmap")} <span className="ml-2">→</span>
-            </Link>
+            {isStaffOrAdmin && (
+              <Link href="/portal/roadmap" data-testid="link-view-roadmap" className="mt-6 inline-flex items-center text-sm font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors">
+                {t("View full roadmap")} <span className="ml-2">→</span>
+              </Link>
+            )}
           </div>
 
           <div className="bg-white p-8 rounded-3xl border border-border shadow-sm">
@@ -230,9 +238,11 @@ export default function Dashboard() {
                 );
               })}
             </div>
-            <Link href="/portal/meetings" data-testid="link-view-calendar" className="mt-6 inline-flex items-center text-sm font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors">
-              {t("View full calendar")} <span className="ml-2">→</span>
-            </Link>
+            {isStaffOrAdmin && (
+              <Link href="/portal/meetings" data-testid="link-view-calendar" className="mt-6 inline-flex items-center text-sm font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors">
+                {t("View full calendar")} <span className="ml-2">→</span>
+              </Link>
+            )}
           </div>
         </div>
 
@@ -250,8 +260,8 @@ export default function Dashboard() {
               </div>
             ))}
           </div>
-           <Link href="/portal/documents" data-testid="link-view-documents" className="mt-6 inline-flex items-center text-sm font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors relative z-10">
-             {t("View all documents")} <span className="ml-2">→</span>
+           <Link href={isStaffOrAdmin ? "/portal/documents" : "/portal/progress"} data-testid="link-view-documents" className="mt-6 inline-flex items-center text-sm font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors relative z-10">
+             {isStaffOrAdmin ? t("View all documents") : t("Open progress workspace")} <span className="ml-2">→</span>
           </Link>
         </div>
       </div>

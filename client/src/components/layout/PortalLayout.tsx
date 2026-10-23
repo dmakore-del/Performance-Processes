@@ -22,15 +22,10 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
   const isClient = user?.role === "client";
 
   const clientNavItems = [
-    { label: t("Overview"), href: "/portal" },
-    { label: t("Launch plan"), href: "/portal/roadmap" },
-    { label: t("Deliverables"), href: "/portal/documents" },
-    { label: t("Sessions"), href: "/portal/meetings" },
-    { label: t("Next actions"), href: "/portal/actions" },
-    { label: t("Progress"), href: "/portal/performance" },
-    { label: t("Messages"), href: "/portal/messages" },
-    { label: t("Resource library"), href: "/portal/resources" },
-    { label: t("Billing"), href: "/portal/billing" },
+    { label: t("Company Overview"), href: "/portal" },
+    { label: t("Payments"), href: "/portal/payments" },
+    { label: t("Progress"), href: "/portal/progress" },
+    { label: t("Reports"), href: "/portal/reports" },
   ];
 
   const staffNavItems = [
@@ -42,7 +37,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
     { label: t("KPIs & Metrics"), href: "/portal/performance" },
     { label: t("Client Messages"), href: "/portal/messages" },
     { label: t("Resources"), href: "/portal/resources" },
-    { label: t("Billing & Contracts"), href: "/portal/billing" },
+    { label: t("Payments & Contracts"), href: "/portal/payments" },
     { label: t("Leads Tracker"), href: "/portal/leads" },
   ];
 

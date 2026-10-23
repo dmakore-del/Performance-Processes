@@ -9,10 +9,11 @@ import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/lib/queryClient";
 import type { Document } from "@shared/schema";
-import { useState, useRef } from "react";
+import { useState, useRef, Fragment } from "react";
 import { usePortalI18n } from "@/lib/portal-i18n";
 
-export default function Documents() {
+export default function Documents({ embedded = false }: { embedded?: boolean }) {
+  const Layout = embedded ? Fragment : PortalLayout;
   const { engagementId, isLoading: engLoading } = usePortalEngagement();
   const { data: documents, isLoading: docsLoading } = usePortalData<Document[]>("documents", engagementId);
   const { toast } = useToast();
@@ -97,36 +98,36 @@ export default function Documents() {
 
   if (isLoading) {
     return (
-      <PortalLayout>
+      <Layout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="documents-loading">
           <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-pulse">{t("Loading")}</span>
         </div>
-      </PortalLayout>
+      </Layout>
     );
   }
 
   if (!engagementId && !engLoading) {
     return (
-      <PortalLayout>
+      <Layout>
         <div className="flex items-center justify-center min-h-[400px]" data-testid="documents-empty-state">
           <div className="text-center space-y-4">
             <h2 className="text-xl font-bold text-primary" data-testid="text-no-engagement">{t("No Active Engagement")}</h2>
             <p className="text-muted-foreground" data-testid="text-no-engagement-desc">{t("Your consultant will set up your engagement shortly.")}</p>
           </div>
         </div>
-      </PortalLayout>
+      </Layout>
     );
   }
 
   const folderSuggestions = ["General", "Discovery Phase", "Strategic Engagement"];
 
   return (
-    <PortalLayout>
+    <Layout>
       <div className="space-y-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-documents-title">{t("Deliverables & Documents")}</h1>
-            <p className="text-lg text-muted-foreground" data-testid="text-documents-subtitle">{t("Centralized access to all project materials and final reports.")}</p>
+            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-documents-title">{embedded ? t("Documents & Requests") : t("Deliverables & Documents")}</h1>
+            <p className="text-lg text-muted-foreground" data-testid="text-documents-subtitle">{embedded ? t("Upload requested files and access materials for your engagement.") : t("Centralized access to all project materials and final reports.")}</p>
           </div>
           <Button
             className="rounded-full bg-primary text-white hover:bg-accent font-bold uppercase tracking-wider text-xs px-6"
@@ -275,6 +276,6 @@ export default function Documents() {
           </div>
         </div>
       </div>
-    </PortalLayout>
+    </Layout>
   );
 }

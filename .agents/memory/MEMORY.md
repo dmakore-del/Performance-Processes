@@ -8,3 +8,4 @@
 - [App Storage bucket selection](app-storage-bucket.md) — use an explicit bucket ID; default-bucket discovery can remain empty after bucket creation.
 - [Portal account recovery policy](portal-account-recovery.md) — send reset codes, lock accounts after five failed authentication attempts, and notify the admin for review.
 - [Admin account impersonation](portal-impersonation.md) — limit audited “view as user” sessions to active client/staff accounts, with a persistent banner and safe return to admin.
+- [Client portal structure](client-portal-structure.md) — keep client navigation to company overview, payments, progress, and reports; retain distinct staff/admin work areas.

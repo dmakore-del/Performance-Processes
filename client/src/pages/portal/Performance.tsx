@@ -110,8 +110,8 @@ export default function Performance() {
       <div className="space-y-8">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-performance-title">{t("Performance Dashboard")}</h1>
-            <p className="text-lg text-muted-foreground" data-testid="text-performance-subtitle">{t("Track key performance indicators and organizational metrics.")}</p>
+            <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-performance-title">{isStaffOrAdmin ? t("Performance Dashboard") : t("Reports")}</h1>
+            <p className="text-lg text-muted-foreground" data-testid="text-performance-subtitle">{isStaffOrAdmin ? t("Track key performance indicators and organizational metrics.") : t("Review your engagement reporting and key performance indicators.")}</p>
           </div>
           <div className="flex items-center gap-3">
             {isStaffOrAdmin && (

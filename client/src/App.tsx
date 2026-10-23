@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { useAuth } from "@/hooks/use-auth";
 import NotFound from "./pages/not-found";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -39,11 +40,18 @@ import Performance from "./pages/portal/Performance";
 import Messages from "./pages/portal/Messages";
 import Resources from "./pages/portal/Resources";
 import Billing from "./pages/portal/Billing";
+import ProgressHub from "./pages/portal/ProgressHub";
 import AdminUsers from "./pages/portal/AdminUsers";
 import AdminSubmissions from "./pages/portal/AdminSubmissions";
 import AdminReceipts from "./pages/portal/AdminReceipts";
 import AdminBilling from "./pages/portal/AdminBilling";
 import Leads from "./pages/portal/Leads";
+
+function StaffOnlyPortalPage({ children, clientDestination }: { children: React.ReactNode; clientDestination: string }) {
+  const { user, isLoading } = useAuth();
+  if (isLoading) return null;
+  return user?.role === "client" ? <Redirect to={clientDestination} /> : <>{children}</>;
+}
 
 import { LanguageProvider } from "./hooks/use-language";
 import { EngagementProvider } from "./hooks/use-portal";
@@ -119,29 +127,38 @@ function Router() {
       <Route path="/portal">
         {() => <ProtectedRoute><Dashboard /></ProtectedRoute>}
       </Route>
+      <Route path="/portal/progress">
+        {() => <ProtectedRoute><ProgressHub /></ProtectedRoute>}
+      </Route>
+      <Route path="/portal/payments">
+        {() => <ProtectedRoute><Billing /></ProtectedRoute>}
+      </Route>
+      <Route path="/portal/reports">
+        {() => <ProtectedRoute><Performance /></ProtectedRoute>}
+      </Route>
       <Route path="/portal/roadmap">
-        {() => <ProtectedRoute><Roadmap /></ProtectedRoute>}
+        {() => <ProtectedRoute><StaffOnlyPortalPage clientDestination="/portal/progress"><Roadmap /></StaffOnlyPortalPage></ProtectedRoute>}
       </Route>
       <Route path="/portal/documents">
-        {() => <ProtectedRoute><Documents /></ProtectedRoute>}
+        {() => <ProtectedRoute><StaffOnlyPortalPage clientDestination="/portal/progress"><Documents /></StaffOnlyPortalPage></ProtectedRoute>}
       </Route>
       <Route path="/portal/meetings">
         {() => <ProtectedRoute><Meetings /></ProtectedRoute>}
       </Route>
       <Route path="/portal/actions">
-        {() => <ProtectedRoute><Actions /></ProtectedRoute>}
+        {() => <ProtectedRoute><StaffOnlyPortalPage clientDestination="/portal/progress"><Actions /></StaffOnlyPortalPage></ProtectedRoute>}
       </Route>
       <Route path="/portal/performance">
-        {() => <ProtectedRoute><Performance /></ProtectedRoute>}
+        {() => <ProtectedRoute><StaffOnlyPortalPage clientDestination="/portal/reports"><Performance /></StaffOnlyPortalPage></ProtectedRoute>}
       </Route>
       <Route path="/portal/messages">
-        {() => <ProtectedRoute><Messages /></ProtectedRoute>}
+        {() => <ProtectedRoute><StaffOnlyPortalPage clientDestination="/portal/progress"><Messages /></StaffOnlyPortalPage></ProtectedRoute>}
       </Route>
       <Route path="/portal/resources">
-        {() => <ProtectedRoute><Resources /></ProtectedRoute>}
+        {() => <ProtectedRoute><StaffOnlyPortalPage clientDestination="/portal/progress"><Resources /></StaffOnlyPortalPage></ProtectedRoute>}
       </Route>
       <Route path="/portal/billing">
-        {() => <ProtectedRoute><Billing /></ProtectedRoute>}
+        {() => <Redirect to="/portal/payments" />}
       </Route>
       <Route path="/portal/admin/users">
         {() => <ProtectedRoute><AdminUsers /></ProtectedRoute>}

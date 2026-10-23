@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Fragment } from "react";
 import { PortalLayout } from "@/components/layout/PortalLayout";
 import { usePortalEngagement, usePortalData } from "@/hooks/use-portal";
 import { useAuth } from "@/hooks/use-auth";
@@ -13,7 +13,8 @@ interface Participant {
   role: string;
 }
 
-export default function Messages() {
+export default function Messages({ embedded = false }: { embedded?: boolean }) {
+  const Layout = embedded ? Fragment : PortalLayout;
   const { engagement, engagementId, isLoading: engLoading } = usePortalEngagement();
   const { data: messages, isLoading: msgsLoading, isError: messagesError } = usePortalData<Message[]>("messages", engagementId);
   const { user } = useAuth();
@@ -126,34 +127,34 @@ export default function Messages() {
 
   if (isLoading) {
     return (
-      <PortalLayout>
+      <Layout>
         <div className="flex items-center justify-center h-64">
           <span className="text-sm font-bold uppercase tracking-[0.2em] text-accent animate-pulse" data-testid="spinner-loading">{t("Loading")}</span>
         </div>
-      </PortalLayout>
+      </Layout>
     );
   }
 
   if (messagesError) {
-    return <PortalLayout><div className="flex items-center justify-center h-64"><p className="text-sm font-bold uppercase tracking-[0.2em] text-destructive">{t("Error")}</p></div></PortalLayout>;
+    return <Layout><div className="flex items-center justify-center h-64"><p className="text-sm font-bold uppercase tracking-[0.2em] text-destructive">{t("Error")}</p></div></Layout>;
   }
 
   if (!engagement && !engLoading) {
     return (
-      <PortalLayout>
+      <Layout>
         <div className="flex items-center justify-center h-64">
           <div className="text-center" data-testid="empty-state-no-engagement">
             <h2 className="text-xl font-bold text-primary mb-2">{t("No Active Engagement")}</h2>
             <p className="text-muted-foreground">{t("Your consultant will set up your engagement shortly.")}</p>
           </div>
         </div>
-      </PortalLayout>
+      </Layout>
     );
   }
 
   return (
-    <PortalLayout>
-      <div className="h-[calc(100vh-8rem)] flex flex-col">
+    <Layout>
+      <div className={embedded ? "h-[min(62vh,680px)] flex flex-col" : "h-[calc(100vh-8rem)] flex flex-col"}>
         <div className="mb-6">
           <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-page-title">{t("Communication Center")}</h1>
           <p className="text-lg text-muted-foreground" data-testid="text-page-subtitle">{t("Secure messaging with your consulting team.")}</p>
@@ -213,10 +214,23 @@ export default function Messages() {
 
           <div className="flex-1 flex flex-col">
             {!selectedRecipientId ? (
-              <div className="flex-1 flex items-center justify-center bg-[#FAFAFA]">
+              <div className="flex-1 flex flex-col items-center justify-center gap-4 bg-[#FAFAFA] p-5">
                 <div className="text-center" data-testid="text-select-conversation">
                   <p className="text-muted-foreground text-sm font-medium">{t("Select a conversation")}</p>
                   <p className="text-muted-foreground text-xs mt-1">{t("Choose a participant from the sidebar to start messaging")}</p>
+                </div>
+                <div className="flex w-full max-w-sm flex-col gap-2 md:hidden">
+                  {otherParticipants.map((participant) => (
+                    <button
+                      key={participant.id}
+                      type="button"
+                      onClick={() => setSelectedRecipientId(participant.id)}
+                      className="border border-border bg-white p-3 text-left text-sm font-semibold text-primary"
+                    >
+                      {participant.fullName}
+                    </button>
+                  ))}
+                  {otherParticipants.length === 0 && <p className="text-center text-xs text-muted-foreground">{t("No participants yet")}</p>}
                 </div>
               </div>
             ) : (
@@ -341,6 +355,6 @@ export default function Messages() {
           </div>
         </div>
       </div>
-    </PortalLayout>
+    </Layout>
   );
 }

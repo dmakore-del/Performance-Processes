@@ -29,6 +29,19 @@ export const userSessions = pgTable("user_sessions", {
   expire: timestamp("expire", { precision: 6 }).notNull(),
 });
 
+export const adminImpersonationAudit = pgTable("admin_impersonation_audit", {
+  id: serial("id").primaryKey(),
+  adminUserId: varchar("admin_user_id").notNull(),
+  targetUserId: varchar("target_user_id").notNull(),
+  ipAddress: text("ip_address").notNull(),
+  userAgent: text("user_agent").notNull().default(""),
+  startedAt: timestamp("started_at", { withTimezone: true }).notNull().defaultNow(),
+  endedAt: timestamp("ended_at", { withTimezone: true }),
+}, (table) => ({
+  adminStartedIndex: index("admin_impersonation_admin_started_idx").on(table.adminUserId, table.startedAt),
+  targetStartedIndex: index("admin_impersonation_target_started_idx").on(table.targetUserId, table.startedAt),
+}));
+
 export const intakeInvitations = pgTable("intake_invitations", {
   id: varchar("id").primaryKey(),
   outlookEventId: text("outlook_event_id").notNull(),

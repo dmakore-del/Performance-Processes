@@ -12,8 +12,13 @@ interface AuthUser {
   twoFactorEnabled: boolean;
 }
 
+interface AuthSession {
+  user: AuthUser;
+  impersonation: { adminFullName: string; adminEmail: string } | null;
+}
+
 export function useAuth() {
-  const { data, isLoading, error } = useQuery<{ user: AuthUser }>({
+  const { data, isLoading, error } = useQuery<AuthSession>({
     queryKey: ["/api/auth/me"],
     retry: false,
     staleTime: 30000,
@@ -21,6 +26,7 @@ export function useAuth() {
 
   return {
     user: data?.user ?? null,
+    impersonation: data?.impersonation ?? null,
     isLoading,
     isAuthenticated: !!data?.user,
   };

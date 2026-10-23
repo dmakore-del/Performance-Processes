@@ -93,6 +93,8 @@ declare module "express-session" {
   interface SessionData {
     userId?: string;
     pendingTwoFactor?: string;
+    impersonatorId?: string;
+    impersonationAuditId?: number;
   }
 }
 
@@ -107,6 +109,19 @@ export async function setupAuth(app: Express) {
       CONSTRAINT "user_sessions_pkey" PRIMARY KEY ("sid")
     );
     CREATE INDEX IF NOT EXISTS "IDX_user_sessions_expire" ON "user_sessions" ("expire");
+    CREATE TABLE IF NOT EXISTS "admin_impersonation_audit" (
+      "id" serial PRIMARY KEY,
+      "admin_user_id" varchar NOT NULL,
+      "target_user_id" varchar NOT NULL,
+      "ip_address" text NOT NULL,
+      "user_agent" text NOT NULL DEFAULT '',
+      "started_at" timestamptz NOT NULL DEFAULT NOW(),
+      "ended_at" timestamptz
+    );
+    CREATE INDEX IF NOT EXISTS "admin_impersonation_admin_started_idx"
+      ON "admin_impersonation_audit" ("admin_user_id", "started_at");
+    CREATE INDEX IF NOT EXISTS "admin_impersonation_target_started_idx"
+      ON "admin_impersonation_audit" ("target_user_id", "started_at");
   `);
 
   app.use(
@@ -444,17 +459,143 @@ export async function setupAuth(app: Express) {
 
       const user = await storage.getUser(req.session.userId);
       if (!user || user.status !== "active") {
+        if (req.session.impersonationAuditId) {
+          await pool.query(
+            `UPDATE "admin_impersonation_audit" SET "ended_at" = NOW()
+             WHERE "id" = $1 AND "ended_at" IS NULL`,
+            [req.session.impersonationAuditId],
+          );
+        }
         req.session.destroy(() => {});
         return res.status(401).json({ message: "User not found" });
       }
 
-      return res.json({ user: sanitizeUser(user) });
+      let impersonation: { adminFullName: string; adminEmail: string } | null = null;
+      if (req.session.impersonatorId) {
+        const admin = await storage.getUser(req.session.impersonatorId);
+        if (admin?.status === "active" && admin.role === "admin") {
+          impersonation = { adminFullName: admin.fullName, adminEmail: admin.email };
+        } else {
+          if (req.session.impersonationAuditId) {
+            await pool.query(
+              `UPDATE "admin_impersonation_audit" SET "ended_at" = NOW()
+               WHERE "id" = $1 AND "ended_at" IS NULL`,
+              [req.session.impersonationAuditId],
+            );
+          }
+          req.session.destroy(() => {});
+          return res.status(401).json({ message: "Administrator session is no longer active" });
+        }
+      }
+      return res.json({ user: sanitizeUser(user), impersonation });
     } catch (error) {
       return res.status(500).json({ message: "Failed to get user" });
     }
   });
 
+  app.post("/api/auth/impersonate-user/:userId", async (req: Request, res: Response) => {
+    try {
+      if (!req.session.userId || req.session.impersonatorId) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+      const admin = await storage.getUser(req.session.userId);
+      if (!admin || admin.status !== "active" || admin.role !== "admin") {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+
+      const target = await storage.getUser(String(req.params.userId));
+      if (!target || target.status !== "active" || target.role === "admin") {
+        return res.status(404).json({ message: "Active client or staff account not found" });
+      }
+
+      const audit = await pool.query(
+        `INSERT INTO "admin_impersonation_audit" ("admin_user_id", "target_user_id", "ip_address", "user_agent")
+         VALUES ($1, $2, $3, $4) RETURNING "id"`,
+        [
+          admin.id,
+          target.id,
+          req.ip || req.socket.remoteAddress || "unavailable",
+          req.get("user-agent") || "",
+        ],
+      );
+      const auditId = Number(audit.rows[0].id);
+
+      try {
+        await regenerateSession(req);
+      } catch (error) {
+        await pool.query(
+          `UPDATE "admin_impersonation_audit" SET "ended_at" = NOW() WHERE "id" = $1`,
+          [auditId],
+        );
+        throw error;
+      }
+      req.session.userId = target.id;
+      req.session.impersonatorId = admin.id;
+      req.session.impersonationAuditId = auditId;
+      req.session.save((error) => {
+        if (error) {
+          pool.query(
+            `UPDATE "admin_impersonation_audit" SET "ended_at" = NOW() WHERE "id" = $1`,
+            [auditId],
+          ).catch(() => {});
+          req.session.destroy(() => {});
+          return res.status(500).json({ message: "Failed to start user session" });
+        }
+        return res.json({ message: `Now viewing the portal as ${target.fullName}` });
+      });
+    } catch (error) {
+      console.error("Admin impersonation start failed:", error);
+      return res.status(500).json({ message: "Failed to start user session" });
+    }
+  });
+
+  app.post("/api/auth/impersonate/stop", async (req: Request, res: Response) => {
+    try {
+      const adminId = req.session.impersonatorId;
+      const auditId = req.session.impersonationAuditId;
+      if (!adminId || !auditId) {
+        return res.status(400).json({ message: "No user session is being impersonated" });
+      }
+
+      const admin = await storage.getUser(adminId);
+      if (!admin || admin.status !== "active" || admin.role !== "admin") {
+        await pool.query(
+          `UPDATE "admin_impersonation_audit" SET "ended_at" = NOW()
+           WHERE "id" = $1 AND "ended_at" IS NULL`,
+          [auditId],
+        );
+        req.session.destroy(() => {});
+        res.clearCookie("connect.sid");
+        return res.status(401).json({ message: "Administrator account is no longer active" });
+      }
+
+      await pool.query(
+        `UPDATE "admin_impersonation_audit" SET "ended_at" = NOW()
+         WHERE "id" = $1 AND "admin_user_id" = $2 AND "ended_at" IS NULL`,
+        [auditId, adminId],
+      );
+      await regenerateSession(req);
+      req.session.userId = admin.id;
+      req.session.save((error) => {
+        if (error) {
+          return res.status(500).json({ message: "Failed to return to admin account" });
+        }
+        return res.json({ message: "Returned to admin account" });
+      });
+    } catch (error) {
+      console.error("Admin impersonation stop failed:", error);
+      return res.status(500).json({ message: "Failed to return to admin account" });
+    }
+  });
+
   app.post("/api/auth/logout", (req: Request, res: Response) => {
+    if (req.session.impersonationAuditId) {
+      pool.query(
+        `UPDATE "admin_impersonation_audit" SET "ended_at" = NOW()
+         WHERE "id" = $1 AND "ended_at" IS NULL`,
+        [req.session.impersonationAuditId],
+      ).catch((error) => console.error("Failed to close impersonation audit:", error));
+    }
     req.session.destroy((err) => {
       if (err) {
         return res.status(500).json({ message: "Failed to logout" });
@@ -470,8 +611,29 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
     return res.status(401).json({ message: "Authentication required" });
   }
   const user = await storage.getUser(req.session.userId);
-    if (!user || user.status !== "active") {
+  if (!user || user.status !== "active") {
+    if (req.session.impersonationAuditId) {
+      await pool.query(
+        `UPDATE "admin_impersonation_audit" SET "ended_at" = NOW()
+         WHERE "id" = $1 AND "ended_at" IS NULL`,
+        [req.session.impersonationAuditId],
+      );
+    }
     return res.status(401).json({ message: "User not found" });
+  }
+  if (req.session.impersonatorId) {
+    const admin = await storage.getUser(req.session.impersonatorId);
+    if (!admin || admin.status !== "active" || admin.role !== "admin") {
+      if (req.session.impersonationAuditId) {
+        await pool.query(
+          `UPDATE "admin_impersonation_audit" SET "ended_at" = NOW()
+           WHERE "id" = $1 AND "ended_at" IS NULL`,
+          [req.session.impersonationAuditId],
+        );
+      }
+      req.session.destroy(() => {});
+      return res.status(401).json({ message: "Administrator session is no longer active" });
+    }
   }
   (req as any).user = sanitizeUser(user);
   next();

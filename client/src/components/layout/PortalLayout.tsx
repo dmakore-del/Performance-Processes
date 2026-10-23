@@ -5,15 +5,18 @@ import logoImg from "@/assets/logo.png";
 import { useAuth, useLogout } from "@/hooks/use-auth";
 import { usePortalEngagement } from "@/hooks/use-portal";
 import { usePortalI18n } from "@/lib/portal-i18n";
+import { apiRequest, queryClient } from "@/lib/queryClient";
 
 export function PortalLayout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [engagementDropdownOpen, setEngagementDropdownOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, impersonation } = useAuth();
   const logoutMutation = useLogout();
   const { engagement, engagements, setSelectedEngagementId } = usePortalEngagement();
   const { t, role } = usePortalI18n();
+  const [endingImpersonation, setEndingImpersonation] = useState(false);
+  const [impersonationError, setImpersonationError] = useState("");
 
   const isStaffOrAdmin = user?.role === "staff" || user?.role === "admin";
   const isClient = user?.role === "client";
@@ -62,6 +65,19 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
 
   const handleLogout = () => {
     logoutMutation.mutate();
+  };
+
+  const handleStopImpersonating = async () => {
+    setEndingImpersonation(true);
+    setImpersonationError("");
+    try {
+      await apiRequest("POST", "/api/auth/impersonate/stop");
+      queryClient.clear();
+      window.location.assign("/portal/admin/users");
+    } catch {
+      setImpersonationError(t("Could not return to the admin account. Please refresh and try again."));
+      setEndingImpersonation(false);
+    }
   };
 
   const handleSelectEngagement = (id: number) => {
@@ -322,6 +338,25 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
 
       {/* ───────────────── Main column ───────────────── */}
        <main className="relative z-[1] flex-1 lg:ml-[17rem] pt-16 lg:pt-0">
+        {impersonation && (
+          <div className="sticky top-0 z-40 flex flex-col gap-2 bg-amber-100 px-4 py-3 text-amber-950 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div className="text-sm">
+              <strong>{t("Viewing as")}: {user?.fullName}</strong>
+              <span className="ml-2 text-amber-900/80">
+                {t("Admin session")}: {impersonation.adminFullName} ({impersonation.adminEmail})
+              </span>
+              {impersonationError && <p role="alert" className="mt-1 text-xs font-semibold">{impersonationError}</p>}
+            </div>
+            <button
+              type="button"
+              onClick={handleStopImpersonating}
+              disabled={endingImpersonation}
+              className="self-start rounded-md border border-amber-900/30 px-3 py-2 text-xs font-bold hover:bg-amber-200 disabled:opacity-60 sm:self-auto"
+            >
+              {endingImpersonation ? t("Returning...") : t("Return to admin")}
+            </button>
+          </div>
+        )}
         <header className="hidden lg:flex h-24 bg-white/70 backdrop-blur-xl border-b border-border/60 items-center justify-between px-10 sticky top-0 z-10">
           <div className="flex items-center gap-5">
             <div>

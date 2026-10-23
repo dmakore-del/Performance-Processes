@@ -91,6 +91,20 @@ export default function AdminUsers() {
     },
   });
 
+  const impersonateMutation = useMutation({
+    mutationFn: async (id: string) => {
+      const res = await apiRequest("POST", `/api/auth/impersonate-user/${encodeURIComponent(id)}`);
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.clear();
+      window.location.assign("/portal");
+    },
+    onError: () => {
+      toast({ title: t("Could not open this user account"), variant: "destructive" });
+    },
+  });
+
   const filteredUsers = users?.filter(u => filter === "all" || u.status === filter) || [];
   const pendingCount = users?.filter(u => u.status === "pending_approval").length || 0;
   const activeCount = users?.filter(u => u.status === "active").length || 0;
@@ -344,16 +358,28 @@ export default function AdminUsers() {
                               </Button>
                             )}
                             {u.status === "active" && u.role !== "admin" && (
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                data-testid={`button-suspend-${u.id}`}
-                                onClick={() => statusMutation.mutate({ id: u.id, status: "suspended" })}
-                                disabled={statusMutation.isPending}
-                                className="text-red-500 border-red-200 hover:bg-red-50 text-xs h-8 rounded-lg"
-                              >
-                                 {t("Suspend")}
-                              </Button>
+                              <>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  data-testid={`button-view-as-${u.id}`}
+                                  onClick={() => impersonateMutation.mutate(u.id)}
+                                  disabled={impersonateMutation.isPending}
+                                  className="text-primary border-border text-xs h-8 rounded-lg"
+                                >
+                                  {t("Log in as user")}
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  data-testid={`button-suspend-${u.id}`}
+                                  onClick={() => statusMutation.mutate({ id: u.id, status: "suspended" })}
+                                  disabled={statusMutation.isPending}
+                                  className="text-red-500 border-red-200 hover:bg-red-50 text-xs h-8 rounded-lg"
+                                >
+                                   {t("Suspend")}
+                                </Button>
+                              </>
                             )}
                             {u.status === "suspended" && (
                               <Button

@@ -7,3 +7,4 @@
 - [Browser video compatibility](video-compatibility.md) — valid H.264 files can render blank in the capture browser; supply WebM as well and verify the rendered footage.
 - [App Storage bucket selection](app-storage-bucket.md) — use an explicit bucket ID; default-bucket discovery can remain empty after bucket creation.
 - [Portal account recovery policy](portal-account-recovery.md) — send reset codes, lock accounts after five failed authentication attempts, and notify the admin for review.
+- [Admin account impersonation](portal-impersonation.md) — limit audited “view as user” sessions to active client/staff accounts, with a persistent banner and safe return to admin.

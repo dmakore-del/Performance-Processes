@@ -6,11 +6,12 @@ import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
 import type { Lead } from "@shared/schema";
 import { usePortalI18n } from "@/lib/portal-i18n";
+import { INQUIRY_SERVICES } from "@shared/acquisition";
 
-const STATUS_OPTIONS = ["new", "contacted", "qualified", "proposal", "negotiation", "won", "lost"] as const;
+const STATUS_OPTIONS = ["new", "contacted", "qualified", "meeting_booked", "proposal", "negotiation", "won", "lost"] as const;
 const PRIORITY_OPTIONS = ["low", "medium", "high", "urgent"] as const;
 const SOURCE_OPTIONS = ["website", "referral", "cold outreach", "event", "social media", "other"] as const;
-const SERVICE_OPTIONS = ["Enterprise Advisory", "Small Business Support", "Professional Coaching", "Performance Collective", "Custom Engagement"] as const;
+const SERVICE_OPTIONS = INQUIRY_SERVICES;
 
 const statusColors: Record<string, string> = {
   new: "bg-zinc-100 text-zinc-900",
@@ -33,7 +34,8 @@ type StaffUser = { id: string; fullName: string; email: string; role: string };
 
 export default function Leads() {
   const { user } = useAuth();
-  const { t, status, priority, fr } = usePortalI18n();
+  const { t, status: translatedStatus, priority, fr } = usePortalI18n();
+  const status = (value: string) => value === "meeting_booked" ? (fr ? "Rendez-vous confirmé" : "Meeting confirmed") : translatedStatus(value);
   const queryClient = useQueryClient();
   const isAdmin = user?.role === "admin";
   const isStaff = user?.role === "staff";
@@ -63,6 +65,9 @@ export default function Leads() {
 
   const { data: leads = [], isLoading } = useQuery<Lead[]>({
     queryKey: ["/api/portal/leads"],
+  });
+  const { data: acquisitionSummary = [], isError: summaryError } = useQuery<Array<{ journey: string; source: string; enquiries: number; booked: number; proposals: number; won: number; pending_notifications: number }>>({
+    queryKey: ["/api/admin/acquisition-summary"], enabled: isAdmin,
   });
 
   const { data: staffUsers = [] } = useQuery<StaffUser[]>({
@@ -219,6 +224,12 @@ export default function Leads() {
   return (
     <PortalLayout>
       <div className="space-y-6">
+        {isAdmin && <section className="overflow-x-auto border border-border bg-white p-5">
+          <h2 className="font-heading text-xl">{fr ? "Acquisition par parcours et source" : "Acquisition by journey and source"}</h2>
+          {summaryError ? <p role="alert" className="mt-3 text-sm">{fr ? "Rapport indisponible." : "Reporting is unavailable."}</p> :
+          acquisitionSummary.length === 0 ? <p className="mt-3 text-sm text-muted-foreground">{fr ? "Aucune demande du nouveau parcours." : "No enquiries from the new journey yet."}</p> :
+          <table className="mt-4 w-full text-left text-sm"><thead><tr>{(fr ? ["Parcours", "Source", "Demandes", "Confirmés", "Propositions", "Gagnés", "Courriels en attente"] : ["Journey", "Source", "Enquiries", "Confirmed", "Proposals", "Won", "Emails queued"]).map(label => <th key={label} className="p-2 font-medium">{label}</th>)}</tr></thead><tbody>{acquisitionSummary.map(row => <tr key={`${row.journey}:${row.source}`} className="border-t border-border"><td className="p-2">{row.journey === "launch" ? (fr ? "Lancement" : "Launch") : (fr ? "Croissance" : "Growth")}</td><td className="p-2">{row.source}</td>{[row.enquiries,row.booked,row.proposals,row.won,row.pending_notifications].map((count,i) => <td key={i} className="p-2">{count}</td>)}</tr>)}</tbody></table>}
+        </section>}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h1 className="text-2xl font-bold text-primary" data-testid="text-leads-title">
@@ -295,6 +306,17 @@ export default function Leads() {
                 {t("Close")}
               </button>
             </div>
+            {editingLead?.acquisition && <section className="mb-6 space-y-3 border border-border bg-secondary p-5 text-sm">
+              <h3 className="font-semibold">{fr ? "Demande du site web" : "Website enquiry"}</h3>
+              <p>{fr ? "Parcours / Étape" : "Journey / Stage"}: {editingLead.acquisition.customerType} / {editingLead.acquisition.businessStage}</p>
+              <p className="whitespace-pre-wrap">{editingLead.acquisition.projectDescription}</p>
+              <p>{fr ? "Contact préféré" : "Preferred contact"}: {editingLead.acquisition.contactMethod}</p>
+              <p>{fr ? "Consentement marketing" : "Marketing consent"}: {editingLead.acquisition.marketingConsent ? (fr ? "Oui" : "Yes") : (fr ? "Non" : "No")} · {editingLead.acquisition.receivedAt}</p>
+              <p>{fr ? "Première source" : "First source"}: {editingLead.acquisition.firstTouch.source || "website"} / {editingLead.acquisition.firstTouch.campaign || "—"}</p>
+              <p>{fr ? "Dernière source" : "Latest source"}: {editingLead.acquisition.latestTouch.source || "website"} / {editingLead.acquisition.latestTouch.campaign || "—"}</p>
+              <p>{fr ? "Réservation Outlook" : "Outlook booking"}: {editingLead.acquisition.bookingStatus === "confirmed" ? `${fr ? "Confirmée" : "Confirmed"} · ${editingLead.acquisition.meetingAt}` : editingLead.acquisition.bookingStatus === "cancelled" ? (fr ? "Annulée" : "Cancelled") : (fr ? "Non confirmée" : "Not confirmed")}</p>
+              <p>{fr ? "Courriels de réception" : "Receipt emails"}: {editingLead.acquisition.notificationStatus === "sent" ? (fr ? "Envoyés" : "Sent") : (fr ? "En attente d’envoi ou de nouvelle tentative" : "Queued for delivery or retry")}</p>
+            </section>}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {isAdmin && <>
@@ -350,7 +372,7 @@ export default function Leads() {
                 <div>
                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5">{t("Status")}</label>
                   <select data-testid="select-lead-status" value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value })} className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm">
-                     {STATUS_OPTIONS.map(s => <option key={s} value={s}>{status(s)}</option>)}
+                     {STATUS_OPTIONS.map(s => <option key={s} value={s} disabled={s === "meeting_booked" && editingLead?.acquisition?.bookingStatus !== "confirmed"}>{status(s)}</option>)}
                   </select>
                 </div>
                 <div>

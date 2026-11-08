@@ -3,6 +3,7 @@ import { createHmac, timingSafeEqual } from "crypto";
 import { pool } from "./db";
 import { getUncachableOutlookClient } from "./outlook";
 import { insertDiscoveryInvitation } from "./intakeService";
+import { cancelAcquisitionBooking, confirmAcquisitionBooking } from "./acquisition";
 
 const PUBLIC_ORIGIN = "https://performanceprocesses.com";
 const BOOKING_MAILBOX = "performanceprocesses1@performanceprocesses.com";
@@ -27,7 +28,7 @@ function isDiscoveryBooking(event: any) {
   return event.isOrganizer === true
     && !event.isCancelled
     && organizer === BOOKING_MAILBOX
-    && /discovery|consultation|strategy conversation/i.test(subject);
+    && /discovery|consultation|strategy conversation|business growth assessment|business launch/i.test(subject);
 }
 
 async function scanBookings() {
@@ -54,7 +55,8 @@ async function scanBookings() {
   }
 
   for (const event of events) {
-    if (!isDiscoveryBooking(event) || !event.createdDateTime || new Date(event.createdDateTime) < new Date(startedAt)) continue;
+    if (event.isCancelled) { await cancelAcquisitionBooking(event.id); continue; }
+    if (!isDiscoveryBooking(event) || !event.createdDateTime) continue;
     const start = String(event.start?.dateTime || "");
     const preciseStart = start.replace(/\.(\d{3})\d+(?=Z|[+-]|$)/, ".$1");
     const callAt = new Date(/[zZ]$|[+-]\d\d:\d\d$/.test(preciseStart) ? preciseStart : `${preciseStart}Z`);
@@ -62,12 +64,13 @@ async function scanBookings() {
     for (const attendee of event.attendees || []) {
       const email = String(attendee.emailAddress?.address || "").trim().toLowerCase();
       if (!email || !email.includes("@") || email.endsWith("@performanceprocesses.com") || attendee.status?.response === "declined") continue;
-      await insertDiscoveryInvitation({
+      if (new Date(event.createdDateTime) >= new Date(startedAt)) await insertDiscoveryInvitation({
         outlookEventId: event.id,
         email,
         name: String(attendee.emailAddress?.name || "").slice(0,120),
         callAt,
       });
+      await confirmAcquisitionBooking({ email, eventId: event.id, createdAt: event.createdDateTime, meetingAt: callAt });
     }
   }
   await pool.query(

@@ -7,7 +7,7 @@ import { useLanguage } from "@/hooks/use-language";
 import ownerImage from "@assets/stock_photography/funding-analysis.jpg";
 import strategyMeetingImage from "@assets/stock_photography/strategy-meeting.jpg";
 
-const BOOKING_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+const BOOKING_URL = "/book-consultation?service=Grants%20%26%20Financing";
 const SHOWREEL_VIDEO = "/assets/videos/performance-processes-showreel-v3.mp4";
 const COPY = {
   en: {

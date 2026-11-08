@@ -26,6 +26,11 @@ import Results from "./pages/Results";
 import LaunchService from "./pages/LaunchService";
 import GrantsFinancing from "./pages/GrantsFinancing";
 import ClientIntake from "./pages/ClientIntake";
+import CampaignLanding from "./pages/CampaignLanding";
+import PublicResources from "./pages/PublicResources";
+import OurWork from "./pages/OurWork";
+import BookConsultation from "./pages/BookConsultation";
+import { acquisitionAttribution } from "./lib/acquisition";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -60,6 +65,7 @@ import { Chatbot } from "./components/Chatbot";
 function ScrollToTop() {
   const [location] = useLocation();
   useEffect(() => {
+    if (!location.startsWith("/portal") && location !== "/intake") acquisitionAttribution();
     const hash = window.location.hash;
     if (hash) {
       requestAnimationFrame(() => {
@@ -88,7 +94,11 @@ function Router() {
           : <Home />}
       </Route>
       <Route path="/about" component={About} />
-      <Route path="/start-a-business" component={LaunchService} />
+      <Route path="/start-a-business" component={CampaignLanding} />
+      <Route path="/grow-your-business" component={CampaignLanding} />
+      <Route path="/our-work" component={OurWork} />
+      <Route path="/resources" component={PublicResources} />
+      <Route path="/book-consultation" component={BookConsultation} />
       <Route path="/business-setup" component={LaunchService} />
       <Route path="/websites-digital" component={LaunchService} />
       <Route path="/packages">{() => <Redirect to="/business-setup" />}</Route>
@@ -98,7 +108,7 @@ function Router() {
       <Route path="/solutions">{() => <Redirect to="/business-setup" />}</Route>
       <Route path="/services">{() => <Redirect to="/" />}</Route>
       <Route path="/services/:slug">{() => <Redirect to="/business-setup" />}</Route>
-      <Route path="/results" component={Results} />
+      <Route path="/results">{() => <Redirect to="/our-work" />}</Route>
       <Route path="/approach">{() => <Redirect to="/about" />}</Route>
       <Route path="/contact" component={Contact} />
       <Route path="/legal" component={Legal} />

@@ -510,6 +510,8 @@ export const leads = pgTable("leads", {
   lastContactDate: text("last_contact_date"),
   nextFollowUpDate: text("next_follow_up_date"),
   createdById: text("created_by_id"),
+  inquiryRequestId: text("inquiry_request_id").unique(),
+  acquisition: jsonb("acquisition").$type<import("./acquisition").AcquisitionDetails>(),
   createdAt: timestamp("created_at").defaultNow(),
 });
 

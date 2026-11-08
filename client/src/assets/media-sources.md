@@ -23,6 +23,16 @@ Photographs are bundled locally from the supplied asset files and use one public
 
 The About page uses Danai Makore’s actual founder portrait and the portrait of Ebuka supplied by the company. Public photographs are assigned to a single page or card placement and are not reused.
 
+## Launch and growth journeys
+
+| Asset | Source | Subject | Exclusive placement |
+| --- | --- | --- | --- |
+| `image_search/web-digital-7876895.jpg` | Pexels 7876895 | Team reviewing plans and financial documents | Start a Business hero |
+| `image_search/web-digital-7698712.jpg` | Pexels 7698712 | Diverse team reviewing strategy together | Grow Your Business hero |
+| `/assets/videos/team-collab.mp4` | Existing project footage | Diverse team discussing planning documents | Grow Your Business systems section |
+
+The monochrome `business-owner.jpg` remains unused. Resource cards use typographic checklist previews rather than repeating service photographs.
+
 ## Homepage video
 
 The homepage uses an original 23.2-second, 1920 × 1080 generated service reel, with three moving scenes: business formation and advisory, digital business tools, and grants and financing. The lead is a fictional adult Black woman business adviser with a diverse supporting cast, not recorded footage of the founder, actual staff, or clients. Reference-image-based video generation was rejected by the provider; the final footage was generated from text descriptions without using the founder's image as video input. The user was informed of this change. There are no photo slides, audio tracks, or visible stock/illustrative labels.

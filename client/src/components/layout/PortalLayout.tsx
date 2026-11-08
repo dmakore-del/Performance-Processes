@@ -83,6 +83,7 @@ export function PortalLayout({ children }: { children: ReactNode }) {
           <div className="hidden items-center gap-3 lg:flex">
             <Link href="/portal/meetings" className="inline-flex min-h-10 items-center border border-primary-foreground/30 px-4 text-xs font-semibold hover:bg-primary-foreground/10" data-testid="button-book-meeting">{t("Book meeting")}</Link>
             {user?.role === "admin" && <Link href="/portal/admin/users" className="inline-flex min-h-10 items-center px-2 text-xs font-semibold text-primary-foreground/75 hover:text-white" data-testid="link-admin-users-utility">{t("User Management")}</Link>}
+            {!isClient && <Link href="/portal/leads" className="inline-flex min-h-10 items-center px-2 text-xs font-semibold text-primary-foreground/75 hover:text-white">{fr ? "Demandes" : "Enquiries"}</Link>}
             <span className="grid size-9 shrink-0 place-items-center border border-primary-foreground/30 bg-primary-foreground/10 text-xs font-bold" aria-hidden="true">{initials}</span>
           </div>
           <button type="button" onClick={() => setIsMobileMenuOpen((open) => !open)} className="min-h-10 border border-primary-foreground/35 px-3 text-[10px] font-bold uppercase tracking-[.14em] lg:hidden" aria-label={isMobileMenuOpen ? t("Close") : t("Menu")} aria-expanded={isMobileMenuOpen} aria-controls="portal-mobile-navigation">
@@ -125,6 +126,7 @@ export function PortalLayout({ children }: { children: ReactNode }) {
               <span className="text-sm font-semibold">{user?.fullName || t("User")} <span className="ml-1 text-xs font-normal text-muted-foreground">{user?.email}</span></span>
               <div className="flex gap-2">
                 {user?.role === "admin" && <Link href="/portal/admin/users" onClick={() => setIsMobileMenuOpen(false)} className="inline-flex min-h-10 items-center border border-border px-3 text-xs font-semibold" data-testid="link-admin-users-utility-mobile">{t("User Management")}</Link>}
+                {!isClient && <Link href="/portal/leads" onClick={() => setIsMobileMenuOpen(false)} className="inline-flex min-h-10 items-center border border-border px-3 text-xs font-semibold">{fr ? "Demandes" : "Enquiries"}</Link>}
                 <button type="button" onClick={handleLogout} className="min-h-10 border border-border px-3 text-xs font-semibold">{t("Sign out")}</button>
               </div>
             </div>

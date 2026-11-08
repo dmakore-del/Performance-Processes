@@ -12,6 +12,7 @@ import { requireAuth, requireAdmin } from "./auth";
 import { attemptReceiptDelivery } from "./receiptDelivery";
 import { ensureIntakeStorage, registerIntakeRoutes, startIntakeMailQueue } from "./intakeService";
 import { registerBookingNotificationRoute, startBookingAutomation } from "./bookingAutomation";
+import { registerAcquisitionRoutes, startAcquisitionNotifications } from "./acquisition";
 import { getPortalService } from "@shared/portal-services";
 import { milestones as milestoneTable } from "@shared/schema";
 import { z } from "zod";
@@ -134,8 +135,10 @@ export async function registerRoutes(
   await ensureIntakeStorage();
   registerIntakeRoutes(app);
   registerBookingNotificationRoute(app);
+  registerAcquisitionRoutes(app);
   startIntakeMailQueue();
   startBookingAutomation();
+  startAcquisitionNotifications();
 
   app.post("/api/contact", async (req, res) => {
     try {
@@ -1749,6 +1752,8 @@ export async function registerRoutes(
       if (!current) return res.status(404).json({ message: "Lead not found" });
 
       let updates = req.body;
+      if ("acquisition" in (updates || {}) || "inquiryRequestId" in (updates || {})) return res.status(400).json({ message: "Enquiry consent and booking verification are read-only." });
+      if (updates?.status === "meeting_booked" && current.acquisition?.bookingStatus !== "confirmed") return res.status(400).json({ message: "A meeting must be verified by Outlook before it can be marked booked." });
       if (user.role !== "admin") {
         if (current.assignedToId !== user.id) return res.status(403).json({ message: "This lead is not assigned to you." });
         const allowed = new Set(["status", "priority", "notes", "lastContactDate", "nextFollowUpDate"]);

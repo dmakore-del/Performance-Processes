@@ -42,7 +42,7 @@ export default function Legal() {
         />
         <div className="container mx-auto px-4 md:px-8 py-20 max-w-4xl">
           <div className="bg-white p-8 md:p-12 rounded-3xl border border-border shadow-xl space-y-8">
-            <section className="space-y-4">
+            <section id="privacy" className="space-y-4 scroll-mt-28">
               <h2 className="text-2xl font-bold text-primary italic">{c.privacyTitle}</h2>
               <p className="text-muted-foreground leading-relaxed">
                 {c.privacyBody}

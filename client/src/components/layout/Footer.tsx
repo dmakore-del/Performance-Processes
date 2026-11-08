@@ -57,7 +57,10 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-12 flex flex-col gap-4 border-t border-primary/15 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <Link href="/nextup-partnership" className="w-fit text-xs font-medium text-primary underline underline-offset-2">{fr ? "Soutenir le travail communautaire de NextUp" : "Support NextUp community work"}</Link>
+          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+            <Link href="/nextup-partnership" className="w-fit text-xs font-medium text-primary underline underline-offset-2">{fr ? "Soutenir le travail communautaire de NextUp" : "Support NextUp community work"}</Link>
+            <a href="https://nextupcan.ca" target="_blank" rel="noopener noreferrer" className="w-fit text-xs font-medium text-primary underline underline-offset-2">{fr ? "Visiter le site Web de NextUp" : "Visit NextUp Canada's website"}</a>
+          </div>
           <p className="text-[10px] leading-5 text-muted-foreground">
           © {new Date().getFullYear()} Performance Processes. {fr ? "Soutien à l’incorporation et orientation générale seulement, nous ne fournissons pas de conseils juridiques, fiscaux ou comptables." : "Incorporation support and general business guidance only, we do not provide legal, tax, or accounting advice."}
           <Link href="/legal" className="ml-2 text-primary underline underline-offset-2">{fr ? "Mentions légales" : "Legal"}</Link>

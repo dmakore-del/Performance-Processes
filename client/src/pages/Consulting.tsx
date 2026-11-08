@@ -1286,6 +1286,9 @@ export default function Consulting() {
                       {language === "en" ? "Learn More" : "En savoir plus"} <span aria-hidden="true" className="ml-2">&rsaquo;</span>
                     </Button>
                   </Link>
+                  <a href="https://nextupcan.ca" target="_blank" rel="noopener noreferrer" className="mt-6 inline-block text-sm font-medium text-primary underline underline-offset-4 hover:text-accent">
+                    {language === "en" ? "Visit NextUp Canada's website" : "Visiter le site Web de NextUp"}
+                  </a>
                 </div>
               </div>
             </div>

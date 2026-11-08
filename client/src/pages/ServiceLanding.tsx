@@ -258,7 +258,11 @@ export default function ServiceLanding() {
                 </blockquote>
                 <figcaption>
                   <div className="w-8 h-px bg-accent mb-4 mx-auto" />
-                  <p className="text-sm font-semibold text-white" data-testid="text-landing-testimonial-org">{landing.testimonialOrg}</p>
+                   {landing.testimonialOrg === "NextUp Foundation for Canadian Youth" ? (
+                     <a href="https://nextupcan.ca" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-white underline underline-offset-4 hover:text-accent" data-testid="text-landing-testimonial-org">{landing.testimonialOrg}</a>
+                   ) : (
+                     <p className="text-sm font-semibold text-white" data-testid="text-landing-testimonial-org">{landing.testimonialOrg}</p>
+                   )}
                   <p className="text-xs text-white/60 mt-0.5">{testimonial.author}</p>
                 </figcaption>
               </figure>
@@ -298,7 +302,15 @@ export default function ServiceLanding() {
                     </button>
                     {open && (
                       <p className="pb-6 text-sm md:text-base text-muted-foreground font-light leading-relaxed" data-testid={`text-faq-answer-${i}`}>
-                        {faq.a}
+                       {faq.a}
+                       {faq.q.toLowerCase().includes("nextup") && (
+                         <>
+                           {" "}
+                           <a href="https://nextupcan.ca" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:text-accent">
+                             {language === "en" ? "Visit NextUp Canada's website." : "Visiter le site Web de NextUp."}
+                           </a>
+                         </>
+                       )}
                       </p>
                     )}
                   </div>

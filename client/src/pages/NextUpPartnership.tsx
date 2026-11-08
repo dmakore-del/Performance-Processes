@@ -6,7 +6,7 @@ import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
 import partnershipImage from "@assets/stock_images/consulting.jpg";
 
-const NEXTUP_URL = "https://nextupcan.ca/get-involved";
+const NEXTUP_URL = "https://nextupcan.ca";
 const PROMO_CODE = "NEXTPROCESSES";
 
 const CONTENT = {
@@ -57,7 +57,7 @@ const CONTENT = {
       "The NextUp Foundation for Canadian Youth champions young Canadian entrepreneurs through community, programming, and resources that help them launch and grow real businesses. Performance Processes shares that mission. Through this partnership, anyone currently enrolled in a NextUp program, or who has donated $500 or more to the foundation in the past year, gets 40% off our website services, the same websites we deliver to enterprise clients.",
     overviewP2:
       "The goal is simple: remove cost as a barrier so the next generation of Canadian founders can launch with a professional website that helps their business grow.",
-    overviewLink: "Get involved with NextUp",
+    overviewLink: "Visit NextUp Canada's website",
     eligibilityHeading: "Who qualifies",
     eligibilityNote:
       "Verification is coordinated by Performance Processes and the NextUp Foundation for Canadian Youth. Contact us and we'll confirm your eligibility directly with NextUp.",
@@ -117,7 +117,7 @@ const CONTENT = {
       "La NextUp Foundation for Canadian Youth soutient les jeunes entrepreneurs canadiens grâce à une communauté, des programmes et des ressources qui les aident à lancer et à développer de véritables entreprises. Performance Processes partage cette mission. Grâce à ce partenariat, toute personne actuellement inscrite à un programme NextUp, ou ayant fait un don de 500 $ ou plus à la fondation au cours de la dernière année, bénéficie de 40 % de rabais sur nos services de sites Web, les mêmes sites que nous livrons à nos clients d'entreprise.",
     overviewP2:
       "L'objectif est simple : éliminer le coût comme obstacle afin que la prochaine génération de fondateurs canadiens puisse démarrer avec un site Web professionnel qui aide leur entreprise à croître.",
-    overviewLink: "Impliquez-vous avec NextUp",
+    overviewLink: "Visiter le site Web de NextUp",
     eligibilityHeading: "Qui est admissible",
     eligibilityNote:
       "La vérification est coordonnée par Performance Processes et la NextUp Foundation for Canadian Youth. Contactez-nous et nous confirmerons votre admissibilité directement avec NextUp.",

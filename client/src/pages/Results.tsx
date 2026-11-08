@@ -274,9 +274,15 @@ export default function Results() {
                     </blockquote>
                     <figcaption className="mt-auto border-t border-border pt-5">
                       <div className="w-8 h-px bg-accent mb-3" />
-                      <p className="text-sm font-bold text-primary" data-testid={`text-testimonial-org-${i}`}>
-                        {t.org}
-                      </p>
+                       {t.org === "NextUp Foundation for Canadian Youth" ? (
+                         <a href="https://nextupcan.ca" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-primary underline underline-offset-4 hover:text-accent" data-testid={`text-testimonial-org-${i}`}>
+                           {t.org}
+                         </a>
+                       ) : (
+                         <p className="text-sm font-bold text-primary" data-testid={`text-testimonial-org-${i}`}>
+                           {t.org}
+                         </p>
+                       )}
                       <p className="text-xs text-muted-foreground mt-0.5" data-testid={`text-testimonial-author-${i}`}>{t.author}</p>
                     </figcaption>
                   </figure>

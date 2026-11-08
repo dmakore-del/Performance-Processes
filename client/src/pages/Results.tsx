@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { PageHero } from "@/components/layout/PageHero";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
+import { ClientCarousel } from "@/components/ClientCarousel";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
 import entrepreneurPlanningImage from "@assets/stock_images/entrepreneur.jpg";
@@ -289,6 +290,22 @@ export default function Results() {
                 </AnimateOnScroll>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="bg-background py-16 md:py-20" data-testid="section-client-businesses">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="mb-8 max-w-2xl">
+              <h2 className="text-display text-4xl text-primary md:text-5xl">
+                {language === "fr" ? "Des entreprises que nous accompagnons" : "Businesses we have supported"}
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                {language === "fr"
+                  ? "Des lancements aux systèmes opérationnels, nos collaborations répondent aux besoins propres à chaque organisation."
+                  : "From business launches to operational systems, our work responds to the needs of each organization."}
+              </p>
+            </div>
+            <ClientCarousel french={language === "fr"} />
           </div>
         </section>
 

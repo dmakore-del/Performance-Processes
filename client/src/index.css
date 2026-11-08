@@ -412,3 +412,136 @@ html { scroll-behavior: smooth; background: hsl(var(--background)); }
 }
 
 /* Media stays in its original colour; restraint comes from its curation, not desaturation. */
+.client-carousel {
+  --client-cell: clamp(172px, 20vw, 224px);
+  overflow: hidden;
+}
+.client-carousel__viewport {
+  overflow: hidden;
+  border-block: 1px solid hsl(var(--primary) / .15);
+  padding-block: 1.25rem;
+}
+.client-carousel__track {
+  display: flex;
+  width: max-content;
+  animation: client-logo-loop 38s linear infinite;
+}
+.client-carousel__viewport.is-paused .client-carousel__track,
+.client-carousel__viewport:hover .client-carousel__track,
+.client-carousel__viewport:focus-within .client-carousel__track {
+  animation-play-state: paused;
+}
+.client-carousel__group {
+  display: flex;
+  flex: none;
+  gap: 1rem;
+  padding-right: 1rem;
+}
+.client-carousel__item {
+  display: flex;
+  width: var(--client-cell);
+  flex: none;
+  flex-direction: column;
+  align-items: flex-start;
+  color: hsl(var(--foreground));
+  text-decoration: none;
+}
+.client-logo {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 104px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: hsl(var(--secondary));
+  transition: background-color .2s ease;
+}
+.client-carousel__item:hover .client-logo { background: hsl(var(--accent) / .35); }
+.client-logo img {
+  display: block;
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+}
+.client-logo-vibes { background: hsl(var(--primary)); }
+.client-carousel__item:hover .client-logo-vibes { background: hsl(var(--primary) / .88); }
+.client-logo-vibes img { width: 92%; height: 88%; }
+.client-logo-maison img { width: 70%; height: 94%; }
+.client-logo-nextup img { width: 88%; height: 88%; }
+.client-logo-truenorth img { width: 90%; height: 88%; }
+.client-logo-ogb { background: hsl(var(--primary)); }
+.client-carousel__item:hover .client-logo-ogb { background: hsl(var(--primary) / .88); }
+.client-logo-ogb img { width: 94%; height: 84%; }
+.client-carousel__name {
+  display: block;
+  max-width: 15rem;
+  padding-top: .8rem;
+  font-family: 'Newsreader', serif;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+.client-carousel__control {
+  display: flex;
+  min-height: 2.7rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: hsl(var(--muted-foreground));
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .055em;
+}
+.client-carousel__control button {
+  border: 0;
+  border-bottom: 1px solid hsl(var(--primary) / .35);
+  background: transparent;
+  padding: .35rem 0;
+  color: hsl(var(--foreground));
+  font: inherit;
+  cursor: pointer;
+}
+.client-carousel__control button:hover { border-color: hsl(var(--primary)); }
+.client-carousel__control button:focus-visible,
+.client-carousel__item:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 3px;
+}
+.client-work-row {
+  display: grid;
+  grid-template-columns: minmax(210px, .72fr) minmax(0, 1.28fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  align-items: center;
+  padding-block: clamp(2rem, 5vw, 4.5rem);
+}
+.client-work-logo {
+  display: flex;
+  min-height: 190px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: hsl(var(--secondary));
+}
+.client-work-logo img { display: block; max-width: 76%; max-height: 150px; object-fit: contain; }
+.client-work-logo.client-logo-vibes,
+.client-work-logo.client-logo-ogb { background: hsl(var(--primary)); }
+.client-work-logo.client-logo-vibes img { width: 82%; max-width: 82%; max-height: 120px; }
+.client-work-logo.client-logo-maison img { width: 72%; max-width: 72%; max-height: 170px; }
+.client-work-logo.client-logo-nextup img { width: 72%; max-width: 72%; max-height: 150px; }
+.client-work-logo.client-logo-truenorth img { width: 82%; max-width: 82%; max-height: 150px; }
+.client-work-logo.client-logo-ogb img { width: 92%; max-width: 92%; max-height: 130px; }
+.client-work-copy { min-width: 0; }
+@keyframes client-logo-loop {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (max-width: 767px) {
+  .client-carousel { --client-cell: 165px; }
+  .client-logo { height: 92px; }
+  .client-work-row { grid-template-columns: 1fr; gap: 1.5rem; }
+  .client-work-logo { min-height: 150px; }
+  .client-work-logo.client-logo-vibes img { width: 82%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .client-carousel__track { animation: none; }
+}

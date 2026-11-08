@@ -11,3 +11,4 @@
 - [Client portal structure](client-portal-structure.md) — keep client navigation to company overview, payments, progress, and reports; retain distinct staff/admin work areas.
 - [Funding authorization policy](funding-service-policy.md) — private per-service client approval before billing; conflicting agreement rates require an explicit quotation.
 - [Public acquisition journeys](acquisition-policy.md) — launch/growth scopes are not public price packages; saved enquiries are distinct from provider-confirmed meetings.
+- [Client portfolio evidence](client-portfolio.md) — publish only confirmed services and outcomes; do not invent client results or metrics.

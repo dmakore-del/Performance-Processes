@@ -3,7 +3,9 @@ import { Link } from "wouter";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SEOHead } from "@/components/SEOHead";
+import { ClientCarousel } from "@/components/ClientCarousel";
 import { useLanguage } from "@/hooks/use-language";
+import { CLIENTS } from "@/data/clients";
 import advisoryTeamImage from "@assets/stock_photography/advisory-team.jpg";
 import experiencedTeamImage from "@assets/stock_photography/experienced-team.jpg";
 import financialPlanningImage from "@assets/stock_photography/financial-planning.jpg";
@@ -34,14 +36,6 @@ const SERVICE_IMAGES = [
   { src: experiencedTeamImage, alt: "Experienced professionals discussing business priorities" },
   { src: financialPlanningImage, alt: "Financial planning documents and a calculator being reviewed at a desk" },
 ] as const;
-
-const CLIENTS = [
-  { name: "Vibes Lounge", href: "https://vibeslounge.ca" },
-  { name: "Maison Sparkle Living", href: "https://maisonsparkleliving.com" },
-  { name: "NextUp Canada", href: "https://nextupcan.ca" },
-  { name: "TrueNorth Property & Facilities", href: "https://truenorthpf.ca" },
-  { name: "OGB Supreme Records", href: "https://ogbsupremerecords.com" },
-];
 
 function HomeShowreel({ french }: { french: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -133,8 +127,8 @@ export default function Home() {
     ],
     processTitle: "Comment nous travaillons",
     process: [["Découvrir", "Comprendre votre entreprise, vos objectifs et vos défis."], ["Planifier", "Définir un périmètre, des livrables et des étapes pratiques."], ["Bâtir", "Mettre en œuvre les solutions convenues ensemble."], ["Lancer et améliorer", "Examiner le travail terminé et préparer la suite."]],
-    workTitle: "Des entreprises que nous avons accompagnées",
-    workText: "Consultez des liens vers les entreprises clientes approuvées. Nous n’attribuons pas de services ou de résultats non vérifiés.",
+    workTitle: "À la une : nos clients",
+    workText: "Des projets de lancement, de présence numérique et d’amélioration des opérations, adaptés aux besoins de chaque entreprise.",
     workLink: "Découvrir notre travail",
     faqTitle: "Questions fréquentes",
     faqs: [
@@ -173,8 +167,8 @@ export default function Home() {
     ],
     processTitle: "How we work",
     process: [["Discover", "Understand your business, goals, and challenges."], ["Plan", "Define a practical scope, deliverables, and next steps."], ["Build", "Implement the solutions agreed together."], ["Launch & improve", "Review the completed work and prepare for what comes next."]],
-    workTitle: "Businesses we have supported",
-    workText: "Explore links to approved client businesses. We do not assign unverified services or outcomes.",
+    workTitle: "Client Spotlight",
+    workText: "Launch, digital presence and operational improvement projects, shaped around each business’s needs.",
     workLink: "Explore our work",
     faqTitle: "Common questions",
     faqs: [
@@ -260,7 +254,7 @@ export default function Home() {
         <section className="py-20 md:py-24">
           <div className="mx-auto max-w-7xl px-5 md:px-8">
             <div className="grid gap-5 md:grid-cols-[1fr_auto] md:items-end"><div><h2 className="text-display text-4xl md:text-5xl">{content.workTitle}</h2><p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">{content.workText}</p></div><Link href="/our-work" className="w-fit border-b border-primary pb-1 text-sm">{content.workLink}</Link></div>
-            <div className="mt-8 grid border-l border-t border-primary/15 sm:grid-cols-2 lg:grid-cols-5">{CLIENTS.map((client) => <a key={client.href} href={client.href} target="_blank" rel="noreferrer" className="flex min-h-32 flex-col justify-between border-b border-r border-primary/15 p-5 transition-colors hover:bg-secondary"><span className="text-display text-xl leading-snug">{client.name}</span><span className="mt-5 text-xs text-muted-foreground">{fr ? "Visiter le site" : "Visit website"}</span></a>)}</div>
+            <div className="mt-8"><ClientCarousel french={fr} clients={CLIENTS} /></div>
           </div>
         </section>
 

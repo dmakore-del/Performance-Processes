@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { Meeting } from "@shared/schema";
 import { usePortalI18n } from "@/lib/portal-i18n";
 
-const MS_BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+const GOOGLE_BOOKINGS_URL = "https://calendar.app.google/XPzjxpJxMn1MjCqN7";
 
 interface BookingEvent {
   id: string;
@@ -70,7 +70,7 @@ export default function Meetings() {
         <div className="flex flex-col items-center justify-center py-20 text-center" data-testid="meetings-empty-state">
           <h2 className="text-xl font-bold text-primary mb-2">{t("No Active Engagement")}</h2>
           <p className="text-muted-foreground mb-6">{t("Your consultant will set up your engagement shortly.")}</p>
-          <a href={MS_BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
+          <a href={GOOGLE_BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
             <Button className="rounded-full bg-accent text-white hover:bg-primary font-bold uppercase tracking-wider text-xs px-6" data-testid="button-schedule-consultation">
               {t("Schedule a Consultation")}
             </Button>
@@ -129,7 +129,7 @@ export default function Meetings() {
             <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-primary mb-2" data-testid="text-meetings-title">{t("Meeting Hub")}</h1>
             <p className="text-lg text-muted-foreground" data-testid="text-meetings-subtitle">{t("View your scheduled bookings and past meeting notes.")}</p>
           </div>
-          <a href={MS_BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
+          <a href={GOOGLE_BOOKINGS_URL} target="_blank" rel="noopener noreferrer">
             <Button className="rounded-full bg-accent text-white hover:bg-primary font-bold uppercase tracking-wider text-xs px-6" data-testid="button-schedule-meeting">
               {t("Schedule a Meeting")}
             </Button>

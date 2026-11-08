@@ -19,7 +19,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/use-language";
 import NotFound from "./not-found";
 
-const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+const BOOKINGS_URL = "https://calendar.app.google/XPzjxpJxMn1MjCqN7";
 
 const PAGE_COPY = {
   en: {

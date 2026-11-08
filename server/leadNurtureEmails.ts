@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 import fs from 'fs';
 import path from 'path';
 
-const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+const BOOKINGS_URL = "https://calendar.app.google/XPzjxpJxMn1MjCqN7";
 
 let transporter: nodemailer.Transporter | null = null;
 

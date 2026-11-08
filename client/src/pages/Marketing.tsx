@@ -16,7 +16,7 @@ import personalBrandImg from "@assets/generated/personal-brand.png";
 import analyticsImg from "@assets/generated/analytics-dashboard-new.png";
 import growthChartImg from "@assets/generated/growth-chart.png";
 
-const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+const BOOKINGS_URL = "https://calendar.app.google/XPzjxpJxMn1MjCqN7";
 
 interface PricingTier {
   name: string;

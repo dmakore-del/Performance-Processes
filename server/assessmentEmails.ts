@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+const BOOKINGS_URL = "https://calendar.app.google/XPzjxpJxMn1MjCqN7";
 const ADMIN_EMAIL = 'contact@performanceprocesses.com';
 
 let transporter: nodemailer.Transporter | null = null;

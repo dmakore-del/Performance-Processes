@@ -18,7 +18,7 @@ import hrPeopleStrategyImg from "@assets/generated/hr-people-strategy.png";
 import talentDevelopmentImg from "@assets/generated/talent-development.png";
 import peopleOperationsImg from "@assets/generated/people-operations.png";
 
-const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+const BOOKINGS_URL = "https://calendar.app.google/XPzjxpJxMn1MjCqN7";
 
 interface PricingTier {
   name: string;

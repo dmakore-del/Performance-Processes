@@ -25,7 +25,7 @@ import personalCoachingImg from "@assets/generated/personal-coaching.png";
 import performanceMgmtImg from "@assets/generated/performance-mgmt.png";
 import orgAssessmentImg from "@assets/generated/org-assessment.png";
 
-const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+const BOOKINGS_URL = "https://calendar.app.google/XPzjxpJxMn1MjCqN7";
 
 interface PricingTier {
   name: string;

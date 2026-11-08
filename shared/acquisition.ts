@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const BOOKING_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+export const BOOKING_URL = "https://calendar.app.google/XPzjxpJxMn1MjCqN7";
 export const INQUIRY_SERVICES = [
   "Business Setup Essentials", "Complete Business Launch", "Website & Digital Presence",
   "Business Systems & Growth", "Grants & Financing", "Help me choose",

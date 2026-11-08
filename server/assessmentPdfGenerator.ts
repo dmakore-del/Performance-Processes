@@ -163,7 +163,7 @@ export async function generateAssessmentPDF(data: AssessmentData): Promise<Buffe
       .text('Visit www.performanceprocesses.com or book a strategy call to discuss your results.', 50, y);
     y += 15;
     doc.fontSize(10).fillColor(BRAND_ACCENT).font('Helvetica')
-      .text('https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com', 50, y);
+      .text('https://calendar.app.google/XPzjxpJxMn1MjCqN7', 50, y);
 
     const footerY = doc.page.height - 50;
     doc.moveTo(50, footerY).lineTo(doc.page.width - 50, footerY).strokeColor('#cccccc').lineWidth(0.5).stroke();

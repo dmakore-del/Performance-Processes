@@ -13,7 +13,7 @@ import teamMovingForwardImg from "@assets/generated/team-moving-forward.png";
 import communityNetworkImg from "@assets/generated/community-network-abstract.png";
 import empoweredOwnerImg from "@assets/generated/empowered-business-owner.png";
 
-const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+const BOOKINGS_URL = "https://calendar.app.google/XPzjxpJxMn1MjCqN7";
 
 const CONTENT = {
   en: {

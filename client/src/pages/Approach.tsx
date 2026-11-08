@@ -25,7 +25,7 @@ import changeManagementImg from "@assets/generated/change-management.png";
 import performanceDashboardsImg from "@assets/generated/performance-dashboards.png";
 import leadershipCompetencyImg from "@assets/generated/leadership-competency.png";
 
-const BOOKINGS_URL = "https://outlook.office.com/book/PerformanceProcesses1@performanceprocesses.com/?ismsaljsauthenabled";
+const BOOKINGS_URL = "https://calendar.app.google/XPzjxpJxMn1MjCqN7";
 
 export default function Approach() {
   const { language } = useLanguage();

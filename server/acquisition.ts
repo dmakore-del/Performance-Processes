@@ -114,7 +114,7 @@ export function startAcquisitionNotifications() {
           if (!a.adminNotified) {
             await transport.sendMail({ from, to: "contact@performanceprocesses.com", replyTo: lead.contact_email,
               subject: `New ${a.customerType === "launch" ? "business launch" : "business growth"} enquiry`,
-              text: `${lead.contact_name}\n${lead.contact_email}\n${lead.contact_phone || ""}\nBusiness: ${lead.company_name}\nStage: ${a.businessStage}\nService: ${lead.service_interest}\nPreferred contact: ${a.contactMethod}\nMarketing consent: ${a.marketingConsent ? "Yes" : "No"}\nSource: ${lead.source}\n\n${a.projectDescription}\n\nEnquiry saved. A meeting is NOT confirmed until Outlook verifies a booking.` });
+              text: `${lead.contact_name}\n${lead.contact_email}\n${lead.contact_phone || ""}\nBusiness: ${lead.company_name}\nStage: ${a.businessStage}\nService: ${lead.service_interest}\nPreferred contact: ${a.contactMethod}\nMarketing consent: ${a.marketingConsent ? "Yes" : "No"}\nSource: ${lead.source}\n\n${a.projectDescription}\n\nEnquiry saved. A meeting is not confirmed until the calendar sends a confirmation and invitation.` });
             await pool.query(`UPDATE leads SET acquisition=acquisition || '{"adminNotified":true}'::jsonb WHERE id=$1`, [lead.id]);
           }
           if (!a.clientNotified) {
@@ -122,8 +122,8 @@ export function startAcquisitionNotifications() {
             await transport.sendMail({ from, to: lead.contact_email,
               subject: fr ? "Votre demande de consultation a été reçue" : "Your consultation enquiry has been received",
               text: fr
-                ? `Bonjour ${lead.contact_name},\n\nVotre demande pour ${lead.service_interest} a été enregistrée. Choisissez un horaire dans notre calendrier :\n${BOOKING_URL}\n\nCeci n’est pas une confirmation de rendez-vous. Outlook vous enverra la confirmation et l’invitation après votre réservation.\n\nPerformance Processes\ncontact@performanceprocesses.com`
-                : `Hello ${lead.contact_name},\n\nYour enquiry about ${lead.service_interest} has been saved. Select an available appointment in our calendar:\n${BOOKING_URL}\n\nThis is not an appointment confirmation. Outlook will send your meeting confirmation and calendar invitation after you book.\n\nPerformance Processes\ncontact@performanceprocesses.com` });
+                ? `Bonjour ${lead.contact_name},\n\nVotre demande pour ${lead.service_interest} a été enregistrée. Choisissez un horaire dans Google Agenda :\n${BOOKING_URL}\n\nCeci n’est pas une confirmation de rendez-vous. Google Agenda vous enverra la confirmation et l’invitation après votre réservation.\n\nPerformance Processes\ncontact@performanceprocesses.com`
+                : `Hello ${lead.contact_name},\n\nYour enquiry about ${lead.service_interest} has been saved. Select an available appointment in Google Calendar:\n${BOOKING_URL}\n\nThis is not an appointment confirmation. Google Calendar will send your meeting confirmation and calendar invitation after you book.\n\nPerformance Processes\ncontact@performanceprocesses.com` });
             await pool.query(`UPDATE leads SET acquisition=acquisition || '{"clientNotified":true}'::jsonb WHERE id=$1`, [lead.id]);
           }
           await pool.query(`UPDATE leads SET acquisition=acquisition || '{"notificationStatus":"sent"}'::jsonb WHERE id=$1`, [lead.id]);

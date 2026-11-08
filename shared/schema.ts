@@ -615,3 +615,18 @@ export const insertAssessmentSchema = createInsertSchema(assessmentSubmissions).
 
 export type AssessmentSubmission = typeof assessmentSubmissions.$inferSelect;
 export type InsertAssessment = z.infer<typeof insertAssessmentSchema>;
+
+export const resourceAssessmentSubmissions = pgTable("resource_assessment_submissions", {
+  id: varchar("id").primaryKey(),
+  kind: text("kind").notNull(),
+  fullName: text("full_name").notNull(),
+  email: text("email").notNull(),
+  businessName: text("business_name").notNull().default(""),
+  language: text("language").notNull(),
+  answers: jsonb("answers").notNull(),
+  adminNotified: boolean("admin_notified").notNull().default(false),
+  clientNotified: boolean("client_notified").notNull().default(false),
+  attempts: integer("attempts").notNull().default(0),
+  nextAttemptAt: timestamp("next_attempt_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});

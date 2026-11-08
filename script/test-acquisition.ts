@@ -53,9 +53,9 @@ try {
   await request("GET", "/api/admin/acquisition-summary", null, 401);
   const rejected = await fetch(`${base}/api/leads`, { method: "POST", headers: { "Content-Type": "application/json", Origin: "https://untrusted.invalid" }, body: JSON.stringify(input) });
   assert.equal(rejected.status, 403); checks++;
-  for (const path of ["/grow-your-business", "/our-work", "/resources", "/book-consultation", "/resources/business-launch-checklist.html", "/resources/digital-readiness-checklist.html"]) {
+  for (const path of ["/grow-your-business", "/our-work", "/resources", "/book-consultation", "/resources/startup-checklist", "/resources/business-readiness", "/resources/grants-financing-readiness", "/resources/business-launch-checklist.html", "/resources/digital-readiness-checklist.html"]) {
     const response = await fetch(`${base}${path}`); assert.equal(response.status, 200, path); checks++;
-    if (path.endsWith(".html")) assert.match(await response.text(), /type="checkbox"/);
+    if (path.endsWith(".html")) assert.match(await response.text(), /href="\/resources\//);
   }
   console.log(`Acquisition checks passed: ${checks}. No email or calendar event was created.`);
 } finally {

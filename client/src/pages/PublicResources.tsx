@@ -15,7 +15,9 @@ export default function PublicResources() {
     launchText: "Organisez les questions de structure, les premières étapes administratives, les besoins opérationnels et les éléments à clarifier avant le lancement.",
     digital: "Liste de vérification de préparation numérique",
     digitalText: "Passez en revue la clarté de votre site, les façons de vous joindre, les outils numériques et les étapes qui soutiennent l’expérience client.",
-    download: "Télécharger la liste",
+    funding: "Évaluation de préparation au financement",
+    fundingText: "Préparez la discussion sur les possibilités de subvention et de financement, les critères, le projet, les documents et les prochaines étapes.",
+    download: "Remplir le formulaire",
     sectionTitle: "Choisir votre prochaine étape",
     sectionText: "Si vous lancez une entreprise, nous pouvons clarifier le travail de mise en place. Si votre entreprise est déjà en activité, nous pouvons examiner votre présence numérique et vos processus.",
     launchCta: "Démarrer une entreprise",
@@ -27,15 +29,18 @@ export default function PublicResources() {
     launchText: "Organize questions about structure, early administrative steps, operating needs, and details to clarify before launch.",
     digital: "Digital readiness checklist",
     digitalText: "Review website clarity, ways to get in touch, digital tools, and the steps that support a customer experience.",
-    download: "Download checklist",
+    funding: "Grant & financing readiness assessment",
+    fundingText: "Prepare for a discussion about funding pathways, eligibility, your project, available records, and practical next steps.",
+    download: "Complete the form",
     sectionTitle: "Choose a useful next step",
     sectionText: "If you are launching, we can clarify setup work. If your business is already operating, we can look at digital presence and processes.",
     launchCta: "Start a Business",
     growthCta: "Improve a Business",
   };
   const items = [
-    { title: content.launch, text: content.launchText, href: "/resources/business-launch-checklist.html", resource: "business-launch", label: fr ? "Pour les fondateurs" : "For new founders", details: fr ? ["Structure et enregistrement", "Organisation du lancement", "Préparation opérationnelle"] : ["Structure and registration", "Launch organization", "Operating readiness"] },
-    { title: content.digital, text: content.digitalText, href: "/resources/digital-readiness-checklist.html", resource: "digital-readiness", label: fr ? "Pour les entreprises en activité" : "For operating businesses", details: fr ? ["Site web et contenu", "Demandes et parcours client", "Outils numériques"] : ["Website and content", "Enquiries and customer journey", "Digital tools"] },
+    { title: content.launch, text: content.launchText, href: "/resources/startup-checklist", resource: "business-launch", label: fr ? "Pour les fondateurs" : "For new founders", details: fr ? ["Six phases de préparation", "Recherche et administration", "Priorités et jalon de lancement"] : ["Six launch phases", "Research and administration", "Priorities and launch milestone"] },
+    { title: content.digital, text: content.digitalText, href: "/resources/business-readiness", resource: "digital-readiness", label: fr ? "Pour les entreprises en activité" : "For operating businesses", details: fr ? ["Dix domaines opérationnels", "État et priorités", "Prochaines étapes concrètes"] : ["Ten operational areas", "Status and priorities", "Practical next steps"] },
+    { title: content.funding, text: content.fundingText, href: "/resources/grants-financing-readiness", resource: "funding-readiness", label: fr ? "Préparation au financement" : "Funding preparation", details: fr ? ["Entreprise et projet", "Documents disponibles", "Calendrier et besoins"] : ["Business and project", "Records available", "Timing and needs"] },
   ];
 
   return (
@@ -47,7 +52,7 @@ export default function PublicResources() {
           <div className="mx-auto max-w-7xl md:px-3"><h1 className="text-display max-w-4xl text-5xl leading-[.98] sm:text-6xl md:text-7xl">{content.title}</h1><p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground">{content.intro}</p></div>
         </section>
         <section className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-20">
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-8 lg:grid-cols-3">
             {items.map((item) => <article key={item.resource} className="flex min-h-[410px] flex-col border border-primary/15">
               <div className="border-b border-primary/15 bg-[#f7eeee] p-6 sm:p-9">
                 <p className="eyebrow text-muted-foreground">{item.label}</p>
@@ -58,7 +63,7 @@ export default function PublicResources() {
               </div>
               <div className="flex flex-1 flex-col justify-between gap-6 p-6 sm:p-9">
                 <p className="max-w-lg text-sm leading-7 text-muted-foreground">{item.text}</p>
-                <a href={item.href} download onClick={() => trackAcquisition("download_resource", { resource: item.resource })} className="w-fit bg-primary px-5 py-4 text-sm text-primary-foreground transition-colors hover:bg-accent hover:text-primary">{content.download}</a>
+                <Link href={item.href} onClick={() => trackAcquisition("select_service", { customerType: item.resource })} className="w-fit bg-primary px-5 py-4 text-sm text-primary-foreground transition-colors hover:bg-accent hover:text-primary">{content.download}</Link>
               </div>
             </article>)}
           </div>

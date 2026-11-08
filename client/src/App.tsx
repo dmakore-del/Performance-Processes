@@ -28,6 +28,7 @@ import GrantsFinancing from "./pages/GrantsFinancing";
 import ClientIntake from "./pages/ClientIntake";
 import CampaignLanding from "./pages/CampaignLanding";
 import PublicResources from "./pages/PublicResources";
+import { ResourceAssessment } from "./pages/ResourceAssessment";
 import OurWork from "./pages/OurWork";
 import BookConsultation from "./pages/BookConsultation";
 import { acquisitionAttribution } from "./lib/acquisition";
@@ -98,6 +99,9 @@ function Router() {
       <Route path="/grow-your-business" component={CampaignLanding} />
       <Route path="/our-work" component={OurWork} />
       <Route path="/resources" component={PublicResources} />
+      <Route path="/resources/startup-checklist">{() => <ResourceAssessment kind="startup" />}</Route>
+      <Route path="/resources/business-readiness">{() => <ResourceAssessment kind="readiness" />}</Route>
+      <Route path="/resources/grants-financing-readiness">{() => <ResourceAssessment kind="funding" />}</Route>
       <Route path="/book-consultation" component={BookConsultation} />
       <Route path="/business-setup" component={LaunchService} />
       <Route path="/websites-digital" component={LaunchService} />

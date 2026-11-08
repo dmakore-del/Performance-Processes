@@ -13,6 +13,7 @@ import { attemptReceiptDelivery } from "./receiptDelivery";
 import { ensureIntakeStorage, registerIntakeRoutes, startIntakeMailQueue } from "./intakeService";
 import { registerBookingNotificationRoute, startBookingAutomation } from "./bookingAutomation";
 import { registerAcquisitionRoutes, startAcquisitionNotifications } from "./acquisition";
+import { registerResourceAssessmentRoutes, startResourceAssessmentDelivery } from "./resourceAssessments";
 import { getPortalService } from "@shared/portal-services";
 import { milestones as milestoneTable } from "@shared/schema";
 import { z } from "zod";
@@ -136,9 +137,11 @@ export async function registerRoutes(
   registerIntakeRoutes(app);
   registerBookingNotificationRoute(app);
   registerAcquisitionRoutes(app);
+  registerResourceAssessmentRoutes(app);
   startIntakeMailQueue();
   startBookingAutomation();
   startAcquisitionNotifications();
+  startResourceAssessmentDelivery();
 
   app.post("/api/contact", async (req, res) => {
     try {

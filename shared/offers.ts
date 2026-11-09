@@ -1,3 +1,5 @@
+import { SERVICE_CATALOGUE, SERVICE_TRANSLATIONS } from "./serviceCatalogue";
+
 export type OfferCategory =
   | "packages"
   | "website"
@@ -24,11 +26,14 @@ export interface Offer {
   perTeamPrice?: number;
   perTeamLabel?: string;
   isRange?: boolean;
+  isStartingPrice?: boolean;
   ctaHref?: string;
   highlight?: boolean;
 }
 
-export const OFFERS: Offer[] = [
+export const OFFERS: Offer[] = SERVICE_CATALOGUE;
+
+const LEGACY_OFFERS: Offer[] = [
   {
     id: "business-foundation",
     name: "Business Foundation",
@@ -1696,7 +1701,7 @@ export const LANDING_PAGES_FR: Record<ServiceCategory, LandingFr> = {
 
 export function localizeOffer(offer: Offer, lang: Language): Offer {
   if (lang === "en") return offer;
-  const fr = OFFERS_FR[offer.id];
+  const fr = SERVICE_TRANSLATIONS[offer.id] ?? OFFERS_FR[offer.id];
   if (!fr) return offer;
   return {
     ...offer,

@@ -6,6 +6,9 @@ import { SEOHead } from "@/components/SEOHead";
 import { useLanguage } from "@/hooks/use-language";
 import ownerImage from "@assets/stock_photography/funding-analysis.jpg";
 import strategyMeetingImage from "@assets/stock_photography/strategy-meeting.jpg";
+import { SERVICE_CATALOGUE, SERVICE_GROUPS } from "@shared/serviceCatalogue";
+import { OfferCard } from "@/components/OfferCard";
+import { CheckoutReturnNotice } from "@/components/CheckoutReturnNotice";
 
 const BOOKING_URL = "/book-consultation?service=Grants%20%26%20Financing";
 const SHOWREEL_VIDEO = "/assets/videos/performance-processes-showreel-v3.mp4";
@@ -127,11 +130,14 @@ export default function GrantsFinancing() {
   const { language } = useLanguage();
   const c = COPY[language];
   const fr = language === "fr";
+  const fundingGroup = SERVICE_GROUPS.find((group) => group.id === "funding");
+  const fundingOffers = SERVICE_CATALOGUE.filter((offer) => fundingGroup?.offerIds.includes(offer.id));
   return (
     <div className="min-h-screen bg-background text-primary">
       <SEOHead title={`${fr ? "Subventions et financement" : "Grants & Financing"} | Performance Processes`} description={c.description} path="/grants-financing" />
       <Navbar />
       <main>
+        <CheckoutReturnNotice french={fr} />
         <section className="grid border-b border-primary/10 bg-secondary lg:min-h-[590px] lg:grid-cols-2">
           <div className="mx-auto flex w-full max-w-3xl flex-col justify-center px-5 py-16 md:px-10 lg:py-24">
             <h1 className="text-display max-w-2xl text-5xl leading-[.98] md:text-7xl">{c.title}</h1>
@@ -179,6 +185,19 @@ export default function GrantsFinancing() {
               </article>)}
             </div>
             <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="mt-8 self-start border-b border-primary pb-1 text-sm">{c.book}</a>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-24">
+          <div className="mb-8 flex flex-col gap-4 border-b border-primary/15 pb-7 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="eyebrow mb-3 text-muted-foreground">{fr ? "Services de financement" : "Funding services"}</p>
+              <h2 className="text-display max-w-3xl text-4xl md:text-5xl">{fr ? "Choisissez le soutien dont votre demande a besoin." : "Choose the support your funding work needs."}</h2>
+            </div>
+            <p className="max-w-md text-sm leading-6 text-muted-foreground">{fr ? "Prix fixes ou de départ en CAD, avant taxes applicables et frais de tiers. Aucuns frais de succès ni pourcentage des fonds obtenus; toute portée additionnelle est proposée séparément après examen." : "Fixed or starting prices in CAD, before applicable taxes and third-party fees. No success fee or percentage of funding obtained; additional scope is quoted separately after review."}</p>
+          </div>
+          <div className="grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {fundingOffers.map((offer) => <OfferCard key={offer.id} offer={offer} returnPage="/grants-financing" />)}
           </div>
         </section>
 

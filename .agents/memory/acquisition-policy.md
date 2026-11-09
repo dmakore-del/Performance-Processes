@@ -2,11 +2,11 @@
 name: Public acquisition journeys
 description: How to interpret the marketing briefs without publishing internal commercial experiments or inventing client results.
 ---
-Use the marketing briefs to support distinct business-launch and existing-business growth journeys. The proposed offer names describe scopes to discuss, not pre-approved fixed-price packages.
+Use the marketing briefs to support distinct business-launch and existing-business growth journeys. Use individual services, not the former broad bundled packages.
 
-**Why:** The supplied briefs describe test prices and campaign targets, while the user has explicitly kept pricing internal and removed public packages/retainer information.
+**Why:** The user subsequently approved the modular service pricing document for public product prices and adjacent payment buttons. This supersedes the previous instruction to keep all pricing internal.
 
-**How to apply:** Keep quoted fees private and share agreed scope after discovery. Do not present campaign targets as company results, attribute services to named clients without confirmation, or initiate campaigns merely because a website brief includes outreach examples.
+**How to apply:** Publish approved itemized CAD starting prices and payment buttons, with taxes and third-party fees separate. Complex projects and additional scope remain separately quoted. Do not present campaign targets as company results, attribute services to named clients without confirmation, or initiate campaigns merely because a website brief includes outreach examples.
 
 Google Calendar is the public scheduling provider for discovery calls.
 

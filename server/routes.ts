@@ -6,6 +6,7 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 import { getUncachableStripeClient, getStripePublishableKey } from "./stripeClient";
+import { ensureServicePrice } from "./servicePrices";
 import { db, pool } from "./db";
 import { sql, desc, ilike, or } from "drizzle-orm";
 import { requireAuth, requireAdmin } from "./auth";
@@ -491,15 +492,9 @@ export async function registerRoutes(
         return res.status(400).json({ message: "This offer requires a custom quote." });
       }
 
-      const useTeam = mode === "team" && offer.perTeamPrice && offer.perTeamPrice > 0;
-      const baseAmount = useTeam ? offer.perTeamPrice! : offer.price;
-
       const NEXTUP_CODE = "NEXTPROCESSES";
-      const NEXTUP_DISCOUNT_PCT = 40;
       const normalizedCode = typeof promoCode === "string" ? promoCode.trim().toUpperCase() : "";
       let appliedCode: string | null = null;
-      let unitAmount = baseAmount;
-      let displayName = useTeam ? `${offer.name} (Team)` : offer.name;
 
       if (normalizedCode) {
         if (normalizedCode !== NEXTUP_CODE) {
@@ -508,14 +503,12 @@ export async function registerRoutes(
         if (offer.category !== "website") {
           return res.status(400).json({ message: "The NEXTPROCESSES code applies to website services only." });
         }
-        unitAmount = Math.round(baseAmount * (100 - NEXTUP_DISCOUNT_PCT) / 100);
-        displayName = `${displayName} , NextUp 40% off`;
         appliedCode = NEXTUP_CODE;
       }
 
       const { LANDING_PAGES } = await import("@shared/offers");
       const landingReturnPages = Object.values(LANDING_PAGES).map((l) => `/services/${l.slug}`);
-      const allowedReturnPages = ["/", "/services", "/pricing", "/playbooks", "/solutions", ...landingReturnPages];
+      const allowedReturnPages = ["/", "/services", "/pricing", "/playbooks", "/solutions", "/start-a-business", "/business-setup", "/websites-digital", "/grants-financing", ...landingReturnPages];
       const safeReturn = allowedReturnPages.includes(returnPage) ? returnPage : "/";
 
       const trustedDomain = process.env.REPLIT_DOMAINS?.split(",")[0]?.trim();
@@ -531,28 +524,31 @@ export async function registerRoutes(
 
       const stripe = await getUncachableStripeClient();
 
+      const priceId = await ensureServicePrice(stripe, offer, !!appliedCode);
+      const stripePrice = await stripe.prices.retrieve(priceId);
+      // Sandbox has no registered head-office address. Never disable tax for
+      // real payments: live checkout must calculate it from billing location.
       const { session, paymentMethods } = await createCheckoutSession(stripe, {
         line_items: [
           {
-            price_data: {
-              currency: "cad",
-              product_data: {
-                name: displayName,
-                description: offer.description,
-              },
-              unit_amount: unitAmount,
-              ...(offer.isMonthly ? { recurring: { interval: "month" as const } } : {}),
-            },
+            price: priceId,
             quantity: 1,
           },
         ],
+        automatic_tax: { enabled: stripePrice.livemode },
+        billing_address_collection: "required",
+        custom_text: {
+          submit: { message: offer.isStartingPrice
+            ? "Payment covers the starting service scope described on our website. We will confirm deliverables before work begins; additional work requires a separate approved quote. Third-party fees are separate."
+            : "Payment covers the service scope described on our website. Government and third-party fees are separate. Additional work requires a separate approved quote." },
+        },
         mode: offer.isMonthly ? "subscription" : "payment",
         success_url: `${baseUrl}${safeReturn}?payment=success`,
         cancel_url: `${baseUrl}${safeReturn}?payment=cancelled`,
         metadata: {
           offerId: offer.id,
           offerName: offer.name,
-          mode: useTeam ? "team" : "standard",
+          mode: "standard",
           category: offer.category,
           promoCode: appliedCode || "",
         },

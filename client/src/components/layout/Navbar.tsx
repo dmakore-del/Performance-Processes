@@ -17,6 +17,7 @@ export function Navbar() {
     about: "À propos",
     resources: "Ressources",
     grants: "Subventions et financement",
+     pricing: "Services et tarifs",
     book: "Réserver une consultation",
     portal: "Portail client",
     menu: "Menu",
@@ -29,6 +30,7 @@ export function Navbar() {
     about: "About",
     resources: "Resources",
     grants: "Grants & Financing",
+    pricing: "Services & Pricing",
     book: "Book a consultation",
     portal: "Client portal",
     menu: "Menu",
@@ -42,6 +44,7 @@ export function Navbar() {
     { label: copy.about, href: "/about" },
     { label: copy.resources, href: "/resources" },
     { label: copy.grants, href: "/grants-financing" },
+    { label: copy.pricing, href: "/services" },
   ];
   const active = (href: string) => href === "/" ? location === "/" : location === href || location.startsWith(`${href}/`);
   const languageControls = (
@@ -58,7 +61,7 @@ export function Navbar() {
           <img src={logoImg} alt="Performance Processes" className="h-10 w-auto sm:h-11" />
         </Link>
         <nav className="hidden items-center gap-x-4 gap-y-2 xl:flex 2xl:gap-x-5" aria-label={fr ? "Navigation principale" : "Main navigation"}>
-          {links.map((item) => <Link key={item.href} href={item.href} className={`whitespace-nowrap border-b pb-1 text-[11px] font-medium tracking-[.015em] transition-colors hover:border-accent hover:text-primary ${active(item.href) ? "border-accent text-primary" : "border-transparent text-primary/70"}`}>{item.label}</Link>)}
+          {links.map((item) => <Link key={item.href} href={item.href} className={`whitespace-nowrap border-b pb-1 text-[11px] font-medium tracking-[.015em] transition-colors hover:border-accent hover:text-primary ${item.href === "/services" ? "border-accent text-primary" : active(item.href) ? "border-accent text-primary" : "border-transparent text-primary/70"}`}>{item.label}</Link>)}
         </nav>
         <div className="hidden shrink-0 items-center gap-4 xl:flex">
           {languageControls}
@@ -72,7 +75,7 @@ export function Navbar() {
       </div>
       {open && <div id="mobile-navigation" className="max-h-[calc(100dvh-72px)] overflow-y-auto border-t border-primary/10 bg-background px-5 py-5 xl:hidden">
         <nav className="flex flex-col" aria-label={fr ? "Navigation principale" : "Main navigation"}>
-          {links.map((item) => <Link onClick={() => setOpen(false)} key={item.href} href={item.href} className={`border-b border-primary/10 py-3.5 text-lg ${active(item.href) ? "text-primary" : "text-primary/75"}`}>{item.label}</Link>)}
+          {links.map((item) => <Link onClick={() => setOpen(false)} key={item.href} href={item.href} className={`border-b border-primary/10 py-3.5 text-lg ${item.href === "/services" ? "font-semibold text-primary" : active(item.href) ? "text-primary" : "text-primary/75"}`}>{item.label}</Link>)}
           <Link onClick={() => setOpen(false)} href="/portal" className="border-b border-primary/10 py-3.5 text-lg text-primary/75">{copy.portal}</Link>
         </nav>
         <div className="mt-5 flex items-center justify-between sm:hidden">{languageControls}</div>

@@ -141,7 +141,6 @@ app.use((req, res, next) => {
   // middleware serves the single-page application fallback.
   const retiredPublicRedirects: Record<string, string> = {
     "/results": "/our-work",
-    "/services": "/business-setup",
     "/services/website-services": "/websites-digital",
     "/services/marketing-services": "/websites-digital",
     "/services/crm-lead-tracking": "/business-setup",
@@ -149,7 +148,7 @@ app.use((req, res, next) => {
     "/services/hr-recruiting": "/business-setup",
     "/services/growth-support": "/business-setup",
     "/solutions": "/business-setup",
-    "/pricing": "/business-setup",
+    "/pricing": "/services",
     "/approach": "/about",
     "/consulting": "/business-setup",
     "/recruiting": "/business-setup",

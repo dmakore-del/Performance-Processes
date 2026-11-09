@@ -19,12 +19,14 @@ export function Footer() {
     ["Grants & Financing", "/grants-financing"],
   ];
   const explore = fr ? [
+    ["Services et tarifs", "/services"],
     ["Notre travail", "/our-work"],
     ["À propos", "/about"],
     ["Ressources", "/resources"],
     ["Contact", "/contact"],
     ["Portail client", "/portal"],
   ] : [
+    ["Services & Pricing", "/services"],
     ["Our Work", "/our-work"],
     ["About", "/about"],
     ["Resources", "/resources"],

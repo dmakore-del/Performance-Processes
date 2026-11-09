@@ -32,6 +32,7 @@ import { ResourceAssessment } from "./pages/ResourceAssessment";
 import OurWork from "./pages/OurWork";
 import BookConsultation from "./pages/BookConsultation";
 import { acquisitionAttribution } from "./lib/acquisition";
+import ServicesCatalogue from "./pages/ServicesCatalogue";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -95,7 +96,7 @@ function Router() {
           : <Home />}
       </Route>
       <Route path="/about" component={About} />
-      <Route path="/start-a-business" component={CampaignLanding} />
+      <Route path="/start-a-business" component={LaunchService} />
       <Route path="/grow-your-business" component={CampaignLanding} />
       <Route path="/our-work" component={OurWork} />
       <Route path="/resources" component={PublicResources} />
@@ -110,7 +111,7 @@ function Router() {
       <Route path="/grants-financing" component={GrantsFinancing} />
       <Route path="/intake" component={ClientIntake} />
       <Route path="/solutions">{() => <Redirect to="/business-setup" />}</Route>
-      <Route path="/services">{() => <Redirect to="/" />}</Route>
+      <Route path="/services" component={ServicesCatalogue} />
       <Route path="/services/:slug">{() => <Redirect to="/business-setup" />}</Route>
       <Route path="/results">{() => <Redirect to="/our-work" />}</Route>
       <Route path="/approach">{() => <Redirect to="/about" />}</Route>
@@ -128,7 +129,7 @@ function Router() {
       <Route path="/consulting">{() => <Redirect to="/business-setup" />}</Route>
       <Route path="/recruiting">{() => <Redirect to="/business-setup" />}</Route>
       <Route path="/marketing">{() => <Redirect to="/websites-digital" />}</Route>
-      <Route path="/pricing">{() => <Redirect to="/business-setup" />}</Route>
+      <Route path="/pricing">{() => <Redirect to="/services" />}</Route>
       <Route path="/free-audit">{() => <Redirect to="/contact" />}</Route>
       <Route path="/womens-performance-grant">{() => <Redirect to="/nextup-partnership" />}</Route>
 

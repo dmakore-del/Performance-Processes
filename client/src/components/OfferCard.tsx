@@ -21,12 +21,13 @@ const CARD_COPY = {
     team: "Team",
     processing: "Processing...",
     subscribeNow: "Subscribe Now",
-    getStarted: "Get Started",
+    getStarted: "Pay Now",
     requestQuote: "Request Quote",
     payWith: "Pay with",
     payMethods: "Credit & debit cards · PayPal when available",
     oneTime: "One-time service fee · CAD",
-    monthlyCadence: "Monthly service fee · CAD",
+    monthlyCadence: "Monthly subscription · CAD, billed monthly",
+    startingScope: "Payable starting price for the defined base scope. We review the work first; any additional scope is quoted separately.",
     havePromo: "Have a NextUp discount code?",
     discountCode: "Discount code",
     clear: "Clear",
@@ -43,12 +44,13 @@ const CARD_COPY = {
     team: "Équipe",
     processing: "Traitement en cours...",
     subscribeNow: "S'abonner",
-    getStarted: "Commencer",
+    getStarted: "Payer maintenant",
     requestQuote: "Demander un devis",
     payWith: "Payer avec",
     payMethods: "Cartes de crédit et débit · PayPal si offert",
     oneTime: "Frais de service unique · CAD",
-    monthlyCadence: "Frais de service mensuels · CAD",
+    monthlyCadence: "Abonnement mensuel · CAD, facturé chaque mois",
+    startingScope: "Prix de départ payable pour la portée de base définie. Nous examinons le travail d’abord; toute portée additionnelle est proposée séparément.",
     havePromo: "Vous avez un code de réduction NextUp?",
     discountCode: "Code de réduction",
     clear: "Effacer",
@@ -104,7 +106,7 @@ export function OfferCard({ offer, returnPage = "/" }: OfferCardProps) {
     });
   };
 
-  const showBuy = !offer.isRange;
+  const showBuy = !offer.isRange || Boolean(offer.isStartingPrice);
   const isWebsite = offer.category === "website";
   const baseLabel = mode === "team" && offer.perTeamLabel ? loc.perTeamLabel ?? offer.perTeamLabel : loc.priceLabel;
   const baseAmount = mode === "team" && offer.perTeamPrice ? offer.perTeamPrice : offer.price;
@@ -154,6 +156,7 @@ export function OfferCard({ offer, returnPage = "/" }: OfferCardProps) {
         <p className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
           {offer.isMonthly ? cc.monthlyCadence : cc.oneTime}
         </p>
+        {offer.isStartingPrice && <p className="mt-3 max-w-sm text-xs leading-5 text-muted-foreground">{cc.startingScope}</p>}
         {offer.isPerPerson && offer.perTeamLabel && (
           <div className="mt-4 inline-flex items-center border border-border text-xs">
             <button
